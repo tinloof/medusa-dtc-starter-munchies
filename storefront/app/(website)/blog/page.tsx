@@ -1,3 +1,4 @@
+import type {PageProps} from "@/types";
 import type {ResolvingMetadata} from "next";
 
 import {BlogIndex} from "@/components/templates/blog/BlogIndex";
@@ -5,11 +6,7 @@ import {loadBlogIndex} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
 
-import type {DefaultRouteProps} from "../page";
-
-type BlogRouteProps = {
-  params: {tag?: string};
-} & DefaultRouteProps;
+type BlogRouteProps = PageProps<"tag", "page">;
 
 export async function generateMetadata(
   props: BlogRouteProps,

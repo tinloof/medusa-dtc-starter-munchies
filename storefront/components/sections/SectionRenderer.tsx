@@ -21,11 +21,16 @@ const SectionsRenderer = ({
   return (
     <>
       {sections.map((section, index) => {
-        if (!section) {
+        if (
+          !section._type ||
+          !(section._type in sectionsList) ||
+          !section._key
+        ) {
           return null;
         }
+        const sectionType = section._type as keyof typeof sectionsList;
 
-        const Component = sectionsList[section._type];
+        const Component = sectionsList[sectionType];
 
         if (!Component) {
           return <MissingSection key={section._key} type={section._type} />;
@@ -38,8 +43,8 @@ const SectionsRenderer = ({
             _sectionIndex={index}
             _sections={sections}
             rootHtmlAttributes={{
-              "data-section": section._type,
-              id: getDeepLinkId({blockKey: section._key, fieldName}),
+              "data-section": sectionType,
+              id: getDeepLinkId({blockKey: section._key, fieldName})!,
             }}
           />
         );

@@ -9,7 +9,7 @@ import {notFound} from "next/navigation";
 export function Page({
   data,
 }: {
-  data: MODULAR_PAGE_QUERYResult | HOME_QUERYResult;
+  data: HOME_QUERYResult | MODULAR_PAGE_QUERYResult;
 }) {
   if (data?._type !== "home" && data?._type !== "modular.page")
     return notFound();

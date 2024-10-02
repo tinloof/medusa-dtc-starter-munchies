@@ -1,3 +1,4 @@
+import type {PageProps} from "@/types";
 import type {ResolvingMetadata} from "next";
 
 import {Page} from "@/components/templates/page/Page";
@@ -5,14 +6,8 @@ import {loadHome} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
 
-export type DefaultRouteProps = {
-  searchParams: {[key: string]: string | string[] | undefined};
-};
-
-type IndexRouteProps = DefaultRouteProps;
-
 export async function generateMetadata(
-  props: IndexRouteProps,
+  props: PageProps,
   parent: ResolvingMetadata,
 ) {
   const initialData = await loadHome();

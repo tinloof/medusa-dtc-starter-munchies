@@ -1,3 +1,4 @@
+import type {PageProps} from "@/types";
 import type {BLOG_POST_QUERYResult} from "@/types/sanity.generated";
 import type {ResolvingMetadata} from "next";
 
@@ -7,11 +8,7 @@ import {loadPageByPathname} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
 
-import type {DefaultRouteProps} from "../page";
-
-export type DynamicRouteProps = {
-  params: {path: string[]};
-} & DefaultRouteProps;
+export type DynamicRouteProps = PageProps<"..path">;
 
 export async function generateMetadata(
   {params}: DynamicRouteProps,

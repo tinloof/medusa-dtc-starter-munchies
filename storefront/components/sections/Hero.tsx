@@ -1,8 +1,6 @@
-import type {SectionHero} from "@/types/sanity.generated";
+import type {ModularPageSection} from "./types";
 
-import type {SectionInRenderer} from "./types";
-
-export function Hero(props: SectionHero & SectionInRenderer) {
+export function Hero(props: ModularPageSection<"section.hero">) {
   return (
     <section
       {...props.rootHtmlAttributes}
