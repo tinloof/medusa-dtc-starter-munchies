@@ -2,11 +2,19 @@
   "name": "medusa-b2c-starter",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
   "keywords": [],
   "scripts": {
     "dev": "pnpm -r --parallel run dev"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "turbo": "^2.1.3"
+  },
+  "packageManager": "yarn@1.22.22"
 }
