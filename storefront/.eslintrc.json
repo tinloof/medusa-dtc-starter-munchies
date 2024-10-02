@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:perfectionist/recommended-natural"
+  ],
+  "ignorePatterns": [
+    "prettier.config.*",
+    "next.config.*",
+    "postcss.config.*",
+    "tailwind.config.*",
+    "sanity.generated.d.ts"
+  ],
+  "plugins": ["import"],
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "extends": [
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2019
+      },
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/consistent-type-assertions": "warn",
+        "@typescript-eslint/consistent-type-imports": "warn",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}
