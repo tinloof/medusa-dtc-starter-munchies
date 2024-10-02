@@ -10,8 +10,8 @@
   "license": "ISC",
   "private": true,
   "workspaces": [
-    "backend",
-    "frontend"
+    "./backend",
+    "./frontend"
   ],
   "devDependencies": {
     "turbo": "^2.1.3"
