@@ -38,7 +38,7 @@ pnpx sanity init --env
 
 3. Make sure to append `NEXT_PUBLIC_` where it makes sense in your `.env` file, you can refer to the `.env.example` file in the `frontend` directory.
 
-4. Set the version in `.env` to today's date in the format `YYYY-MM-DD`.
+4. Set the `NEXT_PUBLIC_SANITY_API_VERSION` in `.env` to today's date in the format `YYYY-MM-DD`.
 
 5. Get the `SANITY_API_TOKEN` by navigating to the [Sanity Manage Dashboard](https://www.sanity.io/manage). Choose your project, access the API section, and generate a token with editor permissions.
 
