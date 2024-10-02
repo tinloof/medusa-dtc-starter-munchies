@@ -19,8 +19,6 @@ type SectionInRenderer = {
   _sections?: any[];
   _type: SectionType;
 
-  localeId: string;
-
   /**
    * Data to be spread on the root HTML element of the block
    * @remarks injected by SectionsRenderer.tsx

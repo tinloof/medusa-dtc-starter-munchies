@@ -1,4 +1,3 @@
-import type {DynamicRouteProps} from "@/app/(website)/[...path]/page";
 import type {
   BLOG_INDEX_QUERYResult,
   BLOG_POST_QUERYResult,
@@ -72,7 +71,7 @@ export function loadGlobalData() {
 export async function loadPageByPathname({
   params: {path},
 }: {
-  params: DynamicRouteProps["params"];
+  params: {path: string[]};
 }) {
   let pathname: string;
 

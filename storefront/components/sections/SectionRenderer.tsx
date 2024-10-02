@@ -5,6 +5,8 @@ import type {
 
 import {getDeepLinkId} from "@/utils/ids";
 
+import type {SectionType} from "./types";
+
 import {sectionsList} from ".";
 
 const SectionsRenderer = ({
@@ -40,8 +42,10 @@ const SectionsRenderer = ({
           <Component
             key={section._key}
             {...section}
+            _key={section._key as string}
             _sectionIndex={index}
             _sections={sections}
+            _type={section._type as SectionType}
             rootHtmlAttributes={{
               "data-section": sectionType,
               id: getDeepLinkId({blockKey: section._key, fieldName})!,

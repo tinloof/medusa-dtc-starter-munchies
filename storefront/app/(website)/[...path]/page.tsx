@@ -8,7 +8,7 @@ import {loadPageByPathname} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
 
-export type DynamicRouteProps = PageProps<"..path">;
+export type DynamicRouteProps = PageProps<"...path">;
 
 export async function generateMetadata(
   {params}: DynamicRouteProps,
