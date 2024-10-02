@@ -91,5 +91,6 @@
   },
   "resolutions": {
     "glob": "^7.1.6"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }
