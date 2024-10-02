@@ -1,7 +1,10 @@
 # Custom API Routes
 
-You may define custom API Routes by putting files in the `/api` directory that export functions returning an express router or a collection of express routers.
-Medusa supports adding custom API Routes using a file based approach. This means that you can add files in the `/api` directory and the files path will be used as the API Route path. For example, if you add a file called `/api/store/custom/route.ts` it will be available on the `/store/custom` API Route.
+An API Route is a REST API endpoint.
+
+An API Route is created in a TypeScript or JavaScript file under the `/src/api` directory of your Medusa application. The file’s name must be `route.ts` or `route.js`.
+
+For example, to create a `GET` API Route at `/store/hello-world`, create the file `src/api/store/hello-world/route.ts` with the following content:
 
 ```ts
 import type { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
@@ -25,7 +28,9 @@ The file based routing supports the following HTTP methods:
 - OPTIONS
 - HEAD
 
-You can define a handler for each of these methods by exporting a function with the name of the method in the paths `route.ts` file. For example, if you want to define a handler for the `GET`, `POST`, and `PUT` methods, you can do so by exporting functions with the names `GET`, `POST`, and `PUT`:
+You can define a handler for each of these methods by exporting a function with the name of the method in the paths `route.ts` file.
+
+For example:
 
 ```ts
 import type { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
@@ -45,59 +50,65 @@ export async function PUT(req: MedusaRequest, res: MedusaResponse) {
 
 ## Parameters
 
-You can define parameters in the path of your route by using wrapping the parameter name in square brackets. For example, if you want to define a route that takes a `productId` parameter, you can do so by creating a file called `/api/products/[productId]/route.ts`:
+To create an API route that accepts a path parameter, create a directory within the route's path whose name is of the format `[param]`.
+
+For example, if you want to define a route that takes a `productId` parameter, you can do so by creating a file called `/api/products/[productId]/route.ts`:
 
 ```ts
 import type {
   MedusaRequest,
   MedusaResponse,
-  ProductService,
-} from "@medusajs/medusa";
+} from "@medusajs/medusa"
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const { productId } = req.params;
 
-  const productService: ProductService = req.scope.resolve("productService");
-
-  const product = await productService.retrieve(productId);
-
   res.json({
-    product,
-  });
+    message: `You're looking for product ${productId}`
+  })
 }
 ```
 
-If you want to define a route that takes multiple parameters, you can do so by adding multiple parameters in the path. It is important that each parameter is given a unique name. For example, if you want to define a route that takes both a `productId` and a `variantId` parameter, you can do so by creating a file called `/api/products/[productId]/variants/[variantId]/route.ts`. Duplicate parameter names are not allowed, and will result in an error.
+To create an API route that accepts multiple path parameters, create within the file's path multiple directories whose names are of the format `[param]`.
+
+For example, if you want to define a route that takes both a `productId` and a `variantId` parameter, you can do so by creating a file called `/api/products/[productId]/variants/[variantId]/route.ts`.
 
 ## Using the container
 
-A global container is available on `req.scope` to allow you to use any of the registered services from the core, installed plugins or your local project:
+The Medusa container is available on `req.scope`. Use it to access modules' main services and other registered resources:
 
 ```ts
 import type {
   MedusaRequest,
   MedusaResponse,
-  ProductService,
-} from "@medusajs/medusa";
+} from "@medusajs/medusa"
+import { IProductModuleService } from "@medusajs/framework/types"
+import { Modules } from "@medusajs/framework/utils"
 
-export async function GET(req: MedusaRequest, res: MedusaResponse) {
-  const productService: ProductService = req.scope.resolve("productService");
+export const GET = async (
+  req: MedusaRequest,
+  res: MedusaResponse
+) => {
+  const productModuleService: IProductModuleService =
+    req.scope.resolve(Modules.PRODUCT)
 
-  const products = await productService.list();
+  const [, count] = await productModuleService.listAndCount()
 
   res.json({
-    products,
-  });
+    count,
+  })
 }
 ```
 
 ## Middleware
 
-You can apply middleware to your routes by creating a file called `/api/middlewares.ts`. This file should export a configuration object with what middleware you want to apply to which routes. For example, if you want to apply a custom middleware function to the `/store/custom` route, you can do so by adding the following to your `/api/middlewares.ts` file:
+You can apply middleware to your routes by creating a file called `/api/middlewares.ts`. This file must export a configuration object with what middleware you want to apply to which routes.
+
+For example, if you want to apply a custom middleware function to the `/store/custom` route, you can do so by adding the following to your `/api/middlewares.ts` file:
 
 ```ts
+import { defineMiddlewares } from "@medusajs/medusa"
 import type {
-  MiddlewaresConfig,
   MedusaRequest,
   MedusaResponse,
   MedusaNextFunction,
@@ -112,68 +123,14 @@ async function logger(
   next();
 }
 
-export const config: MiddlewaresConfig = {
+export default defineMiddlewares({
   routes: [
     {
       matcher: "/store/custom",
       middlewares: [logger],
     },
   ],
-};
+})
 ```
 
 The `matcher` property can be either a string or a regular expression. The `middlewares` property accepts an array of middleware functions.
-
-You might only want to apply middleware to certain HTTP methods. You can do so by adding a `method` property to the route configuration object:
-
-```ts
-export const config: MiddlewaresConfig = {
-  routes: [
-    {
-      matcher: "/store/custom",
-      method: "GET",
-      middlewares: [logger],
-    },
-  ],
-};
-```
-
-The `method` property can be either a HTTP method or an array of HTTP methods. By default the middlewares will apply to all HTTP methods for the given `matcher`.
-
-### Default middleware
-
-Some middleware functions are applied per default:
-
-#### Global middleware
-
-JSON parsing is applied to all routes. This means that you can access the request body as `req.body` and it will be parsed as JSON, if the request has a `Content-Type` header of `application/json`.
-
-If you want to use a different parser for a specific route, such as `urlencoded`, you can do so by adding the following export to your `route.ts` file:
-
-```ts
-import { urlencoded } from "express";
-
-export const config: MiddlewaresConfig = {
-  routes: [
-    {
-      method: "POST",
-      matcher: "/store/custom",
-      middlewares: [urlencoded()],
-    },
-  ],
-};
-```
-
-#### Store middleware
-
-For all `/store` routes, the appropriate CORS settings are applied. The STORE_CORS value can be configured in your `medusa-config.js` file.
-
-#### Admin middleware
-
-For all `/admin` routes, the appropriate CORS settings are applied. The ADMIN_CORS value can be configured in your `medusa-config.js` file.
-
-All `/admin` routes also have admin authentication applied per default. If you want to disable this for a specific route, you can do so by adding the following export to your `route.ts` file:
-
-```ts
-export const AUTHENTICATE = false;
-```

@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "ES2021",
     "allowJs": true,
     "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
@@ -12,14 +12,20 @@
     "declaration": true,
     "sourceMap": false,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "baseUrl": ".",
     "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "checkJs": false
   },
-  "include": ["src/"],
+  "ts-node": {
+    "swc": true
+  },
+  "include": [
+    ".medusa",
+    "src"
+  ],
   "exclude": [
     "**/__tests__",
     "**/__fixtures__",

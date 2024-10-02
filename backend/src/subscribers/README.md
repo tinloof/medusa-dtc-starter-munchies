@@ -1,44 +1,62 @@
 # Custom subscribers
 
-You may define custom eventhandlers, `subscribers` by creating files in the `/subscribers` directory.
+Subscribers handle events emitted in the Medusa application.
+
+The subscriber is created in a TypeScript or JavaScript file under the `src/subscribers` directory.
+
+For example, create the file `src/subscribers/product-created.ts` with the following content:
 
 ```ts
-import MyCustomService from "../services/my-custom";
 import {
-  OrderService,
+  type SubscriberConfig,
+} from "@medusajs/medusa"
+
+// subscriber function
+export default async function productCreateHandler() {
+  console.log("A product was created")
+}
+
+// subscriber config
+export const config: SubscriberConfig = {
+  event: "product.created",
+}
+```
+
+A subscriber file must export:
+
+- The subscriber function that is an asynchronous function executed whenever the associated event is triggered.
+- A configuration object defining the event this subscriber is listening to.
+
+## Subscriber Parameters
+
+A subscriber receives an object having the following properties:
+
+- `event`: An object holding the event's details. It has a `data` property, which is the event's data payload.
+- `container`: The Medusa container. Use it to resolve modules' main services and other registered resources.
+
+```ts
+import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/medusa";
+} from "@medusajs/medusa"
+import { IProductModuleService } from "@medusajs/framework/types"
+import { Modules } from "@medusajs/framework/utils"
 
-type OrderPlacedEvent = {
-  id: string;
-  no_notification: boolean;
-};
-
-export default async function orderPlacedHandler({
-  data,
-  eventName,
+export default async function productCreateHandler({
+  event: { data },
   container,
-}: SubscriberArgs<OrderPlacedEvent>) {
-  const orderService: OrderService = container.resolve(OrderService);
+}: SubscriberArgs<{ id: string }>) {
+  const productId = data.id
 
-  const order = await orderService.retrieve(data.id, {
-    relations: ["items", "items.variant", "items.variant.product"],
-  });
+  const productModuleService: IProductModuleService =
+    container.resolve(Modules.PRODUCT)
 
-  // Do something with the order
+  const product = await productModuleService.retrieve(productId)
+
+  console.log(`The product ${product.title} was created`)
 }
 
 export const config: SubscriberConfig = {
-  event: OrderService.Events.PLACED,
-};
+  event: "product.created",
+}
 ```
-
-A subscriber is defined in two parts a `handler` and a `config`. The `handler` is a function which is invoked when an event is emitted. The `config` is an object which defines which event(s) the subscriber should subscribe to.
-
-The `handler` is a function which takes one parameter, an `object` of type `SubscriberArgs<T>` with the following properties:
-
-- `data` - an `object` of type `T` containing information about the event.
-- `eventName` - a `string` containing the name of the event.
-- `container` - a `MedusaContainer` instance which can be used to resolve services.
-- `pluginOptions` - an `object` containing plugin options, if the subscriber is defined in a plugin.

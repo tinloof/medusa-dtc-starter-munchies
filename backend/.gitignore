@@ -12,7 +12,6 @@ coverage
 !src/**
 
 ./tsconfig.tsbuildinfo
-package-lock.json
 medusa-db.sql
 build
 .cache
@@ -23,3 +22,5 @@ build
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+.medusa
