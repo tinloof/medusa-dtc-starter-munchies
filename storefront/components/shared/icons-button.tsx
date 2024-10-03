@@ -62,7 +62,6 @@ export default function IconButton({
       onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         alt={`${icon} icon`}
         className="h-full w-full flex-shrink-0 transition-all duration-300"

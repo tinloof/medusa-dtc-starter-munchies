@@ -16,16 +16,32 @@ export const icons = {
   Search: "/icons/search.svg",
 };
 
-export type IconProps = {name: keyof typeof icons} & Omit<
+type Icon = keyof typeof icons;
+
+export const iconAlts: Record<Icon, string> = {
+  AccordionBottom: "Accordion Bottom",
+  AccordionTop: "Accordion Top",
+  ArrowLeft: "Arrow Left",
+  ArrowLeftAccent: "Arrow Left Accent",
+  ArrowRight: "Arrow Right",
+  ArrowRightAccent: "Arrow Right Accent",
+  Cart: "Shopping Cart",
+  Close: "Close",
+  Hamburger: "Menu",
+  LoadingAccent: "Loading",
+  LoadingPrimary: "Loading",
+  Search: "Search",
+};
+
+export type IconProps = {name: Icon} & Omit<
   ComponentProps<"img">,
-  "sizes" | "src" | "srcSet"
+  "alt" | "sizes" | "src" | "srcSet"
 >;
 
-export default function Icon({alt, className, name, ...rest}: IconProps) {
+export default function Icon({className, name, ...rest}: IconProps) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
-      alt={alt || name}
+      alt={iconAlts[name]}
       className={cx(className)}
       src={icons[name]}
       {...rest}
