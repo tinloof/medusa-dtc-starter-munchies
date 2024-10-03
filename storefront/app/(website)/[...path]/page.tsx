@@ -31,7 +31,8 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
   if (!initialData) return notFound();
 
   switch (initialData._type) {
-    case "modular.page" || "home":
+    case "modular.page":
+    case "home":
       return (
         <SectionsRenderer
           {...{fieldName: "body", sections: initialData.sections}}
