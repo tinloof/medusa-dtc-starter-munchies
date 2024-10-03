@@ -38,13 +38,13 @@ export async function loadPageByPathname({
   params: {path?: string[]};
 }) {
   let pathname: string;
-
-  if (Array.isArray(path)) {
+  if (Array.isArray(path) && path.length > 0) {
     pathname = "/" + path.join("/");
-  } else {
+  } else if (path) {
     pathname = "/" + path;
+  } else {
+    pathname = "/";
   }
-
   const data = await loadRoute(pathname);
   const documentType = data?.routeData._type;
 
