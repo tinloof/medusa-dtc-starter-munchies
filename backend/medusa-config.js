@@ -17,6 +17,6 @@ export default defineConfig({
   },
   admin: {
     backendUrl:
-      process.env.MEDUSA_BACKEND_URL || "https://munchies-backend.medusajs.app",
+      process.env.MEDUSA_BACKEND_URL || "https://munchies.medusajs.app",
   },
 });
