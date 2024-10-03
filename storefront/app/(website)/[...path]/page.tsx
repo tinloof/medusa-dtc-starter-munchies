@@ -3,7 +3,7 @@ import type {ResolvingMetadata} from "next";
 
 import SectionsRenderer from "@/components/sections/section-renderer";
 import {loadPageByPathname} from "@/data/sanity";
-import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
+import {resolveSanityRouteMetadata} from "@/data/sanity/resolve-sanity-route-metadata";
 import {notFound} from "next/navigation";
 
 export type DynamicRouteProps = PageProps<"...path">;

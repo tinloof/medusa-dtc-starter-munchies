@@ -1,7 +1,7 @@
-import modularPage from "./documents/modularPage";
-import {ogImage} from "./objects/ogImage";
-import {lightPtBody, ptBody} from "./objects/ptBody";
-import {sectionsBody} from "./objects/sectionsBody";
+import modularPage from "./documents/modular-page";
+import {ogImage} from "./objects/og-image";
+import {lightPtBody, ptBody} from "./objects/pt-body";
+import {sectionsBody} from "./objects/sections-body";
 import {seo} from "./objects/seo";
 import sections from "./sections";
 import home from "./singletons/home";

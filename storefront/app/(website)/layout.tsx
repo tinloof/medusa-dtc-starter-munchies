@@ -5,7 +5,7 @@ import {Cta, Link} from "@/components/shared/button";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
-import {getOgImages} from "@/data/sanity/resolveSanityRouteMetadata";
+import {getOgImages} from "@/data/sanity/resolve-sanity-route-metadata";
 import {revalidatePath, revalidateTag} from "next/cache";
 import {draftMode} from "next/headers";
 import {VisualEditing} from "next-sanity";

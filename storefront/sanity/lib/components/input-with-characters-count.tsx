@@ -2,15 +2,14 @@ import type {BadgeTone} from "@sanity/ui";
 import type {TextInputProps, TextOptions} from "sanity";
 
 import {Badge, Flex, Stack} from "@sanity/ui";
-import React from "react";
 import {useFormValue} from "sanity";
 
-type CountedTextOptions = TextOptions & {
+type CountedTextOptions = {
   maxLength?: number;
   minLength?: number;
-};
+} & TextOptions;
 
-function CharacterCount(props: CountedTextOptions & {value?: string}) {
+function CharacterCount(props: {value?: string} & CountedTextOptions) {
   if (!props.maxLength && !props.minLength) {
     return null;
   }

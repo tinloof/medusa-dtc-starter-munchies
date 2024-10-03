@@ -5,7 +5,7 @@ import type {
   REDIRECT_QUERYResult,
 } from "@/types/sanity.generated";
 
-import {loadQuery, loadRoute} from "./loadQuery";
+import {loadQuery, loadRoute} from "./load-query";
 import {
   GLOBAL_QUERY,
   HOME_QUERY,

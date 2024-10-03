@@ -1,4 +1,4 @@
-import {imageWithAltField} from "@/sanity/shared/imageWithAltField";
+import {imageWithAltField} from "@/sanity/shared/image-with-alt-field";
 import {defineField} from "sanity";
 
 export const imageBlock = defineField({
