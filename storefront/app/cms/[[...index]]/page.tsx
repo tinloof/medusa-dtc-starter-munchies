@@ -9,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function StudioPage() {
-  return <Studio />;
+  return (
+    <body>
+      <Studio />
+    </body>
+  );
 }

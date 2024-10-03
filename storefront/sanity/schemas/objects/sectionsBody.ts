@@ -12,6 +12,16 @@ export const sectionsBody = defineType({
   of: sections.map((section) => ({
     type: section.name,
   })),
+  options: {
+    insertMenu: {
+      views: [
+        {
+          name: "grid",
+          previewImageUrl: (type) => `/sections/${type}.png`,
+        },
+      ],
+    },
+  },
   title: "Sections content",
   type: "array",
 });

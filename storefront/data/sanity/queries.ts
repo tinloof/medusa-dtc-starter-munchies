@@ -17,45 +17,6 @@ export const ROUTE_QUERY = groq`
   }
 `;
 
-export const BLOG_POST_CARD_FRAGMENT = groq`{
-  ...,
-  pathname,
-  title,
-  featuredImage
-}`;
-
-export const BLOG_INDEX_QUERY = groq`*[_type == "blogIndex"][0] {
-  ...,
-  pathname,
-  "blogTags": *[_type == "blog.tag" && count(*[_type == "blog.post" && defined(tags[]) && ^._id in tags[]._ref]) > 0] {
-    ...,
-  },
-  "entries": *[_type == "blog.post"
-    && (($filterTag != null && defined(tags[]) && count(tags[@->slug.current in [$filterTag]]) > 0)
-    || $filterTag == null)]
-    | order(_createdAt asc) [$pageStart...$pageEnd] ${BLOG_POST_CARD_FRAGMENT},
-  "featuredPosts": featuredPosts[] -> ${BLOG_POST_CARD_FRAGMENT},
-  "entriesCount": count(*[_type == "blog.post"
-    && (($filterTag != null && defined(tags[]) && count(tags[@->slug.current in [$filterTag]]) > 0)
-    || $filterTag == null)
-  ]),
-  "entriesPerPage": $entriesPerPage,
-  "pageNum": $pageNumber,
-}`;
-
-export const BLOG_POST_QUERY = groq`
-  *[_type in ["blog.post"] && pathname.current == $pathname][0] {
-    ...,
-    body[]{
-      ...,
-      _type == "imageBlock" => {
-        ...,
-        image
-      }
-    }
-  }
-`;
-
 export const SITEMAP_QUERY = groq`
   *[
     (pathname.current != null && indexable)

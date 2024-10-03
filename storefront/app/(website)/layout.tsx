@@ -2,12 +2,14 @@ import type {Metadata} from "next";
 
 import {ExitPreview} from "@/components/ExitPreview";
 import {TailwindIndicator} from "@/components/TailwindIndicator";
+import {Cta, Link} from "@/components/shared/button";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
 import {getOgImages} from "@/data/sanity/resolveSanityRouteMetadata";
 import {revalidatePath, revalidateTag} from "next/cache";
 import {draftMode} from "next/headers";
 import {VisualEditing} from "next-sanity";
+import React from "react";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await loadGlobalData();
@@ -24,9 +26,56 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Layout({children}: {children: React.ReactNode}) {
+  const example = "Add to cart";
+
   return (
-    <>
-      <main>{children}</main>
+    <body className="min-w-min-screen relative flex min-h-screen flex-col">
+      <main className="flex-1">{children}</main>
+      <div className="flex h-screen items-center justify-center gap-4">
+        <div className="flex flex-col gap-4">
+          <Link size="xl" variant="primary">
+            {example}
+          </Link>
+          <Link disabled={true} href="/" size="xl" variant="primary">
+            {example}
+          </Link>
+          <Cta disabled={true} size="xl" variant="primary">
+            {example}
+          </Cta>
+          <Link href="/" loading={true} size="xl" variant="primary">
+            {example}
+          </Link>
+          <Link href="/" size="lg" variant="primary">
+            {example}
+          </Link>
+          <Cta size="md" variant="primary">
+            {example}
+          </Cta>
+          <Cta size="sm" variant="primary">
+            {example}
+          </Cta>
+        </div>
+        <div className="flex flex-col gap-4">
+          <Cta size="xl" variant="outline">
+            {example}
+          </Cta>
+          <Cta disabled={true} size="xl" variant="outline">
+            {example}
+          </Cta>
+          <Cta loading={true} size="xl" variant="outline">
+            {example}
+          </Cta>
+          <Cta size="lg" variant="outline">
+            {example}
+          </Cta>
+          <Cta size="md" variant="outline">
+            {example}
+          </Cta>
+          <Cta size="sm" variant="outline">
+            {example}
+          </Cta>
+        </div>
+      </div>
       {draftMode().isEnabled && (
         <VisualEditing
           refresh={async (payload) => {
@@ -52,6 +101,6 @@ export default function Layout({children}: {children: React.ReactNode}) {
       )}
       <TailwindIndicator />
       <ExitPreview enable={draftMode().isEnabled} />
-    </>
+    </body>
   );
 }

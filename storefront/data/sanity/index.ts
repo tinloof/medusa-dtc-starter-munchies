@@ -1,6 +1,4 @@
 import type {
-  BLOG_INDEX_QUERYResult,
-  BLOG_POST_QUERYResult,
   GLOBAL_QUERYResult,
   HOME_QUERYResult,
   MODULAR_PAGE_QUERYResult,
@@ -9,8 +7,6 @@ import type {
 
 import {loadQuery, loadRoute} from "./loadQuery";
 import {
-  BLOG_INDEX_QUERY,
-  BLOG_POST_QUERY,
   GLOBAL_QUERY,
   HOME_QUERY,
   MODULAR_PAGE_QUERY,
@@ -27,38 +23,6 @@ export async function loadModularPage(pathname: string) {
 export async function loadHome() {
   return loadQuery<HOME_QUERYResult>({
     query: HOME_QUERY,
-  });
-}
-
-export async function loadBlogIndex({
-  entriesPerPage = 6,
-  infiniteLoading = false,
-  pageNumber = 1,
-  sortBy = "_createdAt",
-  sortOrder = "desc",
-  tag,
-}: {
-  entriesPerPage?: number;
-  infiniteLoading?: boolean;
-  pageNumber?: number;
-  sortBy?: string;
-  sortOrder?: string;
-  tag?: string;
-}) {
-  const pageStart = infiniteLoading ? 0 : entriesPerPage * (pageNumber - 1);
-  const pageEnd = entriesPerPage * pageNumber;
-
-  return loadQuery<BLOG_INDEX_QUERYResult>({
-    params: {
-      entriesPerPage,
-      filterTag: tag ?? null,
-      pageEnd,
-      pageNumber,
-      pageStart,
-      sortBy,
-      sortOrder,
-    },
-    query: BLOG_INDEX_QUERY,
   });
 }
 
@@ -87,20 +51,11 @@ export async function loadPageByPathname({
   switch (documentType) {
     case "modular.page":
       return loadModularPage(pathname);
-    case "blog.post":
-      return loadBlogPost(pathname);
 
     default:
       console.warn("Invalid document type:", documentType);
       return null;
   }
-}
-
-export function loadBlogPost(pathname: string) {
-  return loadQuery<BLOG_POST_QUERYResult>({
-    params: {pathname},
-    query: BLOG_POST_QUERY,
-  });
 }
 
 export function loadRedirects(paths: string[]) {

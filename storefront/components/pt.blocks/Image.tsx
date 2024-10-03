@@ -1,8 +1,8 @@
 import {cx} from "cva";
 
-import type {SanityImageProps} from "../SanityImage";
+import type {SanityImageProps} from "../shared/sanity-image";
 
-import {SanityImage} from "../SanityImage";
+import {SanityImage} from "../shared/sanity-image";
 
 export default function ImageBlock(props: SanityImageProps) {
   return (

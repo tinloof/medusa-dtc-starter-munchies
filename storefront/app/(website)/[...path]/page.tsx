@@ -1,9 +1,7 @@
 import type {PageProps} from "@/types";
-import type {BLOG_POST_QUERYResult} from "@/types/sanity.generated";
 import type {ResolvingMetadata} from "next";
 
-import {BlogPost} from "@/components/templates/blog/BlogPost";
-import {Page} from "@/components/templates/page/Page";
+import {Page} from "@/components/templates/page/page";
 import {loadPageByPathname} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
@@ -38,8 +36,6 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
   switch (initialData._type) {
     case "modular.page":
       return <Page data={initialData} />;
-    case "blog.post":
-      return <BlogPost data={initialData as BLOG_POST_QUERYResult} />;
     default:
       return <div>Template not found</div>;
   }

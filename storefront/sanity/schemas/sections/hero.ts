@@ -1,6 +1,6 @@
-import {defineSection} from "@tinloof/sanity-studio";
+import {defineField} from "sanity";
 
-export default defineSection({
+export default defineField({
   fields: [
     {
       name: "title",
@@ -10,13 +10,6 @@ export default defineSection({
     },
   ],
   name: "section.hero",
-  options: {
-    variants: [
-      {
-        assetUrl: "/sections/hero.png",
-      },
-    ],
-  },
   title: "Hero section",
   type: "object",
 });

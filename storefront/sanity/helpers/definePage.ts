@@ -10,13 +10,13 @@ import type {SchemaDefinition} from "./defineSchema";
 import {seoField} from "../shared/seoField";
 import defineSchema from "./defineSchema";
 
-type PageDefinition = Omit<DocumentDefinition, "options"> & {
-  options?: SchemaDefinition["options"] & {
+type PageDefinition = {
+  options?: {
     disableIndexableStatus?: boolean;
     hidePathnameField?: boolean;
     hideSeo?: boolean;
-  };
-};
+  } & SchemaDefinition["options"];
+} & Omit<DocumentDefinition, "options">;
 
 export default function definePage(schema: PageDefinition) {
   const groups = uniqBy(

@@ -20,23 +20,6 @@ const devStructureItems = (S: StructureBuilder) => {
   // In order to avoid duplication and confusion for content editors, these documents are only available in dev mode.
   return [
     singleton(S, SINGLETONS.home),
-    S.listItem()
-      .title("Blog")
-      .child(
-        S.list()
-          .id("blog")
-          .items([
-            singleton(S, SINGLETONS.blogIndex),
-            S.documentTypeListItem("blog.post").title("Blog posts"),
-            S.documentTypeListItem("blog.tag")
-              .title("Tags")
-              .child(
-                S.documentList()
-                  .title("Blog Tags")
-                  .filter('_type == "blog.tag"'),
-              ),
-          ]),
-      ),
     S.documentTypeListItem("modular.page"),
   ];
 };

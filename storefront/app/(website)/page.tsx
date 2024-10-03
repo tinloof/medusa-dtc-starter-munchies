@@ -1,7 +1,7 @@
 import type {PageProps} from "@/types";
 import type {ResolvingMetadata} from "next";
 
-import {Page} from "@/components/templates/page/Page";
+import {Page} from "@/components/templates/page/page";
 import {loadHome} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
