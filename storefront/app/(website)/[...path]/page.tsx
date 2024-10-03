@@ -18,10 +18,7 @@ export async function generateMetadata(
     return notFound();
   }
 
-  if (
-    initialData._type === "modular.page" ||
-    initialData._type === "blog.post"
-  ) {
+  if (initialData._type === "modular.page" || initialData._type === "home") {
     return resolveSanityRouteMetadata(initialData, parent);
   }
 
@@ -34,7 +31,7 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
   if (!initialData) return notFound();
 
   switch (initialData._type) {
-    case "modular.page":
+    case "modular.page" || "home":
       return (
         <SectionsRenderer
           {...{fieldName: "body", sections: initialData.sections}}

@@ -35,7 +35,7 @@ export function loadGlobalData() {
 export async function loadPageByPathname({
   params: {path},
 }: {
-  params: {path: string[]};
+  params: {path?: string[]};
 }) {
   let pathname: string;
 
@@ -49,6 +49,8 @@ export async function loadPageByPathname({
   const documentType = data?.routeData._type;
 
   switch (documentType) {
+    case "home":
+      return loadHome();
     case "modular.page":
       return loadModularPage(pathname);
 

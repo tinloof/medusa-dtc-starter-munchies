@@ -1,8 +1,8 @@
 import type {Metadata} from "next";
 
-import {ExitPreview} from "@/components/ExitPreview";
-import {TailwindIndicator} from "@/components/TailwindIndicator";
+import {ExitPreview} from "@/components/exit-preview";
 import {Cta, Link} from "@/components/shared/button";
+import {TailwindIndicator} from "@/components/tailwind-indicator";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
 import {getOgImages} from "@/data/sanity/resolveSanityRouteMetadata";
@@ -29,7 +29,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
   const example = "Add to cart";
 
   return (
-    <body className="min-w-min-screen relative flex min-h-screen flex-col">
+    <body className="relative flex min-h-screen min-w-min-screen flex-col">
       <main className="flex-1">{children}</main>
       <div className="flex h-screen items-center justify-center gap-4">
         <div className="flex flex-col gap-4">
