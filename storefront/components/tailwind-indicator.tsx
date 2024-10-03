@@ -1,6 +1,6 @@
 "use client";
 
-import {useIsInIframe} from "@/hooks/useIsInIframe";
+import {useIsInIframe} from "@/hooks/use-is-in-iframe";
 
 export function TailwindIndicator() {
   const isDev = process.env.NODE_ENV === "development";

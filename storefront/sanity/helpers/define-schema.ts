@@ -7,14 +7,14 @@ import {
 } from "@sanity/orderable-document-list";
 import {uniqBy} from "lodash";
 
-export type SchemaDefinition = Omit<DocumentDefinition, "options"> & {
+export type SchemaDefinition = {
   options?: {
     disableCreation?: boolean;
     hideInternalTitle?: boolean;
     localized?: boolean;
     orderable?: boolean;
   };
-};
+} & Omit<DocumentDefinition, "options">;
 
 export default function defineSchema(schema: SchemaDefinition) {
   const groups = uniqBy(

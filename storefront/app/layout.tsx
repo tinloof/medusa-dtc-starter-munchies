@@ -1,10 +1,26 @@
-import {Inter} from "next/font/google";
+import {cx} from "cva";
+import {
+  Climate_Crisis,
+  Instrument_Sans,
+  Instrument_Serif,
+} from "next/font/google";
 
 import "./globals.css";
 
-const sans = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-instrumentSans",
+  weight: ["400", "500", "600"],
+});
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-instrumentSerif",
+  weight: ["400"],
+});
+const climateCrisis = Climate_Crisis({
+  subsets: ["latin"],
+  variable: "--font-climateCrisis",
+  weight: ["400"],
 });
 
 export default function RootLayout({
@@ -13,8 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={sans.variable} lang="en">
-      <body>{children}</body>
+    <html
+      className={cx(
+        instrumentSans.variable,
+        instrumentSerif.variable,
+        climateCrisis.variable,
+        "overflow-x-clip overscroll-none scroll-smooth",
+      )}
+      lang="en"
+    >
+      {children}
     </html>
   );
 }

@@ -1,33 +1,5 @@
-import type {PageProps} from "@/types";
-import type {ResolvingMetadata} from "next";
+import DynamicRoute, {generateMetadata} from "./[...path]/page";
 
-import {Page} from "@/components/templates/page/Page";
-import {loadHome} from "@/data/sanity";
-import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
-import {notFound} from "next/navigation";
+export {generateMetadata};
 
-export async function generateMetadata(
-  props: PageProps,
-  parent: ResolvingMetadata,
-) {
-  const initialData = await loadHome();
-
-  if (!initialData) {
-    return notFound();
-  }
-
-  return resolveSanityRouteMetadata(
-    {
-      indexable: initialData.indexable,
-      pathname: initialData.pathname,
-      seo: initialData?.seo,
-    },
-    parent,
-  );
-}
-
-export default async function IndexRoute() {
-  const data = await loadHome();
-
-  return <Page data={data} />;
-}
+export default DynamicRoute;

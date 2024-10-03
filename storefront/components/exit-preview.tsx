@@ -1,6 +1,6 @@
 "use client";
 
-import {useIsInIframe} from "@/hooks/useIsInIframe";
+import {useIsInIframe} from "@/hooks/use-is-in-iframe";
 import {usePathname} from "next/navigation";
 
 export function ExitPreview(props: {enable: boolean}) {

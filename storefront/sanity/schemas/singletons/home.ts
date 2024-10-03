@@ -1,4 +1,4 @@
-import definePage from "@/sanity/helpers/definePage";
+import definePage from "@/sanity/helpers/define-page";
 import {defineField} from "sanity";
 
 export default definePage({

@@ -5,18 +5,18 @@ import {definePathname} from "@tinloof/sanity-studio";
 import {uniqBy} from "lodash";
 import {defineField} from "sanity";
 
-import type {SchemaDefinition} from "./defineSchema";
+import type {SchemaDefinition} from "./define-schema";
 
-import {seoField} from "../shared/seoField";
-import defineSchema from "./defineSchema";
+import {seoField} from "../shared/seo-field";
+import defineSchema from "./define-schema";
 
-type PageDefinition = Omit<DocumentDefinition, "options"> & {
-  options?: SchemaDefinition["options"] & {
+type PageDefinition = {
+  options?: {
     disableIndexableStatus?: boolean;
     hidePathnameField?: boolean;
     hideSeo?: boolean;
-  };
-};
+  } & SchemaDefinition["options"];
+} & Omit<DocumentDefinition, "options">;
 
 export default function definePage(schema: PageDefinition) {
   const groups = uniqBy(

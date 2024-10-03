@@ -2,12 +2,16 @@ import type {Metadata} from "next";
 
 import config from "@/config";
 
-import {Studio} from "./Studio";
+import {Studio} from "./studio";
 
 export const metadata: Metadata = {
   title: `${config.siteName} - CMS`,
 };
 
 export default function StudioPage() {
-  return <Studio />;
+  return (
+    <body>
+      <Studio />
+    </body>
+  );
 }

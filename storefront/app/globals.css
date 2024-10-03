@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html body[data-scroll-locked] {
+    overflow: visible !important;
+  }
+  body {
+    color: var(--accent);
+    background: var(--background);
+    @apply font-sans;
+  }
+  :root {
+    --max-width: 1440px;
+    --min-width: 320px;
+    /* colors */
+    --background: #fff6e6;
+    --accent: #ff5227;
+    --secondary: #f9dff2;
+
+    --base-font-size: 16px;
+  }
+  .font-serif {
+    --base-font-size: 16px;
+  }
+  .font-display {
+    --base-font-size: 16px;
+  }
+
+  .newletter-text:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #ff5227 !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
+
+  @layer utilities {
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+}
