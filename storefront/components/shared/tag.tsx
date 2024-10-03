@@ -1,5 +1,4 @@
 import {cx} from "cva";
-import React from "react";
 
 export default function Tag({
   className,
@@ -9,12 +8,7 @@ export default function Tag({
   text: string | undefined;
 }) {
   return (
-    <div
-      className={cx(
-        "climate-label-sm bg-secondary text-accent px-1 py-px",
-        className,
-      )}
-    >
+    <div className={cx("bg-secondary px-1 py-px text-accent", className)}>
       {text}
     </div>
   );

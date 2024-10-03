@@ -16,7 +16,7 @@ const config: Config = {
       fontFamily: {
         sans: "var(--font-instrumentSans)",
         serif: "var(--font-instrumentSerif)",
-        climate: "var(--font-climateCrisis)",
+        display: "var(--font-climateCrisis)",
       },
       colors: {
         background: "var(--background)",

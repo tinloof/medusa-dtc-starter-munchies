@@ -9,7 +9,7 @@ import type {
 
 import {PortableText} from "@portabletext/react";
 
-import ImageBlock from "./pt.blocks/Image";
+import ImageBlock from "../pt.blocks/image";
 
 export const RichText = ({
   value = [],
