@@ -1,10 +1,10 @@
-import {StudioLogo} from "@/components/StudioLogo";
 import config from "@/config";
 import {visionTool} from "@sanity/vision";
 import {pages} from "@tinloof/sanity-studio";
 import {defineConfig, isDev} from "sanity";
 import {structureTool} from "sanity/structure";
 
+import {StudioLogo} from "./components/studio/logo";
 import schemas from "./sanity/schemas";
 import {
   defaultDocumentNode,

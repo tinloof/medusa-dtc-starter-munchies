@@ -1,7 +1,7 @@
 import type {PageProps} from "@/types";
 import type {ResolvingMetadata} from "next";
 
-import {Page} from "@/components/templates/page/page";
+import SectionsRenderer from "@/components/sections/section-renderer";
 import {loadPageByPathname} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolveSanityRouteMetadata";
 import {notFound} from "next/navigation";
@@ -35,7 +35,11 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
 
   switch (initialData._type) {
     case "modular.page":
-      return <Page data={initialData} />;
+      return (
+        <SectionsRenderer
+          {...{fieldName: "body", sections: initialData.sections}}
+        />
+      );
     default:
       return <div>Template not found</div>;
   }
