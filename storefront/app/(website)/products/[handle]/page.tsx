@@ -1,8 +1,11 @@
-import type { PageProps } from "@/types";
+import type {PageProps} from "@/types";
 
-import { getProductByHandle } from "@/data/medusa/products";
-import { getRegion } from "@/data/medusa/regions";
-import { notFound } from "next/navigation";
+import {getProductByHandle} from "@/data/medusa/products";
+import {getRegion} from "@/data/medusa/regions";
+import {notFound} from "next/navigation";
+
+import ProductImages from "./_parts/product-images";
+import ProductInformation from "./_parts/product-information";
 
 type ProductPageProps = PageProps<"handle">;
 
@@ -23,5 +26,10 @@ export default async function ProductPage({params}: ProductPageProps) {
     return notFound();
   }
 
-  return product.title;
+  return (
+    <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
+      <ProductImages images={product.images} type={product.type} />
+      <ProductInformation {...product} />
+    </section>
+  );
 }

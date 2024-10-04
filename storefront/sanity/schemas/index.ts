@@ -1,4 +1,5 @@
 import modularPage from "./documents/modular-page";
+import product from "./documents/product";
 import {ogImage} from "./objects/og-image";
 import {lightPtBody, ptBody} from "./objects/pt-body";
 import {sectionsBody} from "./objects/sections-body";
@@ -17,6 +18,7 @@ const schemas = [
   lightPtBody,
   ...sections,
   sectionsBody,
+  product,
 ];
 
 export default schemas;
