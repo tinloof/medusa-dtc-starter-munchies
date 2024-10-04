@@ -3,9 +3,6 @@ import type {StoreProductImage, StoreProductType} from "@medusajs/types";
 import Tag from "@/components/shared/tag";
 import Image from "next/image";
 
-// const getRightUrl = (url: string) =>
-//   url.replace("http://localhost:9000", "https://munchies.medusajs.app");
-
 export default function ProductImages({
   images,
   type,
@@ -14,6 +11,7 @@ export default function ProductImages({
   type?: StoreProductType | null;
 }) {
   console.log(images);
+
   return (
     <>
       <div className="sticky top-xl hidden flex-row gap-xs lg:flex">
@@ -23,9 +21,9 @@ export default function ProductImages({
               <img
                 alt="Cookie images"
                 className="w-[85px]"
-                height={100}
+                height={85}
                 src={image.url}
-                width={100}
+                width={85}
               />
             </div>
           ))}
@@ -34,9 +32,9 @@ export default function ProductImages({
           {images?.[0].url && (
             <Image
               alt="Cookie"
-              height={100}
+              height={591}
               src={images?.[0].url}
-              width={100}
+              width={591}
             />
           )}
           <Tag className="absolute right-5 top-7" text="BEST-SELLER" />
@@ -48,9 +46,9 @@ export default function ProductImages({
             <Image
               alt="Cookie"
               className="h-[380px]"
-              height={100}
+              height={380}
               src={image.url}
-              width={100}
+              width={380}
             />
             {type?.value && (
               <p className="climate-label-sm absolute right-4 top-3 bg-secondary px-1 py-px text-accent">
