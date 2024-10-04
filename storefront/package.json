@@ -16,6 +16,8 @@
     "sanity:typegen": "sanity schema extract --path ./types/schema.json && sanity typegen generate"
   },
   "dependencies": {
+    "@medusajs/js-sdk": "preview",
+    "@medusajs/types": "preview",
     "@next/env": "^14.2.4",
     "@portabletext/react": "^3.1.0",
     "@sanity/asset-utils": "^1.3.0",
@@ -39,6 +41,7 @@
     "sanity": "^3.48.1"
   },
   "devDependencies": {
+    "@medusajs/client-types": "preview",
     "@portabletext/types": "^2.0.13",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.9",
