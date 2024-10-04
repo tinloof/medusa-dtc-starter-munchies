@@ -3,8 +3,8 @@ import type {StoreProductImage, StoreProductType} from "@medusajs/types";
 import Tag from "@/components/shared/tag";
 import Image from "next/image";
 
-const getRightUrl = (url: string) =>
-  url.replace("http://localhost:9000", "https://munchies.medusajs.app");
+// const getRightUrl = (url: string) =>
+//   url.replace("http://localhost:9000", "https://munchies.medusajs.app");
 
 export default function ProductImages({
   images,
@@ -24,7 +24,7 @@ export default function ProductImages({
                 alt="Cookie images"
                 className="w-[85px]"
                 height={100}
-                src={getRightUrl(image.url)}
+                src={image.url}
                 width={100}
               />
             </div>
@@ -35,7 +35,7 @@ export default function ProductImages({
             <Image
               alt="Cookie"
               height={100}
-              src={getRightUrl(images?.[0].url)}
+              src={images?.[0].url}
               width={100}
             />
           )}
@@ -49,7 +49,7 @@ export default function ProductImages({
               alt="Cookie"
               className="h-[380px]"
               height={100}
-              src={getRightUrl(image.url)}
+              src={image.url}
               width={100}
             />
             {type?.value && (
