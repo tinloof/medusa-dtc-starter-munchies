@@ -1,6 +1,5 @@
-import centeredText from "./centered-text";
 import hero from "./hero";
 
-const sections = [hero, centeredText];
+const sections = [hero];
 
 export default sections;
