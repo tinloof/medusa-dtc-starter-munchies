@@ -1,5 +1,6 @@
 import type {Footer} from "@/types/sanity.generated";
 
+import Label from "@/components/shared/typography/label";
 import Link from "next/link";
 import React from "react";
 
@@ -11,7 +12,9 @@ export default function BottomLinks({
   return (
     <div className="climate-label-xs flex flex-col justify-between gap-lg lg:flex-row lg:items-center">
       <div className="flex flex-col gap-2xl lg:flex-row">
-        <p>© {currentYear}</p>
+        <Label desktopSize="xs" font="display" mobileSize="2xs">
+          © {currentYear}
+        </Label>
         <div className="flex gap-2xl">
           {bottomLinks?.map((link) => {
             if (!link.link) return null;
@@ -21,7 +24,9 @@ export default function BottomLinks({
                 href={link.link}
                 key={link._key}
               >
-                {link.label}
+                <Label desktopSize="xs" font="display" mobileSize="2xs">
+                  {link.label}
+                </Label>
               </Link>
             );
           })}
@@ -32,7 +37,9 @@ export default function BottomLinks({
           if (!link.link) return null;
           return (
             <Link href={link.link} key={link._key}>
-              {link.label}
+              <Label desktopSize="xs" font="display" mobileSize="2xs">
+                {link.label}
+              </Label>
             </Link>
           );
         })}

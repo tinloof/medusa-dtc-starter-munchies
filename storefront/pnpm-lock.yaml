@@ -71,6 +71,9 @@ importers:
       sanity:
         specifier: ^3.48.1
         version: 3.59.0(@types/node@20.16.10)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@portabletext/types':
         specifier: ^2.0.13

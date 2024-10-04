@@ -12,8 +12,8 @@ export default function Footer(props: NonNullable<Footer>) {
   return (
     <>
       <Newsletter {...props} />
-      <section className="bg-accent">
-        <div className="mx-auto flex max-w-max-screen flex-col gap-2xl px-m pb-m pt-6xl text-background lg:px-xl lg:pb-xl">
+      <section className="w-full bg-accent">
+        <div className="mx-auto flex w-full max-w-max-screen flex-col gap-2xl px-m pb-m pt-6xl text-background lg:px-xl lg:pb-xl">
           <TopLinks {...props} />
           {props.image && (
             <SanityImage className="lg:mt-2xl" data={props.image} />
