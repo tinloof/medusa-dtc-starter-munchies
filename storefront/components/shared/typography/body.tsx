@@ -50,11 +50,11 @@ export default function Body({
   ...rest
 }: BodyProps) {
   return (
-    <p
+    <div
       className={bodyStyles({className, desktopSize, font, mobileSize})}
       {...rest}
     >
       {children}
-    </p>
+    </div>
   );
 }

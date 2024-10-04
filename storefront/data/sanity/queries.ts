@@ -6,6 +6,7 @@ export const HOME_QUERY = groq`*[_type == "home"][0]`;
 
 export const GLOBAL_QUERY = groq`{
   "fallbackOGImage": *[_type == "settings"][0].fallbackOgImage,
+  "footer": *[_id == "footer" && _type == "footer"][0],
 }`;
 
 export const ROUTE_QUERY = groq`
