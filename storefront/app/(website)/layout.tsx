@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 
 import {ExitPreview} from "@/components/exit-preview";
-import {Cta, Link} from "@/components/shared/button";
+import Footer from "@/components/global/footer";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
@@ -25,57 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Layout({children}: {children: React.ReactNode}) {
-  const example = "Add to cart";
+export default async function Layout({children}: {children: React.ReactNode}) {
+  const data = await loadGlobalData();
 
   return (
     <body className="relative flex min-h-screen min-w-min-screen flex-col">
       <main className="flex-1">{children}</main>
-      <div className="flex h-screen items-center justify-center gap-4">
-        <div className="flex flex-col gap-4">
-          <Link size="xl" variant="primary">
-            {example}
-          </Link>
-          <Link disabled={true} href="/" size="xl" variant="primary">
-            {example}
-          </Link>
-          <Cta disabled={true} size="xl" variant="primary">
-            {example}
-          </Cta>
-          <Link href="/" loading={true} size="xl" variant="primary">
-            {example}
-          </Link>
-          <Link href="/" size="lg" variant="primary">
-            {example}
-          </Link>
-          <Cta size="md" variant="primary">
-            {example}
-          </Cta>
-          <Cta size="sm" variant="primary">
-            {example}
-          </Cta>
-        </div>
-        <div className="flex flex-col gap-4">
-          <Cta size="xl" variant="outline">
-            {example}
-          </Cta>
-          <Cta disabled={true} size="xl" variant="outline">
-            {example}
-          </Cta>
-          <Cta loading={true} size="xl" variant="outline">
-            {example}
-          </Cta>
-          <Cta size="lg" variant="outline">
-            {example}
-          </Cta>
-          <Cta size="md" variant="outline">
-            {example}
-          </Cta>
-          <Cta size="sm" variant="outline">
-            {example}
-          </Cta>
-        </div>
-      </div>
+      {data.footer && <Footer {...data.footer} />}
       {draftMode().isEnabled && (
         <VisualEditing
           refresh={async (payload) => {

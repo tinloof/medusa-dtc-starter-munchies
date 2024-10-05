@@ -15,7 +15,7 @@ export const RichText = ({
   value = [],
 }: PortableTextProps<ArbitraryTypedObject | PortableTextBlock>) => {
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col gap-4">
       <PortableText value={value} />
     </div>
   );
@@ -31,7 +31,7 @@ export const BlogRichText = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col gap-4">
       <PortableText components={components} value={value} />
     </div>
   );
