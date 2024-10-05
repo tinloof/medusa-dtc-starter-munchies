@@ -11,6 +11,7 @@ type ProductPageProps = PageProps<"handle">;
 
 export default async function ProductPage({params}: ProductPageProps) {
   const region = await getRegion(
+    // TODO: Make this come from the params
     process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
   );
 
@@ -25,6 +26,8 @@ export default async function ProductPage({params}: ProductPageProps) {
     console.log("No product found");
     return notFound();
   }
+
+  console.log({varians: product.variants});
 
   return (
     <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
