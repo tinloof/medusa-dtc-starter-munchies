@@ -4,6 +4,7 @@ import type {
   StructureResolver,
 } from "sanity/structure";
 
+import {DashboardIcon} from "@sanity/icons";
 import {isDev} from "sanity";
 
 import {SINGLETONS, singleton} from "./singletons";
@@ -29,6 +30,14 @@ export const structure: StructureResolver = (S) =>
     .title("Structure")
     .items([
       ...devStructureItems(S),
+      S.listItem()
+        .title("Layout")
+        .icon(DashboardIcon)
+        .child(
+          S.list()
+            .title("Layout")
+            .items([singleton(S, SINGLETONS.footer)]),
+        ),
       singleton(S, SINGLETONS.settings),
       // You can update the structure here to add document related to general settings or content other than pages.
       // You can also add documents that needs to have a custom view like a manually ordered list for example.

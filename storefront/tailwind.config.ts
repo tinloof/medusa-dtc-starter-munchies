@@ -28,6 +28,7 @@ const config: Config = {
         // body
         "body-8xl": "calc(var(--base-font-size) + 32px)",
         "body-6xl": "calc(var(--base-font-size) + 24px)",
+        "body-5xl": "calc(var(--base-font-size) + 20px)",
         "body-4xl": "calc(var(--base-font-size) + 16px)",
         "body-3xl": "calc(var(--base-font-size) + 12px)",
         "body-2xl": "calc(var(--base-font-size) + 8px)",
@@ -52,6 +53,22 @@ const config: Config = {
         "heading-sm": "calc(var(--base-font-size) + 12px)",
         "heading-xs": "calc(var(--base-font-size) + 8px)",
         "heading-2xs": "calc(var(--base-font-size) + 4px)",
+
+        // label
+        "label-9xl": "calc(var(--base-font-size) + 36px)",
+        "label-8xl": "calc(var(--base-font-size) + 32px)",
+        "label-7xl": "calc(var(--base-font-size) + 28px)",
+        "label-6xl": "calc(var(--base-font-size) + 24px)",
+        "label-5xl": "calc(var(--base-font-size) + 20px)",
+        "label-4xl": "calc(var(--base-font-size) + 16px)",
+        "label-3xl": "calc(var(--base-font-size) + 12px)",
+        "label-2xl": "calc(var(--base-font-size) + 8px)",
+        "label-xl": "calc(var(--base-font-size) + 4px)",
+        "label-lg": "calc(var(--base-font-size) + 2px)",
+        "label-base": "var(--base-font-size)",
+        "label-sm": "calc(var(--base-font-size) - 2px)",
+        "label-xs": "calc(var(--base-font-size) - 4px)",
+        "label-2xs": "calc(var(--base-font-size) - 6px)",
       },
       spacing: {
         "max-screen": "var(--max-width)",
