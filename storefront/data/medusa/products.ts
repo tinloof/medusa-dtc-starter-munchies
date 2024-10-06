@@ -4,7 +4,8 @@ export async function getProductByHandle(handle: string, region_id: string) {
   return medusa.store.product
     .list(
       {
-        fields: "*variants.calculated_price,+variants.inventory_quantity",
+        // fields: "*variants.calculated_price,+variants.inventory_quantity",
+        fields: "*variants.calculated_price",
         handle,
         region_id,
       },
