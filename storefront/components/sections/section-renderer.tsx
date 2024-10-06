@@ -4,6 +4,7 @@ import type {
 } from "@portabletext/types";
 
 import {getDeepLinkId} from "@/utils/ids";
+import React from "react";
 
 import type {SectionType} from "./types";
 
