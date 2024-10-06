@@ -1,6 +1,6 @@
-import Body from "@/components/shared/body";
 import {Cta} from "@/components/shared/button";
-import Heading from "@/components/shared/heading";
+import Body from "@/components/shared/typography/body";
+import Heading from "@/components/shared/typography/heading";
 import Image from "next/image";
 
 export default function Addons() {

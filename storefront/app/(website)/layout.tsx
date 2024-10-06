@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 
 import {ExitPreview} from "@/components/exit-preview";
 import Footer from "@/components/global/footer";
+import Header from "@/components/global/header";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
@@ -30,6 +31,9 @@ export default async function Layout({children}: {children: React.ReactNode}) {
 
   return (
     <body className="relative flex min-h-screen min-w-min-screen flex-col">
+      {/* Add CMS content */}
+      <Header />
+
       <main className="flex-1">{children}</main>
       {data.footer && <Footer {...data.footer} />}
       {draftMode().isEnabled && (

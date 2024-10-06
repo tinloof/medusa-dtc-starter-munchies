@@ -35,7 +35,7 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
     case "home":
       return (
         <SectionsRenderer
-          {...{fieldName: "body", sections: initialData.sections}}
+          {...{fieldName: "body", sections: initialData.sections || []}}
         />
       );
     default:

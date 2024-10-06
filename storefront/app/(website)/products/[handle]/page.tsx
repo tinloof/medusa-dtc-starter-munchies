@@ -15,8 +15,6 @@ export default async function ProductPage({params}: ProductPageProps) {
     process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
   );
 
-  console.log({region});
-
   if (!region) {
     console.log("No region found");
     return notFound();

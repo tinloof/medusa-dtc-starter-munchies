@@ -1,6 +1,6 @@
 import type {StoreProduct} from "@medusajs/types";
 
-import Body from "@/components/shared/body";
+import Body from "@/components/shared/typography/body";
 import Link from "next/link";
 
 export default function BreadCrumbs({

@@ -3,24 +3,15 @@
 import type {StoreProductOption} from "@medusajs/types";
 
 import Select from "@/components/shared/select";
-import {useState} from "react";
+
+import {useProductVariants} from "../product-context";
 
 type Props = {
   options: StoreProductOption[];
 };
 
 export default function OptionsSelect({options}: Props) {
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<string, string | undefined>
-  >(() => {
-    return (options || []).reduce(
-      (optionObj, option) => {
-        optionObj[option.id] = undefined;
-        return optionObj;
-      },
-      {} as Record<string, string | undefined>,
-    );
-  });
+  const {setSelectedOptions} = useProductVariants();
 
   return options?.map((option) => {
     const values = option.values?.map(({id, value}) => ({
@@ -28,10 +19,11 @@ export default function OptionsSelect({options}: Props) {
       value: id,
     }));
 
-    console.log(values);
-
     if (!values || values?.length === 0) return null;
 
-    return <Select key={option.id} options={values} />;
+    const setOption = (value: string) =>
+      setSelectedOptions((prev) => ({...prev, [option.id]: value}));
+
+    return <Select key={option.id} options={values} setOption={setOption} />;
   });
 }

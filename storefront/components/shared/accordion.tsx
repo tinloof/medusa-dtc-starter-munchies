@@ -3,8 +3,8 @@
 import {cx} from "cva";
 import {useEffect, useRef, useState} from "react";
 
-import Body from "./body";
-import Heading from "./heading";
+import Body from "./typography/body";
+import Heading from "./typography/heading";
 
 export default function Accordion({
   items,
