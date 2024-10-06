@@ -1,3 +1,5 @@
+import categories from "./documents/categories";
+import collection from "./documents/collection";
 import modularPage from "./documents/modular-page";
 import product from "./documents/product";
 import {cta} from "./objects/cta";
@@ -25,6 +27,8 @@ const schemas = [
   ...sections,
   sectionsBody,
   product,
+  collection,
+  categories,
 ];
 
 export default schemas;
