@@ -5,15 +5,21 @@ import Accordion from "@/components/shared/accordion";
 import Body from "@/components/shared/body";
 import {Cta} from "@/components/shared/button";
 import Heading from "@/components/shared/heading";
-import Select from "@/components/shared/select";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Link from "next/link";
 
 import Addons from "./addons";
+import OptionsSelect from "./options";
 
 type Props = Pick<
   StoreProduct,
-  "collection" | "description" | "id" | "subtitle" | "title" | "variants"
+  | "collection"
+  | "description"
+  | "id"
+  | "options"
+  | "subtitle"
+  | "title"
+  | "variants"
 > &
   Pick<Product, "specs">;
 
@@ -21,6 +27,7 @@ export default function ProductInformation({
   collection,
   description,
   id,
+  options,
   specs,
   title,
   variants,
@@ -31,8 +38,6 @@ export default function ProductInformation({
       variants,
     },
   });
-
-  console.log({cheapestPrice});
 
   return (
     <div className="lg:y-s flex w-full max-w-[580px] flex-col gap-lg px-m pb-2xl pt-s">
@@ -49,7 +54,7 @@ export default function ProductInformation({
         {description}
       </Body>
       <div className="mt-s flex flex-col gap-s">
-        <Select />
+        {options && <OptionsSelect options={options} />}
         <Cta className="w-full" size="xl" variant="outline">
           Add to cart
         </Cta>
