@@ -24,6 +24,13 @@ export default definePage({
       type: "array",
     }),
     defineField({
+      name: "addons",
+      of: [{to: [{type: "product"}], type: "reference"}],
+      title: "Addons",
+      type: "array",
+      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
       group: "content",
       name: "sections",
       type: "sectionsBody",
