@@ -1,12 +1,6 @@
-import type {
-  ArbitraryTypedObject,
-  PortableTextBlock,
-} from "@portabletext/types";
-
 import {getDeepLinkId} from "@/utils/ids";
-import React from "react";
 
-import type {SectionType} from "./types";
+import type {SectionProps} from "./types";
 
 import {sectionsList} from ".";
 
@@ -15,47 +9,37 @@ const SectionsRenderer = ({
   sections,
 }: {
   fieldName: string;
-  sections?: (ArbitraryTypedObject | PortableTextBlock)[];
+  sections?: SectionProps[];
 }) => {
   if (!sections?.length) {
     return null;
   }
 
-  return (
-    <>
-      {sections.map((section, index) => {
-        if (
-          !section._type ||
-          !(section._type in sectionsList) ||
-          !section._key
-        ) {
-          return null;
-        }
-        const sectionType = section._type as keyof typeof sectionsList;
+  return sections.map((section, index) => {
+    if (!section._type || !(section._type in sectionsList) || !section._key) {
+      return null;
+    }
+    const sectionType = section._type as keyof typeof sectionsList;
 
-        const Component = sectionsList[sectionType];
+    const Component = sectionsList[sectionType];
 
-        if (!Component) {
-          return <MissingSection key={section._key} type={section._type} />;
-        }
+    if (!Component) {
+      return <MissingSection key={section._key} type={section._type} />;
+    }
 
-        return (
-          <Component
-            key={section._key}
-            {...section}
-            _key={section._key as string}
-            _sectionIndex={index}
-            _sections={sections}
-            _type={section._type as SectionType}
-            rootHtmlAttributes={{
-              "data-section": sectionType,
-              id: getDeepLinkId({blockKey: section._key, fieldName})!,
-            }}
-          />
-        );
-      })}
-    </>
-  );
+    return (
+      <Component
+        key={section._key}
+        {...(section as any)} // Use type assertion to avoid property mismatch
+        _sectionIndex={index}
+        _sections={sections}
+        rootHtmlAttributes={{
+          "data-section": section._type,
+          id: getDeepLinkId({blockKey: section._key, fieldName})!,
+        }}
+      />
+    );
+  });
 };
 
 export default SectionsRenderer;
