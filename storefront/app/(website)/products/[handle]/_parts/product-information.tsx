@@ -1,15 +1,15 @@
 import type {Product} from "@/types/sanity.generated";
 import type {StoreProduct} from "@medusajs/types";
 
-import Accordion from "@/components/shared/accordion";
 import Body from "@/components/shared/body";
 import {Cta} from "@/components/shared/button";
 import Heading from "@/components/shared/heading";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
-import Link from "next/link";
 
 import Addons from "./addons";
+import BreadCrumbs from "./breadcrumbs";
 import OptionsSelect from "./options";
+import ProductSpecs from "./specs";
 
 type Props = Pick<
   StoreProduct,
@@ -60,42 +60,7 @@ export default function ProductInformation({
         </Cta>
       </div>
       <Addons />
-      {(specs?.length || 0) > 0 && (
-        <Accordion
-          items={
-            specs
-              ?.map(({_key, content, title}) => {
-                if (!title || !content) return null;
-                return {content, id: _key, title};
-              })
-              .filter(
-                (item): item is {content: string; id: string; title: string} =>
-                  item !== null,
-              ) || []
-          }
-        />
-      )}
+      <ProductSpecs specs={specs} />
     </div>
   );
 }
-
-const BreadCrumbs = ({
-  collection,
-  title,
-}: Pick<StoreProduct, "collection" | "title">) => {
-  return (
-    <Body className="-mb-1" desktopSize="base" font="sans" mobileSize="sm">
-      <Link href="/">Home</Link>{" "}
-      {collection && (
-        <>
-          {" / "}
-          <Link href={`/collections/${collection.handle}`}>
-            {collection.title}
-          </Link>{" "}
-        </>
-      )}
-      {" / "}
-      {title}
-    </Body>
-  );
-};
