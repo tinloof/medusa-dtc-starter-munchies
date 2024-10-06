@@ -1,7 +1,6 @@
 import type {Footer} from "@/types/sanity.generated";
 
 import {SanityImage} from "@/components/shared/sanity-image";
-import React from "react";
 
 import BottomLinks from "./parts/bottom-links";
 import Newsletter from "./parts/newsletter";
@@ -11,7 +10,7 @@ export default function Footer(props: NonNullable<Footer>) {
   return (
     <>
       <Newsletter {...props} />
-      <section className="w-full bg-accent">
+      <footer className="w-full bg-accent">
         <div className="mx-auto flex w-full max-w-max-screen flex-col gap-2xl px-m pb-m pt-6xl text-background lg:px-xl lg:pb-xl">
           <TopLinks {...props} />
           {props.image && (
@@ -19,7 +18,7 @@ export default function Footer(props: NonNullable<Footer>) {
           )}
           <BottomLinks {...props} />
         </div>
-      </section>
+      </footer>
     </>
   );
 }

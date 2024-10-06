@@ -70,7 +70,6 @@ export default function definePage(schema: PageDefinition) {
     groups,
     options: {
       ...(schema.options ?? {}),
-      localized: true,
     },
     preview: {
       select: {
