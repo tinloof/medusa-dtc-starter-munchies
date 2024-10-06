@@ -8,7 +8,6 @@ import Newsletter from "./parts/newsletter";
 import TopLinks from "./parts/top-links";
 
 export default function Footer(props: NonNullable<Footer>) {
-  console.log(props);
   return (
     <>
       <Newsletter {...props} />
