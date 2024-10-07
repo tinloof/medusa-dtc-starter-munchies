@@ -10,12 +10,12 @@ export default async function Cart() {
   const cart = await retrieveCart();
 
   return (
-    <Dialog>
-      <OpenDialog>
-        <Icon name="Cart" />
-      </OpenDialog>
-      <SideDialog align="left">
-        <CartProvider cart={cart}>
+    <CartProvider cart={cart}>
+      <Dialog>
+        <OpenDialog>
+          <Icon name="Cart" />
+        </OpenDialog>
+        <SideDialog align="left">
           <div className="z-[9999] flex h-full w-full flex-col border-l border-accent bg-background">
             <div className="flex p-4">
               <CartHeading />
@@ -27,8 +27,8 @@ export default async function Cart() {
               })}
             </div>
           </div>
-        </CartProvider>
-      </SideDialog>
-    </Dialog>
+        </SideDialog>
+      </Dialog>
+    </CartProvider>
   );
 }

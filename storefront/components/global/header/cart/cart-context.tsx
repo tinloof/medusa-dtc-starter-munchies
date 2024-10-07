@@ -1,10 +1,17 @@
 "use client";
 
 import type {StoreCart, StorePromotion} from "@medusajs/types";
-import type {PropsWithChildren} from "react";
+import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
 import {deleteLineItem, updateCartQuantity} from "@/actions/medusa/cart";
-import {createContext, useContext, useOptimistic, useTransition} from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useOptimistic,
+  useState,
+  useTransition,
+} from "react";
 
 type Cart = {
   promotions?: StorePromotion[];
@@ -13,11 +20,13 @@ type Cart = {
 const CartContext = createContext<
   | {
       cart: Cart | null;
+      cartOpen: boolean;
       handleDeleteItem: (lineItem: string) => Promise<void>;
       handleUpdateCartQuantity: (
         lineItem: string,
         newQuantity: number,
       ) => Promise<void>;
+      setCartOpen: Dispatch<SetStateAction<boolean>>;
     }
   | undefined
 >(undefined);
@@ -29,7 +38,13 @@ export function CartProvider({
   cart: Cart | null;
 }>) {
   const [optimisticCart, setOptimisticCart] = useOptimistic<Cart | null>(cart);
+  const [cartOpen, setCartOpen] = useState(false);
+
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!cartOpen) setCartOpen(true);
+  }, [optimisticCart]);
 
   const handleDeleteItem = async (lineItem: string) => {
     startTransition(() => {
@@ -75,7 +90,13 @@ export function CartProvider({
 
   return (
     <CartContext.Provider
-      value={{cart: optimisticCart, handleDeleteItem, handleUpdateCartQuantity}}
+      value={{
+        cart: optimisticCart,
+        cartOpen,
+        handleDeleteItem,
+        handleUpdateCartQuantity,
+        setCartOpen,
+      }}
     >
       {children}
     </CartContext.Provider>

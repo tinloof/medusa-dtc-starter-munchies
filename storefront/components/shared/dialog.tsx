@@ -10,8 +10,13 @@ import type {
 import {Content, Portal, Root, Trigger} from "@radix-ui/react-dialog";
 import {cx} from "cva";
 
-export function Dialog(props: DialogProps) {
-  return <Root {...props} />;
+import {useCart} from "../global/header/cart/cart-context";
+
+export function Dialog(props: Omit<DialogProps, "onOpenChange" | "open">) {
+  const {cartOpen, setCartOpen} = useCart();
+  return (
+    <Root onOpenChange={(v) => setCartOpen(v)} open={cartOpen} {...props} />
+  );
 }
 
 export function OpenDialog(props: DialogTriggerProps) {
