@@ -9,7 +9,8 @@ import {lightPtBody, ptBody} from "./objects/pt-body";
 import {sectionsBody} from "./objects/sections-body";
 import {seo} from "./objects/seo";
 import sections from "./sections";
-import {footer} from "./singletons/footer";
+import footer from "./singletons/footer";
+import header from "./singletons/header";
 import home from "./singletons/home";
 import {settings} from "./singletons/settings";
 
@@ -24,6 +25,7 @@ const schemas = [
   ptBody,
   lightPtBody,
   footer,
+  header,
   ...sections,
   sectionsBody,
   product,

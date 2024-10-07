@@ -10,8 +10,6 @@ export default function ProductImages({
   images: StoreProductImage[] | null;
   type?: StoreProductType | null;
 }) {
-  console.log(images);
-
   return (
     <>
       <div className="sticky top-xl hidden flex-row gap-xs lg:flex">

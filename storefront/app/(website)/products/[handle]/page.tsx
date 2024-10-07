@@ -15,8 +15,6 @@ export default async function ProductPage({params}: ProductPageProps) {
     process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
   );
 
-  console.log({region});
-
   if (!region) {
     console.log("No region found");
     return notFound();
@@ -32,7 +30,7 @@ export default async function ProductPage({params}: ProductPageProps) {
   return (
     <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
       <ProductImages images={product.images} type={product.type} />
-      <ProductInformation {...product} />
+      <ProductInformation region_id={region.id} {...product} />
     </section>
   );
 }
