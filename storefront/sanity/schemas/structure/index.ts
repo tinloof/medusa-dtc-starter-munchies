@@ -30,6 +30,9 @@ export const structure: StructureResolver = (S) =>
     .title("Structure")
     .items([
       ...devStructureItems(S),
+      S.documentTypeListItem("product"),
+      S.documentTypeListItem("category"),
+      S.documentTypeListItem("collection"),
       S.listItem()
         .title("Layout")
         .icon(DashboardIcon)
