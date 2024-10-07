@@ -1,4 +1,4 @@
-import categories from "./documents/categories";
+import category from "./documents/category";
 import collection from "./documents/collection";
 import modularPage from "./documents/modular-page";
 import product from "./documents/product";
@@ -30,7 +30,7 @@ const schemas = [
   sectionsBody,
   product,
   collection,
-  categories,
+  category,
 ];
 
 export default schemas;

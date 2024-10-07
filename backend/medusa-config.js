@@ -19,6 +19,20 @@ export default defineConfig({
     backendUrl: "https://munchies.medusajs.app",
   },
   modules: {
+    ["sanity"]: {
+      resolve: "./modules/sanity",
+      options: {
+        api_token: process.env.SANITY_API_TOKEN,
+        project_id: process.env.SANITY_PROJECT_ID,
+        api_version: new Date().toISOString().split("T")[0],
+        dataset: "production",
+        studio_url: "https://munchies-tinloof.vercel.app",
+        type_map: {
+          collection: "medusa_collection",
+          category: "medusa_category",
+        },
+      },
+    },
     [Modules.FILE]: {
       resolve: "@medusajs/medusa/file",
       options: {
