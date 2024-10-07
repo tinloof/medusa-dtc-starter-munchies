@@ -1,4 +1,6 @@
 "use client";
+import type {ButtonProps} from "@/components/shared/button";
+
 import {addToCart} from "@/actions/medusa/cart";
 import {Cta} from "@/components/shared/button";
 import {useState} from "react";
@@ -6,29 +8,49 @@ import {useState} from "react";
 import {useProductVariants} from "../product-context";
 
 export default function AddToCart() {
-  const [isAdding, setIsAdding] = useState(false);
   const {activeVariant} = useProductVariants();
 
+  return (
+    <AddToCartButton
+      className="w-full"
+      label="Add to cart"
+      loadingLabel="Adding..."
+      size="xl"
+      variant="outline"
+      variantId={activeVariant?.id}
+    />
+  );
+}
+
+export function AddToCartButton({
+  label,
+  loadingLabel,
+  quantity = 1,
+  variantId,
+  ...buttonProps
+}: {
+  label: string;
+  loadingLabel?: string;
+  quantity?: number;
+  variantId?: string;
+} & Omit<ButtonProps, "onClick">) {
+  const [isAdding, setIsAdding] = useState(false);
+
   const handleAddToCart = async () => {
-    if (!activeVariant?.id) return;
+    if (!variantId) return;
     setIsAdding(true);
 
     await addToCart({
-      quantity: 1,
-      variantId: activeVariant?.id,
+      quantity,
+      variantId,
     });
 
     setIsAdding(false);
   };
 
   return (
-    <Cta
-      className="w-full"
-      onClick={handleAddToCart}
-      size="xl"
-      variant="outline"
-    >
-      {isAdding ? "Adding..." : "Add to cart"}
+    <Cta {...buttonProps} onClick={handleAddToCart}>
+      {isAdding ? (loadingLabel ? loadingLabel : label) : label}
     </Cta>
   );
 }

@@ -12,7 +12,7 @@ import OptionsSelect from "./options";
 import Price from "./price";
 import ProductSpecs from "./specs";
 
-type Props = Pick<
+type Props = {region_id: string} & Pick<
   StoreProduct,
   | "collection"
   | "description"
@@ -22,13 +22,15 @@ type Props = Pick<
   | "title"
   | "variants"
 > &
-  Pick<Product, "specs">;
+  Pick<Product, "addons" | "specs">;
 
 export default function ProductInformation({
+  addons,
   collection,
   description,
   id,
   options,
+  region_id,
   specs,
   title,
   variants,
@@ -48,7 +50,11 @@ export default function ProductInformation({
           {options && <OptionsSelect options={options} />}
           <AddToCart />
         </div>
-        <Addons />
+        <Addons
+          products={addons?.products}
+          region_id={region_id}
+          title={addons?.title}
+        />
         <ProductSpecs specs={specs} />
       </div>
     </ProductVariantsProvider>

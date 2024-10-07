@@ -30,7 +30,7 @@ export default async function ProductPage({params}: ProductPageProps) {
   return (
     <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
       <ProductImages images={product.images} type={product.type} />
-      <ProductInformation {...product} />
+      <ProductInformation region_id={region.id} {...product} />
     </section>
   );
 }
