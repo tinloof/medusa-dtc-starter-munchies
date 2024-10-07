@@ -41,7 +41,7 @@ const SectionsRenderer = ({
         return (
           <Component
             key={section._key}
-            {...section}
+            {...(section as any)}
             _key={section._key as string}
             _sectionIndex={index}
             _sections={sections}
