@@ -36,7 +36,10 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.list()
             .title("Layout")
-            .items([singleton(S, SINGLETONS.footer)]),
+            .items([
+              singleton(S, SINGLETONS.header),
+              singleton(S, SINGLETONS.footer),
+            ]),
         ),
       singleton(S, SINGLETONS.settings),
       // You can update the structure here to add document related to general settings or content other than pages.

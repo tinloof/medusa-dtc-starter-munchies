@@ -1,13 +1,13 @@
-import type {Product} from "@/types/sanity.generated";
-import type {StoreProduct} from "@medusajs/types";
+import type { Product } from "@/types/sanity.generated";
+import type { StoreProduct } from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {getProductsByIds} from "@/data/medusa/products";
-import {getProductPrice} from "@/utils/medusa/get-product-price";
+import { getProductsByIds } from "@/data/medusa/products";
+import { getProductPrice } from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
-import {AddToCartButton} from "./add-to-cart";
+import { AddToCartButton } from "./add-to-cart";
 
 export default async function Addons({
   products: productRefs,
@@ -21,6 +21,7 @@ export default async function Addons({
   if (!ids || ids.length === 0) return null;
 
   const {products} = await getProductsByIds(ids, region_id);
+
   return (
     <div className="flex flex-col gap-xs bg-secondary p-s">
       <Heading desktopSize="lg" mobileSize="base" tag={"h4"}>

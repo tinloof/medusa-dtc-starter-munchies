@@ -90,8 +90,30 @@ const config: Config = {
         marquee: "marquee var(--duration) linear infinite",
         "select-open": "selectOpen 0.2s ease-out forwards",
         "select-close": "selectClose 0.2s ease-in forwards",
+        "slide-in-from-right": "slideInFromRight 0.2s ease-in forwards",
+        "slide-in-from-left": "slideInFromLeft 0.2s ease-in forwards",
       },
       keyframes: {
+        slideInFromRight: {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+        },
+        slideInFromLeft: {
+          "0%": {
+            transform: "translateX(-100%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+        },
         marquee: {
           from: {transform: "translateX(0)"},
           to: {transform: "translateX(calc(-100% - var(--gap)))"},

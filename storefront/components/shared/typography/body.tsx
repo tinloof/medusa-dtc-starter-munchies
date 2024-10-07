@@ -21,7 +21,7 @@ export const bodyStyles = cva("", {
       xs: "lg:text-body-xs",
     },
     font: {
-      display: "font-display font-normal uppercase",
+      display: "font-display font-normal",
       sans: "font-sans font-medium leading-[150%]",
       serif: "font-serif font-normal leading-[150%]",
     },

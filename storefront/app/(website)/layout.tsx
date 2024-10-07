@@ -31,9 +31,7 @@ export default async function Layout({children}: {children: React.ReactNode}) {
 
   return (
     <body className="relative flex min-h-screen min-w-min-screen flex-col">
-      {/* Add CMS content */}
-      <Header />
-
+      {data.header && <Header {...data.header} />}
       <main className="flex-1">{children}</main>
       {data.footer && <Footer {...data.footer} />}
       {draftMode().isEnabled && (

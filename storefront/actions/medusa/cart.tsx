@@ -4,7 +4,6 @@ import type {HttpTypes} from "@medusajs/types";
 import client from "@/data/medusa/client";
 import {
   getAuthHeaders,
-  getCacheHeaders,
   getCacheTag,
   getCartId,
   setCartId,
@@ -26,9 +25,9 @@ export async function retrieveCart() {
       cartId,
       {
         fields:
-          "+items, +region, +items.product.*, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
+          "+items, +region, +items.product.*, +items.variant.image, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
       },
-      {...getAuthHeaders(), ...getCacheHeaders("carts")},
+      {next: {tags: ["cart"]}, ...getAuthHeaders()},
     )
     .then(
       ({cart}) =>
@@ -109,4 +108,58 @@ export async function addToCart({
       revalidateTag(getCacheTag("carts"));
     })
     .catch(medusaError);
+}
+
+export async function updateCartQuantity({
+  countryCode = "us",
+  lineItem,
+  quantity,
+}: {
+  countryCode?: string;
+  lineItem: string;
+  quantity: number;
+}) {
+  const cart = await getOrSetCart(countryCode);
+
+  if (!cart) {
+    throw new Error("Error retrieving or creating cart");
+  }
+
+  if (!(quantity > 0)) {
+    await client.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
+      revalidateTag(getCacheTag("carts"));
+    });
+  } else {
+    await client.store.cart
+      .updateLineItem(
+        cart.id,
+        lineItem,
+        {
+          quantity,
+        },
+        {},
+        getAuthHeaders(),
+      )
+      .then(() => {
+        revalidateTag(getCacheTag("carts"));
+      });
+  }
+}
+
+export async function deleteLineItem({
+  countryCode = "us",
+  lineItem,
+}: {
+  countryCode?: string;
+  lineItem: string;
+}) {
+  const cart = await getOrSetCart(countryCode);
+
+  if (!cart) {
+    throw new Error("Error retrieving or creating cart");
+  }
+
+  await client.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
+    revalidateTag(getCacheTag("carts"));
+  });
 }
