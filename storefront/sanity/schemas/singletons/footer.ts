@@ -13,7 +13,7 @@ const richTextToPlainText = (richText: RichText) => {
   return "";
 };
 
-export const footer = defineType({
+export default defineType({
   __experimental_formPreviewTitle: false,
   fields: [
     {
