@@ -37,7 +37,7 @@ export const styles = cva(
   },
 );
 
-type ButtonProps = {
+export type ButtonProps = {
   loading?: boolean;
 } & ComponentProps<"button"> &
   VariantProps<typeof styles>;

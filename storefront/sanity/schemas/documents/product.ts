@@ -24,12 +24,20 @@ export default definePage({
       type: "array",
     }),
     defineField({
+      fields: [
+        {name: "title", title: "Title", type: "string"},
+        {
+          name: "products",
+          of: [{to: [{type: "product"}], type: "reference"}],
+          title: "Addons",
+          type: "array",
+          validation: (Rule) => Rule.max(3),
+        },
+      ],
       name: "addons",
-      of: [{to: [{type: "product"}], type: "reference"}],
-      title: "Addons",
-      type: "array",
-      validation: (Rule) => Rule.max(3),
+      type: "object",
     }),
+
     defineField({
       group: "content",
       name: "sections",

@@ -30,6 +30,9 @@ export const structure: StructureResolver = (S) =>
     .title("Structure")
     .items([
       ...devStructureItems(S),
+      S.documentTypeListItem("product"),
+      S.documentTypeListItem("category"),
+      S.documentTypeListItem("collection"),
       S.listItem()
         .title("Layout")
         .icon(DashboardIcon)
@@ -37,6 +40,7 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Layout")
             .items([
+              singleton(S, SINGLETONS.header),
               singleton(S, SINGLETONS.footer),
               singleton(S, SINGLETONS.notFound),
             ]),

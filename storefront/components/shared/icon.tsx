@@ -14,6 +14,7 @@ export const icons = {
   LoadingAccent: "/icons/loading-accent.svg",
   LoadingPrimary: "/icons/loading-primary.svg",
   Search: "/icons/search.svg",
+  Trash: "/icons/trash.svg",
 };
 
 type Icon = keyof typeof icons;
@@ -30,7 +31,8 @@ export const iconAlts: Record<Icon, string> = {
   Hamburger: "Menu",
   LoadingAccent: "Loading",
   LoadingPrimary: "Loading",
-  Search: "Search",
+  Search: "Search icon",
+  Trash: "Trash icon",
 };
 
 export type IconProps = {name: Icon} & Omit<

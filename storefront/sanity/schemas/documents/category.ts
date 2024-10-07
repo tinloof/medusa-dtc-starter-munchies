@@ -9,7 +9,7 @@ export default definePage({
       type: "sectionsBody",
     }),
   ],
-  name: "categories",
+  name: "category",
   options: {
     disableCreation: true,
     hideInternalTitle: true,

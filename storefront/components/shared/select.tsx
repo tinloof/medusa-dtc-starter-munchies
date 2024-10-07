@@ -4,21 +4,31 @@ import * as RadixSelect from "@radix-ui/react-select";
 import {cx} from "cva";
 import {useState} from "react";
 
-import Body from "./body";
 import Icon from "./icon";
+import Body from "./typography/body";
 
-export default function Select() {
+type Option = {label: string; value: string};
+
+export default function Select({
+  options,
+  setOption,
+}: {
+  options: Option[];
+  setOption: (value: string) => void;
+}) {
   const [open, setOpen] = useState(false);
-  const items = [
-    {label: "4-Pack", value: "4-Pack"},
-    {label: "6-Pack", value: "6-Pack"},
-    {label: "8-Pack", value: "8-Pack"},
-  ];
+
+  if (options.length === 0) return null;
+
   return (
-    <RadixSelect.Root onOpenChange={setOpen} open={open}>
+    <RadixSelect.Root
+      onOpenChange={setOpen}
+      onValueChange={setOption}
+      open={open}
+    >
       <RadixSelect.Trigger className="flex w-fit items-center justify-between gap-lg rounded-lg border-[1.5px] border-accent bg-background px-s py-[6px] outline-none">
         <Body font="sans" mobileSize="2xl">
-          <RadixSelect.Value placeholder="4-Pack" />
+          <RadixSelect.Value placeholder={options[0].label} />
         </Body>
         <RadixSelect.Icon className="flex-shrink-0">
           <Icon
@@ -44,7 +54,7 @@ export default function Select() {
           position="popper"
         >
           <RadixSelect.Viewport className="flex flex-col">
-            {items.map((item) => (
+            {options.map((item) => (
               <SelectItem key={item.value} value={item.value}>
                 {item.label}
               </SelectItem>
@@ -60,7 +70,7 @@ function SelectItem({
   children,
   className,
   ...props
-}: React.PropsWithChildren<RadixSelect.SelectItemProps>) {
+}: RadixSelect.SelectItemProps) {
   return (
     <RadixSelect.Item
       className={cx(

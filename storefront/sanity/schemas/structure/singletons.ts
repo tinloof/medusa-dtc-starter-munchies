@@ -13,6 +13,10 @@ export const SINGLETONS: {
     _type: "footer",
     title: "Footer",
   },
+  header: {
+    _type: "header",
+    title: "Header",
+  },
   home: {
     _type: "home",
     title: "Home",

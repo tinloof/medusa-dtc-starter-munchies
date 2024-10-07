@@ -1,4 +1,4 @@
-import categories from "./documents/categories";
+import category from "./documents/category";
 import collection from "./documents/collection";
 import modularPage from "./documents/modular-page";
 import product from "./documents/product";
@@ -10,7 +10,8 @@ import {sectionsBody} from "./objects/sections-body";
 import {seo} from "./objects/seo";
 import spot from "./objects/spot";
 import sections from "./sections";
-import {footer} from "./singletons/footer";
+import footer from "./singletons/footer";
+import header from "./singletons/header";
 import home from "./singletons/home";
 import {notFound} from "./singletons/not-found";
 import {settings} from "./singletons/settings";
@@ -28,11 +29,12 @@ const schemas = [
   lightPtBody,
   footer,
   notFound,
+  header,
   ...sections,
   sectionsBody,
   product,
   collection,
-  categories,
+  category,
 ];
 
 export default schemas;
