@@ -18,7 +18,6 @@ type SectionInRenderer = {
    */
   _sections?: any[];
   _type: SectionType;
-
   /**
    * Data to be spread on the root HTML element of the block
    * @remarks injected by SectionsRenderer.tsx
@@ -29,14 +28,16 @@ type SectionInRenderer = {
   };
 };
 
-export type ModularPageSection<T extends SectionType> = Extract<
-  NonNullable<NonNullable<MODULAR_PAGE_QUERYResult>["sections"]>[number],
-  {_type: T}
+export type SectionProps = NonNullable<
+  NonNullable<MODULAR_PAGE_QUERYResult>["sections"]
+>[number];
+
+export type ModularPageSection<T extends SectionType> = Omit<
+  Extract<SectionProps, {_type: T}>,
+  "_type"
 > &
   SectionInRenderer;
 
 export type SectionList = {
-  [K in SectionType]: K extends SectionType
-    ? ComponentType<ModularPageSection<K>>
-    : never;
+  [K in SectionType]: ComponentType<ModularPageSection<K>>;
 };

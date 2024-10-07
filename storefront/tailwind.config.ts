@@ -73,6 +73,7 @@ const config: Config = {
       spacing: {
         "max-screen": "var(--max-width)",
         "min-screen": "var(--min-width)",
+        "7xl": "72px",
         "6xl": "64px",
         "5xl": "50px",
         "4xl": "48px",
