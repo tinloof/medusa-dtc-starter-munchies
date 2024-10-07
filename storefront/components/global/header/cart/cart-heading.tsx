@@ -9,7 +9,7 @@ export default function CartHeading() {
   const count = (cart?.items?.length ?? 0).toString();
 
   return (
-    <Body desktopSize="2xl" font="display" mobileSize="xl">
+    <Body desktopSize="2xl" font="serif" mobileSize="xl">
       My Bag ({count})
     </Body>
   );
