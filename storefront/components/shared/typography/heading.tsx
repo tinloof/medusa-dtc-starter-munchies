@@ -21,7 +21,7 @@ export const headingStyles = cva("", {
       xs: "lg:text-heading-xs",
     },
     font: {
-      display: "font-display font-normal uppercase",
+      display: "font-display font-normal uppercase leading-[120%]",
       sans: "font-sans font-medium leading-[120%]",
       serif: "font-serif font-normal leading-[120%]",
     },

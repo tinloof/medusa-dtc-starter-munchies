@@ -4,6 +4,7 @@ import featuredProducts from "./featured-products";
 import hero from "./hero";
 import marquee from "./marquee";
 import mediaText from "./media-text";
+import shopTheLook from "./shop-the-look";
 import testimonials from "./testimonials";
 
 const sections = [
@@ -14,6 +15,7 @@ const sections = [
   testimonials,
   featuredProducts,
   assurance,
+  shopTheLook,
 ];
 
 export default sections;

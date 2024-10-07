@@ -6,6 +6,7 @@ import FeaturedProducts from "./featured-products";
 import Hero from "./hero";
 import Marquee from "./marquee";
 import MediaText from "./media-text";
+import ShopTheLook from "./shopTheLook";
 import Testimonials from "./testimonials";
 
 export const sectionsList: SectionList = {
@@ -15,5 +16,6 @@ export const sectionsList: SectionList = {
   "section.hero": Hero,
   "section.marquee": Marquee,
   "section.mediaText": MediaText,
+  "section.shopTheLook": ShopTheLook,
   "section.testimonials": Testimonials,
 };

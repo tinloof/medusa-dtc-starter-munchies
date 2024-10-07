@@ -17,6 +17,10 @@ export const SINGLETONS: {
     _type: "home",
     title: "Home",
   },
+  notFound: {
+    _type: "not.found",
+    title: "Not Found",
+  },
   settings: {
     _type: "settings",
     title: "Settings",
