@@ -34,6 +34,8 @@
     "@tinloof/sanity-web": "^0.4.2",
     "class-variance-authority": "^0.7.0",
     "cva": "npm:class-variance-authority@^0.7.0",
+    "embla-carousel": "^8.3.0",
+    "embla-carousel-react": "^8.3.0",
     "lodash": "^4.17.21",
     "next": "14.2.4",
     "next-sanity": "^9.4.2",
