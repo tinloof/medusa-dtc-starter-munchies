@@ -1,8 +1,16 @@
 import {groq} from "next-sanity";
 
-export const MODULAR_PAGE_QUERY = groq`*[pathname.current == $pathname && _type == "modular.page"][0]`;
+import {SECTIONS_BODY_FRAGMENT} from "./section";
 
-export const HOME_QUERY = groq`*[_type == "home"][0]`;
+export const MODULAR_PAGE_QUERY = groq`*[pathname.current == $pathname && _type == "modular.page"][0]{
+  ...,
+  sections[] ${SECTIONS_BODY_FRAGMENT},
+}`;
+
+export const HOME_QUERY = groq`*[_type == "home"][0]{
+  ...,
+  sections[] ${SECTIONS_BODY_FRAGMENT},
+}`;
 
 export const GLOBAL_QUERY = groq`{
   "fallbackOGImage": *[_type == "settings"][0].fallbackOgImage,

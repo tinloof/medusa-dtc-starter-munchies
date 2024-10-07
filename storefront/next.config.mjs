@@ -5,6 +5,7 @@ const config = {
       {hostname: "cdn.sanity.io"},
       {hostname: "munchies.medusajs.app"},
       {hostname: "tinloof-munchies.s3.eu-north-1.amazonaws.com"},
+      {hostname: "image.mux.com"},
     ],
   },
   eslint: {
