@@ -163,17 +163,16 @@ export default class SanityModuleService {
       set: {
         internalTitle: category.name,
         pathname: { _type: "slug", current: "/categories/" + category.handle },
-        parent_category: category.parent_category_id
-          ? {
-              _type: "reference",
-              _ref: category.parent_category_id,
-            }
-          : undefined,
-        children_categories: category.category_children.map((child) => ({
-          _type: "reference",
-          _ref: child.id,
-          _key: child.id,
-        })),
+        // parent_category: category.parent_category_id
+        //   ? {
+        //       _type: "reference",
+        //       _ref: category.parent_category_id,
+        //     }
+        //   : undefined,
+        // children_categories: category.category_children.map((child) => {
+        //   if (!child.id) return;
+        //   return { _type: "reference", _ref: child.id };
+        // }),
       },
     };
   };
@@ -203,15 +202,15 @@ export default class SanityModuleService {
       _id: category.id,
       internalTitle: category.name,
       pathname: { _type: "slug", current: "/categories/" + category.handle },
-      parent_category: {
-        _type: "reference",
-        _ref: category.parent_category_id,
-      },
-      children_categories: category.category_children.map((child) => ({
-        _type: "reference",
-        _ref: child.id,
-        _key: child.id,
-      })),
+      // parent_category: {
+      //   _type: "reference",
+      //   _ref: category.parent_category_id,
+      // },
+      // children_categories: category.category_children.map((child) => ({
+      //   _type: "reference",
+      //   _ref: child.id,
+      //   _key: child.id,
+      // })),
     };
   };
   private transformCollectionForCreate = (collection: ProductCollectionDTO) => {

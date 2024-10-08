@@ -28,8 +28,9 @@ export default defineConfig({
         dataset: "production",
         studio_url: "https://munchies-tinloof.vercel.app",
         type_map: {
-          collection: "medusa_collection",
-          category: "medusa_category",
+          collection: "collection",
+          category: "category",
+          product: "product",
         },
       },
     },
