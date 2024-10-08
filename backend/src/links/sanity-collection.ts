@@ -1,8 +1,6 @@
 import { defineLink } from "@medusajs/framework/utils";
 import ProductModule from "@medusajs/medusa/product";
 
-console.log(ProductModule.linkable);
-
 export default defineLink(
   {
     ...ProductModule.linkable.productCollection.id,
