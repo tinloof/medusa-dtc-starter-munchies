@@ -7,8 +7,6 @@ import AnnouncementBar from "./parts/announcement-bar";
 import Navigation from "./parts/navigation";
 
 export default async function Header(props: Header) {
-  console.log(props);
-
   return (
     <header className="sticky top-0 z-50 flex w-full flex-col items-center bg-background">
       <AnnouncementBar {...props} />
