@@ -9,9 +9,9 @@ export default defineField({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "collections",
-      of: [{to: [{type: "collection"}], type: "reference"}],
-      title: "Collections",
+      name: "cards",
+      of: [{to: [{type: "collection"}, {type: "category"}], type: "reference"}],
+      title: "Cards",
       type: "array",
     },
   ],

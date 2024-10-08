@@ -22,7 +22,7 @@ export default async function FeaturedProducts(
 
   const ids =
     props.products
-      ?.map((product) => product?._id)
+      ?.map((product) => product?._ref)
       .filter((id): id is string => id !== undefined) || [];
 
   if (!ids || ids.length === 0) return null;
