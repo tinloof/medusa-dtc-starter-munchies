@@ -17,7 +17,7 @@ export default function Testimonials(
   ));
   return (
     <section {...props.rootHtmlAttributes}>
-      <EmblaCarousel slides={slides} title="Testimonials" />
+      <EmblaCarousel slides={slides} title={props.title} />
     </section>
   );
 }

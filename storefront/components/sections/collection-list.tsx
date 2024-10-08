@@ -30,7 +30,7 @@ function CollectionCard({
   if (!cta?.link) return null;
   return (
     <Link
-      className="group relative h-full w-full cursor-pointer rounded-lg"
+      className="group relative flex h-full min-h-[562px] w-[380px] flex-1 cursor-pointer rounded-lg lg:min-h-[604px] lg:w-[453px]"
       href={cta?.link}
     >
       {image ? (

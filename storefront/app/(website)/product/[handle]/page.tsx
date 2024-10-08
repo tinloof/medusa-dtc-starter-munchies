@@ -1,5 +1,7 @@
+import type {SectionProps} from "@/components/sections/types";
 import type {PageProps} from "@/types";
 
+import SectionsRenderer from "@/components/sections/section-renderer";
 import {getProductByHandle} from "@/data/medusa/products";
 import {getRegion} from "@/data/medusa/regions";
 import {notFound} from "next/navigation";
@@ -26,11 +28,17 @@ export default async function ProductPage({params}: ProductPageProps) {
     console.log("No product found");
     return notFound();
   }
-
   return (
-    <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
-      <ProductImages images={product.images} type={product.type} />
-      <ProductInformation region_id={region.id} {...product} />
-    </section>
+    <>
+      <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
+        <ProductImages images={product.images} type={product.type} />
+        <ProductInformation region_id={region.id} {...product} />
+      </section>
+
+      <SectionsRenderer
+        fieldName="body"
+        sections={product.sanity_product?.sections as SectionProps[]}
+      />
+    </>
   );
 }
