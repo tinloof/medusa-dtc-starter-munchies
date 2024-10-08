@@ -7,7 +7,6 @@ import {deleteLineItem, updateCartQuantity} from "@/actions/medusa/cart";
 import {
   createContext,
   useContext,
-  useEffect,
   useOptimistic,
   useState,
   useTransition,
@@ -41,10 +40,6 @@ export function CartProvider({
   const [cartOpen, setCartOpen] = useState(false);
 
   const [, startTransition] = useTransition();
-
-  useEffect(() => {
-    if (!cartOpen) setCartOpen(true);
-  }, [optimisticCart]);
 
   const handleDeleteItem = async (lineItem: string) => {
     startTransition(() => {

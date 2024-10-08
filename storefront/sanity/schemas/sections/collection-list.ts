@@ -9,27 +9,22 @@ export default defineField({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "products",
-      of: [{to: [{type: "product"}], type: "reference"}],
-      title: "Products",
+      name: "collections",
+      of: [{to: [{type: "collection"}], type: "reference"}],
+      title: "Collections",
       type: "array",
     },
-    {
-      name: "cta",
-      title: "CTA",
-      type: "cta",
-    },
   ],
-  name: "section.featuredProducts",
+  name: "section.collectionList",
   preview: {
     prepare: ({title}) => ({
-      subtitle: "Featured products section",
+      subtitle: "Collection list section",
       title: title,
     }),
     select: {
       title: "title",
     },
   },
-  title: "Featured products section",
+  title: "Collection list section",
   type: "object",
 });

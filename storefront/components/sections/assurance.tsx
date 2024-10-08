@@ -2,8 +2,8 @@ import React from "react";
 
 import type {ModularPageSection} from "./types";
 
-import Heading from "../shared/heading";
 import Body from "../shared/typography/body";
+import Heading from "../shared/typography/heading";
 
 export default function Assurance(
   props: ModularPageSection<"section.assurance">,

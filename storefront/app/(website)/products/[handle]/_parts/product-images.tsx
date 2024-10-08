@@ -49,9 +49,7 @@ export default function ProductImages({
               width={380}
             />
             {type?.value && (
-              <p className="climate-label-sm absolute right-4 top-3 bg-secondary px-1 py-px text-accent">
-                {type.value}
-              </p>
+              <Tag className="absolute right-4 top-3" text={type.value} />
             )}
           </div>
         ))}

@@ -6,19 +6,19 @@ import useEmblaCarousel from "embla-carousel-react";
 import {useCallback, useEffect, useState} from "react";
 
 import {Cta} from "../button";
-import Heading from "../heading";
+import Heading from "../typography/heading";
 import {NextButton, PrevButton, usePrevNextButtons} from "./buttons";
 
 type PropType = {
   cta?: {
-    href: string;
-    text: string;
+    href: string | undefined;
+    text: string | undefined;
   };
   options?: EmblaOptionsType;
   showButtons?: boolean;
   showProgress?: boolean;
   slides: React.JSX.Element[] | undefined;
-  title: string;
+  title: string | undefined;
 };
 
 export default function EmblaCarousel(props: PropType) {
@@ -110,7 +110,7 @@ export default function EmblaCarousel(props: PropType) {
           />
         </div>
       )}
-      {cta && (
+      {cta?.text && (
         <div className="mt-2xl px-m lg:px-xl">
           <Cta className="w-full" size="xl" variant="outline">
             {cta.text}

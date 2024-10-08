@@ -2,8 +2,8 @@ import React from "react";
 
 import type {ModularPageSection} from "./types";
 
-import Body from "../shared/body";
 import EmblaCarousel from "../shared/carousel";
+import Body from "../shared/typography/body";
 
 export default function Testimonials(
   props: ModularPageSection<"section.testimonials">,
