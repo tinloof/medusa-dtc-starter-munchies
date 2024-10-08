@@ -10,26 +10,7 @@ export default defineField({
     },
     {
       name: "testimonials",
-      of: [
-        {
-          fields: [
-            {
-              name: "text",
-              title: "Text",
-              type: "text",
-              validation: (Rule) => Rule.required().max(215),
-            },
-            {
-              name: "author",
-              title: "Author",
-              type: "string",
-            },
-          ],
-          name: "testimonial",
-          title: "Testimonial",
-          type: "object",
-        },
-      ],
+      of: [{to: [{type: "testimonial"}], type: "reference"}],
       title: "Testimonials",
       type: "array",
       validation: (Rule) => Rule.required().min(4).max(10),

@@ -11,8 +11,8 @@ export default function Testimonials(
   const slides = props.testimonials?.map((testimonial) => (
     <TestimonialCard
       author={testimonial.author}
-      key={testimonial._key}
-      text={testimonial.text}
+      key={testimonial._id}
+      text={testimonial.quote}
     />
   ));
   return (
