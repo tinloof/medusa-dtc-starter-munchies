@@ -23,6 +23,9 @@ importers:
       '@radix-ui/react-dialog':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-navigation-menu':
+        specifier: ^1.2.1
+        version: 1.2.1(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-select':
         specifier: ^2.1.2
         version: 2.1.2(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -80,6 +83,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-remove-scroll:
+        specifier: ^2.6.0
+        version: 2.6.0(@types/react@18.3.11)(react@18.3.1)
       sanity:
         specifier: ^3.48.1
         version: 3.59.0(@types/node@20.16.10)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -1243,6 +1249,26 @@ packages:
   '@lezer/lr@1.4.2':
     resolution: {integrity: sha512-pu0K1jCIdnQ12aWNaAVU5bzi7Bd1w54J3ECgANPmYLtQKP0HBj2cE/5coBD66MT10xbtIuUr7tg0Shbsvk0mDA==}
 
+  '@medusajs/client-types@0.2.12-preview-20240505115807':
+    resolution: {integrity: sha512-f7T/7WUAGOFfsNsjdCcVoWLlAqryaQB+hF0v/Dzst2hv+PdJGqHfHwTNdeK3ZYhUwzSQ8YdnCYsj9OEJR9SPiQ==}
+
+  '@medusajs/js-sdk@0.0.2-preview-20241004060741':
+    resolution: {integrity: sha512-vbc95xKJvmE0W3b4SnfIukRmvbTggiDiuykG1vHavnOsXoxwZ9+A6SkpfrjpbVTjC9YJuOR/UMqecJps7RV6nw==}
+    engines: {node: '>=20'}
+
+  '@medusajs/types@1.12.0-preview-20241004060741':
+    resolution: {integrity: sha512-A1A/Cd3CBl2VbsZo6ixTFzBRiGfpINXZBDPRQXMZHaPrd62h/3QT8wkBmluCW+PronxR5ex7LigEP6GWsRSZHA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      awilix: ^8.0.1
+      ioredis: ^5.4.1
+      vite: ^5.2.11
+    peerDependenciesMeta:
+      ioredis:
+        optional: true
+      vite:
+        optional: true
+
   '@mux/mux-player-react@2.9.1':
     resolution: {integrity: sha512-1BpMs1J7P+d+/QCf9/mkTk/NPYR6sOskR4Ih0uFZjDAqNUN7/C9Q0FEJ6hF3sFXwAXo50RhnfCzsC5uYx3QHbA==}
     peerDependencies:
@@ -1267,26 +1293,6 @@ packages:
 
   '@mux/upchunk@3.4.0':
     resolution: {integrity: sha512-ZaX4u6xRhmgB4UAmw0lvO0LB1LddbRgSILkjRDnk1F4QDtkCOuY9nOh550TNI7uKYcf6HZQax7QXst6EkpjiyQ==}
-
-  '@medusajs/client-types@0.2.12-preview-20240505115807':
-    resolution: {integrity: sha512-f7T/7WUAGOFfsNsjdCcVoWLlAqryaQB+hF0v/Dzst2hv+PdJGqHfHwTNdeK3ZYhUwzSQ8YdnCYsj9OEJR9SPiQ==}
-
-  '@medusajs/js-sdk@0.0.2-preview-20241004060741':
-    resolution: {integrity: sha512-vbc95xKJvmE0W3b4SnfIukRmvbTggiDiuykG1vHavnOsXoxwZ9+A6SkpfrjpbVTjC9YJuOR/UMqecJps7RV6nw==}
-    engines: {node: '>=20'}
-
-  '@medusajs/types@1.12.0-preview-20241004060741':
-    resolution: {integrity: sha512-A1A/Cd3CBl2VbsZo6ixTFzBRiGfpINXZBDPRQXMZHaPrd62h/3QT8wkBmluCW+PronxR5ex7LigEP6GWsRSZHA==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      awilix: ^8.0.1
-      ioredis: ^5.4.1
-      vite: ^5.2.11
-    peerDependenciesMeta:
-      ioredis:
-        optional: true
-      vite:
-        optional: true
 
   '@next/env@14.2.14':
     resolution: {integrity: sha512-/0hWQfiaD5//LvGNgc8PjvyqV50vGK0cADYzaoOOGN8fxzBn3iAiaq3S0tCRnFBldq0LVveLcxCTi41ZoYgAgg==}
@@ -1523,6 +1529,19 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
     peerDependenciesMeta:
       '@types/react':
+        optional: true
+
+  '@radix-ui/react-navigation-menu@1.2.1':
+    resolution: {integrity: sha512-egDo0yJD2IK8L17gC82vptkvW1jLeni1VuqCyzY727dSJdk5cDjINomouLoNk8RVF7g2aNIfENKWL4UzeU9c8Q==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
         optional: true
 
   '@radix-ui/react-popper@1.2.0':
@@ -6932,6 +6951,25 @@ snapshots:
     dependencies:
       '@lezer/common': 1.2.2
 
+  '@medusajs/client-types@0.2.12-preview-20240505115807': {}
+
+  '@medusajs/js-sdk@0.0.2-preview-20241004060741(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.10))':
+    dependencies:
+      '@medusajs/types': 1.12.0-preview-20241004060741(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.10))
+      fetch-event-stream: 0.1.5
+      qs: 6.13.0
+    transitivePeerDependencies:
+      - awilix
+      - ioredis
+      - vite
+
+  '@medusajs/types@1.12.0-preview-20241004060741(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.10))':
+    dependencies:
+      awilix: 8.0.1
+      bignumber.js: 9.1.2
+    optionalDependencies:
+      vite: 4.5.5(@types/node@20.16.10)
+
   '@mux/mux-player-react@2.9.1(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@mux/mux-player': 2.9.1
@@ -6965,24 +7003,6 @@ snapshots:
     dependencies:
       event-target-shim: 6.0.2
       xhr: 2.6.0
-  '@medusajs/client-types@0.2.12-preview-20240505115807': {}
-
-  '@medusajs/js-sdk@0.0.2-preview-20241004060741(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.10))':
-    dependencies:
-      '@medusajs/types': 1.12.0-preview-20241004060741(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.10))
-      fetch-event-stream: 0.1.5
-      qs: 6.13.0
-    transitivePeerDependencies:
-      - awilix
-      - ioredis
-      - vite
-
-  '@medusajs/types@1.12.0-preview-20241004060741(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.10))':
-    dependencies:
-      awilix: 8.0.1
-      bignumber.js: 9.1.2
-    optionalDependencies:
-      vite: 4.5.5(@types/node@20.16.10)
 
   '@next/env@14.2.14': {}
 
@@ -7180,6 +7200,28 @@ snapshots:
       react: 18.3.1
     optionalDependencies:
       '@types/react': 18.3.11
+
+  '@radix-ui/react-navigation-menu@1.2.1(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.0
+      '@radix-ui/react-collection': 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-compose-refs': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-context': 1.1.1(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-direction': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-dismissable-layer': 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-id': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.0(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-use-previous': 1.1.0(@types/react@18.3.11)(react@18.3.1)
+      '@radix-ui/react-visually-hidden': 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.11
+      '@types/react-dom': 18.3.0
 
   '@radix-ui/react-popper@1.2.0(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
