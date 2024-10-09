@@ -9,6 +9,10 @@ type Singleton = {
 export const SINGLETONS: {
   [key: string]: Singleton;
 } = {
+  cookieBanner: {
+    _type: "cookie.banner",
+    title: "Cookie Banner",
+  },
   footer: {
     _type: "footer",
     title: "Footer",

@@ -1,12 +1,15 @@
 "use client";
+import type {COOKIE_BANNER_QUERYResult} from "@/types/sanity.generated";
+
 import {Cta} from "@/components/shared/button";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import React, {useState} from "react";
 
-export default function CoockieBanner() {
+export default function Content({data}: {data: COOKIE_BANNER_QUERYResult}) {
   const [showCookieBanner, setShowCookieBanner] = useState(true);
+  if (!data) return null;
   return (
     <>
       {showCookieBanner && (
@@ -18,18 +21,25 @@ export default function CoockieBanner() {
             <Icon className="size-6" name="Close" />
           </button>
           <Heading desktopSize="base" mobileSize="xs" tag="h3">
-            Our website use cookies
+            {data.title}
           </Heading>
           <Body font="sans" mobileSize="sm">
-            You may opt in or opt out of the use of these technologies as
-            detailed in our privacy policy.
+            {data.description}
           </Body>
           <div className="mt-s flex items-center gap-1">
-            <Cta size="sm" variant="outline">
-              Deny
+            <Cta
+              onClick={() => setShowCookieBanner(false)}
+              size="sm"
+              variant="outline"
+            >
+              {data.rejectButton}
             </Cta>
-            <Cta size="sm" variant="primary">
-              Accept
+            <Cta
+              onClick={() => setShowCookieBanner(false)}
+              size="sm"
+              variant="primary"
+            >
+              {data.acceptButton}
             </Cta>
           </div>
         </div>

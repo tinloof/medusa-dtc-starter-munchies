@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 
 import {ExitPreview} from "@/components/exit-preview";
-import CoockieBanner from "@/components/global/cookie-banner/cookie";
+import CookieBanner from "@/components/global/cookie-banner";
 import Footer from "@/components/global/footer";
 import Header from "@/components/global/header";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
@@ -35,7 +35,7 @@ export default async function Layout({children}: {children: React.ReactNode}) {
       {data.header && <Header {...data.header} />}
       <main className="flex-1">{children}</main>
       {data.footer && <Footer {...data.footer} />}
-      <CoockieBanner />
+      <CookieBanner />
       {draftMode().isEnabled && (
         <VisualEditing
           refresh={async (payload) => {
