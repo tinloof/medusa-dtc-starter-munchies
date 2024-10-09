@@ -20,7 +20,7 @@ export default function CoockieBanner() {
           <Heading desktopSize="base" mobileSize="xs" tag="h3">
             Our website use cookies
           </Heading>
-          <Body mobileSize="sm">
+          <Body font="sans" mobileSize="sm">
             You may opt in or opt out of the use of these technologies as
             detailed in our privacy policy.
           </Body>

@@ -23,7 +23,7 @@ export default function MediaText(
         },
       )}
     >
-      <div className="relative flex min-h-[390px] flex-col items-center justify-start gap-11 rounded-lg border border-accent px-xl py-xl sm:justify-center lg:w-1/2 lg:py-7xl">
+      <div className="relative flex min-h-[390px] flex-col items-center justify-start gap-11 rounded-lg border border-accent p-s sm:justify-center lg:w-1/2 lg:py-7xl">
         <Label
           className="whitespace-nowrap sm:absolute sm:left-1/2 sm:top-xl sm:-translate-x-1/2"
           desktopSize="base"

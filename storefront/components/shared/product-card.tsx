@@ -41,10 +41,20 @@ export default function ProductCard({
         )}
       </div>
       <div className="flex flex-col items-center justify-center gap-1 px-lg py-s">
-        <Body desktopSize="xl" font="sans" mobileSize="lg">
+        <Body
+          className="text-center"
+          desktopSize="xl"
+          font="sans"
+          mobileSize="lg"
+        >
           {product.title}
         </Body>
-        <Body desktopSize="base" font="sans" mobileSize="sm">
+        <Body
+          className="text-center"
+          desktopSize="base"
+          font="sans"
+          mobileSize="sm"
+        >
           from {cheapestPrice?.calculated_price || "NA"}
         </Body>
       </div>

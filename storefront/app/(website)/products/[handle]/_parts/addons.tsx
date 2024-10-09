@@ -1,13 +1,13 @@
-import type { Product } from "@/types/sanity.generated";
-import type { StoreProduct } from "@medusajs/types";
+import type {Product} from "@/types/sanity.generated";
+import type {StoreProduct} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import { getProductsByIds } from "@/data/medusa/products";
-import { getProductPrice } from "@/utils/medusa/get-product-price";
+import {getProductsByIds} from "@/data/medusa/products";
+import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
-import { AddToCartButton } from "./add-to-cart";
+import {AddToCartButton} from "./add-to-cart";
 
 export default async function Addons({
   products: productRefs,
@@ -45,7 +45,13 @@ function Product({id, images, title, variants}: StoreProduct) {
   return (
     <div className="flex w-full gap-xs">
       {images?.[0].url && (
-        <Image alt={title} height={100} src={images?.[0].url} width={100} />
+        <Image
+          alt={title}
+          className="aspect-square h-[100px] w-[100px] rounded-lg border-[1.5px] border-accent"
+          height={100}
+          src={images?.[0].url}
+          width={100}
+        />
       )}
       <div className="flex w-full flex-col justify-between">
         <div className="flex flex-col gap-xs">

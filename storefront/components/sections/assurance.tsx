@@ -14,7 +14,12 @@ export default function Assurance(
       className="mx-auto flex w-full max-w-max-screen flex-col items-center justify-start gap-4xl px-m py-2xl lg:px-xl"
     >
       {props.title && (
-        <Heading desktopSize="3xl" mobileSize="xl" tag="h3">
+        <Heading
+          className="text-center"
+          desktopSize="3xl"
+          mobileSize="xl"
+          tag="h3"
+        >
           {props.title}
         </Heading>
       )}

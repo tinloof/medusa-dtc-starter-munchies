@@ -1,7 +1,9 @@
 "use client";
-import Body from "@/components/shared/typography/body";
+
+import Heading from "@/components/shared/typography/heading";
 
 import {useCart} from "./cart-context";
+import ProgressBar from "./progress-bar";
 
 export default function CartHeading() {
   const {cart} = useCart();
@@ -9,8 +11,11 @@ export default function CartHeading() {
   const count = (cart?.items?.length ?? 0).toString();
 
   return (
-    <Body desktopSize="2xl" font="serif" mobileSize="xl">
-      My Bag ({count})
-    </Body>
+    <div className="flex flex-col gap-4 p-4">
+      <Heading desktopSize="2xl" font="serif" mobileSize="lg" tag="h3">
+        My Bag ({count})
+      </Heading>
+      <ProgressBar />
+    </div>
   );
 }

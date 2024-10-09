@@ -11,6 +11,11 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  variants: {
+    extend: {
+      backgroundColor: ["active"],
+    },
+  },
   theme: {
     extend: {
       fontFamily: {
