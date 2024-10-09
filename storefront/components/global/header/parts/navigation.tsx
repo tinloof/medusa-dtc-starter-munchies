@@ -76,7 +76,7 @@ export default function Navigation({data}: {data: Header}) {
         })}
       </NavigationMenu.List>
 
-      <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 justify-center overflow-hidden bg-background">
+      <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 justify-center overflow-hidden bg-transparent">
         <NavigationMenu.Viewport className="data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden bg-background transition-[width,_height] duration-300" />
       </div>
     </NavigationMenu.Root>
@@ -111,7 +111,7 @@ function Content({columns}: DropdownType) {
             );
           })}
         </div>
-        <div className="h-full w-full bg-orange-300">test</div>
+        <div className="h-full w-full bg-orange-300">Product</div>
       </div>
     </RemoveScroll>
   );
