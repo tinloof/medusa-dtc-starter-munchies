@@ -39,3 +39,10 @@ export async function getCategoryByHandle(handle: string[], page: number) {
     products,
   };
 }
+
+export async function getCategories() {
+  return await medusa.store.category.list(
+    {fields: "id,name"},
+    {next: {tags: ["categories"]}},
+  );
+}

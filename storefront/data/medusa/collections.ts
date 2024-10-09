@@ -36,3 +36,10 @@ export async function getCollectionByHandle(handle: string, page: number) {
     products,
   };
 }
+
+export async function getCollections() {
+  return await medusa.store.collection.list(
+    {fields: "id,title"},
+    {next: {tags: ["collections"]}},
+  );
+}

@@ -11,10 +11,16 @@ type Option = {label: string; value: string};
 
 export default function Select({
   options,
+  placeholder,
   setOption,
+  value,
+  variant,
 }: {
   options: Option[];
+  placeholder?: string;
   setOption: (value: string) => void;
+  value?: null | string;
+  variant: "basic" | "filter" | "outline";
 }) {
   const [open, setOpen] = useState(false);
 
@@ -25,10 +31,30 @@ export default function Select({
       onOpenChange={setOpen}
       onValueChange={setOption}
       open={open}
+      value={value!}
     >
-      <RadixSelect.Trigger className="flex w-fit items-center justify-between gap-lg rounded-lg border-[1.5px] border-accent bg-background px-s py-[6px] outline-none">
-        <Body font="sans" mobileSize="2xl">
-          <RadixSelect.Value placeholder={options[0].label} />
+      <RadixSelect.Trigger
+        className={cx(
+          "flex w-fit items-center justify-between gap-lg bg-background px-s py-[6px] outline-none",
+          {
+            "rounded-lg border-[1.5px] border-accent": [
+              "filter",
+              "outline",
+            ].includes(variant),
+          },
+        )}
+      >
+        <Body
+          font="sans"
+          mobileSize={
+            variant === "outline"
+              ? "2xl"
+              : ["basic", "filter"].includes(variant)
+                ? "base"
+                : undefined
+          }
+        >
+          <RadixSelect.Value placeholder={placeholder} />
         </Body>
         <RadixSelect.Icon className="flex-shrink-0">
           <Icon

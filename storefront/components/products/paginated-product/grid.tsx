@@ -20,11 +20,7 @@ export default function ProductGrid({products}: {products: StoreProduct[]}) {
     }
   }, [products]);
 
-  return (
-    <div className="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
-      {paginatedProducts?.map((product) => {
-        return <ProductCard key={product.id} product={product} size="PLP" />;
-      })}
-    </div>
-  );
+  return paginatedProducts?.map((product) => {
+    return <ProductCard key={product.id} product={product} size="PLP" />;
+  });
 }
