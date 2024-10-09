@@ -12,26 +12,24 @@ import OptionsSelect from "./options";
 import Price from "./price";
 import ProductSpecs from "./specs";
 
-type Props = {region_id: string} & Pick<
-  StoreProduct,
-  | "collection"
-  | "description"
-  | "id"
-  | "options"
-  | "subtitle"
-  | "title"
-  | "variants"
-> &
-  Pick<Product, "addons" | "specs">;
+type Props = {region_id: string} & {sanity_product: Product} & Pick<
+    StoreProduct,
+    | "collection"
+    | "description"
+    | "id"
+    | "options"
+    | "subtitle"
+    | "title"
+    | "variants"
+  >;
 
 export default function ProductInformation({
-  addons,
   collection,
   description,
   id,
   options,
   region_id,
-  specs,
+  sanity_product,
   title,
   variants,
 }: Props) {
@@ -51,11 +49,11 @@ export default function ProductInformation({
           <AddToCart />
         </div>
         <Addons
-          products={addons?.products}
+          products={sanity_product?.addons?.products}
           region_id={region_id}
-          title={addons?.title}
+          title={sanity_product?.addons?.title}
         />
-        <ProductSpecs specs={specs} />
+        <ProductSpecs specs={sanity_product?.specs} />
       </div>
     </ProductVariantsProvider>
   );
