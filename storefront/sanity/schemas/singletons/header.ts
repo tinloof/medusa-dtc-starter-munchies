@@ -84,16 +84,50 @@ export default defineType({
                 },
               ],
               type: "array",
-              validation: (Rule) => Rule.required().min(2).max(3),
             },
             {
-              description:
-                "If you have 3 columns, you can only show 2 products in the dropdown.",
-              name: "products",
-              of: [{to: [{type: "product"}], type: "reference"}],
-              title: "Products",
+              name: "cards",
+              of: [
+                {
+                  fields: [
+                    {
+                      name: "image",
+                      title: "Image",
+                      type: "image",
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: "title",
+                      title: "Title",
+                      type: "string",
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: "cta",
+                      title: "CTA",
+                      type: "cta",
+                      validation: (Rule) => Rule.required(),
+                    },
+                  ],
+                  type: "object",
+                },
+              ],
+              title: "Cards",
               type: "array",
-              validation: (Rule) => Rule.required().min(2).max(3),
+              validation: (Rule) =>
+                Rule.custom((cards, context) => {
+                  const cardsArray = cards as any[];
+                  const columns = (context.parent as {columns?: any[]})
+                    ?.columns;
+                  if (!columns) return true;
+                  const maxProducts = columns.length === 3 ? 2 : 3;
+                  if (cardsArray && cardsArray.length > maxProducts) {
+                    return `Maximum ${maxProducts} product cards allowed for ${columns.length} columns`;
+                  }
+                  return true;
+                })
+                  .required()
+                  .min(2),
             },
           ],
           name: "dropdown",

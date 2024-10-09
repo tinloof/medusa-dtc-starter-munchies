@@ -22,10 +22,10 @@ export const styles = cva(
         true: "pointer-events-none",
       },
       size: {
-        lg: "text-body-6xl px-9 h-[72px]",
+        lg: "text-body-6xl px-9 h-[72px] tracking-[-1px]",
         md: "text-body-4xl px-7 h-[62px]",
         sm: "text-body-xl px-5 h-10",
-        xl: "text-body-8xl px-11 h-20",
+        xl: "text-body-8xl px-11 h-20 tracking-[-1px]",
       },
       variant: {
         outline:
@@ -79,6 +79,7 @@ export function Link({
   href,
   prefetch = true,
   ref,
+  size,
   variant = "primary",
   ...rest
 }: {
@@ -89,6 +90,7 @@ export function Link({
     <NextLink
       className={styles({
         className,
+        size,
         variant,
       })}
       href={href ?? "/"}
