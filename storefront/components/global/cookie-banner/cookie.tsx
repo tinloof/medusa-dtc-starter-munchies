@@ -10,7 +10,7 @@ export default function CoockieBanner() {
   return (
     <>
       {showCookieBanner && (
-        <div className="fixed bottom-4 left-4 flex w-full max-w-[332px] flex-col rounded-lg border-[1.5px] border-accent bg-background p-s lg:max-w-[390px] lg:p-m">
+        <div className="fixed bottom-4 left-4 z-50 flex w-full max-w-[332px] flex-col rounded-lg border-[1.5px] border-accent bg-background p-s lg:max-w-[390px] lg:p-m">
           <button
             className="absolute right-[6px] top-[6px]"
             onClick={() => setShowCookieBanner(false)}
