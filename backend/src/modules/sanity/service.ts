@@ -193,7 +193,7 @@ export default class SanityModuleService {
       _type: this.typeMap[SyncDocumentTypes.PRODUCT],
       _id: product.id,
       internalTitle: product.title,
-      pathname: { _type: "slug", current: "/product/" + product.handle },
+      pathname: { _type: "slug", current: "/products/" + product.handle },
     };
   };
   private transformCategoryForCreate = (category: ProductCategoryDTO) => {
