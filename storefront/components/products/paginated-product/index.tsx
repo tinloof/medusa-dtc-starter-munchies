@@ -5,10 +5,12 @@ import {Link} from "../../shared/button";
 import ProductGrid from "./grid";
 
 export default async function PaginatedProducts({
+  category,
   collection,
   page,
   sortBy: order,
 }: {
+  category?: string;
   collection?: string;
   page: number;
   sortBy?: string;
@@ -23,6 +25,7 @@ export default async function PaginatedProducts({
   }
 
   const {hasNextPage, products} = await getProducts(page, region.id, {
+    category_id: category,
     collection_id: collection,
     order,
   });

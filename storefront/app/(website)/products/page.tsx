@@ -5,16 +5,24 @@ import Refinement from "@/components/products/product-refinement";
 import Heading from "@/components/shared/typography/heading";
 import {Suspense} from "react";
 
-type CollectionPageProps = PageProps<never, "collection" | "page" | "sort">;
+type CollectionPageProps = PageProps<
+  never,
+  "category" | "collection" | "page" | "sort"
+>;
 
 export default async function CollectionPage({
   searchParams,
 }: CollectionPageProps) {
-  const page =
-    typeof searchParams.page === "string" ? parseInt(searchParams.page, 10) : 1;
+  const query = {
+    category: parseSearchParam(searchParams.category),
+    collection: parseSearchParam(searchParams.collection),
+    page:
+      typeof searchParams.page === "string"
+        ? parseInt(searchParams.page, 10)
+        : 1,
+    sort: parseSearchParam(searchParams.sort),
+  };
 
-  const sort = parseSearchParam(searchParams.sort);
-  const collection = parseSearchParam(searchParams.collection);
   return (
     <section className="mx-auto flex max-w-max-screen flex-col gap-10 px-5 pb-10 pt-[6.5rem] lg:px-8">
       <div>
@@ -27,11 +35,7 @@ export default async function CollectionPage({
           <Refinement />
         </Suspense>
         <Suspense fallback="Loading...">
-          <PaginatedProducts
-            collection={collection}
-            page={page}
-            sortBy={sort}
-          />
+          <PaginatedProducts {...query} />
         </Suspense>
       </div>
     </section>
