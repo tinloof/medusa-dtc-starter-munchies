@@ -18,8 +18,8 @@ export default function MediaText(
       className={cx(
         "mx-auto flex w-full max-w-max-screen flex-col items-stretch justify-center gap-2 px-m py-xl lg:px-xl lg:py-2xl",
         {
-          "lg:flex-row": position === "left",
-          "lg:flex-row-reverse": position === "right",
+          "lg:flex-row": position === "right",
+          "lg:flex-row-reverse": position === "left",
         },
       )}
     >
