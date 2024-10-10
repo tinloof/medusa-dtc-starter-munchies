@@ -105,7 +105,7 @@ function SelectItem({
       )}
       {...props}
     >
-      <Body font="sans" mobileSize="base">
+      <Body className="truncate text-nowrap" font="sans" mobileSize="base">
         <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
       </Body>
     </RadixSelect.Item>

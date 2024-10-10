@@ -10,7 +10,7 @@ import type {
 import {Content, Portal, Root, Trigger} from "@radix-ui/react-dialog";
 import {cx} from "cva";
 
-import {useCart} from "../global/header/cart/cart-context";
+import {useCart} from "./cart-context";
 
 export function Dialog(props: Omit<DialogProps, "onOpenChange" | "open">) {
   const {cartOpen, setCartOpen} = useCart();
@@ -41,8 +41,8 @@ export function SideDialog({
           className,
           "fixed top-0 h-full transform transition-transform ease-in-out",
           {
-            "animate-slide-in-from-left left-0": align === "right",
-            "animate-slide-in-from-right right-0": align === "left",
+            "left-0 animate-slide-in-from-left": align === "right",
+            "right-0 animate-slide-in-from-right": align === "left",
           },
         )}
         style={{...style, width}}

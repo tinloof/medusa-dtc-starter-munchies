@@ -14,8 +14,8 @@ export default async function CollectionPage({
   searchParams,
 }: CollectionPageProps) {
   const query = {
-    category: parseSearchParam(searchParams.category),
-    collection: parseSearchParam(searchParams.collection),
+    category: parseSearchParam(searchParams.category)?.split(","),
+    collection: parseSearchParam(searchParams.collection)?.split(","),
     page:
       typeof searchParams.page === "string"
         ? parseInt(searchParams.page, 10)

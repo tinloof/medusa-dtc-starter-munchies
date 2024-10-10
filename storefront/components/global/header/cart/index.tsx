@@ -1,8 +1,8 @@
 import {retrieveCart} from "@/actions/medusa/cart";
-import {Dialog, OpenDialog, SideDialog} from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
 
 import {CartProvider} from "./cart-context";
+import {Dialog, OpenDialog, SideDialog} from "./cart-dialog";
 import CartHeading from "./cart-heading";
 import LineItem from "./line-item";
 

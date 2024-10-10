@@ -10,8 +10,8 @@ export default async function PaginatedProducts({
   page,
   sortBy: order,
 }: {
-  category?: string;
-  collection?: string;
+  category?: string | string[];
+  collection?: string | string[];
   page: number;
   sortBy?: string;
 }) {
