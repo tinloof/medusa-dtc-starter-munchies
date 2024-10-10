@@ -1,5 +1,6 @@
 import type {
   COOKIE_BANNER_QUERYResult,
+  FAQ_PAGE_QUERYResult,
   GLOBAL_QUERYResult,
   HOME_QUERYResult,
   MODULAR_PAGE_QUERYResult,
@@ -11,6 +12,7 @@ import type {
 import {loadQuery, loadRoute} from "./load-query";
 import {
   COOKIE_BANNER_QUERY,
+  FAQ_PAGE_QUERY,
   GLOBAL_QUERY,
   HOME_QUERY,
   MODULAR_PAGE_QUERY,
@@ -90,5 +92,11 @@ export async function loadTextPage(pathname: string) {
   return loadQuery<TEXT_PAGE_QUERYResult>({
     params: {pathname},
     query: TEXT_PAGE_QUERY,
+  });
+}
+
+export function loadFaq() {
+  return loadQuery<FAQ_PAGE_QUERYResult>({
+    query: FAQ_PAGE_QUERY,
   });
 }

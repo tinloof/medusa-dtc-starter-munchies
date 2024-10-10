@@ -28,7 +28,7 @@ export default function TextPage({
           {data.description}
         </Body>
       </section>
-      <section className="mx-auto h-full w-full max-w-max-screen flex-col items-stretch justify-start gap-xl px-m py-2xl lg:w-[89%] lg:flex-row lg:justify-center lg:gap-6xl lg:py-8xl">
+      <section className="mx-auto h-full w-full max-w-max-screen flex-col items-stretch justify-start gap-xl px-m py-2xl lg:flex-row lg:justify-center lg:gap-6xl lg:py-8xl">
         <div className="flex w-full flex-col justify-center gap-xl lg:flex-row lg:gap-20">
           {data?.body && (
             <aside className="h-auto w-full lg:max-w-[300px]">
