@@ -14,6 +14,7 @@ interface VideoData {
 }
 
 export default function Hero(props: ModularPageSection<"section.hero">) {
+  const mediaType = stegaClean(props.mediaType);
   const video = stegaClean(props.video?.asset) as unknown as VideoData;
   const largeImage = stegaClean(props.largeImage);
   return (
@@ -21,8 +22,8 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
       {...props.rootHtmlAttributes}
       className="mx-auto w-full max-w-max-screen px-m py-xs lg:px-xl lg:py-xs"
     >
-      {stegaClean(props.mediaType) === "image" && <SimpleHero {...props} />}
-      {stegaClean(props.mediaType) === "video" && video && (
+      {mediaType === "image" && <SimpleHero {...props} />}
+      {mediaType === "video" && video && (
         <LargeHero props={props}>
           <MuxVideo
             className="aspect-[16/9] min-h-[590px] w-full object-cover object-center"
@@ -31,7 +32,7 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
           />
         </LargeHero>
       )}
-      {stegaClean(props.mediaType) === "largeImage" && largeImage && (
+      {mediaType === "largeImage" && largeImage && (
         <LargeHero props={props}>
           <SanityImage
             className="aspect-[16/9] min-h-[590px] w-full object-cover object-center"

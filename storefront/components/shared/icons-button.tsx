@@ -29,6 +29,7 @@ const iconButtonVariants = cva(
         true: "opacity-50 focus:outline-none pointer-events-none",
       },
       size: {
+        full: "w-full h-full",
         lg: "w-[60px] h-[60px]",
         sm: "w-10 h-10",
       },
