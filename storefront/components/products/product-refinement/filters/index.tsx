@@ -2,8 +2,8 @@ import {getCategories} from "@/data/medusa/categories";
 import {getCollections} from "@/data/medusa/collections";
 
 import Accordion from "./accordion";
-import DropDown from "./drop-down";
 import FilterSelect from "./filter-select";
+import MobileFilterDropdown from "./mobile";
 
 export default async function Filters() {
   const {collections} = await getCollections();
@@ -33,7 +33,7 @@ export default async function Filters() {
         />
       </div>
       <div className="flex lg:hidden">
-        <DropDown placeholder="Filter">
+        <MobileFilterDropdown>
           <Accordion
             heading="Collections"
             name="collection"
@@ -44,7 +44,7 @@ export default async function Filters() {
             name="categroy"
             options={category_options}
           />
-        </DropDown>
+        </MobileFilterDropdown>
       </div>
     </>
   );

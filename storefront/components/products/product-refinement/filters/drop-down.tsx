@@ -1,16 +1,20 @@
 "use client";
 
+import type {Dispatch, SetStateAction} from "react";
+
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import {useOutsideClick} from "@/hooks/use-outside-click";
 import {cx} from "cva";
-import {type PropsWithChildren, useState} from "react";
+import {type PropsWithChildren} from "react";
 
 type Props = PropsWithChildren<{
   className?: string;
   disabled?: boolean;
   id?: string;
+  isOpen: boolean;
   placeholder: string;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }>;
 
 export default function DropDown({
@@ -18,11 +22,11 @@ export default function DropDown({
   className,
   disabled = false,
   id,
+  isOpen,
   placeholder,
+  setOpen,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
+  const ref = useOutsideClick<HTMLDivElement>(() => setOpen(false));
 
   return (
     <div className="relative z-[15] h-full w-fit">
@@ -44,7 +48,7 @@ export default function DropDown({
           )}
           disabled={disabled}
           onClick={() => {
-            !disabled && setIsOpen((bool) => !bool);
+            !disabled && setOpen((bool) => !bool);
           }}
         >
           <div className="flex w-full items-center justify-between gap-6 py-2">

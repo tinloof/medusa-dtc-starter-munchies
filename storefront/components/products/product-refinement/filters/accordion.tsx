@@ -63,7 +63,7 @@ export default function Accordion({
                 key={value}
                 onClick={() => setFilter(value)}
               >
-                <div className="flex !size-4 items-center justify-center rounded-[4px] border border-accent">
+                <div className="flex !size-4 items-center justify-center rounded-[4px] border border-accent text-lg">
                   <Icon
                     className={cx(
                       "!size-3 shrink-0 transform opacity-0 transition-transform duration-300",
