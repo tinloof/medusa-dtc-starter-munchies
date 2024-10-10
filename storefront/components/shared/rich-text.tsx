@@ -31,7 +31,7 @@ export const TextPageRichText = ({
     block: {
       h2: (props) => (
         <Heading
-          className="mt-4 scroll-mt-[calc(var(--header-height)+4rem)] first:mt-0 lg:scroll-mt-[calc(var(--header-height)+4rem)]"
+          className="mt-4 scroll-mt-[calc(var(--header-height)+2rem)] first:mt-0 lg:scroll-mt-[calc(var(--header-height)+2rem)]"
           desktopSize="xl"
           font="serif"
           id={getPtComponentId(props.value)}
@@ -55,7 +55,7 @@ export const TextPageRichText = ({
       ),
       normal: (props) => (
         <Body
-          className="body-m mt-2"
+          className="font-medium"
           desktopSize="base"
           font="sans"
           mobileSize="sm"
@@ -68,11 +68,24 @@ export const TextPageRichText = ({
       bullet: (props) => (
         <ul className="list-disc pl-4 marker:text-base">{props.children}</ul>
       ),
-      number: (props) => <ol className="list-decimal">{props.children}</ol>,
+      number: (props) => (
+        <ol className="list-decimal pl-4">{props.children}</ol>
+      ),
     },
     listItem: {
       bullet: (props) => <li className="">{props.children}</li>,
-      number: (props) => <li className="">{props.children}</li>,
+      number: (props) => (
+        <li className="">
+          <Body
+            className="font-medium"
+            desktopSize="base"
+            font="sans"
+            mobileSize="sm"
+          >
+            {props.children}
+          </Body>
+        </li>
+      ),
     },
     marks: {
       link: PtLink,

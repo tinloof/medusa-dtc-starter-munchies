@@ -8,6 +8,8 @@ import {toPlainText} from "@portabletext/react";
 import Link from "next/link";
 import React from "react";
 
+import TocSelect from "./toc-select";
+
 export default function TableOfContents({
   body,
 }: Pick<NonNullable<TEXT_PAGE_QUERYResult>, "body">) {
@@ -24,36 +26,23 @@ export default function TableOfContents({
             index,
           ) =>
             !item.isSub && (
-              <Body
-                className="border-accent-40 border-l-[1.5px] py-[10px] pl-[9px] transition-all duration-300 first:pt-2 last:pb-2 hover:border-accent"
-                font="sans"
+              <Link
+                href={`#${getPtComponentId(item.block as any)}`}
                 key={index}
-                mobileSize="sm"
+                scroll
               >
-                <Link href={`#${getPtComponentId(item.block as any)}`} scroll>
+                <Body
+                  className="border-l-[1.5px] border-accent-40 py-[10px] pl-[9px] transition-all duration-300 first:pt-2 last:pb-2 hover:border-accent"
+                  font="sans"
+                  mobileSize="sm"
+                >
                   {toPlainText(item.block)}
-                </Link>
-              </Body>
+                </Body>
+              </Link>
             ),
         )}
       </div>
-      {/* {!outlines?.length ? null : (
-        <Accordion
-          placeholder={toPlainText(outlines[0].block)}
-          title="On this page"
-        >
-          <div className="flex flex-col gap-6 pb-6 pt-[13px]">
-            {outlines?.slice(1).map((item, index) => {
-              const blockId = getPtComponentId(item.block as any);
-              return (
-                <Link href={`#${blockId}`} key={index}>
-                  {toPlainText(item.block)}
-                </Link>
-              );
-            })}
-          </div>
-        </Accordion>
-      )} */}
+      {!outlines?.length ? null : <TocSelect outlines={outlines} />}
     </>
   );
 }
