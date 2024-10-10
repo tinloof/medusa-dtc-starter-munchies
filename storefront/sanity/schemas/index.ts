@@ -3,6 +3,7 @@ import collection from "./documents/collection";
 import modularPage from "./documents/modular-page";
 import product from "./documents/product";
 import testimonial from "./documents/testimonial";
+import {textPage} from "./documents/text-page";
 import {cta} from "./objects/cta";
 import {link} from "./objects/link";
 import {ogImage} from "./objects/og-image";
@@ -39,6 +40,7 @@ const schemas = [
   collection,
   category,
   cookieBanner,
+  textPage,
 ];
 
 export default schemas;

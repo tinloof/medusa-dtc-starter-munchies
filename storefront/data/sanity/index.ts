@@ -5,6 +5,7 @@ import type {
   MODULAR_PAGE_QUERYResult,
   NOT_FOUND_PAGE_QUERYResult,
   REDIRECT_QUERYResult,
+  TEXT_PAGE_QUERYResult,
 } from "@/types/sanity.generated";
 
 import {loadQuery, loadRoute} from "./load-query";
@@ -15,6 +16,7 @@ import {
   MODULAR_PAGE_QUERY,
   NOT_FOUND_PAGE_QUERY,
   REDIRECT_QUERY,
+  TEXT_PAGE_QUERY,
 } from "./queries";
 
 export async function loadModularPage(pathname: string) {
@@ -57,7 +59,8 @@ export async function loadPageByPathname({
       return loadHome();
     case "modular.page":
       return loadModularPage(pathname);
-
+    case "text.page":
+      return loadTextPage(pathname);
     default:
       console.warn("Invalid document type:", documentType);
       return null;
@@ -80,5 +83,12 @@ export function loadNotFound() {
 export function loadCookieBanner() {
   return loadQuery<COOKIE_BANNER_QUERYResult>({
     query: COOKIE_BANNER_QUERY,
+  });
+}
+
+export async function loadTextPage(pathname: string) {
+  return loadQuery<TEXT_PAGE_QUERYResult>({
+    params: {pathname},
+    query: TEXT_PAGE_QUERY,
   });
 }

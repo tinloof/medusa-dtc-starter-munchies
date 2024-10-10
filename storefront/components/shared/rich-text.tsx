@@ -8,8 +8,11 @@ import type {
 } from "@portabletext/types";
 
 import {PortableText} from "@portabletext/react";
+import {getPtComponentId} from "@tinloof/sanity-web";
 
-import ImageBlock from "../pt.blocks/image";
+import {PtLink} from "../pt.blocks/link";
+import Body from "./typography/body";
+import Heading from "./typography/heading";
 
 export const RichText = ({
   value = [],
@@ -21,13 +24,60 @@ export const RichText = ({
   );
 };
 
-export const BlogRichText = ({
+export const TextPageRichText = ({
   value = [],
 }: PortableTextProps<ArbitraryTypedObject | PortableTextBlock>) => {
   const components: PortableTextComponents = {
-    types: {
-      imageBlock: ({value}) => <ImageBlock data={value.image} />,
+    block: {
+      h2: (props) => (
+        <Heading
+          className="mt-4 scroll-mt-[calc(var(--header-height)+4rem)] first:mt-0 lg:scroll-mt-[calc(var(--header-height)+4rem)]"
+          desktopSize="xl"
+          font="serif"
+          id={getPtComponentId(props.value)}
+          mobileSize="base"
+          tag="h2"
+        >
+          {props.children}
+        </Heading>
+      ),
+      h3: (props) => (
+        <Heading
+          className="scroll-mt-header-height mt-4"
+          desktopSize="lg"
+          font="serif"
+          id={getPtComponentId(props.value)}
+          mobileSize="xs"
+          tag="h3"
+        >
+          {props.children}
+        </Heading>
+      ),
+      normal: (props) => (
+        <Body
+          className="body-m mt-2"
+          desktopSize="base"
+          font="sans"
+          mobileSize="sm"
+        >
+          {props.children}
+        </Body>
+      ),
     },
+    list: {
+      bullet: (props) => (
+        <ul className="list-disc pl-4 marker:text-base">{props.children}</ul>
+      ),
+      number: (props) => <ol className="list-decimal">{props.children}</ol>,
+    },
+    listItem: {
+      bullet: (props) => <li className="">{props.children}</li>,
+      number: (props) => <li className="">{props.children}</li>,
+    },
+    marks: {
+      link: PtLink,
+    },
+    types: {},
   };
 
   return (

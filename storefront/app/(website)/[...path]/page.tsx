@@ -1,10 +1,13 @@
 import type {PageProps} from "@/types";
+import type {TEXT_PAGE_QUERYResult} from "@/types/sanity.generated";
 import type {ResolvingMetadata} from "next";
 
 import SectionsRenderer from "@/components/sections/section-renderer";
 import {loadPageByPathname} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolve-sanity-route-metadata";
 import {notFound} from "next/navigation";
+
+import TextPage from "./text-page.template";
 
 export type DynamicRouteProps = PageProps<"...path">;
 
@@ -18,7 +21,11 @@ export async function generateMetadata(
     return notFound();
   }
 
-  if (initialData._type === "modular.page" || initialData._type === "home") {
+  if (
+    initialData._type === "modular.page" ||
+    initialData._type === "home" ||
+    initialData._type === "text.page"
+  ) {
     return resolveSanityRouteMetadata(initialData, parent);
   }
 
@@ -32,6 +39,10 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
 
   switch (initialData._type) {
     case "modular.page":
+    case "text.page":
+      return (
+        <TextPage data={initialData as NonNullable<TEXT_PAGE_QUERYResult>} />
+      );
     case "home":
       return (
         <SectionsRenderer

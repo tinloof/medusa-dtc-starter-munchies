@@ -43,6 +43,7 @@ export const headingStyles = cva("", {
 type HeadingProps = {
   children: React.ReactNode;
   className?: string;
+  id?: string;
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 } & VariantProps<typeof headingStyles>;
 export default function Heading({
@@ -50,12 +51,18 @@ export default function Heading({
   className,
   desktopSize,
   font,
+  id,
   mobileSize,
   tag,
+  ...props
 }: HeadingProps) {
   const Tag = tag;
   return (
-    <Tag className={headingStyles({className, desktopSize, font, mobileSize})}>
+    <Tag
+      className={headingStyles({className, desktopSize, font, mobileSize})}
+      id={id}
+      {...props}
+    >
       {children}
     </Tag>
   );
