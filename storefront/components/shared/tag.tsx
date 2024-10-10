@@ -1,5 +1,7 @@
 import {cx} from "cva";
 
+import Label from "./typography/label";
+
 export default function Tag({
   className,
   text,
@@ -8,8 +10,12 @@ export default function Tag({
   text: string | undefined;
 }) {
   return (
-    <div className={cx("bg-secondary px-1 py-px text-accent", className)}>
+    <Label
+      className={cx("bg-secondary px-1 py-px text-accent", className)}
+      font="display"
+      mobileSize="sm"
+    >
       {text}
-    </div>
+    </Label>
   );
 }

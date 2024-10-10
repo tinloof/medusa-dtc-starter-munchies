@@ -35,6 +35,8 @@
     "@tinloof/sanity-web": "^0.4.2",
     "class-variance-authority": "^0.7.0",
     "cva": "npm:class-variance-authority@^0.7.0",
+    "embla-carousel": "^8.3.0",
+    "embla-carousel-react": "^8.3.0",
     "lodash": "^4.17.21",
     "next": "14.2.4",
     "next-sanity": "^9.4.2",
@@ -42,6 +44,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sanity": "^3.48.1",
+    "sanity-plugin-hotspot-array": "^2.0.0",
     "sanity-plugin-mux-input": "^2.3.6",
     "zod": "^3.23.8"
   },

@@ -2,6 +2,7 @@ import type {
   GLOBAL_QUERYResult,
   HOME_QUERYResult,
   MODULAR_PAGE_QUERYResult,
+  NOT_FOUND_PAGE_QUERYResult,
   REDIRECT_QUERYResult,
 } from "@/types/sanity.generated";
 
@@ -10,6 +11,7 @@ import {
   GLOBAL_QUERY,
   HOME_QUERY,
   MODULAR_PAGE_QUERY,
+  NOT_FOUND_PAGE_QUERY,
   REDIRECT_QUERY,
 } from "./queries";
 
@@ -64,5 +66,11 @@ export function loadRedirects(paths: string[]) {
   return loadQuery<REDIRECT_QUERYResult>({
     params: {paths},
     query: REDIRECT_QUERY,
+  });
+}
+
+export function loadNotFound() {
+  return loadQuery<NOT_FOUND_PAGE_QUERYResult>({
+    query: NOT_FOUND_PAGE_QUERY,
   });
 }
