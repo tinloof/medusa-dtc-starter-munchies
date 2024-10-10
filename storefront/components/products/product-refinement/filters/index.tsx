@@ -1,6 +1,8 @@
 import {getCategories} from "@/data/medusa/categories";
 import {getCollections} from "@/data/medusa/collections";
 
+import Accordion from "./accordion";
+import DropDown from "./drop-down";
 import FilterSelect from "./filter-select";
 
 export default async function Filters() {
@@ -17,17 +19,33 @@ export default async function Filters() {
   }));
 
   return (
-    <div className="flex items-center gap-2">
-      <FilterSelect
-        name="collection"
-        options={collection_options}
-        placeholder="Collections"
-      />
-      <FilterSelect
-        name="category"
-        options={category_options}
-        placeholder="Categories"
-      />
-    </div>
+    <>
+      <div className="hidden lg:flex lg:items-center lg:gap-2">
+        <FilterSelect
+          name="collection"
+          options={collection_options}
+          placeholder="Collections"
+        />
+        <FilterSelect
+          name="category"
+          options={category_options}
+          placeholder="Categories"
+        />
+      </div>
+      <div className="flex lg:hidden">
+        <DropDown placeholder="Filter">
+          <Accordion
+            heading="Collections"
+            name="collection"
+            options={collection_options}
+          />
+          <Accordion
+            heading="Categories"
+            name="categroy"
+            options={category_options}
+          />
+        </DropDown>
+      </div>
+    </>
   );
 }

@@ -11,11 +11,11 @@ export default function Sort() {
 
   const options = [
     {
-      label: "Descending Order (Newest First)",
+      label: "Descending Order",
       value: "created_at",
     },
     {
-      label: "Ascending Order (Oldest First)",
+      label: "Ascending Order",
       value: "-created_at",
     },
   ];

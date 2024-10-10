@@ -35,7 +35,7 @@ export default function Select({
     >
       <RadixSelect.Trigger
         className={cx(
-          "flex w-fit items-center justify-between gap-lg bg-background px-s py-[6px] outline-none",
+          "flex w-fit max-w-[50%] items-center justify-between gap-lg truncate bg-background px-s py-[6px] outline-none lg:w-auto",
           {
             "rounded-lg border-[1.5px] border-accent": [
               "filter",
@@ -59,7 +59,7 @@ export default function Select({
         <RadixSelect.Icon className="flex-shrink-0">
           <Icon
             className={cx(
-              "transition-transforms data-[size=open] duration-300",
+              "transition-transforms data-[size=open] min-w-4 duration-300",
               {
                 "rotate-180": open,
               },

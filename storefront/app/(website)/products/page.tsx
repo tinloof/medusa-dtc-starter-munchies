@@ -41,6 +41,7 @@ export default async function CollectionPage({
     </section>
   );
 }
+
 function parseSearchParam(
   value: string | string[] | undefined,
 ): string | undefined {
