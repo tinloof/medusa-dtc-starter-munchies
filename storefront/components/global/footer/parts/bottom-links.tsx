@@ -15,7 +15,7 @@ export default function BottomLinks({
         <Label desktopSize="xs" font="display" mobileSize="2xs">
           © {currentYear}
         </Label>
-        <div className="flex gap-2xl">
+        <div className="flex flex-wrap gap-2xl">
           {bottomLinks?.map((link) => {
             if (!link.link) return null;
             return (
@@ -32,7 +32,7 @@ export default function BottomLinks({
           })}
         </div>
       </div>
-      <div className="flex gap-2xl">
+      <div className="flex flex-wrap gap-2xl">
         {socialLinks?.map((link) => {
           if (!link.link) return null;
           return (

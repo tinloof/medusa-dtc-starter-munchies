@@ -23,7 +23,7 @@ export default async function Addons({
   const {products} = await getProductsByIds(ids, region_id);
 
   return (
-    <div className="flex flex-col gap-xs bg-secondary p-s">
+    <div className="flex flex-col gap-xs rounded-lg bg-secondary p-s">
       <Heading desktopSize="lg" mobileSize="base" tag={"h4"}>
         {title}
       </Heading>
