@@ -27,7 +27,7 @@ export async function getOrSetCart(countryCode: string) {
     setCartId(cartResp.cart.id);
     revalidateTag(getCacheTag("carts"));
 
-    cart = await retrieveCart(countryCode);
+    cart = await retrieveCart();
   }
 
   if (cart && cart?.region_id !== region.id) {
