@@ -4,7 +4,7 @@ import Icon from "@/components/shared/icon";
 import {cx} from "cva";
 import {useEffect, useRef, useState} from "react";
 
-import {useMultiFilter} from "./filter-select";
+import {useMultiFilter} from "../filter-select";
 
 export default function Accordion({
   heading,

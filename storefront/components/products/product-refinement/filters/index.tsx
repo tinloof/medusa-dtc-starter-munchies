@@ -1,9 +1,9 @@
 import {getCategories} from "@/data/medusa/categories";
 import {getCollections} from "@/data/medusa/collections";
 
-import Accordion from "./accordion";
 import FilterSelect from "./filter-select";
 import MobileFilterDropdown from "./mobile";
+import Accordion from "./mobile/accordion";
 
 export default async function Filters() {
   const {collections} = await getCollections();
