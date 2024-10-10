@@ -1,6 +1,6 @@
 import type {
   COOKIE_BANNER_QUERYResult,
-  FAQ_PAGE_QUERYResult,
+  FAQS_PAGE_QUERYResult,
   GLOBAL_QUERYResult,
   HOME_QUERYResult,
   MODULAR_PAGE_QUERYResult,
@@ -12,7 +12,7 @@ import type {
 import {loadQuery, loadRoute} from "./load-query";
 import {
   COOKIE_BANNER_QUERY,
-  FAQ_PAGE_QUERY,
+  FAQS_PAGE_QUERY,
   GLOBAL_QUERY,
   HOME_QUERY,
   MODULAR_PAGE_QUERY,
@@ -95,8 +95,8 @@ export async function loadTextPage(pathname: string) {
   });
 }
 
-export function loadFaq() {
-  return loadQuery<FAQ_PAGE_QUERYResult>({
-    query: FAQ_PAGE_QUERY,
+export function loadFaqs() {
+  return loadQuery<FAQS_PAGE_QUERYResult>({
+    query: FAQS_PAGE_QUERY,
   });
 }

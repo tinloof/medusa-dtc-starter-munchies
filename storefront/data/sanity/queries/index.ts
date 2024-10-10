@@ -42,7 +42,7 @@ export const REDIRECT_QUERY = groq`*[_type == "settings"][0].redirects[@.source 
 
 export const TEXT_PAGE_QUERY = groq`*[_type == "text.page" && pathname.current == $pathname][0]`;
 
-export const FAQ_PAGE_QUERY = groq`*[_type == "faq.index"][0]{
+export const FAQS_PAGE_QUERY = groq`*[_type == "faq.index"][0]{
   ...,
   category[]-> {
     ...,

@@ -1,6 +1,6 @@
 import type {ResolvingMetadata} from "next/types";
 
-import {loadFaq} from "@/data/sanity";
+import {loadFaqs} from "@/data/sanity";
 import {resolveSanityRouteMetadata} from "@/data/sanity/resolve-sanity-route-metadata";
 import {notFound} from "next/navigation";
 
@@ -12,7 +12,7 @@ export async function generateMetadata(
   props: IndexRouteProps,
   parent: ResolvingMetadata,
 ) {
-  const initialData = await loadFaq();
+  const initialData = await loadFaqs();
 
   if (!initialData) {
     return notFound();
@@ -28,7 +28,7 @@ export async function generateMetadata(
   );
 }
 export default async function FaqPage() {
-  const data = await loadFaq();
+  const data = await loadFaqs();
   if (!data) return notFound;
 
   return <Faq data={data} />;

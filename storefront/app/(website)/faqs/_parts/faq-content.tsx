@@ -1,5 +1,5 @@
 "use client";
-import type {FAQ_PAGE_QUERYResult} from "@/types/sanity.generated";
+import type {FAQS_PAGE_QUERYResult} from "@/types/sanity.generated";
 
 import Accordion from "@/components/shared/accordion";
 import Body from "@/components/shared/typography/body";
@@ -9,7 +9,7 @@ import React, {useState} from "react";
 export default function FaqContent({
   category,
 }: {
-  category: NonNullable<FAQ_PAGE_QUERYResult>["category"];
+  category: NonNullable<FAQS_PAGE_QUERYResult>["category"];
 }) {
   const [selectedCategory, setSelectedCategory] = useState(category?.[0]);
   return (

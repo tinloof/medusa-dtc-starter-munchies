@@ -1,4 +1,4 @@
-import type {FAQ_PAGE_QUERYResult} from "@/types/sanity.generated";
+import type {FAQS_PAGE_QUERYResult} from "@/types/sanity.generated";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
@@ -6,7 +6,11 @@ import Heading from "@/components/shared/typography/heading";
 import FaqContent from "./faq-content";
 import SearchBar from "./search-bar";
 
-export default function Faq({data}: {data: NonNullable<FAQ_PAGE_QUERYResult>}) {
+export default function Faq({
+  data,
+}: {
+  data: NonNullable<FAQS_PAGE_QUERYResult>;
+}) {
   return (
     <div className="scroll-mt-header-height flex-col items-center justify-center">
       <section className="flex w-full flex-col items-center justify-center gap-1 bg-accent px-xl py-8xl text-center text-background">
