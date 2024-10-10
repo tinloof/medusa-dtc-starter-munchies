@@ -1,26 +1,24 @@
-import definePage from "@/sanity/helpers/define-page";
-import {defineField} from "sanity";
+import {defineType} from "sanity";
 
-export default definePage({
+export default defineType({
+  __experimental_formPreviewTitle: false,
   fields: [
-    defineField({
-      group: "content",
-      name: "sections",
-      type: "sectionsBody",
-    }),
+    {
+      hidden: true,
+      name: "internalTitle",
+      title: "Title",
+      type: "string",
+    },
   ],
   name: "category",
   options: {
     disableCreation: true,
-    hideInternalTitle: true,
-    hideSeo: true,
-    localized: false,
   },
   preview: {
     select: {
-      title: "title",
+      title: "internalTitle",
     },
   },
-  title: "Category Page",
+  title: "Category",
   type: "document",
 });

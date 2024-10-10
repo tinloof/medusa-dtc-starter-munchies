@@ -29,6 +29,7 @@ export default function Sort() {
       options={options}
       placeholder={placeholder}
       setOption={setOption}
+      value={orderBy}
       variant="basic"
     />
   );
