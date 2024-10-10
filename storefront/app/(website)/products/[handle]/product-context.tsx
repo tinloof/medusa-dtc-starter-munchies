@@ -33,14 +33,15 @@ export function ProductVariantsProvider({
     ),
   );
 
-  const activeVariant = variants?.find((variant) => {
-    return variant?.options?.every(
-      ({id, option_id}) =>
-        option_id &&
-        option_id in selectedOptions &&
-        selectedOptions[option_id] === id,
-    );
-  });
+  const activeVariant =
+    variants?.find((variant) => {
+      return variant?.options?.every(
+        ({id, option_id}) =>
+          option_id &&
+          option_id in selectedOptions &&
+          selectedOptions[option_id] === id,
+      );
+    }) || variants?.[0];
 
   return (
     <ProductVariantsContext.Provider

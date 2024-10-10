@@ -3,6 +3,7 @@ import type {StoreCartLineItem} from "@medusajs/types";
 
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
+import {convertToLocale} from "@/utils/medusa/money";
 
 import {useCart} from "../cart-context";
 
@@ -12,6 +13,13 @@ export default function LineItem(props: StoreCartLineItem) {
   const item = cart?.items?.find(({id}) => id === props.id);
 
   if (!((item?.quantity || 0) > 0)) return null;
+
+  console.log(item);
+
+  const item_price = convertToLocale({
+    amount: (item?.unit_price || 0) * (item?.quantity || 1),
+    currency_code: (item?.variant?.calculated_price?.currency_code || null)!,
+  });
 
   return (
     <div className="flex items-start justify-between gap-2 space-x-4">
@@ -30,9 +38,8 @@ export default function LineItem(props: StoreCartLineItem) {
               {props.title}
             </Body>
           </div>
-          {/* TODO: Add price */}
           <Body className="font-semibold" font="sans" mobileSize="base">
-            ${props.unit_price}
+            {item_price}
           </Body>
         </div>
         <div className="flex w-full justify-between gap-4">
@@ -63,7 +70,4 @@ export default function LineItem(props: StoreCartLineItem) {
       </div>
     </div>
   );
-}
-
-{
 }

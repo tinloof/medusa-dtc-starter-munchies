@@ -1,7 +1,7 @@
-import {retrieveCart} from "@/actions/medusa/cart";
 import {Dialog, OpenDialog, SideDialog} from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
+import {fetchCart} from "@/data/medusa/cart";
 
 import {CartProvider} from "./cart-context";
 import CartFooter from "./cart-footer";
@@ -9,7 +9,7 @@ import CartHeading from "./cart-heading";
 import LineItem from "./line-item";
 
 export default async function Cart() {
-  const cart = await retrieveCart();
+  const cart = await fetchCart();
 
   const count = (cart?.items?.length ?? 0).toString();
   return (

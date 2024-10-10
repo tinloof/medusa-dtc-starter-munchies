@@ -2,11 +2,18 @@
 
 import {Cta} from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
+import {convertToLocale} from "@/utils/medusa/money";
 
 import {useCart} from "./cart-context";
 
 export default function CartFooter() {
   const {cart} = useCart();
+
+  const total = convertToLocale({
+    amount: (cart?.total || 0)!,
+    currency_code: (cart?.items?.[0].variant?.calculated_price?.currency_code ||
+      null)!,
+  });
 
   return (
     <div className="flex w-full flex-col justify-between gap-4 p-s">
@@ -20,7 +27,7 @@ export default function CartFooter() {
           </Body>
         </div>
         <Body font="sans" mobileSize="base">
-          ${cart?.total}
+          {total}
         </Body>
       </div>
       <Cta className="w-full" size="lg" variant="primary">
