@@ -19,7 +19,6 @@ export default function CartFooter() {
   return (
     <>
       {!cartIsEmpty && <div className="h-px w-full bg-accent" />}
-
       <div className="flex w-full flex-col justify-between gap-4 p-s">
         {!cartIsEmpty && (
           <div className="flex w-full justify-between gap-4">

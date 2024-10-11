@@ -1,15 +1,16 @@
 "use client";
 
 import type {EmblaCarouselType, EmblaOptionsType} from "embla-carousel";
+import type {ReactNode} from "react";
 
+import {cx} from "cva";
 import useEmblaCarousel from "embla-carousel-react";
 import {useCallback, useEffect, useState} from "react";
 
 import {Cta} from "../button";
-import Heading from "../typography/heading";
 import {NextButton, PrevButton, usePrevNextButtons} from "./buttons";
 
-type PropType = {
+type Props = {
   cta?: {
     href: string | undefined;
     text: string | undefined;
@@ -18,10 +19,11 @@ type PropType = {
   showButtons?: boolean;
   showProgress?: boolean;
   slides: React.JSX.Element[] | undefined;
-  title: string | undefined;
+  title?: ReactNode;
+  variant?: "cart" | "default";
 };
 
-export default function EmblaCarousel(props: PropType) {
+export default function EmblaCarousel(props: Props) {
   const {
     cta,
     options,
@@ -29,6 +31,7 @@ export default function EmblaCarousel(props: PropType) {
     showProgress = false,
     slides,
     title,
+    variant = "default",
   } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     ...options,
@@ -71,29 +74,35 @@ export default function EmblaCarousel(props: PropType) {
 
   return (
     <section className="mx-auto max-w-max-screen py-2xl">
-      <div className="mb-xs flex items-center justify-between px-m lg:px-xl">
-        <Heading
-          className="text-center"
-          desktopSize="3xl"
-          mobileSize="lg"
-          tag="h3"
-        >
-          {title}
-        </Heading>
+      <div
+        className={cx("mb-xs flex items-center justify-between", {
+          "px-m lg:px-xl": variant === "default",
+          "px-s": variant === "cart",
+        })}
+      >
+        {title}
         {showButtons && (
           <div className="hidden gap-2 lg:flex">
             <PrevButton
               disabled={prevBtnDisabled}
               onClick={onPrevButtonClick}
+              size={variant === "default" ? "sm" : "xs"}
             />
             <NextButton
               disabled={nextBtnDisabled}
               onClick={onNextButtonClick}
+              size={variant === "default" ? "sm" : "xs"}
             />
           </div>
         )}
       </div>
-      <div className="overflow-hidden px-m lg:px-xl" ref={emblaRef}>
+      <div
+        className={cx("overflow-hidden", {
+          "px-m lg:px-xl": variant === "default",
+          "px-s": variant === "cart",
+        })}
+        ref={emblaRef}
+      >
         <div className="-ml-2 flex touch-pan-y touch-pinch-zoom items-stretch">
           {slides.map((slide, index) => (
             <div className="flex-1 pl-2" key={index}>

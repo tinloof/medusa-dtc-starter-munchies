@@ -1,7 +1,8 @@
 import type {EmblaCarouselType} from "embla-carousel";
-import type {ComponentPropsWithRef} from "react";
 
-import React, {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
+
+import type {IconButtonProps} from "../icons-button";
 
 import IconButton from "../icons-button";
 
@@ -48,12 +49,12 @@ export const usePrevNextButtons = (
   };
 };
 
-type PropType = ComponentPropsWithRef<"button">;
+type Props = Omit<IconButtonProps, "icon" | "type">;
 
-export function PrevButton(props: PropType) {
-  return <IconButton icon="ArrowLeft" size="sm" type="button" {...props} />;
+export function PrevButton({size = "sm", ...props}: Props) {
+  return <IconButton icon="ArrowLeft" size={size} type="button" {...props} />;
 }
 
-export function NextButton(props: PropType) {
-  return <IconButton icon="ArrowRight" size="sm" type="button" {...props} />;
+export function NextButton({size = "sm", ...props}: Props) {
+  return <IconButton icon="ArrowRight" size={size} type="button" {...props} />;
 }

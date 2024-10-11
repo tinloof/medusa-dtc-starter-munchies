@@ -1,9 +1,8 @@
-import React from "react";
-
 import type {ModularPageSection} from "./types";
 
 import EmblaCarousel from "../shared/carousel";
 import Body from "../shared/typography/body";
+import Heading from "../shared/typography/heading";
 
 export default function Testimonials(
   props: ModularPageSection<"section.testimonials">,
@@ -17,7 +16,19 @@ export default function Testimonials(
   ));
   return (
     <section {...props.rootHtmlAttributes}>
-      <EmblaCarousel slides={slides} title={props.title} />
+      <EmblaCarousel
+        slides={slides}
+        title={
+          <Heading
+            className="text-center"
+            desktopSize="3xl"
+            mobileSize="lg"
+            tag="h3"
+          >
+            {props.title}
+          </Heading>
+        }
+      />
     </section>
   );
 }

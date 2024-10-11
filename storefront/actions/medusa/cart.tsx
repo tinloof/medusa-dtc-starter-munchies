@@ -2,7 +2,12 @@
 
 import {retrieveCart} from "@/data/medusa/cart";
 import client from "@/data/medusa/client";
-import {getAuthHeaders, getCacheTag, setCartId} from "@/data/medusa/cookies";
+import {
+  getAuthHeaders,
+  getCacheTag,
+  getCartId,
+  setCartId,
+} from "@/data/medusa/cookies";
 import {getCustomer} from "@/data/medusa/customer";
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
@@ -56,7 +61,7 @@ export async function addToCart({
     throw new Error("Missing variant ID when adding to cart");
   }
 
-  const cart = await getOrSetCart(countryCode);
+  const cart = getCartId();
 
   if (!cart) {
     throw new Error("Error retrieving or creating cart");
@@ -64,7 +69,7 @@ export async function addToCart({
 
   await client.store.cart
     .createLineItem(
-      cart.id,
+      cart,
       {
         quantity,
         variant_id: variantId,

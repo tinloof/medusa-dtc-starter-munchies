@@ -5,6 +5,7 @@ import type {ModularPageSection} from "./types";
 import EmblaCarousel from "../shared/carousel";
 import {SanityImage} from "../shared/sanity-image";
 import Body from "../shared/typography/body";
+import Heading from "../shared/typography/heading";
 
 //TODO: find solution to remove scrol on the desktop
 export default function CollectionList(
@@ -18,7 +19,16 @@ export default function CollectionList(
       showButtons={false}
       showProgress={true}
       slides={slides}
-      title="Shop our cookies"
+      title={
+        <Heading
+          className="text-center"
+          desktopSize="3xl"
+          mobileSize="lg"
+          tag="h3"
+        >
+          Shop our cookies
+        </Heading>
+      }
     />
   );
 }
