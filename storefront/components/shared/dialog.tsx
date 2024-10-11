@@ -7,14 +7,14 @@ import type {
   DialogTriggerProps,
 } from "@radix-ui/react-dialog";
 
-import {Content, Portal, Root, Trigger} from "@radix-ui/react-dialog";
-import {cx} from "cva";
-import {RemoveScroll} from "react-remove-scroll";
+import { Close, Content, Portal, Root, Trigger } from "@radix-ui/react-dialog";
+import { cx } from "cva";
+import { RemoveScroll } from "react-remove-scroll";
 
-import {useCart} from "../global/header/cart/cart-context";
+import { useCart } from "../global/header/cart/cart-context";
 
 export function Dialog(props: Omit<DialogProps, "onOpenChange" | "open">) {
-  const {cartOpen, setCartOpen} = useCart();
+  const { cartOpen, setCartOpen } = useCart();
   return (
     <Root onOpenChange={(v) => setCartOpen(v)} open={cartOpen} {...props} />
   );
@@ -25,7 +25,7 @@ export function OpenDialog(props: DialogTriggerProps) {
 }
 
 export function CloseDialog(props: DialogCloseProps) {
-  return <CloseDialog {...props} />;
+  return <Close {...props} />;
 }
 
 export function SideDialog({
@@ -34,7 +34,7 @@ export function SideDialog({
   style,
   width = 430,
   ...passThrough
-}: {align?: "left" | "right"; width?: number} & DialogContentProps) {
+}: { align?: "left" | "right"; width?: number } & DialogContentProps) {
   return (
     <Portal>
       <RemoveScroll>
@@ -47,7 +47,7 @@ export function SideDialog({
               "right-0 animate-slide-in-from-right": align === "left",
             },
           )}
-          style={{...style, width}}
+          style={{ ...style, width }}
           {...passThrough}
         />
       </RemoveScroll>

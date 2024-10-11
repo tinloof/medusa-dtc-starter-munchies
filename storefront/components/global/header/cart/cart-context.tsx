@@ -1,9 +1,9 @@
 "use client";
 
-import type {StoreCart, StorePromotion} from "@medusajs/types";
-import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
+import type { StoreCart, StorePromotion } from "@medusajs/types";
+import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
-import {deleteLineItem, updateCartQuantity} from "@/actions/medusa/cart";
+import { deleteLineItem, updateCartQuantity } from "@/actions/medusa/cart";
 import {
   createContext,
   useContext,
@@ -18,15 +18,15 @@ type Cart = {
 
 const CartContext = createContext<
   | {
-      cart: Cart | null;
-      cartOpen: boolean;
-      handleDeleteItem: (lineItem: string) => Promise<void>;
-      handleUpdateCartQuantity: (
-        lineItem: string,
-        newQuantity: number,
-      ) => Promise<void>;
-      setCartOpen: Dispatch<SetStateAction<boolean>>;
-    }
+    cart: Cart | null;
+    cartOpen: boolean;
+    handleDeleteItem: (lineItem: string) => Promise<void>;
+    handleUpdateCartQuantity: (
+      lineItem: string,
+      newQuantity: number,
+    ) => Promise<void>;
+    setCartOpen: Dispatch<SetStateAction<boolean>>;
+  }
   | undefined
 >(undefined);
 
@@ -47,7 +47,7 @@ export function CartProvider({
         if (!prev) return prev;
         return {
           ...prev,
-          items: prev.items?.filter(({id}) => id !== lineItem),
+          items: prev.items?.filter(({ id }) => id !== lineItem),
         };
       });
     });
@@ -60,7 +60,7 @@ export function CartProvider({
     lineItem: string,
     newQuantity: number,
   ) => {
-    const item = optimisticCart?.items?.find(({id}) => id === lineItem);
+    const item = optimisticCart?.items?.find(({ id }) => id === lineItem);
 
     if (!item) return;
 
@@ -69,11 +69,19 @@ export function CartProvider({
     startTransition(() => {
       setOptimisticCart((prev) => {
         if (!prev) return prev;
+
+
+        const optimisticItems = prev.items?.map((item) =>
+          item.id === lineItem ? { ...item, quantity } : item
+        )
+
+        const optimisticTotal = optimisticItems?.reduce((acc, item) => acc + item.unit_price * item.quantity, 0);
+
+
         return {
           ...prev,
-          items: prev.items?.map((item) =>
-            item.id === lineItem ? {...item, quantity} : item,
-          ),
+          total: optimisticTotal || 0,
+          items: optimisticItems
         };
       });
     });
