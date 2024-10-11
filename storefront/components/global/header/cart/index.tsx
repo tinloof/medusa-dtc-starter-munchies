@@ -30,7 +30,6 @@ export default async function Cart() {
                 return <LineItem key={item.id} {...item} />;
               })}
             </div>
-            <div className="h-px w-full bg-accent" />
             <CartFooter />
           </div>
         </SideDialog>
