@@ -6,7 +6,7 @@ import {getProductByHandle} from "@/data/medusa/products";
 import {getRegion} from "@/data/medusa/regions";
 import {notFound} from "next/navigation";
 
-import ProductImages from "./_parts/product-images";
+import {ProductImagesCarousel} from "./_parts/image-carousel";
 import ProductInformation from "./_parts/product-information";
 
 type ProductPageProps = PageProps<"handle">;
@@ -31,7 +31,8 @@ export default async function ProductPage({params}: ProductPageProps) {
   return (
     <>
       <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
-        <ProductImages images={product.images} type={product.type} />
+        {/* <ProductImages images={product.images} type={product.type} /> */}
+        <ProductImagesCarousel product={product} />
         <ProductInformation region_id={region.id} {...product} />
       </section>
 
