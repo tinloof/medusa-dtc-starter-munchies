@@ -2,6 +2,7 @@
 
 import type {StoreProduct, StoreProductImage} from "@medusajs/types";
 
+import Tag from "@/components/shared/tag";
 import useIsHydrated from "@/hooks/use-is-hydrated";
 import {cx} from "cva";
 import Image from "next/image";
@@ -25,7 +26,7 @@ export function ProductImagesCarousel({
   return (
     <Root slidesCount={images?.length || 0}>
       <div className="mx-auto flex w-full max-w-[666px] gap-4 lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:mx-0">
-        <div className="relative flex h-full flex-col gap-2 overflow-hidden">
+        <div className="relative hidden h-full flex-col gap-2 overflow-hidden lg:flex">
           {(images?.length || 0) > 0 && (
             <div
               className={cx(
@@ -49,7 +50,7 @@ export function ProductImagesCarousel({
         </div>
         <Slides
           className={cx(
-            "pdp-image-slides scrollbar-hide narrow:max-w-[500px] flex h-fit w-full overflow-scroll lg:max-w-[600px] lg:rounded-2xl",
+            "pdp-image-slides scrollbar-hide narrow:max-w-[500px] flex h-fit w-full overflow-scroll rounded-2xl px-5 lg:max-w-[600px] lg:px-0",
             {
               "snap-x snap-mandatory": isHydrated, // only enable snapping after hydration, because it randomly scrolls on chrome
             },
@@ -57,18 +58,24 @@ export function ProductImagesCarousel({
         >
           {images?.map((media, index) => (
             <Slide
-              className="flex w-full min-w-full snap-center justify-center"
+              className="relative flex w-full min-w-full snap-center justify-center"
               index={index}
               key={index}
             >
+              {product.type?.value && (
+                <Tag
+                  className="absolute right-4 top-4"
+                  text={product.type?.value}
+                />
+              )}
               <Image
                 alt={product.title}
-                className="aspect-thin aspect-square w-full rounded-[0.625rem] border border-[#F0CDD4] object-cover object-bottom"
-                height="1000"
+                className="aspect-thin aspect-square w-full object-cover object-bottom"
+                height={591}
                 sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
                 src={media.url}
                 style={{background: "transparent"}}
-                width="1000"
+                width={591}
               />
             </Slide>
           ))}
@@ -89,7 +96,7 @@ function ItemCarousel({
   selectedImageIndex: number;
   setSelectedImageIdex: (index: number) => void;
 }) {
-  const {focalSlideIndex, scrollToIndex} = useCarouselContext();
+  const {scrollToIndex} = useCarouselContext();
 
   useEffect(() => {
     scrollToIndex(selectedImageIndex);
@@ -97,21 +104,18 @@ function ItemCarousel({
 
   return (
     <button
-      className={cx("min-w-[50px] overflow-hidden rounded-lg border", {
-        "border-border-grey": focalSlideIndex !== index,
-        "border-primary-dark": focalSlideIndex === index,
-      })}
+      className="min-w-[50px] overflow-hidden rounded-lg"
       onClick={() => {
         setSelectedImageIdex(index);
       }}
     >
       <Image
         alt={`carousel-item-${index}`}
-        className="aspect-square size-12 border border-[#F0CDD4] object-cover object-center"
-        height="1000"
+        className="aspect-square size-12 object-cover object-center"
+        height={380}
         sizes="52px"
         src={mediaItem.url}
-        width="1000"
+        width={380}
       />
     </button>
   );
