@@ -28,7 +28,7 @@ function TestimonialCard(props: {
 }) {
   return (
     <div className="flex h-full min-h-[340px] w-[390px] cursor-pointer flex-col items-start justify-start gap-lg rounded-lg border border-accent px-xl py-lg lg:min-h-[400px] lg:w-[450px]">
-      <Body desktopSize="4xl" font="sans" mobileSize="3xl">
+      <Body desktopSize="2xl" font="sans" mobileSize="xl">
         {props.text}
       </Body>
       <Body font="sans" mobileSize="xl">

@@ -27,13 +27,9 @@ export default function LineItem(props: StoreCartLineItem) {
         src={props.product?.thumbnail || ""}
       />
       <div className="flex w-full flex-col items-start justify-start gap-4">
-        <div className="flex w-full justify-between gap-4">
+        <div className="flex w-full justify-between gap-3">
           <div>
-            <Body
-              className="truncate text-nowrap leading-[130%]"
-              font="sans"
-              mobileSize="lg"
-            >
+            <Body className="leading-[130%]" font="sans" mobileSize="lg">
               {props.product?.title}
             </Body>
             <Body className="mt-1" font="sans" mobileSize="sm">
@@ -44,7 +40,7 @@ export default function LineItem(props: StoreCartLineItem) {
             {item_price}
           </Body>
         </div>
-        <div className="flex w-full justify-between gap-4">
+        <div className="flex w-full items-center justify-between gap-4">
           <div className="flex h-10 w-32 items-center justify-center gap-1 overflow-hidden rounded-lg border border-accent">
             <button
               className="group flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
@@ -68,7 +64,7 @@ export default function LineItem(props: StoreCartLineItem) {
             </button>
           </div>
           <Icon
-            className="cursor-pointer"
+            className="size-6 cursor-pointer"
             name="Trash"
             onClick={() => handleDeleteItem(props.id)}
           />
