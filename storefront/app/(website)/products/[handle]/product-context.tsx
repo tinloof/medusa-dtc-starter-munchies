@@ -26,14 +26,6 @@ export function ProductVariantsProvider({
   options?: StoreProductOption[] | null;
   variants: StoreProductVariant[] | null;
 }>) {
-  // const [selectedOptions, setSelectedOptions] = useState<
-  //   Record<string, string | undefined>
-  // >(
-  //   Object.fromEntries(
-  //     options?.map((option) => [option.id, option.values?.[0]?.id]) ?? [],
-  //   ),
-  // );
-
   const [selectedOptions, setSelectedOptions] = useQueryStates(
     Object.fromEntries(
       options?.map((option) => [
@@ -47,8 +39,6 @@ export function ProductVariantsProvider({
       history: "push",
     },
   );
-
-  // console.log({selectedOption2});
 
   const activeVariant =
     variants?.find((variant) => {
