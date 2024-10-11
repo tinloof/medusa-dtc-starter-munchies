@@ -34,7 +34,7 @@ export default defineConfig({
   icon: StudioLogo,
   plugins: [
     pages({
-      creatablePages: ["modular.page"],
+      creatablePages: ["modular.page", "text.page"],
       previewUrl: {
         previewMode: {
           enable: "/api/draft",

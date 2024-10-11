@@ -4,7 +4,6 @@ import {z} from "zod";
 
 const newsletterSchema = z.object({
   email: z.string().email(),
-  //   formId: z.string(),
 });
 
 export async function newsletterForm(

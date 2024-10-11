@@ -1,5 +1,7 @@
 "use client";
-import Body from "@/components/shared/typography/body";
+
+import Heading from "@/components/shared/typography/heading";
+import {Title} from "@radix-ui/react-dialog";
 
 import {useCart} from "./cart-context";
 
@@ -9,8 +11,12 @@ export default function CartHeading() {
   const count = (cart?.items?.length ?? 0).toString();
 
   return (
-    <Body desktopSize="2xl" font="serif" mobileSize="xl">
-      My Bag ({count})
-    </Body>
+    <div className="flex flex-col gap-4 p-4">
+      <Title asChild>
+        <Heading desktopSize="2xl" font="serif" mobileSize="lg" tag="h2">
+          My Bag ({count})
+        </Heading>
+      </Title>
+    </div>
   );
 }

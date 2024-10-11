@@ -3,7 +3,8 @@
 import type {StoreProductOption, StoreProductVariant} from "@medusajs/types";
 import type {PropsWithChildren} from "react";
 
-import React, {createContext, useContext, useState} from "react";
+import {parseAsString, useQueryStates} from "nuqs";
+import React, {createContext, useContext} from "react";
 
 interface ProductVariantsContextType {
   activeVariant: StoreProductVariant | undefined;
@@ -25,21 +26,26 @@ export function ProductVariantsProvider({
   options?: StoreProductOption[] | null;
   variants: StoreProductVariant[] | null;
 }>) {
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<string, string | undefined>
-  >(
+  const [selectedOptions, setSelectedOptions] = useQueryStates(
     Object.fromEntries(
-      options?.map((option) => [option.id, option.values?.[0]?.id]) ?? [],
+      options?.map((option) => [
+        option.title.toLowerCase(),
+        parseAsString.withDefault(
+          option.values?.[0]?.value.toLowerCase() ?? "",
+        ),
+      ]) ?? [],
     ),
+    {
+      history: "push",
+    },
   );
 
   const activeVariant =
     variants?.find((variant) => {
       return variant?.options?.every(
-        ({id, option_id}) =>
-          option_id &&
-          option_id in selectedOptions &&
-          selectedOptions[option_id] === id,
+        ({option, value}) =>
+          selectedOptions[option?.title.toLowerCase() || ""] ===
+          value.toLowerCase(),
       );
     }) || variants?.[0];
 

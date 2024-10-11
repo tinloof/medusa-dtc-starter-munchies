@@ -37,11 +37,21 @@ export default function ProductInformation({
     <ProductVariantsProvider options={options} variants={variants}>
       <div className="lg:y-s flex w-full max-w-[580px] flex-col gap-lg px-m pb-2xl pt-s">
         <BreadCrumbs collection={collection} title={title} />
-        <Heading desktopSize="5xl" mobileSize="2xl" tag="h1">
+        <Heading
+          className="leading-[100%]"
+          desktopSize="5xl"
+          mobileSize="2xl"
+          tag="h1"
+        >
           {title}
         </Heading>
         <Price product={{id, variants}} />
-        <Body desktopSize="lg" font="sans" mobileSize="base">
+        <Body
+          className="font-normal"
+          desktopSize="lg"
+          font="sans"
+          mobileSize="base"
+        >
           {description}
         </Body>
         <div className="mt-s flex flex-col gap-s">

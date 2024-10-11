@@ -11,6 +11,11 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  variants: {
+    extend: {
+      backgroundColor: ["active"],
+    },
+  },
   theme: {
     extend: {
       fontFamily: {
@@ -21,6 +26,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         accent: "var(--accent)",
+        "accent-40": "var(--accent-40)",
         secondary: "var(--secondary)",
         error: "#FF0000",
       },
@@ -73,6 +79,7 @@ const config: Config = {
       spacing: {
         "max-screen": "var(--max-width)",
         "min-screen": "var(--min-width)",
+        "8xl": "80px",
         "7xl": "72px",
         "6xl": "64px",
         "5xl": "50px",
@@ -92,6 +99,12 @@ const config: Config = {
         "select-close": "selectClose 0.2s ease-in forwards",
         "slide-in-from-right": "slideInFromRight 0.2s ease-in forwards",
         "slide-in-from-left": "slideInFromLeft 0.2s ease-in forwards",
+        enterFromTop: "enterFromTop 300ms ease",
+        exitToTop: "exitToTop 300ms ease",
+        enterFromLeft: "enterFromLeft 450ms ease",
+        enterFromRight: "enterFromRight 450ms ease",
+        exitToLeft: "exitToLeft 450ms ease",
+        exitToRight: "exitToRight 450ms ease",
       },
       keyframes: {
         slideInFromRight: {
@@ -141,6 +154,33 @@ const config: Config = {
             filter: "blur(4px)",
             "-webkit-filter": "blur(4px)",
           },
+        },
+        enterFromTop: {
+          from: {
+            opacity: "0.5",
+            transform: "translateY(-50px)",
+          },
+          to: {opacity: "1", transform: "translateY(0)"},
+        },
+        exitToTop: {
+          from: {opacity: "1", transform: "translateY(0)"},
+          to: {opacity: "0", transform: "translateY(-50px)"},
+        },
+        enterFromRight: {
+          from: {transform: "translateX(100%)"},
+          to: {transform: "translateX(0)"},
+        },
+        enterFromLeft: {
+          from: {transform: "translateX(-100%)"},
+          to: {transform: "translateX(0)"},
+        },
+        exitToRight: {
+          from: {transform: "translateX(0)"},
+          to: {transform: "translateX(100%)"},
+        },
+        exitToLeft: {
+          from: {transform: "translateX(0)"},
+          to: {transform: "translateX(-100%)"},
         },
       },
     },

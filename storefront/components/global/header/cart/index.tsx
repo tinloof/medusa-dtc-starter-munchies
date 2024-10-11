@@ -1,31 +1,37 @@
-import {retrieveCart} from "@/actions/medusa/cart";
 import Icon from "@/components/shared/icon";
+import {fetchCart} from "@/data/medusa/cart";
 
 import {CartProvider} from "./cart-context";
-import {Dialog, OpenDialog, SideDialog} from "./cart-dialog";
+import {CloseDialog, Dialog, SideDialog} from "./cart-dialog";
+import CartFooter from "./cart-footer";
 import CartHeading from "./cart-heading";
 import LineItem from "./line-item";
+import OpenCart from "./open-cart-button";
 
 export default async function Cart() {
-  const cart = await retrieveCart();
+  const cart = await fetchCart();
 
   return (
     <CartProvider cart={cart}>
       <Dialog>
-        <OpenDialog>
-          <Icon name="Cart" />
-        </OpenDialog>
+        <OpenCart />
         <SideDialog align="left">
-          <div className="z-[9999] flex h-full w-full flex-col border-l border-accent bg-background">
-            <div className="flex p-4">
-              <CartHeading />
-            </div>
+          <div className="relative flex h-full w-full flex-col border-l border-accent bg-background">
+            <CartHeading />
             <div className="h-px w-full bg-accent" />
-            <div className="p-4">
+            <CloseDialog
+              aria-label="Close"
+              className="absolute right-[10px] top-[10px]"
+            >
+              <Icon className="h-9 w-9" name="Close" />
+            </CloseDialog>
+            <div className="flex flex-1 flex-col gap-4 overflow-y-scroll p-4">
               {cart?.items?.map((item) => {
                 return <LineItem key={item.id} {...item} />;
               })}
             </div>
+            <div className="h-px w-full bg-accent" />
+            <CartFooter />
           </div>
         </SideDialog>
       </Dialog>

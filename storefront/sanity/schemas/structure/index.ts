@@ -43,6 +43,18 @@ export const structure: StructureResolver = (S) =>
               singleton(S, SINGLETONS.header),
               singleton(S, SINGLETONS.footer),
               singleton(S, SINGLETONS.notFound),
+              singleton(S, SINGLETONS.cookieBanner),
+            ]),
+        ),
+      S.listItem()
+        .title("Faq")
+        .child(
+          S.list()
+            .id("faq")
+            .items([
+              singleton(S, SINGLETONS.faq),
+              S.documentTypeListItem("faq.category").title("Faq categories"),
+              S.documentTypeListItem("faq.entry").title("Faq entries"),
             ]),
         ),
       singleton(S, SINGLETONS.settings),

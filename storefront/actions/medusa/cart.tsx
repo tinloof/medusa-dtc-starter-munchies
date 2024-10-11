@@ -1,44 +1,12 @@
 "use server";
-import type {HttpTypes} from "@medusajs/types";
 
+import {retrieveCart} from "@/data/medusa/cart";
 import client from "@/data/medusa/client";
-import {
-  getAuthHeaders,
-  getCacheTag,
-  getCartId,
-  setCartId,
-} from "@/data/medusa/cookies";
+import {getAuthHeaders, getCacheTag, setCartId} from "@/data/medusa/cookies";
 import {getCustomer} from "@/data/medusa/customer";
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
-
-export async function retrieveCart() {
-  const cartId = getCartId();
-
-  if (!cartId) {
-    return null;
-  }
-
-  return await client.store.cart
-    .retrieve(
-      cartId,
-      {
-        fields:
-          "+items, +region, +items.product.*, +items.variant.image, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
-      },
-      {next: {tags: ["cart"]}, ...getAuthHeaders()},
-    )
-    .then(
-      ({cart}) =>
-        cart as {
-          promotions?: HttpTypes.StorePromotion[];
-        } & HttpTypes.StoreCart,
-    )
-    .catch(() => {
-      return null;
-    });
-}
 
 export async function getOrSetCart(countryCode: string) {
   let cart = await retrieveCart();

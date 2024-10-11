@@ -36,7 +36,7 @@ export function AddToCartButton({
 } & Omit<ButtonProps, "onClick">) {
   const [isAdding, setIsAdding] = useState(false);
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (variantId: string, quantity: number) => {
     if (!variantId) return;
     setIsAdding(true);
 
@@ -49,7 +49,12 @@ export function AddToCartButton({
   };
 
   return (
-    <Cta {...buttonProps} onClick={handleAddToCart}>
+    <Cta
+      {...buttonProps}
+      onClick={
+        variantId ? () => handleAddToCart(variantId, quantity) : undefined
+      }
+    >
       {isAdding ? (loadingLabel ? loadingLabel : label) : label}
     </Cta>
   );

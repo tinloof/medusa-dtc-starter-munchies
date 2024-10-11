@@ -1,8 +1,11 @@
 import category from "./documents/category";
 import collection from "./documents/collection";
+import {faqCategory} from "./documents/faq-category";
+import {faqEntry} from "./documents/faq-entry";
 import modularPage from "./documents/modular-page";
 import product from "./documents/product";
 import testimonial from "./documents/testimonial";
+import {textPage} from "./documents/text-page";
 import {cta} from "./objects/cta";
 import {link} from "./objects/link";
 import {ogImage} from "./objects/og-image";
@@ -11,6 +14,8 @@ import {sectionsBody} from "./objects/sections-body";
 import {seo} from "./objects/seo";
 import spot from "./objects/spot";
 import sections from "./sections";
+import {cookieBanner} from "./singletons/cookie-banner";
+import {faqIndex} from "./singletons/faq";
 import footer from "./singletons/footer";
 import header from "./singletons/header";
 import home from "./singletons/home";
@@ -37,6 +42,11 @@ const schemas = [
   product,
   collection,
   category,
+  cookieBanner,
+  textPage,
+  faqIndex,
+  faqEntry,
+  faqCategory,
 ];
 
 export default schemas;

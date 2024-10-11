@@ -27,6 +27,7 @@ export const headingStyles = cva("", {
     },
     mobileSize: {
       "2xl": "text-heading-2xl text-pretty tracking-[-1.12px]",
+      "2xs": "text-heading-2xs tracking-[-0.4px]",
       "3xl": "text-heading-3xl text-pretty tracking-[-1.28px]",
       "5xl": "lg:text-heading-5xl lg:tracking-[-1.6px]",
       "6xl": "text-heading-6xl tracking-[-2px]",
@@ -43,6 +44,7 @@ export const headingStyles = cva("", {
 type HeadingProps = {
   children: React.ReactNode;
   className?: string;
+  id?: string;
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 } & VariantProps<typeof headingStyles>;
 export default function Heading({
@@ -50,12 +52,18 @@ export default function Heading({
   className,
   desktopSize,
   font,
+  id,
   mobileSize,
   tag,
+  ...props
 }: HeadingProps) {
   const Tag = tag;
   return (
-    <Tag className={headingStyles({className, desktopSize, font, mobileSize})}>
+    <Tag
+      className={headingStyles({className, desktopSize, font, mobileSize})}
+      id={id}
+      {...props}
+    >
       {children}
     </Tag>
   );

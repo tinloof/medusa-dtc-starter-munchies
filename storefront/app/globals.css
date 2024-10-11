@@ -12,11 +12,13 @@
     @apply font-sans;
   }
   :root {
+    @apply [--header-height:_92px] lg:[--header-height:_108px];
     --max-width: 1440px;
     --min-width: 320px;
     /* colors */
     --background: #fff6e6;
     --accent: #ff5227;
+    --accent-40: rgba(255, 82, 39, 0.4);
     --secondary: #f9dff2;
     --base-font-size: 16px;
   }

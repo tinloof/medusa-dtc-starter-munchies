@@ -26,7 +26,7 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
       {mediaType === "video" && video && (
         <LargeHero props={props}>
           <MuxVideo
-            className="aspect-[16/9] min-h-[590px] w-full object-cover object-center"
+            className="aspect-[16/9] min-h-[590px] w-full rounded-lg object-cover object-center"
             loading="eager"
             video={video}
           />
@@ -35,7 +35,7 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
       {mediaType === "largeImage" && largeImage && (
         <LargeHero props={props}>
           <SanityImage
-            className="aspect-[16/9] min-h-[590px] w-full object-cover object-center"
+            className="aspect-[16/9] min-h-[590px] w-full rounded-lg object-cover object-center"
             data={largeImage}
             loading="eager"
           />

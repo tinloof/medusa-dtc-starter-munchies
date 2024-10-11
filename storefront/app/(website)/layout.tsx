@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 
 import {ExitPreview} from "@/components/exit-preview";
+import CookieBanner from "@/components/global/cookie-banner";
 import Footer from "@/components/global/footer";
 import Header from "@/components/global/header";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
@@ -30,10 +31,11 @@ export default async function Layout({children}: {children: React.ReactNode}) {
   const data = await loadGlobalData();
 
   return (
-    <body className="relative flex min-h-screen min-w-min-screen flex-col">
+    <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
       {data.header && <Header {...data.header} />}
       <main className="flex-1">{children}</main>
       {data.footer && <Footer {...data.footer} />}
+      <CookieBanner />
       {draftMode().isEnabled && (
         <VisualEditing
           refresh={async (payload) => {

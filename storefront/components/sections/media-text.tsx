@@ -18,12 +18,12 @@ export default function MediaText(
       className={cx(
         "mx-auto flex w-full max-w-max-screen flex-col items-stretch justify-center gap-2 px-m py-xl lg:px-xl lg:py-2xl",
         {
-          "lg:flex-row": position === "left",
-          "lg:flex-row-reverse": position === "right",
+          "lg:flex-row": position === "right",
+          "lg:flex-row-reverse": position === "left",
         },
       )}
     >
-      <div className="relative flex min-h-[390px] flex-col items-center justify-start gap-11 rounded-lg border border-accent px-xl py-xl sm:justify-center lg:w-1/2 lg:py-7xl">
+      <div className="relative flex min-h-[390px] flex-col items-center justify-start gap-11 rounded-lg border border-accent p-s sm:justify-center lg:w-1/2 lg:py-7xl">
         <Label
           className="whitespace-nowrap sm:absolute sm:left-1/2 sm:top-xl sm:-translate-x-1/2"
           desktopSize="base"
