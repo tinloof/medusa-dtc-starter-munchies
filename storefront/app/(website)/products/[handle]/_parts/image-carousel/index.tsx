@@ -30,7 +30,7 @@ export function ProductImagesCarousel({
           {(images?.length || 0) > 0 && (
             <div
               className={cx(
-                "scrollbar-hide flex gap-2 overflow-x-scroll px-4 lg:px-0",
+                "scrollbar-hide flex flex-col gap-2 overflow-x-scroll px-4 lg:px-0",
               )}
               id="thumbs"
             >
@@ -50,7 +50,7 @@ export function ProductImagesCarousel({
         </div>
         <Slides
           className={cx(
-            "pdp-image-slides scrollbar-hide narrow:max-w-[500px] flex h-fit w-full overflow-scroll rounded-2xl px-5 lg:max-w-[600px] lg:px-0",
+            "pdp-image-slides scrollbar-hide flex h-fit w-full gap-4 overflow-scroll rounded-2xl px-5 lg:max-w-[600px] lg:px-0",
             {
               "snap-x snap-mandatory": isHydrated, // only enable snapping after hydration, because it randomly scrolls on chrome
             },
@@ -70,7 +70,7 @@ export function ProductImagesCarousel({
               )}
               <Image
                 alt={product.title}
-                className="aspect-thin aspect-square w-full object-cover object-bottom"
+                className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
                 height={591}
                 sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
                 src={media.url}
