@@ -8,6 +8,7 @@ export default function ProductSpecs({specs}: Props) {
   return (
     (specs?.length || 0) > 0 && (
       <Accordion
+        initialOpen={null}
         items={
           specs
             ?.map(({_key, content, title}) => {

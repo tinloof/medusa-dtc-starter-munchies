@@ -26,6 +26,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         accent: "var(--accent)",
+        "accent-40": "var(--accent-40)",
         secondary: "var(--secondary)",
         error: "#FF0000",
       },
@@ -78,6 +79,7 @@ const config: Config = {
       spacing: {
         "max-screen": "var(--max-width)",
         "min-screen": "var(--min-width)",
+        "8xl": "80px",
         "7xl": "72px",
         "6xl": "64px",
         "5xl": "50px",

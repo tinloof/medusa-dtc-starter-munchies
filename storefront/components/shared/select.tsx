@@ -10,9 +10,11 @@ import Body from "./typography/body";
 type Option = {label: string; value: string};
 
 export default function Select({
+  className,
   options,
   setOption,
 }: {
+  className?: string;
   options: Option[];
   setOption: (value: string) => void;
 }) {
@@ -26,7 +28,12 @@ export default function Select({
       onValueChange={setOption}
       open={open}
     >
-      <RadixSelect.Trigger className="flex w-fit items-center justify-between gap-lg rounded-lg border-[1.5px] border-accent bg-background px-s py-[6px] outline-none">
+      <RadixSelect.Trigger
+        className={cx(
+          className,
+          "flex w-fit items-center justify-between gap-lg rounded-lg border-[1.5px] border-accent bg-background px-s py-[6px] outline-none",
+        )}
+      >
         <Body font="sans" mobileSize="2xl">
           <RadixSelect.Value placeholder={options[0].label} />
         </Body>

@@ -46,6 +46,17 @@ export const structure: StructureResolver = (S) =>
               singleton(S, SINGLETONS.cookieBanner),
             ]),
         ),
+      S.listItem()
+        .title("Faq")
+        .child(
+          S.list()
+            .id("faq")
+            .items([
+              singleton(S, SINGLETONS.faq),
+              S.documentTypeListItem("faq.category").title("Faq categories"),
+              S.documentTypeListItem("faq.entry").title("Faq entries"),
+            ]),
+        ),
       singleton(S, SINGLETONS.settings),
       // You can update the structure here to add document related to general settings or content other than pages.
       // You can also add documents that needs to have a custom view like a manually ordered list for example.
