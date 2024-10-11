@@ -83,6 +83,9 @@ importers:
       next-sanity:
         specifier: ^9.4.2
         version: 9.5.0(@sanity/client@6.22.1)(@sanity/icons@3.4.0(react@18.3.1))(@sanity/types@3.59.0)(@sanity/ui@2.8.9(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.4(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.59.0(@types/node@20.16.10)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      nuqs:
+        specifier: ^1.20.0
+        version: 1.20.0(next@14.2.4(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4090,6 +4093,9 @@ packages:
     resolution: {integrity: sha512-7PujJ3Te6GGg9lG1nfw5jYCPV6/BsoAT0nCQwb6w+ROuromXYxI6jc/CQSlD82Z/OUMSBX1SoaqhTE+vXiLQzQ==}
     engines: {node: '>=4.0.0'}
 
+  mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+
   mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
 
@@ -4208,6 +4214,11 @@ packages:
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
+
+  nuqs@1.20.0:
+    resolution: {integrity: sha512-nGVfv7eWMNxAzOJ9n8ARTo6ObqeEr1ETYZ+dIMCg/VfGUoZoPrqyTOndIvQIgUzK3pIC41mTXg10JJxh9ziEhw==}
+    peerDependencies:
+      next: '>=13.4 <14.0.2 || ^14.0.3'
 
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
@@ -10412,6 +10423,8 @@ snapshots:
       stream-each: 1.2.3
       through2: 3.0.2
 
+  mitt@3.0.1: {}
+
   mkdirp-classic@0.5.3: {}
 
   mkdirp@3.0.1: {}
@@ -10543,6 +10556,11 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
+
+  nuqs@1.20.0(next@14.2.4(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+    dependencies:
+      mitt: 3.0.1
+      next: 14.2.4(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   object-assign@4.1.1: {}
 
