@@ -1,12 +1,15 @@
 "use client";
-import {OpenDialog} from "@/components/shared/dialog";
+import { OpenDialog } from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 
-import {useCart} from "./cart-context";
+import { useCart } from "./cart-context";
 
 export default function OpenCart() {
   const {cart} = useCart();
+
+  const count = (cart?.items?.length || 0).toFixed()
+
   return (
     <OpenDialog>
       <div className="relative h-10 w-10 p-2">
@@ -16,7 +19,7 @@ export default function OpenCart() {
           font="sans"
           mobileSize="sm"
         >
-          {cart?.items?.length || 0}
+          {count}
         </Body>
       </div>
     </OpenDialog>

@@ -1,16 +1,15 @@
 "use client";
 
-import type { StoreCart, StorePromotion } from "@medusajs/types";
-import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import type {StoreCart, StorePromotion} from "@medusajs/types";
+import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
-import { updateCartQuantity } from "@/actions/medusa/cart";
+import {addToCart, updateCartQuantity} from "@/actions/medusa/cart";
 import {
-    createContext,
-    useContext,
-    useEffect,
-    useOptimistic,
-    useState,
-    useTransition,
+  createContext,
+  useContext,
+  useOptimistic,
+  useState,
+  useTransition,
 } from "react";
 
 type Cart = {
@@ -21,6 +20,7 @@ const CartContext = createContext<
   | {
       cart: Cart | null;
       cartOpen: boolean;
+      handleAddToCart: (variantId: string, quantity: number) => Promise<void>;
       handleDeleteItem: (lineItem: string) => Promise<void>;
       handleUpdateCartQuantity: (
         lineItem: string,
@@ -39,12 +39,6 @@ export function CartProvider({
 }>) {
   const [optimisticCart, setOptimisticCart] = useOptimistic<Cart | null>(cart);
   const [cartOpen, setCartOpen] = useState(false);
-
-  useEffect(() => {
-    if (optimisticCart?.items?.length !== cart?.items?.length) {
-      setCartOpen(true);
-    }
-  }, [optimisticCart?.items?.length, cart?.items?.length]);
 
   const [, startTransition] = useTransition();
 
@@ -86,13 +80,21 @@ export function CartProvider({
     });
   };
 
+  const handleAddToCart = async (variantId: string, quantity: number) => {
+    setCartOpen(true);
 
+    await addToCart({
+      quantity,
+      variantId,
+    });
+  };
 
   return (
     <CartContext.Provider
       value={{
         cart: optimisticCart,
         cartOpen,
+        handleAddToCart,
         handleDeleteItem,
         handleUpdateCartQuantity,
         setCartOpen,
