@@ -39,15 +39,15 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
 
   switch (initialData._type) {
     case "modular.page":
-    case "text.page":
-      return (
-        <TextPage data={initialData as NonNullable<TEXT_PAGE_QUERYResult>} />
-      );
     case "home":
       return (
         <SectionsRenderer
           {...{fieldName: "body", sections: initialData.sections || []}}
         />
+      );
+    case "text.page":
+      return (
+        <TextPage data={initialData as NonNullable<TEXT_PAGE_QUERYResult>} />
       );
     default:
       return <div>Template not found</div>;
