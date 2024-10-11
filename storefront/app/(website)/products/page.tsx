@@ -26,7 +26,7 @@ export default async function CollectionPage({
   return (
     <section className="mx-auto flex max-w-max-screen flex-col gap-10 px-5 pb-10 pt-[6.5rem] lg:px-8">
       <div>
-        <Heading font="serif" tag="h1">
+        <Heading desktopSize="7xl" font="serif" mobileSize="2xl" tag="h1">
           Shop all products
         </Heading>
       </div>
