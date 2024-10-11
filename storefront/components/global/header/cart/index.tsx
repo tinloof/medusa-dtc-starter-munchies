@@ -1,37 +1,20 @@
-import {
-  CloseDialog,
-  Dialog,
-  OpenDialog,
-  SideDialog,
-} from "@/components/shared/dialog";
+import {CloseDialog, Dialog, SideDialog} from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
-import Body from "@/components/shared/typography/body";
-import { fetchCart } from "@/data/medusa/cart";
+import {fetchCart} from "@/data/medusa/cart";
 
-import { CartProvider } from "./cart-context";
+import {CartProvider} from "./cart-context";
 import CartFooter from "./cart-footer";
 import CartHeading from "./cart-heading";
 import LineItem from "./line-item";
+import OpenCart from "./open-cart-button";
 
 export default async function Cart() {
   const cart = await fetchCart();
 
-  const count = (cart?.items?.length ?? 0).toString();
   return (
     <CartProvider cart={cart}>
       <Dialog>
-        <OpenDialog>
-          <div className="relative h-10 w-10 p-2">
-            <Icon name="Cart" />
-            <Body
-              className="absolute right-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-background"
-              font="sans"
-              mobileSize="sm"
-            >
-              {count}
-            </Body>
-          </div>
-        </OpenDialog>
+        <OpenCart />
         <SideDialog align="left">
           <div className="relative flex h-full w-full flex-col border-l border-accent bg-background">
             <CartHeading />

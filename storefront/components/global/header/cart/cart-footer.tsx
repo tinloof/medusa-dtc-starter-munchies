@@ -11,8 +11,7 @@ export default function CartFooter() {
 
   const total = convertToLocale({
     amount: (cart?.total || 0)!,
-    currency_code: (cart?.items?.[0].variant?.calculated_price?.currency_code ||
-      null)!,
+    currency_code: (cart?.currency_code || null)!,
   });
 
   return (

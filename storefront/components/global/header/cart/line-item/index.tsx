@@ -46,7 +46,9 @@ export default function LineItem(props: StoreCartLineItem) {
           <div className="flex h-10 w-32 items-center justify-center gap-1 overflow-hidden rounded-lg border border-accent">
             <button
               className="group flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
-              onClick={() => handleUpdateCartQuantity(props.id, -1)}
+              onClick={() =>
+                handleUpdateCartQuantity(props.id, (item?.quantity || 0) - 1)
+              }
             >
               <span className="h-[1.5px] w-2 bg-accent transition-all duration-300 group-active:bg-background" />
             </button>
@@ -55,7 +57,9 @@ export default function LineItem(props: StoreCartLineItem) {
             </Body>
             <button
               className="group relative flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
-              onClick={() => handleUpdateCartQuantity(props.id, 1)}
+              onClick={() =>
+                handleUpdateCartQuantity(props.id, (item?.quantity || 0) + 1)
+              }
             >
               <span className="h-[1.5px] w-2 bg-accent transition-all duration-300 group-active:bg-background" />
               <span className="absolute left-1/2 top-1/2 h-2 w-[1.5px] -translate-x-1/2 -translate-y-1/2 bg-accent transition-all duration-300 group-active:bg-background" />
