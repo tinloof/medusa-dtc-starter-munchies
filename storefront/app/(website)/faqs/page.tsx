@@ -5,13 +5,7 @@ import {resolveSanityRouteMetadata} from "@/data/sanity/resolve-sanity-route-met
 import {notFound} from "next/navigation";
 
 import Faq from "./_parts/faq-page";
-type IndexRouteProps = {
-  params: {locale: string};
-};
-export async function generateMetadata(
-  props: IndexRouteProps,
-  parent: ResolvingMetadata,
-) {
+export async function generateMetadata(_: unknown, parent: ResolvingMetadata) {
   const initialData = await loadFaqs();
 
   if (!initialData) {

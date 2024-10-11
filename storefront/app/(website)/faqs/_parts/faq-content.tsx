@@ -50,6 +50,7 @@ export default function FaqContent({
             })) || []
           }
           setOption={setSelectedCategory}
+          variant="basic"
         />
         <Heading
           className="mb-2 hidden font-normal lg:block"
