@@ -1,5 +1,6 @@
 import type {Header} from "@/types/sanity.generated";
 
+import Icon from "@/components/shared/icon";
 import Link from "next/link";
 import {Suspense} from "react";
 
@@ -24,9 +25,15 @@ export default function Header(props: Header) {
             <Navigation data={props} />
           </Suspense>
         </div>
-        <div>
+        <Suspense
+          fallback={
+            <div className="relative h-10 w-10 p-2">
+              <Icon name="Cart" />
+            </div>
+          }
+        >
           <Cart />
-        </div>
+        </Suspense>
       </div>
     </header>
   );

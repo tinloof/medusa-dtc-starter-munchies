@@ -1,13 +1,19 @@
 "use client";
 
-import type {StoreCart, StorePromotion} from "@medusajs/types";
+import type {
+  StoreCart,
+  StoreCartLineItem,
+  StorePromotion,
+} from "@medusajs/types";
 import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
 import {addToCart, updateCartQuantity} from "@/actions/medusa/cart";
 import {
   createContext,
   useContext,
+  useEffect,
   useOptimistic,
+  useRef,
   useState,
   useTransition,
 } from "react";
@@ -42,6 +48,18 @@ export function CartProvider({
 
   const [, startTransition] = useTransition();
 
+  const cartRef = useRef(optimisticCart);
+
+  useEffect(() => {
+    const cartContentsChanged =
+      JSON.stringify(cartRef.current) !== JSON.stringify(optimisticCart);
+
+    if (cartContentsChanged) {
+      setCartOpen(true);
+      cartRef.current = optimisticCart;
+    }
+  }, [optimisticCart]);
+
   const handleDeleteItem = async (lineItem: string) => {
     handleUpdateCartQuantity(lineItem, 0);
   };
@@ -58,8 +76,14 @@ export function CartProvider({
       setOptimisticCart((prev) => {
         if (!prev) return prev;
 
-        const optimisticItems = prev.items?.map((item) =>
-          item.id === lineItem ? {...item, quantity} : item,
+        const optimisticItems = prev.items?.reduce(
+          (acc: StoreCartLineItem[], item) => {
+            if (item.id === lineItem) {
+              return quantity === 0 ? acc : [...acc, {...item, quantity}];
+            }
+            return [...acc, item];
+          },
+          [],
         );
 
         const optimisticTotal = optimisticItems?.reduce(

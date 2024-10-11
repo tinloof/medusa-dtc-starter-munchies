@@ -14,8 +14,6 @@ export default function LineItem(props: StoreCartLineItem) {
 
   if (!((item?.quantity || 0) > 0)) return null;
 
-  console.log(item);
-
   const item_price = convertToLocale({
     amount: (item?.unit_price || 0) * (item?.quantity || 1),
     currency_code: (item?.variant?.calculated_price?.currency_code || null)!,
@@ -31,7 +29,11 @@ export default function LineItem(props: StoreCartLineItem) {
       <div className="flex w-full flex-col items-start justify-start gap-4">
         <div className="flex w-full justify-between gap-4">
           <div>
-            <Body className="leading-[130%]" font="sans" mobileSize="lg">
+            <Body
+              className="truncate text-nowrap leading-[130%]"
+              font="sans"
+              mobileSize="lg"
+            >
               {props.product?.title}
             </Body>
             <Body className="mt-1" font="sans" mobileSize="sm">
