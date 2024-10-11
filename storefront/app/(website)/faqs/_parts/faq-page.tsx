@@ -17,17 +17,16 @@ export default function Faq({
   data: NonNullable<FAQS_PAGE_QUERYResult>;
 }) {
   const searchResultsRef = useRef<HTMLDivElement>(null);
-
   const categories = data.category ?? [];
-
   const queryRef = useRef("");
-  const [query, setQuery] = useState<string>("");
   const questionToScrollTo = useRef<null | string>(null);
+  const initialCategory = categories[0]?.slug?.current || "";
+
+  const [query, setQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<FaqEntryWithCategory[]>(
     [],
   );
-  const initialCategory = categories[0]?.slug?.current || "";
-  const [openStates, setOpenStates] = useState<Record<string, boolean>>({});
+  const [openAnswer, setOpenAnswer] = useState<null | string>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>(
     initialCategory ?? "",
   );
@@ -37,51 +36,42 @@ export default function Faq({
     queryRef.current = search;
     if (search === "" || !data.category) {
       setSearchResults([]);
-    } else {
-      const uniqueQuestions = new Set<string>();
-      const entries = categories.flatMap((category) => {
-        return category.questions?.map((entry) => {
-          return {
-            ...entry,
-            categorySlug: category.slug?.current,
-          };
-        });
-      });
-      const results = entries
-        .filter((entry) => {
-          if (entry?.question) {
-            const question = entry.question.toLowerCase().trim();
-            if (!uniqueQuestions.has(question)) {
-              uniqueQuestions.add(question);
-              return entry.question.toLowerCase().includes(search);
-            }
-          }
-          return false;
-        })
-        .filter(Boolean) as unknown as FaqEntryWithCategory[];
-      setSearchResults(results);
+      return;
     }
-  };
 
-  const selectCategory = (category: string) => {
-    console.log(category);
-    setSelectedCategory(category);
+    const uniqueQuestions = new Set<string>();
+    const entries = categories.flatMap(
+      (category) =>
+        category.questions?.map((entry) => ({
+          ...entry,
+          categorySlug: category.slug?.current,
+        })) ?? [],
+    );
+
+    const results = entries.filter((entry) => {
+      if (!entry?.question) return false;
+      const question = entry.question.toLowerCase().trim();
+      if (uniqueQuestions.has(question)) return false;
+      uniqueQuestions.add(question);
+      return question.includes(search);
+    }) as FaqEntryWithCategory[];
+
+    setSearchResults(results);
   };
 
   const scrollToQuestion = (id: string) => {
     const top = document.getElementById(id)?.getBoundingClientRect()?.top;
     if (top) {
-      setOpenStates((prev) => ({...prev, [id]: true}));
+      setOpenAnswer(id);
       window.scroll({behavior: "smooth", top: top - 200});
     }
   };
 
   const onClickSearchResult = (result: FaqEntryWithCategory) => {
     setQuery("");
-
     if (selectedCategory !== result.categorySlug) {
       questionToScrollTo.current = result._id;
-      selectCategory(result.categorySlug ?? "");
+      setSelectedCategory(result.categorySlug ?? "");
     } else {
       scrollToQuestion(result._id);
     }
@@ -96,54 +86,47 @@ export default function Faq({
 
   const keydownHandler = (event: KeyboardEvent) => {
     if (!event) return;
-    if (event.key === "Escape") {
-      setQuery("");
-    } else if (event.key === "Enter") {
-      const activeElement = document.activeElement as HTMLElement;
-      const id = activeElement?.id;
-      const index = parseInt(id?.split("-").pop() ?? "0");
-      onClickSearchResult(searchResults[index]);
-    } else if (event.key === "ArrowDown") {
-      event.preventDefault();
-
-      const next = document.activeElement?.nextElementSibling as HTMLElement;
-      if (next) {
-        next.focus();
-      }
-    } else if (event.key === "ArrowUp") {
-      event.preventDefault();
-      const prev = document.activeElement
-        ?.previousElementSibling as HTMLElement;
-      if (prev) {
-        prev.focus();
-      }
+    switch (event.key) {
+      case "Escape":
+        setQuery("");
+        break;
+      case "Enter":
+        const activeElement = document.activeElement as HTMLElement;
+        const id = activeElement?.id;
+        const index = parseInt(id?.split("-").pop() ?? "0");
+        onClickSearchResult(searchResults[index]);
+        break;
+      case "ArrowDown":
+      case "ArrowUp":
+        event.preventDefault();
+        const sibling =
+          event.key === "ArrowDown"
+            ? "nextElementSibling"
+            : "previousElementSibling";
+        const element = document.activeElement?.[sibling] as HTMLElement;
+        element?.focus();
+        break;
     }
   };
 
-  const searchbarKeydownHandler = (event: any) => {
+  const searchbarKeydownHandler = (event: React.KeyboardEvent) => {
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
-      if (searchResultsRef.current) {
-        const first = searchResultsRef.current
-          ?.firstElementChild as HTMLElement;
-        first.focus();
+      const first = searchResultsRef.current?.firstElementChild as HTMLElement;
+      first?.focus();
 
-        const searchResultsRefCurrent = searchResultsRef.current;
-        searchResultsRefCurrent?.addEventListener(
+      searchResultsRef.current?.addEventListener(
+        "keydown",
+        keydownHandler as any,
+      );
+      return () => {
+        searchResultsRef.current?.removeEventListener(
           "keydown",
           keydownHandler as any,
         );
-
-        return () => {
-          searchResultsRefCurrent?.removeEventListener(
-            "keydown",
-            keydownHandler as any,
-          );
-        };
-      }
+      };
     }
   };
-
   return (
     <div className="scroll-mt-header-height flex-col items-center justify-center">
       <section className="flex w-full flex-col items-center justify-center gap-1 bg-accent px-xl py-8xl text-center text-background">
@@ -214,10 +197,9 @@ export default function Faq({
       <section className="relative mx-auto flex h-full w-full max-w-max-screen flex-col items-start justify-start gap-xl px-m py-2xl lg:flex-row lg:justify-center lg:py-8xl">
         <FaqContent
           category={data.category}
-          openStates={openStates}
-          selectCategory={selectCategory}
+          openAnswer={openAnswer}
           selectedCategory={selectedCategory}
-          setOpenStates={setOpenStates}
+          setSelectedCategory={setSelectedCategory}
         />
       </section>
     </div>

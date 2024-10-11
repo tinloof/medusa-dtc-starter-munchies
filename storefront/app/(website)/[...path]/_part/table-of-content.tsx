@@ -8,7 +8,7 @@ import {toPlainText} from "@portabletext/react";
 import Link from "next/link";
 import React from "react";
 
-import TocSelect from "./toc-select";
+import TocSelect from "../../../../components/shared/toc-select";
 
 export default function TableOfContents({
   body,

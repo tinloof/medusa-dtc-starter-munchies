@@ -2,23 +2,23 @@
 import type {FAQS_PAGE_QUERYResult} from "@/types/sanity.generated";
 
 import Accordion from "@/components/shared/accordion";
+import Select from "@/components/shared/select";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import React from "react";
 
 type FaqContentProps = {
   category: NonNullable<FAQS_PAGE_QUERYResult>["category"];
-  openStates: Record<string, boolean>;
-  selectCategory: (category: string) => void;
+  openAnswer: null | string;
   selectedCategory: string;
-  setOpenStates: (openStates: Record<string, boolean>) => void;
+  setSelectedCategory: (category: string) => void;
 };
 
 export default function FaqContent({
   category,
-  // openStates,
+  openAnswer,
   selectedCategory,
-  // setOpenStates,
+  setSelectedCategory,
 }: FaqContentProps) {
   const currentCategory = category?.find(
     (category) => category.slug?.current === selectedCategory,
@@ -31,7 +31,7 @@ export default function FaqContent({
             <button
               className="border-l-[1.5px] border-accent-40 p-xs transition-all duration-300 first:pt-1 last:pb-1 hover:border-accent"
               key={group._id}
-              // onClick={() => selectCategory(group)}
+              onClick={() => setSelectedCategory(group.slug?.current || "")}
             >
               <Body font="sans" mobileSize="sm">
                 {group.title}
@@ -41,8 +41,18 @@ export default function FaqContent({
         })}
       </div>
       <div className="w-full lg:max-w-[690px]">
+        <Select
+          className="mb-m w-full py-[18px] lg:hidden"
+          options={
+            category?.map((group) => ({
+              label: group.title || "",
+              value: group.slug?.current || "",
+            })) || []
+          }
+          setOption={setSelectedCategory}
+        />
         <Heading
-          className="mb-2 font-normal"
+          className="mb-2 hidden font-normal lg:block"
           font="serif"
           mobileSize="lg"
           tag="h2"
@@ -52,13 +62,14 @@ export default function FaqContent({
         <div className="flex flex-col gap-m">
           <Accordion
             border={false}
+            initialOpen={openAnswer}
             items={
               currentCategory?.questions
                 ?.map((item) => {
                   if (!item || !item.question || !item.answer) return null;
                   return {
                     content: item.answer,
-                    id: item.question,
+                    id: item._id,
                     title: item.question,
                   };
                 })
@@ -69,8 +80,6 @@ export default function FaqContent({
                     item !== null,
                 ) || []
             }
-            // openStates={openStates}
-            // setOpenStates={setOpenStates}
           />
         </div>
       </div>
