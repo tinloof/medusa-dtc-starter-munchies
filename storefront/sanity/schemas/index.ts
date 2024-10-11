@@ -11,6 +11,7 @@ import {sectionsBody} from "./objects/sections-body";
 import {seo} from "./objects/seo";
 import spot from "./objects/spot";
 import sections from "./sections";
+import {cookieBanner} from "./singletons/cookie-banner";
 import footer from "./singletons/footer";
 import header from "./singletons/header";
 import home from "./singletons/home";
@@ -37,6 +38,7 @@ const schemas = [
   product,
   collection,
   category,
+  cookieBanner,
 ];
 
 export default schemas;

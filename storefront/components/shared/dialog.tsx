@@ -7,13 +7,14 @@ import type {
   DialogTriggerProps,
 } from "@radix-ui/react-dialog";
 
-import {Content, Portal, Root, Trigger} from "@radix-ui/react-dialog";
-import {cx} from "cva";
+import { Close, Content, Portal, Root, Trigger } from "@radix-ui/react-dialog";
+import { cx } from "cva";
+import { RemoveScroll } from "react-remove-scroll";
 
-import {useCart} from "../global/header/cart/cart-context";
+import { useCart } from "../global/header/cart/cart-context";
 
 export function Dialog(props: Omit<DialogProps, "onOpenChange" | "open">) {
-  const {cartOpen, setCartOpen} = useCart();
+  const { cartOpen, setCartOpen } = useCart();
   return (
     <Root onOpenChange={(v) => setCartOpen(v)} open={cartOpen} {...props} />
   );
@@ -24,7 +25,7 @@ export function OpenDialog(props: DialogTriggerProps) {
 }
 
 export function CloseDialog(props: DialogCloseProps) {
-  return <CloseDialog {...props} />;
+  return <Close {...props} />;
 }
 
 export function SideDialog({
@@ -33,21 +34,23 @@ export function SideDialog({
   style,
   width = 430,
   ...passThrough
-}: {align?: "left" | "right"; width?: number} & DialogContentProps) {
+}: { align?: "left" | "right"; width?: number } & DialogContentProps) {
   return (
     <Portal>
-      <Content
-        className={cx(
-          className,
-          "fixed top-0 h-full transform transition-transform ease-in-out",
-          {
-            "animate-slide-in-from-left left-0": align === "right",
-            "animate-slide-in-from-right right-0": align === "left",
-          },
-        )}
-        style={{...style, width}}
-        {...passThrough}
-      />
+      <RemoveScroll>
+        <Content
+          className={cx(
+            className,
+            "fixed top-0 z-[9999] h-full transform transition-transform ease-in-out",
+            {
+              "left-0 animate-slide-in-from-left": align === "right",
+              "right-0 animate-slide-in-from-right": align === "left",
+            },
+          )}
+          style={{ ...style, width }}
+          {...passThrough}
+        />
+      </RemoveScroll>
     </Portal>
   );
 }

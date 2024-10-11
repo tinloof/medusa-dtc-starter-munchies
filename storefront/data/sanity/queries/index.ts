@@ -13,7 +13,7 @@ export const HOME_QUERY = groq`*[_type == "home"][0]{
 }`;
 
 export const NOT_FOUND_PAGE_QUERY = groq`*[_type == "not.found" && pathname.current == '/not-found'][0]`;
-
+export const COOKIE_BANNER_QUERY = groq`*[_type == "cookie.banner"][0]`;
 export const GLOBAL_QUERY = groq`{
   "fallbackOGImage": *[_type == "settings"][0].fallbackOgImage,
   "footer": *[_id == "footer" && _type == "footer"][0],

@@ -1,13 +1,19 @@
 "use client";
 
-import type {StoreCart, StorePromotion} from "@medusajs/types";
+import type {
+  StoreCart,
+  StoreCartLineItem,
+  StorePromotion,
+} from "@medusajs/types";
 import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
-import {deleteLineItem, updateCartQuantity} from "@/actions/medusa/cart";
+import {addToCart, updateCartQuantity} from "@/actions/medusa/cart";
 import {
   createContext,
   useContext,
+  useEffect,
   useOptimistic,
+  useRef,
   useState,
   useTransition,
 } from "react";
@@ -20,6 +26,7 @@ const CartContext = createContext<
   | {
       cart: Cart | null;
       cartOpen: boolean;
+      handleAddToCart: (variantId: string, quantity: number) => Promise<void>;
       handleDeleteItem: (lineItem: string) => Promise<void>;
       handleUpdateCartQuantity: (
         lineItem: string,
@@ -41,45 +48,68 @@ export function CartProvider({
 
   const [, startTransition] = useTransition();
 
+  const cartRef = useRef(optimisticCart);
+
+  useEffect(() => {
+    const cartContentsChanged =
+      JSON.stringify(cartRef.current) !== JSON.stringify(optimisticCart);
+
+    if (cartContentsChanged) {
+      setCartOpen(true);
+      cartRef.current = optimisticCart;
+    }
+  }, [optimisticCart]);
+
   const handleDeleteItem = async (lineItem: string) => {
-    startTransition(() => {
-      setOptimisticCart((prev) => {
-        if (!prev) return prev;
-        return {
-          ...prev,
-          items: prev.items?.filter(({id}) => id !== lineItem),
-        };
-      });
-    });
-    await deleteLineItem({
-      lineItem,
-    });
+    handleUpdateCartQuantity(lineItem, 0);
   };
 
   const handleUpdateCartQuantity = async (
     lineItem: string,
-    newQuantity: number,
+    quantity: number,
   ) => {
     const item = optimisticCart?.items?.find(({id}) => id === lineItem);
 
     if (!item) return;
 
-    const quantity = item.quantity + newQuantity;
-
     startTransition(() => {
       setOptimisticCart((prev) => {
         if (!prev) return prev;
+
+        const optimisticItems = prev.items?.reduce(
+          (acc: StoreCartLineItem[], item) => {
+            if (item.id === lineItem) {
+              return quantity === 0 ? acc : [...acc, {...item, quantity}];
+            }
+            return [...acc, item];
+          },
+          [],
+        );
+
+        const optimisticTotal = optimisticItems?.reduce(
+          (acc, item) => acc + item.unit_price * item.quantity,
+          0,
+        );
+
         return {
           ...prev,
-          items: prev.items?.map((item) =>
-            item.id === lineItem ? {...item, quantity} : item,
-          ),
+          items: optimisticItems,
+          total: optimisticTotal || 0,
         };
       });
     });
     await updateCartQuantity({
       lineItem,
-      quantity: quantity + newQuantity,
+      quantity,
+    });
+  };
+
+  const handleAddToCart = async (variantId: string, quantity: number) => {
+    setCartOpen(true);
+
+    await addToCart({
+      quantity,
+      variantId,
     });
   };
 
@@ -88,6 +118,7 @@ export function CartProvider({
       value={{
         cart: optimisticCart,
         cartOpen,
+        handleAddToCart,
         handleDeleteItem,
         handleUpdateCartQuantity,
         setCartOpen,

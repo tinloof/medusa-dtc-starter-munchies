@@ -43,6 +43,7 @@ export const structure: StructureResolver = (S) =>
               singleton(S, SINGLETONS.header),
               singleton(S, SINGLETONS.footer),
               singleton(S, SINGLETONS.notFound),
+              singleton(S, SINGLETONS.cookieBanner),
             ]),
         ),
       singleton(S, SINGLETONS.settings),

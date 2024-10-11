@@ -24,7 +24,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
         <Body
           className="max-w-[580px] text-pretty text-center"
           desktopSize="xl"
-          font="serif"
+          font="sans"
           mobileSize="lg"
         >
           {props.subtitle}
@@ -33,7 +33,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
           <Link
             className="mt-lg"
             href={props.cta.link}
-            size="lg"
+            size="md"
             variant="primary"
           >
             {props.cta.label}

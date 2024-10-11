@@ -3,6 +3,7 @@ import type {StoreCartLineItem} from "@medusajs/types";
 
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
+import {convertToLocale} from "@/utils/medusa/money";
 
 import {useCart} from "../cart-context";
 
@@ -13,37 +14,66 @@ export default function LineItem(props: StoreCartLineItem) {
 
   if (!((item?.quantity || 0) > 0)) return null;
 
+  const item_price = convertToLocale({
+    amount: (item?.unit_price || 0) * (item?.quantity || 1),
+    currency_code: (item?.variant?.calculated_price?.currency_code || null)!,
+  });
+
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-start justify-between gap-2 space-x-4">
       <img
         alt={props.title}
-        className="h-16 w-16 rounded-[0.5rem] border border-accent object-cover"
+        className="h-[100px] w-[100px] rounded-lg border-[1.5px] border-accent object-cover"
         src={props.product?.thumbnail || ""}
       />
-      <div className="flex flex-grow flex-col gap-2">
-        <div>
-          <Body font="sans">{props.product?.title}</Body>
-          <Body desktopSize="sm" font="sans">
-            {props.title}
+      <div className="flex w-full flex-col items-start justify-start gap-4">
+        <div className="flex w-full justify-between gap-4">
+          <div>
+            <Body
+              className="truncate text-nowrap leading-[130%]"
+              font="sans"
+              mobileSize="lg"
+            >
+              {props.product?.title}
+            </Body>
+            <Body className="mt-1" font="sans" mobileSize="sm">
+              {props.title}
+            </Body>
+          </div>
+          <Body className="font-semibold" font="sans" mobileSize="base">
+            {item_price}
           </Body>
         </div>
-        <div className="flex w-[110px] items-center justify-between space-x-2 rounded-[0.5rem] border border-accent px-[11px] py-[9px]">
-          <button
-            className="flex size-4 items-center justify-center"
-            onClick={() => handleUpdateCartQuantity(props.id, -1)}
-          >
-            -
-          </button>
-          <Body font="sans">{item?.quantity}</Body>
-          <button
-            className="flex size-4 items-center justify-center"
-            onClick={() => handleUpdateCartQuantity(props.id, 1)}
-          >
-            +
-          </button>
+        <div className="flex w-full justify-between gap-4">
+          <div className="flex h-10 w-32 items-center justify-center gap-1 overflow-hidden rounded-lg border border-accent">
+            <button
+              className="group flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
+              onClick={() =>
+                handleUpdateCartQuantity(props.id, (item?.quantity || 0) - 1)
+              }
+            >
+              <span className="h-[1.5px] w-2 bg-accent transition-all duration-300 group-active:bg-background" />
+            </button>
+            <Body className="flex-1 text-center" font="sans" mobileSize="base">
+              {item?.quantity}
+            </Body>
+            <button
+              className="group relative flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
+              onClick={() =>
+                handleUpdateCartQuantity(props.id, (item?.quantity || 0) + 1)
+              }
+            >
+              <span className="h-[1.5px] w-2 bg-accent transition-all duration-300 group-active:bg-background" />
+              <span className="absolute left-1/2 top-1/2 h-2 w-[1.5px] -translate-x-1/2 -translate-y-1/2 bg-accent transition-all duration-300 group-active:bg-background" />
+            </button>
+          </div>
+          <Icon
+            className="cursor-pointer"
+            name="Trash"
+            onClick={() => handleDeleteItem(props.id)}
+          />
         </div>
       </div>
-      <Icon name="Trash" onClick={() => handleDeleteItem(props.id)} />
     </div>
   );
 }

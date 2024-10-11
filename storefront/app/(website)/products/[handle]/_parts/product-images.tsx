@@ -18,7 +18,7 @@ export default function ProductImages({
             <div className="aspect-square" key={image.id}>
               <img
                 alt="Cookie images"
-                className="w-[85px]"
+                className="aspect-square w-[85px] rounded-lg"
                 height={85}
                 src={image.url}
                 width={85}
@@ -30,12 +30,15 @@ export default function ProductImages({
           {images?.[0].url && (
             <Image
               alt="Cookie"
+              className="rounded-lg"
               height={591}
               src={images?.[0].url}
               width={591}
             />
           )}
-          <Tag className="absolute right-5 top-7" text="BEST-SELLER" />
+          {type?.value && (
+            <Tag className="absolute right-4 top-4" text={type.value} />
+          )}
         </div>
       </div>
       <div className="scrollbar-hide flex w-screen gap-xs overflow-x-scroll px-m lg:hidden">
@@ -43,13 +46,13 @@ export default function ProductImages({
           <div className="relative aspect-square h-[380px]" key={image.id}>
             <Image
               alt="Cookie"
-              className="h-[380px]"
+              className="h-[380px] rounded-lg"
               height={380}
               src={image.url}
               width={380}
             />
             {type?.value && (
-              <Tag className="absolute right-4 top-3" text={type.value} />
+              <Tag className="absolute right-5 top-3" text={type.value} />
             )}
           </div>
         ))}

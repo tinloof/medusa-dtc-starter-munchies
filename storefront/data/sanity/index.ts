@@ -1,4 +1,5 @@
 import type {
+  COOKIE_BANNER_QUERYResult,
   GLOBAL_QUERYResult,
   HOME_QUERYResult,
   MODULAR_PAGE_QUERYResult,
@@ -8,6 +9,7 @@ import type {
 
 import {loadQuery, loadRoute} from "./load-query";
 import {
+  COOKIE_BANNER_QUERY,
   GLOBAL_QUERY,
   HOME_QUERY,
   MODULAR_PAGE_QUERY,
@@ -72,5 +74,11 @@ export function loadRedirects(paths: string[]) {
 export function loadNotFound() {
   return loadQuery<NOT_FOUND_PAGE_QUERYResult>({
     query: NOT_FOUND_PAGE_QUERY,
+  });
+}
+
+export function loadCookieBanner() {
+  return loadQuery<COOKIE_BANNER_QUERYResult>({
+    query: COOKIE_BANNER_QUERY,
   });
 }

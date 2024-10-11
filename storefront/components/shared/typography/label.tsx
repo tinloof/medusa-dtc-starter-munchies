@@ -11,9 +11,10 @@ export const labelStyles = cva("", {
     desktopSize: {
       "2xs": "lg:text-body-2xs",
       "6xl": "text-label-6xl",
-      base: "lg:text-body-base",
-      sm: "lg:text-body-sm",
-      xs: "lg:text-body-xs",
+      base: "lg:text-label-base",
+      lg: "lg:text-label-lg",
+      sm: "lg:text-label-sm",
+      xs: "lg:text-label-xs",
     },
     font: {
       display: "font-display font-normal leading-[110%] uppercase",
@@ -24,6 +25,7 @@ export const labelStyles = cva("", {
       "2xs": "text-label-2xs tracking-[0.4px]",
       "6xl": "text-label-6xl tracking-[1.6px]",
       base: "text-label-base tracking-[0.64px]",
+      lg: "text-label-lg tracking-[0.36px]",
       sm: "text-label-sm tracking-[0.56px]",
       xs: "text-label-xs tracking-[0.48px]",
     },

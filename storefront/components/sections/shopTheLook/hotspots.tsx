@@ -44,7 +44,7 @@ export default function Hotspots({
             return (
               <div
                 className={cx(
-                  "group relative h-8 w-8 cursor-pointer rounded-full bg-accent hover:bg-secondary",
+                  "group relative h-8 w-8 cursor-pointer rounded-full bg-accent transition-all duration-300 hover:bg-secondary",
                   {
                     "bg-secondary": selectedProduct === hotSpot.product?._ref,
                   },
