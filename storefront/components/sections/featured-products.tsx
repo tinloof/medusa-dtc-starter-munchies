@@ -3,7 +3,7 @@ import {getRegion} from "@/data/medusa/regions";
 
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel";
+import EmblaCarousel from "../shared/carousel-section";
 import ProductCard from "../shared/product-card";
 import Heading from "../shared/typography/heading";
 

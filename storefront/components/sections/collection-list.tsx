@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel";
+import EmblaCarousel from "../shared/carousel-section";
 import {SanityImage} from "../shared/sanity-image";
 import Body from "../shared/typography/body";
 import Heading from "../shared/typography/heading";

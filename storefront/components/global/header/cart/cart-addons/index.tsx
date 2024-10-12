@@ -1,5 +1,5 @@
 import {AddonsItem} from "@/components/shared/addons-item";
-import EmblaCarousel from "@/components/shared/carousel";
+import EmblaCarousel from "@/components/shared/carousel-section";
 import Heading from "@/components/shared/typography/heading";
 import {getProductsByIds} from "@/data/medusa/products";
 

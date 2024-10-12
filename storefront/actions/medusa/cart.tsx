@@ -49,11 +49,9 @@ export async function getOrSetCart(countryCode: string) {
 }
 
 export async function addToCart({
-  countryCode = "us",
   quantity,
   variantId,
 }: {
-  countryCode?: string;
   quantity: number;
   variantId: string;
 }) {
