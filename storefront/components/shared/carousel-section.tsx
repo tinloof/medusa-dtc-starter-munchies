@@ -6,7 +6,13 @@ import type {ReactNode} from "react";
 import {cx} from "cva";
 
 import {Cta} from "./button";
-import {Root, SlidesWrapper, useCarousel, useCarouselButtons} from "./carousel";
+import {
+  NextButton,
+  PrevButton,
+  Root,
+  SlidesWrapper,
+  useCarousel,
+} from "./carousel";
 import IconButton from "./icons-button";
 
 type Props = {
@@ -79,23 +85,22 @@ export default function EmblaCarousel(props: Props) {
 }
 
 function Buttons({variant}: {variant: "cart" | "default"}) {
-  const {nextDisabled, onNext, onPrev, prevDisabled} = useCarouselButtons();
   return (
     <div className="hidden gap-2 lg:flex">
-      <IconButton
-        disabled={prevDisabled}
-        icon="ArrowLeft"
-        onClick={onPrev}
-        size={variant === "default" ? "sm" : "xs"}
-        type="button"
-      />
-      <IconButton
-        disabled={nextDisabled}
-        icon="ArrowRight"
-        onClick={onNext}
-        size={variant === "default" ? "sm" : "xs"}
-        type="button"
-      />
+      <PrevButton asChild>
+        <IconButton
+          icon="ArrowLeft"
+          size={variant === "default" ? "sm" : "xs"}
+          type="button"
+        />
+      </PrevButton>
+      <NextButton asChild>
+        <IconButton
+          icon="ArrowRight"
+          size={variant === "default" ? "sm" : "xs"}
+          type="button"
+        />
+      </NextButton>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import type {
 import type {EmblaViewportRefType} from "embla-carousel-react";
 import type {ComponentProps, PropsWithChildren} from "react";
 
+import {Slot} from "@radix-ui/react-slot";
 import {cx} from "cva";
 import useEmblaCarousel from "embla-carousel-react";
 import {
@@ -158,4 +159,25 @@ export function Slides({content, itemProps, wrapperDiv}: SlidesProps) {
       })}
     </div>
   );
+}
+
+type ButtonProps = {asChild?: boolean} & Omit<
+  ComponentProps<"button">,
+  "disabled" | "onClick"
+>;
+
+const getComp = (asChild?: boolean) => (asChild ? Slot : "button");
+
+export function NextButton({asChild, ...props}: ButtonProps) {
+  const {nextDisabled, onNext} = useCarouselButtons();
+  const Comp = getComp(asChild);
+
+  return <Comp disabled={nextDisabled} onClick={onNext} {...props} />;
+}
+
+export function PrevButton({asChild, ...props}: ButtonProps) {
+  const {onPrev, prevDisabled} = useCarouselButtons();
+  const Comp = getComp(asChild);
+
+  return <Comp disabled={prevDisabled} onClick={onPrev} {...props} />;
 }
