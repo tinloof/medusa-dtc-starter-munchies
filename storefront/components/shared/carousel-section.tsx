@@ -28,7 +28,7 @@ type Props = {
   variant?: "cart" | "default";
 };
 
-export default function EmblaCarousel(props: Props) {
+export default function CarouselSection(props: Props) {
   const {
     cta,
     options,

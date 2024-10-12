@@ -1,6 +1,6 @@
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel-section";
+import CarouselSection from "../shared/carousel-section";
 import Body from "../shared/typography/body";
 import Heading from "../shared/typography/heading";
 
@@ -16,7 +16,7 @@ export default function Testimonials(
   ));
   return (
     <section {...props.rootHtmlAttributes}>
-      <EmblaCarousel
+      <CarouselSection
         slides={slides}
         title={
           <Heading
