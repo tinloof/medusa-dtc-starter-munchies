@@ -51,3 +51,5 @@ export const FAQS_PAGE_QUERY = groq`*[_type == "faq.index"][0]{
       }
     }
 }`;
+
+export const DICTIONARY_QUERY = groq`*[_type == "dictionary"][0]`;

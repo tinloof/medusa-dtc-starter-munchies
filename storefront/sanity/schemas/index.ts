@@ -15,6 +15,7 @@ import {seo} from "./objects/seo";
 import spot from "./objects/spot";
 import sections from "./sections";
 import {cookieBanner} from "./singletons/cookie-banner";
+import {dictionary} from "./singletons/dictionary";
 import {faqIndex} from "./singletons/faq";
 import footer from "./singletons/footer";
 import header from "./singletons/header";
@@ -43,6 +44,7 @@ const schemas = [
   collection,
   category,
   cookieBanner,
+  dictionary,
   textPage,
   faqIndex,
   faqEntry,
