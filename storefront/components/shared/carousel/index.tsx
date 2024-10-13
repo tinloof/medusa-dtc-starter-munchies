@@ -14,6 +14,7 @@ type PropType = {
     href: string | undefined;
     text: string | undefined;
   };
+  disableDesktopDrag?: boolean;
   options?: EmblaOptionsType;
   showButtons?: boolean;
   showProgress?: boolean;
@@ -24,6 +25,7 @@ type PropType = {
 export default function EmblaCarousel(props: PropType) {
   const {
     cta,
+    disableDesktopDrag = false,
     options,
     showButtons = true,
     showProgress = false,
@@ -32,6 +34,7 @@ export default function EmblaCarousel(props: PropType) {
   } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     ...options,
+    breakpoints: {"(min-width: 1024px)": {watchDrag: !disableDesktopDrag}},
     containScroll: "trimSnaps",
     dragFree: true,
   });

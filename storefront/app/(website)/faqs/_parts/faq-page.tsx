@@ -4,7 +4,7 @@ import type {FAQS_PAGE_QUERYResult, FaqEntry} from "@/types/sanity.generated";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 
 import FaqContent from "./faq-content";
 import SearchBar from "./search-bar";
@@ -31,33 +31,36 @@ export default function Faq({
     initialCategory ?? "",
   );
 
-  const onSearch = (query: string) => {
-    const search = query?.toLowerCase().trim();
-    queryRef.current = search;
-    if (search === "" || !data.category) {
-      setSearchResults([]);
-      return;
-    }
+  const onSearch = useCallback(
+    (query: string) => {
+      const search = query?.toLowerCase().trim();
+      queryRef.current = search;
+      if (search === "" || !data.category) {
+        setSearchResults([]);
+        return;
+      }
 
-    const uniqueQuestions = new Set<string>();
-    const entries = categories.flatMap(
-      (category) =>
-        category.questions?.map((entry) => ({
-          ...entry,
-          categorySlug: category.slug?.current,
-        })) ?? [],
-    );
+      const uniqueQuestions = new Set<string>();
+      const entries = categories.flatMap(
+        (category) =>
+          category.questions?.map((entry) => ({
+            ...entry,
+            categorySlug: category.slug?.current,
+          })) ?? [],
+      );
 
-    const results = entries.filter((entry) => {
-      if (!entry?.question) return false;
-      const question = entry.question.toLowerCase().trim();
-      if (uniqueQuestions.has(question)) return false;
-      uniqueQuestions.add(question);
-      return question.includes(search);
-    }) as FaqEntryWithCategory[];
+      const results = entries.filter((entry) => {
+        if (!entry?.question) return false;
+        const question = entry.question.toLowerCase().trim();
+        if (uniqueQuestions.has(question)) return false;
+        uniqueQuestions.add(question);
+        return question.includes(search);
+      }) as FaqEntryWithCategory[];
 
-    setSearchResults(results);
-  };
+      setSearchResults(results);
+    },
+    [categories, data.category, setSearchResults],
+  );
 
   const scrollToQuestion = (id: string) => {
     const top = document.getElementById(id)?.getBoundingClientRect()?.top;
