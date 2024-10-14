@@ -1,6 +1,7 @@
 import {getCategories} from "@/data/medusa/categories";
 import {getCollections} from "@/data/medusa/collections";
 
+import ClearAllButton from "./clear-button";
 import FilterSelect from "./filter-select";
 import MobileFilterDropdown from "./mobile";
 import Accordion from "./mobile/accordion";
@@ -20,7 +21,7 @@ export default async function Filters() {
 
   return (
     <>
-      <div className="hidden lg:flex lg:items-center lg:gap-2">
+      <div className="hidden lg:flex lg:items-center lg:gap-s">
         <FilterSelect
           name="collection"
           options={collection_options}
@@ -31,19 +32,22 @@ export default async function Filters() {
           options={category_options}
           placeholder="Categories"
         />
+        <ClearAllButton variant="underline" />
       </div>
       <div className="flex lg:hidden">
         <MobileFilterDropdown>
-          <Accordion
-            heading="Collections"
-            name="collection"
-            options={collection_options}
-          />
-          <Accordion
-            heading="Categories"
-            name="categroy"
-            options={category_options}
-          />
+          <div className="flex flex-col gap-xs p-xs">
+            <Accordion
+              heading="Collections"
+              name="collection"
+              options={collection_options}
+            />
+            <Accordion
+              heading="Categories"
+              name="categroy"
+              options={category_options}
+            />
+          </div>
         </MobileFilterDropdown>
       </div>
     </>

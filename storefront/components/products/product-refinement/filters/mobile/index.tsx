@@ -1,5 +1,6 @@
 "use client";
 import {Cta} from "@/components/shared/button";
+import Body from "@/components/shared/typography/body";
 import {usePathname, useRouter} from "next/navigation";
 import {type PropsWithChildren, useCallback, useState} from "react";
 
@@ -20,15 +21,14 @@ export default function MobileFilterDropdown({children}: Props) {
   return (
     <DropDown isOpen={isOpen} placeholder="Filter" setOpen={setOpen}>
       {children}
-      <div className="my-2 flex w-full flex-col justify-center gap-4 px-2">
+      <div className="my-2 flex w-[calc(100vw-40px)] flex-col justify-center gap-s px-xs">
         <Cta className="w-full" onClick={() => setOpen(false)} size="md">
           Show Results
         </Cta>
-        <button
-          className="text-center font-sans text-sm font-medium text-accent underline"
-          onClick={() => clearSearchParams()}
-        >
-          Clear all
+        <button onClick={() => clearSearchParams()}>
+          <Body className="underline" font="sans" mobileSize="sm">
+            Clear all
+          </Body>
         </button>
       </div>
     </DropDown>

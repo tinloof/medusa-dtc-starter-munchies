@@ -31,7 +31,7 @@ export default function Accordion({
     <div className="overflow-hidden">
       <div className="flex flex-col justify-between">
         <button
-          className="flex items-center justify-between px-4 py-2 text-left transition-all duration-300"
+          className="flex items-center justify-between px-s py-[10px] text-left transition-all duration-300"
           onClick={() => setIsOpen((prev) => !prev)}
         >
           <p>{heading}</p>
@@ -59,7 +59,7 @@ export default function Accordion({
 
             return (
               <button
-                className="flex items-center gap-2 px-4 py-2"
+                className="flex items-center gap-2 px-s py-[10px]"
                 key={value}
                 onClick={() => setFilter(value)}
               >

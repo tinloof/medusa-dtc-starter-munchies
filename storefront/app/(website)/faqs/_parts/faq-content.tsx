@@ -49,8 +49,9 @@ export default function FaqContent({
               value: group.slug?.current || "",
             })) || []
           }
+          placeholder={selectedCategory}
           setOption={setSelectedCategory}
-          variant="basic"
+          variant="outline"
         />
         <Heading
           className="mb-2 hidden font-normal lg:block"

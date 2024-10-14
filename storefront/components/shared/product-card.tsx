@@ -12,7 +12,7 @@ export default function ProductCard({
   size = "default",
 }: {
   product: StoreProduct | undefined;
-  size?: "PLP" | "default" | "dynamicWith";
+  size?: "PLP" | "default";
 }) {
   if (!product) return null;
 
@@ -20,10 +20,12 @@ export default function ProductCard({
 
   return (
     <Link
-      className={cx("flex flex-col items-center justify-center rounded-lg", {
-        "w-[370px] lg:w-[450px]": size === "default",
-        "w-full max-w-[450px]": size === "dynamicWith",
-      })}
+      className={cx(
+        "flex flex-1 flex-col items-center justify-center rounded-lg",
+        {
+          "w-[370px] lg:w-[450px]": size === "default",
+        },
+      )}
       href={`/products/${product?.handle}`}
     >
       <div className="relative w-full">
@@ -39,7 +41,7 @@ export default function ProductCard({
           />
         )}
       </div>
-      <div className="flex flex-col items-center justify-center gap-1 px-lg py-s">
+      <div className="flex flex-1 flex-col items-center justify-center gap-1 px-lg py-s">
         <Body
           className="text-center"
           desktopSize="xl"

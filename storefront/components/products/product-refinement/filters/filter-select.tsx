@@ -40,7 +40,7 @@ export default function FilterSelect(
 
   return (
     <DropDown isOpen={isOpen} placeholder={props.placeholder} setOpen={setOpen}>
-      <div className="body-m group flex w-full flex-col gap-2 rounded p-xs py-2">
+      <div className="group flex w-full flex-col gap-2 rounded p-xs py-2">
         {props.options.map((option) => {
           const selected = filter?.includes(option.value);
           return (

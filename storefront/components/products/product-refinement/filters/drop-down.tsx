@@ -68,7 +68,7 @@ export default function DropDown({
         </button>
         <div
           className={cx(
-            "border-border-grey absolute left-0 z-50 my-1 w-[390px] origin-top cursor-pointer overflow-y-scroll rounded-lg rounded-b-lg border-[1.5px] border-accent bg-background transition-[max-height]",
+            "border-border-grey absolute left-0 z-50 my-1 origin-top cursor-pointer overflow-y-scroll rounded-lg rounded-b-lg border-[1.5px] border-accent bg-background transition-[max-height]",
             {
               hidden: !isOpen,
             },
