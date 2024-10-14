@@ -1,5 +1,6 @@
 import {CloseDialog, Dialog, SideDialog} from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
+import Body from "@/components/shared/typography/body";
 import {fetchCart} from "@/data/medusa/cart";
 
 import {CartProvider} from "./cart-context";
@@ -26,9 +27,13 @@ export default async function Cart() {
               <Icon className="h-9 w-9" name="Close" />
             </CloseDialog>
             <div className="flex flex-1 flex-col gap-4 overflow-y-scroll p-4">
-              {cart?.items?.map((item) => {
-                return <LineItem key={item.id} {...item} />;
-              })}
+              {cart?.items?.length === 0 ? (
+                <Body font="sans" mobileSize="base">
+                  Your bag is currently empty.
+                </Body>
+              ) : (
+                cart?.items?.map((item) => <LineItem key={item.id} {...item} />)
+              )}
             </div>
             <div className="h-px w-full bg-accent" />
             <CartFooter />
