@@ -32,7 +32,7 @@ export default function SearchBar({
     return () => {
       clearTimeout(handler);
     };
-  }, [query]);
+  }, [query, onSearch]);
 
   const handleSearch = (searchQuery: string) => {
     onChange && onChange();

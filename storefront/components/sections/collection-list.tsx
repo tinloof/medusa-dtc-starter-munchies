@@ -16,6 +16,7 @@ export default function CollectionList(
   ));
   return (
     <EmblaCarousel
+      disableDesktopDrag
       showButtons={false}
       showProgress={true}
       slides={slides}
