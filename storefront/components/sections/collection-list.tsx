@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel";
+import CarouselSection from "../shared/carousel-section";
 import {SanityImage} from "../shared/sanity-image";
 import Body from "../shared/typography/body";
 import Heading from "../shared/typography/heading";
@@ -15,7 +15,7 @@ export default function CollectionList(
     <CollectionCard key={collection._key} {...collection} />
   ));
   return (
-    <EmblaCarousel
+    <CarouselSection
       disableDesktopDrag
       showButtons={false}
       showProgress={true}

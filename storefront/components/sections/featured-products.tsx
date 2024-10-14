@@ -3,7 +3,7 @@ import {getRegion} from "@/data/medusa/regions";
 
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel";
+import CarouselSection from "../shared/carousel-section";
 import ProductCard from "../shared/product-card";
 import Heading from "../shared/typography/heading";
 
@@ -34,7 +34,7 @@ export default async function FeaturedProducts(
   ));
   return (
     <section {...props.rootHtmlAttributes}>
-      <EmblaCarousel
+      <CarouselSection
         cta={{href: props.cta?.link, text: props.cta?.label}}
         slides={slides}
         title={
