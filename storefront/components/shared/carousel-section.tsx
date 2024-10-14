@@ -20,6 +20,7 @@ type Props = {
     href: string | undefined;
     text: string | undefined;
   };
+  disableDesktopDrag?: boolean;
   options?: EmblaOptionsType;
   showButtons?: boolean;
   showProgress?: boolean;
@@ -31,6 +32,7 @@ type Props = {
 export default function CarouselSection(props: Props) {
   const {
     cta,
+    disableDesktopDrag,
     options,
     showButtons = true,
     showProgress = false,
@@ -43,7 +45,12 @@ export default function CarouselSection(props: Props) {
 
   return (
     <Root
-      options={{...options, containScroll: "trimSnaps", dragFree: true}}
+      options={{
+        ...options,
+        breakpoints: {"(min-width: 1024px)": {watchDrag: !disableDesktopDrag}},
+        containScroll: "trimSnaps",
+        dragFree: true,
+      }}
       slidesCount={slides.length}
     >
       <section className="mx-auto max-w-max-screen py-2xl">

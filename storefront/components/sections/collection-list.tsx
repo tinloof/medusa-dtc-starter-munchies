@@ -16,6 +16,7 @@ export default function CollectionList(
   ));
   return (
     <CarouselSection
+      disableDesktopDrag
       showButtons={false}
       showProgress={true}
       slides={slides}
