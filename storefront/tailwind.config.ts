@@ -93,7 +93,7 @@ const config: Config = {
         xs: "8px",
       },
       animation: {
-        "spin-loading": "spin 3s linear infinite",
+        "spin-loading": "spin 1.5s linear infinite",
         marquee: "marquee var(--duration) linear infinite",
         "select-open": "selectOpen 0.2s ease-out forwards",
         "select-close": "selectClose 0.2s ease-in forwards",
