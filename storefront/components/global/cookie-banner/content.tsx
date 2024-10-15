@@ -8,15 +8,13 @@ import Heading from "@/components/shared/typography/heading";
 import {cx} from "cva";
 import React, {useState} from "react";
 
-const FADE_OUT_DURATION_MS = 400;
-
 export default function Content({data}: {data: COOKIE_BANNER_QUERYResult}) {
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const [isClosing, setIsClosing] = useState(false);
   if (!data) return null;
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(() => setShowCookieBanner(false), FADE_OUT_DURATION_MS - 10);
+    setTimeout(() => setShowCookieBanner(false), 410);
   };
 
   return (
@@ -27,8 +25,7 @@ export default function Content({data}: {data: COOKIE_BANNER_QUERYResult}) {
             "fixed bottom-4 left-4 z-50 flex w-full max-w-[332px] flex-col rounded-lg border-[1.5px] border-accent bg-background p-s lg:max-w-[390px] lg:p-m",
             "animate-fadeInUp",
             {
-              [`animate-fadeOutLeft [--duration:${FADE_OUT_DURATION_MS}ms]`]:
-                isClosing,
+              [`animate-fadeOutLeft [--duration:400ms]`]: isClosing,
             },
           )}
         >
