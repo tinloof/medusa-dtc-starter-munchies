@@ -22,7 +22,7 @@ export default function ProductCard({
   return (
     <Link
       className={cx("flex flex-col items-center justify-center rounded-lg", {
-        "w-[370px] lg:w-[450px]": size === "default",
+        "w-[88vw] max-w-[450px]": size === "default",
         "w-full max-w-[450px]": size === "dynamicWith",
       })}
       href={`/products/${product?.handle}`}
@@ -40,7 +40,7 @@ export default function ProductCard({
           />
         )}
       </div>
-      <div className="flex flex-col items-center justify-center gap-1 px-lg py-s">
+      <div className="pointer-events-none flex flex-col items-center justify-center gap-1 px-lg py-s">
         <Body
           className="text-center"
           desktopSize="xl"

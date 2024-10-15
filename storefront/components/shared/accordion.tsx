@@ -81,14 +81,15 @@ function AccordionItem({
       onClick={toggleOpen}
     >
       <div className="mb-s flex items-start justify-between gap-s">
-        <Heading
-          desktopSize={type === "faq" ? "xs" : "lg"}
-          font={type === "faq" ? "sans" : "serif"}
-          mobileSize={type === "faq" ? "2xs" : "base"}
-          tag="h4"
-        >
-          {title}
-        </Heading>
+        {type === "faq" ? (
+          <Body desktopSize="xl" font="sans" mobileSize="lg">
+            {title}
+          </Body>
+        ) : (
+          <Heading desktopSize="lg" font="serif" mobileSize="base" tag="h4">
+            {title}
+          </Heading>
+        )}
         <div className="group relative h-8 w-8 flex-shrink-0 rounded-full border-[1.5px] border-accent bg-background transition-colors duration-300 hover:bg-accent">
           <span className="absolute left-1/2 top-1/2 h-[1.5px] w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent transition-colors duration-300 group-hover:bg-background" />
           <span
@@ -105,9 +106,9 @@ function AccordionItem({
         style={{height: isOpen ? (height ?? 0) + 16 : 0}}
       >
         <Body
-          desktopSize={type === "faq" ? "lg" : "base"}
+          desktopSize="base"
           font="sans"
-          mobileSize="base"
+          mobileSize={type === "faq" ? "sm" : "base"}
         >
           {content}
         </Body>

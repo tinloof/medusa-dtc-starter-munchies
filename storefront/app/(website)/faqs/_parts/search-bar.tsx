@@ -52,7 +52,7 @@ export default function SearchBar({
       />
       <input
         aria-label="Search"
-        className="h-full w-full appearance-none rounded-lg border-[1.5px] border-accent bg-background py-[10px] pl-[50px] pr-s font-sans text-body-base font-medium leading-[150%] text-accent outline-none placeholder:text-accent"
+        className="h-full w-full appearance-none rounded-lg border-[1.5px] border-accent bg-background py-[10px] pl-[50px] pr-s font-sans text-body-base font-medium leading-[150%] text-accent outline-none placeholder:text-accent placeholder:opacity-60"
         onChange={(e) => handleSearch(e.target.value)}
         onKeyDown={keydownHandler}
         placeholder={placeholder ?? "Search"}
