@@ -60,6 +60,9 @@ export default async function OrderConfirmedPage({params}: PageProps<"id">) {
             variant="4-Pack"
           />
           <Separator />
+          <SubLineItem title="Subtotal" value="$20.00" />
+          <SubLineItem title="Taxes" value="$0.00" />
+          <SubLineItem title="Shipping Address" value="$4.00" />
           <Separator />
           <div className="flex justify-between">
             <Heading desktopSize="base" font="sans" mobileSize="sm" tag="h4">
@@ -128,4 +131,17 @@ export default async function OrderConfirmedPage({params}: PageProps<"id">) {
 
 function Separator() {
   return <div className="h-px w-full bg-accent" />;
+}
+
+function SubLineItem({title, value}: {title: string; value: string}) {
+  return (
+    <div className="flex items-center justify-between gap-xl">
+      <Body className="mb-[6px] font-semibold" desktopSize="base" font="sans">
+        {title}
+      </Body>
+      <Body className="mb-[6px] font-semibold" desktopSize="base" font="sans">
+        {value}
+      </Body>
+    </div>
+  );
 }
