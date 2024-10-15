@@ -46,6 +46,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
             alt="arrow-right"
             className="aspect-square"
             data={image}
+            fetchPriority="high"
           />
         </div>
       ) : (

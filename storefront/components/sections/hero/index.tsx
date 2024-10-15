@@ -37,7 +37,7 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
           <SanityImage
             className="aspect-[16/9] min-h-[590px] w-full rounded-lg object-cover object-center"
             data={largeImage}
-            loading="eager"
+            fetchPriority="high"
           />
         </LargeHero>
       )}
