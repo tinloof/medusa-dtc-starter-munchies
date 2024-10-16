@@ -14,7 +14,7 @@ export default function Content({data}: {data: COOKIE_BANNER_QUERYResult}) {
   if (!data) return null;
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(() => setShowCookieBanner(false), 410);
+    setTimeout(() => setShowCookieBanner(false), 390);
   };
 
   return (

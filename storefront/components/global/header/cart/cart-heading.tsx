@@ -11,7 +11,7 @@ export default function CartHeading() {
   const count = (cart?.items?.length ?? 0).toString();
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex min-h-[calc(var(--header-height))] items-center justify-start px-4">
       <Title asChild>
         <Heading desktopSize="2xl" font="serif" mobileSize="lg" tag="h2">
           My Bag ({count})
