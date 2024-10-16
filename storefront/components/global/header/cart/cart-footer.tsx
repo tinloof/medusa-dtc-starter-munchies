@@ -1,6 +1,6 @@
 "use client";
 
-import {Cta} from "@/components/shared/button";
+import {Link} from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import {convertToLocale} from "@/utils/medusa/money";
 
@@ -39,9 +39,9 @@ export default function CartFooter() {
             )}
           </div>
         )}
-        <Cta className="w-full" size="lg" variant="primary">
+        <Link className="w-full" href="/checkout" size="lg" variant="primary">
           Go to checkout
-        </Cta>
+        </Link>
       </div>
     </>
   );
