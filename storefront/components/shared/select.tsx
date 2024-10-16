@@ -12,11 +12,17 @@ type Option = {label: string; value: string};
 export default function Select({
   className,
   options,
+  placeholder,
   setOption,
+  value,
+  variant,
 }: {
   className?: string;
   options: Option[];
+  placeholder?: string;
   setOption: (value: string) => void;
+  value?: null | string;
+  variant: "basic" | "filter" | "outline";
 }) {
   const [open, setOpen] = useState(false);
 
@@ -27,20 +33,36 @@ export default function Select({
       onOpenChange={setOpen}
       onValueChange={setOption}
       open={open}
+      value={value!}
     >
       <RadixSelect.Trigger
         className={cx(
           className,
-          "flex w-fit items-center justify-between gap-lg rounded-lg border-[1.5px] border-accent bg-background px-s py-[6px] outline-none",
+          "flex items-center justify-between gap-lg truncate bg-background px-s py-[6px] outline-none",
+          {
+            "rounded-lg border-[1.5px] border-accent": [
+              "filter",
+              "outline",
+            ].includes(variant),
+          },
         )}
       >
-        <Body font="sans" mobileSize="2xl">
-          <RadixSelect.Value placeholder={options[0].label} />
+        <Body
+          font="sans"
+          mobileSize={
+            variant === "outline"
+              ? "2xl"
+              : ["basic", "filter"].includes(variant)
+                ? "base"
+                : undefined
+          }
+        >
+          <RadixSelect.Value placeholder={placeholder} />
         </Body>
         <RadixSelect.Icon className="flex-shrink-0">
           <Icon
             className={cx(
-              "transition-transforms data-[size=open] duration-300",
+              "transition-transforms data-[size=open] min-w-4 duration-300",
               {
                 "rotate-180": open,
               },
@@ -86,7 +108,7 @@ function SelectItem({
       )}
       {...props}
     >
-      <Body font="sans" mobileSize="base">
+      <Body className="truncate text-nowrap" font="sans" mobileSize="base">
         <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
       </Body>
     </RadixSelect.Item>
