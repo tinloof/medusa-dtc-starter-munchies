@@ -29,7 +29,7 @@ export function ProductImagesCarousel({
 
   if (images?.length === 0 || !images) return null;
 
-  const slides = images?.map((image) => {
+  const slides = images?.map((image, index) => {
     return (
       <Fragment key={image.id}>
         {product.type?.value && (
@@ -39,6 +39,7 @@ export function ProductImagesCarousel({
           alt={product.title}
           className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
           height={591}
+          priority={index === 0}
           sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
           src={image.url}
           style={{background: "transparent"}}
@@ -70,21 +71,16 @@ export function ProductImagesCarousel({
           </div>
         )}
         <SlidesWrapper
-          className={cx(
-            "scrollbar-hide mt-1 h-fit w-full gap-xs px-m lg:px-0",
-            {
-              "snap-x snap-mandatory": isHydrated, // only enable snapping after hydration, because it randomly scrolls on chrome
-            },
-          )}
+          className={cx("scrollbar-hide mt-1 h-fit w-full gap-xs px-m lg:px-0")}
         >
           <Slides
             content={slides}
             itemProps={{
               className:
-                "relative flex w-[86vw] lg:w-full min-w-full snap-center justify-center",
+                "relative flex w-[86vw] min-w-full snap-center justify-center lg:w-full",
             }}
             wrapperDiv={{
-              className: "snap-x snap-mandatory gap-4",
+              className: "snap-x snap-mandatory gap-xs",
             }}
           />
         </SlidesWrapper>

@@ -65,7 +65,7 @@ export default defineField({
       hidden: ({parent}) => parent?.mediaType !== "video",
       name: "video",
       title: "Video",
-      type: "mux.video",
+      type: "video",
       validation: (Rule) =>
         Rule.custom((value, {parent}) => {
           const parentType = parent as {mediaType?: string};

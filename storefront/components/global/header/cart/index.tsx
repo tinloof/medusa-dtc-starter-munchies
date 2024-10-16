@@ -25,7 +25,7 @@ export default async function Cart({cartAddons}: Props) {
     <CartProvider cart={cart}>
       <Dialog>
         <OpenCart />
-        <SideDialog align="left">
+        <SideDialog align="right">
           <div className="relative flex h-full w-full flex-col border-l border-accent bg-background">
             <CartHeading />
             <div className="h-px w-full bg-accent" />

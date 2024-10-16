@@ -29,8 +29,8 @@ export default async function FeaturedProducts(
 
   const {products} = await getProductsByIds(ids, region.id);
 
-  const slides = products.map((product) => (
-    <ProductCard key={product.id} product={product} />
+  const slides = products.map((product, index) => (
+    <ProductCard index={index} key={product.id} product={product} />
   ));
   return (
     <section {...props.rootHtmlAttributes}>
