@@ -1,7 +1,7 @@
-import type {StoreProduct} from "@medusajs/types";
+import type { StoreProduct } from "@medusajs/types";
 
-import {AddToCartButton} from "@/app/(website)/products/[handle]/_parts/add-to-cart";
-import {getProductPrice} from "@/utils/medusa/get-product-price";
+import { AddToCartButton } from "@/app/(website)/products/[handle]/_parts/add-to-cart";
+import { getProductPrice } from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
 import Body from "./typography/body";
@@ -23,6 +23,8 @@ export function AddonsItem({
       variants,
     },
   });
+
+  const default_variant = variants?.[0]
 
   return (
     <div className="flex w-full gap-xs">
@@ -46,7 +48,7 @@ export function AddonsItem({
             {title}
           </Body>
           <Body desktopSize="base" font="sans" mobileSize="sm">
-            {cheapestPrice?.calculated_price}
+            {default_variant?.title} / {cheapestPrice?.calculated_price}
           </Body>
         </div>
         <AddToCartButton
@@ -54,8 +56,7 @@ export function AddonsItem({
           label="Add +"
           size={variant === "PDP" ? "md" : variant === "cart" ? "sm" : null}
           variant="outline"
-          // TODO: Better variant selection
-          variantId={variants?.[0].id}
+          variantId={default_variant?.id}
         />
       </div>
     </div>
