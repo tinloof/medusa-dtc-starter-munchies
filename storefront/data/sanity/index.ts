@@ -1,5 +1,6 @@
 import type {
   COOKIE_BANNER_QUERYResult,
+  DICTIONARY_QUERYResult,
   FAQS_PAGE_QUERYResult,
   GLOBAL_QUERYResult,
   HOME_QUERYResult,
@@ -13,6 +14,7 @@ import type {
 import {loadQuery, loadRoute} from "./load-query";
 import {
   COOKIE_BANNER_QUERY,
+  DICTIONARY_QUERY,
   FAQS_PAGE_QUERY,
   GLOBAL_QUERY,
   HOME_QUERY,
@@ -100,6 +102,12 @@ export async function loadTextPage(pathname: string) {
 export function loadFaqs() {
   return loadQuery<FAQS_PAGE_QUERYResult>({
     query: FAQS_PAGE_QUERY,
+  });
+}
+
+export function loadDictionary() {
+  return loadQuery<DICTIONARY_QUERYResult>({
+    query: DICTIONARY_QUERY,
   });
 }
 

@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function OptionsSelect({options}: Props) {
-  const {setSelectedOptions} = useProductVariants();
+  const {selectedOptions, setSelectedOptions} = useProductVariants();
 
   return options?.map((option) => {
     const values = option.values?.map(({value}) => ({
@@ -20,13 +20,22 @@ export default function OptionsSelect({options}: Props) {
     }));
 
     if (!values || values?.length === 0) return null;
-
+    const activeOption = selectedOptions[option.title.toLowerCase()];
     const setOption = (value: string) =>
       setSelectedOptions((prev) => ({
         ...prev,
         [option.title.toLowerCase()]: value,
       }));
 
-    return <Select key={option.id} options={values} setOption={setOption} />;
+    return (
+      <Select
+        className="w-fit"
+        key={option.id}
+        options={values}
+        placeholder={activeOption}
+        setOption={setOption}
+        variant="outline"
+      />
+    );
   });
 }

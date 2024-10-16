@@ -1,6 +1,5 @@
 import type {Header} from "@/types/sanity.generated";
 
-import {CloseDialog, Dialog, SideDialog} from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import {fetchCart} from "@/data/medusa/cart";
@@ -8,6 +7,7 @@ import {Suspense} from "react";
 
 import CartAddons from "./cart-addons";
 import {CartProvider} from "./cart-context";
+import {CloseDialog, Dialog, SideDialog} from "./cart-dialog";
 import CartFooter from "./cart-footer";
 import CartHeading from "./cart-heading";
 import LineItem from "./line-item";

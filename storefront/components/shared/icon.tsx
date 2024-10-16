@@ -1,5 +1,6 @@
 import {cx} from "cva";
 import {type ComponentProps} from "react";
+import {preload} from "react-dom";
 
 export const icons = {
   AccordionBottom: "/icons/accordion-bottom.svg",
@@ -11,6 +12,7 @@ export const icons = {
   ArrowRight: "/icons/arrow-right-primary.svg",
   ArrowRightAccent: "/icons/arrow-right-accent.svg",
   Cart: "/icons/cart.svg",
+  Check: "/icons/check.svg",
   Close: "/icons/close.svg",
   Ellips: "/icons/ellips-accent.svg",
   Hamburger: "/icons/hamburger.svg",
@@ -32,6 +34,7 @@ export const iconAlts: Record<Icon, string> = {
   ArrowRight: "Arrow Right",
   ArrowRightAccent: "Arrow Right Accent",
   Cart: "Shopping Cart",
+  Check: "Check mark",
   Close: "Close",
   Ellips: "Ellipse",
   Hamburger: "Menu",
@@ -41,16 +44,29 @@ export const iconAlts: Record<Icon, string> = {
   Trash: "Trash icon",
 };
 
-export type IconProps = {name: Icon} & Omit<
+export type IconProps = {fetchPriority?: "default" | "high"; name: Icon} & Omit<
   ComponentProps<"img">,
-  "alt" | "sizes" | "src" | "srcSet"
+  "alt" | "fetchPriority" | "sizes" | "src" | "srcSet"
 >;
 
-export default function Icon({className, name, ...rest}: IconProps) {
+export default function Icon({
+  className,
+  fetchPriority = "default",
+  name,
+  ...rest
+}: IconProps) {
+  if (fetchPriority === "high") {
+    preload(icons[name], {
+      as: "image",
+      fetchPriority: "high",
+    });
+  }
+
   return (
     <img
       alt={iconAlts[name]}
       className={cx(className)}
+      loading={fetchPriority === "high" ? "eager" : "lazy"}
       src={icons[name]}
       {...rest}
     />

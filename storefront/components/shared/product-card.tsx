@@ -11,11 +11,11 @@ import Body from "./typography/body";
 export default function ProductCard({
   index,
   product,
-  size = "default",
+  size,
 }: {
   index?: number;
   product: StoreProduct | undefined;
-  size?: "PLP" | "default" | "dynamicWith";
+  size?: "PLP" | "default";
 }) {
   if (!product) return null;
 
@@ -23,10 +23,12 @@ export default function ProductCard({
 
   return (
     <Link
-      className={cx("flex flex-col items-center justify-center rounded-lg", {
-        "w-[88vw] max-w-[450px]": size === "default",
-        "w-full max-w-[450px]": size === "dynamicWith",
-      })}
+      className={cx(
+        "flex flex-1 flex-col items-center justify-center rounded-lg",
+        {
+          "w-[88vw] max-w-[450px]": size === "default",
+        },
+      )}
       href={`/products/${product?.handle}`}
     >
       <div className="relative w-full">
@@ -41,11 +43,12 @@ export default function ProductCard({
         {product.type?.value && (
           <Tag
             className="absolute right-4 top-3"
-            text={product.collection?.title || ""}
+            text={product.type.value || ""}
           />
         )}
       </div>
-      <div className="pointer-events-none flex flex-col items-center justify-center gap-1 px-lg py-s">
+
+      <div className="pointer-events-none flex flex-1 flex-col items-center justify-center gap-1 px-lg py-s">
         <Body
           className="text-center"
           desktopSize="xl"

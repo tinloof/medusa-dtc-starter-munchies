@@ -33,6 +33,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("product"),
       S.documentTypeListItem("category"),
       S.documentTypeListItem("collection"),
+
       S.listItem()
         .title("Layout")
         .icon(DashboardIcon)
@@ -44,6 +45,7 @@ export const structure: StructureResolver = (S) =>
               singleton(S, SINGLETONS.footer),
               singleton(S, SINGLETONS.notFound),
               singleton(S, SINGLETONS.cookieBanner),
+              singleton(S, SINGLETONS.dictionary),
             ]),
         ),
       S.listItem()
