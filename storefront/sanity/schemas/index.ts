@@ -13,6 +13,7 @@ import {lightPtBody, ptBody} from "./objects/pt-body";
 import {sectionsBody} from "./objects/sections-body";
 import {seo} from "./objects/seo";
 import spot from "./objects/spot";
+import video from "./objects/video";
 import sections from "./sections";
 import {cookieBanner} from "./singletons/cookie-banner";
 import {faqIndex} from "./singletons/faq";
@@ -29,6 +30,7 @@ const schemas = [
   cta,
   link,
   spot,
+  video,
   settings,
   home,
   ptBody,
