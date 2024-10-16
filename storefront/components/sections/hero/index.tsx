@@ -1,21 +1,15 @@
-import MuxVideo from "@/components/shared/mux-video";
 import {SanityImage} from "@/components/shared/sanity-image";
+import Video from "@/components/shared/video";
 import {stegaClean} from "@sanity/client/stega";
-import React from "react";
 
 import type {ModularPageSection} from "../types";
 
 import LargeHero from "./large-hero";
 import SimpleHero from "./simple-hero";
 
-interface VideoData {
-  playbackId?: string;
-  resolution?: string;
-}
-
 export default function Hero(props: ModularPageSection<"section.hero">) {
   const mediaType = stegaClean(props.mediaType);
-  const video = stegaClean(props.video?.asset) as unknown as VideoData;
+  const video = props.video;
   const largeImage = stegaClean(props.largeImage);
   return (
     <section
@@ -25,19 +19,22 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
       {mediaType === "image" && <SimpleHero {...props} />}
       {mediaType === "video" && video && (
         <LargeHero props={props}>
-          <MuxVideo
-            className="aspect-[16/9] min-h-[590px] w-full rounded-lg object-cover object-center"
-            loading="eager"
-            video={video}
-          />
+          <div className="hero-asset grid w-full overflow-hidden rounded-lg object-cover object-center">
+            <Video
+              className="h-full w-full object-cover"
+              fetchPriority="high"
+              poster={video.poster}
+              videoUrl={video.url}
+            />
+          </div>
         </LargeHero>
       )}
       {mediaType === "largeImage" && largeImage && (
         <LargeHero props={props}>
           <SanityImage
-            className="aspect-[16/9] min-h-[590px] w-full rounded-lg object-cover object-center"
+            className="hero-asset w-full rounded-lg object-cover object-center"
             data={largeImage}
-            loading="eager"
+            fetchPriority="high"
           />
         </LargeHero>
       )}

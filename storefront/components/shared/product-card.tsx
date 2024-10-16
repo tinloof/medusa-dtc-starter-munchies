@@ -2,16 +2,18 @@ import type {StoreProduct} from "@medusajs/types";
 
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import {cx} from "cva";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import Tag from "./tag";
 import Body from "./typography/body";
 
 export default function ProductCard({
+  index,
   product,
   size = "default",
 }: {
+  index?: number;
   product: StoreProduct | undefined;
   size?: "PLP" | "default" | "dynamicWith";
 }) {
@@ -22,16 +24,19 @@ export default function ProductCard({
   return (
     <Link
       className={cx("flex flex-col items-center justify-center rounded-lg", {
-        "w-[370px] lg:w-[450px]": size === "default",
+        "w-[88vw] max-w-[450px]": size === "default",
         "w-full max-w-[450px]": size === "dynamicWith",
       })}
       href={`/products/${product?.handle}`}
     >
       <div className="relative w-full">
-        <img
+        <Image
           alt={product.title}
           className="aspect-square w-full rounded-lg"
-          src={product.thumbnail || product.images?.[0].url}
+          height={450}
+          priority={index !== undefined && index <= 2}
+          src={product.thumbnail || product.images?.[0]?.url || ""}
+          width={450}
         />
         {product.type?.value && (
           <Tag
@@ -40,7 +45,7 @@ export default function ProductCard({
           />
         )}
       </div>
-      <div className="flex flex-col items-center justify-center gap-1 px-lg py-s">
+      <div className="pointer-events-none flex flex-col items-center justify-center gap-1 px-lg py-s">
         <Body
           className="text-center"
           desktopSize="xl"

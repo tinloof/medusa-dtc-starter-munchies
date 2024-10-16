@@ -10,6 +10,7 @@ export const bodyStyles = cva("", {
   variants: {
     desktopSize: {
       "2xl": "lg:text-body-2xl",
+      "2xs": "lg:text-body-2xs",
       "4xl": "lg:text-body-4xl",
       "5xl": "lg:text-body-5xl",
       "6xl": "lg:text-body-6xl",
@@ -27,6 +28,7 @@ export const bodyStyles = cva("", {
     },
     mobileSize: {
       "2xl": "text-body-2xl",
+      "2xs": "text-body-2xs",
       "3xl": "text-body-3xl",
       "4xl": "text-body-4xl",
       "5xl": "text-body-5xl",

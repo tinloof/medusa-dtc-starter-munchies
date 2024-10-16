@@ -2056,7 +2056,7 @@
   dependencies:
     ioredis "^5.4.1"
 
-"@medusajs/cart@1.0.0-rc-20241001083650":
+"@medusajs/@1.0.0-rc-20241001083650":
   version "1.0.0-rc-20241001083650"
   resolved "https://registry.yarnpkg.com/@medusajs/cart/-/cart-1.0.0-rc-20241001083650.tgz#9dc5021a86d4e25ef416938806ebbe5e7c2a3c30"
   integrity sha512-ESWLtOt4bavk10MqIGPpRbk+a4nhTDLiDKQlLT8d5QA7p1PwKJftS2/ye2y7pcD39fyCvN+lcvC3XVL3Tm55AA==

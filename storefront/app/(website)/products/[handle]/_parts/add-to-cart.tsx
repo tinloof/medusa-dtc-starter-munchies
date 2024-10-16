@@ -14,7 +14,6 @@ export default function AddToCart() {
     <AddToCartButton
       className="w-full"
       label="Add to cart"
-      loadingLabel="Adding..."
       size="xl"
       variant="outline"
       variantId={activeVariant?.id}
@@ -24,13 +23,11 @@ export default function AddToCart() {
 
 export function AddToCartButton({
   label,
-  loadingLabel,
   quantity = 1,
   variantId,
   ...buttonProps
 }: {
   label: string;
-  loadingLabel?: string;
   quantity?: number;
   variantId?: string;
 } & Omit<ButtonProps, "onClick">) {
@@ -51,11 +48,12 @@ export function AddToCartButton({
   return (
     <Cta
       {...buttonProps}
+      loading={isAdding}
       onClick={
         variantId ? () => handleAddToCart(variantId, quantity) : undefined
       }
     >
-      {isAdding ? (loadingLabel ? loadingLabel : label) : label}
+      {label}
     </Cta>
   );
 }

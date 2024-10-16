@@ -1,5 +1,5 @@
 import {InfoOutlineIcon, InsertAboveIcon} from "@sanity/icons";
-import {defineType} from "sanity";
+import {defineField, defineType} from "sanity";
 
 export default defineType({
   __experimental_formPreviewTitle: false,
@@ -138,6 +138,14 @@ export default defineType({
       title: "Navigation",
       type: "array",
     },
+    defineField({
+      group: "cart",
+      name: "cartAddons",
+      of: [{to: [{type: "product"}], type: "reference"}],
+      title: "Addons",
+      type: "array",
+      validation: (Rule) => Rule.max(3),
+    }),
   ],
   groups: [
     {
@@ -150,6 +158,7 @@ export default defineType({
       name: "navigation",
       title: "Navigation",
     },
+    {name: "cart", title: "Cart"},
   ],
   icon: InsertAboveIcon,
   name: "header",

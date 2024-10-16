@@ -50,11 +50,9 @@ export async function getOrSetCart(countryCode: string) {
 }
 
 export async function addToCart({
-  countryCode = "us",
   quantity,
   variantId,
 }: {
-  countryCode?: string;
   quantity: number;
   variantId: string;
 }) {
@@ -62,7 +60,7 @@ export async function addToCart({
     throw new Error("Missing variant ID when adding to cart");
   }
 
-  const cart = await getOrSetCart(countryCode);
+  const cart = getCartId();
 
   if (!cart) {
     throw new Error("Error retrieving or creating cart");
@@ -70,7 +68,7 @@ export async function addToCart({
 
   await client.store.cart
     .createLineItem(
-      cart.id,
+      cart,
       {
         quantity,
         variant_id: variantId,
