@@ -1,29 +1,28 @@
 import definePage from "@/sanity/helpers/define-page";
-import {defineField} from "sanity";
 
 export default definePage({
   fields: [
-    defineField({
+    {
       group: "content",
       name: "specs",
       of: [
         {
           fields: [
-            defineField({name: "title", title: "Title", type: "string"}),
-            defineField({
+            {name: "title", title: "Title", type: "string"},
+            {
               name: "content",
               rows: 3,
               title: "Content",
               type: "text",
-            }),
+            },
           ],
           name: "spec",
           type: "object",
         },
       ],
       type: "array",
-    }),
-    defineField({
+    },
+    {
       fields: [
         {name: "title", title: "Title", type: "string"},
         {
@@ -36,13 +35,13 @@ export default definePage({
       ],
       name: "addons",
       type: "object",
-    }),
+    },
 
-    defineField({
+    {
       group: "content",
       name: "sections",
       type: "sectionsBody",
-    }),
+    },
   ],
   name: "product",
   options: {

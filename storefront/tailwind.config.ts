@@ -93,40 +93,20 @@ const config: Config = {
         xs: "8px",
       },
       animation: {
-        "spin-loading": "spin 3s linear infinite",
+        "spin-loading": "spin 1.5s linear infinite",
         marquee: "marquee var(--duration) linear infinite",
         "select-open": "selectOpen 0.2s ease-out forwards",
         "select-close": "selectClose 0.2s ease-in forwards",
-        "slide-in-from-right": "slideInFromRight 0.2s ease-in forwards",
-        "slide-in-from-left": "slideInFromLeft 0.2s ease-in forwards",
         enterFromTop: "enterFromTop 300ms ease",
-        exitToTop: "exitToTop 300ms ease",
         enterFromLeft: "enterFromLeft 450ms ease",
         enterFromRight: "enterFromRight 450ms ease",
-        exitToLeft: "exitToLeft 450ms ease",
+        exitToTop: "exitToTop 300ms ease",
         exitToRight: "exitToRight 450ms ease",
+        exitToLeft: "exitToLeft 450ms ease",
+        fadeInUp: "fadeInUp 450ms ease",
+        fadeOutLeft: "fadeOutLeft var(--duration) ease-in-out",
       },
       keyframes: {
-        slideInFromRight: {
-          "0%": {
-            transform: "translateX(100%)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: "1",
-          },
-        },
-        slideInFromLeft: {
-          "0%": {
-            transform: "translateX(-100%)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: "1",
-          },
-        },
         marquee: {
           from: {transform: "translateX(0)"},
           to: {transform: "translateX(calc(-100% - var(--gap)))"},
@@ -162,10 +142,6 @@ const config: Config = {
           },
           to: {opacity: "1", transform: "translateY(0)"},
         },
-        exitToTop: {
-          from: {opacity: "1", transform: "translateY(0)"},
-          to: {opacity: "0", transform: "translateY(-50px)"},
-        },
         enterFromRight: {
           from: {transform: "translateX(100%)"},
           to: {transform: "translateX(0)"},
@@ -174,6 +150,10 @@ const config: Config = {
           from: {transform: "translateX(-100%)"},
           to: {transform: "translateX(0)"},
         },
+        exitToTop: {
+          from: {opacity: "1", transform: "translateY(0)"},
+          to: {opacity: "0", transform: "translateY(-50px)"},
+        },
         exitToRight: {
           from: {transform: "translateX(0)"},
           to: {transform: "translateX(100%)"},
@@ -181,6 +161,14 @@ const config: Config = {
         exitToLeft: {
           from: {transform: "translateX(0)"},
           to: {transform: "translateX(-100%)"},
+        },
+        fadeInUp: {
+          from: {opacity: "0", transform: "translateY(40px)"},
+          to: {opacity: "1", transform: "translateY(0)"},
+        },
+        fadeOutLeft: {
+          from: {opacity: "1", transform: "translateX(0)"},
+          to: {opacity: "0", transform: "translateX(-40px)"},
         },
       },
     },
