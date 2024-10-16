@@ -2,7 +2,6 @@
 
 import type {Dispatch, SetStateAction} from "react";
 
-import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import {useOutsideClick} from "@/hooks/use-outside-click";
 import {cx} from "cva";
@@ -55,15 +54,7 @@ export default function DropDown({
             <Body font="sans" mobileSize="base">
               <h3 className="body-m min-w-[100px] text-start">{placeholder}</h3>
             </Body>
-            <Icon
-              className={cx(
-                "transition-transforms data-[size=open] duration-300",
-                {
-                  "rotate-180": isOpen,
-                },
-              )}
-              name="AccordionTop"
-            />
+            <Caret isOpen={isOpen} />
           </div>
         </button>
         <div
@@ -81,5 +72,28 @@ export default function DropDown({
         </div>
       </div>
     </div>
+  );
+}
+
+function Caret({isOpen}: {isOpen: boolean}) {
+  return (
+    <svg
+      className={cx("transition-transforms data-[size=open] duration-300", {
+        "rotate-180": isOpen,
+      })}
+      fill="none"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 9L12 15L18 9"
+        stroke="#FF5227"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+      />
+    </svg>
   );
 }

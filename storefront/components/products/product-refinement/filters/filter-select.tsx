@@ -55,7 +55,9 @@ export default function FilterSelect(
                     "!size-3 shrink-0 transform opacity-0 transition-transform duration-300",
                     {"opacity-100": selected},
                   )}
+                  height={24}
                   name="Check"
+                  width={24}
                 />
               </div>
               <Body

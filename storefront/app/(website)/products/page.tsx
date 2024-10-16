@@ -32,9 +32,7 @@ export default async function CollectionPage({
         </Heading>
       </div>
       <div className="flex flex-col gap-6">
-        <Suspense>
-          <Refinement />
-        </Suspense>
+        <Refinement />
         <Suspense fallback={<ProductsSkeleton />}>
           <PaginatedProducts {...query} />
         </Suspense>
