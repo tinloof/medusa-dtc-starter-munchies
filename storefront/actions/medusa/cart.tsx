@@ -1,17 +1,24 @@
 "use server";
 
+import type {HttpTypes} from "@medusajs/types";
+
 import {retrieveCart} from "@/data/medusa/cart";
-import client from "@/data/medusa/client";
-import {getAuthHeaders, getCacheTag, setCartId} from "@/data/medusa/cookies";
-import {getCustomer} from "@/data/medusa/customer";
+import {default as client, default as medusa} from "@/data/medusa/client";
+import {
+  getAuthHeaders,
+  getCacheTag,
+  getCartId,
+  removeCartId,
+  setCartId,
+} from "@/data/medusa/cookies";
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
+import {redirect} from "next/navigation";
 
 export async function getOrSetCart(countryCode: string) {
   let cart = await retrieveCart();
   const region = await getRegion(countryCode);
-  const customer = await getCustomer();
 
   if (!region) {
     throw new Error(`Region not found for country code: ${countryCode}`);
@@ -19,7 +26,6 @@ export async function getOrSetCart(countryCode: string) {
 
   if (!cart) {
     const body = {
-      email: customer?.email,
       region_id: region.id,
     };
 
@@ -130,4 +136,46 @@ export async function deleteLineItem({
   await client.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
     revalidateTag(getCacheTag("carts"));
   });
+}
+
+export async function placeOrder() {
+  const cartId = getCartId();
+  if (!cartId) {
+    throw new Error("No existing cart found when placing an order");
+  }
+
+  try {
+    const cartRes = await medusa.store.cart.complete(
+      cartId,
+      {},
+      getAuthHeaders(),
+    );
+    revalidateTag(getCacheTag("carts"));
+
+    if (cartRes?.type === "order") {
+      removeCartId();
+      // TODO: make this us the country code
+      redirect(`/order/confirmed/${cartRes.order.id}`);
+    }
+
+    return cartRes.cart;
+  } catch (error) {
+    return medusaError(error);
+  }
+}
+
+export async function initiatePaymentSession(
+  cart: HttpTypes.StoreCart,
+  data: {
+    context?: Record<string, unknown>;
+    provider_id: string;
+  },
+) {
+  return medusa.store.payment
+    .initiatePaymentSession(cart, data, {}, getAuthHeaders())
+    .then((resp) => {
+      revalidateTag(getCacheTag("carts"));
+      return resp;
+    })
+    .catch(medusaError);
 }
