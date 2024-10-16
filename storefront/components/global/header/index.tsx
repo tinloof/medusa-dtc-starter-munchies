@@ -7,11 +7,12 @@ import {Suspense} from "react";
 import Cart from "./cart";
 import Hamburger from "./hamburger";
 import AnnouncementBar from "./parts/announcement-bar";
+import BottomBorder from "./parts/bottom-border";
 import Navigation from "./parts/navigation";
 
 export default function Header(props: Header) {
   return (
-    <header className="sticky top-0 z-50 flex w-full flex-col items-center border-b border-accent bg-background">
+    <header className="sticky top-0 z-50 flex w-full flex-col items-center bg-background">
       <AnnouncementBar {...props} />
       <div className="relative mx-auto flex w-full max-w-max-screen items-center justify-between gap-2xl px-m py-xs lg:px-xl">
         <div className="flex items-center gap-m">
@@ -43,6 +44,7 @@ export default function Header(props: Header) {
           id="navigation-portal"
         />
       </div>
+      <BottomBorder />
     </header>
   );
 }
