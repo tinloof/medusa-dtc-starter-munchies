@@ -11,7 +11,7 @@ import Body from "./typography/body";
 export default function ProductCard({
   index,
   product,
-  size,
+  size = "default",
 }: {
   index?: number;
   product: StoreProduct | undefined;
