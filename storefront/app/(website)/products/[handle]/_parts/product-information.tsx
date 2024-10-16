@@ -1,4 +1,4 @@
-import type {Product} from "@/types/sanity.generated";
+import type {PRODUCT_QUERYResult} from "@/types/sanity.generated";
 import type {StoreProduct} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
@@ -12,7 +12,7 @@ import OptionsSelect from "./options";
 import Price from "./price";
 import ProductSpecs from "./specs";
 
-type Props = {region_id: string} & {sanity_product: Product} & Pick<
+type Props = {content: PRODUCT_QUERYResult} & {region_id: string} & Pick<
     StoreProduct,
     | "collection"
     | "description"
@@ -25,11 +25,11 @@ type Props = {region_id: string} & {sanity_product: Product} & Pick<
 
 export default function ProductInformation({
   collection,
+  content,
   description,
   id,
   options,
   region_id,
-  sanity_product,
   title,
   variants,
 }: Props) {
@@ -59,11 +59,11 @@ export default function ProductInformation({
           <AddToCart />
         </div>
         <Addons
-          products={sanity_product?.addons?.products}
+          products={content?.addons?.products}
           region_id={region_id}
-          title={sanity_product?.addons?.title}
+          title={content?.addons?.title}
         />
-        <ProductSpecs specs={sanity_product?.specs} />
+        <ProductSpecs specs={content?.specs} />
       </div>
     </ProductVariantsProvider>
   );

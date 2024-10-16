@@ -2,9 +2,10 @@ import Link from "next/link";
 
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel";
+import CarouselSection from "../shared/carousel-section";
 import {SanityImage} from "../shared/sanity-image";
 import Body from "../shared/typography/body";
+import Heading from "../shared/typography/heading";
 
 //TODO: find solution to remove scrol on the desktop
 export default function CollectionList(
@@ -14,12 +15,21 @@ export default function CollectionList(
     <CollectionCard key={collection._key} {...collection} />
   ));
   return (
-    <EmblaCarousel
+    <CarouselSection
       disableDesktopDrag
       showButtons={false}
       showProgress={true}
       slides={slides}
-      title="Shop our cookies"
+      title={
+        <Heading
+          className="text-center"
+          desktopSize="3xl"
+          mobileSize="lg"
+          tag="h3"
+        >
+          Shop our cookies
+        </Heading>
+      }
     />
   );
 }
@@ -31,12 +41,12 @@ function CollectionCard({
   if (!cta?.link) return null;
   return (
     <Link
-      className="group relative flex h-full min-h-[562px] w-[380px] flex-1 cursor-pointer rounded-lg lg:min-h-[604px] lg:w-[453px]"
+      className="group relative flex aspect-[3/4] h-auto w-[88vw] min-w-[320px] max-w-[453px] flex-1 cursor-pointer rounded-lg"
       href={cta?.link}
     >
       {image ? (
         <SanityImage
-          className="min-h-[562px] w-[380px] rounded-lg object-cover object-center lg:min-h-[604px] lg:w-[453px]"
+          className="aspect-[3/4] h-auto w-[88vw] min-w-[320px] max-w-[453px] rounded-lg object-cover object-center"
           data={image}
         />
       ) : (
@@ -46,7 +56,7 @@ function CollectionCard({
         <div className="absolute bottom-lg left-1/2 flex -translate-x-1/2 items-center justify-center">
           <div className="relative flex h-[80px] w-fit items-center justify-center px-2xl">
             <svg
-              className="absolute left-1/2 top-1/2 h-full w-auto -translate-x-1/2 -translate-y-1/2"
+              className="absolute left-1/2 top-1/2 h-full w-[280px] -translate-x-1/2 -translate-y-1/2 lg:w-[305px]"
               fill="none"
               height="80"
               viewBox="0 0 305 80"
@@ -63,7 +73,7 @@ function CollectionCard({
             <Body
               className="relative z-10 whitespace-nowrap text-center transition-all duration-300 group-hover:text-background"
               desktopSize="6xl"
-              mobileSize="4xl"
+              mobileSize="3xl"
             >
               {cta.label}
             </Body>

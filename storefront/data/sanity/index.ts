@@ -6,6 +6,7 @@ import type {
   HOME_QUERYResult,
   MODULAR_PAGE_QUERYResult,
   NOT_FOUND_PAGE_QUERYResult,
+  PRODUCT_QUERYResult,
   REDIRECT_QUERYResult,
   TEXT_PAGE_QUERYResult,
 } from "@/types/sanity.generated";
@@ -19,6 +20,7 @@ import {
   HOME_QUERY,
   MODULAR_PAGE_QUERY,
   NOT_FOUND_PAGE_QUERY,
+  PRODUCT_QUERY,
   REDIRECT_QUERY,
   TEXT_PAGE_QUERY,
 } from "./queries";
@@ -106,5 +108,12 @@ export function loadFaqs() {
 export function loadDictionary() {
   return loadQuery<DICTIONARY_QUERYResult>({
     query: DICTIONARY_QUERY,
+  });
+}
+
+export function loadProductContent(handle: string) {
+  return loadQuery<PRODUCT_QUERYResult>({
+    params: {handle},
+    query: PRODUCT_QUERY,
   });
 }

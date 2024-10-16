@@ -9,6 +9,7 @@ export const labelStyles = cva("", {
   },
   variants: {
     desktopSize: {
+      "2xl": "lg:text-label-2xl",
       "2xs": "lg:text-body-2xs",
       "6xl": "text-label-6xl",
       base: "lg:text-label-base",
@@ -22,6 +23,7 @@ export const labelStyles = cva("", {
       serif: "font-serif font-normal leading-[110%]",
     },
     mobileSize: {
+      "2xl": "text-label-2xl",
       "2xs": "text-label-2xs tracking-[0.4px]",
       "6xl": "text-label-6xl tracking-[1.6px]",
       base: "text-label-base tracking-[0.64px]",

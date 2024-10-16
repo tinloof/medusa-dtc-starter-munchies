@@ -188,7 +188,7 @@ export default function Faq({
                 </div>
               ) : (
                 <div className="absolute left-0 top-full z-10 mt-[5px] w-full max-w-[420px] rounded-lg border-[1.5px] border-accent bg-background p-2">
-                  <div className="w-full px-4 py-2 text-start text-accent">
+                  <div className="w-full px-4 py-2 text-start text-accent opacity-60">
                     {data.textTranslations?.searchNoResults}
                   </div>
                 </div>

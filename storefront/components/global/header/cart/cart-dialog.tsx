@@ -7,9 +7,15 @@ import type {
   DialogTriggerProps,
 } from "@radix-ui/react-dialog";
 
-import {Close, Content, Portal, Root, Trigger} from "@radix-ui/react-dialog";
+import {
+  Close,
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Trigger,
+} from "@radix-ui/react-dialog";
 import {cx} from "cva";
-import {RemoveScroll} from "react-remove-scroll";
 
 import {useCart} from "./cart-context";
 
@@ -37,20 +43,21 @@ export function SideDialog({
 }: {align?: "left" | "right"; width?: number} & DialogContentProps) {
   return (
     <Portal>
-      <RemoveScroll>
-        <Content
-          className={cx(
-            className,
-            "fixed top-0 z-[9999] h-full transform transition-transform ease-in-out",
-            {
-              "left-0 animate-slide-in-from-left": align === "right",
-              "right-0 animate-slide-in-from-right": align === "left",
-            },
-          )}
-          style={{...style, width}}
-          {...passThrough}
-        />
-      </RemoveScroll>
+      <Overlay className="fixed inset-0 bg-transparent" />
+      <Content
+        className={cx(
+          className,
+          "fixed top-0 z-[9999] h-full transition-transform ease-in-out",
+          {
+            "left-0 data-[state=closed]:animate-exitToLeft data-[state=open]:animate-enterFromLeft":
+              align === "left",
+            "right-0 data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight":
+              align === "right",
+          },
+        )}
+        style={{...style, width}}
+        {...passThrough}
+      />
     </Portal>
   );
 }

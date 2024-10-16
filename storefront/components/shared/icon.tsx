@@ -4,6 +4,8 @@ import {preload} from "react-dom";
 
 export const icons = {
   AccordionBottom: "/icons/accordion-bottom.svg",
+  AccordionLeft: "/icons/accordion-left.svg",
+  AccordionRight: "/icons/accordion-right.svg",
   AccordionTop: "/icons/accordion-top.svg",
   ArrowLeft: "/icons/arrow-left-primary.svg",
   ArrowLeftAccent: "/icons/arrow-left-accent.svg",
@@ -24,6 +26,8 @@ type Icon = keyof typeof icons;
 
 export const iconAlts: Record<Icon, string> = {
   AccordionBottom: "Accordion Bottom",
+  AccordionLeft: "Accordion Left",
+  AccordionRight: "Accordion Right",
   AccordionTop: "Accordion Top",
   ArrowLeft: "Arrow Left",
   ArrowLeftAccent: "Arrow Left Accent",

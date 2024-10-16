@@ -5,7 +5,9 @@ import Link from "next/link";
 import {Suspense} from "react";
 
 import Cart from "./cart";
+import Hamburger from "./hamburger";
 import AnnouncementBar from "./parts/announcement-bar";
+import BottomBorder from "./parts/bottom-border";
 import Navigation from "./parts/navigation";
 
 export default function Header(props: Header) {
@@ -14,13 +16,16 @@ export default function Header(props: Header) {
       <AnnouncementBar {...props} />
       <div className="relative mx-auto flex w-full max-w-max-screen items-center justify-between gap-2xl px-m py-xs lg:px-xl">
         <div className="flex items-center gap-m">
-          <Link href="/" prefetch>
-            <img
-              alt="Mubchies logo"
-              className="my-[9px] h-[22px] w-fit lg:my-[10px] lg:h-9"
-              src="/images/logo.svg"
-            />
-          </Link>
+          <div className="flex items-center justify-start gap-s">
+            <Hamburger data={props} />
+            <Link href="/" prefetch>
+              <img
+                alt="Mubchies logo"
+                className="my-[9px] h-[22px] w-fit lg:my-[10px] lg:h-9"
+                src="/images/logo.svg"
+              />
+            </Link>
+          </div>
           <Suspense>
             <Navigation data={props} />
           </Suspense>
@@ -32,9 +37,14 @@ export default function Header(props: Header) {
             </div>
           }
         >
-          <Cart />
+          <Cart cartAddons={props.cartAddons} />
         </Suspense>
+        <div
+          className="absolute left-1/2 top-[56px] z-30 mx-auto w-screen max-w-max-screen -translate-x-1/2"
+          id="navigation-portal"
+        />
       </div>
+      <BottomBorder />
     </header>
   );
 }
