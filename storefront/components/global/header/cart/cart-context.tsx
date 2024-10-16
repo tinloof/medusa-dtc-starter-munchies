@@ -26,7 +26,11 @@ const CartContext = createContext<
   | {
       cart: Cart | null;
       cartOpen: boolean;
-      handleAddToCart: (variantId: string, quantity: number) => Promise<void>;
+      handleAddToCart: (
+        variantId: string,
+        quantity: number,
+        countryCode: string,
+      ) => Promise<void>;
       handleDeleteItem: (lineItem: string) => Promise<void>;
       handleUpdateCartQuantity: (
         lineItem: string,
@@ -104,11 +108,16 @@ export function CartProvider({
     });
   };
 
-  const handleAddToCart = async (variantId: string, quantity: number) => {
+  const handleAddToCart = async (
+    variantId: string,
+    quantity: number,
+    region_id: string,
+  ) => {
     setCartOpen(true);
 
     await addToCart({
       quantity,
+      region_id,
       variantId,
     });
   };

@@ -10,7 +10,7 @@ export default async function CartAddons({ids, region_id}: Props) {
 
   const slides = products.map((item) => (
     <div className="w-[380px]" key={item.id}>
-      <AddonsItem variant="cart" {...item} />
+      <AddonsItem region_id={region_id} variant="cart" {...item} />
     </div>
   ));
 

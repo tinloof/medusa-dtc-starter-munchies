@@ -16,6 +16,25 @@ import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
 import {redirect} from "next/navigation";
 
+async function createCart(region_id: string) {
+  const body = {
+    region_id,
+  };
+
+  const cartResp = await client.store.cart.create(
+    body,
+    {
+      fields:
+        "+items, +region, +items.product.*, +items.variant.image, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
+    },
+    getAuthHeaders(),
+  );
+  setCartId(cartResp.cart.id);
+  revalidateTag(getCacheTag("carts"));
+
+  return cartResp.cart;
+}
+
 export async function getOrSetCart(countryCode: string) {
   let cart = await retrieveCart();
   const region = await getRegion(countryCode);
@@ -25,15 +44,7 @@ export async function getOrSetCart(countryCode: string) {
   }
 
   if (!cart) {
-    const body = {
-      region_id: region.id,
-    };
-
-    const cartResp = await client.store.cart.create(body, {}, getAuthHeaders());
-    setCartId(cartResp.cart.id);
-    revalidateTag(getCacheTag("carts"));
-
-    cart = await retrieveCart();
+    cart = await createCart(region.id);
   }
 
   if (cart && cart?.region_id !== region.id) {
@@ -51,24 +62,32 @@ export async function getOrSetCart(countryCode: string) {
 
 export async function addToCart({
   quantity,
+  region_id,
   variantId,
 }: {
   quantity: number;
+  region_id: string;
   variantId: string;
 }) {
   if (!variantId) {
     throw new Error("Missing variant ID when adding to cart");
   }
 
-  const cart = getCartId();
+  let cartId = getCartId();
 
-  if (!cart) {
+  if (!cartId) {
+    if (!region_id) throw new Error("Error missing region id");
+
+    cartId = (await createCart(region_id)).id;
+  }
+
+  if (!cartId) {
     throw new Error("Error retrieving or creating cart");
   }
 
   await client.store.cart
     .createLineItem(
-      cart,
+      cartId,
       {
         quantity,
         variant_id: variantId,
