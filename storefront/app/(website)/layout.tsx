@@ -29,6 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Layout({children}: {children: React.ReactNode}) {
   const data = await loadGlobalData();
+  const shouldEnableDraftModeToggle =
+    process.env.NODE_ENV === "development" && draftMode().isEnabled;
 
   return (
     <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
@@ -60,7 +62,9 @@ export default async function Layout({children}: {children: React.ReactNode}) {
         />
       )}
       <TailwindIndicator />
-      <ExitPreview enable={draftMode().isEnabled} />
+      {shouldEnableDraftModeToggle && (
+        <ExitPreview enable={draftMode().isEnabled} />
+      )}
     </body>
   );
 }
