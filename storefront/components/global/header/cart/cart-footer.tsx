@@ -9,10 +9,12 @@ import {useCart} from "./cart-context";
 export default function CartFooter() {
   const {cart} = useCart();
 
-  const total = convertToLocale({
-    amount: (cart?.total || 0)!,
-    currency_code: (cart?.currency_code || null)!,
-  });
+  const total = cart
+    ? convertToLocale({
+        amount: cart.total,
+        currency_code: cart.currency_code,
+      })
+    : null;
 
   const cartIsEmpty = cart?.items?.length === 0;
 
@@ -30,9 +32,11 @@ export default function CartFooter() {
                 Taxes and shipping calculated at checkout
               </Body>
             </div>
-            <Body font="sans" mobileSize="base">
-              {total}
-            </Body>
+            {total && (
+              <Body font="sans" mobileSize="base">
+                {total}
+              </Body>
+            )}
           </div>
         )}
         <Cta className="w-full" size="lg" variant="primary">
