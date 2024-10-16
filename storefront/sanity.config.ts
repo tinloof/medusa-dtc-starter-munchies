@@ -4,7 +4,6 @@ import {pages} from "@tinloof/sanity-studio";
 import {defineConfig, isDev} from "sanity";
 import {structureTool} from "sanity/structure";
 import {imageHotspotArrayPlugin} from "sanity-plugin-hotspot-array";
-import {muxInput} from "sanity-plugin-mux-input";
 
 import {StudioLogo} from "./components/studio/logo";
 import schemas from "./sanity/schemas";
@@ -47,7 +46,6 @@ export default defineConfig({
       title: "General",
     }),
     visionTool({defaultApiVersion: config.sanity.apiVersion}),
-    muxInput({mp4_support: "standard"}),
     imageHotspotArrayPlugin(),
   ],
   projectId: config.sanity.projectId,
