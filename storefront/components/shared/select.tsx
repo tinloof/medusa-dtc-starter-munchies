@@ -53,7 +53,7 @@ export default function Select({
       <RadixSelect.Portal>
         <RadixSelect.Content
           className={cx(
-            "z-50 my-1 max-h-[296px] w-[--radix-select-trigger-width] origin-top rounded-lg border-[1.5px] border-accent bg-background p-xs data-[state=closed]:animate-select-close data-[state=open]:animate-select-open",
+            "z-[100] my-1 max-h-[296px] w-[--radix-select-trigger-width] origin-top rounded-lg border-[1.5px] border-accent bg-background p-xs data-[state=closed]:animate-select-close data-[state=open]:animate-select-open",
             {
               "data-[state=open]": open,
             },

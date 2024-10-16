@@ -56,7 +56,7 @@ export default function ProductInformation({
         </Body>
         <div className="mt-s flex flex-col gap-s">
           {options && <OptionsSelect options={options} />}
-          <AddToCart />
+          <AddToCart variant="PDP" />
         </div>
         <Addons
           products={sanity_product?.addons?.products}

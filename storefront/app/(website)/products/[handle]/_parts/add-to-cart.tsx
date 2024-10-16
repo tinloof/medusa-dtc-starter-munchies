@@ -3,20 +3,24 @@ import type {ButtonProps} from "@/components/shared/button";
 
 import {addToCart} from "@/actions/medusa/cart";
 import {Cta} from "@/components/shared/button";
+import {cx} from "cva";
 import {useState} from "react";
 
 import {useProductVariants} from "../product-context";
 
-export default function AddToCart() {
+export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
   const {activeVariant} = useProductVariants();
 
   return (
     <AddToCartButton
-      className="w-full"
+      className={cx("", {
+        "!h-[60px] w-fit": variant === "sticky",
+        "w-full": variant === "PDP",
+      })}
       label="Add to cart"
       loadingLabel="Adding..."
-      size="xl"
-      variant="outline"
+      size={variant === "PDP" ? "xl" : "lg"}
+      variant={variant === "PDP" ? "outline" : "primary"}
       variantId={activeVariant?.id}
     />
   );
