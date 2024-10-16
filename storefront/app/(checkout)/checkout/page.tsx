@@ -1,11 +1,15 @@
 import type {HttpTypes} from "@medusajs/types";
 
-import Heading from "@/components/shared/typography/heading";
 import {retrieveCart} from "@/data/medusa/cart";
+import {
+  listCartPaymentMethods,
+  listCartShippingMethods,
+} from "@/data/medusa/fullfilment";
 import {enrichLineItems} from "@/data/medusa/line-items";
 import {notFound} from "next/navigation";
 
-import LineItem from "./_parts/line-item";
+import CartDetails from "./_parts/cart-details";
+import CheckoutForm from "./_parts/checkout-form";
 
 export default async function CheckoutPage() {
   const cart = await retrieveCart();
@@ -14,22 +18,24 @@ export default async function CheckoutPage() {
   }
 
   if (cart?.items?.length) {
-    const enrichedItems = await enrichLineItems(cart?.items, cart?.region_id);
-    cart.items = enrichedItems as HttpTypes.StoreCartLineItem[];
+    cart.items = (await enrichLineItems(
+      cart.items,
+      cart.region_id,
+    )) as HttpTypes.StoreCartLineItem[];
   }
 
+  const shippingMethods = (await listCartShippingMethods(cart.id)) || [];
+  const paymentMethods = (await listCartPaymentMethods(cart.region_id!)) || [];
+
   return (
-    <body>
-      <section className="flex flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-5 md:px-8 lg:justify-between lg:pb-20 lg:pt-5">
-        <div className="w-full"></div>
-        <div className="flex w-full flex-col gap-4 rounded-lg border border-accent p-4 md:max-w-[420px]">
-          <Heading desktopSize="xl" font="serif" mobileSize="lg" tag="h3">
-            Order details
-          </Heading>
-          {cart.items?.map((item) => {
-            return <LineItem key={item.id} {...item} />;
-          })}
-        </div>
+    <body className="mx-auto max-w-max-screen">
+      <section className="flex flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pb-20 lg:pt-5">
+        <CheckoutForm
+          cart={cart}
+          paymentMethods={paymentMethods}
+          shippingMethods={shippingMethods}
+        />
+        <CartDetails cart={cart} />
       </section>
     </body>
   );
