@@ -10,7 +10,7 @@ export function ExitPreview(props: {enable: boolean}) {
   if (isInIframe || !props.enable) return null;
 
   return (
-    <div className="fixed bottom-2 flex w-full justify-center">
+    <div className="fixed bottom-4 left-4 z-50 flex w-full">
       <form action="/api/disable-draft" method="GET">
         <input name="currentSlug" type="hidden" value={pathname} />
         <button className="inline-flex rounded-full bg-gray-900 px-5 py-2 text-white shadow">
