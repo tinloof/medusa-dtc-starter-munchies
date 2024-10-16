@@ -10,14 +10,7 @@ export default function ProductGrid({products}: {products: StoreProduct[]}) {
   );
 
   useEffect(() => {
-    if (products) {
-      setPaginatedProducts((prevProducts) => [
-        ...prevProducts,
-        ...products.filter(
-          (product) => !prevProducts.some((p) => p.id === product.id),
-        ),
-      ]);
-    }
+    setPaginatedProducts(products);
   }, [products]);
 
   return paginatedProducts?.map((product) => {

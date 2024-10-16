@@ -10,19 +10,19 @@ import {type ComponentProps, useState} from "react";
 import DropDown from "./drop-down";
 
 export function useMultiFilter(name: string) {
-  const [state, setState] = useQueryState(name, parseAsArrayOf(parseAsString));
+  const [state, setState] = useQueryState(
+    name,
+    parseAsArrayOf(parseAsString).withOptions({shallow: false}),
+  );
 
   const setFilter = (value: string) => {
-    setState(
-      (prev) => {
-        if (prev && prev.includes(value)) {
-          const values = prev.filter((item) => item !== value);
-          return values.length > 0 ? values : null;
-        }
-        return prev ? [value, ...prev] : [value];
-      },
-      {shallow: true},
-    );
+    setState((prev) => {
+      if (prev && prev.includes(value)) {
+        const values = prev.filter((item) => item !== value);
+        return values.length > 0 ? values : null;
+      }
+      return prev ? [value, ...prev] : [value];
+    });
   };
 
   return {filter: state, setFilter};

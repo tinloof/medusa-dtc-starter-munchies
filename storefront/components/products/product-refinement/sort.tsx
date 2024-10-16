@@ -7,6 +7,7 @@ export type SortOptions = "created_at" | "price_asc" | "price_desc";
 export default function Sort() {
   const [orderBy, setOrderBy] = useQueryState("sort", {
     defaultValue: "created_at",
+    shallow: false,
   });
 
   const options = [
@@ -20,7 +21,7 @@ export default function Sort() {
     },
   ];
 
-  const setOption = (value: string) => setOrderBy(value, {shallow: false});
+  const setOption = (value: string) => setOrderBy(value);
 
   const placeholder = options.find(({value}) => value === orderBy)?.label;
 
