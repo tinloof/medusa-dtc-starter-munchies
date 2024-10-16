@@ -36,7 +36,7 @@ export default function Header(props: Header) {
             </div>
           }
         >
-          <Cart />
+          <Cart cartAddons={props.cartAddons} />
         </Suspense>
         <div
           className="absolute left-1/2 top-[56px] z-30 mx-auto w-screen max-w-max-screen -translate-x-1/2"
