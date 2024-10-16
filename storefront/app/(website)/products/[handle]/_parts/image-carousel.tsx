@@ -2,13 +2,17 @@
 
 import type {StoreProduct, StoreProductImage} from "@medusajs/types";
 
+import {
+  Root,
+  Slides,
+  SlidesWrapper,
+  useCarousel,
+} from "@/components/shared/carousel";
 import Tag from "@/components/shared/tag";
 import useIsHydrated from "@/hooks/use-is-hydrated";
 import {cx} from "cva";
 import Image from "next/image";
-import {useEffect, useState} from "react";
-
-import {Root, Slide, Slides, useCarouselContext} from "./carousel";
+import {Fragment, useEffect, useState} from "react";
 
 type CommonProductImagesCarouselProps = {
   product: StoreProduct;
@@ -19,15 +23,40 @@ export function ProductImagesCarousel({
 }: CommonProductImagesCarouselProps) {
   const isHydrated = useIsHydrated();
 
-  const images = product.images;
-
   const [selectedImageIndex, setSelectedImageIdex] = useState(0);
 
+  const images = product.images;
+
+  if (images?.length === 0 || !images) return null;
+
+  const slides = images?.map((image, index) => {
+    return (
+      <Fragment key={image.id}>
+        {product.type?.value && (
+          <Tag className="absolute right-4 top-4" text={product.type?.value} />
+        )}
+        <Image
+          alt={product.title}
+          className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
+          height={591}
+          priority={index === 0}
+          sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
+          src={image.url}
+          style={{background: "transparent"}}
+          width={591}
+        />
+      </Fragment>
+    );
+  });
+
   return (
-    <Root slidesCount={images?.length || 0}>
+    <Root
+      options={{containScroll: "trimSnaps", dragFree: true}}
+      slidesCount={images?.length || 0}
+    >
       <div className="mx-auto flex w-full gap-2 lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:mx-0 lg:max-w-[684px]">
         {(images?.length || 0) > 0 && (
-          <div className="hidden w-[85px] flex-col gap-2 lg:flex" id="thumbs">
+          <div className={cx("hidden w-[85px] flex-col gap-2 lg:flex")}>
             {images?.map((mediaItem, index) => (
               <ItemCarousel
                 index={index}
@@ -41,39 +70,20 @@ export function ProductImagesCarousel({
             ))}
           </div>
         )}
-        <Slides
-          className={cx(
-            "pdp-image-slides scrollbar-hide mt-1 flex h-fit w-full gap-xs overflow-scroll px-m lg:px-0",
-            {
-              "snap-x snap-mandatory": isHydrated, // only enable snapping after hydration, because it randomly scrolls on chrome
-            },
-          )}
+        <SlidesWrapper
+          className={cx("scrollbar-hide mt-1 h-fit w-full gap-xs px-m lg:px-0")}
         >
-          {images?.map((media, index) => (
-            <Slide
-              className="relative flex w-[86vw] min-w-full snap-center justify-center lg:w-full"
-              index={index}
-              key={index}
-            >
-              {product.type?.value && (
-                <Tag
-                  className="absolute right-4 top-4"
-                  text={product.type?.value}
-                />
-              )}
-              <Image
-                alt={product.title}
-                className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
-                height={591}
-                priority={index === 0}
-                sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
-                src={media.url}
-                style={{background: "transparent"}}
-                width={591}
-              />
-            </Slide>
-          ))}
-        </Slides>
+          <Slides
+            content={slides}
+            itemProps={{
+              className:
+                "relative flex w-[86vw] min-w-full snap-center justify-center lg:w-full",
+            }}
+            wrapperDiv={{
+              className: "snap-x snap-mandatory gap-xs",
+            }}
+          />
+        </SlidesWrapper>
       </div>
     </Root>
   );
@@ -90,11 +100,11 @@ function ItemCarousel({
   selectedImageIndex: number;
   setSelectedImageIdex: (index: number) => void;
 }) {
-  const {scrollToIndex} = useCarouselContext();
+  const {api} = useCarousel();
 
   useEffect(() => {
-    scrollToIndex(selectedImageIndex);
-  }, [scrollToIndex, selectedImageIndex]);
+    api?.scrollTo(selectedImageIndex);
+  }, [api, selectedImageIndex]);
 
   return (
     <button

@@ -63,7 +63,11 @@ export function Cta({
       {loading && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <Icon
-            className="size-10 animate-spin-loading"
+            className={cx("animate-spin-loading", {
+              "size-5": size === "sm",
+              "size-8": size === "md",
+              "size-10": size === "lg" || size === "xl",
+            })}
             name={loadingIconName}
           />
         </div>

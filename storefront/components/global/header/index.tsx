@@ -32,7 +32,7 @@ export default function Header(props: Header) {
             </div>
           }
         >
-          <Cart />
+          <Cart cartAddons={props.cartAddons} />
         </Suspense>
       </div>
     </header>

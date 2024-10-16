@@ -4,7 +4,6 @@ import {getProductPrice} from "@/utils/medusa/get-product-price";
 import {cx} from "cva";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import Tag from "./tag";
 import Body from "./typography/body";
