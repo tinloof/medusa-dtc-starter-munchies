@@ -9,6 +9,7 @@ import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import Label from "@/components/shared/typography/label";
 import * as Dialog from "@radix-ui/react-dialog";
+import {cx} from "cva";
 import NextLink from "next/link";
 import {useState} from "react";
 import {RemoveScroll} from "react-remove-scroll";
@@ -53,9 +54,13 @@ export default function Hamburger({data}: {data: Header}) {
         <RemoveScroll>
           <Dialog.Content className="flex h-[calc(100dvh-var(--header-height))] w-screen overflow-x-hidden bg-background">
             <div
-              className={`scrollbar-hide fixed inset-0 w-screen transform overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300 ${
-                isMenuActive ? "-translate-x-full" : "translate-x-0"
-              }`}
+              className={cx(
+                "scrollbar-hide fixed inset-0 w-screen overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
+                {
+                  "-translate-x-full": isMenuActive,
+                  "translate-x-0": !isMenuActive,
+                },
+              )}
             >
               <div className="flex h-auto w-full flex-col">
                 {data.navigation?.map((item) => (

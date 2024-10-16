@@ -37,12 +37,12 @@ export default async function Cart({cartAddons}: Props) {
               <Icon className="h-9 w-9" name="Close" />
             </CloseDialog>
             <div className="flex flex-1 flex-col gap-4 overflow-y-scroll p-4">
-              {cart?.items?.length === 0 ? (
+              {!cart?.items || cart.items.length === 0 ? (
                 <Body font="sans" mobileSize="base">
                   Your bag is currently empty.
                 </Body>
               ) : (
-                cart?.items?.map((item) => <LineItem key={item.id} {...item} />)
+                cart.items.map((item) => <LineItem key={item.id} {...item} />)
               )}
             </div>
             {addonIds.length > 0 && cart?.region_id && (
