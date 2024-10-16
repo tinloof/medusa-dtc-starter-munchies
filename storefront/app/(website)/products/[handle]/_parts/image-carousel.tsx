@@ -9,7 +9,6 @@ import {
   useCarousel,
 } from "@/components/shared/carousel";
 import Tag from "@/components/shared/tag";
-import useIsHydrated from "@/hooks/use-is-hydrated";
 import {cx} from "cva";
 import Image from "next/image";
 import {Fragment, useEffect, useState} from "react";
@@ -21,8 +20,6 @@ type CommonProductImagesCarouselProps = {
 export function ProductImagesCarousel({
   product,
 }: CommonProductImagesCarouselProps) {
-  const isHydrated = useIsHydrated();
-
   const [selectedImageIndex, setSelectedImageIdex] = useState(0);
 
   const images = product.images;
