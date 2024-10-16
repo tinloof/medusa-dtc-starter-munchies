@@ -1,9 +1,9 @@
-import type {SectionProps} from "@/components/sections/types";
 import type {PageProps} from "@/types";
 
 import SectionsRenderer from "@/components/sections/section-renderer";
 import {getProductByHandle} from "@/data/medusa/products";
 import {getRegion} from "@/data/medusa/regions";
+import {loadProductContent} from "@/data/sanity";
 import {notFound} from "next/navigation";
 
 import {ProductImagesCarousel} from "./_parts/image-carousel";
@@ -24,6 +24,8 @@ export default async function ProductPage({params}: ProductPageProps) {
 
   const product = await getProductByHandle(params.handle, region.id);
 
+  const content = await loadProductContent(params.handle);
+
   if (!product) {
     console.log("No product found");
     return notFound();
@@ -34,11 +36,9 @@ export default async function ProductPage({params}: ProductPageProps) {
         <ProductImagesCarousel product={product} />
         <ProductInformation region_id={region.id} {...product} />
       </section>
-
-      <SectionsRenderer
-        fieldName="body"
-        sections={product.sanity_product?.sections as SectionProps[]}
-      />
+      {content?.sections && (
+        <SectionsRenderer fieldName="body" sections={content.sections} />
+      )}
     </>
   );
 }
