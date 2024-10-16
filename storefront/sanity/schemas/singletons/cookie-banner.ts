@@ -1,6 +1,7 @@
 import {defineType} from "sanity";
 
 export const cookieBanner = defineType({
+  description: "Only relevant if you're storing user cookies",
   fields: [
     {
       name: "title",
