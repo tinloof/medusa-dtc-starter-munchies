@@ -10,7 +10,8 @@ import Label from "@/components/shared/typography/label";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import {cx} from "cva";
 import NextLink from "next/link";
-import {useState} from "react";
+import {usePathname, useSearchParams} from "next/navigation";
+import {useEffect, useState} from "react";
 import {RemoveScroll} from "react-remove-scroll";
 
 type DropdownType = Extract<
@@ -19,11 +20,16 @@ type DropdownType = Extract<
 >;
 
 export default function Navigation({data}: {data: Header}) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [openDropdown, setOpenDropdown] = useState<string>("");
-
   const handleValueChange = (value: string) => {
     setOpenDropdown(value);
   };
+
+  useEffect(() => {
+    setOpenDropdown("");
+  }, [pathname, searchParams]);
 
   return (
     <NavigationMenu.Root

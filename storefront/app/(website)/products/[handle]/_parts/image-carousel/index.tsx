@@ -65,6 +65,7 @@ export function ProductImagesCarousel({
                 alt={product.title}
                 className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
                 height={591}
+                priority={index === 0}
                 sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
                 src={media.url}
                 style={{background: "transparent"}}
