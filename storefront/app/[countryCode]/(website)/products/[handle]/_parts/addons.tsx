@@ -23,7 +23,7 @@ export default async function Addons({
         {title}
       </Heading>
       {products.map((product) => (
-        <AddonsItem key={product.id} {...product} />
+        <AddonsItem key={product.id} region_id={region_id} {...product} />
       ))}
     </div>
   );

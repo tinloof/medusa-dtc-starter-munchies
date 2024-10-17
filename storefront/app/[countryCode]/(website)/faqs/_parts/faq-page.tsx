@@ -4,7 +4,7 @@ import type {FAQS_PAGE_QUERYResult, FaqEntry} from "@/types/sanity.generated";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
 import FaqContent from "./faq-content";
 import SearchBar from "./search-bar";
@@ -31,17 +31,19 @@ export default function Faq({
     initialCategory ?? "",
   );
 
+  const categoriesMemo = useMemo(() => data.category ?? [], [data.category]);
+
   const onSearch = useCallback(
     (query: string) => {
       const search = query?.toLowerCase().trim();
       queryRef.current = search;
-      if (search === "" || !data.category) {
+      if (search === "" || !categoriesMemo) {
         setSearchResults([]);
         return;
       }
 
       const uniqueQuestions = new Set<string>();
-      const entries = categories.flatMap(
+      const entries = categoriesMemo.flatMap(
         (category) =>
           category.questions?.map((entry) => ({
             ...entry,
@@ -59,7 +61,7 @@ export default function Faq({
 
       setSearchResults(results);
     },
-    [categories, data.category, setSearchResults],
+    [categoriesMemo, setSearchResults],
   );
 
   const scrollToQuestion = (id: string) => {

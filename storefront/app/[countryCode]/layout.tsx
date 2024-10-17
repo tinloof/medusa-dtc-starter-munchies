@@ -1,43 +1,17 @@
-import type {Metadata} from "next";
+import type {PropsWithChildren} from "react";
 
 import {ExitPreview} from "@/components/exit-preview";
-import Footer from "@/components/global/footer";
-import Header from "@/components/global/header";
-import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigation-smooth-scroll";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
-import config from "@/config";
-import {loadGlobalData} from "@/data/sanity";
-import {getOgImages} from "@/data/sanity/resolve-sanity-route-metadata";
-import {revalidatePath, revalidateTag} from "next/cache";
+import cache from "next/cache";
 import {draftMode} from "next/headers";
-import {VisualEditing} from "next-sanity";
-import React from "react";
+import VisualEditing from "next-sanity/visual-editing/client-component";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const data = await loadGlobalData();
-
-  return {
-    openGraph: {
-      images: !data?.fallbackOGImage
-        ? undefined
-        : getOgImages(data.fallbackOGImage),
-      title: config.siteName,
-    },
-    title: config.siteName,
-  };
-}
-
-export default async function Layout({children}: {children: React.ReactNode}) {
-  const data = await loadGlobalData();
+export default function Layout({children}: PropsWithChildren) {
   const shouldEnableDraftModeToggle =
     process.env.NODE_ENV === "development" && draftMode().isEnabled;
-
   return (
     <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
-      <PreventBackNavigationSmoothScroll />
-      {data.header && <Header {...data.header} />}
-      <main className="flex-1">{children}</main>
-      {data.footer && <Footer {...data.footer} />}
+      {children}
       {draftMode().isEnabled && (
         <VisualEditing
           refresh={async (payload) => {
@@ -52,12 +26,12 @@ export default async function Layout({children}: {children: React.ReactNode}) {
               if (payload.document.slug?.current) {
                 const tag = `${payload.document._type}:${payload.document.slug.current}`;
                 console.log("Revalidate slug", tag);
-                await revalidateTag(tag);
+                await cache.revalidateTag(tag);
               }
               console.log("Revalidate tag", payload.document._type);
-              return revalidateTag(payload.document._type);
+              return cache.revalidateTag(payload.document._type);
             }
-            await revalidatePath("/", "layout");
+            await cache.revalidatePath("/", "layout");
           }}
         />
       )}

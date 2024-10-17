@@ -8,6 +8,7 @@ import type {
 import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
 import {addToCart, updateCartQuantity} from "@/actions/medusa/cart";
+import {usePathname} from "next/navigation";
 import {
   createContext,
   useContext,
@@ -26,7 +27,11 @@ const CartContext = createContext<
   | {
       cart: Cart | null;
       cartOpen: boolean;
-      handleAddToCart: (variantId: string, quantity: number) => Promise<void>;
+      handleAddToCart: (
+        variantId: string,
+        quantity: number,
+        countryCode: string,
+      ) => Promise<void>;
       handleDeleteItem: (lineItem: string) => Promise<void>;
       handleUpdateCartQuantity: (
         lineItem: string,
@@ -47,14 +52,20 @@ export function CartProvider({
   const [cartOpen, setCartOpen] = useState(false);
 
   const [, startTransition] = useTransition();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setCartOpen(false);
+  }, [pathname]);
 
   const cartRef = useRef(optimisticCart);
 
   useEffect(() => {
     const cartContentsChanged =
-      JSON.stringify(cartRef.current) !== JSON.stringify(optimisticCart);
+      JSON.stringify(cartRef.current?.items) !==
+      JSON.stringify(optimisticCart?.items);
 
-    if (cartContentsChanged) {
+    if (cartContentsChanged && (optimisticCart?.items?.length || 0) > 0) {
       setCartOpen(true);
       cartRef.current = optimisticCart;
     }
@@ -104,11 +115,16 @@ export function CartProvider({
     });
   };
 
-  const handleAddToCart = async (variantId: string, quantity: number) => {
+  const handleAddToCart = async (
+    variantId: string,
+    quantity: number,
+    region_id: string,
+  ) => {
     setCartOpen(true);
 
     await addToCart({
       quantity,
+      region_id,
       variantId,
     });
   };

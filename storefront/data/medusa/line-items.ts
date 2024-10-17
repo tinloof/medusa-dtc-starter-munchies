@@ -1,49 +1,46 @@
-import type {HttpTypes} from "@medusajs/types";
+import type {StoreCartLineItem, StoreOrderLineItem} from "@medusajs/types";
 
 import {omit} from "lodash";
 
 import {getProductsByIds} from "./products";
 
-export async function enrichLineItems(
-  lineItems:
-    | HttpTypes.StoreCartLineItem[]
-    | HttpTypes.StoreOrderLineItem[]
-    | null,
-  regionId?: string,
-) {
-  if (!lineItems) return [];
+export async function enrichLineItems<
+  T extends StoreCartLineItem | StoreOrderLineItem,
+>(lineItems: T[] | null, regionId?: string): Promise<T[]> {
+  if (!lineItems?.length) return [];
 
-  // Fetch products by their IDs
   const {products} = await getProductsByIds(
     lineItems.map((lineItem) => lineItem.product_id!),
     regionId!,
   );
-  // If there are no line items or products, return an empty array
-  if (!lineItems?.length || !products) {
-    return [];
-  }
 
-  // Enrich line items with product and variant information
-  const enrichedItems = lineItems.map((item) => {
-    const product = products.find((p: any) => p.id === item.product_id);
-    const variant = product?.variants?.find(
-      (v: any) => v.id === item.variant_id,
-    );
+  if (!products?.length) return lineItems;
 
-    // If product or variant is not found, return the original item
-    if (!product || !variant) {
-      return item;
-    }
+  const productMap = new Map(products.map((product) => [product.id, product]));
+  const variantMap = new Map(
+    products.flatMap(
+      (product) =>
+        product.variants?.map((variant) => [
+          variant.id,
+          {...variant, product},
+        ]) ?? [],
+    ),
+  );
 
-    // If product and variant are found, enrich the item
+  return lineItems.map((item) => {
+    const product = productMap.get(item.product_id!);
+    const variant = variantMap.get(item.variant_id!);
+
+    if (!product || !variant) return item;
+
+    const omittedProduct = omit(product, "variants");
     return {
       ...item,
+      product: omittedProduct,
       variant: {
         ...variant,
-        product: omit(product, "variants"),
+        product: omittedProduct,
       },
     };
-  }) as HttpTypes.StoreCartLineItem[];
-
-  return enrichedItems;
+  }) as T[];
 }

@@ -13,7 +13,6 @@ type ProductPageProps = PageProps<"countryCode" | "handle">;
 
 export default async function ProductPage({params}: ProductPageProps) {
   const region = await getRegion(params.countryCode);
-
   if (!region) {
     console.log("No region found");
     return notFound();
