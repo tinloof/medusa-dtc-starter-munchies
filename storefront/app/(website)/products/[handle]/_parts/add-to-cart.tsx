@@ -18,7 +18,7 @@ export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
         "w-full": variant === "PDP",
       })}
       label="Add to cart"
-      size={variant === "PDP" ? "xl" : "lg"}
+      size={variant === "PDP" ? "xl" : "md"}
       variant={variant === "PDP" ? "outline" : "primary"}
       variantId={activeVariant?.id}
     />
