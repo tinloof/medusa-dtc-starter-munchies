@@ -31,8 +31,10 @@ export default function Delivery({
     status: "idle",
   });
 
+  const cartShippingMethod = cart.shipping_methods?.[0];
+
   const activeShippingMethod = methods.find(
-    ({id}) => id === cart.shipping_methods?.[0].shipping_option_id,
+    ({id}) => id === cartShippingMethod?.shipping_option_id,
   );
 
   const isFilled = !active && !!activeShippingMethod;
@@ -72,7 +74,7 @@ export default function Delivery({
         <form action={action} className="flex w-full flex-col gap-4">
           <Root
             className="flex w-full flex-col gap-4"
-            defaultValue={cart.shipping_methods?.[0].shipping_option_id}
+            defaultValue={cartShippingMethod?.shipping_option_id}
             name="shippingMethodId"
             required
           >
