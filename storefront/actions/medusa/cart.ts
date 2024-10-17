@@ -1,42 +1,52 @@
 "use server";
 
+import type {StoreUpdateCart} from "@medusajs/types";
+
 import {retrieveCart} from "@/data/medusa/cart";
-import client from "@/data/medusa/client";
+import medusa from "@/data/medusa/client";
 import {
   getAuthHeaders,
   getCacheTag,
   getCartId,
   setCartId,
 } from "@/data/medusa/cookies";
-import {getCustomer} from "@/data/medusa/customer";
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
 
+async function createCart(region_id: string) {
+  const body = {
+    region_id,
+  };
+
+  const cartResp = await medusa.store.cart.create(
+    body,
+    {
+      fields:
+        "+items, +region, +items.product.*, +items.variant.image, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
+    },
+    getAuthHeaders(),
+  );
+  setCartId(cartResp.cart.id);
+  revalidateTag(getCacheTag("carts"));
+
+  return cartResp.cart;
+}
+
 export async function getOrSetCart(countryCode: string) {
   let cart = await retrieveCart();
   const region = await getRegion(countryCode);
-  const customer = await getCustomer();
 
   if (!region) {
     throw new Error(`Region not found for country code: ${countryCode}`);
   }
 
   if (!cart) {
-    const body = {
-      email: customer?.email,
-      region_id: region.id,
-    };
-
-    const cartResp = await client.store.cart.create(body, {}, getAuthHeaders());
-    setCartId(cartResp.cart.id);
-    revalidateTag(getCacheTag("carts"));
-
-    cart = await retrieveCart();
+    cart = await createCart(region.id);
   }
 
   if (cart && cart?.region_id !== region.id) {
-    await client.store.cart.update(
+    await medusa.store.cart.update(
       cart.id,
       {region_id: region.id},
       {},
@@ -50,24 +60,32 @@ export async function getOrSetCart(countryCode: string) {
 
 export async function addToCart({
   quantity,
+  region_id,
   variantId,
 }: {
   quantity: number;
+  region_id: string;
   variantId: string;
 }) {
   if (!variantId) {
     throw new Error("Missing variant ID when adding to cart");
   }
 
-  const cart = getCartId();
+  let cartId = getCartId();
 
-  if (!cart) {
+  if (!cartId) {
+    if (!region_id) throw new Error("Error missing region id");
+
+    cartId = (await createCart(region_id)).id;
+  }
+
+  if (!cartId) {
     throw new Error("Error retrieving or creating cart");
   }
 
-  await client.store.cart
+  await medusa.store.cart
     .createLineItem(
-      cart,
+      cartId,
       {
         quantity,
         variant_id: variantId,
@@ -97,11 +115,11 @@ export async function updateCartQuantity({
   }
 
   if (!(quantity > 0)) {
-    await client.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
+    await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
       revalidateTag(getCacheTag("carts"));
     });
   } else {
-    await client.store.cart
+    await medusa.store.cart
       .updateLineItem(
         cart.id,
         lineItem,
@@ -130,7 +148,24 @@ export async function deleteLineItem({
     throw new Error("Error retrieving or creating cart");
   }
 
-  await client.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
+  await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
     revalidateTag(getCacheTag("carts"));
   });
+}
+
+export async function updateCart(data: StoreUpdateCart) {
+  const cartId = getCartId();
+  if (!cartId) {
+    throw new Error(
+      "No existing cart found, please create one before updating",
+    );
+  }
+
+  return medusa.store.cart
+    .update(cartId, data, {}, getAuthHeaders())
+    .then(({cart}) => {
+      revalidateTag(getCacheTag("carts"));
+      return cart;
+    })
+    .catch(medusaError);
 }

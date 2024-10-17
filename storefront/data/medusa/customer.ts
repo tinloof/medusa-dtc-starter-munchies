@@ -1,11 +1,9 @@
-import {cache} from "react";
-
-import client from "./client";
+import medusa from "./client";
 import {getAuthHeaders, getCacheHeaders} from "./cookies";
 
-export const getCustomer = cache(async function () {
-  return await client.store.customer
+export async function getCustomer() {
+  return await medusa.store.customer
     .retrieve({}, {...getCacheHeaders("customers"), ...getAuthHeaders()})
     .then(({customer}) => customer)
     .catch(() => null);
-});
+}

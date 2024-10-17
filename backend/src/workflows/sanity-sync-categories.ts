@@ -47,8 +47,6 @@ const syncStep = step(
           order: { id: "ASC" },
         });
 
-      console.log(categories);
-
       await promiseAll(
         categories.map((prod) => {
           return sanityModule.upsertSyncDocument("category", prod);

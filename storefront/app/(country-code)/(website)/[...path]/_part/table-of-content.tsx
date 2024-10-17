@@ -1,14 +1,12 @@
 import type {TEXT_PAGE_QUERYResult} from "@/types/sanity.generated";
 import type {BlocksBody} from "@/utils/content/toc";
 
+import TocSelect from "@/components/shared/toc-select";
 import Body from "@/components/shared/typography/body";
 import getBlocksToc from "@/utils/content/toc";
 import {getPtComponentId} from "@/utils/ids";
 import {toPlainText} from "@portabletext/react";
 import Link from "next/link";
-import React from "react";
-
-import TocSelect from "../../../../components/shared/toc-select";
 
 export default function TableOfContents({
   body,
