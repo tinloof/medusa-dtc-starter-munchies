@@ -1,4 +1,4 @@
-import type {Product} from "@/types/sanity.generated";
+import type {PRODUCT_QUERYResult} from "@/types/sanity.generated";
 import type {StoreProduct} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
@@ -12,7 +12,7 @@ import OptionsSelect from "./options";
 import Price from "./price";
 import ProductSpecs from "./specs";
 
-type Props = {region_id: string} & {sanity_product: Product} & Pick<
+type Props = {content: PRODUCT_QUERYResult} & {region_id: string} & Pick<
     StoreProduct,
     | "collection"
     | "description"
@@ -25,17 +25,17 @@ type Props = {region_id: string} & {sanity_product: Product} & Pick<
 
 export default function ProductInformation({
   collection,
+  content,
   description,
   id,
   options,
   region_id,
-  sanity_product,
   title,
   variants,
 }: Props) {
   return (
     <ProductVariantsProvider options={options} variants={variants}>
-      <div className="lg:y-s flex w-full max-w-[580px] flex-col gap-lg px-m pb-2xl pt-s">
+      <div className="lg:y-s flex w-full flex-col gap-lg px-m pb-2xl pt-s lg:max-w-[580px]">
         <BreadCrumbs collection={collection} title={title} />
         <Heading
           className="leading-[100%]"
@@ -59,11 +59,11 @@ export default function ProductInformation({
           <AddToCart variant="PDP" />
         </div>
         <Addons
-          products={sanity_product?.addons?.products}
+          products={content?.addons?.products}
           region_id={region_id}
-          title={sanity_product?.addons?.title}
+          title={content?.addons?.title}
         />
-        <ProductSpecs specs={sanity_product?.specs} />
+        <ProductSpecs specs={content?.specs} />
       </div>
     </ProductVariantsProvider>
   );

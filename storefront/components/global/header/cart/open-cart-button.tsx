@@ -1,14 +1,14 @@
 "use client";
-import { OpenDialog } from "@/components/shared/dialog";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 
-import { useCart } from "./cart-context";
+import {useCart} from "./cart-context";
+import {OpenDialog} from "./cart-dialog";
 
 export default function OpenCart() {
   const {cart} = useCart();
 
-  const count = (cart?.items?.length || 0).toFixed()
+  const count = (cart?.items?.length || 0).toFixed();
 
   return (
     <OpenDialog>

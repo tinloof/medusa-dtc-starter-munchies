@@ -13,6 +13,10 @@ export const SINGLETONS: {
     _type: "cookie.banner",
     title: "Cookie Banner",
   },
+  dictionary: {
+    _type: "dictionary",
+    title: "Dictionary",
+  },
   faq: {
     _type: "faq.index",
     title: "FAQ",

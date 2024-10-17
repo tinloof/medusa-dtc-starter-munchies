@@ -17,9 +17,14 @@ import Heading from "./typography/heading";
 export const RichText = ({
   value = [],
 }: PortableTextProps<ArbitraryTypedObject | PortableTextBlock>) => {
+  const components: PortableTextComponents = {
+    marks: {
+      link: PtLink,
+    },
+  };
   return (
     <div className="flex flex-col gap-4">
-      <PortableText value={value} />
+      <PortableText components={components} value={value} />
     </div>
   );
 };

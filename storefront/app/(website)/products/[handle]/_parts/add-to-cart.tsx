@@ -18,7 +18,6 @@ export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
         "w-full": variant === "PDP",
       })}
       label="Add to cart"
-      loadingLabel="Adding..."
       size={variant === "PDP" ? "xl" : "lg"}
       variant={variant === "PDP" ? "outline" : "primary"}
       variantId={activeVariant?.id}
@@ -28,13 +27,11 @@ export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
 
 export function AddToCartButton({
   label,
-  loadingLabel,
   quantity = 1,
   variantId,
   ...buttonProps
 }: {
   label: string;
-  loadingLabel?: string;
   quantity?: number;
   variantId?: string;
 } & Omit<ButtonProps, "onClick">) {
@@ -55,11 +52,12 @@ export function AddToCartButton({
   return (
     <Cta
       {...buttonProps}
+      loading={isAdding}
       onClick={
         variantId ? () => handleAddToCart(variantId, quantity) : undefined
       }
     >
-      {isAdding ? (loadingLabel ? loadingLabel : label) : label}
+      {label}
     </Cta>
   );
 }

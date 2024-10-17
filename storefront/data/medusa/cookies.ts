@@ -1,7 +1,9 @@
 import {cookies} from "next/headers";
 import "server-only";
 
-export const getAuthHeaders = (): {authorization: string} | {} => {
+export const getAuthHeaders = ():
+  | {authorization: string}
+  | NonNullable<unknown> => {
   const token = cookies().get("_medusa_jwt")?.value;
 
   if (token) {
@@ -21,7 +23,9 @@ export const getCacheTag = (tag: string): string => {
   return "";
 };
 
-export const getCacheHeaders = (tag: string): {next: {tags: string[]}} | {} => {
+export const getCacheHeaders = (
+  tag: string,
+): {next: {tags: string[]}} | NonNullable<unknown> => {
   const cacheTag = getCacheTag(tag);
 
   if (cacheTag) {

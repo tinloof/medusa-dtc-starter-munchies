@@ -17,7 +17,7 @@ import {
 } from "@radix-ui/react-dialog";
 import {cx} from "cva";
 
-import {useCart} from "../global/header/cart/cart-context";
+import {useCart} from "./cart-context";
 
 export function Dialog(props: Omit<DialogProps, "onOpenChange" | "open">) {
   const {cartOpen, setCartOpen} = useCart();

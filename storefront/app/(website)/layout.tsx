@@ -1,9 +1,9 @@
 import type {Metadata} from "next";
 
 import {ExitPreview} from "@/components/exit-preview";
-import CookieBanner from "@/components/global/cookie-banner";
 import Footer from "@/components/global/footer";
 import Header from "@/components/global/header";
+import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigation-smooth-scroll";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
@@ -34,10 +34,10 @@ export default async function Layout({children}: {children: React.ReactNode}) {
 
   return (
     <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
+      <PreventBackNavigationSmoothScroll />
       {data.header && <Header {...data.header} />}
       <main className="flex-1">{children}</main>
       {data.footer && <Footer {...data.footer} />}
-      <CookieBanner />
       {draftMode().isEnabled && (
         <VisualEditing
           refresh={async (payload) => {

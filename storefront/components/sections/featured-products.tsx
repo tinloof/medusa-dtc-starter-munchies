@@ -1,11 +1,11 @@
 import {getProductsByIds} from "@/data/medusa/products";
 import {getRegion} from "@/data/medusa/regions";
-import React from "react";
 
 import type {ModularPageSection} from "./types";
 
-import EmblaCarousel from "../shared/carousel";
+import CarouselSection from "../shared/carousel-section";
 import ProductCard from "../shared/product-card";
+import Heading from "../shared/typography/heading";
 
 export default async function FeaturedProducts(
   props: ModularPageSection<"section.featuredProducts">,
@@ -34,10 +34,19 @@ export default async function FeaturedProducts(
   ));
   return (
     <section {...props.rootHtmlAttributes}>
-      <EmblaCarousel
+      <CarouselSection
         cta={{href: props.cta?.link, text: props.cta?.label}}
         slides={slides}
-        title={props.title}
+        title={
+          <Heading
+            className="text-center"
+            desktopSize="3xl"
+            mobileSize="lg"
+            tag="h3"
+          >
+            {props.title}
+          </Heading>
+        }
       />
     </section>
   );

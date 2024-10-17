@@ -9,29 +9,40 @@ import {useCart} from "./cart-context";
 export default function CartFooter() {
   const {cart} = useCart();
 
-  const total = convertToLocale({
-    amount: (cart?.total || 0)!,
-    currency_code: (cart?.currency_code || null)!,
-  });
+  const total = cart
+    ? convertToLocale({
+        amount: cart.total,
+        currency_code: cart.currency_code,
+      })
+    : null;
+
+  const cartIsEmpty = cart?.items?.length === 0;
 
   return (
-    <div className="flex w-full flex-col justify-between gap-4 p-s">
-      <div className="flex w-full justify-between gap-4">
-        <div>
-          <Body className="font-semibold" font="sans" mobileSize="base">
-            Subtotal
-          </Body>
-          <Body font="sans" mobileSize="sm">
-            Taxes and shipping calculated at checkout
-          </Body>
-        </div>
-        <Body font="sans" mobileSize="base">
-          {total}
-        </Body>
+    <>
+      {!cartIsEmpty && <div className="h-px w-full bg-accent" />}
+      <div className="flex w-full flex-col justify-between gap-4 p-s">
+        {!cartIsEmpty && (
+          <div className="flex w-full justify-between gap-4">
+            <div>
+              <Body className="font-semibold" font="sans" mobileSize="base">
+                Subtotal
+              </Body>
+              <Body font="sans" mobileSize="sm">
+                Taxes and shipping calculated at checkout
+              </Body>
+            </div>
+            {total && (
+              <Body font="sans" mobileSize="base">
+                {total}
+              </Body>
+            )}
+          </div>
+        )}
+        <Cta className="w-full" size="lg" variant="primary">
+          Go to checkout
+        </Cta>
       </div>
-      <Cta className="w-full" size="lg" variant="primary">
-        Go to checkout
-      </Cta>
-    </div>
+    </>
   );
 }
