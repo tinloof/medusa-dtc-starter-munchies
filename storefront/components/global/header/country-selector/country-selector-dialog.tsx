@@ -10,7 +10,7 @@ import Heading from "@/components/shared/typography/heading";
 import {Dialog, Title} from "@radix-ui/react-dialog";
 import {cx} from "cva";
 import Link from "next/link";
-import {useParams} from "next/navigation";
+import {useParams, usePathname} from "next/navigation";
 import {Suspense, useState} from "react";
 
 export type Country = {
@@ -35,6 +35,13 @@ export default function CountrySelectorDialog({
   const {countryCode = countries[0]?.code} = useParams<{
     countryCode?: string;
   }>();
+  const pathname = usePathname();
+
+  const getNewPath = (newCountryCode: string) => {
+    const pathParts = pathname.split("/");
+    pathParts[1] = newCountryCode;
+    return pathParts.join("/");
+  };
 
   const selectedCountry =
     countries.find((country) => country.code === countryCode) || countries[0];
@@ -70,7 +77,11 @@ export default function CountrySelectorDialog({
             <div className="flex flex-1 flex-col items-stretch overflow-y-scroll">
               {countries.map((country) => (
                 <Suspense key={country.code}>
-                  <Link className="px-s py-xs" href={`/${country.code}`}>
+                  <Link
+                    className="px-s py-xs"
+                    href={getNewPath(country.code)}
+                    onClick={() => setOpen(false)}
+                  >
                     {country.name} [{country.currency.symbol}]
                   </Link>
                 </Suspense>
