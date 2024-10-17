@@ -6,7 +6,7 @@ import StripePaymentButton from "./stripe";
 
 type Props = {
   cart: StoreCart;
-  disabled: boolean;
+  disabled?: boolean;
 };
 export default function PaymentButton({cart, disabled}: Props) {
   const paymentSession = cart.payment_collection?.payment_sessions?.[0];
@@ -19,10 +19,10 @@ export default function PaymentButton({cart, disabled}: Props) {
     disabled;
 
   if (isStripe(paymentSession?.provider_id)) {
-    return <StripePaymentButton cart={cart} notReady={notReady} />;
+    return <StripePaymentButton cart={cart} notReady={Boolean(notReady)} />;
   }
 
   if (isManual(paymentSession?.provider_id)) {
-    return <ManualPaymentButton notReady={notReady} />;
+    return <ManualPaymentButton notReady={Boolean(notReady)} />;
   }
 }

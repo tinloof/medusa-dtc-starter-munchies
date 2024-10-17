@@ -1,6 +1,6 @@
 "use client";
 
-import type { StoreCart } from "@medusajs/types";
+import type {StoreCart} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
@@ -14,9 +14,7 @@ export default function Review({
   active: boolean;
   cart: StoreCart;
 }) {
-
-
-  if (!active) return null
+  if (!active) return null;
 
   return (
     <div className="flex w-full flex-col gap-8 border-t border-accent py-8">
