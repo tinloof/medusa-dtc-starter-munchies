@@ -1,7 +1,6 @@
 "use client";
 import type {ComponentProps} from "react";
 
-import config from "@/config";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
@@ -10,11 +9,12 @@ export default function LocalizedLink({
   ...props
 }: ComponentProps<typeof Link>) {
   const pathname = usePathname();
-  const countryCode = pathname.split("/")[1] || "";
-
+  const countryCode =
+    pathname.split("/").filter((path) => path !== "")[0] || "";
   const localizedHref = href.toString().startsWith("/")
-    ? `${config.baseUrl}/${countryCode}${href}`
-    : `${config.baseUrl}/${countryCode}/${href}`;
+    ? `/${countryCode}${href}`
+    : `/${countryCode}/${href}`;
+  const cleanedHref = localizedHref.replace(/\/+/g, "/");
 
-  return <Link href={localizedHref} {...props} />;
+  return <Link href={cleanedHref} {...props} />;
 }
