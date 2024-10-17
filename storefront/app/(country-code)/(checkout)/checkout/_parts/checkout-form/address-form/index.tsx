@@ -1,5 +1,6 @@
 "use client";
 import type {StoreCart, StoreCartAddress} from "@medusajs/types";
+import type {BaseRegionCountry} from "@medusajs/types/dist/http/region/common";
 import type {Dispatch, SetStateAction} from "react";
 
 import {setCheckoutAddresses} from "@/actions/medusa/order";
@@ -9,7 +10,6 @@ import Input from "@/components/shared/input";
 import InputCombobox from "@/components/shared/input-combobox";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {BaseRegionCountry} from "@medusajs/types/dist/http/region/common";
 import {useEffect, useState} from "react";
 import {useFormState, useFormStatus} from "react-dom";
 
@@ -82,9 +82,9 @@ export default function AddressForm({
         <div className="flex flex-col gap-4">
           <div className="grid gap-4 lg:grid-cols-2">
             <AddressInputs
-              countries={cart.region?.countries}
               address={cart.shipping_address}
               addressName="shipping_address"
+              countries={cart.region?.countries}
             />
           </div>
           <Checkbox
@@ -115,9 +115,9 @@ export default function AddressForm({
               </Heading>
               <div className="grid gap-4 lg:grid-cols-2">
                 <AddressInputs
-                  countries={cart.region?.countries}
                   address={cart.billing_address}
                   addressName="billing_address"
+                  countries={cart.region?.countries}
                 />
                 <Input
                   defaultValue={cart.billing_address?.phone}
@@ -192,23 +192,24 @@ function AddressInputs({
         required
       />
       <InputCombobox
+        defaultValue={address?.country_code}
+        name={inputName("country_code")}
         options={
           countries
             ?.filter(
               (
                 country,
-              ): country is BaseRegionCountry & {
+              ): country is {
                 display_name: string;
                 iso_2: string;
-              } => !!country.display_name && !!country.iso_2,
+              } & BaseRegionCountry =>
+                !!country.display_name && !!country.iso_2,
             )
             .map(({display_name, iso_2}) => ({
-              label: display_name,
               id: iso_2,
+              label: display_name,
             })) || []
         }
-        defaultValue={address?.country_code}
-        name={inputName("country_code")}
         placeholder="Country"
         required
       />

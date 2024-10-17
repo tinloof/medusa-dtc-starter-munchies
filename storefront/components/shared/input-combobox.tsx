@@ -1,22 +1,23 @@
-import { cx } from "cva";
-import { forwardRef, useEffect, useState } from "react";
+import {cx} from "cva";
+import {forwardRef, useEffect, useState} from "react";
+
 import Icon from "./icon";
 
 export default forwardRef<
   HTMLInputElement,
-  React.InputHTMLAttributes<HTMLInputElement> & {
-    options: Array<{id: string; label: string}>;
+  {
     defaultValue?: string;
-  }
+    options: Array<{id: string; label: string}>;
+  } & React.InputHTMLAttributes<HTMLInputElement>
 >(function Input(
   {
     className,
+    defaultValue,
+    name,
+    options,
     placeholder,
     required,
     type,
-    options,
-    defaultValue,
-    name,
     ...props
   },
   ref,
@@ -76,8 +77,8 @@ export default forwardRef<
     <div className="relative w-full">
       <div className="relative flex w-full items-center">
         <Icon
-          name="Search"
           className="absolute left-3 text-accent opacity-60"
+          name="Search"
         />
         <input
           className={cx(
@@ -88,6 +89,9 @@ export default forwardRef<
                 type === "checkbox",
             },
           )}
+          onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+          onChange={handleInputChange}
+          onFocus={() => setIsOpen(true)}
           placeholder={
             placeholder ? placeholder + (required ? "*" : "") : undefined
           }
@@ -95,14 +99,11 @@ export default forwardRef<
           required={required}
           type={type}
           value={inputValue}
-          onChange={handleInputChange}
-          onFocus={() => setIsOpen(true)}
-          onBlur={() => setTimeout(() => setIsOpen(false), 200)}
           {...props}
         />
         <input
-          type="hidden"
           name={name}
+          type="hidden"
           value={selectedOption ? selectedOption.id : ""}
         />
       </div>
@@ -110,8 +111,8 @@ export default forwardRef<
         <ul className="absolute z-10 mt-1 flex w-full flex-col gap-2 rounded-lg border border-accent bg-background px-2 py-2 shadow-lg">
           {filteredOptions.map((option) => (
             <li
-              key={option.id}
               className="flex h-[40px] cursor-pointer items-center rounded-md px-4 hover:bg-secondary"
+              key={option.id}
               onClick={() => handleOptionSelect(option)}
             >
               {option.label}
