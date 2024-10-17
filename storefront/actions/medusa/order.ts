@@ -107,21 +107,12 @@ export async function setCheckoutAddresses(
       };
     }
 
-    const cart = await updateCart(data);
-
-    console.log(cart.shipping_address);
+    await updateCart(data);
 
     return {error: null, status: "success"};
   } catch (e: any) {
     return {error: e.message, status: "error"};
   }
-}
-
-export async function testingFunc(_: any, formdata: FormData) {
-  const data = formdata.get("hey");
-
-  console.log({data});
-  return null;
 }
 
 export async function setShippingMethod(

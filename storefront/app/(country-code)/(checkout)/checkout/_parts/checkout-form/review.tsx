@@ -36,7 +36,7 @@ function SubmitButton() {
   const {pending} = useFormStatus();
   return (
     <Cta loading={pending} size="sm" type="submit">
-      Continue to payment
+      Complete order
     </Cta>
   );
 }
