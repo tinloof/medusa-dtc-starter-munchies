@@ -8,6 +8,7 @@ import type {
 import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
 import {addToCart, updateCartQuantity} from "@/actions/medusa/cart";
+import {usePathname} from "next/navigation";
 import {
   createContext,
   useContext,
@@ -51,6 +52,11 @@ export function CartProvider({
   const [cartOpen, setCartOpen] = useState(false);
 
   const [, startTransition] = useTransition();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setCartOpen(false);
+  }, [pathname]);
 
   const cartRef = useRef(optimisticCart);
 
@@ -59,7 +65,7 @@ export function CartProvider({
       JSON.stringify(cartRef.current?.items) !==
       JSON.stringify(optimisticCart?.items);
 
-    if (cartContentsChanged) {
+    if (cartContentsChanged && (optimisticCart?.items?.length || 0) > 0) {
       setCartOpen(true);
       cartRef.current = optimisticCart;
     }
