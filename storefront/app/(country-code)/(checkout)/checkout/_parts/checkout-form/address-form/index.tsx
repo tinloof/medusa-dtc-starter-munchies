@@ -6,12 +6,12 @@ import {setCheckoutAddresses} from "@/actions/medusa/order";
 import {Cta} from "@/components/shared/button";
 import Checkbox from "@/components/shared/checkbox";
 import Input from "@/components/shared/input";
+import InputCombobox from "@/components/shared/input-combobox";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
+import {BaseRegionCountry} from "@medusajs/types/dist/http/region/common";
 import {useEffect, useState} from "react";
 import {useFormState, useFormStatus} from "react-dom";
-import InputCombobox from "@/components/shared/input-combobox";
-import {BaseRegionCountry} from "@medusajs/types/dist/http/region/common";
 
 export default function AddressForm({
   active,

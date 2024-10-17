@@ -1,6 +1,6 @@
-import {cx} from "cva";
-import {forwardRef, useState, useEffect} from "react";
-import Icon from "./icon"; // Assuming Icon component is in the same directory
+import { cx } from "cva";
+import { forwardRef, useEffect, useState } from "react";
+import Icon from "./icon";
 
 export default forwardRef<
   HTMLInputElement,
