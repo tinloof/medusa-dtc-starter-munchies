@@ -1,50 +1,54 @@
-// import type {StoreProduct} from "@medusajs/types";
+import type {StoreOrderLineItem} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
-// import {getProductPrice} from "@/utils/medusa/get-product-price";
-// import Image from "next/image";
-// {product}: {product: StoreProduct}
+import {convertToLocale} from "@/utils/medusa/money";
+import Image from "next/image";
+
 export default function OrderItem({
-  price,
+  currency_code,
+  product,
   quantity,
-  title,
+  unit_price,
   variant,
-}: {
-  price: string;
-  quantity: string;
-  title: string;
-  variant: string;
-}) {
-  //   const {cheapestPrice} = getProductPrice({product});
+}: {currency_code: string} & StoreOrderLineItem) {
+  const price = convertToLocale({
+    amount: unit_price * quantity,
+    currency_code: currency_code,
+  });
+
+  const unit_price_to_locale = convertToLocale({
+    amount: unit_price,
+    currency_code: currency_code,
+  });
+
+  const image = product?.images?.[0]?.url;
 
   return (
     <div className="flex w-full gap-xs">
-      {/* {product.images?.[0].url && (
+      {image && (
         <Image
-          alt={product.title}
+          alt={product.title + variant?.title}
           className="aspect-square h-[100px] w-[100px] rounded-lg border-[1.5px] border-accent"
           height={100}
-          src={product.images?.[0].url}
+          src={image}
           width={100}
         />
-      )} */}
-      <div className="aspect-square h-[100px] w-[100px] rounded-lg border-[1.5px] border-accent"></div>
+      )}
       <div className="flex w-full flex-col justify-between">
         <div className="flex justify-between gap-xl">
           <div className="flex flex-col items-start justify-start gap-1">
             <Body className="font-semibold" font="sans" mobileSize="lg">
-              {title}
+              {product?.title}
             </Body>
             <Body className="font-medium" font="sans" mobileSize="sm">
-              {variant}
+              {variant?.title}
             </Body>
           </div>
           <div className="flex flex-col items-end justify-end gap-1">
             <Body className="opacity-80" font="sans" mobileSize="base">
-              {quantity}
+              {quantity} x {unit_price_to_locale}
             </Body>
             <Body font="sans" mobileSize="base">
-              {/* {cheapestPrice?.calculated_price} */}
               {price}
             </Body>
           </div>

@@ -2,27 +2,33 @@ import type {PageProps} from "@/types";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
+import {enrichLineItems} from "@/data/medusa/line-items";
+import {retrieveOrder} from "@/data/medusa/order";
+import {convertToLocale} from "@/utils/medusa/money";
+import {notFound} from "next/navigation";
 
-import OrderItem from "./_part/order-item";
-
-// import {enrichLineItems} from "@/data/medusa/line-items";
-// import {retrieveOrder} from "@/data/medusa/order";
-// import {notFound} from "next/navigation";
+import OrderItem from "./_parts/order-item";
 
 export default async function OrderConfirmedPage({params}: PageProps<"id">) {
-  console.log(params);
-  // const order = await retrieveOrder(params.id);
+  const baseOrder = await retrieveOrder(params.id);
 
-  // if (!order) {
-  //   return notFound();
-  // }
+  if (!baseOrder) {
+    return notFound();
+  }
 
-  // const enrichedItems = await enrichLineItems(order.items, order.region_id!);
+  const order = {
+    ...baseOrder,
+    items: await enrichLineItems(baseOrder.items, baseOrder.region_id!),
+  };
 
-  // const enrichedOrder = {
-  //   ...order,
-  //   items: enrichedItems,
-  // };
+  function convertMoney(amount: number) {
+    return convertToLocale({
+      amount,
+      currency_code: order.currency_code,
+    });
+  }
+
+  const shippingMethod = order.shipping_methods?.[0];
 
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col gap-2xl px-s py-2xl lg:px-0 lg:py-8xl">
@@ -38,14 +44,19 @@ export default async function OrderConfirmedPage({params}: PageProps<"id">) {
         </Heading>
 
         <Body className="font-medium" desktopSize="xl" font="sans">
-          We have sent the order confirmation details to john@doe.com
+          We have sent the order confirmation details to {order.email}
         </Body>
 
         <Body desktopSize="base" font="sans">
-          Order date: Mon Sep 30 2024
+          Order date:{" "}
+          {new Date(order.created_at).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         </Body>
         <Body desktopSize="base" font="sans">
-          Order number: 1234
+          Order number: {order.display_id}
         </Body>
       </div>
       <div className="flex flex-col gap-s">
@@ -53,23 +64,32 @@ export default async function OrderConfirmedPage({params}: PageProps<"id">) {
           Summary
         </Heading>
         <div className="flex flex-col gap-s">
-          <OrderItem
-            price="100"
-            quantity="2 x 200"
-            title="Two chip chocolate chip cookie"
-            variant="4-Pack"
-          />
+          {order.items.map((item) => {
+            return (
+              <OrderItem
+                currency_code={order.currency_code}
+                key={item.id}
+                {...item}
+              />
+            );
+          })}
           <Separator />
-          <SubLineItem title="Subtotal" value="$20.00" />
-          <SubLineItem title="Taxes" value="$0.00" />
-          <SubLineItem title="Shipping Address" value="$4.00" />
+          <SubLineItem
+            title="Subtotal"
+            value={convertMoney(order.item_subtotal)}
+          />
+          <SubLineItem title="Taxes" value={convertMoney(order.tax_total)} />
+          <SubLineItem
+            title="Shipping"
+            value={convertMoney(order.shipping_total)}
+          />
           <Separator />
           <div className="flex justify-between">
             <Heading desktopSize="base" font="sans" mobileSize="sm" tag="h4">
               Total
             </Heading>
             <Heading desktopSize="base" font="sans" mobileSize="sm" tag="h4">
-              $200
+              {convertMoney(order.total)}
             </Heading>
           </div>
           <Separator />
@@ -89,13 +109,15 @@ export default async function OrderConfirmedPage({params}: PageProps<"id">) {
               Shipping Address
             </Body>
             <Body className="font-medium" desktopSize="base" font="sans">
-              John Doe
+              {order.shipping_address?.first_name}{" "}
+              {order.shipping_address?.last_name}
             </Body>
             <Body className="font-medium" desktopSize="base" font="sans">
-              Some Street 16
+              {order.shipping_address?.address_1}
             </Body>
             <Body className="font-medium" desktopSize="base" font="sans">
-              00000, London
+              {order.shipping_address?.postal_code},{" "}
+              {order.shipping_address?.city}
             </Body>
           </div>
           <div className="flex flex-1 flex-col gap-[6px]">
@@ -107,22 +129,27 @@ export default async function OrderConfirmedPage({params}: PageProps<"id">) {
               Contact
             </Body>
             <Body className="font-medium" desktopSize="base" font="sans">
-              john@doe.com
+              {order.email}
             </Body>
           </div>
 
-          <div className="flex flex-1 flex-col gap-[6px]">
-            <Body
-              className="mb-[6px] font-semibold"
-              desktopSize="base"
-              font="sans"
-            >
-              Method
-            </Body>
-            <Body className="font-medium" desktopSize="base" font="sans">
-              FakeEx Standard ($8,00)
-            </Body>
-          </div>
+          {shippingMethod && (
+            <div className="flex flex-1 flex-col gap-[6px]">
+              <Body
+                className="mb-[6px] font-semibold"
+                desktopSize="base"
+                font="sans"
+              >
+                Method
+              </Body>
+              <Body className="font-medium" desktopSize="base" font="sans">
+                {shippingMethod?.name}
+                {shippingMethod?.amount
+                  ? ` (${convertMoney(shippingMethod?.amount)})`
+                  : null}
+              </Body>
+            </div>
+          )}
         </div>
       </div>
     </div>
