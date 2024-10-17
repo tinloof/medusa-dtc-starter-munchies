@@ -14,12 +14,22 @@ import NextLink from "next/link";
 import {useState} from "react";
 import {RemoveScroll} from "react-remove-scroll";
 
+import type {Country} from "../../country-selector/country-selector-dialog";
+
+import CountrySelectorDialog from "../../country-selector/country-selector-dialog";
+
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
   {_type: "dropdown"}
 >;
 
-export default function Hamburger({data}: {data: Header}) {
+export default function Hamburger({
+  countries,
+  data,
+}: {
+  countries: Country[];
+  data: Header;
+}) {
   const [open, setOpen] = useState(false);
   const [activeMenuState, setActiveMenu] = useState<string | undefined>(
     undefined,
@@ -52,10 +62,10 @@ export default function Hamburger({data}: {data: Header}) {
       </Dialog.Trigger>
       <Dialog.Portal container={portalContainer}>
         <RemoveScroll>
-          <Dialog.Content className="flex h-[calc(100dvh-var(--header-height))] w-screen overflow-x-hidden bg-background">
+          <Dialog.Content className="w-screen items-end justify-end overflow-x-hidden bg-background">
             <div
               className={cx(
-                "scrollbar-hide fixed inset-0 w-screen overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
+                "scrollbar-hide fixed left-0 top-[calc(var(--header-height))] flex h-[calc(100dvh-var(--header-height))] w-screen flex-1 flex-col items-start justify-between overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
                 {
                   "-translate-x-full": isMenuActive,
                   "translate-x-0": !isMenuActive,
@@ -72,9 +82,10 @@ export default function Hamburger({data}: {data: Header}) {
                   />
                 ))}
               </div>
+              <CountrySelectorDialog countries={countries} />
             </div>
             <div
-              className={`scrollbar-hide fixed inset-0 w-screen transform overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300 ${
+              className={`scrollbar-hide fixed left-0 top-[calc(var(--header-height))] h-[calc(100dvh-var(--header-height))] w-screen transform overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300 ${
                 isMenuActive ? "translate-x-0" : "translate-x-full"
               }`}
             >

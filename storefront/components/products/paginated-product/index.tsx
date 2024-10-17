@@ -12,8 +12,10 @@ import ClearAllButton from "../product-refinement/filters/clear-button";
 import ProductGrid from "./grid";
 
 export default async function PaginatedProducts({
+  countryCode,
   searchParams,
 }: {
+  countryCode: string;
   searchParams: PageProps<
     never,
     "category" | "collection" | "page" | "sort"
@@ -26,10 +28,7 @@ export default async function PaginatedProducts({
 
   const productsDictionary = await loadDictionary();
 
-  const region = await getRegion(
-    // TODO: Make this come from the params
-    process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
-  );
+  const region = await getRegion(countryCode);
 
   if (!region) {
     return null;

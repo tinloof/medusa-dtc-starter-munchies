@@ -1,11 +1,11 @@
 import type {TEXT_PAGE_QUERYResult} from "@/types/sanity.generated";
 import type {BlocksBody} from "@/utils/content/toc";
 
+import LocalizedLink from "@/components/shared/localized-link";
 import Body from "@/components/shared/typography/body";
 import getBlocksToc from "@/utils/content/toc";
 import {getPtComponentId} from "@/utils/ids";
 import {toPlainText} from "@portabletext/react";
-import Link from "next/link";
 import React from "react";
 
 import TocSelect from "../../../../components/shared/toc-select";
@@ -26,7 +26,7 @@ export default function TableOfContents({
             index,
           ) =>
             !item.isSub && (
-              <Link
+              <LocalizedLink
                 href={`#${getPtComponentId(item.block as any)}`}
                 key={index}
                 scroll
@@ -38,7 +38,7 @@ export default function TableOfContents({
                 >
                   {toPlainText(item.block)}
                 </Body>
-              </Link>
+              </LocalizedLink>
             ),
         )}
       </div>

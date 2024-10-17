@@ -19,6 +19,14 @@ const config = {
   experimental: {
     taint: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/:path((?!us|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br).*)",
+        destination: "/us/:path*",
+      },
+    ];
+  },
 };
 
 export default config;

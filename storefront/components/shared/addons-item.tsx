@@ -1,7 +1,7 @@
-import type { StoreProduct } from "@medusajs/types";
+import type {StoreProduct} from "@medusajs/types";
 
-import { AddToCartButton } from "@/app/(website)/products/[handle]/_parts/add-to-cart";
-import { getProductPrice } from "@/utils/medusa/get-product-price";
+import {AddToCartButton} from "@/app/[countryCode]/products/[handle]/_parts/add-to-cart";
+import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
 import Body from "./typography/body";
@@ -24,7 +24,7 @@ export function AddonsItem({
     },
   });
 
-  const default_variant = variants?.[0]
+  const default_variant = variants?.[0];
 
   return (
     <div className="flex w-full gap-xs">

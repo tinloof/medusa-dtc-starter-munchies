@@ -10,10 +10,7 @@ import Heading from "../shared/typography/heading";
 export default async function FeaturedProducts(
   props: ModularPageSection<"section.featuredProducts">,
 ) {
-  const region = await getRegion(
-    // TODO: Make this come from the params
-    process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
-  );
+  const region = await getRegion(props.countryCode);
 
   if (!region) {
     console.log("No region found");

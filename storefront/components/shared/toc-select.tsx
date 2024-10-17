@@ -9,8 +9,9 @@ import {getPtComponentId} from "@/utils/ids";
 import {toPlainText} from "@portabletext/react";
 import * as RadixSelect from "@radix-ui/react-select";
 import {cx} from "cva";
-import Link from "next/link";
 import {useState} from "react";
+
+import LocalizedLink from "./localized-link";
 
 type Props = {
   outlines: {block: BlocksBody; isSub: boolean}[];
@@ -86,11 +87,11 @@ function SelectItem({
       )}
       {...props}
     >
-      <Link href={`#${props.value}`} scroll>
+      <LocalizedLink href={`#${props.value}`} scroll>
         <Body font="sans" mobileSize="base">
           <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
         </Body>
-      </Link>
+      </LocalizedLink>
     </RadixSelect.Item>
   );
 }

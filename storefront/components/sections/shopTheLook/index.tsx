@@ -18,7 +18,11 @@ export default async function ShopTheLook(
         {props.title}
       </Heading>
       <Suspense fallback={<HotspotsLoading image={props.image} />}>
-        <Hotspots image={props.image} productHotSpots={props.productHotSpots} />
+        <Hotspots
+          countryCode={props.countryCode}
+          image={props.image}
+          productHotSpots={props.productHotSpots}
+        />
       </Suspense>
     </section>
   );

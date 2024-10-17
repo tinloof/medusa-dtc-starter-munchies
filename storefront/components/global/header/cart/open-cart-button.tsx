@@ -1,9 +1,9 @@
 "use client";
 import Icon from "@/components/shared/icon";
+import {OpenDialog} from "@/components/shared/side-dialog";
 import Body from "@/components/shared/typography/body";
 
 import {useCart} from "./cart-context";
-import {OpenDialog} from "./cart-dialog";
 
 export default function OpenCart() {
   const {cart} = useCart();

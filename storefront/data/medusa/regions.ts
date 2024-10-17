@@ -32,7 +32,7 @@ export const listCountries = cache(async function () {
 
   return countries.filter(
     (country, index, self) =>
-      index === self.findIndex((t) => t?.iso_2 === country?.iso_2),
+      index === self.findIndex((t) => t?.code === country?.code),
   );
 });
 

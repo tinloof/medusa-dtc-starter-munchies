@@ -3,8 +3,8 @@ import type {StoreProduct} from "@medusajs/types";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import {cx} from "cva";
 import Image from "next/image";
-import Link from "next/link";
 
+import LocalizedLink from "./localized-link";
 import Tag from "./tag";
 import Body from "./typography/body";
 
@@ -22,7 +22,7 @@ export default function ProductCard({
   const {cheapestPrice} = getProductPrice({product});
 
   return (
-    <Link
+    <LocalizedLink
       className={cx(
         "flex flex-1 flex-col items-center justify-center rounded-lg",
         {
@@ -66,6 +66,6 @@ export default function ProductCard({
           from {cheapestPrice?.calculated_price || "NA"}
         </Body>
       </div>
-    </Link>
+    </LocalizedLink>
   );
 }
