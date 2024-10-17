@@ -11,6 +11,7 @@ import {useState} from "react";
 import AddressForm from "./address-form";
 import Delivery from "./delivery";
 import Payment from "./payment";
+import Review from "./review";
 
 export default function CheckoutForm({
   cart,
@@ -33,21 +34,22 @@ export default function CheckoutForm({
       <AddressForm
         active={step === "addresses"}
         cart={cart}
-        setNextStep={() => setStep("delivery")}
+        setStep={setStep}
       />
       <Delivery
         active={step === "delivery"}
         cart={cart}
         currency_code={cart.currency_code}
         methods={shippingMethods}
-        setNextStep={() => setStep("payment")}
+        setStep={setStep}
       />
       <Payment
         active={step === "payment"}
         cart={cart}
         methods={paymentMethods}
-        setNextStep={() => setStep("review")}
+        setStep={setStep}
       />
+      <Review active={step === "review"} />
     </div>
   );
 }

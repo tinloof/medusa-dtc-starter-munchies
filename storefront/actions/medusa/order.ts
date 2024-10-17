@@ -9,11 +9,14 @@ import {
   removeCartId,
 } from "@/data/medusa/cookies";
 import {getCustomer} from "@/data/medusa/customer";
-import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
 import {redirect} from "next/navigation";
 
 import {updateCart} from "./cart";
+
+type ActionState =
+  | {error: null; status: "idle" | "success"}
+  | {error: string; status: "error"};
 
 export async function placeOrder() {
   const cartId = getCartId();
@@ -21,45 +24,40 @@ export async function placeOrder() {
     throw new Error("No existing cart found when placing an order");
   }
 
-  try {
-    const cartRes = await medusa.store.cart.complete(
-      cartId,
-      {},
-      getAuthHeaders(),
-    );
-    revalidateTag(getCacheTag("carts"));
+  const cartRes = await medusa.store.cart.complete(
+    cartId,
+    {},
+    getAuthHeaders(),
+  );
+  revalidateTag(getCacheTag("carts"));
 
-    if (cartRes?.type === "order") {
-      removeCartId();
-      // TODO: make this us the country code
-      redirect(`/order/confirmed/${cartRes.order.id}`);
-    }
-
-    return cartRes.cart;
-  } catch (error) {
-    return medusaError(error);
+  if (cartRes?.type === "order") {
+    removeCartId();
+    // TODO: make this us the country code
+    redirect(`/order/confirmed/${cartRes.order.id}`);
   }
+
+  return cartRes.cart;
 }
 
 export async function initiatePaymentSession(
-  cart: StoreCart,
-  data: {
-    context?: Record<string, unknown>;
-    provider_id: string;
+  state: ActionState,
+  payaload: {
+    cart: StoreCart;
+    data: {
+      context?: Record<string, unknown>;
+      provider_id: string;
+    };
   },
-) {
+): Promise<ActionState> {
   return medusa.store.payment
-    .initiatePaymentSession(cart, data, {}, getAuthHeaders())
-    .then((resp) => {
+    .initiatePaymentSession(payaload.cart, payaload.data, {}, getAuthHeaders())
+    .then(() => {
       revalidateTag(getCacheTag("carts"));
-      return resp;
+      return {error: null, status: "success"} as const;
     })
-    .catch(medusaError);
+    .catch((e) => ({error: e.message, status: "error"}));
 }
-
-type ActionState =
-  | {error: null; status: "idle" | "success"}
-  | {error: string; status: "error"};
 
 export async function setCheckoutAddresses(
   currentState: ActionState,
@@ -119,7 +117,7 @@ export async function setCheckoutAddresses(
   }
 }
 
-export async function testingFunc(_, formdata: FormData) {
+export async function testingFunc(_: any, formdata: FormData) {
   const data = formdata.get("hey");
 
   console.log({data});

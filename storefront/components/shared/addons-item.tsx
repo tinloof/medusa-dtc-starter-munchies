@@ -1,6 +1,6 @@
 import type {StoreProduct} from "@medusajs/types";
 
-import {AddToCartButton} from "@/app/(website)/products/[handle]/_parts/add-to-cart";
+import {AddToCartButton} from "@/app/(country-code)/(website)/products/[handle]/_parts/add-to-cart";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 

@@ -13,7 +13,8 @@ import CheckoutForm from "./_parts/checkout-form";
 
 export default async function CheckoutPage() {
   const cart = await retrieveCart();
-  if (!cart) {
+
+  if (!cart || (cart.items?.length || 0) === 0) {
     return notFound();
   }
 
@@ -28,15 +29,13 @@ export default async function CheckoutPage() {
   const paymentMethods = (await listCartPaymentMethods(cart.region_id!)) || [];
 
   return (
-    <body className="mx-auto max-w-max-screen">
-      <section className="flex flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pb-20 lg:pt-5">
-        <CheckoutForm
-          cart={cart}
-          paymentMethods={paymentMethods}
-          shippingMethods={shippingMethods}
-        />
-        <CartDetails cart={cart} />
-      </section>
-    </body>
+    <section className="mx-auto flex max-w-max-screen flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pb-20 lg:pt-5">
+      <CheckoutForm
+        cart={cart}
+        paymentMethods={paymentMethods}
+        shippingMethods={shippingMethods}
+      />
+      <CartDetails cart={cart} />
+    </section>
   );
 }

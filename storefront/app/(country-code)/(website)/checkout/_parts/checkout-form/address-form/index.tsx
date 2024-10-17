@@ -1,5 +1,6 @@
 "use client";
 import type {StoreCart, StoreCartAddress} from "@medusajs/types";
+import type {Dispatch, SetStateAction} from "react";
 
 import {setCheckoutAddresses} from "@/actions/medusa/order";
 import {Cta} from "@/components/shared/button";
@@ -8,16 +9,18 @@ import Input from "@/components/shared/input";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import {useEffect, useState} from "react";
-import {useFormState} from "react-dom";
+import {useFormState, useFormStatus} from "react-dom";
 
 export default function AddressForm({
   active,
   cart,
-  setNextStep,
+  setStep,
 }: {
   active: boolean;
   cart: StoreCart;
-  setNextStep: () => void;
+  setStep: Dispatch<
+    SetStateAction<"addresses" | "delivery" | "payment" | "review">
+  >;
 }) {
   const [checked, setChecked] = useState(true);
 
@@ -27,8 +30,8 @@ export default function AddressForm({
   });
 
   useEffect(() => {
-    if (status === "success") setNextStep();
-  }, [status, setNextStep]);
+    if (status === "success") setStep("delivery");
+  }, [status, setStep]);
 
   const isFilled = !active && !!cart.shipping_address?.address_1;
 
@@ -42,7 +45,7 @@ export default function AddressForm({
           Shipping Address
         </Heading>
         {isFilled && (
-          <Cta size="sm" variant="outline">
+          <Cta onClick={() => setStep("addresses")} size="sm" variant="outline">
             Edit
           </Cta>
         )}
@@ -121,12 +124,19 @@ export default function AddressForm({
               </div>
             </>
           )}
-          <Cta size="sm" type="submit">
-            Continue to delivery
-          </Cta>
+          <SubmitButton />
         </div>
       )}
     </form>
+  );
+}
+
+function SubmitButton() {
+  const {pending} = useFormStatus();
+  return (
+    <Cta loading={pending} size="sm" type="submit">
+      Continue to delivery
+    </Cta>
   );
 }
 

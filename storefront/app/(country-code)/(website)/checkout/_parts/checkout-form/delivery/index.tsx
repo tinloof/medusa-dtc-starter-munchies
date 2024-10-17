@@ -1,5 +1,6 @@
 "use client";
 import type {StoreCart, StoreCartShippingOption} from "@medusajs/types";
+import type {Dispatch, SetStateAction} from "react";
 
 import {setShippingMethod} from "@/actions/medusa/order";
 import {Cta} from "@/components/shared/button";
@@ -8,31 +9,42 @@ import Heading from "@/components/shared/typography/heading";
 import {convertToLocale} from "@/utils/medusa/money";
 import {Indicator, Item, Root} from "@radix-ui/react-radio-group";
 import {useEffect} from "react";
-import {useFormState} from "react-dom";
+import {useFormState, useFormStatus} from "react-dom";
 
 export default function Delivery({
   active,
   cart,
   currency_code,
   methods,
-  setNextStep,
+  setStep,
 }: {
   active: boolean;
   cart: StoreCart;
   currency_code: string;
   methods: StoreCartShippingOption[];
-  setNextStep: () => void;
+  setStep: Dispatch<
+    SetStateAction<"addresses" | "delivery" | "payment" | "review">
+  >;
 }) {
   const [{status}, action] = useFormState(setShippingMethod, {
     error: null,
     status: "idle",
   });
 
-  const isFilled = !active && (cart.shipping_methods?.length || 0) > 0;
+  const activeShippingMethod = methods.find(
+    ({id}) => id === cart.shipping_methods?.[0].shipping_option_id,
+  );
+
+  const isFilled = !active && !!activeShippingMethod;
+
+  const activeShippingMethodPrice = convertToLocale({
+    amount: activeShippingMethod?.amount || 0,
+    currency_code,
+  });
 
   useEffect(() => {
-    if (status === "success") setNextStep();
-  }, [status, setNextStep]);
+    if (status === "success") setStep("payment");
+  }, [status, setStep]);
 
   return (
     <div className="flex w-full flex-col gap-8 border-t border-accent py-8">
@@ -41,15 +53,26 @@ export default function Delivery({
           Delivery
         </Heading>
         {isFilled && (
-          <Cta size="sm" variant="outline">
+          <Cta onClick={() => setStep("delivery")} size="sm" variant="outline">
             Edit
           </Cta>
         )}
       </div>
+      {isFilled && (
+        <div className="flex flex-1 flex-col gap-4">
+          <Body className="font-semibold" font="sans">
+            Method
+          </Body>
+          <Body font="sans">
+            {activeShippingMethod.name} ({activeShippingMethodPrice})
+          </Body>
+        </div>
+      )}
       {active && (
         <form action={action} className="flex w-full flex-col gap-4">
           <Root
             className="flex w-full flex-col gap-4"
+            defaultValue={cart.shipping_methods?.[0].shipping_option_id}
             name="shippingMethodId"
             required
           >
@@ -78,11 +101,18 @@ export default function Delivery({
               );
             })}
           </Root>
-          <Cta size="sm" type="submit">
-            Continue to payment
-          </Cta>
+          <SubmitButton />
         </form>
       )}
     </div>
+  );
+}
+
+function SubmitButton() {
+  const {pending} = useFormStatus();
+  return (
+    <Cta loading={pending} size="sm" type="submit">
+      Continue to payment
+    </Cta>
   );
 }

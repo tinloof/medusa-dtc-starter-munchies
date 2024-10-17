@@ -56,7 +56,8 @@ export function CartProvider({
 
   useEffect(() => {
     const cartContentsChanged =
-      JSON.stringify(cartRef.current) !== JSON.stringify(optimisticCart);
+      JSON.stringify(cartRef.current?.items) !==
+      JSON.stringify(optimisticCart?.items);
 
     if (cartContentsChanged) {
       setCartOpen(true);
