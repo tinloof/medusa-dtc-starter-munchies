@@ -2,6 +2,7 @@ const vercelProdUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
 const config = {
   baseUrl: vercelProdUrl ? `https://${vercelProdUrl}` : "",
+  defaultCountryCode: "us",
   sanity: {
     apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-06-21",
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "",

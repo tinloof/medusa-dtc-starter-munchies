@@ -5,6 +5,7 @@ import Link from "next/link";
 import {Suspense} from "react";
 
 import Cart from "./cart";
+import {CountrySelector} from "./country-selector";
 import Hamburger from "./hamburger";
 import AnnouncementBar from "./parts/announcement-bar";
 import BottomBorder from "./parts/bottom-border";
@@ -30,15 +31,18 @@ export default function Header(props: Header) {
             <Navigation data={props} />
           </Suspense>
         </div>
-        <Suspense
-          fallback={
-            <div className="relative h-10 w-10 p-2">
-              <Icon name="Cart" />
-            </div>
-          }
-        >
-          <Cart cartAddons={props.cartAddons} />
-        </Suspense>
+        <div className="flex items-center gap-s">
+          <CountrySelector />
+          <Suspense
+            fallback={
+              <div className="relative h-10 w-10 p-2">
+                <Icon name="Cart" />
+              </div>
+            }
+          >
+            <Cart cartAddons={props.cartAddons} />
+          </Suspense>
+        </div>
         <div
           className="absolute left-1/2 top-[56px] z-30 mx-auto w-screen max-w-max-screen -translate-x-1/2"
           id="navigation-portal"
