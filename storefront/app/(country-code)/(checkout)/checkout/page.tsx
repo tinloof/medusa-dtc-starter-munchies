@@ -29,7 +29,7 @@ export default async function CheckoutPage() {
   const paymentMethods = (await listCartPaymentMethods(cart.region_id!)) || [];
 
   return (
-    <section className="mx-auto flex max-w-max-screen flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pb-20 lg:pt-5">
+    <section className="mx-auto flex w-full max-w-max-screen flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pb-20 lg:pt-5">
       <CheckoutForm
         cart={cart}
         paymentMethods={paymentMethods}
