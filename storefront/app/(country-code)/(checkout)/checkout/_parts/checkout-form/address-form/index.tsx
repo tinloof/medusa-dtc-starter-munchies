@@ -10,6 +10,8 @@ import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import {useEffect, useState} from "react";
 import {useFormState, useFormStatus} from "react-dom";
+import InputCombobox from "@/components/shared/input-combobox";
+import {BaseRegionCountry} from "@medusajs/types/dist/http/region/common";
 
 export default function AddressForm({
   active,
@@ -66,7 +68,6 @@ export default function AddressForm({
                 {cart.shipping_address?.postal_code},{" "}
                 {cart.shipping_address?.city}
               </Body>
-              <Body font="sans">{cart.shipping_address?.country_code}</Body>
             </div>
           </div>
           <div className="flex flex-1 flex-col gap-4">
@@ -81,6 +82,7 @@ export default function AddressForm({
         <div className="flex flex-col gap-4">
           <div className="grid gap-4 lg:grid-cols-2">
             <AddressInputs
+              countries={cart.region?.countries}
               address={cart.shipping_address}
               addressName="shipping_address"
             />
@@ -113,6 +115,7 @@ export default function AddressForm({
               </Heading>
               <div className="grid gap-4 lg:grid-cols-2">
                 <AddressInputs
+                  countries={cart.region?.countries}
                   address={cart.billing_address}
                   addressName="billing_address"
                 />
@@ -143,11 +146,14 @@ function SubmitButton() {
 function AddressInputs({
   address,
   addressName,
+  countries,
 }: {
   address?: StoreCartAddress;
   addressName: string;
+  countries?: BaseRegionCountry[];
 }) {
   const inputName = (name: string) => addressName + "." + name;
+
   return (
     <>
       <Input
@@ -185,7 +191,22 @@ function AddressInputs({
         placeholder="City"
         required
       />
-      <Input
+      <InputCombobox
+        options={
+          countries
+            ?.filter(
+              (
+                country,
+              ): country is BaseRegionCountry & {
+                display_name: string;
+                iso_2: string;
+              } => !!country.display_name && !!country.iso_2,
+            )
+            .map(({display_name, iso_2}) => ({
+              label: display_name,
+              id: iso_2,
+            })) || []
+        }
         defaultValue={address?.country_code}
         name={inputName("country_code")}
         placeholder="Country"
