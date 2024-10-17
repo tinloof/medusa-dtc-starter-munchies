@@ -9,11 +9,15 @@ export default function LocalizedLink({
   ...props
 }: ComponentProps<typeof Link>) {
   const pathname = usePathname();
-  const countryCode = pathname.split("/")[1] || "";
+  const segments = pathname.split("/").filter(Boolean);
+  const countryCode =
+    segments.length > 0 && segments[0].length === 2 ? segments[0] : "";
 
   const localizedHref = href.toString().startsWith("/")
     ? `/${countryCode}${href}`
-    : `/${countryCode}/${href}`;
+    : countryCode
+      ? `/${countryCode}/${href}`
+      : `/${href}`;
 
   return <Link href={localizedHref} {...props} />;
 }
