@@ -153,7 +153,7 @@ export default class SanityModuleService {
     return {
       set: {
         internalTitle: product.title,
-        pathname: { _type: "slug", current: "/product/" + product.handle },
+        pathname: { _type: "slug", current: "/products/" + product.handle },
       },
     };
   };

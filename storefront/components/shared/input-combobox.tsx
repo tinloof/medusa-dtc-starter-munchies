@@ -103,6 +103,7 @@ export default forwardRef<
         />
         <input
           name={name}
+          required={required}
           type="hidden"
           value={selectedOption ? selectedOption.id : ""}
         />
