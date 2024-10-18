@@ -51,7 +51,7 @@ export default function Hamburger({
     <Dialog.Root onOpenChange={setOpen} open={open}>
       <Dialog.Trigger
         aria-label="Menu"
-        className="lg:hidden"
+        className="shrink-0 lg:hidden"
         onClick={() => setActiveMenu(undefined)}
       >
         {open ? (

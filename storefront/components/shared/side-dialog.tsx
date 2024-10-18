@@ -38,7 +38,7 @@ export function SideDialog({style, ...passThrough}: DialogContentProps) {
     <Portal>
       <Overlay className="fixed inset-0 bg-transparent" />
       <Content
-        className="fixed top-0 z-[9999] h-full w-[430px] transition-transform ease-in-out data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight lg:right-0"
+        className="fixed top-0 z-[9999] h-full w-[430px] max-w-full transition-transform ease-in-out data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight lg:right-0"
         style={{...style}}
         {...passThrough}
       />
