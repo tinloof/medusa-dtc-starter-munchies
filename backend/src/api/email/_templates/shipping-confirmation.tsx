@@ -6,7 +6,7 @@ import { Title } from "./components/style";
 export default function ShippingConfirmation() {
   return (
     <Layout preview="Shipping confirmation">
-      <Section className="w-full max-w-[525px] px-5 my-20" align="left">
+      <Section className="w-full max-w-[565px] px-5 my-20" align="left">
         <Heading className="mb-3" style={Title}>
           Your order is on its way!
         </Heading>

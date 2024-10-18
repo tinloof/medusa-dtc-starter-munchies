@@ -25,7 +25,7 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
   };
   return (
     <Layout preview="Order confirmation">
-      <Section className="w-full max-w-[525px] px-5 mt-32 mb-10" align="left">
+      <Section className="w-full px-5 mt-32 mb-10" align="left">
         <Heading className="mb-3" style={Title}>
           Thank you for your order!
         </Heading>

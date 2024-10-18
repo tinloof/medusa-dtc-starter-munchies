@@ -34,11 +34,7 @@ export default function Cart({
       {checkout && (
         <Section className="max-w-[365px]" align="right">
           <CheckoutLine title="Subtotal" price={checkout.Subtotal} />
-          <CheckoutLine
-            title="Order discount"
-            subtitle="ORDER5 (-$5.00)"
-            price={checkout.discount}
-          />
+          <CheckoutLine title="Order discount" price={checkout.discount} />
           <CheckoutLine title="Shipping" price={checkout.shipping} />
           <CheckoutLine title="Taxes" price={checkout.taxes} />
           <Hr className="h-px bg-accent mb-4" />
