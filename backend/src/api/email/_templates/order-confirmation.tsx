@@ -25,6 +25,8 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
           ]}
         />
         <Cart
+          currency_code={order.currency_code}
+          items={order.items}
           date={new Date(order.created_at).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",

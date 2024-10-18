@@ -1,10 +1,16 @@
-import { Column, Hr, Row, Section, Text } from "@react-email/components";
+import { OrderLineItemDTO } from "@medusajs/framework/types";
+import { Column, Hr, Img, Row, Section, Text } from "@react-email/components";
+import { convertToLocale } from "../utils";
 import { BodySmall, BodyXSmall } from "./style";
 
 export default function Cart({
   checkout,
+  items,
+  currency_code,
 }: {
   date?: string;
+  items: OrderLineItemDTO[];
+  currency_code: string;
   checkout?: {
     Subtotal: string;
     discount: string;
@@ -20,8 +26,11 @@ export default function Cart({
           Order summary
         </Text>
       </Section>
-      <CartLine />
-      <CartLine />
+      {items.map((item) => {
+        return (
+          <CartLine line={item} key={item.id} currency_code={currency_code} />
+        );
+      })}
       {checkout && (
         <Section className="max-w-[365px]" align="right">
           <CheckoutLine title="Subtotal" price={checkout.Subtotal} />
@@ -30,11 +39,7 @@ export default function Cart({
             subtitle="ORDER5 (-$5.00)"
             price={checkout.discount}
           />
-          <CheckoutLine
-            title="Shipping"
-            subtitle="FREESHIPPING (-$0.00)"
-            price={checkout.shipping}
-          />
+          <CheckoutLine title="Shipping" price={checkout.shipping} />
           <CheckoutLine title="Taxes" price={checkout.taxes} />
           <Hr className="h-px bg-accent mb-4" />
           <CheckoutLine title="Total" price={checkout.total} />
@@ -44,36 +49,45 @@ export default function Cart({
   );
 }
 
-function CartLine() {
+function CartLine({
+  line,
+  currency_code,
+}: {
+  line: OrderLineItemDTO;
+  currency_code: string;
+}) {
+  const price = convertToLocale({
+    amount: line.unit_price * line.quantity,
+    currency_code,
+  });
   return (
     <Section className="mb-3">
       <Row>
         <Column className="mx-0 w-[100px] h-[100px]  ">
           <Section className="w-fit ">
-            {/* <Img
-                    src={`${baseUrl}/static/emails/product.png`}
+            <Img
+              src={line.thumbnail}
               width="100"
               height="100px"
               alt="Product image"
               className=""
-            /> */}
-            <Section className="h-[100px] w-[100px] bg-accent"></Section>
+            />
           </Section>
         </Column>
         <Column className="pl-2 align-top ">
           <Text className="w-full font-bold leading-[130%]" style={BodySmall}>
-            Two chip chocolate chip cookie
+            {line.product_title}
           </Text>
           <Text
             className="w-full text-inactive leading-[120%]"
             style={BodySmall}
           >
-            4-Pack
+            {line.variant_title}
           </Text>
         </Column>
         <Column align="right" className="align-top">
           <Text className="font-bold leading-[140%]" style={BodySmall}>
-            $20.00
+            {price}
           </Text>
         </Column>
       </Row>
