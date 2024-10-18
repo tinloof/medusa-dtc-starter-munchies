@@ -1,27 +1,28 @@
-// import { Modules } from "@medusajs/framework/utils";
-// import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
-// import ShippingConfirmation from "data/templates/shipping-confirmation";
-// import { sendEmail } from "./lib/email";
+import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
 
-// export default async function orderUpdatedHandler({
-//   event,
-//   container,
-// }: SubscriberArgs<{ id: string }>) {
-//   const orderService = container.resolve(Modules.ORDER);
+export default async function orderUpdatedHandler({
+  event,
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  try {
+    const response = await fetch(
+      "https://munchies.medusajs.app/email/shipping-confirmation/" +
+        event.data.id,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
-//   const order = await orderService
-//     .listOrders({
-//       id: event.data.id,
-//     })
-//     .then((orders) => orders[0]);
-
-//   await sendEmail({
-//     to: order.email,
-//     subject: "Your order is shipped",
-//     react: ShippingConfirmation(),
-//   });
-// }
-
-// export const config: SubscriberConfig = {
-//   event: ["order.updated"],
-// };
+export const config: SubscriberConfig = {
+  event: ["order.updated"],
+};

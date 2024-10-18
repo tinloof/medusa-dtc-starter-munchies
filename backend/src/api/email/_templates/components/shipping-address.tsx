@@ -1,3 +1,4 @@
+import { OrderAddressDTO } from "@medusajs/framework/types";
 import { Column, Row, Section, Text } from "@react-email/components";
 import React from "react";
 
@@ -10,12 +11,12 @@ type Address = {
 };
 export default function CustomerInformation({
   method,
-  ShippingAddress,
-  BillingAddress,
+  shippingAddress,
+  billingAddress,
 }: {
-  method: string;
-  ShippingAddress: Address;
-  BillingAddress: Address;
+  method?: string;
+  shippingAddress?: OrderAddressDTO;
+  billingAddress?: OrderAddressDTO;
 }) {
   return (
     <Section>
@@ -24,30 +25,26 @@ export default function CustomerInformation({
         <Column>
           <Text className="mb-2 font-bold">Shipping address</Text>
           <Text>
-            {ShippingAddress.name}
+            {shippingAddress?.first_name + " " + shippingAddress?.last_name}
             <br />
-            {ShippingAddress.company}
+            {shippingAddress?.company}
             <br />
-            {ShippingAddress.street}
+            {shippingAddress?.address_1}
             <br />
-            {ShippingAddress.city}
-            <br />
-            {ShippingAddress.country}
+            {shippingAddress?.city}
             <br />
           </Text>
         </Column>
         <Column>
           <Text className="mb-2 font-bold">Billing address</Text>
           <Text>
-            {BillingAddress.name}
+            {billingAddress?.first_name + " " + billingAddress?.last_name}
             <br />
-            {BillingAddress.company}
+            {billingAddress?.company}
             <br />
-            {BillingAddress.street}
+            {billingAddress?.address_1}
             <br />
-            {BillingAddress.city}
-            <br />
-            {BillingAddress.country}
+            {billingAddress?.city}
             <br />
           </Text>
         </Column>

@@ -25,7 +25,6 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
           ]}
         />
         <Cart
-          orderNumber="1234567890"
           date={new Date(order.created_at).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
@@ -41,26 +40,8 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
         />
         <CustomerInformation
           method={order.shipping_methods?.[0].name}
-          ShippingAddress={{
-            name:
-              order.shipping_address.first_name +
-              " " +
-              order.shipping_address.last_name,
-            company: order.shipping_address.company,
-            street: order.shipping_address.address_1,
-            city: order.shipping_address.city,
-            country: order.shipping_address.country_code,
-          }}
-          BillingAddress={{
-            name:
-              order.billing_address.first_name +
-              " " +
-              order.billing_address.last_name,
-            company: order.billing_address.company,
-            street: order.billing_address.address_1,
-            city: order.billing_address.city,
-            country: order.billing_address.country_code,
-          }}
+          shippingAddress={order.shipping_address}
+          billingAddress={order.billing_address}
         />
       </Section>
     </Layout>

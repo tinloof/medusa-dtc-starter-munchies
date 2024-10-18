@@ -3994,7 +3994,7 @@
     js-beautify "^1.14.11"
     react-promise-suspense "0.3.4"
 
-"@react-email/render@1.0.1":
+"@react-email/render@1.0.1", "@react-email/render@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@react-email/render/-/render-1.0.1.tgz#5a8897a2b87c1aa41ebe5dd36233bd8d983b801a"
   integrity sha512-W3gTrcmLOVYnG80QuUp22ReIT/xfLsVJ+n7ghSlG2BITB8evNABn1AO2rGQoXuK84zKtDAlxCdm3hRyIpZdGSA==

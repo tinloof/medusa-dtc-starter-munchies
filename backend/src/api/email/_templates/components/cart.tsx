@@ -1,13 +1,10 @@
 import { Column, Hr, Row, Section, Text } from "@react-email/components";
-import React from "react";
 import { BodySmall, BodyXSmall } from "./style";
 
 export default function Cart({
-  orderNumber,
   checkout,
 }: {
   date?: string;
-  orderNumber: string;
   checkout?: {
     Subtotal: string;
     discount: string;
@@ -20,7 +17,7 @@ export default function Cart({
     <Section className="mb-10">
       <Section className="mb-4">
         <Text className="w-fit uppercase leading-[110%]" style={BodySmall}>
-          Order summary {orderNumber}
+          Order summary
         </Text>
       </Section>
       <CartLine />

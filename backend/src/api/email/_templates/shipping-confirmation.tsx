@@ -3,7 +3,7 @@ import EmailBody from "./components/email-body";
 import Layout from "./components/layout";
 import { Title } from "./components/style";
 
-export default function BuyAgain() {
+export default function ShippingConfirmation() {
   return (
     <Layout preview="Shipping confirmation">
       <Section className="w-full max-w-[525px] px-5 my-20" align="left">

@@ -1,6 +1,9 @@
 "use server";
 
+import {Resend} from "resend";
 import {z} from "zod";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const newsletterSchema = z.object({
   email: z.string().email(),
@@ -16,8 +19,16 @@ export async function newsletterForm(
   if (!success) return "error";
   const {email} = data;
   try {
-    console.log("email", email);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    const audiences = await resend.audiences.list();
+
+    const audienceId = audiences.data?.data?.[0].id;
+
+    if (!audienceId) throw new Error("No audience found");
+
+    await resend.contacts.create({
+      audienceId,
+      email,
+    });
 
     return "success";
   } catch (error) {
