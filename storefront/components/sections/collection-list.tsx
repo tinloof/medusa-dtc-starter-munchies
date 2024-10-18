@@ -1,13 +1,11 @@
-import Link from "next/link";
-
 import type {ModularPageSection} from "./types";
 
 import CarouselSection from "../shared/carousel-section";
+import LocalizedLink from "../shared/localized-link";
 import {SanityImage} from "../shared/sanity-image";
 import Body from "../shared/typography/body";
 import Heading from "../shared/typography/heading";
 
-//TODO: find solution to remove scrol on the desktop
 export default function CollectionList(
   props: ModularPageSection<"section.collectionList">,
 ) {
@@ -40,7 +38,7 @@ function CollectionCard({
 }: NonNullable<ModularPageSection<"section.collectionList">["cards"]>[number]) {
   if (!cta?.link) return null;
   return (
-    <Link
+    <LocalizedLink
       className="group relative flex aspect-[3/4] h-auto w-[88vw] min-w-[320px] max-w-[453px] flex-1 cursor-pointer rounded-lg"
       href={cta?.link}
     >
@@ -80,6 +78,6 @@ function CollectionCard({
           </div>
         </div>
       )}
-    </Link>
+    </LocalizedLink>
   );
 }

@@ -33,8 +33,9 @@ export async function placeOrder() {
 
   if (cartRes?.type === "order") {
     removeCartId();
-    // TODO: make this us the country code
-    redirect(`/order/confirmed/${cartRes.order.id}`);
+    const countryCode =
+      cartRes.order.shipping_address?.country_code?.toLowerCase();
+    redirect(`/${countryCode}/order/confirmed/${cartRes.order.id}`);
   }
 
   return cartRes.cart;

@@ -125,9 +125,7 @@ export default function Payment({
           })}
           {isStripe && stripeReady && (
             <div className="mt-5 flex flex-col gap-2 transition-all duration-150 ease-in-out">
-              <Body font="sans">
-                Enter your card details: {error ? error : "no error"}
-              </Body>
+              <Body font="sans">Enter your card details:</Body>
 
               <CardElement
                 onChange={(e) => {
@@ -136,6 +134,7 @@ export default function Payment({
                 }}
                 options={stripeCardElementOptions}
               />
+              {error && <Body font="sans">{error}</Body>}
             </div>
           )}
 

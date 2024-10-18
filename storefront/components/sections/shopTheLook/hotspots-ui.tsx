@@ -2,12 +2,12 @@
 import type {StoreProduct} from "@medusajs/types";
 
 import {Link} from "@/components/shared/button";
+import LocalizedLink from "@/components/shared/localized-link";
 import {SanityImage} from "@/components/shared/sanity-image";
 import Tag from "@/components/shared/tag";
 import Body from "@/components/shared/typography/body";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import {cx} from "cva";
-import NextLink from "next/link";
 import {useState} from "react";
 
 import type {ModularPageSection} from "../types";
@@ -133,7 +133,7 @@ export default function HotspotsUi({
         {referencedProducts.map((product) => {
           const {cheapestPrice} = getProductPrice({product});
           return (
-            <NextLink
+            <LocalizedLink
               className={cx("flex w-full gap-[10px] rounded-2xl p-xs", {
                 "bg-secondary": selectedProduct === product.id,
               })}
@@ -154,7 +154,7 @@ export default function HotspotsUi({
                   from {cheapestPrice?.calculated_price || "NA"}
                 </Body>
               </div>
-            </NextLink>
+            </LocalizedLink>
           );
         })}
         <Link className="w-full" href={"/products"} size="xl" variant="outline">

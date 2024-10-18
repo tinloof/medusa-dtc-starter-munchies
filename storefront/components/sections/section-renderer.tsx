@@ -5,9 +5,11 @@ import type {SectionProps, SectionType} from "./types";
 import {sectionsList} from ".";
 
 const SectionsRenderer = ({
+  countryCode,
   fieldName,
   sections,
 }: {
+  countryCode: string;
   fieldName: string;
   sections?: SectionProps[];
 }) => {
@@ -29,6 +31,7 @@ const SectionsRenderer = ({
 
     return (
       <Component
+        countryCode={countryCode}
         key={section._key}
         {...(section as any)}
         _sectionIndex={index}

@@ -19,6 +19,15 @@ const config = {
   experimental: {
     taint: true,
   },
+  rewrites() {
+    return [
+      {
+        source:
+          "/:path((?!us|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico).*)",
+        destination: "/us/:path*",
+      },
+    ];
+  },
 };
 
 export default config;

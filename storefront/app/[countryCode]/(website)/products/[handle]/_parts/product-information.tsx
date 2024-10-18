@@ -38,7 +38,7 @@ export default function ProductInformation({
 }: Props) {
   return (
     <ProductVariantsProvider options={options} variants={variants}>
-      <div className="lg:y-s flex w-full max-w-[580px] flex-col gap-lg px-m pb-2xl pt-s">
+      <div className="lg:y-s flex w-full flex-col gap-lg px-m pb-2xl pt-s lg:max-w-[580px]">
         <BreadCrumbs collection={collection} title={title} />
         <Heading
           className="leading-[100%]"
@@ -59,7 +59,7 @@ export default function ProductInformation({
         </Body>
         <div className="mt-s flex flex-col gap-s">
           {options && <OptionsSelect options={options} />}
-          <AddToCart region_id={region_id} />
+          <AddToCart region_id={region_id} variant="PDP" />
         </div>
         <Addons
           products={content?.addons?.products}

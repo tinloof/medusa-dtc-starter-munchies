@@ -1,7 +1,7 @@
 import type {Footer} from "@/types/sanity.generated";
 
+import LocalizedLink from "@/components/shared/localized-link";
 import Label from "@/components/shared/typography/label";
-import Link from "next/link";
 import React from "react";
 
 export default function BottomLinks({
@@ -19,7 +19,7 @@ export default function BottomLinks({
           {bottomLinks?.map((link) => {
             if (!link.link) return null;
             return (
-              <Link
+              <LocalizedLink
                 className="whitespace-nowrap"
                 href={link.link}
                 key={link._key}
@@ -27,7 +27,7 @@ export default function BottomLinks({
                 <Label desktopSize="xs" font="display" mobileSize="2xs">
                   {link.label}
                 </Label>
-              </Link>
+              </LocalizedLink>
             );
           })}
         </div>
@@ -36,11 +36,11 @@ export default function BottomLinks({
         {socialLinks?.map((link) => {
           if (!link.link) return null;
           return (
-            <Link href={link.link} key={link._key}>
+            <LocalizedLink href={link.link} key={link._key}>
               <Label desktopSize="xs" font="display" mobileSize="2xs">
                 {link.label}
               </Label>
-            </Link>
+            </LocalizedLink>
           );
         })}
       </div>

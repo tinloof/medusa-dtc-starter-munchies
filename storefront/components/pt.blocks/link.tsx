@@ -1,6 +1,6 @@
 import type {PortableTextMarkComponentProps} from "@portabletext/react";
 
-import Link from "next/link";
+import LocalizedLink from "../shared/localized-link";
 
 type linkData = {
   _key: string;
@@ -10,8 +10,8 @@ type linkData = {
 export function PtLink(props: PortableTextMarkComponentProps<linkData>) {
   if (!props.value) return <>{props.children}</>;
   return (
-    <Link className="break-words underline" href={props.value.href}>
+    <LocalizedLink className="break-words underline" href={props.value.href}>
       {props.children}
-    </Link>
+    </LocalizedLink>
   );
 }

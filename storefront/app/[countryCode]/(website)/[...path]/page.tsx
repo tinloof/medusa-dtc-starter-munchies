@@ -9,7 +9,7 @@ import {notFound} from "next/navigation";
 
 import TextPage from "./text-page.template";
 
-export type DynamicRouteProps = PageProps<"...path">;
+export type DynamicRouteProps = PageProps<"...path" | "countryCode">;
 
 export async function generateMetadata(
   {params}: DynamicRouteProps,
@@ -34,7 +34,6 @@ export async function generateMetadata(
 
 export default async function DynamicRoute({params}: DynamicRouteProps) {
   const initialData = await loadPageByPathname({params});
-
   if (!initialData) return notFound();
 
   switch (initialData._type) {
@@ -42,6 +41,7 @@ export default async function DynamicRoute({params}: DynamicRouteProps) {
     case "home":
       return (
         <SectionsRenderer
+          countryCode={params.countryCode}
           {...{fieldName: "body", sections: initialData.sections || []}}
         />
       );

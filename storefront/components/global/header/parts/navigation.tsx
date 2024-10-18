@@ -3,13 +3,13 @@
 import type {Header} from "@/types/sanity.generated";
 
 import {Link} from "@/components/shared/button";
+import LocalizedLink from "@/components/shared/localized-link";
 import {SanityImage} from "@/components/shared/sanity-image";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import Label from "@/components/shared/typography/label";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import {cx} from "cva";
-import NextLink from "next/link";
 import {usePathname, useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
 import {RemoveScroll} from "react-remove-scroll";
@@ -42,7 +42,7 @@ export default function Navigation({data}: {data: Header}) {
           if (item._type === "link") {
             if (!item.cta?.link) return null;
             return (
-              <NextLink
+              <LocalizedLink
                 className={cx(
                   "h-full whitespace-nowrap px-5 py-[14.5px] transition-opacity duration-300 hover:!opacity-100 group-hover:opacity-50",
                   {
@@ -59,7 +59,7 @@ export default function Navigation({data}: {data: Header}) {
                     </Body>
                   </NavigationMenu.Link>
                 </NavigationMenu.Item>
-              </NextLink>
+              </LocalizedLink>
             );
           } else if (item._type === "dropdown") {
             return (
@@ -111,7 +111,7 @@ function Content({cards, columns}: DropdownType) {
                 {link.links?.map((link) => {
                   if (!link?.link) return null;
                   return (
-                    <NextLink
+                    <LocalizedLink
                       className={cx(
                         "py-xs opacity-100 transition-opacity duration-300 last:pb-0 group-hover:opacity-50",
                         {
@@ -126,7 +126,7 @@ function Content({cards, columns}: DropdownType) {
                       <Label font="sans" mobileSize="lg">
                         {link.label}
                       </Label>
-                    </NextLink>
+                    </LocalizedLink>
                   );
                 })}
               </div>

@@ -7,16 +7,14 @@ import type {ModularPageSection} from "../types";
 import HotspotsUi from "./hotspots-ui";
 
 export default async function Hotspots({
+  countryCode,
   image,
   productHotSpots,
 }: Pick<
   ModularPageSection<"section.shopTheLook">,
-  "image" | "productHotSpots"
+  "countryCode" | "image" | "productHotSpots"
 >) {
-  const region = await getRegion(
-    // TODO: Make this come from the params
-    process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
-  );
+  const region = await getRegion(countryCode);
 
   if (!region) {
     console.log("No region found");
