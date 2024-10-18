@@ -17,6 +17,7 @@ export const generateOgEndpoint = ({
 }) =>
   new URL(
     [
+      // TODO: replace this by config.baseUrl
       "http://localhost:3000",
       "api/og",
       countryCode,
