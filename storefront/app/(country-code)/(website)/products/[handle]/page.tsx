@@ -45,7 +45,7 @@ export default async function ProductPage({params}: ProductPageProps) {
       {content?.sections && (
         <SectionsRenderer fieldName="body" sections={content.sections} />
       )}
-      <StickyAtc {...product} />
+      <StickyAtc {...product} region_id={region.id} />
     </>
   );
 }

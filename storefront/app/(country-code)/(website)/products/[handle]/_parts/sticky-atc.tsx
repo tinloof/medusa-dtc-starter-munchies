@@ -9,7 +9,11 @@ import {ProductVariantsProvider} from "../product-context";
 import AddToCart from "./add-to-cart";
 import OptionsSelect from "./options";
 
-export default function StickyAtc({options, variants}: StoreProduct) {
+export default function StickyAtc({
+  options,
+  region_id,
+  variants,
+}: {region_id: string} & StoreProduct) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -44,7 +48,7 @@ export default function StickyAtc({options, variants}: StoreProduct) {
               <OptionsSelect options={options} />
             </div>
           )}
-          <AddToCart variant="sticky" />
+          <AddToCart region_id={region_id} variant="sticky" />
         </div>
       </div>
     </ProductVariantsProvider>
