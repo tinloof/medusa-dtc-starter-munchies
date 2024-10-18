@@ -19,7 +19,7 @@ const config = {
   experimental: {
     taint: true,
   },
-  async rewrites() {
+  rewrites() {
     return [
       {
         source:

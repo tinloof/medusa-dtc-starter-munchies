@@ -1,20 +1,26 @@
 "use client";
-import type {ComponentProps} from "react";
+import type { ComponentProps } from "react";
 
+import config from "@/config";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+
+import { useCountryCode } from "../context/country-code-context";
 
 export default function LocalizedLink({
   href,
-  ...props
+  ...passThroughProps
 }: ComponentProps<typeof Link>) {
-  const pathname = usePathname();
-  const countryCode =
-    pathname.split("/").filter((path) => path !== "")[0] || "";
-  const localizedHref = href.toString().startsWith("/")
-    ? `/${countryCode}${href}`
-    : `/${countryCode}/${href}`;
-  const cleanedHref = localizedHref.replace(/\/+/g, "/");
+  const countryCode = useCountryCode();
 
-  return <Link href={cleanedHref} {...props} />;
+  const isDefault = countryCode === config.defaultCountryCode
+
+  const normalizedPath = href.toString();
+  const isExternalLink = normalizedPath.startsWith("https://");
+  const isDeepLink = normalizedPath.startsWith("#");
+  const localizedHref =
+    isExternalLink || isDeepLink || isDefault
+      ? href
+      : `/${countryCode}${normalizedPath.startsWith("/") ? "" : "/"}${href}`;
+
+  return <Link href={localizedHref} {...passThroughProps} />;
 }

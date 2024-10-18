@@ -8,6 +8,7 @@ import {
 } from "@/components/shared/side-dialog";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
+import config from "@/config";
 import {Dialog, Title} from "@radix-ui/react-dialog";
 import {cx} from "cva";
 import Link from "next/link";
@@ -40,8 +41,18 @@ export default function CountrySelectorDialog({
 
   const getNewPath = (newCountryCode: string) => {
     const pathParts = pathname.split("/");
-    pathParts[1] = newCountryCode;
-    return pathParts.join("/");
+
+    const isDefault = newCountryCode === config.defaultCountryCode;
+
+    if (isDefault) {
+      pathParts.splice(1, 1);
+    } else {
+      pathParts[1] = newCountryCode;
+    }
+
+    const path = pathParts.join("/");
+
+    return path.startsWith("/") ? path : "/" + path;
   };
 
   const selectedCountry =
