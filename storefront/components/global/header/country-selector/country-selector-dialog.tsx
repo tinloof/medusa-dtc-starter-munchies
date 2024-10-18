@@ -1,5 +1,6 @@
 "use client";
 
+import {useCountryCode} from "@/components/context/country-code-context";
 import Icon from "@/components/shared/icon";
 import {
   CloseDialog,
@@ -12,7 +13,7 @@ import config from "@/config";
 import {Dialog, Title} from "@radix-ui/react-dialog";
 import {cx} from "cva";
 import Link from "next/link";
-import {useParams, usePathname} from "next/navigation";
+import {usePathname} from "next/navigation";
 import {Suspense, useState} from "react";
 
 export type Country = {
@@ -34,19 +35,21 @@ export default function CountrySelectorDialog({
   countries,
 }: DialogRootProps) {
   const [open, setOpen] = useState(false);
-  const {countryCode = countries[0]?.code} = useParams<{
-    countryCode?: string;
-  }>();
+
   const pathname = usePathname();
+  const countryCode = useCountryCode();
 
   const getNewPath = (newCountryCode: string) => {
     const pathParts = pathname.split("/");
 
     const isDefault = newCountryCode === config.defaultCountryCode;
+    const currentIsDefault = countryCode === config.defaultCountryCode;
 
-    if (isDefault) {
+    if (isDefault && !currentIsDefault) {
       pathParts.splice(1, 1);
-    } else {
+    } else if (!isDefault && currentIsDefault) {
+      pathParts.splice(1, 0, newCountryCode);
+    } else if (!isDefault) {
       pathParts[1] = newCountryCode;
     }
 
