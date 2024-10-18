@@ -1,7 +1,5 @@
 import { Modules } from "@medusajs/framework/utils";
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
-import OrderConfirmation from "data/templates/order-confirmation";
-import { sendEmail } from "lib/email";
 
 export default async function orderCreateHandler({
   event,
@@ -33,12 +31,12 @@ export default async function orderCreateHandler({
     console.error("Error posting event data:", error);
   }
 
-  if (order)
-    await sendEmail({
-      to: order.email,
-      subject: "Thank you for you order",
-      react: OrderConfirmation({ order }),
-    });
+  // if (order)
+  //   await sendEmail({
+  //     to: order.email,
+  //     subject: "Thank you for you order",
+  //     react: OrderConfirmation({ order }),
+  //   });
 }
 
 export const config: SubscriberConfig = {
