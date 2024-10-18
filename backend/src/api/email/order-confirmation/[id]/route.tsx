@@ -10,7 +10,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const orderService = req.scope.resolve(Modules.ORDER);
 
   const order = await orderService.retrieveOrder(id, {
-    relations: ["fulfillments"],
+    relations: ["items"],
   });
 
   try {

@@ -10,12 +10,10 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const orderService = req.scope.resolve(Modules.ORDER);
   const fullfilmentService = req.scope.resolve(Modules.FULFILLMENT);
 
-  const order = await orderService.retrieveOrder(id, {
-    relations: ["fulfillments"],
-  });
+  const order = await orderService.retrieveOrder(id);
 
   // TODO: figure out how to pass fulfillments ids here
-  const fullfilment = await fullfilmentService.listFulfillments({ id });
+  // const fullfilment = await fullfilmentService.listFulfillments({ id });
 
   if (order)
     try {
