@@ -57,7 +57,9 @@ export async function initiatePaymentSession(
       revalidateTag(getCacheTag("carts"));
       return {error: null, status: "success"} as const;
     })
-    .catch((e) => ({error: e.message, status: "error"}));
+    .catch((e) => {
+      return {error: e.message, status: "error"};
+    });
 }
 
 export async function setCheckoutAddresses(
