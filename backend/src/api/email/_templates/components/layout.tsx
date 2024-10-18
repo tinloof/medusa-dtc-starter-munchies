@@ -32,7 +32,7 @@ export default function Layout({
           },
         }}
       >
-        <Section className="bg-background" style={Global}>
+        <Section className="bg-white" style={Global}>
           <Container className="bg-background h-full w-full  max-w-[640px]">
             <Section className=" text-accent">{children}</Section>
             <Footer />

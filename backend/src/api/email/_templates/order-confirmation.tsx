@@ -1,4 +1,5 @@
 import { BigNumberValue, OrderDTO } from "@medusajs/framework/types";
+import { BigNumber } from "@medusajs/framework/utils";
 import { Heading, Section } from "@react-email/components";
 import Cart from "./components/cart";
 import EmailBody from "./components/email-body";
@@ -8,11 +9,20 @@ import { Title } from "./components/style";
 import { convertToLocale } from "./utils";
 
 export default function OrderConfirmation({ order }: { order: OrderDTO }) {
-  const convertMoney = (amount: BigNumberValue) =>
-    convertToLocale({
-      amount: Number(amount),
-      currency_code: order.currency_code,
-    });
+  const convertMoney = (amount: BigNumberValue) => {
+    if (typeof amount === "number") {
+      return convertToLocale({
+        amount,
+        currency_code: order.currency_code,
+      });
+    } else if (typeof amount === "string" || amount instanceof BigNumber) {
+      return convertToLocale({
+        amount: parseFloat(amount.toString()),
+        currency_code: order.currency_code,
+      });
+    }
+    return "";
+  };
   return (
     <Layout preview="Order confirmation">
       <Section className="w-full max-w-[525px] px-5 mt-32 mb-10" align="left">

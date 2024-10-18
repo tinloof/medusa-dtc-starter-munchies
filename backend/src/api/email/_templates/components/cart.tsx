@@ -57,14 +57,17 @@ function CartLine({
   currency_code: string;
 }) {
   const price = convertToLocale({
-    amount: line.unit_price * line.quantity,
+    amount: (line.unit_price || 0) * (line.quantity || 1),
     currency_code,
   });
   return (
     <Section className="mb-3">
       <Row>
         <Column className="mx-0 w-[100px] h-[100px]  ">
-          <Section className="w-fit ">
+          <Section
+            className="w-fit border-accent rounded-lg"
+            style={{ border: "1px solid" }}
+          >
             <Img
               src={line.thumbnail}
               width="100"
