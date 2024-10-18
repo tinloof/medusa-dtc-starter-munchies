@@ -8,6 +8,7 @@ import {notFound} from "next/navigation";
 
 import {ProductImagesCarousel} from "./_parts/image-carousel";
 import ProductInformation from "./_parts/product-information";
+import StickyAtc from "./_parts/sticky-atc";
 
 type ProductPageProps = PageProps<"handle">;
 
@@ -40,9 +41,11 @@ export default async function ProductPage({params}: ProductPageProps) {
           {...product}
         />
       </section>
+
       {content?.sections && (
         <SectionsRenderer fieldName="body" sections={content.sections} />
       )}
+      <StickyAtc {...product} region_id={region.id} />
     </>
   );
 }
