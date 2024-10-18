@@ -1,9 +1,12 @@
 import type {PageProps} from "@/types";
+import type {ResolvingMetadata} from "next";
 
+import {generateOgEndpoint} from "@/app/api/og/[...info]/utils";
 import SectionsRenderer from "@/components/sections/section-renderer";
 import {getProductByHandle} from "@/data/medusa/products";
 import {getRegion} from "@/data/medusa/regions";
 import {loadProductContent} from "@/data/sanity";
+import {resolveSanityRouteMetadata} from "@/data/sanity/resolve-sanity-route-metadata";
 import {notFound} from "next/navigation";
 
 import {ProductImagesCarousel} from "./_parts/image-carousel";
@@ -11,6 +14,44 @@ import ProductInformation from "./_parts/product-information";
 import StickyAtc from "./_parts/sticky-atc";
 
 type ProductPageProps = PageProps<"countryCode" | "handle">;
+
+export async function generateMetadata(
+  props: ProductPageProps,
+  parent: ResolvingMetadata,
+) {
+  const content = await loadProductContent(props.params.handle);
+
+  if (!content) {
+    return notFound();
+  }
+
+  const url = generateOgEndpoint({
+    countryCode: props.params.countryCode,
+    handle: props.params.handle,
+    type: "products",
+  });
+
+  const metadata = await resolveSanityRouteMetadata(
+    {
+      indexable: content?.indexable,
+      pathname: content?.pathname,
+      seo: content?.seo,
+    },
+    parent,
+  );
+  return {
+    ...metadata,
+    openGraph: {
+      images: [
+        {
+          height: 630,
+          url: url.toString(),
+          width: 1200,
+        },
+      ],
+    },
+  };
+}
 
 export default async function ProductPage({params}: ProductPageProps) {
   const region = await getRegion(params.countryCode);
