@@ -12,16 +12,19 @@ import OptionsSelect from "./options";
 import Price from "./price";
 import ProductSpecs from "./specs";
 
-type Props = {content: PRODUCT_QUERYResult} & {region_id: string} & Pick<
-    StoreProduct,
-    | "collection"
-    | "description"
-    | "id"
-    | "options"
-    | "subtitle"
-    | "title"
-    | "variants"
-  >;
+type Props = {
+  content: PRODUCT_QUERYResult;
+  region_id: string;
+} & Pick<
+  StoreProduct,
+  | "collection"
+  | "description"
+  | "id"
+  | "options"
+  | "subtitle"
+  | "title"
+  | "variants"
+>;
 
 export default function ProductInformation({
   collection,
@@ -56,7 +59,7 @@ export default function ProductInformation({
         </Body>
         <div className="mt-s flex flex-col gap-s">
           {options && <OptionsSelect options={options} />}
-          <AddToCart variant="PDP" />
+          <AddToCart region_id={region_id} variant="PDP" />
         </div>
         <Addons
           products={content?.addons?.products}

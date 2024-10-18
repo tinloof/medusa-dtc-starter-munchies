@@ -1,18 +1,20 @@
-import type { StoreProduct } from "@medusajs/types";
+import type {StoreProduct} from "@medusajs/types";
 
-import { AddToCartButton } from "@/app/(website)/products/[handle]/_parts/add-to-cart";
-import { getProductPrice } from "@/utils/medusa/get-product-price";
+import {AddToCartButton} from "@/app/(country-code)/(website)/products/[handle]/_parts/add-to-cart";
+import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
 import Body from "./typography/body";
 
 type Props = {
+  region_id: string;
   variant?: "PDP" | "cart";
 } & StoreProduct;
 
 export function AddonsItem({
   id,
   images,
+  region_id,
   title,
   variant = "PDP",
   variants,
@@ -24,7 +26,7 @@ export function AddonsItem({
     },
   });
 
-  const default_variant = variants?.[0]
+  const default_variant = variants?.[0];
 
   return (
     <div className="flex w-full gap-xs">
@@ -54,6 +56,7 @@ export function AddonsItem({
         <AddToCartButton
           className="self-end"
           label="Add +"
+          region_id={region_id}
           size={variant === "PDP" ? "md" : variant === "cart" ? "sm" : null}
           variant="outline"
           variantId={default_variant?.id}

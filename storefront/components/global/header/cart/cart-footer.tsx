@@ -1,10 +1,10 @@
 "use client";
 
-import {Cta} from "@/components/shared/button";
+import { Link } from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
-import {convertToLocale} from "@/utils/medusa/money";
+import { convertToLocale } from "@/utils/medusa/money";
 
-import {useCart} from "./cart-context";
+import { useCart } from "./cart-context";
 
 export default function CartFooter() {
   const {cart} = useCart();
@@ -18,11 +18,12 @@ export default function CartFooter() {
 
   const cartIsEmpty = cart?.items?.length === 0;
 
+  if (cartIsEmpty) return null
+
   return (
     <>
-      {!cartIsEmpty && <div className="h-px w-full bg-accent" />}
+       <div className="h-px w-full bg-accent" />
       <div className="flex w-full flex-col justify-between gap-4 p-s">
-        {!cartIsEmpty && (
           <div className="flex w-full justify-between gap-4">
             <div>
               <Body className="font-semibold" font="sans" mobileSize="base">
@@ -38,10 +39,9 @@ export default function CartFooter() {
               </Body>
             )}
           </div>
-        )}
-        <Cta className="w-full" size="lg" variant="primary">
-          Go to checkout
-        </Cta>
+          <Link className="w-full" href="/checkout" size="lg" variant="primary">
+            Go to checkout
+          </Link>
       </div>
     </>
   );

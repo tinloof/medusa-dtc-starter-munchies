@@ -8,7 +8,13 @@ import {useState} from "react";
 
 import {useProductVariants} from "../product-context";
 
-export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
+export default function AddToCart({
+  region_id,
+  variant,
+}: {
+  region_id: string;
+  variant: "PDP" | "sticky";
+}) {
   const {activeVariant} = useProductVariants();
 
   return (
@@ -18,6 +24,7 @@ export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
         "w-full": variant === "PDP",
       })}
       label="Add to cart"
+      region_id={region_id}
       size={variant === "PDP" ? "xl" : "md"}
       variant={variant === "PDP" ? "outline" : "primary"}
       variantId={activeVariant?.id}
@@ -28,21 +35,28 @@ export default function AddToCart({variant}: {variant: "PDP" | "sticky"}) {
 export function AddToCartButton({
   label,
   quantity = 1,
+  region_id,
   variantId,
   ...buttonProps
 }: {
   label: string;
   quantity?: number;
+  region_id: string;
   variantId?: string;
 } & Omit<ButtonProps, "onClick">) {
   const [isAdding, setIsAdding] = useState(false);
 
-  const handleAddToCart = async (variantId: string, quantity: number) => {
+  const handleAddToCart = async (
+    variantId: string,
+    quantity: number,
+    region_id: string,
+  ) => {
     if (!variantId) return;
     setIsAdding(true);
 
     await addToCart({
       quantity,
+      region_id,
       variantId,
     });
 
@@ -54,7 +68,9 @@ export function AddToCartButton({
       {...buttonProps}
       loading={isAdding}
       onClick={
-        variantId ? () => handleAddToCart(variantId, quantity) : undefined
+        variantId
+          ? () => handleAddToCart(variantId, quantity, region_id)
+          : undefined
       }
     >
       {label}
