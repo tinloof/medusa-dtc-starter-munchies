@@ -103,9 +103,9 @@ export default function StripePaymentButton({
         onClick={handlePayment}
         size="sm"
       >
-        Complete order (Stripe)
+        Complete order
       </Cta>
-      <Body>{errorMessage}</Body>
+      <Body font="sans">{errorMessage}</Body>
     </>
   );
 }
