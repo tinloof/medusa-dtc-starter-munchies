@@ -23,7 +23,7 @@ export default function Assurance(
           {props.title}
         </Heading>
       )}
-      <div className="flex w-full flex-col justify-between gap-m lg:flex-row lg:gap-2xl">
+      <div className="flex w-full flex-col items-center justify-between gap-m lg:flex-row lg:gap-2xl">
         {props.cards?.map((card) => (
           <Item
             description={card.description}
@@ -44,7 +44,7 @@ function Item({
   title: string | undefined;
 }) {
   return (
-    <div className="flex w-full flex-col items-center gap-xs text-center lg:max-w-[400px]">
+    <div className="flex w-full max-w-[400px] flex-col items-center gap-xs text-center">
       <Heading mobileSize="base" tag="h5">
         {title}
       </Heading>

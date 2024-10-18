@@ -1,8 +1,15 @@
 "use client";
 
+import {cx} from "cva";
 import {useEffect, useState} from "react";
 
-export default function BottomBorder() {
+export default function BottomBorder({
+  DropdownOpen,
+  className,
+}: {
+  DropdownOpen?: boolean;
+  className?: string;
+}) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -20,9 +27,15 @@ export default function BottomBorder() {
 
   return (
     <div
-      className={`h-[1px] w-full bg-accent transition-all duration-300 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      className={cx(
+        className,
+        "h-[1.5px] w-screen bg-accent transition-all duration-300",
+        {
+          "opacity-0": !isVisible,
+          "opacity-0 transition-none": DropdownOpen,
+          "opacity-100": isVisible && !DropdownOpen,
+        },
+      )}
     />
   );
 }

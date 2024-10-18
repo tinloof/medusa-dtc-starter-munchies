@@ -1,3 +1,4 @@
+import type {PageProps} from "@/types";
 import type {HttpTypes} from "@medusajs/types";
 
 import {retrieveCart} from "@/data/medusa/cart";
@@ -6,16 +7,18 @@ import {
   listCartShippingMethods,
 } from "@/data/medusa/fullfilment";
 import {enrichLineItems} from "@/data/medusa/line-items";
-import {notFound} from "next/navigation";
+import {redirect} from "next/navigation";
 
 import CartDetails from "./_parts/cart-details";
 import CheckoutForm from "./_parts/checkout-form";
 
-export default async function CheckoutPage() {
+export default async function CheckoutPage({
+  params: {countryCode},
+}: PageProps<"countryCode">) {
   const cart = await retrieveCart();
 
   if (!cart || (cart.items?.length || 0) === 0) {
-    return notFound();
+    return redirect(`/${countryCode}/`);
   }
 
   if (cart?.items?.length) {

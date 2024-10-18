@@ -11,11 +11,11 @@ import BottomBorder from "./parts/bottom-border";
 import HamburgerContainer from "./parts/hamburger/container";
 import Navigation from "./parts/navigation";
 
-export default function Header(props: Header) {
+export default function Header(props: {countryCode: string} & Header) {
   return (
     <header className="sticky top-0 z-50 flex w-full flex-col items-center bg-background">
       <AnnouncementBar {...props} />
-      <div className="relative mx-auto flex w-full max-w-max-screen items-center justify-between gap-2xl px-m py-xs lg:px-xl">
+      <div className="mx-auto flex w-full max-w-max-screen items-center justify-between gap-2xl px-m py-xs lg:px-xl">
         <div className="flex items-center gap-m">
           <div className="flex items-center justify-start gap-s">
             <HamburgerContainer sanityData={props} />
@@ -42,12 +42,16 @@ export default function Header(props: Header) {
               </div>
             }
           >
-            <Cart cartAddons={props.cartAddons} />
+            <Cart
+              cartAddons={props.cartAddons}
+              countryCode={props.countryCode}
+            />
           </Suspense>
         </div>
       </div>
       <div className="relative z-30 w-screen" id="navigation-portal" />
-      <BottomBorder />
+
+      <BottomBorder className="lg:hidden" />
     </header>
   );
 }

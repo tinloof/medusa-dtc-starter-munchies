@@ -22,7 +22,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
           {props.title}
         </Heading>
         <Body
-          className="max-w-[580px] text-pretty text-center"
+          className="max-w-[580px] text-balance text-center"
           desktopSize="xl"
           font="sans"
           mobileSize="lg"
@@ -44,7 +44,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
         <div className="aspect-square rounded-lg lg:w-1/2">
           <SanityImage
             alt="arrow-right"
-            className="aspect-square"
+            className="aspect-square object-cover object-center"
             data={image}
             fetchPriority="high"
           />
