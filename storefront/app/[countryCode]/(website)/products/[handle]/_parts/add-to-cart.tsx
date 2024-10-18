@@ -16,7 +16,6 @@ export default function AddToCart({
   variant: "PDP" | "sticky";
 }) {
   const {activeVariant} = useProductVariants();
-
   return (
     <AddToCartButton
       className={cx("", {

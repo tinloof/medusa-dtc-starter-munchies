@@ -1,13 +1,13 @@
 import type {Header} from "@/types/sanity.generated";
 
 import Icon from "@/components/shared/icon";
+import {CloseDialog, Dialog, SideDialog} from "@/components/shared/side-dialog";
 import Body from "@/components/shared/typography/body";
 import {fetchCart} from "@/data/medusa/cart";
 import {Suspense} from "react";
 
 import CartAddons from "./cart-addons";
 import {CartProvider} from "./cart-context";
-import {CloseDialog, Dialog, SideDialog} from "./cart-dialog";
 import CartFooter from "./cart-footer";
 import CartHeading from "./cart-heading";
 import LineItem from "./line-item";
@@ -26,7 +26,7 @@ export default async function Cart({cartAddons}: Props) {
     <CartProvider cart={cart}>
       <Dialog>
         <OpenCart />
-        <SideDialog align="right">
+        <SideDialog>
           <div className="relative flex h-full w-full flex-col border-l border-accent bg-background">
             <CartHeading />
             <div className="h-px w-full bg-accent" />

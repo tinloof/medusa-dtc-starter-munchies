@@ -1,7 +1,7 @@
 import type {StoreProduct} from "@medusajs/types";
 
+import LocalizedLink from "@/components/shared/localized-link";
 import Body from "@/components/shared/typography/body";
-import Link from "next/link";
 
 export default function BreadCrumbs({
   collection,
@@ -9,13 +9,13 @@ export default function BreadCrumbs({
 }: Pick<StoreProduct, "collection" | "title">) {
   return (
     <Body className="-mb-1" desktopSize="base" font="sans" mobileSize="sm">
-      <Link href="/">Home</Link>{" "}
+      <LocalizedLink href="/">Home</LocalizedLink>{" "}
       {collection && (
         <>
           {" / "}
-          <Link href={`/collections/${collection.handle}`}>
+          <LocalizedLink href={`/collections/${collection.handle}`}>
             {collection.title}
-          </Link>{" "}
+          </LocalizedLink>{" "}
         </>
       )}
       {" / "}

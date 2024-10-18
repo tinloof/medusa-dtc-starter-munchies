@@ -8,11 +8,12 @@ import Heading from "@/components/shared/typography/heading";
 import {Suspense} from "react";
 
 type CollectionPageProps = PageProps<
-  never,
+  "countryCode",
   "category" | "collection" | "page" | "sort"
 >;
 
 export default async function CollectionPage({
+  params,
   searchParams,
 }: CollectionPageProps) {
   return (
@@ -25,7 +26,10 @@ export default async function CollectionPage({
       <div className="flex flex-col gap-6">
         <Refinement />
         <Suspense fallback={<ProductsSkeleton />}>
-          <PaginatedProducts searchParams={searchParams} />
+          <PaginatedProducts
+            countryCode={params.countryCode}
+            searchParams={searchParams}
+          />
         </Suspense>
       </div>
     </section>

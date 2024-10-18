@@ -10,14 +10,10 @@ import {ProductImagesCarousel} from "./_parts/image-carousel";
 import ProductInformation from "./_parts/product-information";
 import StickyAtc from "./_parts/sticky-atc";
 
-type ProductPageProps = PageProps<"handle">;
+type ProductPageProps = PageProps<"countryCode" | "handle">;
 
 export default async function ProductPage({params}: ProductPageProps) {
-  const region = await getRegion(
-    // TODO: Make this come from the params
-    process.env.NEXT_PUBLIC_MEDUSA_DEFAULT_COUNTRY_CODE!,
-  );
-
+  const region = await getRegion(params.countryCode);
   if (!region) {
     console.log("No region found");
     return notFound();
@@ -43,7 +39,11 @@ export default async function ProductPage({params}: ProductPageProps) {
       </section>
 
       {content?.sections && (
-        <SectionsRenderer fieldName="body" sections={content.sections} />
+        <SectionsRenderer
+          countryCode={params.countryCode}
+          fieldName="body"
+          sections={content.sections}
+        />
       )}
       <StickyAtc {...product} region_id={region.id} />
     </>

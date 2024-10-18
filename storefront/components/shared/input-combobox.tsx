@@ -52,15 +52,15 @@ export default forwardRef<
     );
     setIsOpen(true);
     setSelectedOption(null);
-    const isValid = !!options.find(
-      ({label}) => label.toLowerCase() === value.toLowerCase(),
-    );
+    // const isValid = !!options.find(
+    //   ({label}) => label.toLowerCase() === value.toLowerCase(),
+    // );
 
-    if (!isValid) {
-      event.target.setCustomValidity("Please select a valid option");
-    } else {
-      event.target.setCustomValidity("");
-    }
+    // if (!isValid) {
+    //   event.target.setCustomValidity("Please select a valid option");
+    // } else {
+    //   event.target.setCustomValidity("");
+    // }
   };
 
   const handleOptionSelect = (option: {id: string; label: string}) => {

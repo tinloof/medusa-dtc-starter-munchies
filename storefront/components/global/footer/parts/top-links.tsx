@@ -1,8 +1,8 @@
 import type {Footer} from "@/types/sanity.generated";
 
+import LocalizedLink from "@/components/shared/localized-link";
 import {RichText} from "@/components/shared/rich-text";
 import Body from "@/components/shared/typography/body";
-import Link from "next/link";
 
 export default function TopLinks({information, linkList}: NonNullable<Footer>) {
   return (
@@ -26,11 +26,11 @@ export default function TopLinks({information, linkList}: NonNullable<Footer>) {
             {list.links?.map((link) => {
               if (!link.link) return null;
               return (
-                <Link href={link.link} key={link._key}>
+                <LocalizedLink href={link.link} key={link._key}>
                   <Body desktopSize="base" font="sans" mobileSize="sm">
                     {link.label}
                   </Body>
-                </Link>
+                </LocalizedLink>
               );
             })}
           </div>

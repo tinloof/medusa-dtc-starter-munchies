@@ -3,9 +3,9 @@ import type {LinkProps} from "next/link";
 import type {ComponentProps} from "react";
 
 import {cva, cx} from "cva";
-import NextLink from "next/link";
 
 import Icon from "./icon";
+import LocalizedLink from "./localized-link";
 
 export const styles = cva(
   cx(
@@ -91,7 +91,7 @@ export function Link({
 } & ComponentProps<"a"> &
   StyleProps) {
   return (
-    <NextLink
+    <LocalizedLink
       className={styles({
         className,
         size,
@@ -103,6 +103,6 @@ export function Link({
       {...rest}
     >
       {children}
-    </NextLink>
+    </LocalizedLink>
   );
 }
