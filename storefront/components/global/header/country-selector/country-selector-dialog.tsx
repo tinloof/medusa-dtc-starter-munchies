@@ -6,6 +6,7 @@ import {
   OpenDialog,
   SideDialog,
 } from "@/components/shared/side-dialog";
+import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import {Dialog, Title} from "@radix-ui/react-dialog";
 import {cx} from "cva";
@@ -49,10 +50,17 @@ export default function CountrySelectorDialog({
   return (
     <Dialog onOpenChange={(v) => setOpen(v)} open={open}>
       <OpenDialog className={className}>
-        <div className={cx("p-2 text-lg", className)}>
+        <Body
+          className={cx(
+            "overflow-hidden rounded-lg border-[1.5px] border-accent p-2 lg:border-none",
+            className,
+          )}
+          font="sans"
+          mobileSize="lg"
+        >
           {selectedCountry.code.toUpperCase()} [
           {selectedCountry.currency.symbol}]
-        </div>
+        </Body>
       </OpenDialog>
       <SideDialog>
         <div className="relative flex h-full w-full flex-col border-l border-accent bg-background">
