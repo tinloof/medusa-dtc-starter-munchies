@@ -5,7 +5,7 @@ import { Resend } from "resend";
 export type ReactEmailProps<T> = React.FC<Readonly<T>>;
 
 const companyName = "munchies";
-const email = "munchies@medusajs.com";
+const email = "onboarding@resend.dev"; // TODO: add domain and change
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

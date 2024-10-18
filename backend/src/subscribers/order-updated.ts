@@ -1,9 +1,9 @@
 import { Modules } from "@medusajs/framework/utils";
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
-import OrderConfirmation from "data/templates/order-confirmation";
+import ShippingConfirmation from "data/templates/shipping-confirmation";
 import { sendEmail } from "./lib/email";
 
-export default async function orderCreateHandler({
+export default async function orderUpdatedHandler({
   event,
   container,
 }: SubscriberArgs<{ id: string }>) {
@@ -15,14 +15,13 @@ export default async function orderCreateHandler({
     })
     .then((orders) => orders[0]);
 
-  if (order)
-    await sendEmail({
-      to: order.email,
-      subject: "Thank you for you order",
-      react: OrderConfirmation(),
-    });
+  await sendEmail({
+    to: order.email,
+    subject: "Your order is shipped",
+    react: ShippingConfirmation(),
+  });
 }
 
 export const config: SubscriberConfig = {
-  event: ["order.placed"],
+  event: ["order.updated"],
 };
