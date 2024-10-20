@@ -6,14 +6,15 @@ import {
   StepResponse,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk";
+import { emitEventStep } from "@medusajs/medusa/core-flows";
 
 const subscribeCustomerToNewsletter = createStep(
-  "create-medusa-customer",
+  "subscribe-customer-to-newsletter",
   async (input: CreateCustomerDTO, { container }) => {
     const customerModuleService = container.resolve(Modules.CUSTOMER);
 
     let customer = await customerModuleService
-      .listCustomers({ email: input.email })
+      .listCustomers({ email: input.email }, { select: ["id", "metadata"] })
       .then((customers) => (customers.length > 0 ? customers[0] : null));
 
     const metadata: MetadataType = { newsletter: true };
@@ -33,6 +34,7 @@ const subscribeCustomerToNewsletter = createStep(
           ...metadata,
         },
       });
+
       response = {
         id: customer.id,
         compensate: "created",
@@ -46,6 +48,7 @@ const subscribeCustomerToNewsletter = createStep(
       await customerModuleService.updateCustomers(customer.id, {
         metadata: { ...customer.metadata, ...metadata },
       });
+
       response = {
         id: customer.id,
         compensate: "updated",
@@ -86,6 +89,18 @@ const subscribeToNewsletterWorkflow = createWorkflow(
   "subscribe-to-newsletter",
   function (input: WorkflowInput) {
     const medusaCustomerResponse = subscribeCustomerToNewsletter(input);
+
+    if (medusaCustomerResponse.compensate !== "nothing") {
+      emitEventStep({
+        eventName:
+          medusaCustomerResponse.compensate === "created"
+            ? "customer.created"
+            : "customer.updated",
+        data: {
+          id: medusaCustomerResponse.id,
+        },
+      });
+    }
 
     return new WorkflowResponse(medusaCustomerResponse.id);
   },

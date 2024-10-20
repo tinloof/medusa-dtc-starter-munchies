@@ -1,11 +1,11 @@
+import { ProductDTO } from "@medusajs/framework/types";
 import { Heading, Section } from "@react-email/components";
-import React from "react";
 import EmailBody from "./components/email-body";
 import Layout from "./components/layout";
 import ProductsList from "./components/products-list";
 import { Title } from "./components/style";
 
-export default function Welcome() {
+export default function Welcome({ products }: { products: ProductDTO[] }) {
   return (
     <Layout preview="Welcome to Munchies!">
       <Section className="w-full px-5 my-20" align="left">
@@ -23,7 +23,7 @@ export default function Welcome() {
           ]}
           signature
         />
-        <ProductsList />
+        <ProductsList products={products} />
       </Section>
     </Layout>
   );

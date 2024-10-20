@@ -4,15 +4,15 @@ import { convertToLocale } from "../utils";
 import { BodySmall, BodyXSmall } from "./style";
 
 export default function Cart({
-  checkout,
+  details,
   items,
   currency_code,
 }: {
   date?: string;
   items: OrderLineItemDTO[];
   currency_code: string;
-  checkout?: {
-    Subtotal: string;
+  details?: {
+    subtotal: string;
     discount: string;
     shipping: string;
     taxes: string;
@@ -31,14 +31,14 @@ export default function Cart({
           <CartLine line={item} key={item.id} currency_code={currency_code} />
         );
       })}
-      {checkout && (
+      {details && (
         <Section className="max-w-[365px]" align="right">
-          <CheckoutLine title="Subtotal" price={checkout.Subtotal} />
-          <CheckoutLine title="Order discount" price={checkout.discount} />
-          <CheckoutLine title="Shipping" price={checkout.shipping} />
-          <CheckoutLine title="Taxes" price={checkout.taxes} />
+          <CheckoutLine title="Subtotal" price={details.subtotal} />
+          <CheckoutLine title="Order discount" price={details.discount} />
+          <CheckoutLine title="Shipping" price={details.shipping} />
+          <CheckoutLine title="Taxes" price={details.taxes} />
           <Hr className="h-px bg-accent mb-4" />
-          <CheckoutLine title="Total" price={checkout.total} />
+          <CheckoutLine title="Total" price={details.total} />
         </Section>
       )}
     </Section>

@@ -2,12 +2,12 @@ import { SubscriberArgs, SubscriberConfig } from "@medusajs/framework";
 import { Modules } from "@medusajs/framework/utils";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function subscribeNewsletterHandler({
   event,
   container,
 }: SubscriberArgs<{ id: string }>) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const customerModuleService = container.resolve(Modules.CUSTOMER);
 

@@ -1,5 +1,4 @@
 import { BigNumberValue, OrderDTO } from "@medusajs/framework/types";
-import { BigNumber } from "@medusajs/framework/utils";
 import { Heading, Section } from "@react-email/components";
 import Cart from "./components/cart";
 import EmailBody from "./components/email-body";
@@ -10,19 +9,13 @@ import { convertToLocale } from "./utils";
 
 export default function OrderConfirmation({ order }: { order: OrderDTO }) {
   const convertMoney = (amount: BigNumberValue) => {
-    if (typeof amount === "number") {
-      return convertToLocale({
-        amount,
-        currency_code: order.currency_code,
-      });
-    } else if (typeof amount === "string" || amount instanceof BigNumber) {
-      return convertToLocale({
-        amount: parseFloat(amount.toString()),
-        currency_code: order.currency_code,
-      });
-    }
-    return "";
+    return convertToLocale({
+      // @ts-ignore
+      amount,
+      currency_code: order.currency_code,
+    });
   };
+
   return (
     <Layout preview="Order confirmation">
       <Section className="w-full px-5 mt-32 mb-10" align="left">
@@ -42,8 +35,8 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
             day: "numeric",
             year: "numeric",
           })}
-          checkout={{
-            Subtotal: convertMoney(order.item_subtotal),
+          details={{
+            subtotal: convertMoney(order.item_subtotal),
             discount: convertMoney(order.discount_total),
             shipping: convertMoney(order.shipping_total),
             taxes: convertMoney(order.tax_total),
@@ -51,7 +44,7 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
           }}
         />
         <CustomerInformation
-          method={order.shipping_methods?.[0].name}
+          method={order.shipping_methods?.[0]?.name}
           shippingAddress={order.shipping_address}
           billingAddress={order.billing_address}
         />

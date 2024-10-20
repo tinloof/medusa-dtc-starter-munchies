@@ -1,6 +1,8 @@
 const vercelProdUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
 const config = {
+  backendUrl:
+    process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000/store",
   baseUrl: vercelProdUrl ? `https://${vercelProdUrl}` : "",
   defaultCountryCode: "us",
   sanity: {

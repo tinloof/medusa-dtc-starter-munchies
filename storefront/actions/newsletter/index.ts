@@ -18,7 +18,7 @@ export async function newsletterForm(
 
   try {
     const res = await fetch(
-      "https://munchies.medusajs.app/store/subscribe-to-newsletter",
+      process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL + "/subscribe-to-newsletter",
       {
         body: JSON.stringify({
           email,
