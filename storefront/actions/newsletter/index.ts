@@ -1,6 +1,5 @@
 "use server";
 
-import medusa from "@/data/medusa/client";
 import {z} from "zod";
 
 const newsletterSchema = z.object({
@@ -16,13 +15,23 @@ export async function newsletterForm(
   );
   if (!success) return "error";
   const {email} = data;
+
   try {
-    await medusa.client.fetch("/store/subscribe-to-newsletter", {
-      body: {
-        email,
+    const res = await fetch(
+      "https://munchies.medusajs.app/store/subscribe-to-newsletter",
+      {
+        body: JSON.stringify({
+          email,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "post",
       },
-      method: "POST",
-    });
+    );
+
+    if (!res.ok) throw new Error("req failed");
+
     return "success";
   } catch (error) {
     return "error";
