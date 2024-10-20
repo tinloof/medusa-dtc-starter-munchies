@@ -3,8 +3,9 @@
 import type {Video as VideoType} from "@/types/sanity.generated";
 
 import {SanityImage, resolveImageData} from "@/components/shared/sanity-image";
+import useInView from "@/hooks/use-in-view";
+import {cx} from "cva";
 import React, {useEffect, useState} from "react";
-import {preload} from "react-dom";
 
 export type VideoProps = {
   aspectRatio?: string;
@@ -16,54 +17,53 @@ export type VideoProps = {
 
 export default function Video({
   aspectRatio,
+  className,
   controls,
   fetchPriority = "default",
   poster,
   videoUrl,
   ...props
 }: VideoProps) {
-  const [appeared, setAppeared] = useState(fetchPriority === "high");
+  const {inView, ref} = useInView();
+
+  const [appeared, setAppeared] = useState(fetchPriority === "high" || inView);
 
   const posterData = !poster ? null : resolveImageData({data: poster});
 
   useEffect(() => {
-    setAppeared(true);
-  }, []);
+    if (inView) {
+      setAppeared(true);
+    }
+  }, [inView]);
 
   if (!poster || !posterData || !videoUrl) {
     return null;
   }
 
-  const videoElement = (
-    <video
-      autoPlay
-      controls={controls}
-      height={posterData.height}
-      loop
-      muted
-      playsInline
-      poster={posterData?.src}
-      src={videoUrl}
-      width={posterData.width}
-      {...props}
-    />
-  );
-
-  if (fetchPriority === "high" && posterData?.src) {
-    preload(posterData.src, {
-      as: "image",
-      fetchPriority: "high",
-    });
-    return videoElement;
-  }
-
   return (
-    <>
-      {!appeared ? (
-        <SanityImage aspectRatio={aspectRatio} data={poster} />
-      ) : (
-        videoElement
+    <div className="relative" ref={ref} style={{aspectRatio}}>
+      <SanityImage
+        aspectRatio={aspectRatio}
+        className="absolute inset-0 z-0"
+        data={poster}
+        fetchPriority={fetchPriority}
+      />
+      {!appeared ? null : (
+        <video
+          autoPlay
+          className={cx("absolute inset-0", className)}
+          controls={controls}
+          height={posterData.height}
+          loop
+          muted
+          playsInline
+          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          src={videoUrl}
+          style={{aspectRatio}}
+          width={posterData.width}
+          {...props}
+        />
       )}
-    </>
+    </div>
   );
 }
