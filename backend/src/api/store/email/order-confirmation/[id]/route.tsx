@@ -34,7 +34,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
       react: <OrderConfirmation order={order} />,
     });
 
-    res.json({ message: "Email sent!", order });
+    res.json({ message: "Email sent!" });
   } catch (e) {
     res.json({ message: "Email failed" });
   }

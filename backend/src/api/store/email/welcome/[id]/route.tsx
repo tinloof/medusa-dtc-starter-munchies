@@ -8,12 +8,10 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const { id }: { id: string } = req.params;
 
   const customerService = req.scope.resolve(Modules.CUSTOMER);
-
   const productService = req.scope.resolve(Modules.PRODUCT);
 
-  const products = await productService.listProducts({}, { take: 2 });
-
   const customer = await customerService.retrieveCustomer(id);
+  const products = await productService.listProducts({}, { take: 2 });
 
   try {
     await sendEmail({
@@ -22,7 +20,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
       react: <Welcome products={products} />,
     });
 
-    res.json({ message: "Email sent!", products });
+    res.json({ message: "Email sent!" });
   } catch (e) {
     res.json({ message: "Email failed" });
   }
