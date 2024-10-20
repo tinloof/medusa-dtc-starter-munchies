@@ -1,3 +1,5 @@
+import config from "@/config";
+
 /**
  * Generates the endpoint URL for an Open Graph (OG) image.
  *
@@ -17,8 +19,7 @@ export const generateOgEndpoint = ({
 }) =>
   new URL(
     [
-      // TODO: replace this by config.baseUrl
-      "http://localhost:3000",
+      config.baseUrl,
       "api/og",
       countryCode,
       type,
