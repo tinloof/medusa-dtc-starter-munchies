@@ -1,4 +1,4 @@
-import { Modules } from "@medusajs/framework/utils";
+import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils";
 import { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
 import ShippingConfirmation from "../../_templates/shipping-confirmation";
 import { sendEmail } from "../../lib";
@@ -9,6 +9,13 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
 
   const orderService = req.scope.resolve(Modules.ORDER);
   const fullfilmentService = req.scope.resolve(Modules.FULFILLMENT);
+
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
+
+  const { data: fullfilments } = await query.graph({
+    entity: "fullfilment",
+    fields: ["id", "name"],
+  });
 
   const order = await orderService.retrieveOrder(id);
 
