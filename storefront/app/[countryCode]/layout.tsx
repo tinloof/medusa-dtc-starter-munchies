@@ -4,6 +4,7 @@ import type {PropsWithChildren} from "react";
 import {CountryCodeProvider} from "@/components/context/country-code-context";
 import {ExitPreview} from "@/components/exit-preview";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
+import {Analytics} from "@vercel/analytics/react";
 import cache from "next/cache";
 import {draftMode} from "next/headers";
 import VisualEditing from "next-sanity/visual-editing/client-component";
@@ -46,6 +47,7 @@ export default function Layout({children, params}: LayoutProps) {
         {shouldEnableDraftModeToggle && (
           <ExitPreview enable={draftMode().isEnabled} />
         )}
+        <Analytics />
       </body>
     </CountryCodeProvider>
   );
