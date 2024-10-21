@@ -13,7 +13,7 @@ export default function BreadCrumbs({
       {collection && (
         <>
           {" / "}
-          <LocalizedLink href={`/collections/${collection.handle}`}>
+          <LocalizedLink href={`/products?collection=${collection.id}`}>
             {collection.title}
           </LocalizedLink>{" "}
         </>

@@ -30,6 +30,7 @@ export default function ProductCard({
         },
       )}
       href={`/products/${product?.handle}`}
+      prefetch
     >
       <div className="relative w-full">
         <Image

@@ -83,13 +83,29 @@ export function Link({
   href,
   prefetch = true,
   ref,
+  renderAsChild,
   size,
   variant = "primary",
   ...rest
 }: {
   prefetch?: LinkProps["prefetch"];
+} & {
+  renderAsChild?: boolean;
 } & ComponentProps<"a"> &
   StyleProps) {
+  if (renderAsChild) {
+    return (
+      <div
+        className={styles({
+          className,
+          size,
+          variant,
+        })}
+      >
+        {children}
+      </div>
+    );
+  }
   return (
     <LocalizedLink
       className={styles({
