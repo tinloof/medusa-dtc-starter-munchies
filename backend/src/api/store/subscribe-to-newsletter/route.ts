@@ -11,7 +11,7 @@ export async function POST(
   // @ts-ignore
   const input = CreateCustomer.parse(req.body);
 
-  const { result: id } = await subscribeToNewsletterWorkflow(req.scope).run({
+  await subscribeToNewsletterWorkflow(req.scope).run({
     input,
   });
 

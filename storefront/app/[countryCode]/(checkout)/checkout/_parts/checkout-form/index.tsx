@@ -36,15 +36,18 @@ export default function CheckoutForm({
         <AddressForm
           active={step === "addresses"}
           cart={cart}
+          nextStep={shippingMethods.length > 0 ? "delivery" : "payment"}
           setStep={setStep}
         />
-        <Delivery
-          active={step === "delivery"}
-          cart={cart}
-          currency_code={cart.currency_code}
-          methods={shippingMethods}
-          setStep={setStep}
-        />
+        {shippingMethods.length > 0 && (
+          <Delivery
+            active={step === "delivery"}
+            cart={cart}
+            currency_code={cart.currency_code}
+            methods={shippingMethods}
+            setStep={setStep}
+          />
+        )}
         <Payment
           active={step === "payment"}
           cart={cart}

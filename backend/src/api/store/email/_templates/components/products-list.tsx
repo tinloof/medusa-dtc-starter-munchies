@@ -1,9 +1,9 @@
-import { Column, Row, Section, Text } from "@react-email/components";
-import React from "react";
+import { ProductDTO } from "@medusajs/framework/types";
+import { Column, Img, Row, Section, Text } from "@react-email/components";
 import { CtaButton } from "./button";
 import { BodySmall, TitleSmall } from "./style";
 
-export default function ProductsList() {
+export default function ProductsList({ products }: { products: ProductDTO[] }) {
   return (
     <Section className="mt-12">
       <Text style={TitleSmall} className="">
@@ -11,49 +11,27 @@ export default function ProductsList() {
       </Text>
       <Section className="mb-6 mt-2">
         <Row>
-          <Column className=" pr-2 align-top">
-            <Section className="w-full">
-              {/* <Img
-                src={`${baseUrl}/static/emails/product.png`}
-                alt="Brand Your"
-                className="w-full max-w-[279px]"
-              /> */}
-              <Section className="w-full h-auto aspect-square bg-accent rounded-lg">
-                s
-              </Section>
-            </Section>
-            <Section className="mt-2">
-              <Text style={BodySmall} className="mt-2  text-center">
-                Two chip chocolate chip
-              </Text>
-              <Text style={BodySmall} className="mt-1  text-center">
-                from $29.00
-              </Text>
-            </Section>
-          </Column>
-          <Column className=" pr-2 align-top">
-            <Section className="w-full">
-              {/* <Img
-                src={`${baseUrl}/static/emails/product.png`}
-                alt="Brand Your"
-                className="w-full max-w-[279px]"
-              /> */}
-              <Section className="w-full h-auto aspect-square bg-accent rounded-lg">
-                s
-              </Section>
-            </Section>
-            <Section className="mt-2">
-              <Text style={BodySmall} className="  text-center">
-                Two chip chocolate chip
-              </Text>
-              <Text style={BodySmall} className="pt-1  text-center">
-                from $29.00
-              </Text>
-            </Section>
-          </Column>
+          {products.map((product) => {
+            return (
+              <Column id={product.id} className="first:pr-2 align-top">
+                <Section className="w-full">
+                  <Img
+                    src={product.thumbnail}
+                    alt="Brand Your"
+                    className="w-full max-w-[279px] h-auto aspect-square rounded-lg"
+                  />
+                </Section>
+                <Section className="mt-2">
+                  <Text style={BodySmall} className="mt-2  text-center">
+                    {product.title}
+                  </Text>
+                </Section>
+              </Column>
+            );
+          })}
         </Row>
       </Section>
-      <CtaButton href={"/"} label="Shop now" />
+      <CtaButton href="https://munchies-tinloof.vercel.app" label="Shop now" />
     </Section>
   );
 }

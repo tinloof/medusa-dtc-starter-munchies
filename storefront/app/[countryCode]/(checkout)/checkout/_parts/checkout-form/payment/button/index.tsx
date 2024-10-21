@@ -1,6 +1,6 @@
-import type {StoreCart} from "@medusajs/types";
+import type { StoreCart } from "@medusajs/types";
 
-import {isManual, isStripe} from "../utils";
+import { isManual, isStripe } from "../utils";
 import ManualPaymentButton from "./manual";
 import StripePaymentButton from "./stripe";
 
@@ -14,8 +14,7 @@ export default function PaymentButton({cart, disabled}: Props) {
   const notReady =
     !cart ||
     !cart.shipping_address ||
-    !cart.email ||
-    (cart.shipping_methods?.length ?? 0) < 1 ||
+    !cart.email
     disabled;
 
   if (isStripe(paymentSession?.provider_id)) {

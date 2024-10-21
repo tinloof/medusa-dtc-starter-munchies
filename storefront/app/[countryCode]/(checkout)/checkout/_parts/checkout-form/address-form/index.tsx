@@ -16,10 +16,12 @@ import {useFormState, useFormStatus} from "react-dom";
 export default function AddressForm({
   active,
   cart,
+  nextStep,
   setStep,
 }: {
   active: boolean;
   cart: StoreCart;
+  nextStep: "addresses" | "delivery" | "payment" | "review";
   setStep: Dispatch<
     SetStateAction<"addresses" | "delivery" | "payment" | "review">
   >;
@@ -32,8 +34,8 @@ export default function AddressForm({
   });
 
   useEffect(() => {
-    if (status === "success") setStep("delivery");
-  }, [status, setStep]);
+    if (status === "success") setStep(nextStep);
+  }, [status, setStep, nextStep]);
 
   const isFilled = !active && !!cart.shipping_address?.address_1;
 
