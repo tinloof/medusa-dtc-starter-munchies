@@ -15,9 +15,22 @@ export async function newsletterForm(
   );
   if (!success) return "error";
   const {email} = data;
+
   try {
-    console.log("email", email);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    const res = await fetch(
+      "https://munchies.medusajs.app/store/subscribe-to-newsletter",
+      {
+        body: JSON.stringify({
+          email,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "post",
+      },
+    );
+
+    if (!res.ok) throw new Error("req failed");
 
     return "success";
   } catch (error) {

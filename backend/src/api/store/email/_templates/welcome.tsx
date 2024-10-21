@@ -1,0 +1,30 @@
+import { Heading, Section } from "@react-email/components";
+import React from "react";
+import EmailBody from "./components/email-body";
+import Layout from "./components/layout";
+import ProductsList from "./components/products-list";
+import { Title } from "./components/style";
+
+export default function Welcome() {
+  return (
+    <Layout preview="Welcome to Munchies!">
+      <Section className="w-full px-5 my-20" align="left">
+        <Heading className="mb-3" style={Title}>
+          Get ready for some sweet! 🍪
+        </Heading>
+        <EmailBody
+          paragraphs={[
+            "Welcome to the Munchies family – your new go-to spot for the most delicious, freshly baked cookies!  We’re thrilled to have you here and can’t wait to satisfy your sweet tooth with our mouthwatering treats.",
+            "What’s Baking at Munchies?",
+            ". Freshly Baked Goodness: All our cookies are made fresh, with love, using the finest ingredients.",
+            ". Exclusive Offers: Be the first to know about our seasonal specials and flash cookie sales",
+            ". Cookie Lover Perks: Sign up for rewards, and get cookies on your birthday!",
+            "Let’s make your cookie dreams come true!",
+          ]}
+          signature
+        />
+        <ProductsList />
+      </Section>
+    </Layout>
+  );
+}
