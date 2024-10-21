@@ -3,9 +3,9 @@ import CarouselSection from "@/components/shared/carousel-section";
 import Heading from "@/components/shared/typography/heading";
 import {getProductsByIds} from "@/data/medusa/products";
 
-type Props = {ids: string[]; region_id: string};
+type Props = {ids: string[]; isEmptyCart: boolean; region_id: string};
 
-export default async function CartAddons({ids, region_id}: Props) {
+export default async function CartAddons({ids, isEmptyCart, region_id}: Props) {
   const {products} = await getProductsByIds(ids, region_id);
 
   const slides = products.map((item) => (
@@ -21,7 +21,7 @@ export default async function CartAddons({ids, region_id}: Props) {
         slides={slides}
         title={
           <Heading font="serif" mobileSize="lg" tag="h3">
-            You might also like
+            {isEmptyCart ? "You might like" : "You might also like"}
           </Heading>
         }
         variant="cart"

@@ -40,6 +40,21 @@
     transition: background-color 5000s ease-in-out 0s !important;
   }
 
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ff52273c;
+    width: 3px;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #ff5227;
+    border-radius: 10px;
+  }
+
   @layer utilities {
     .scrollbar-hide::-webkit-scrollbar {
       display: none;

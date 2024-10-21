@@ -14,6 +14,8 @@ import {usePathname, useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
 import {RemoveScroll} from "react-remove-scroll";
 
+import BottomBorder from "./bottom-border";
+
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
   {_type: "dropdown"}
@@ -85,8 +87,18 @@ export default function Navigation({data}: {data: Header}) {
         })}
       </NavigationMenu.List>
 
-      <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 justify-center overflow-hidden bg-transparent">
-        <NavigationMenu.Viewport className="relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden border-b border-accent bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
+      <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 flex-col justify-center overflow-hidden bg-transparent">
+        <BottomBorder DropdownOpen={!!openDropdown} />
+        <NavigationMenu.Viewport className="relative mx-auto h-[var(--radix-navigation-menu-viewport-height)] w-full max-w-max-screen origin-[top_center] overflow-hidden bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
+        <div
+          className={cx(
+            "relative w-full bg-accent transition-all duration-300",
+            {
+              "h-[1.5px] animate-enterFromTop": openDropdown,
+              "h-0 animate-exitToTop": !openDropdown,
+            },
+          )}
+        />
       </div>
     </NavigationMenu.Root>
   );
@@ -97,7 +109,7 @@ function Content({cards, columns}: DropdownType) {
 
   return (
     <RemoveScroll>
-      <div className="relative flex items-start justify-between gap-xl">
+      <div className="relative flex max-w-max-screen items-start justify-between gap-xl">
         <div className="group flex flex-wrap items-start justify-start gap-lg">
           {columns?.map((link) => {
             return (
