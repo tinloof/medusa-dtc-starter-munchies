@@ -66,6 +66,16 @@ export default defineType({
               type: "array",
             },
           ],
+          preview: {
+            prepare: ({links}) => ({
+              title: links
+                .map((link: {label: string}) => link.label)
+                .join(", "),
+            }),
+            select: {
+              links: "links",
+            },
+          },
           type: "object",
         },
       ],
