@@ -53,6 +53,7 @@ export default function Navigation({data}: {data: Header}) {
                 )}
                 href={item.cta?.link}
                 key={item._key}
+                prefetch
               >
                 <NavigationMenu.Item>
                   <NavigationMenu.Link asChild>
@@ -134,6 +135,7 @@ function Content({cards, columns}: DropdownType) {
                       key={link._key}
                       onMouseEnter={() => setHoveredKey(link._key)}
                       onMouseLeave={() => setHoveredKey(null)}
+                      prefetch
                     >
                       <Label font="sans" mobileSize="lg">
                         {link.label}
@@ -160,11 +162,16 @@ function Product({
   image,
   title,
 }: NonNullable<DropdownType["cards"]>[number]) {
+  if (!cta?.link) return null;
   return (
-    <div className="flex w-[220px] min-w-[160px] max-w-[220px] shrink-0 flex-col items-center gap-xs rounded-lg">
+    <LocalizedLink
+      className="flex w-[220px] min-w-[160px] max-w-[220px] shrink-0 flex-col items-center gap-xs rounded-lg"
+      href={cta?.link}
+      prefetch
+    >
       {image ? (
         <SanityImage
-          className="aspect-square max-h-[220px] w-[220px] min-w-[160px] rounded-lg"
+          className="aspect-square max-h-[220px] w-[220px] min-w-[160px] cursor-pointer rounded-lg"
           data={image}
         />
       ) : (
@@ -179,6 +186,6 @@ function Product({
           {cta?.label}
         </Link>
       )}
-    </div>
+    </LocalizedLink>
   );
 }

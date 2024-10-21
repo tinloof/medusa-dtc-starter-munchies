@@ -41,6 +41,7 @@ function CollectionCard({
     <LocalizedLink
       className="group relative flex aspect-[3/4] h-auto w-[88vw] min-w-[320px] max-w-[453px] flex-1 cursor-pointer rounded-lg"
       href={cta?.link}
+      prefetch
     >
       {image ? (
         <SanityImage

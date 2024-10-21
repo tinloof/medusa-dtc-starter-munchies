@@ -33,6 +33,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
           <Link
             className="mt-lg"
             href={props.cta.link}
+            prefetch
             size="md"
             variant="primary"
           >

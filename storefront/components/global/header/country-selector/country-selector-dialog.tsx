@@ -100,9 +100,10 @@ export default function CountrySelectorDialog({
               {countries.map((country) => (
                 <Suspense key={country.code}>
                   <Link
-                    className="px-s py-xs"
+                    className="whitespace-nowrap px-s py-xs"
                     href={getNewPath(country.code)}
                     onClick={() => setOpen(false)}
+                    prefetch
                   >
                     {country.name} [{country.currency.symbol}]
                   </Link>
