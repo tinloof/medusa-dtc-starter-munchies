@@ -1,4 +1,4 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
 import { CreateCustomer } from "@medusajs/medusa/api/admin/customers/validators";
 import subscribeToNewsletterWorkflow, {
   WorkflowInput,
@@ -8,7 +8,6 @@ export async function POST(
   req: MedusaRequest<WorkflowInput>,
   res: MedusaResponse,
 ): Promise<void> {
-  // @ts-ignore
   const input = CreateCustomer.parse(req.body);
 
   await subscribeToNewsletterWorkflow(req.scope).run({

@@ -1,11 +1,10 @@
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
 import { Modules } from "@medusajs/framework/utils";
-import { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
 import Welcome from "../../_templates/welcome";
 import { sendEmail } from "../../lib";
 
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
-  // @ts-ignore
-  const { id }: { id: string } = req.params;
+  const { id } = req.params;
 
   const customerService = req.scope.resolve(Modules.CUSTOMER);
   const productService = req.scope.resolve(Modules.PRODUCT);

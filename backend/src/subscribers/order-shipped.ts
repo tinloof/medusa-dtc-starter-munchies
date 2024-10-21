@@ -1,12 +1,12 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
 
-export default async function orderUpdatedHandler({
+export default async function orderShippedHandler({
   event,
   container,
 }: SubscriberArgs<{ id: string }>) {
   try {
     const response = await fetch(
-      "https://munchies.medusajs.app/store/email/shipping-confirmation/" +
+      "https://munchies.medusajs.app/admin/email/shipping-confirmation/" +
         event.data.id,
       {
         method: "POST",
@@ -24,5 +24,5 @@ export default async function orderUpdatedHandler({
 }
 
 export const config: SubscriberConfig = {
-  event: ["order.updated"],
+  event: ["order.fulfillment_created"],
 };

@@ -5,7 +5,7 @@ The `medusa-test-utils` package provides utility functions to create integration
 For example:
 
 ```ts
-import { medusaIntegrationTestRunner } from "medusa-test-utils"
+import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
 
 medusaIntegrationTestRunner({
   testSuite: ({ api, getContainer }) => {
