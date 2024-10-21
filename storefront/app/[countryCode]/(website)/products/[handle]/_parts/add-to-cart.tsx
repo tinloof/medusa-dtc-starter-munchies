@@ -3,6 +3,7 @@ import type {ButtonProps} from "@/components/shared/button";
 
 import {addToCart} from "@/actions/medusa/cart";
 import {Cta} from "@/components/shared/button";
+import {track} from "@vercel/analytics";
 import {cx} from "cva";
 import {useState} from "react";
 
@@ -58,6 +59,8 @@ export function AddToCartButton({
       region_id,
       variantId,
     });
+
+    track("add-to-cart", {quantity, region_id, variantId});
 
     setIsAdding(false);
   };
