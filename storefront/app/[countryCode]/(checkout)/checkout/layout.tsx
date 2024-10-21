@@ -3,8 +3,9 @@ import type {Metadata} from "next";
 import type {PropsWithChildren} from "react";
 
 import Footer from "@/components/global/footer";
-import Header from "@/components/global/header";
+import BottomBorder from "@/components/global/header/parts/bottom-border";
 import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigation-smooth-scroll";
+import LocalizedLink from "@/components/shared/localized-link";
 import config from "@/config";
 import {loadGlobalData} from "@/data/sanity";
 import {getOgImages} from "@/data/sanity/resolve-sanity-route-metadata";
@@ -28,16 +29,26 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Layout({children, params}: LayoutProps) {
+  console.log(params);
   const data = await loadGlobalData();
 
   return (
     <>
       <PreventBackNavigationSmoothScroll />
-      {data.header && (
-        <Header {...data.header} countryCode={params.countryCode} />
-      )}
+      <div className="sticky top-0 z-[20] w-screen bg-background">
+        <div className="mx-auto my-s w-full max-w-max-screen bg-background px-m lg:px-xl">
+          <LocalizedLink href="/" prefetch>
+            <img
+              alt="Mubchies logo"
+              className="h-[22px] w-fit lg:h-8"
+              src="/images/logo.svg"
+            />
+          </LocalizedLink>
+        </div>
+        <BottomBorder />
+      </div>
       <main className="flex-1">{children}</main>
-      {data.footer && <Footer {...data.footer} />}
+      {data.footer && <Footer variant="simple" {...data.footer} />}
     </>
   );
 }

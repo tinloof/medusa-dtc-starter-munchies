@@ -4,6 +4,7 @@ import {AddToCartButton} from "@/app/[countryCode]/(website)/products/[handle]/_
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
+import LocalizedLink from "./localized-link";
 import Body from "./typography/body";
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 } & StoreProduct;
 
 export function AddonsItem({
+  handle,
   id,
   images,
   region_id,
@@ -29,7 +31,11 @@ export function AddonsItem({
   const default_variant = variants?.[0];
 
   return (
-    <div className="flex w-full gap-xs">
+    <LocalizedLink
+      className="flex w-full gap-xs"
+      href={`/products/${handle}`}
+      prefetch
+    >
       {images?.[0].url && (
         <Image
           alt={title}
@@ -62,6 +68,6 @@ export function AddonsItem({
           variantId={default_variant?.id}
         />
       </div>
-    </div>
+    </LocalizedLink>
   );
 }

@@ -66,11 +66,12 @@ export function AddToCartButton({
     <Cta
       {...buttonProps}
       loading={isAdding}
-      onClick={
-        variantId
-          ? () => handleAddToCart(variantId, quantity, region_id)
-          : undefined
-      }
+      onClick={(e) => {
+        e.preventDefault();
+        if (variantId) {
+          handleAddToCart(variantId, quantity, region_id);
+        }
+      }}
     >
       {label}
     </Cta>

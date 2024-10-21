@@ -25,7 +25,7 @@ export default function LargeHero({
           {props.title}
         </Heading>
         {props.cta?.link && (
-          <Link href={props.cta.link} size="lg" variant="primary">
+          <Link href={props.cta.link} prefetch size="lg" variant="primary">
             {props.cta.label}
           </Link>
         )}

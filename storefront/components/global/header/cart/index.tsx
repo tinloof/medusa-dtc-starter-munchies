@@ -4,6 +4,7 @@ import Icon from "@/components/shared/icon";
 import {CloseDialog, Dialog, SideDialog} from "@/components/shared/side-dialog";
 import Body from "@/components/shared/typography/body";
 import {fetchCart} from "@/data/medusa/cart";
+import {getRegion} from "@/data/medusa/regions";
 import {Suspense} from "react";
 
 import CartAddons from "./cart-addons";
@@ -15,13 +16,18 @@ import OpenCart from "./open-cart-button";
 
 type Props = Pick<Header, "cartAddons">;
 
-export default async function Cart({cartAddons}: Props) {
+export default async function Cart({
+  cartAddons,
+  countryCode,
+}: {countryCode: string} & Props) {
   const cart = await fetchCart();
+
+  const region = await getRegion(countryCode);
 
   const addonIds = (cartAddons?.map(({_ref}) => _ref) ?? []).filter(
     (id) => !cart?.items?.map(({product_id}) => product_id)?.includes(id),
   );
-
+  const isEmptyCart = !cart?.items || cart.items.length === 0;
   return (
     <CartProvider cart={cart}>
       <Dialog>
@@ -36,21 +42,29 @@ export default async function Cart({cartAddons}: Props) {
             >
               <Icon className="h-9 w-9" name="Close" />
             </CloseDialog>
-            <div className="flex flex-1 flex-col gap-4 overflow-y-scroll p-4">
-              {!cart?.items || cart.items.length === 0 ? (
-                <Body font="sans" mobileSize="base">
-                  Your bag is currently empty.
-                </Body>
-              ) : (
-                cart.items.map((item) => <LineItem key={item.id} {...item} />)
+            <div className="flex flex-1 flex-col justify-between overflow-y-scroll">
+              <div className="flex flex-col gap-4 p-4">
+                {isEmptyCart ? (
+                  <Body font="sans" mobileSize="base">
+                    Your bag is currently empty.
+                  </Body>
+                ) : (
+                  cart.items?.map((item) => (
+                    <LineItem key={item.id} {...item} />
+                  ))
+                )}
+              </div>
+              {region && addonIds.length > 0 && (
+                <Suspense>
+                  <CartAddons
+                    ids={addonIds}
+                    isEmptyCart={isEmptyCart}
+                    region_id={region.id}
+                  />
+                </Suspense>
               )}
             </div>
-            {addonIds.length > 0 && cart?.region_id && (
-              <Suspense>
-                <CartAddons ids={addonIds} region_id={cart?.region_id} />
-              </Suspense>
-            )}
-            <CartFooter />
+            {!isEmptyCart && <CartFooter />}
           </div>
         </SideDialog>
       </Dialog>

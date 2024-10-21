@@ -43,7 +43,7 @@ export default function HotspotsUi({
             return (
               <div
                 className={cx(
-                  "group relative h-8 w-8 cursor-pointer rounded-full bg-accent transition-all duration-300 hover:bg-secondary",
+                  "group relative h-6 w-6 cursor-pointer rounded-full bg-accent transition-all duration-300 hover:bg-secondary lg:h-8 lg:w-8",
                   {
                     "bg-secondary": selectedProduct === hotSpot.product?._ref,
                   },
@@ -60,7 +60,7 @@ export default function HotspotsUi({
               >
                 <span
                   className={cx(
-                    "absolute left-1/2 top-1/2 z-10 h-[1.5px] w-[13px] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:bg-accent",
+                    "absolute left-1/2 top-1/2 z-10 h-[1.5px] w-2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:bg-accent lg:w-[13px]",
                     {
                       "bg-accent": selectedProduct === hotSpot.product?._ref,
                       "bg-background":
@@ -70,7 +70,7 @@ export default function HotspotsUi({
                 />
                 <span
                   className={cx(
-                    "absolute left-1/2 top-1/2 h-[13px] w-[1.5px] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:rotate-90 group-hover:bg-accent",
+                    "absolute left-1/2 top-1/2 h-2 w-[1.5px] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:rotate-90 group-hover:bg-accent lg:h-[13px]",
                     {
                       "bg-background":
                         selectedProduct !== hotSpot.product?._ref,
@@ -86,7 +86,11 @@ export default function HotspotsUi({
       ) : (
         <div className="w-full min-w-[63%] rounded-lg bg-secondary" />
       )}
-      <div className="hidden w-full max-w-[450px] flex-col justify-between gap-2xl rounded-lg lg:flex">
+      <LocalizedLink
+        className="hidden w-full max-w-[450px] flex-col justify-between gap-2xl rounded-lg lg:flex"
+        href={`/products/${product?.handle}`}
+        prefetch
+      >
         <div className="flex w-full max-w-[450px] flex-1 flex-col items-center justify-center rounded-lg">
           <div className="relative w-full">
             <img
@@ -123,12 +127,13 @@ export default function HotspotsUi({
         <Link
           className="w-full"
           href={`/products/${product?.handle}`}
+          renderAsChild
           size="xl"
           variant="outline"
         >
           Shop now
         </Link>
-      </div>
+      </LocalizedLink>
       <div className="flex flex-col gap-xs lg:hidden">
         {referencedProducts.map((product) => {
           const {cheapestPrice} = getProductPrice({product});
@@ -157,7 +162,13 @@ export default function HotspotsUi({
             </LocalizedLink>
           );
         })}
-        <Link className="w-full" href={"/products"} size="xl" variant="outline">
+        <Link
+          className="w-full"
+          href={"/products"}
+          prefetch
+          size="xl"
+          variant="outline"
+        >
           Shop now
         </Link>
       </div>

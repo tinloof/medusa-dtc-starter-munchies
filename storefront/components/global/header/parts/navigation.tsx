@@ -14,6 +14,8 @@ import {usePathname, useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
 import {RemoveScroll} from "react-remove-scroll";
 
+import BottomBorder from "./bottom-border";
+
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
   {_type: "dropdown"}
@@ -51,6 +53,7 @@ export default function Navigation({data}: {data: Header}) {
                 )}
                 href={item.cta?.link}
                 key={item._key}
+                prefetch
               >
                 <NavigationMenu.Item>
                   <NavigationMenu.Link asChild>
@@ -85,8 +88,18 @@ export default function Navigation({data}: {data: Header}) {
         })}
       </NavigationMenu.List>
 
-      <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 justify-center overflow-hidden bg-transparent">
-        <NavigationMenu.Viewport className="relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden border-b border-accent bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
+      <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 flex-col justify-center overflow-hidden bg-transparent">
+        <BottomBorder DropdownOpen={!!openDropdown} />
+        <NavigationMenu.Viewport className="relative mx-auto h-[var(--radix-navigation-menu-viewport-height)] w-full max-w-max-screen origin-[top_center] overflow-hidden bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
+        <div
+          className={cx(
+            "relative w-full bg-accent transition-all duration-300",
+            {
+              "h-[1.5px] animate-enterFromTop": openDropdown,
+              "h-0 animate-exitToTop": !openDropdown,
+            },
+          )}
+        />
       </div>
     </NavigationMenu.Root>
   );
@@ -97,7 +110,7 @@ function Content({cards, columns}: DropdownType) {
 
   return (
     <RemoveScroll>
-      <div className="relative flex items-start justify-between gap-xl">
+      <div className="relative flex max-w-max-screen items-start justify-between gap-xl">
         <div className="group flex flex-wrap items-start justify-start gap-lg">
           {columns?.map((link) => {
             return (
@@ -122,6 +135,7 @@ function Content({cards, columns}: DropdownType) {
                       key={link._key}
                       onMouseEnter={() => setHoveredKey(link._key)}
                       onMouseLeave={() => setHoveredKey(null)}
+                      prefetch
                     >
                       <Label font="sans" mobileSize="lg">
                         {link.label}
@@ -148,11 +162,16 @@ function Product({
   image,
   title,
 }: NonNullable<DropdownType["cards"]>[number]) {
+  if (!cta?.link) return null;
   return (
-    <div className="flex w-[220px] min-w-[160px] max-w-[220px] shrink-0 flex-col items-center gap-xs rounded-lg">
+    <LocalizedLink
+      className="flex w-[220px] min-w-[160px] max-w-[220px] shrink-0 flex-col items-center gap-xs rounded-lg"
+      href={cta?.link}
+      prefetch
+    >
       {image ? (
         <SanityImage
-          className="aspect-square max-h-[220px] w-[220px] min-w-[160px] rounded-lg"
+          className="aspect-square max-h-[220px] w-[220px] min-w-[160px] cursor-pointer rounded-lg"
           data={image}
         />
       ) : (
@@ -167,6 +186,6 @@ function Product({
           {cta?.label}
         </Link>
       )}
-    </div>
+    </LocalizedLink>
   );
 }

@@ -5,7 +5,7 @@ import type {ReactNode} from "react";
 
 import {cx} from "cva";
 
-import {Cta} from "./button";
+import {Link} from "./button";
 import {
   NextButton,
   PrevButton,
@@ -71,7 +71,7 @@ export default function CarouselSection(props: Props) {
         >
           <div className="-ml-2 flex touch-pan-y touch-pinch-zoom items-stretch">
             {slides.map((slide, index) => (
-              <div className="flex-1 pl-2" key={index}>
+              <div className="flex-1 py-1 pl-2" key={index}>
                 {slide}
               </div>
             ))}
@@ -81,9 +81,14 @@ export default function CarouselSection(props: Props) {
         {showProgress && <ProgressBar />}
         {cta?.text && (
           <div className="mt-2xl px-m lg:px-xl">
-            <Cta className="w-full" size="xl" variant="outline">
+            <Link
+              className="w-full"
+              href={cta.href}
+              size="xl"
+              variant="outline"
+            >
               {cta.text}
-            </Cta>
+            </Link>
           </div>
         )}
       </section>

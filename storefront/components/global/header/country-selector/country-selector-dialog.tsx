@@ -66,7 +66,7 @@ export default function CountrySelectorDialog({
       <OpenDialog className={className}>
         <Body
           className={cx(
-            "overflow-hidden rounded-lg border-[1.5px] border-accent p-2 lg:border-none",
+            "overflow-hidden whitespace-nowrap rounded-lg border-[1.5px] border-accent p-2 lg:border-none",
             className,
           )}
           font="sans"
@@ -78,7 +78,7 @@ export default function CountrySelectorDialog({
       </OpenDialog>
       <SideDialog>
         <div className="relative flex h-full w-full flex-col border-l border-accent bg-background">
-          <div className="flex h-full w-full flex-col bg-background p-4">
+          <div className="flex h-full w-full flex-col bg-background p-s pr-xs">
             <Title asChild>
               <Heading
                 className="py-4"
@@ -100,9 +100,10 @@ export default function CountrySelectorDialog({
               {countries.map((country) => (
                 <Suspense key={country.code}>
                   <Link
-                    className="px-s py-xs"
+                    className="whitespace-nowrap px-s py-xs"
                     href={getNewPath(country.code)}
                     onClick={() => setOpen(false)}
+                    prefetch
                   >
                     {country.name} [{country.currency.symbol}]
                   </Link>
