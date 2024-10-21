@@ -1,5 +1,6 @@
 import {placeOrder} from "@/actions/medusa/order";
 import {Cta} from "@/components/shared/button";
+import {track} from "@vercel/analytics";
 import {useTransition} from "react";
 
 export default function ManualPaymentButton({notReady}: {notReady: boolean}) {
@@ -7,6 +8,8 @@ export default function ManualPaymentButton({notReady}: {notReady: boolean}) {
 
   const handleClick = () => {
     startTransition(() => {
+      track("checkout-completed");
+
       placeOrder();
     });
   };

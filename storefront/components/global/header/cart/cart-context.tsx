@@ -7,7 +7,7 @@ import type {
 } from "@medusajs/types";
 import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
-import {addToCart, updateCartQuantity} from "@/actions/medusa/cart";
+import {updateCartQuantity} from "@/actions/medusa/cart";
 import {usePathname} from "next/navigation";
 import {
   createContext,
@@ -27,11 +27,6 @@ const CartContext = createContext<
   | {
       cart: Cart | null;
       cartOpen: boolean;
-      handleAddToCart: (
-        variantId: string,
-        quantity: number,
-        countryCode: string,
-      ) => Promise<void>;
       handleDeleteItem: (lineItem: string) => Promise<void>;
       handleUpdateCartQuantity: (
         lineItem: string,
@@ -115,26 +110,11 @@ export function CartProvider({
     });
   };
 
-  const handleAddToCart = async (
-    variantId: string,
-    quantity: number,
-    region_id: string,
-  ) => {
-    setCartOpen(true);
-
-    await addToCart({
-      quantity,
-      region_id,
-      variantId,
-    });
-  };
-
   return (
     <CartContext.Provider
       value={{
         cart: optimisticCart,
         cartOpen,
-        handleAddToCart,
         handleDeleteItem,
         handleUpdateCartQuantity,
         setCartOpen,
