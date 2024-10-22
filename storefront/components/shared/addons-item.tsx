@@ -2,9 +2,9 @@ import type {StoreProduct} from "@medusajs/types";
 
 import {AddToCartButton} from "@/app/[countryCode]/(website)/products/[handle]/_parts/add-to-cart";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
+import {cx} from "cva";
 import Image from "next/image";
 
-import {cx} from "cva";
 import LocalizedLink from "./localized-link";
 import Body from "./typography/body";
 
