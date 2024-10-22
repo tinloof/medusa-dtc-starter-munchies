@@ -1,13 +1,11 @@
 import {
-  createWorkflow,
   parallelize,
+  createWorkflow as wf,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk";
 import { sanityCategorySyncWorkflow } from "./sanity-sync-categories";
 import { sanityCollectionSyncWorkflow } from "./sanity-sync-collections";
 import { sanityProductSyncWorkflow } from "./sanity-sync-products";
-
-const wf = createWorkflow;
 
 type Input = {
   category_ids?: string[];
