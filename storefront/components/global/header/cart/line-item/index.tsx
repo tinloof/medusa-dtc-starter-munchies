@@ -70,11 +70,13 @@ export default function LineItem(props: StoreCartLineItem) {
               <span className="absolute left-1/2 top-1/2 h-2 w-[1.5px] -translate-x-1/2 -translate-y-1/2 bg-accent transition-all duration-300 group-active:bg-background" />
             </button>
           </div>
-          <Icon
-            className="size-6 cursor-pointer"
-            name="Trash"
+          <button
+            className="bg-transparent disabled:pointer-events-none disabled:opacity-50"
+            disabled={isOptimisticLine}
             onClick={() => handleDeleteItem(props.id)}
-          />
+          >
+            <Icon className="size-6" name="Trash" />
+          </button>
         </div>
       </div>
     </div>
