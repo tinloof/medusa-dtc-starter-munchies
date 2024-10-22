@@ -89,12 +89,6 @@ export default defineType({
     },
     {
       group: "newsletter",
-      name: "formId",
-      title: "Form ID",
-      type: "string",
-    },
-    {
-      group: "newsletter",
       name: "copy",
       title: "Newsletter Copy",
       type: "ptBody",
