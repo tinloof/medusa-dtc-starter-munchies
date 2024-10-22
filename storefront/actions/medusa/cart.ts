@@ -13,7 +13,6 @@ import {
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
-import {cacheTag} from "next/dist/server/use-cache/cache-tag";
 
 async function createCart(region_id: string) {
   const body = {
@@ -119,9 +118,9 @@ export async function updateCartQuantity({
     throw new Error("Error retrieving or creating cart");
   }
 
-  if (!(quantity > 0)) {
-    const cacheTag = await getCacheTag("carts");
+  const cacheTag = await getCacheTag("carts");
 
+  if (!(quantity > 0)) {
     await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
       revalidateTag(cacheTag);
     });

@@ -143,8 +143,8 @@ export async function setShippingMethod(
       {},
       await getAuthHeaders(),
     )
-    .then(() => {
-      revalidateTag(getCacheTag("carts"));
+    .then(async () => {
+      revalidateTag(await getCacheTag("carts"));
       return {error: null, status: "success"} as const;
     })
     .catch((e) => ({error: e.message, status: "error"}));
