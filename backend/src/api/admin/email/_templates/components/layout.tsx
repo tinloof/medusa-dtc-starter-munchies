@@ -1,5 +1,6 @@
 import {
   Container,
+  Font,
   Head,
   Preview,
   Section,
@@ -7,7 +8,7 @@ import {
 } from "@react-email/components";
 import React from "react";
 import Footer from "./footer";
-import { Global } from "./style";
+import { arial_font } from "./style";
 
 export default function Layout({
   children,
@@ -18,7 +19,20 @@ export default function Layout({
 }) {
   return (
     <Section>
-      <Head />
+      <Head>
+        <Font
+          fontFamily="Arial"
+          fallbackFontFamily="Helvetica"
+          fontWeight={400}
+          fontStyle="normal"
+        />
+        <Font
+          fontFamily="Times"
+          fallbackFontFamily="serif"
+          fontWeight={400}
+          fontStyle="normal"
+        />
+      </Head>{" "}
       <Preview>{preview}</Preview>
       <Tailwind
         config={{
@@ -32,7 +46,7 @@ export default function Layout({
           },
         }}
       >
-        <Section className="bg-white" style={Global}>
+        <Section className="bg-white" style={arial_font}>
           <Container className="bg-background h-full w-full  max-w-[640px]">
             <Section className=" text-accent">{children}</Section>
             <Footer />

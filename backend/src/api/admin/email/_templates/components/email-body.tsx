@@ -1,6 +1,5 @@
 import { Text } from "@react-email/components";
-import React from "react";
-import { Body } from "./style";
+import { body } from "./style";
 
 interface EmailBodyProps {
   firstName?: string;
@@ -14,7 +13,7 @@ export default function EmailBody({
   signature,
 }: EmailBodyProps) {
   return (
-    <Text className="mb-[50px]" style={Body}>
+    <Text className="mb-[50px]" style={body}>
       Hi {firstName}, <br />
       {paragraphs.map((paragraph, index) => (
         <span key={index}>

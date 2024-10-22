@@ -4,7 +4,7 @@ import Cart from "./components/cart";
 import EmailBody from "./components/email-body";
 import Layout from "./components/layout";
 import CustomerInformation from "./components/shipping-address";
-import { Title } from "./components/style";
+import { title } from "./components/style";
 import { convertToLocale } from "./utils";
 
 export default function OrderConfirmation({ order }: { order: OrderDTO }) {
@@ -19,7 +19,7 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
   return (
     <Layout preview="Order confirmation">
       <Section className="w-full px-5 mt-32 mb-10" align="left">
-        <Heading className="mb-3" style={Title}>
+        <Heading className="mb-3" style={title}>
           Thank you for your order!
         </Heading>
         <EmailBody

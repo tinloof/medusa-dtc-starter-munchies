@@ -1,7 +1,7 @@
 import { OrderLineItemDTO } from "@medusajs/framework/types";
 import { Column, Hr, Img, Row, Section, Text } from "@react-email/components";
 import { convertToLocale } from "../utils";
-import { BodySmall, BodyXSmall } from "./style";
+import { bodySmall, bodyXSmall } from "./style";
 
 export default function Cart({
   details,
@@ -22,7 +22,7 @@ export default function Cart({
   return (
     <Section className="mb-10">
       <Section className="mb-4">
-        <Text className="w-fit uppercase leading-[110%]" style={BodySmall}>
+        <Text className="w-fit uppercase leading-[110%]" style={bodySmall}>
           Order summary
         </Text>
       </Section>
@@ -74,18 +74,18 @@ function CartLine({
           </Section>
         </Column>
         <Column className="pl-2 align-top ">
-          <Text className="w-full font-bold leading-[130%]" style={BodySmall}>
+          <Text className="w-full font-bold leading-[130%]" style={bodySmall}>
             {line.product_title}
           </Text>
           <Text
             className="w-full text-inactive leading-[120%]"
-            style={BodySmall}
+            style={bodySmall}
           >
             {line.variant_title}
           </Text>
         </Column>
         <Column align="right" className="align-top">
-          <Text className="font-bold leading-[140%]" style={BodySmall}>
+          <Text className="font-bold leading-[140%]" style={bodySmall}>
             {price}
           </Text>
         </Column>
@@ -106,17 +106,17 @@ function CheckoutLine({
   return (
     <Row className="mb-3">
       <Column className="w-full">
-        <Text className="font-bold leading-[150%] mb-1" style={BodySmall}>
+        <Text className="font-bold leading-[150%] mb-1" style={bodySmall}>
           {title}
         </Text>
         {subtitle && (
-          <Text className="leading-[150%]" style={BodyXSmall}>
+          <Text className="leading-[150%]" style={bodyXSmall}>
             {subtitle}
           </Text>
         )}
       </Column>
       <Column className="align-right w-fit whitespace-nowrap align-top">
-        <Text className="font-bold leading-[150%]" style={BodySmall}>
+        <Text className="font-bold leading-[150%]" style={bodySmall}>
           {price}
         </Text>
       </Column>

@@ -1,12 +1,12 @@
 import { ProductDTO } from "@medusajs/framework/types";
 import { Column, Img, Row, Section, Text } from "@react-email/components";
 import { CtaButton } from "./button";
-import { BodySmall, TitleSmall } from "./style";
+import { bodySmall, titleSmall } from "./style";
 
 export default function ProductsList({ products }: { products: ProductDTO[] }) {
   return (
     <Section className="mt-12">
-      <Text style={TitleSmall} className="">
+      <Text style={titleSmall} className="">
         Freshly baked
       </Text>
       <Section className="mb-6 mt-2">
@@ -22,7 +22,7 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
                   />
                 </Section>
                 <Section className="mt-2">
-                  <Text style={BodySmall} className="mt-2  text-center">
+                  <Text style={bodySmall} className="mt-2  text-center">
                     {product.title}
                   </Text>
                 </Section>

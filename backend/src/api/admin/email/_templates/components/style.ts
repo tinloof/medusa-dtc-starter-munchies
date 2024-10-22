@@ -1,4 +1,11 @@
-export const Title = {
+export const arial_font = {
+  fontFamily: "Arial, Helvetica, sans-serif",
+};
+export const times_font = {
+  fontFamily: '"Times", serif',
+};
+
+export const title = {
   fontFamily: "Instrument Serif",
   fontSize: "48px",
   fontStyle: "normal",
@@ -8,7 +15,7 @@ export const Title = {
   margin: "0",
 };
 
-export const TitleSmall = {
+export const titleSmall = {
   fontFamily: "Instrument Serif",
   fontSize: "40px",
   fontStyle: "normal",
@@ -17,7 +24,7 @@ export const TitleSmall = {
   letterSpacing: "-0.8px",
   margin: "0",
 };
-export const Body = {
+export const body = {
   fontFamily: "Instrument Sans",
   fontSize: "16px",
   fontStyle: "normal",
@@ -26,7 +33,7 @@ export const Body = {
   margin: "0",
 };
 
-export const BodySmall = {
+export const bodySmall = {
   fontFamily: "Instrument Sans",
   fontSize: "14px",
   fontStyle: "normal",
@@ -35,7 +42,7 @@ export const BodySmall = {
   margin: "0",
 };
 
-export const BodyXSmall = {
+export const bodyXSmall = {
   fontFamily: "Instrument Sans",
   fontSize: "12px",
   fontStyle: "normal",
@@ -43,9 +50,4 @@ export const BodyXSmall = {
   lineHeight: "110%",
   letterSpacing: "0.24px",
   margin: "0",
-};
-
-export const Global = {
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif",
 };

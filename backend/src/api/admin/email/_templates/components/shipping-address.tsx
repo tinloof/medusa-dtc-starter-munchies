@@ -1,13 +1,6 @@
 import { OrderAddressDTO } from "@medusajs/framework/types";
 import { Column, Row, Section, Text } from "@react-email/components";
 
-type Address = {
-  name: string;
-  company: string;
-  street: string;
-  city: string;
-  country: string;
-};
 export default function CustomerInformation({
   method,
   shippingAddress,
