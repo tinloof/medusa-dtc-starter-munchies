@@ -3,7 +3,7 @@ import type {PageProps} from "@/types";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import {enrichLineItems} from "@/data/medusa/line-items";
-import {retrieveOrder} from "@/data/medusa/order";
+import {getOrder} from "@/data/medusa/order";
 import {convertToLocale} from "@/utils/medusa/money";
 import {notFound} from "next/navigation";
 
@@ -11,7 +11,7 @@ import OrderItem from "./_parts/order-item";
 
 export default async function OrderConfirmedPage(props: PageProps<"id">) {
   const params = await props.params;
-  const baseOrder = await retrieveOrder(params.id);
+  const baseOrder = await getOrder(params.id);
 
   if (!baseOrder) {
     return notFound();

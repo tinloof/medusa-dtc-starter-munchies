@@ -1,6 +1,6 @@
 import type {Header} from "@/types/sanity.generated";
 
-import {fetchCart} from "@/data/medusa/cart";
+import {getEnrichedCart} from "@/data/medusa/cart";
 import {getRegion} from "@/data/medusa/regions";
 import {Suspense} from "react";
 
@@ -14,7 +14,7 @@ export default async function Cart({
   cartAddons,
   countryCode,
 }: {countryCode: string} & Props) {
-  const cart = await fetchCart();
+  const cart = await getEnrichedCart();
 
   const region = await getRegion(countryCode);
 

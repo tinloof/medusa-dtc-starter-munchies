@@ -30,6 +30,7 @@ export async function loadQuery<QueryResponse>({
   const perspective = isDraftMode ? "previewDrafts" : "published";
 
   const options = {
+    cache: isDraftMode ? undefined : "force-cache",
     filterResponse: false,
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 120 : 0,

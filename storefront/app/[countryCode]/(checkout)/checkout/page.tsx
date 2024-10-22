@@ -1,7 +1,7 @@
 import type {PageProps} from "@/types";
 import type {HttpTypes} from "@medusajs/types";
 
-import {retrieveCart} from "@/data/medusa/cart";
+import {getCart} from "@/data/medusa/cart";
 import {
   listCartPaymentMethods,
   listCartShippingMethods,
@@ -15,11 +15,9 @@ import CheckoutForm from "./_parts/checkout-form";
 export default async function CheckoutPage(props: PageProps<"countryCode">) {
   const params = await props.params;
 
-  const {
-    countryCode
-  } = params;
+  const {countryCode} = params;
 
-  const cart = await retrieveCart();
+  const cart = await getCart();
 
   if (!cart || (cart.items?.length || 0) === 0) {
     return redirect(`/${countryCode}/`);

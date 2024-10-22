@@ -2,7 +2,7 @@
 
 import type {StoreUpdateCart} from "@medusajs/types";
 
-import {retrieveCart} from "@/data/medusa/cart";
+import {getCart} from "@/data/medusa/cart";
 import medusa from "@/data/medusa/client";
 import {
   getAuthHeaders,
@@ -34,7 +34,7 @@ async function createCart(region_id: string) {
 }
 
 export async function getOrSetCart(countryCode: string) {
-  let cart = await retrieveCart();
+  let cart = await getCart();
   const region = await getRegion(countryCode);
 
   if (!region) {

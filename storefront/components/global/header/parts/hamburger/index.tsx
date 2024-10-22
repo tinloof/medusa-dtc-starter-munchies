@@ -9,6 +9,7 @@ import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import Label from "@/components/shared/typography/label";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {cx} from "cva";
 import NextLink from "next/link";
 import {useState} from "react";
@@ -63,6 +64,9 @@ export default function Hamburger({
       <Dialog.Portal container={portalContainer}>
         <RemoveScroll>
           <Dialog.Content className="w-screen items-end justify-end overflow-x-hidden bg-background">
+            <VisuallyHidden.Root>
+              <Dialog.Title className="">Menu</Dialog.Title>
+            </VisuallyHidden.Root>
             <div
               className={cx(
                 "scrollbar-hide fixed left-0 top-[calc(var(--header-height))] flex h-[calc(100dvh-var(--header-height))] w-screen flex-1 flex-col items-start justify-between overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
