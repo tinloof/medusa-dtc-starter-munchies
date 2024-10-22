@@ -1,20 +1,20 @@
 "use client";
 
-import {useCountryCode} from "@/components/context/country-code-context";
+import { useCountryCode } from "@/components/context/country-code-context";
 import Icon from "@/components/shared/icon";
 import {
-  CloseDialog,
-  OpenDialog,
-  SideDialog,
+    CloseDialog,
+    OpenDialog,
+    SideDialog,
 } from "@/components/shared/side-dialog";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import config from "@/config";
-import {Dialog, Title} from "@radix-ui/react-dialog";
-import {cx} from "cva";
+import { Dialog, Title } from "@radix-ui/react-dialog";
+import { cx } from "cva";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {Suspense, useState} from "react";
+import { usePathname } from "next/navigation";
+import { Suspense, useState } from "react";
 
 export type Country = {
   code: string;
@@ -59,7 +59,7 @@ export default function CountrySelectorDialog({
   };
 
   const selectedCountry =
-    countries.find((country) => country.code === countryCode) || countries[0];
+    countries.find((country) => country?.code === countryCode) || countries[0];
 
   return (
     <Dialog onOpenChange={(v) => setOpen(v)} open={open}>
@@ -72,7 +72,7 @@ export default function CountrySelectorDialog({
           font="sans"
           mobileSize="lg"
         >
-          {selectedCountry.code.toUpperCase()} [
+          {selectedCountry.code?.toUpperCase()} [
           {selectedCountry.currency.symbol}]
         </Body>
       </OpenDialog>
@@ -98,10 +98,10 @@ export default function CountrySelectorDialog({
             </CloseDialog>
             <div className="flex flex-1 flex-col items-stretch overflow-y-scroll">
               {countries.map((country) => (
-                <Suspense key={country.code}>
+                <Suspense key={country?.code}>
                   <Link
                     className="whitespace-nowrap px-s py-xs"
-                    href={getNewPath(country.code)}
+                    href={getNewPath(country?.code)}
                     onClick={() => setOpen(false)}
                     prefetch
                   >
