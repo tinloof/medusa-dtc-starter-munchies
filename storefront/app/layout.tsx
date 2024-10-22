@@ -35,7 +35,7 @@ export default function RootLayout({
         instrumentSans.variable,
         instrumentSerif.variable,
         climateCrisis.variable,
-        "scrollbar-hide overflow-x-clip overscroll-none scroll-smooth",
+        "overflow-x-clip overscroll-none scroll-smooth",
       )}
       lang="en"
     >
