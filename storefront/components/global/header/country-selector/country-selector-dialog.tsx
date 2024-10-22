@@ -1,20 +1,20 @@
 "use client";
 
-import { useCountryCode } from "@/components/context/country-code-context";
+import {useCountryCode} from "@/components/context/country-code-context";
 import Icon from "@/components/shared/icon";
 import {
-    CloseDialog,
-    OpenDialog,
-    SideDialog,
+  CloseDialog,
+  OpenDialog,
+  SideDialog,
 } from "@/components/shared/side-dialog";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import config from "@/config";
-import { Dialog, Title } from "@radix-ui/react-dialog";
-import { cx } from "cva";
+import {Dialog, Title} from "@radix-ui/react-dialog";
+import {cx} from "cva";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Suspense, useState } from "react";
+import {usePathname} from "next/navigation";
+import {Suspense, useState} from "react";
 
 export type Country = {
   code: string;
@@ -100,7 +100,7 @@ export default function CountrySelectorDialog({
               {countries.map((country) => (
                 <Suspense key={country?.code}>
                   <Link
-                    className="whitespace-nowrap px-s py-xs"
+                    className="whitespace-nowrap rounded px-s py-xs hover:bg-secondary"
                     href={getNewPath(country?.code)}
                     onClick={() => setOpen(false)}
                     prefetch

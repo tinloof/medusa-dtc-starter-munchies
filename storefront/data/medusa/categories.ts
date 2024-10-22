@@ -14,7 +14,6 @@ export const getCategoryByHandle = unstable_cache(
       .list(
         {
           fields: "+sanity_category.*",
-          // @ts-expect-error Type error
           handle: handle[handle.length - 1],
         },
         {next: {tags: ["category"]}},
