@@ -15,58 +15,40 @@ import ProductSpecs from "./specs";
 type Props = {
   content: PRODUCT_QUERYResult;
   region_id: string;
-} & Pick<
-  StoreProduct,
-  | "collection"
-  | "description"
-  | "id"
-  | "options"
-  | "subtitle"
-  | "title"
-  | "variants"
->;
+} & StoreProduct;
 
-export default function ProductInformation({
-  collection,
-  content,
-  description,
-  id,
-  options,
-  region_id,
-  title,
-  variants,
-}: Props) {
+export default function ProductInformation(props: Props) {
   return (
-    <ProductVariantsProvider options={options} variants={variants}>
+    <ProductVariantsProvider product={props}>
       <div className="lg:y-s flex w-full flex-col gap-lg px-m pb-2xl pt-s lg:max-w-[580px]">
-        <BreadCrumbs collection={collection} title={title} />
+        <BreadCrumbs collection={props.collection} title={props.title} />
         <Heading
           className="leading-[100%]"
           desktopSize="5xl"
           mobileSize="2xl"
           tag="h1"
         >
-          {title}
+          {props.title}
         </Heading>
-        <Price product={{id, variants}} />
+        <Price product={{id: props.id, variants: props.variants}} />
         <Body
           className="font-normal"
           desktopSize="lg"
           font="sans"
           mobileSize="base"
         >
-          {description}
+          {props.description}
         </Body>
         <div className="mt-s flex flex-col gap-s">
-          {options && <OptionsSelect options={options} />}
-          <AddToCart region_id={region_id} variant="PDP" />
+          {props.options && <OptionsSelect options={props.options} />}
+          <AddToCart region_id={props.region_id} variant="PDP" />
         </div>
         <Addons
-          products={content?.addons?.products}
-          region_id={region_id}
-          title={content?.addons?.title}
+          products={props.content?.addons?.products}
+          region_id={props.region_id}
+          title={props.content?.addons?.title}
         />
-        <ProductSpecs specs={content?.specs} />
+        <ProductSpecs specs={props.content?.specs} />
       </div>
     </ProductVariantsProvider>
   );

@@ -3,7 +3,6 @@ import type {PropsWithChildren} from "react";
 
 import {CountryCodeProvider} from "@/components/context/country-code-context";
 import {ExitPreview} from "@/components/exit-preview";
-import {TailwindIndicator} from "@/components/tailwind-indicator";
 import {Analytics} from "@vercel/analytics/react";
 import cache from "next/cache";
 import {draftMode} from "next/headers";
@@ -16,14 +15,12 @@ type LayoutProps = PropsWithChildren<
 export default async function Layout(props: LayoutProps) {
   const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const {children} = props;
 
   const shouldEnableDraftModeToggle =
     process.env.NODE_ENV === "development" && (await draftMode()).isEnabled;
   return (
-    (<CountryCodeProvider countryCode={params.countryCode}>
+    <CountryCodeProvider countryCode={params.countryCode}>
       <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
         {children}
         {(await draftMode()).isEnabled && (
@@ -49,12 +46,11 @@ export default async function Layout(props: LayoutProps) {
             }}
           />
         )}
-        <TailwindIndicator />
         {shouldEnableDraftModeToggle && (
           <ExitPreview enable={(await draftMode()).isEnabled} />
         )}
         <Analytics />
       </body>
-    </CountryCodeProvider>)
+    </CountryCodeProvider>
   );
 }

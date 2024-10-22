@@ -12,36 +12,28 @@ type Props = {
   variant?: "PDP" | "cart";
 } & StoreProduct;
 
-export function AddonsItem({
-  handle,
-  id,
-  images,
-  region_id,
-  title,
-  variant = "PDP",
-  variants,
-}: Props) {
+export function AddonsItem({region_id, variant = "PDP", ...product}: Props) {
   const {cheapestPrice} = getProductPrice({
-    product: {
-      id,
-      variants,
-    },
+    product,
   });
 
-  const default_variant = variants?.[0];
+  const default_variant = product.variants?.[0];
+  const variantWithProduct = !default_variant
+    ? default_variant
+    : {...default_variant, product};
 
   return (
     <LocalizedLink
       className="flex w-full gap-xs"
-      href={`/products/${handle}`}
+      href={`/products/${product.handle}`}
       prefetch
     >
-      {images?.[0].url && (
+      {product.images?.[0].url && (
         <Image
-          alt={title}
+          alt={product.title}
           className="aspect-square h-[100px] w-[100px] rounded-lg border-[1.5px] border-accent"
           height={100}
-          src={images?.[0].url}
+          src={product.images?.[0].url}
           width={100}
         />
       )}
@@ -53,7 +45,7 @@ export function AddonsItem({
             font="sans"
             mobileSize="base"
           >
-            {title}
+            {product.title}
           </Body>
           <Body desktopSize="base" font="sans" mobileSize="sm">
             {default_variant?.title} / {cheapestPrice?.calculated_price}
@@ -62,10 +54,10 @@ export function AddonsItem({
         <AddToCartButton
           className="self-end"
           label="Add +"
-          region_id={region_id}
+          productVariant={variantWithProduct}
+          regionId={region_id}
           size={variant === "PDP" ? "md" : variant === "cart" ? "sm" : null}
           variant="outline"
-          variantId={default_variant?.id}
         />
       </div>
     </LocalizedLink>

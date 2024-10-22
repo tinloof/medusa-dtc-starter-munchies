@@ -10,9 +10,8 @@ import AddToCart from "./add-to-cart";
 import OptionsSelect from "./options";
 
 export default function StickyAtc({
-  options,
   region_id,
-  variants,
+  ...product
 }: {region_id: string} & StoreProduct) {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -32,7 +31,7 @@ export default function StickyAtc({
   }, []);
 
   return (
-    <ProductVariantsProvider options={options} variants={variants}>
+    <ProductVariantsProvider product={product}>
       <div
         className={cx(
           "fixed bottom-0 left-0 right-0 z-[80] w-screen min-w-[320px] border-t border-accent bg-background p-m transition-transform duration-300 lg:hidden",
@@ -43,9 +42,9 @@ export default function StickyAtc({
         )}
       >
         <div className="flex items-center justify-center gap-3">
-          {options && (
+          {product.options && (
             <div className="w-fit">
-              <OptionsSelect options={options} />
+              <OptionsSelect options={product.options} />
             </div>
           )}
           <AddToCart region_id={region_id} variant="sticky" />
