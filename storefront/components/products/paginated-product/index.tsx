@@ -1,4 +1,4 @@
-import type {PageProps} from "@/types";
+import type {SearchParams} from "@/types";
 
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
@@ -16,10 +16,7 @@ export default async function PaginatedProducts({
   searchParams,
 }: {
   countryCode: string;
-  searchParams: PageProps<
-    never,
-    "category" | "collection" | "page" | "sort"
-  >["searchParams"];
+  searchParams: SearchParams<"category" | "collection" | "page" | "sort">;
 }) {
   const category = parseSearchParam(searchParams.category)?.split(",");
   const collection = parseSearchParam(searchParams.collection)?.split(",");

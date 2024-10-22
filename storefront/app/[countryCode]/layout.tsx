@@ -3,7 +3,6 @@ import type {PropsWithChildren} from "react";
 
 import {CountryCodeProvider} from "@/components/context/country-code-context";
 import {ExitPreview} from "@/components/exit-preview";
-import {TailwindIndicator} from "@/components/tailwind-indicator";
 import {Analytics} from "@vercel/analytics/react";
 import cache from "next/cache";
 import {draftMode} from "next/headers";
@@ -13,18 +12,22 @@ type LayoutProps = PropsWithChildren<
   Omit<PageProps<"countryCode">, "searchParams">
 >;
 
-export default function Layout({children, params}: LayoutProps) {
+export default async function Layout(props: LayoutProps) {
+  const params = await props.params;
+
+  const {children} = props;
+
   const shouldEnableDraftModeToggle =
-    process.env.NODE_ENV === "development" && draftMode().isEnabled;
+    process.env.NODE_ENV === "development" && (await draftMode()).isEnabled;
   return (
     <CountryCodeProvider countryCode={params.countryCode}>
       <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
         {children}
-        {draftMode().isEnabled && (
+        {(await draftMode()).isEnabled && (
           <VisualEditing
             refresh={async (payload) => {
               "use server";
-              if (!draftMode().isEnabled) {
+              if (!(await draftMode()).isEnabled) {
                 console.debug(
                   "Skipped manual refresh because draft mode is not enabled",
                 );
@@ -43,9 +46,8 @@ export default function Layout({children, params}: LayoutProps) {
             }}
           />
         )}
-        <TailwindIndicator />
         {shouldEnableDraftModeToggle && (
-          <ExitPreview enable={draftMode().isEnabled} />
+          <ExitPreview enable={(await draftMode()).isEnabled} />
         )}
         <Analytics />
       </body>

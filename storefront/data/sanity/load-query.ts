@@ -18,7 +18,7 @@ export async function loadQuery<QueryResponse>({
   params?: QueryParams;
   query: string;
 }): Promise<QueryResponse> {
-  const isDraftMode = draftMode().isEnabled;
+  const isDraftMode = (await draftMode()).isEnabled;
   const token = config.sanity.token;
 
   if (isDraftMode && !token) {
@@ -30,6 +30,7 @@ export async function loadQuery<QueryResponse>({
   const perspective = isDraftMode ? "previewDrafts" : "published";
 
   const options = {
+    cache: isDraftMode ? undefined : "force-cache",
     filterResponse: false,
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 120 : 0,

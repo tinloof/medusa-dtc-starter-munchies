@@ -10,8 +10,8 @@ import Input from "@/components/shared/input";
 import InputCombobox from "@/components/shared/input-combobox";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {useEffect, useState} from "react";
-import {useFormState, useFormStatus} from "react-dom";
+import {useActionState, useEffect, useState} from "react";
+import {useFormStatus} from "react-dom";
 
 export default function AddressForm({
   active,
@@ -28,7 +28,7 @@ export default function AddressForm({
 }) {
   const [checked, setChecked] = useState(true);
 
-  const [{status}, action] = useFormState(setCheckoutAddresses, {
+  const [{status}, action] = useActionState(setCheckoutAddresses, {
     error: null,
     status: "idle",
   });

@@ -19,7 +19,7 @@ type ActionState =
   | {error: string; status: "error"};
 
 export async function placeOrder() {
-  const cartId = getCartId();
+  const cartId = await getCartId();
   if (!cartId) {
     throw new Error("No existing cart found when placing an order");
   }
@@ -27,12 +27,15 @@ export async function placeOrder() {
   const cartRes = await medusa.store.cart.complete(
     cartId,
     {},
-    getAuthHeaders(),
+    await getAuthHeaders(),
   );
-  revalidateTag(getCacheTag("carts"));
+
+  const cacheTag = await getCacheTag("carts");
+
+  revalidateTag(cacheTag);
 
   if (cartRes?.type === "order") {
-    removeCartId();
+    await removeCartId();
     const countryCode =
       cartRes.order.shipping_address?.country_code?.toLowerCase();
     redirect(`/${countryCode}/order/confirmed/${cartRes.order.id}`);
@@ -52,9 +55,14 @@ export async function initiatePaymentSession(
   },
 ): Promise<ActionState> {
   return medusa.store.payment
-    .initiatePaymentSession(payaload.cart, payaload.data, {}, getAuthHeaders())
-    .then(() => {
-      revalidateTag(getCacheTag("carts"));
+    .initiatePaymentSession(
+      payaload.cart,
+      payaload.data,
+      {},
+      await getAuthHeaders(),
+    )
+    .then(async () => {
+      revalidateTag(await getCacheTag("carts"));
       return {error: null, status: "success"} as const;
     })
     .catch((e) => {
@@ -71,7 +79,7 @@ export async function setCheckoutAddresses(
       throw new Error("No form data found when setting addresses");
     }
 
-    const cartId = getCartId();
+    const cartId = await getCartId();
     const customer = await getCustomer();
 
     if (!cartId) {
@@ -122,7 +130,7 @@ export async function setShippingMethod(
   _: ActionState,
   formdata: FormData,
 ): Promise<ActionState> {
-  const cartId = getCartId();
+  const cartId = await getCartId();
 
   if (!cartId) return {error: "No cart id", status: "error"};
 
@@ -133,10 +141,10 @@ export async function setShippingMethod(
       cartId,
       {option_id: shippingMethodId as string},
       {},
-      getAuthHeaders(),
+      await getAuthHeaders(),
     )
-    .then(() => {
-      revalidateTag(getCacheTag("carts"));
+    .then(async () => {
+      revalidateTag(await getCacheTag("carts"));
       return {error: null, status: "success"} as const;
     })
     .catch((e) => ({error: e.message, status: "error"}));

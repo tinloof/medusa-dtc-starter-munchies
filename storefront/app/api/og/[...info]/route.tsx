@@ -9,7 +9,8 @@ import ProductOg from "./product-og";
 
 export const runtime = "edge";
 
-export async function GET(_: NextRequest, {params}: PageProps<"...info">) {
+export async function GET(_: NextRequest, props: PageProps<"...info">) {
+  const params = await props.params;
   const instrumentSerif = await fetch(
     new URL("../../../fonts/InstrumentSerif-Regular.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());

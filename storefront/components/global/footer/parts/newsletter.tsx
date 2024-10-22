@@ -6,11 +6,11 @@ import {Cta} from "@/components/shared/button";
 import {RichText} from "@/components/shared/rich-text";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import React from "react";
-import {useFormState, useFormStatus} from "react-dom";
+import {useActionState} from "react";
+import {useFormStatus} from "react-dom";
 
 export default function Newsletter(props: NonNullable<Footer>) {
-  const [state, action] = useFormState(newsletterForm, "idle");
+  const [state, action] = useActionState(newsletterForm, "idle");
 
   return (
     <section className="mx-auto flex w-full max-w-max-screen flex-col gap-s px-m py-2xl lg:px-xl">

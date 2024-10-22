@@ -19,15 +19,15 @@ export async function generateMetadata(
   props: ProductPageProps,
   parent: ResolvingMetadata,
 ) {
-  const content = await loadProductContent(props.params.handle);
+  const content = await loadProductContent((await props.params).handle);
 
   if (!content) {
     return notFound();
   }
 
   const url = generateOgEndpoint({
-    countryCode: props.params.countryCode,
-    handle: props.params.handle,
+    countryCode: (await props.params).countryCode,
+    handle: (await props.params).handle,
     type: "products",
   });
 
@@ -53,7 +53,8 @@ export async function generateMetadata(
   };
 }
 
-export default async function ProductPage({params}: ProductPageProps) {
+export default async function ProductPage(props: ProductPageProps) {
+  const params = await props.params;
   const region = await getRegion(params.countryCode);
   if (!region) {
     console.log("No region found");

@@ -12,10 +12,9 @@ type CollectionPageProps = PageProps<
   "category" | "collection" | "page" | "sort"
 >;
 
-export default async function CollectionPage({
-  params,
-  searchParams,
-}: CollectionPageProps) {
+export default async function CollectionPage(props: CollectionPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   return (
     <section className="mx-auto flex max-w-max-screen flex-col gap-10 px-m pb-10 pt-[6.5rem] lg:px-xl">
       <div>

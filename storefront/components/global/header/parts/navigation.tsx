@@ -164,11 +164,12 @@ function Product({
 }: NonNullable<DropdownType["cards"]>[number]) {
   if (!cta?.link) return null;
   return (
-    <LocalizedLink
-      className="flex w-[220px] min-w-[160px] max-w-[220px] shrink-0 flex-col items-center gap-xs rounded-lg"
-      href={cta?.link}
-      prefetch
-    >
+    <div className="group relative flex w-[220px] min-w-[160px] max-w-[220px] shrink-0 flex-col items-center gap-xs rounded-lg">
+      <LocalizedLink
+        className="absolute inset-0 z-10"
+        href={cta?.link}
+        prefetch
+      />
       {image ? (
         <SanityImage
           className="aspect-square max-h-[220px] w-[220px] min-w-[160px] cursor-pointer rounded-lg"
@@ -186,6 +187,6 @@ function Product({
           {cta?.label}
         </Link>
       )}
-    </LocalizedLink>
+    </div>
   );
 }
