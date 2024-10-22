@@ -145,6 +145,7 @@ export default function HotspotsUi({
       <div className="flex flex-col gap-xs lg:hidden">
         {referencedProducts.map((product) => {
           const {cheapestPrice} = getProductPrice({product});
+          const thumbnailUrl = product?.thumbnail || product?.images?.[0].url;
           return (
             <LocalizedLink
               className={cx("flex w-full gap-[10px] rounded-2xl p-xs", {
@@ -154,11 +155,15 @@ export default function HotspotsUi({
               key={product.id}
               prefetch
             >
-              <img
-                alt={product?.title}
-                className="aspect-square w-full max-w-[100px] rounded-lg border border-accent"
-                src={product?.thumbnail || product?.images?.[0].url}
-              />
+              {thumbnailUrl ? (
+                <Image
+                  alt={product?.title}
+                  className="aspect-square w-full max-w-[100px] rounded-lg border border-accent"
+                  height={100}
+                  src={thumbnailUrl}
+                  width={100}
+                />
+              ) : null}
               <div className="flex flex-col items-start justify-start gap-1 py-xs">
                 <Body className="text-pretty" font="sans" mobileSize="lg">
                   {product?.title}
