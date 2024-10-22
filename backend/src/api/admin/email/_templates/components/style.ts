@@ -6,17 +6,15 @@ export const times_font = {
 };
 
 export const title = {
-  fontFamily: "Instrument Serif",
-  fontSize: "48px",
+  fontSize: "44px",
   fontStyle: "normal",
   fontWeight: "400",
   lineHeight: "140%",
-  letterSpacing: "-0.96px",
+  letterSpacing: "-3px",
   margin: "0",
 };
 
 export const titleSmall = {
-  fontFamily: "Instrument Serif",
   fontSize: "40px",
   fontStyle: "normal",
   fontWeight: "400",
@@ -25,7 +23,6 @@ export const titleSmall = {
   margin: "0",
 };
 export const body = {
-  fontFamily: "Instrument Sans",
   fontSize: "16px",
   fontStyle: "normal",
   fontWeight: "400",
@@ -34,7 +31,6 @@ export const body = {
 };
 
 export const bodySmall = {
-  fontFamily: "Instrument Sans",
   fontSize: "14px",
   fontStyle: "normal",
   fontWeight: "600",
@@ -43,7 +39,6 @@ export const bodySmall = {
 };
 
 export const bodyXSmall = {
-  fontFamily: "Instrument Sans",
   fontSize: "12px",
   fontStyle: "normal",
   fontWeight: "400",
