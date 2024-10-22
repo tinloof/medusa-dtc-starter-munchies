@@ -1,9 +1,8 @@
-import {unstable_cache} from "next/cache";
 
 import medusa from "./client";
-import {getCacheHeaders} from "./cookies";
+import { getCacheHeaders } from "./cookies";
 
-export const listCartShippingMethods = unstable_cache(
+export const listCartShippingMethods =
   async function (cartId: string) {
     return medusa.store.fulfillment
       .listCartOptions(
@@ -14,14 +13,9 @@ export const listCartShippingMethods = unstable_cache(
       .catch(() => {
         return null;
       });
-  },
-  ["fulfillment"],
-  {
-    revalidate: 120,
-  },
-);
+  }
 
-export const listCartPaymentMethods = unstable_cache(
+export const listCartPaymentMethods =
   async function (regionId: string) {
     return medusa.store.payment
       .listPaymentProviders(
@@ -32,9 +26,4 @@ export const listCartPaymentMethods = unstable_cache(
       .catch(() => {
         return null;
       });
-  },
-  ["payment_providers"],
-  {
-    revalidate: 120,
-  },
-);
+  }
