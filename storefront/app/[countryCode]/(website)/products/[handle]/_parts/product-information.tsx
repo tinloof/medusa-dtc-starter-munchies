@@ -15,16 +15,7 @@ import ProductSpecs from "./specs";
 type Props = {
   content: PRODUCT_QUERYResult;
   region_id: string;
-} & Pick<
-  StoreProduct,
-  | "collection"
-  | "description"
-  | "id"
-  | "options"
-  | "subtitle"
-  | "title"
-  | "variants"
->;
+} & StoreProduct;
 
 export default function ProductInformation(props: Props) {
   return (
