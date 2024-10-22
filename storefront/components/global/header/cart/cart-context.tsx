@@ -117,7 +117,7 @@ export function CartProvider({
 
   useEffect(() => {
     addToCartEventBus.registerCartAddHandler(handleOptimisticAddToCart);
-  }, []);
+  }, [handleOptimisticAddToCart]);
 
   useEffect(() => {
     setCartOpen(false);

@@ -35,7 +35,9 @@ export default function SearchBar({
   }, [query, onSearch]);
 
   const handleSearch = (searchQuery: string) => {
-    onChange && onChange();
+    if (onChange) {
+      onChange();
+    }
     setQuery(searchQuery);
   };
 

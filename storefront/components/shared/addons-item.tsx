@@ -4,6 +4,7 @@ import {AddToCartButton} from "@/app/[countryCode]/(website)/products/[handle]/_
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import Image from "next/image";
 
+import {cx} from "cva";
 import LocalizedLink from "./localized-link";
 import Body from "./typography/body";
 
@@ -52,7 +53,9 @@ export function AddonsItem({region_id, variant = "PDP", ...product}: Props) {
           </Body>
         </div>
         <AddToCartButton
-          className="self-end"
+          className={cx("self-end", {
+            "mr-4": variant === "cart",
+          })}
           label="Add +"
           productVariant={variantWithProduct}
           regionId={region_id}

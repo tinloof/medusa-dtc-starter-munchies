@@ -47,7 +47,9 @@ export default function DropDown({
           )}
           disabled={disabled}
           onClick={() => {
-            !disabled && setOpen((bool) => !bool);
+            if (!disabled) {
+              setOpen((bool) => !bool);
+            }
           }}
         >
           <div className="flex w-full items-center justify-between gap-6 py-2">
