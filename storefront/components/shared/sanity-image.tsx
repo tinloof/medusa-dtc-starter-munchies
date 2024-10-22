@@ -10,8 +10,8 @@ const imageConfig = {
   projectId: config.sanity.projectId,
 };
 
-export function SanityImage(props: SanityImageProps) {
-  return <SanityImageBase config={imageConfig} {...props} />;
+export function SanityImage({data, ...props}: SanityImageProps) {
+  return <SanityImageBase config={imageConfig} data={data} {...props} />;
 }
 
 import type {ImageUrlBuilder} from "sanity";
