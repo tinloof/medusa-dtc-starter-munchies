@@ -11,7 +11,7 @@ export const retrieveOrder = cache(async function (id: string) {
     .retrieve(
       id,
       {fields: "*payment_collections.payments"},
-      {...getCacheHeaders("orders"), ...getAuthHeaders()},
+      {...(await getCacheHeaders("orders")), ...(await getAuthHeaders())},
     )
     .then(({order}) => order)
     .catch((err) => medusaError(err));

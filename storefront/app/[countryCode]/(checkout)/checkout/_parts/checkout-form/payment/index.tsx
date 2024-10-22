@@ -11,12 +11,12 @@ import {CardElement} from "@stripe/react-stripe-js";
 import {
   type Dispatch,
   type SetStateAction,
+  useActionState,
   useContext,
   useEffect,
   useState,
   useTransition,
 } from "react";
-import {useFormState} from "react-dom";
 
 import PaymentButton from "./button";
 import {isStripe as isStripeFunc} from "./utils";
@@ -49,7 +49,7 @@ export default function Payment({
   const isStripe = isStripeFunc(selectedPaymentMethod);
   const stripeReady = useContext(StripeContext);
 
-  const [{status}, action] = useFormState(initiatePaymentSession, {
+  const [{status}, action] = useActionState(initiatePaymentSession, {
     error: null,
     status: "idle",
   });

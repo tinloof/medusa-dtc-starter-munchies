@@ -3,7 +3,7 @@ const vercelProdUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 const config = {
   backendUrl:
     process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000/store",
-  baseUrl: vercelProdUrl ? `https://${vercelProdUrl}` : "",
+  baseUrl: vercelProdUrl ? `https://${vercelProdUrl}` : "http://localhost:3000",
   defaultCountryCode: "us",
   sanity: {
     apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-06-21",

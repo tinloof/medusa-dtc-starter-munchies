@@ -12,9 +12,13 @@ import {redirect} from "next/navigation";
 import CartDetails from "./_parts/cart-details";
 import CheckoutForm from "./_parts/checkout-form";
 
-export default async function CheckoutPage({
-  params: {countryCode},
-}: PageProps<"countryCode">) {
+export default async function CheckoutPage(props: PageProps<"countryCode">) {
+  const params = await props.params;
+
+  const {
+    countryCode
+  } = params;
+
   const cart = await retrieveCart();
 
   if (!cart || (cart.items?.length || 0) === 0) {

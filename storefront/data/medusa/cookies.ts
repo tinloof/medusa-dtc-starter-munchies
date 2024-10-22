@@ -1,10 +1,10 @@
 import {cookies} from "next/headers";
 import "server-only";
 
-export const getAuthHeaders = ():
-  | {authorization: string}
-  | NonNullable<unknown> => {
-  const token = cookies().get("_medusa_jwt")?.value;
+export const getAuthHeaders = async (): Promise<
+  {authorization: string} | NonNullable<unknown>
+> => {
+  const token = (await cookies()).get("_medusa_jwt")?.value;
 
   if (token) {
     return {authorization: `Bearer ${token}`};
@@ -13,8 +13,8 @@ export const getAuthHeaders = ():
   return {};
 };
 
-export const getCacheTag = (tag: string): string => {
-  const cacheId = cookies().get("_medusa_cache_id")?.value;
+export const getCacheTag = async (tag: string): Promise<string> => {
+  const cacheId = (await cookies()).get("_medusa_cache_id")?.value;
 
   if (cacheId) {
     return `${tag}-${cacheId}`;
@@ -23,10 +23,10 @@ export const getCacheTag = (tag: string): string => {
   return "";
 };
 
-export const getCacheHeaders = (
+export const getCacheHeaders = async (
   tag: string,
-): {next: {tags: string[]}} | NonNullable<unknown> => {
-  const cacheTag = getCacheTag(tag);
+): Promise<{next: {tags: string[]}} | NonNullable<unknown>> => {
+  const cacheTag = await getCacheTag(tag);
 
   if (cacheTag) {
     return {next: {tags: [`${cacheTag}`]}};
@@ -35,8 +35,8 @@ export const getCacheHeaders = (
   return {};
 };
 
-export const setAuthToken = (token: string) => {
-  cookies().set("_medusa_jwt", token, {
+export const setAuthToken = async (token: string) => {
+  (await cookies()).set("_medusa_jwt", token, {
     httpOnly: true,
     maxAge: 60 * 60 * 24 * 7,
     sameSite: "strict",
@@ -44,18 +44,16 @@ export const setAuthToken = (token: string) => {
   });
 };
 
-export const removeAuthToken = () => {
-  cookies().set("_medusa_jwt", "", {
-    maxAge: -1,
-  });
+export const removeAuthToken = async () => {
+  (await cookies()).set("_medusa_jwt", "", {maxAge: -1});
 };
 
-export const getCartId = () => {
-  return cookies().get("_medusa_cart_id")?.value;
+export const getCartId = async () => {
+  return (await cookies()).get("_medusa_cart_id")?.value;
 };
 
-export const setCartId = (cartId: string) => {
-  cookies().set("_medusa_cart_id", cartId, {
+export const setCartId = async (cartId: string) => {
+  (await cookies()).set("_medusa_cart_id", cartId, {
     httpOnly: true,
     maxAge: 60 * 60 * 24 * 7,
     sameSite: "strict",
@@ -63,6 +61,6 @@ export const setCartId = (cartId: string) => {
   });
 };
 
-export const removeCartId = () => {
-  cookies().set("_medusa_cart_id", "", {maxAge: -1});
+export const removeCartId = async () => {
+  (await cookies()).set("_medusa_cart_id", "", {maxAge: -1});
 };

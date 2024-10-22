@@ -3,7 +3,10 @@ import {getAuthHeaders, getCacheHeaders} from "./cookies";
 
 export async function getCustomer() {
   return await medusa.store.customer
-    .retrieve({}, {...getCacheHeaders("customers"), ...getAuthHeaders()})
+    .retrieve(
+      {},
+      {...(await getCacheHeaders("customers")), ...(await getAuthHeaders())},
+    )
     .then(({customer}) => customer)
     .catch(() => null);
 }

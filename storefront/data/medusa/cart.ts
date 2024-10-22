@@ -5,7 +5,7 @@ import {getAuthHeaders, getCartId} from "./cookies";
 import {enrichLineItems} from "./line-items";
 
 export async function retrieveCart() {
-  const cartId = getCartId();
+  const cartId = await getCartId();
 
   if (!cartId) {
     return null;
@@ -18,7 +18,7 @@ export async function retrieveCart() {
         fields:
           "+items, +region, +items.product.*, +items.variant.image, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
       },
-      {next: {tags: ["cart"]}, ...getAuthHeaders()},
+      {next: {tags: ["cart"]}, ...(await getAuthHeaders())},
     )
     .then(
       ({cart}) =>

@@ -9,7 +9,8 @@ import {notFound} from "next/navigation";
 
 import OrderItem from "./_parts/order-item";
 
-export default async function OrderConfirmedPage({params}: PageProps<"id">) {
+export default async function OrderConfirmedPage(props: PageProps<"id">) {
+  const params = await props.params;
   const baseOrder = await retrieveOrder(params.id);
 
   if (!baseOrder) {

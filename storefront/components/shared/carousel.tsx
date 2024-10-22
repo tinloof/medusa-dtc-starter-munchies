@@ -5,7 +5,7 @@ import type {
   EmblaPluginType,
 } from "embla-carousel";
 import type {EmblaViewportRefType} from "embla-carousel-react";
-import type {ComponentProps, PropsWithChildren} from "react";
+import type { ComponentProps, PropsWithChildren, JSX } from "react";
 
 import {Slot} from "@radix-ui/react-slot";
 import {cx} from "cva";

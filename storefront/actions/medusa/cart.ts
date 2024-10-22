@@ -13,6 +13,7 @@ import {
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
 import {revalidateTag} from "next/cache";
+import {cacheTag} from "next/dist/server/use-cache/cache-tag";
 
 async function createCart(region_id: string) {
   const body = {
@@ -25,10 +26,10 @@ async function createCart(region_id: string) {
       fields:
         "+items, +region, +items.product.*, +items.variant.image, +items.variant.*, +items.thumbnail, +items.metadata, +promotions.*,",
     },
-    getAuthHeaders(),
+    await getAuthHeaders(),
   );
-  setCartId(cartResp.cart.id);
-  revalidateTag(getCacheTag("carts"));
+  await setCartId(cartResp.cart.id);
+  revalidateTag(await getCacheTag("carts"));
 
   return cartResp.cart;
 }
@@ -45,14 +46,16 @@ export async function getOrSetCart(countryCode: string) {
     cart = await createCart(region.id);
   }
 
+  const cacheTag = await getCacheTag("carts");
+
   if (cart && cart?.region_id !== region.id) {
     await medusa.store.cart.update(
       cart.id,
       {region_id: region.id},
       {},
-      getAuthHeaders(),
+      await getAuthHeaders(),
     );
-    revalidateTag(getCacheTag("carts"));
+    revalidateTag(cacheTag);
   }
 
   return cart;
@@ -71,7 +74,7 @@ export async function addToCart({
     throw new Error("Missing variant ID when adding to cart");
   }
 
-  let cartId = getCartId();
+  let cartId = await getCartId();
 
   if (!cartId) {
     if (!region_id) throw new Error("Error missing region id");
@@ -83,6 +86,8 @@ export async function addToCart({
     throw new Error("Error retrieving or creating cart");
   }
 
+  const cacheTag = await getCacheTag("carts");
+
   await medusa.store.cart
     .createLineItem(
       cartId,
@@ -91,10 +96,10 @@ export async function addToCart({
         variant_id: variantId,
       },
       {},
-      getAuthHeaders(),
+      await getAuthHeaders(),
     )
     .then(() => {
-      revalidateTag(getCacheTag("carts"));
+      revalidateTag(cacheTag);
     })
     .catch(medusaError);
 }
@@ -115,8 +120,10 @@ export async function updateCartQuantity({
   }
 
   if (!(quantity > 0)) {
+    const cacheTag = await getCacheTag("carts");
+
     await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
-      revalidateTag(getCacheTag("carts"));
+      revalidateTag(cacheTag);
     });
   } else {
     await medusa.store.cart
@@ -127,10 +134,10 @@ export async function updateCartQuantity({
           quantity,
         },
         {},
-        getAuthHeaders(),
+        await getAuthHeaders(),
       )
       .then(() => {
-        revalidateTag(getCacheTag("carts"));
+        revalidateTag(cacheTag);
       });
   }
 }
@@ -148,23 +155,27 @@ export async function deleteLineItem({
     throw new Error("Error retrieving or creating cart");
   }
 
+  const cacheTag = await getCacheTag("carts");
+
   await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
-    revalidateTag(getCacheTag("carts"));
+    revalidateTag(cacheTag);
   });
 }
 
 export async function updateCart(data: StoreUpdateCart) {
-  const cartId = getCartId();
+  const cartId = await getCartId();
   if (!cartId) {
     throw new Error(
       "No existing cart found, please create one before updating",
     );
   }
 
+  const cacheTag = await getCacheTag("carts");
+
   return medusa.store.cart
-    .update(cartId, data, {}, getAuthHeaders())
+    .update(cartId, data, {}, await getAuthHeaders())
     .then(({cart}) => {
-      revalidateTag(getCacheTag("carts"));
+      revalidateTag(cacheTag);
       return cart;
     })
     .catch(medusaError);

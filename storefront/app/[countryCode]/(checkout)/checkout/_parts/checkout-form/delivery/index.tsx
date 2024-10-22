@@ -8,8 +8,8 @@ import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import {convertToLocale} from "@/utils/medusa/money";
 import {Indicator, Item, Root} from "@radix-ui/react-radio-group";
-import {useEffect} from "react";
-import {useFormState, useFormStatus} from "react-dom";
+import {useActionState, useEffect} from "react";
+import {useFormStatus} from "react-dom";
 
 export default function Delivery({
   active,
@@ -26,7 +26,7 @@ export default function Delivery({
     SetStateAction<"addresses" | "delivery" | "payment" | "review">
   >;
 }) {
-  const [{status}, action] = useFormState(setShippingMethod, {
+  const [{status}, action] = useActionState(setShippingMethod, {
     error: null,
     status: "idle",
   });

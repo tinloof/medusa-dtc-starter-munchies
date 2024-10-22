@@ -1,4 +1,4 @@
-import type {LegacyRef} from "react";
+import type {Ref} from "react";
 
 import {useEffect, useRef, useState} from "react";
 
@@ -10,7 +10,7 @@ type IntersectionOptions = {
 
 const useInView = (
   options: IntersectionOptions = {},
-): {inView: boolean; ref: LegacyRef<HTMLDivElement>} => {
+): {inView: boolean; ref: Ref<HTMLDivElement>} => {
   const [inView, setInView] = useState(false);
   const ref = useRef(null);
 
