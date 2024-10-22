@@ -1,6 +1,6 @@
 "use client";
 
-import type {StoreProductOption, StoreProductVariant} from "@medusajs/types";
+import type {StoreProduct, StoreProductVariant} from "@medusajs/types";
 import type {PropsWithChildren} from "react";
 
 import {parseAsString, useQueryStates} from "nuqs";
@@ -20,15 +20,13 @@ const ProductVariantsContext = createContext<
 
 export function ProductVariantsProvider({
   children,
-  options,
-  variants,
+  product,
 }: PropsWithChildren<{
-  options?: StoreProductOption[] | null;
-  variants: StoreProductVariant[] | null;
+  product: StoreProduct;
 }>) {
   const [selectedOptions, setSelectedOptions] = useQueryStates(
     Object.fromEntries(
-      options?.map((option) => [
+      product.options?.map((option) => [
         option.title.toLowerCase(),
         parseAsString.withDefault(
           option.values?.[0]?.value.toLowerCase() ?? "",
@@ -41,17 +39,25 @@ export function ProductVariantsProvider({
   );
 
   const activeVariant =
-    variants?.find((variant) => {
+    product.variants?.find((variant) => {
       return variant?.options?.every(
         ({option, value}) =>
           selectedOptions[option?.title.toLowerCase() || ""] ===
           value.toLowerCase(),
       );
-    }) || variants?.[0];
+    }) || product.variants?.[0];
+
+  const activeVariantWithProduct = !activeVariant
+    ? activeVariant
+    : {...activeVariant, product};
 
   return (
     <ProductVariantsContext.Provider
-      value={{activeVariant, selectedOptions, setSelectedOptions}}
+      value={{
+        activeVariant: activeVariantWithProduct,
+        selectedOptions,
+        setSelectedOptions,
+      }}
     >
       {children}
     </ProductVariantsContext.Provider>

@@ -6,7 +6,7 @@ import Body from "@/components/shared/typography/body";
 import {convertToLocale} from "@/utils/medusa/money";
 import Image from "next/image";
 
-import {useCart} from "../cart-context";
+import {isOptimisticItemId, useCart} from "../cart-context";
 
 export default function LineItem(props: StoreCartLineItem) {
   const {cart, handleDeleteItem, handleUpdateCartQuantity} = useCart();
@@ -19,6 +19,8 @@ export default function LineItem(props: StoreCartLineItem) {
     amount: (item?.unit_price || 0) * (item?.quantity || 1),
     currency_code: (item?.variant?.calculated_price?.currency_code || null)!,
   });
+
+  const isOptimisticLine = isOptimisticItemId(props.id);
 
   return (
     <div className="flex items-start justify-between gap-2 space-x-4">
@@ -46,7 +48,8 @@ export default function LineItem(props: StoreCartLineItem) {
         <div className="flex w-full items-center justify-between gap-4">
           <div className="flex h-10 w-32 items-center justify-center gap-1 overflow-hidden rounded-lg border border-accent">
             <button
-              className="group flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
+              className="group flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={isOptimisticLine}
               onClick={() =>
                 handleUpdateCartQuantity(props.id, (item?.quantity || 0) - 1)
               }
@@ -57,7 +60,8 @@ export default function LineItem(props: StoreCartLineItem) {
               {item?.quantity}
             </Body>
             <button
-              className="group relative flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent"
+              className="group relative flex h-full w-full flex-1 items-center justify-center hover:bg-secondary active:bg-accent disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={isOptimisticLine}
               onClick={() =>
                 handleUpdateCartQuantity(props.id, (item?.quantity || 0) + 1)
               }

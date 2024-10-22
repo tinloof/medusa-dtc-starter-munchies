@@ -1,11 +1,12 @@
 "use client";
 import type {ButtonProps} from "@/components/shared/button";
+import type {StoreProductVariant} from "@medusajs/types";
 
-import {addToCart} from "@/actions/medusa/cart";
+import {addToCartEventBus} from "@/components/global/header/cart/event-bus";
+// import {addToCart} from "@/actions/medusa/cart";
 import {Cta} from "@/components/shared/button";
-import {track} from "@vercel/analytics";
+// import {track} from "@vercel/analytics";
 import {cx} from "cva";
-import {useState} from "react";
 
 import {useProductVariants} from "../product-context";
 
@@ -24,55 +25,45 @@ export default function AddToCart({
         "w-full": variant === "PDP",
       })}
       label="Add to cart"
-      region_id={region_id}
+      productVariant={activeVariant}
+      regionId={region_id}
       size={variant === "PDP" ? "xl" : "md"}
       variant={variant === "PDP" ? "outline" : "primary"}
-      variantId={activeVariant?.id}
     />
   );
 }
 
+type AddToCartButtonProps = {
+  label: string;
+  productVariant: StoreProductVariant | undefined;
+  regionId: string;
+} & Omit<ButtonProps, "onClick">;
+
 export function AddToCartButton({
   label,
-  quantity = 1,
-  region_id,
-  variantId,
+  productVariant,
+  regionId,
   ...buttonProps
-}: {
-  label: string;
-  quantity?: number;
-  region_id: string;
-  variantId?: string;
-} & Omit<ButtonProps, "onClick">) {
-  const [isAdding, setIsAdding] = useState(false);
+}: AddToCartButtonProps) {
+  const handleAddToCart = () => {
+    if (!productVariant) return;
 
-  const handleAddToCart = async (
-    variantId: string,
-    quantity: number,
-    region_id: string,
-  ) => {
-    if (!variantId) return;
-    setIsAdding(true);
-
-    await addToCart({
-      quantity,
-      region_id,
-      variantId,
+    addToCartEventBus.emitCartAdd({
+      productVariant,
+      regionId,
     });
 
-    track("add-to-cart", {quantity, region_id, variantId});
-
-    setIsAdding(false);
+    // track("add-to-cart", {quantity, region_id, variantId});
   };
 
   return (
     <Cta
       {...buttonProps}
-      loading={isAdding}
+      disabled={!addToCartEventBus.handler || !productVariant}
       onClick={(e) => {
         e.preventDefault();
-        if (variantId) {
-          handleAddToCart(variantId, quantity, region_id);
+        if (productVariant) {
+          handleAddToCart();
         }
       }}
     >

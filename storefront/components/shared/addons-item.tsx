@@ -62,10 +62,10 @@ export function AddonsItem({
         <AddToCartButton
           className="self-end"
           label="Add +"
-          region_id={region_id}
+          productVariant={default_variant}
+          regionId={region_id}
           size={variant === "PDP" ? "md" : variant === "cart" ? "sm" : null}
           variant="outline"
-          variantId={default_variant?.id}
         />
       </div>
     </LocalizedLink>
