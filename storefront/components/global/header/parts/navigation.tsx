@@ -79,7 +79,7 @@ export default function Navigation({data}: {data: Header}) {
                     {item.title}
                   </Body>
                 </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="absolute left-0 top-0 z-[30] w-full bg-background px-xl py-2xl data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <NavigationMenu.Content className="absolute left-0 top-0 z-[30] w-full bg-background data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                   <Content {...item} />
                 </NavigationMenu.Content>
               </NavigationMenu.Item>
@@ -90,7 +90,7 @@ export default function Navigation({data}: {data: Header}) {
 
       <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 flex-col justify-center overflow-hidden bg-transparent">
         <BottomBorder DropdownOpen={!!openDropdown} />
-        <NavigationMenu.Viewport className="relative mx-auto h-[var(--radix-navigation-menu-viewport-height)] w-full max-w-max-screen origin-[top_center] overflow-hidden bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
+        <NavigationMenu.Viewport className="relative mx-auto h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
         <div
           className={cx(
             "relative w-full bg-accent transition-all duration-300",
@@ -110,7 +110,7 @@ function Content({cards, columns}: DropdownType) {
 
   return (
     <RemoveScroll>
-      <div className="relative flex max-w-max-screen items-start justify-between gap-xl">
+      <div className="relative mx-auto flex max-w-max-screen items-start justify-between gap-xl px-xl py-2xl">
         <div className="group flex flex-wrap items-start justify-start gap-lg">
           {columns?.map((link) => {
             return (

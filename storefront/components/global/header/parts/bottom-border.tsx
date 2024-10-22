@@ -29,11 +29,11 @@ export default function BottomBorder({
     <div
       className={cx(
         className,
-        "h-[1.5px] w-screen bg-accent transition-all duration-300",
+        "h-[1.5px] w-screen transition-all duration-300",
         {
-          "opacity-0": !isVisible,
-          "opacity-0 transition-none": DropdownOpen,
-          "opacity-100": isVisible && !DropdownOpen,
+          "bg-accent": isVisible && !DropdownOpen,
+          "bg-background": !isVisible,
+          "bg-background transition-none": DropdownOpen,
         },
       )}
     />

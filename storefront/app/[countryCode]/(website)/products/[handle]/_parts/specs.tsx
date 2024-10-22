@@ -20,6 +20,7 @@ export default function ProductSpecs({specs}: Props) {
                 item !== null,
             ) || []
         }
+        type="product"
       />
     )
   );

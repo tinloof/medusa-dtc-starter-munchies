@@ -41,12 +41,11 @@
   }
 
   ::-webkit-scrollbar {
-    width: 3px;
+    width: auto;
   }
 
   ::-webkit-scrollbar-track {
     background: #ff52273c;
-    width: 3px;
     border-radius: 10px;
   }
 
@@ -54,7 +53,10 @@
     background-color: #ff5227;
     border-radius: 10px;
   }
-
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #ff5227 #ff52273c;
+  }
   @layer utilities {
     .scrollbar-hide::-webkit-scrollbar {
       display: none;
