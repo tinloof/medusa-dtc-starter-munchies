@@ -7,8 +7,6 @@ import {convertToLocale} from "@/utils/medusa/money";
 export default function LineItem(props: StoreCartLineItem) {
   const item = props;
 
-  console.debug("[LineItem] item", item);
-
   if (!((item?.quantity || 0) > 0)) return null;
 
   const unit_price = convertToLocale({

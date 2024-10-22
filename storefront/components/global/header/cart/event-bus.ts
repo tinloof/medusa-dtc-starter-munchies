@@ -15,14 +15,12 @@ type CartAddEventBus = {
 
 export const addToCartEventBus: CartAddEventBus = {
   emitCartAdd(payload: AddToCartEventPayload) {
-    console.debug("[addToCartEventBus] emitCartAdd", payload);
     this.handler(payload);
   },
 
   handler: () => {},
 
   registerCartAddHandler(handler: CartAddEventHandler) {
-    console.debug("[addToCartEventBus] registerCartAddHandler", handler);
     this.handler = handler;
   },
 };
