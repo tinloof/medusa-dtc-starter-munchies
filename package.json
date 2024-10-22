@@ -1,0 +1,9 @@
+{
+  "name": "munchies",
+  "private": true,
+  "packageManager": "yarn@4.5.0",
+  "workspaces": [
+    "backend",
+    "storefront"
+  ]
+}

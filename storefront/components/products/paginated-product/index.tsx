@@ -1,13 +1,13 @@
-import type {SearchParams} from "@/types";
+import type { SearchParams } from "@/types";
 
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {getProducts} from "@/data/medusa/products";
-import {getRegion} from "@/data/medusa/regions";
-import {loadDictionary} from "@/data/sanity";
+import { getProducts } from "@/data/medusa/products";
+import { getRegion } from "@/data/medusa/regions";
+import { loadDictionary } from "@/data/sanity";
 
-import {Link} from "../../shared/button";
+import { Link } from "../../shared/button";
 import ClearAllButton from "../product-refinement/filters/clear-button";
 import ProductGrid from "./grid";
 
