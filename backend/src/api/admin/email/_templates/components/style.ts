@@ -6,6 +6,7 @@ export const times_font = {
 };
 
 export const title = {
+  times_font,
   fontSize: "44px",
   fontStyle: "normal",
   fontWeight: "400",
