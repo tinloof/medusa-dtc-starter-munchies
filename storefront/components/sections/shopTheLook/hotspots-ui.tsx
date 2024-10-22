@@ -8,6 +8,7 @@ import Tag from "@/components/shared/tag";
 import Body from "@/components/shared/typography/body";
 import {getProductPrice} from "@/utils/medusa/get-product-price";
 import {cx} from "cva";
+import Image from "next/image";
 import {useState} from "react";
 
 import type {ModularPageSection} from "../types";
@@ -34,6 +35,9 @@ export default function HotspotsUi({
   );
   if (!product) return null;
   const {cheapestPrice} = getProductPrice({product});
+
+  const thumbnailUrl = product?.thumbnail || product?.images?.[0].url;
+
   return (
     <div className="flex w-full flex-col items-stretch justify-start gap-xs lg:flex-row lg:gap-s">
       {image ? (
@@ -93,11 +97,15 @@ export default function HotspotsUi({
       >
         <div className="flex w-full max-w-[450px] flex-1 flex-col items-center justify-center rounded-lg">
           <div className="relative w-full">
-            <img
-              alt={product.title}
-              className="aspect-square w-full rounded-lg"
-              src={product.thumbnail || product.images?.[0].url}
-            />
+            {thumbnailUrl ? (
+              <Image
+                alt={product.title}
+                className="aspect-square w-full rounded-lg"
+                height={450}
+                src={thumbnailUrl}
+                width={450}
+              />
+            ) : null}
             {product.type?.value && (
               <Tag
                 className="absolute right-4 top-3"
@@ -137,6 +145,7 @@ export default function HotspotsUi({
       <div className="flex flex-col gap-xs lg:hidden">
         {referencedProducts.map((product) => {
           const {cheapestPrice} = getProductPrice({product});
+          const thumbnailUrl = product?.thumbnail || product?.images?.[0].url;
           return (
             <LocalizedLink
               className={cx("flex w-full gap-[10px] rounded-2xl p-xs", {
@@ -146,11 +155,15 @@ export default function HotspotsUi({
               key={product.id}
               prefetch
             >
-              <img
-                alt={product?.title}
-                className="aspect-square w-full max-w-[100px] rounded-lg border border-accent"
-                src={product?.thumbnail || product?.images?.[0].url}
-              />
+              {thumbnailUrl ? (
+                <Image
+                  alt={product?.title}
+                  className="aspect-square w-full max-w-[100px] rounded-lg border border-accent"
+                  height={100}
+                  src={thumbnailUrl}
+                  width={100}
+                />
+              ) : null}
               <div className="flex flex-col items-start justify-start gap-1 py-xs">
                 <Body className="text-pretty" font="sans" mobileSize="lg">
                   {product?.title}

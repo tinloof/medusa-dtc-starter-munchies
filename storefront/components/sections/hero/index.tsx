@@ -19,7 +19,7 @@ export default function Hero(props: ModularPageSection<"section.hero">) {
       {mediaType === "image" && <SimpleHero {...props} />}
       {mediaType === "video" && video && (
         <LargeHero props={props}>
-          <div className="hero-asset grid w-full overflow-hidden rounded-lg object-cover object-center">
+          <div className="hero-asset grid w-full items-stretch overflow-hidden rounded-lg object-cover object-center">
             <Video
               aspectRatio="16 / 9"
               className="h-full w-full rounded-lg object-cover"

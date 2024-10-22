@@ -7,6 +7,7 @@ const config = {
       {hostname: "tinloof-munchies.s3.eu-north-1.amazonaws.com"},
       {hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com"},
     ],
+    formats: ["image/avif", "image/webp"],
   },
   eslint: {
     /// Set this to false if you want production builds to abort if there's lint errors
