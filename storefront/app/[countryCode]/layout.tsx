@@ -3,11 +3,10 @@ import type {PropsWithChildren} from "react";
 
 import {CountryCodeProvider} from "@/components/context/country-code-context";
 import {ExitPreview} from "@/components/exit-preview";
-// import {TailwindIndicator} from "@/components/tailwind-indicator";
 import {Analytics} from "@vercel/analytics/react";
+import VisualEditing from "next-sanity/visual-editing/client-component";
 import cache from "next/cache";
 import {draftMode} from "next/headers";
-import VisualEditing from "next-sanity/visual-editing/client-component";
 
 type LayoutProps = PropsWithChildren<
   Omit<PageProps<"countryCode">, "searchParams">
@@ -47,7 +46,6 @@ export default async function Layout(props: LayoutProps) {
             }}
           />
         )}
-        {/* <TailwindIndicator /> */}
         {shouldEnableDraftModeToggle && (
           <ExitPreview enable={(await draftMode()).isEnabled} />
         )}
