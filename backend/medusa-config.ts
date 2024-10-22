@@ -1,4 +1,4 @@
-const { loadEnv, defineConfig, Modules } = require("@medusajs/framework/utils");
+import { defineConfig, loadEnv, Modules } from "@medusajs/framework/utils";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
@@ -19,8 +19,8 @@ export default defineConfig({
     backendUrl: "https://munchies.medusajs.app",
     // backendUrl: "http://localhost:9000",
   },
-  modules: {
-    ["sanity"]: {
+  modules: [
+    {
       resolve: "./modules/sanity",
       options: {
         api_token: process.env.SANITY_API_TOKEN,
@@ -35,8 +35,9 @@ export default defineConfig({
         },
       },
     },
-    [Modules.FILE]: {
+    {
       resolve: "@medusajs/medusa/file",
+      key: Modules.FILE,
       options: {
         providers: [
           {
@@ -54,8 +55,9 @@ export default defineConfig({
         ],
       },
     },
-    [Modules.PAYMENT]: {
+    {
       resolve: "@medusajs/medusa/payment",
+      key: Modules.PAYMENT,
       options: {
         providers: [
           {
@@ -68,5 +70,5 @@ export default defineConfig({
         ],
       },
     },
-  },
+  ],
 });
