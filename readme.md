@@ -46,7 +46,11 @@ pnpx sanity init --env
 
 To set up Medusa for your project:
 
-1.
+Once project is deployed
+
+1. Create a Publishable api key in the dashboard settings and set it to `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`
+
+2. Add the URL of the Medusa project to `NEXT_PUBLIC_MEDUSA_BACKEND_URL`
 
 ## Running the Project
 
