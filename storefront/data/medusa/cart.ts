@@ -1,10 +1,12 @@
 import type {HttpTypes} from "@medusajs/types";
 
+import {cache} from "react";
+
 import client from "./client";
 import {getAuthHeaders, getCartId} from "./cookies";
 import {enrichLineItems} from "./line-items";
 
-export async function retrieveCart() {
+export const getCart = cache(async function () {
   const cartId = await getCartId();
 
   if (!cartId) {
@@ -29,10 +31,10 @@ export async function retrieveCart() {
     .catch(() => {
       return null;
     });
-}
+});
 
-export async function fetchCart() {
-  const cart = await retrieveCart();
+export const getEnrichedCart = cache(async function () {
+  const cart = await getCart();
 
   if (!cart) {
     return null;
@@ -44,4 +46,4 @@ export async function fetchCart() {
   }
 
   return cart;
-}
+});
