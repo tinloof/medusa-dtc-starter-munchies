@@ -29,9 +29,9 @@ export const styles = cva(
       },
       variant: {
         outline:
-          "bg-transparent text-accent border-[1.5px] border-accent hover:bg-accent hover:text-background disabled:bg-transparent disabled:text-accent disabled:border-accent",
+          "bg-transparent text-accent border-[1.5px] border-accent hover:bg-accent hover:text-background group-hover:bg-accent group-hover:text-background disabled:bg-transparent disabled:text-accent disabled:border-accent",
         primary:
-          "bg-accent text-background border-[1.5px] border-accent hover:text-accent hover:bg-background disabled:bg-accent disabled:text-background disabled:border-accent",
+          "bg-accent text-background border-[1.5px] border-accent hover:text-accent hover:bg-background group-hover:bg-accent group-hover:text-background disabled:bg-accent disabled:text-background disabled:border-accent",
       },
     },
   },
