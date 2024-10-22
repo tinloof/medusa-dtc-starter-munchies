@@ -3,6 +3,7 @@ import type {StoreCartLineItem} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
 import {convertToLocale} from "@/utils/medusa/money";
+import Image from "next/image";
 
 export default function LineItem(props: StoreCartLineItem) {
   const item = props;
@@ -21,10 +22,12 @@ export default function LineItem(props: StoreCartLineItem) {
 
   return (
     <div className="flex items-start justify-between gap-2 space-x-4">
-      <img
+      <Image
         alt={props.title}
         className="h-[100px] w-[100px] rounded-lg border-[1.5px] border-accent object-cover"
+        height={100}
         src={props.product?.thumbnail || ""}
+        width={100}
       />
       <div className="flex w-full flex-col items-start justify-start gap-4">
         <div className="flex w-full justify-between gap-3">
