@@ -9,7 +9,7 @@ To get started with this project, follow these steps:
 1. Clone the repository:
 
 ```
-git clone https://github.com/tinloof/medusa-b2c-starter
+git clone --depth 1 https://github.com/tinloof/medusa-b2c-starter
 ```
 
 2. Install dependencies:
