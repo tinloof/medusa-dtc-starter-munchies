@@ -6,7 +6,7 @@ export const times_font = {
 };
 
 export const title = {
-  times_font,
+  ...times_font,
   fontSize: "44px",
   fontStyle: "normal",
   fontWeight: "400",
@@ -16,6 +16,7 @@ export const title = {
 };
 
 export const titleSmall = {
+  ...arial_font,
   fontSize: "40px",
   fontStyle: "normal",
   fontWeight: "400",
@@ -24,6 +25,7 @@ export const titleSmall = {
   margin: "0",
 };
 export const body = {
+  ...arial_font,
   fontSize: "16px",
   fontStyle: "normal",
   fontWeight: "400",
@@ -32,6 +34,7 @@ export const body = {
 };
 
 export const bodySmall = {
+  ...arial_font,
   fontSize: "14px",
   fontStyle: "normal",
   fontWeight: "600",
@@ -40,6 +43,7 @@ export const bodySmall = {
 };
 
 export const bodyXSmall = {
+  ...arial_font,
   fontSize: "12px",
   fontStyle: "normal",
   fontWeight: "400",

@@ -1,10 +1,10 @@
 import {
-  Container,
-  Font,
-  Head,
-  Preview,
-  Section,
-  Tailwind,
+    Container,
+    Font,
+    Head,
+    Preview,
+    Section,
+    Tailwind,
 } from "@react-email/components";
 import React from "react";
 import Footer from "./footer";
@@ -32,7 +32,7 @@ export default function Layout({
           fontWeight={400}
           fontStyle="normal"
         />
-      </Head>{" "}
+      </Head>
       <Preview>{preview}</Preview>
       <Tailwind
         config={{

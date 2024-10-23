@@ -60,16 +60,14 @@ function CartLine({
     <Section className="mb-3">
       <Row>
         <Column className="mx-0 w-[100px] h-[100px]  ">
-          <Section
-            className="w-fit border-accent rounded-lg"
-            style={{ border: "1px solid" }}
-          >
+          <Section className="w-fit rounded-lg">
             <Img
               src={line.thumbnail}
               width="100"
               height="100px"
+              style={{ border: "1px solid" }}
               alt="Product image"
-              className=""
+              className="rounded-lg border-accent"
             />
           </Section>
         </Column>

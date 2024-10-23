@@ -6,7 +6,7 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
-import React from "react";
+import { arial_font } from "./style";
 
 const getYear = () => {
   const date = new Date();
@@ -32,18 +32,18 @@ export default function Footer() {
         <Section className="mx-auto my-10 w-fit text-background ">
           <Row>
             <Column className="pr-10" align="center">
-              <Link href="/" className="text-background">
+              <Link style={arial_font} href="/" className="text-background">
                 INSTAGRAM
               </Link>
             </Column>
 
             <Column className="pr-10" align="center">
-              <Link href="/" className="text-background">
+              <Link style={arial_font} href="/" className="text-background">
                 FACEBOOK
               </Link>
             </Column>
             <Column className="pr-0" align="center">
-              <Link href="/" className="text-background">
+              <Link style={arial_font} href="/" className="text-background">
                 LINKEDIN
               </Link>
             </Column>
@@ -51,7 +51,9 @@ export default function Footer() {
         </Section>
 
         <Section className=" text-center">
-          <Text className="mb-5">© {year} MUNCHIES</Text>
+          <Text style={arial_font} className="mb-5">
+            © {year} MUNCHIES
+          </Text>
         </Section>
       </Tailwind>
     </Section>
