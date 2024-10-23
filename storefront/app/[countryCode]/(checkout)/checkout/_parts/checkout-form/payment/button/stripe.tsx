@@ -5,6 +5,7 @@ import {Cta} from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import {useElements, useStripe} from "@stripe/react-stripe-js";
 import {track} from "@vercel/analytics";
+import {isRedirectError} from "next/dist/client/components/redirect";
 import {useState, useTransition} from "react";
 
 export default function StripePaymentButton({
@@ -23,6 +24,10 @@ export default function StripePaymentButton({
         await placeOrder();
         track("checkout-completed");
       } catch (err: any) {
+        if (isRedirectError(err)) {
+          throw err;
+        }
+
         setErrorMessage(err.message);
       }
     });
