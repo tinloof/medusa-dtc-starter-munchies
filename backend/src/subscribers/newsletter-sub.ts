@@ -34,6 +34,7 @@ export default async function subscribeNewsletterHandler({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-publishable-api-key": process.env.MEDUSA_PUBLISHABLE_KEY,
         },
       },
     );
