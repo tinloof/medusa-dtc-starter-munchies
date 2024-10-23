@@ -19,7 +19,7 @@ export default function CustomerInformation({
       <Row className="mb-8">
         {shippingAddress?.address_1 && (
           <Column>
-            <Text className="pb-2 font-bold" style={BodyXSmall}>
+            <Text className="pb-2 font-bold" style={bodyXSmall}>
               Shipping address
             </Text>
             <Text style={bodyLargeLeading}>
@@ -39,7 +39,7 @@ export default function CustomerInformation({
             <Text className="pb-2 font-bold" style={bodyXSmall}>
               Billing address
             </Text>
-            <Text>
+            <Text style={bodyLargeLeading}>
               {billingAddress?.first_name + " " + billingAddress?.last_name}
               <br />
               {billingAddress?.company}

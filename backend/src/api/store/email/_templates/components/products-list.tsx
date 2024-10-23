@@ -26,7 +26,7 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
                   )}
                 </Section>
                 <Section className="mt-2">
-                  <Text style={bodySmall} className="mt-2  text-center">
+                  <Text style={bodySmall} className="mt-2 text-center">
                     {product.title}
                   </Text>
                 </Section>

@@ -25,7 +25,7 @@ export default function EmailBody({
         <span style={body}>
           Warm regards,
           <br /> The Munchies Team
-        </>
+        </span>
       )}
     </Text>
   );

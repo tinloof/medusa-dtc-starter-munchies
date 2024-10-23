@@ -1,10 +1,10 @@
 import {
-    Container,
-    Font,
-    Head,
-    Preview,
-    Section,
-    Tailwind,
+  Container,
+  Font,
+  Head,
+  Preview,
+  Section,
+  Tailwind,
 } from "@react-email/components";
 import React from "react";
 import Footer from "./footer";
@@ -47,7 +47,7 @@ export default function Layout({
         }}
       >
         <Section className="bg-white" style={arial_font}>
-          <Container className="bg-background h-full w-full  max-w-[640px]">
+          <Container className="bg-background h-full w-full max-w-[640px]">
             <Section className=" text-accent">{children}</Section>
             <Footer />
           </Container>
