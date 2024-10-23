@@ -12,12 +12,14 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
       <Section className="mb-6 mt-2">
         <Row>
           {products.map((product) => {
+            const thumbnail = product.thumbnail || product.images?.[0]?.url;
+
             return (
               <Column id={product.id} className="first:pr-2 align-top">
                 <Section className="w-full">
-                  {product.thumbnail && (
+                  {thumbnail && (
                     <Img
-                      src={product.thumbnail}
+                      src={thumbnail}
                       alt="Brand Your"
                       className="w-full max-w-[279px] h-auto aspect-square rounded-lg"
                     />

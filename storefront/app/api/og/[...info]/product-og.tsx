@@ -6,6 +6,8 @@ export default function ProductOg({product}: {product: StoreProduct}) {
   const {cheapestPrice} = getProductPrice({
     product,
   });
+
+  const thumbnail = product.thumbnail || product.images?.[0].url;
   return (
     <div tw="flex justify-between p-8 items-center w-full h-full text-[#FF5227] bg-[#FFF6E6]">
       <div tw="flex items-start flex-col justify-between pl-8 h-full py-12 max-w-[400px]">
@@ -29,10 +31,10 @@ export default function ProductOg({product}: {product: StoreProduct}) {
         </div>
       </div>
       <div tw="flex h-full w-[46%]">
-        {product.thumbnail && (
+        {thumbnail && (
           <img
             alt={product.title}
-            src={product.thumbnail}
+            src={thumbnail}
             style={{
               objectFit: "cover",
               objectPosition: "bottom",
