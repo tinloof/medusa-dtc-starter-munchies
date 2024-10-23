@@ -108,7 +108,7 @@ export async function updateCartQuantity({
   lineItem,
   quantity,
 }: {
-  countryCode?: string;
+  countryCode: string;
   lineItem: string;
   quantity: number;
 }) {
@@ -139,26 +139,6 @@ export async function updateCartQuantity({
         revalidateTag(cacheTag);
       });
   }
-}
-
-export async function deleteLineItem({
-  countryCode = "us",
-  lineItem,
-}: {
-  countryCode?: string;
-  lineItem: string;
-}) {
-  const cart = await getOrSetCart(countryCode);
-
-  if (!cart) {
-    throw new Error("Error retrieving or creating cart");
-  }
-
-  const cacheTag = await getCacheTag("carts");
-
-  await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
-    revalidateTag(cacheTag);
-  });
 }
 
 export async function updateCart(data: StoreUpdateCart) {

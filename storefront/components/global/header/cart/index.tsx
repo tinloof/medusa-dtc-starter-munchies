@@ -34,7 +34,7 @@ export default async function Cart({
     ) : null;
 
   return (
-    <CartProvider cart={cart}>
+    <CartProvider cart={cart} countryCode={countryCode}>
       <CartUI addons={addons} />
     </CartProvider>
   );
