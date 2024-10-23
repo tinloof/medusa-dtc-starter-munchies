@@ -21,6 +21,8 @@ export default function ProductCard({
 
   const {cheapestPrice} = getProductPrice({product});
 
+  const thumbnail = product.thumbnail || product.images?.[0]?.url;
+
   return (
     <LocalizedLink
       className={cx(
@@ -33,14 +35,16 @@ export default function ProductCard({
       prefetch
     >
       <div className="relative w-full">
-        <Image
-          alt={product.title}
-          className="aspect-square w-full rounded-lg"
-          height={450}
-          priority={index !== undefined && index <= 2}
-          src={product.thumbnail || product.images?.[0]?.url || ""}
-          width={450}
-        />
+        {thumbnail && (
+          <Image
+            alt={product.title}
+            className="aspect-square w-full rounded-lg"
+            height={450}
+            priority={index !== undefined && index <= 2}
+            src={thumbnail}
+            width={450}
+          />
+        )}
         {product.type?.value && (
           <Tag
             className="absolute right-4 top-3"

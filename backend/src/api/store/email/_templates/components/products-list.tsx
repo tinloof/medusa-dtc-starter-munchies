@@ -15,11 +15,13 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
             return (
               <Column id={product.id} className="first:pr-2 align-top">
                 <Section className="w-full">
-                  <Img
-                    src={product.thumbnail}
-                    alt="Brand Your"
-                    className="w-full max-w-[279px] h-auto aspect-square rounded-lg"
-                  />
+                  {product.thumbnail && (
+                    <Img
+                      src={product.thumbnail}
+                      alt="Brand Your"
+                      className="w-full max-w-[279px] h-auto aspect-square rounded-lg"
+                    />
+                  )}
                 </Section>
                 <Section className="mt-2">
                   <Text style={bodySmall} className="mt-2  text-center">
