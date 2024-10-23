@@ -19,7 +19,7 @@ export default function OptionsSelect({options}: Props) {
       value: value.toLowerCase(),
     }));
 
-    if (!values || values?.length === 0) return null;
+    if (!values || values.length <= 1) return null;
     const activeOption = selectedOptions[option.title.toLowerCase()];
     const setOption = (value: string) =>
       setSelectedOptions((prev) => ({

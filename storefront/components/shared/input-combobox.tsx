@@ -81,15 +81,19 @@ export default forwardRef<
   return (
     <div className="relative w-full">
       <div className="relative flex w-full items-center">
-        <Icon
-          className="absolute left-3 text-accent opacity-60"
-          name="Search"
-        />
+        {!isDisabled && (
+          <Icon
+            className="absolute left-3 text-accent opacity-60"
+            name="Search"
+          />
+        )}
         <input
           className={cx(
             className,
-            "w-full rounded-lg border-[1.5px] border-accent bg-transparent py-[11px] pl-10 pr-[16px] font-medium outline-none placeholder:font-medium placeholder:text-accent placeholder:opacity-60",
+            "w-full rounded-lg border-[1.5px] border-accent bg-transparent py-[11px] pr-[16px] font-medium outline-none placeholder:font-medium placeholder:text-accent placeholder:opacity-60",
             {
+              "pl-[16px]": isDisabled,
+              "pl-10": !isDisabled,
               "size-4 border-2 border-accent bg-transparent p-1 accent-accent outline-none":
                 type === "checkbox",
             },
