@@ -58,7 +58,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@medusajs/client-types": "2.0.0",
+    "@medusajs/client-types": "preview",
     "@portabletext/types": "^2.0.13",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.9",
