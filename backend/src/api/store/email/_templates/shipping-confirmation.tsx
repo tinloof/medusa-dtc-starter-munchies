@@ -7,7 +7,7 @@ export default function ShippingConfirmation() {
   return (
     <Layout preview="Shipping confirmation">
       <Section className="w-full max-w-[565px] px-5 my-20" align="left">
-        <Heading className="mb-3" style={title}>
+        <Heading className="pb-3" style={title}>
           Your order is on its way!
         </Heading>
         <EmailBody

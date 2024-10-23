@@ -1,5 +1,6 @@
 import { OrderAddressDTO } from "@medusajs/framework/types";
 import { Column, Row, Section, Text } from "@react-email/components";
+import { bodyLargeLeading, bodySmall, bodyXSmall } from "./style";
 
 export default function CustomerInformation({
   method,
@@ -12,12 +13,16 @@ export default function CustomerInformation({
 }) {
   return (
     <Section>
-      <Text className="mb-4 font-bold">Customer information</Text>
+      <Text className="pb-4 font-bold" style={bodySmall}>
+        Customer information
+      </Text>
       <Row className="mb-8">
         {shippingAddress?.address_1 && (
           <Column>
-            <Text className="mb-2 font-bold">Shipping address</Text>
-            <Text>
+            <Text className="pb-2 font-bold" style={BodyXSmall}>
+              Shipping address
+            </Text>
+            <Text style={bodyLargeLeading}>
               {shippingAddress?.first_name + " " + shippingAddress?.last_name}
               <br />
               {shippingAddress?.company}
@@ -30,8 +35,10 @@ export default function CustomerInformation({
           </Column>
         )}
         {billingAddress?.address_1 && (
-          <Column>
-            <Text className="mb-2 font-bold">Billing address</Text>
+          <Column className="pl-6">
+            <Text className="pb-2 font-bold" style={bodyXSmall}>
+              Billing address
+            </Text>
             <Text>
               {billingAddress?.first_name + " " + billingAddress?.last_name}
               <br />
@@ -47,8 +54,10 @@ export default function CustomerInformation({
       </Row>
       {method && (
         <>
-          <Text className="mb-2 font-bold">Shipping method</Text>
-          <Text>{method}</Text>
+          <Text className="pb-2 font-bold" style={bodyXSmall}>
+            Shipping method
+          </Text>
+          <Text style={bodyLargeLeading}>{method}</Text>
         </>
       )}
     </Section>

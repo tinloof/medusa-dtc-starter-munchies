@@ -16,13 +16,13 @@ export default function EmailBody({
     <Text className="mb-[50px]" style={body}>
       Hi {firstName}, <br />
       {paragraphs.map((paragraph, index) => (
-        <span key={index}>
+        <span key={index} style={body}>
           {paragraph}
           <br /> <br />
         </span>
       ))}
       {signature && (
-        <>
+        <span style={body}>
           Warm regards,
           <br /> The Munchies Team
         </>

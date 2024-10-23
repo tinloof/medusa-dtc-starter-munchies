@@ -8,8 +8,8 @@ import { title } from "./components/style";
 export default function Welcome({ products }: { products: ProductDTO[] }) {
   return (
     <Layout preview="Welcome to Munchies!">
-      <Section className="w-full px-5 my-20" align="left">
-        <Heading className="mb-3" style={title}>
+      <Section className="w-full max-w-[565px] px-5 my-20" align="left">
+        <Heading className="pb-3" style={title}>
           Get ready for some sweet! 🍪
         </Heading>
         <EmailBody

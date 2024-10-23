@@ -22,7 +22,7 @@ export default function Cart({
   return (
     <Section className="mb-10">
       <Section className="mb-4">
-        <Text className="w-fit uppercase leading-[110%]" style={bodySmall}>
+        <Text className="w-fit uppercase font-bold" style={bodySmall}>
           Order summary
         </Text>
       </Section>
@@ -72,7 +72,10 @@ function CartLine({
           </Section>
         </Column>
         <Column className="pl-2 align-top ">
-          <Text className="w-full font-bold leading-[130%]" style={bodySmall}>
+          <Text
+            className="w-full font-bold pb-1 leading-[130%]"
+            style={bodySmall}
+          >
             {line.product_title}
           </Text>
           <Text
@@ -104,7 +107,7 @@ function CheckoutLine({
   return (
     <Row className="mb-3">
       <Column className="w-full">
-        <Text className="font-bold leading-[150%] mb-1" style={bodySmall}>
+        <Text className="font-bold leading-[150%] pb-1" style={bodySmall}>
           {title}
         </Text>
         {subtitle && (
