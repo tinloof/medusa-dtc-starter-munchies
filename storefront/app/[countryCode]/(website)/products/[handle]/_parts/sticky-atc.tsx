@@ -42,11 +42,14 @@ export default function StickyAtc({
         )}
       >
         <div className="flex items-center justify-center gap-3">
-          {product.options && (
-            <div className="w-fit">
-              <OptionsSelect options={product.options} />
-            </div>
-          )}
+          {product.options &&
+            product.options.some(
+              (option) => (option.values?.length || 0) > 1,
+            ) && (
+              <div className="w-fit">
+                <OptionsSelect options={product.options} />
+              </div>
+            )}
           <AddToCart region_id={region_id} variant="sticky" />
         </div>
       </div>
