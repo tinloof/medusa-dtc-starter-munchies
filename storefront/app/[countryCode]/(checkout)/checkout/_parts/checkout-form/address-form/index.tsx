@@ -10,7 +10,8 @@ import Input from "@/components/shared/input";
 import InputCombobox from "@/components/shared/input-combobox";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {useActionState, useEffect, useState} from "react";
+import {useResetableActionState} from "@/hooks/use-resetable-action-state";
+import {useEffect, useState, useTransition} from "react";
 import {useFormStatus} from "react-dom";
 
 export default function AddressForm({
@@ -27,15 +28,22 @@ export default function AddressForm({
   >;
 }) {
   const [checked, setChecked] = useState(true);
+  const [, startTransition] = useTransition();
 
-  const [{status}, action] = useActionState(setCheckoutAddresses, {
-    error: null,
-    status: "idle",
-  });
+  const [{status}, action, , reset] = useResetableActionState(
+    setCheckoutAddresses,
+    {
+      error: null,
+      status: "idle",
+    },
+  );
 
   useEffect(() => {
-    if (status === "success") setStep(nextStep);
-  }, [status, setStep, nextStep]);
+    if (status === "success") {
+      setStep(nextStep);
+      startTransition(() => reset());
+    }
+  }, [status, setStep, nextStep, reset]);
 
   const isFilled = !active && !!cart.shipping_address?.address_1;
 

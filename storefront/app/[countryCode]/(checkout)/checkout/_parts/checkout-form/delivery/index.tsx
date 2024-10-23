@@ -1,15 +1,16 @@
 "use client";
-import type {StoreCart, StoreCartShippingOption} from "@medusajs/types";
-import type {Dispatch, SetStateAction} from "react";
+import type { StoreCart, StoreCartShippingOption } from "@medusajs/types";
+import type { Dispatch, SetStateAction } from "react";
 
-import {setShippingMethod} from "@/actions/medusa/order";
-import {Cta} from "@/components/shared/button";
+import { setShippingMethod } from "@/actions/medusa/order";
+import { Cta } from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {convertToLocale} from "@/utils/medusa/money";
-import {Indicator, Item, Root} from "@radix-ui/react-radio-group";
-import {useActionState, useEffect} from "react";
-import {useFormStatus} from "react-dom";
+import { useResetableActionState } from "@/hooks/use-resetable-action-state";
+import { convertToLocale } from "@/utils/medusa/money";
+import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
+import { useEffect, useTransition } from "react";
+import { useFormStatus } from "react-dom";
 
 export default function Delivery({
   active,
@@ -26,10 +27,15 @@ export default function Delivery({
     SetStateAction<"addresses" | "delivery" | "payment" | "review">
   >;
 }) {
-  const [{status}, action] = useActionState(setShippingMethod, {
-    error: null,
-    status: "idle",
-  });
+  const [, startTransition] = useTransition();
+
+  const [{status}, action, , reset] = useResetableActionState(
+    setShippingMethod,
+    {
+      error: null,
+      status: "idle",
+    },
+  );
 
   const cartShippingMethod = cart.shipping_methods?.[0];
 
@@ -45,8 +51,11 @@ export default function Delivery({
   });
 
   useEffect(() => {
-    if (status === "success") setStep("payment");
-  }, [status, setStep]);
+    if (status === "success") {
+      setStep("payment");
+      startTransition(() => reset());
+    }
+  }, [status, setStep, reset]);
 
   return (
     <div className="flex w-full flex-col gap-8 border-t border-accent py-8">

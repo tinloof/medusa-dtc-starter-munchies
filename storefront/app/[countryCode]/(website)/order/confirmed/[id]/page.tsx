@@ -32,7 +32,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
   const shippingMethod = order.shipping_methods?.[0];
 
   return (
-    <div className="mx-auto flex max-w-[1200px] flex-col gap-2xl px-s py-2xl lg:px-0 lg:py-8xl">
+    <div className="mx-auto flex max-w-[1200px] flex-col gap-2xl px-s py-2xl md:py-8xl">
       <div className="flex flex-col gap-xs">
         <Heading
           className="mb-lg"

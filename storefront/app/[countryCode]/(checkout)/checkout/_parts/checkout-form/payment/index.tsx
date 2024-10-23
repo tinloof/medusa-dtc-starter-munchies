@@ -1,26 +1,26 @@
 "use client";
-import type {StoreCart, StorePaymentProvider} from "@medusajs/types";
-import type {StripeCardElementOptions} from "@stripe/stripe-js";
+import type { StoreCart, StorePaymentProvider } from "@medusajs/types";
+import type { StripeCardElementOptions } from "@stripe/stripe-js";
 
-import {initiatePaymentSession} from "@/actions/medusa/order";
-import {Cta} from "@/components/shared/button";
+import { initiatePaymentSession } from "@/actions/medusa/order";
+import { Cta } from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {Indicator, Item, Root} from "@radix-ui/react-radio-group";
-import {CardElement} from "@stripe/react-stripe-js";
+import { useResetableActionState } from "@/hooks/use-resetable-action-state";
+import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
+import { CardElement } from "@stripe/react-stripe-js";
 import {
-  type Dispatch,
-  type SetStateAction,
-  useActionState,
-  useContext,
-  useEffect,
-  useState,
-  useTransition,
+    type Dispatch,
+    type SetStateAction,
+    useContext,
+    useEffect,
+    useState,
+    useTransition,
 } from "react";
 
 import PaymentButton from "./button";
-import {isStripe as isStripeFunc} from "./utils";
-import {StripeContext} from "./wrapper";
+import { isStripe as isStripeFunc } from "./utils";
+import { StripeContext } from "./wrapper";
 
 export default function Payment({
   active,
@@ -46,13 +46,19 @@ export default function Payment({
     activeSession?.provider_id ?? methods[0].id,
   );
 
+  const [, resetTransition] = useTransition();
+
+
   const isStripe = isStripeFunc(selectedPaymentMethod);
   const stripeReady = useContext(StripeContext);
 
-  const [{status}, action] = useActionState(initiatePaymentSession, {
-    error: null,
-    status: "idle",
-  });
+  const [{status}, action, , reset] = useResetableActionState(
+    initiatePaymentSession,
+    {
+      error: null,
+      status: "idle",
+    },
+  );
   const [pending, startTransition] = useTransition();
 
   function initiatePayment() {
@@ -68,8 +74,11 @@ export default function Payment({
   }
 
   useEffect(() => {
-    if (status === "success") setStep("review");
-  }, [status, setStep]);
+    if (status === "success") {
+      setStep("review");
+      resetTransition(() => reset());
+    }
+  }, [status, setStep, reset]);
 
   const activeMethod = methods.find(
     ({id}) => id === activeSession?.provider_id,

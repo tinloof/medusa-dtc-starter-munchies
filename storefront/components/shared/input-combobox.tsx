@@ -25,10 +25,10 @@ export default forwardRef<
   const [selectedOption, setSelectedOption] = useState<{
     id: string;
     label: string;
-  } | null>(null);
+  } | null>(options[0] || null);
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
-  const [inputValue, setInputValue] = useState(defaultValue || "");
+  const [inputValue, setInputValue] = useState(options[0]?.label || "");
 
   useEffect(() => {
     if (defaultValue) {
@@ -39,6 +39,9 @@ export default forwardRef<
         setSelectedOption(defaultOption);
         setInputValue(defaultOption.label);
       }
+    } else if (options.length > 0) {
+      setSelectedOption(options[0]);
+      setInputValue(options[0].label);
     }
   }, [defaultValue, options]);
 
@@ -52,15 +55,15 @@ export default forwardRef<
     );
     setIsOpen(true);
     setSelectedOption(null);
-    // const isValid = !!options.find(
-    //   ({label}) => label.toLowerCase() === value.toLowerCase(),
-    // );
+    const isValid = !!options.find(
+      ({label}) => label.toLowerCase() === value.toLowerCase(),
+    );
 
-    // if (!isValid) {
-    //   event.target.setCustomValidity("Please select a valid option");
-    // } else {
-    //   event.target.setCustomValidity("");
-    // }
+    if (!isValid) {
+      event.target.setCustomValidity("Please select a valid option");
+    } else {
+      event.target.setCustomValidity("");
+    }
   };
 
   const handleOptionSelect = (option: {id: string; label: string}) => {
@@ -72,6 +75,8 @@ export default forwardRef<
       ref.current.value = option.id;
     }
   };
+
+  const isDisabled = options.length === 1;
 
   return (
     <div className="relative w-full">
@@ -89,6 +94,7 @@ export default forwardRef<
                 type === "checkbox",
             },
           )}
+          disabled={isDisabled}
           onBlur={() => setTimeout(() => setIsOpen(false), 200)}
           onChange={handleInputChange}
           onFocus={() => setIsOpen(true)}
@@ -108,7 +114,7 @@ export default forwardRef<
           value={selectedOption ? selectedOption.id : ""}
         />
       </div>
-      {isOpen && filteredOptions.length > 0 && (
+      {isOpen && filteredOptions.length > 0 && !isDisabled && (
         <ul className="absolute z-10 mt-1 flex w-full flex-col gap-2 rounded-lg border border-accent bg-background px-2 py-2 shadow-lg">
           {filteredOptions.map((option) => (
             <li

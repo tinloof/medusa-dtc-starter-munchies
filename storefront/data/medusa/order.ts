@@ -1,12 +1,11 @@
 "use server";
 
 import medusaError from "@/utils/medusa/error";
-import {unstable_cache} from "next/cache";
 
 import medusa from "./client";
-import {getAuthHeaders, getCacheHeaders} from "./cookies";
+import { getAuthHeaders, getCacheHeaders } from "./cookies";
 
-export const getOrder = unstable_cache(
+export const getOrder =
   async function (id: string) {
     return medusa.store.order
       .retrieve(
@@ -17,8 +16,4 @@ export const getOrder = unstable_cache(
       .then(({order}) => order)
       .catch((err) => medusaError(err));
   },
-  ["order"],
-  {
-    revalidate: 120,
-  },
-);
+
