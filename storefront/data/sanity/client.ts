@@ -1,8 +1,8 @@
-import type {ClientPerspective} from "@sanity/client";
+import type {ClientPerspective} from "next-sanity";
 
 import config from "@/config";
-import {createClient} from "@sanity/client";
 import createImageUrlBuilder from "@sanity/image-url";
+import {createClient} from "next-sanity";
 
 const clientConfig = {
   apiVersion: config.sanity.apiVersion,

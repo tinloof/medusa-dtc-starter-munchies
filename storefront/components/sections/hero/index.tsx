@@ -1,6 +1,6 @@
 import {SanityImage} from "@/components/shared/sanity-image";
 import Video from "@/components/shared/video";
-import {stegaClean} from "@sanity/client/stega";
+import {stegaClean} from "next-sanity";
 
 import type {ModularPageSection} from "../types";
 

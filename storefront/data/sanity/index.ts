@@ -8,10 +8,10 @@ import type {
   NOT_FOUND_PAGE_QUERYResult,
   PRODUCT_QUERYResult,
   REDIRECT_QUERYResult,
+  ROUTE_QUERYResult,
   TEXT_PAGE_QUERYResult,
 } from "@/types/sanity.generated";
 
-import {loadQuery, loadRoute} from "./load-query";
 import {
   COOKIE_BANNER_QUERY,
   DICTIONARY_QUERY,
@@ -22,24 +22,34 @@ import {
   NOT_FOUND_PAGE_QUERY,
   PRODUCT_QUERY,
   REDIRECT_QUERY,
+  ROUTE_QUERY,
   TEXT_PAGE_QUERY,
 } from "./queries";
+import {sanityFetch} from "./sanity-fetch";
+
+// Loader for routes
+export function loadRoute(pathname: string) {
+  return sanityFetch<ROUTE_QUERYResult>({
+    params: {pathname},
+    query: ROUTE_QUERY,
+  });
+}
 
 export async function loadModularPage(pathname: string) {
-  return loadQuery<MODULAR_PAGE_QUERYResult>({
+  return sanityFetch<MODULAR_PAGE_QUERYResult>({
     params: {pathname},
     query: MODULAR_PAGE_QUERY,
   });
 }
 
 export async function loadHome() {
-  return loadQuery<HOME_QUERYResult>({
+  return sanityFetch<HOME_QUERYResult>({
     query: HOME_QUERY,
   });
 }
 
 export function loadGlobalData() {
-  return loadQuery<GLOBAL_QUERYResult>({
+  return sanityFetch<GLOBAL_QUERYResult>({
     query: GLOBAL_QUERY,
   });
 }
@@ -74,45 +84,45 @@ export async function loadPageByPathname({
 }
 
 export function loadRedirects(paths: string[]) {
-  return loadQuery<REDIRECT_QUERYResult>({
+  return sanityFetch<REDIRECT_QUERYResult>({
     params: {paths},
     query: REDIRECT_QUERY,
   });
 }
 
 export function loadNotFound() {
-  return loadQuery<NOT_FOUND_PAGE_QUERYResult>({
+  return sanityFetch<NOT_FOUND_PAGE_QUERYResult>({
     query: NOT_FOUND_PAGE_QUERY,
   });
 }
 
 export function loadCookieBanner() {
-  return loadQuery<COOKIE_BANNER_QUERYResult>({
+  return sanityFetch<COOKIE_BANNER_QUERYResult>({
     query: COOKIE_BANNER_QUERY,
   });
 }
 
 export async function loadTextPage(pathname: string) {
-  return loadQuery<TEXT_PAGE_QUERYResult>({
+  return sanityFetch<TEXT_PAGE_QUERYResult>({
     params: {pathname},
     query: TEXT_PAGE_QUERY,
   });
 }
 
 export function loadFaqs() {
-  return loadQuery<FAQS_PAGE_QUERYResult>({
+  return sanityFetch<FAQS_PAGE_QUERYResult>({
     query: FAQS_PAGE_QUERY,
   });
 }
 
 export function loadDictionary() {
-  return loadQuery<DICTIONARY_QUERYResult>({
+  return sanityFetch<DICTIONARY_QUERYResult>({
     query: DICTIONARY_QUERY,
   });
 }
 
 export function loadProductContent(handle: string) {
-  return loadQuery<PRODUCT_QUERYResult>({
+  return sanityFetch<PRODUCT_QUERYResult>({
     params: {handle},
     query: PRODUCT_QUERY,
   });

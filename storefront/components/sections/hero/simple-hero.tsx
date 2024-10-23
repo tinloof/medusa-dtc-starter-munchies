@@ -2,8 +2,7 @@ import {Link} from "@/components/shared/button";
 import {SanityImage} from "@/components/shared/sanity-image";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import {stegaClean} from "@sanity/client/stega";
-import React from "react";
+import {stegaClean} from "next-sanity";
 
 import type {ModularPageSection} from "../types";
 
