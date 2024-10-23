@@ -1,5 +1,5 @@
 import { ProductDTO } from "@medusajs/framework/types";
-import { Heading, Section } from "@react-email/components";
+import { Heading, Img, Section } from "@react-email/components";
 import EmailBody from "./components/email-body";
 import Layout from "./components/layout";
 import ProductsList from "./components/products-list";
@@ -8,7 +8,11 @@ import { title } from "./components/style";
 export default function Welcome({ products }: { products: ProductDTO[] }) {
   return (
     <Layout preview="Welcome to Munchies!">
-      <Section className="w-full max-w-[565px] px-5 my-20" align="left">
+      <Section className="w-full px-5 my-20" align="left">
+        <Img
+          src="https://cdn.sanity.io/images/1wtf7iqx/production/0ebbdf446bb2d4e4287c722fb82fe385d13d6dea-2400x1260.png"
+          className="rounded-lg mb-8"
+        />
         <Heading className="pb-3" style={title}>
           Get ready for some sweet! 🍪
         </Heading>

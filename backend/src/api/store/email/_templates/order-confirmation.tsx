@@ -1,5 +1,5 @@
 import { BigNumberValue, OrderDTO } from "@medusajs/framework/types";
-import { Heading, Section } from "@react-email/components";
+import { Heading, Img, Section } from "@react-email/components";
 import Cart from "./components/cart";
 import EmailBody from "./components/email-body";
 import Layout from "./components/layout";
@@ -18,8 +18,9 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
 
   return (
     <Layout preview="Order confirmation">
-      <Section className="w-full px-5 mt-32 mb-10" align="left">
-        <Heading className="pb-3" style={title}>
+      <Section className="w-full px-5 mb-12" align="left">
+        <Img src="https://cdn.sanity.io/images/1wtf7iqx/production/e04b80a29759293982d74afcde82a169505a3aaa-1166x112.png" />
+        <Heading className="mb-3 mt-20" style={title}>
           Thank you for your order!
         </Heading>
         <EmailBody

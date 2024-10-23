@@ -25,6 +25,8 @@ export async function newsletterForm(
         }),
         headers: {
           "Content-Type": "application/json",
+          "X-Publishable-Api-Key":
+            process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY!,
         },
         method: "post",
       },
