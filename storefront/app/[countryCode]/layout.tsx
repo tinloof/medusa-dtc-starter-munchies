@@ -21,7 +21,7 @@ export default async function Layout(props: LayoutProps) {
     process.env.NODE_ENV === "development" && (await draftMode()).isEnabled;
   return (
     <CountryCodeProvider countryCode={params.countryCode}>
-      <body className="relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
+      <body className="scrollbar-hide relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip">
         {children}
         {(await draftMode()).isEnabled && (
           <VisualEditing
