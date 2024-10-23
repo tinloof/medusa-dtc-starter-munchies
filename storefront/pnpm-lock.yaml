@@ -13,11 +13,11 @@ importers:
   .:
     dependencies:
       '@medusajs/js-sdk':
-        specifier: preview
-        version: 2.0.0-preview-20241022100028(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))
+        specifier: 2.0.0
+        version: 2.0.0(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))
       '@medusajs/types':
-        specifier: preview
-        version: 2.0.0-preview-20241022100028(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))
+        specifier: 2.0.0
+        version: 2.0.0(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))
       '@next/env':
         specifier: 15.0.0
         version: 15.0.0
@@ -1319,12 +1319,12 @@ packages:
   '@medusajs/client-types@0.2.12-preview-20240505115807':
     resolution: {integrity: sha512-f7T/7WUAGOFfsNsjdCcVoWLlAqryaQB+hF0v/Dzst2hv+PdJGqHfHwTNdeK3ZYhUwzSQ8YdnCYsj9OEJR9SPiQ==}
 
-  '@medusajs/js-sdk@2.0.0-preview-20241022100028':
-    resolution: {integrity: sha512-4Xqaab8AkIs04OlAwzphGoFtgCtM9WB7nlaZjQNtRPvNoT3sAsbYCHxliALnRyV63TM/xpcPjrasGCpPhoObtQ==}
+  '@medusajs/js-sdk@2.0.0':
+    resolution: {integrity: sha512-exIg5FF6qZfMgT7aNTO7CsKRO8aw5revxckmvSP9jJ7H6hjqgKlLw2aAyVW3SgMmGRQERrwu94gJ50348BYPJA==}
     engines: {node: '>=20'}
 
-  '@medusajs/types@2.0.0-preview-20241022100028':
-    resolution: {integrity: sha512-pX0wlSucdiLxJmPKJIjQ31MVZvYGtelQX5zcjYn+y4TYlTmWAy4rsTrA5m4ZxgkLCkaJ80mf4+WqVJ0+iRJqnQ==}
+  '@medusajs/types@2.0.0':
+    resolution: {integrity: sha512-tgjg0SdShHaKb48LVaxORRVvmCcZ58Y0Qj/cU1kv67jscKVuDRXFRgxtnGFJ5XblJkJXJOphSOVsO6U51lMYgg==}
     engines: {node: '>=20'}
     peerDependencies:
       awilix: ^8.0.1
@@ -7078,9 +7078,9 @@ snapshots:
 
   '@medusajs/client-types@0.2.12-preview-20240505115807': {}
 
-  '@medusajs/js-sdk@2.0.0-preview-20241022100028(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))':
+  '@medusajs/js-sdk@2.0.0(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))':
     dependencies:
-      '@medusajs/types': 2.0.0-preview-20241022100028(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))
+      '@medusajs/types': 2.0.0(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))
       fetch-event-stream: 0.1.5
       qs: 6.13.0
     transitivePeerDependencies:
@@ -7088,7 +7088,7 @@ snapshots:
       - ioredis
       - vite
 
-  '@medusajs/types@2.0.0-preview-20241022100028(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))':
+  '@medusajs/types@2.0.0(awilix@8.0.1)(vite@4.5.5(@types/node@20.16.14))':
     dependencies:
       awilix: 8.0.1
       bignumber.js: 9.1.2

@@ -169,12 +169,9 @@ export async function updateCart(data: StoreUpdateCart) {
     );
   }
 
-  const cacheTag = await getCacheTag("carts");
-
   return medusa.store.cart
     .update(cartId, data, {}, await getAuthHeaders())
     .then(({cart}) => {
-      revalidateTag(cacheTag);
       return cart;
     })
     .catch(medusaError);
