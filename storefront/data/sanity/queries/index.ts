@@ -1,4 +1,4 @@
-import {groq} from "next-sanity";
+import {defineQuery, groq} from "next-sanity";
 
 import {SECTIONS_BODY_FRAGMENT} from "./section";
 
@@ -20,14 +20,14 @@ export const GLOBAL_QUERY = groq`{
   "header": *[_id == "header" && _type == "header"][0],
 }`;
 
-export const ROUTE_QUERY = groq`
+export const ROUTE_QUERY = defineQuery(`
   *[pathname.current == $pathname][0] {
     'routeData': {
       ...,
       'pathname': pathname.current,
     },
   }
-`;
+`);
 
 export const SITEMAP_QUERY = groq`
   *[
