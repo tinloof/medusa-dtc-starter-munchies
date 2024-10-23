@@ -7,7 +7,10 @@ export default function ShippingConfirmation() {
   return (
     <Layout preview="Shipping confirmation">
       <Section className="w-full max-w-[565px] mb-16 px-5" align="left">
-        <Img src="https://cdn.sanity.io/images/1wtf7iqx/production/e04b80a29759293982d74afcde82a169505a3aaa-1166x112.png" />
+        <Img
+          className="max-w-[291px]"
+          src="https://cdn.sanity.io/images/1wtf7iqx/production/e04b80a29759293982d74afcde82a169505a3aaa-1166x112.png"
+        />
         <Heading className="mb-3 mt-16" style={title}>
           Your order is on its way!
         </Heading>

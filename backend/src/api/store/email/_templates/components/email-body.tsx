@@ -12,9 +12,11 @@ export default function EmailBody({
   paragraphs,
   signature,
 }: EmailBodyProps) {
+  const greeting = firstName ? `Hi ${firstName},` : "Hi,";
+
   return (
     <Text className="mb-[50px]" style={body}>
-      Hi {firstName}, <br />
+      {greeting} <br />
       {paragraphs.map((paragraph, index) => (
         <span key={index} style={body}>
           {paragraph}

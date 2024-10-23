@@ -15,18 +15,18 @@ export default async function subscribeNewsletterHandler({
       event.data.id,
     );
 
-    const audiences = await resend.audiences.list();
+    // const audiences = await resend.audiences.list();
 
-    const audienceId = audiences.data?.data?.[0].id;
+    // const audienceId = audiences.data?.data?.[0].id;
 
-    if (!audienceId) throw new Error("No audience found");
+    // if (!audienceId) throw new Error("No audience found");
 
-    const { data, error } = await resend.contacts.create({
-      audienceId,
-      email: customer.email,
-    });
+    // const { data, error } = await resend.contacts.create({
+    //   audienceId,
+    //   email: customer.email,
+    // });
 
-    if (error) throw new Error("Error subscribing email");
+    // if (error) throw new Error("Error subscribing email");
 
     const response = await fetch(
       "https://munchies.medusajs.app/store/email/welcome/" + event.data.id,

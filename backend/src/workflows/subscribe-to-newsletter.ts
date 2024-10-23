@@ -39,7 +39,7 @@ const subscribeCustomerToNewsletter = createStep(
         id: customer.id,
         compensate: "created",
       };
-    } else if (customer.metadata.newsletter) {
+    } else if (customer.metadata?.newsletter) {
       response = {
         id: customer.id,
         compensate: "nothing",

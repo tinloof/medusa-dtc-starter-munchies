@@ -11,7 +11,7 @@ export default function Welcome({ products }: { products: ProductDTO[] }) {
       <Section className="w-full px-5 my-20" align="left">
         <Img
           src="https://cdn.sanity.io/images/1wtf7iqx/production/0ebbdf446bb2d4e4287c722fb82fe385d13d6dea-2400x1260.png"
-          className="rounded-lg mb-8"
+          className="rounded-lg mb-8 w-full max-w-[560px]"
         />
         <Heading className="pb-3" style={title}>
           Get ready for some sweet! 🍪
