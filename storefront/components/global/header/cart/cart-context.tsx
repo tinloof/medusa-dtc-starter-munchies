@@ -164,8 +164,8 @@ export function CartProvider({
 
         return {
           ...prev,
+          item_subtotal: optimisticTotal || 0,
           items: optimisticItems,
-          total: optimisticTotal || 0,
         };
       });
     });
