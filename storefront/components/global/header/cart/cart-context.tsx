@@ -61,6 +61,8 @@ export function CartProvider({
 
       startTransition(async () => {
         setOptimisticCart((prev) => {
+          console.log({prev: cart?.items?.length});
+
           const items = [...(prev?.items || [])];
 
           const existingItemIndex = items.findIndex(
@@ -108,7 +110,7 @@ export function CartProvider({
 
           const newTotal = calculateCartTotal(newItems);
 
-          return {...prev, items: newItems, total: newTotal} as Cart;
+          return {...prev, item_total: newTotal, items: newItems} as Cart;
         });
 
         await addToCart({
@@ -211,5 +213,8 @@ export function isOptimisticItemId(id: string) {
 }
 
 function calculateCartTotal(cartItems: StoreCartLineItem[]) {
-  return cartItems.reduce((acc, item) => acc + item.total, 0) || 0;
+  return (
+    cartItems.reduce((acc, item) => acc + item.unit_price * item.quantity, 0) ||
+    0
+  );
 }

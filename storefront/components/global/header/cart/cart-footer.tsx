@@ -9,9 +9,9 @@ import {useCart} from "./cart-context";
 export default function CartFooter() {
   const {cart} = useCart();
 
-  const total = cart
+  const item_total = cart
     ? convertToLocale({
-        amount: cart.total,
+        amount: cart.item_total,
         currency_code: cart.currency_code,
       })
     : null;
@@ -33,9 +33,9 @@ export default function CartFooter() {
               Taxes and shipping calculated at checkout
             </Body>
           </div>
-          {total && (
+          {item_total && (
             <Body font="sans" mobileSize="base">
-              {total}
+              {item_total}
             </Body>
           )}
         </div>
