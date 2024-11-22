@@ -24,10 +24,10 @@ pnpm install
 
 To set up Sanity for your project:
 
-1. `cd` into the `frontend` directory:
+1. `cd` into the `storefront` directory:
 
 ```
-cd frontend
+cd storefront
 ```
 
 2. Run the `sanity init` command:
