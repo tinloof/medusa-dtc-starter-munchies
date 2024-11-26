@@ -17,9 +17,9 @@
     --min-width: 320px;
     /* colors */
     --background: #fff6e6;
-    --accent: #ff5227;
-    --accent-40: rgba(255, 82, 39, 0.4);
-    --secondary: #f9dff2;
+    --accent: #264921;
+    --accent-40: rgba(38, 74, 33, 0.4);
+    --secondary: #e8b395;
     --base-font-size: 16px;
   }
   .font-serif {
@@ -36,7 +36,7 @@
   .newletter-text:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
     box-shadow: 0 0 0px 1000px transparent inset !important;
-    -webkit-text-fill-color: #ff5227 !important;
+    -webkit-text-fill-color: #264921 !important;
     transition: background-color 5000s ease-in-out 0s !important;
   }
 
@@ -45,17 +45,17 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #ff52273c;
+    background: #2649213c;
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #ff5227;
+    background-color: #264921;
     border-radius: 10px;
   }
   * {
     scrollbar-width: thin;
-    scrollbar-color: #ff5227 #ff52273c;
+    scrollbar-color: #264921 #2649213c;
   }
   @layer utilities {
     .scrollbar-hide::-webkit-scrollbar {

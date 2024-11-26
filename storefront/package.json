@@ -52,6 +52,7 @@
     "react-remove-scroll": "^2.6.0",
     "sanity": "^3.62.0",
     "sanity-plugin-hotspot-array": "^2.0.0",
+    "styled-components": "^6.1.13",
     "zod": "^3.23.8"
   },
   "devDependencies": {
