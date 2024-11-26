@@ -2,7 +2,7 @@
 import Medusa from "@medusajs/js-sdk";
 // loadEnv(process.env.NODE_ENV, process.cwd());
 
-export const backendUrl = "https://admin.lakikabio.coolify.fmouss.dev";
+export const backendUrl = "https://api.lakikabio.coolify.fmouss.dev";
 //"http://localhost:9000";
 
 export const sdk = new Medusa({
