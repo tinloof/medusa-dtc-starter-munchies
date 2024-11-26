@@ -16,8 +16,8 @@ export default defineConfig({
     },
   },
   admin: {
-    backendUrl: "https://munchies.medusajs.app",
-    // backendUrl: "http://localhost:9000",
+    // backendUrl: "https://munchies.medusajs.app",
+    backendUrl: process.env.BACKEND_URL || "http://localhost:9000",
   },
   modules: [
     {
@@ -27,7 +27,8 @@ export default defineConfig({
         project_id: process.env.SANITY_PROJECT_ID,
         api_version: new Date().toISOString().split("T")[0],
         dataset: "production",
-        studio_url: "https://munchies-tinloof.vercel.app/cms",
+        // studio_url: "https://munchies-tinloof.vercel.app/cms",
+        studio_url: process.env.SANITY_STUDIO_URL || "http://localhost:9000/cms",
         type_map: {
           collection: "collection",
           category: "category",

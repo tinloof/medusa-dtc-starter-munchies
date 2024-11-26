@@ -1,6 +1,9 @@
+// import { loadEnv } from "@medusajs/framework/utils";
 import Medusa from "@medusajs/js-sdk";
+// loadEnv(process.env.NODE_ENV, process.cwd());
 
-export const backendUrl = "https://munchies.medusajs.app";
+export const backendUrl = "https://admin.lakikabio.coolify.fmouss.dev";
+//"http://localhost:9000";
 
 export const sdk = new Medusa({
   baseUrl: backendUrl,
