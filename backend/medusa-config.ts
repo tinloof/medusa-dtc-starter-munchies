@@ -14,10 +14,13 @@ export default defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
+    workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
   },
   admin: {
     // backendUrl: "https://munchies.medusajs.app",
     backendUrl: process.env.BACKEND_URL || "http://localhost:9000",
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
+    path: (process.env.ADMIN_PATH || `/app`) as `/${string}`,
   },
   modules: [
     {
@@ -26,7 +29,7 @@ export default defineConfig({
         api_token: process.env.SANITY_API_TOKEN,
         project_id: process.env.SANITY_PROJECT_ID,
         api_version: new Date().toISOString().split("T")[0],
-        dataset: "production",
+        dataset: process.env.SANITY_DATASET || "production",
         // studio_url: "https://munchies-tinloof.vercel.app/cms",
         studio_url: process.env.SANITY_STUDIO_URL || "http://localhost:9000/cms",
         type_map: {
