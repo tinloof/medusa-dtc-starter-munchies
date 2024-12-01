@@ -6,8 +6,7 @@ export default async function orderShippedHandler({
 }: SubscriberArgs<{ id: string }>) {
   try {
     const response = await fetch(
-      "https://munchies.medusajs.app/store/email/shipping-confirmation/" +
-        event.data.id,
+      `${process.env.BACKEND_URL || "http://localhost:9000"}/store/email/shipping-confirmation/${event.data.id}`,
       {
         method: "POST",
         headers: {
