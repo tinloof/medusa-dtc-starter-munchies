@@ -5,7 +5,6 @@ import LocalizedLink from "@/components/shared/localized-link";
 import {Suspense} from "react";
 
 import Cart from "./cart";
-import {CountrySelector} from "./country-selector";
 import AnnouncementBar from "./parts/announcement-bar";
 import BottomBorder from "./parts/bottom-border";
 import HamburgerContainer from "./parts/hamburger/container";
@@ -32,9 +31,9 @@ export default function Header(props: {countryCode: string} & Header) {
           </Suspense>
         </div>
         <div className="flex items-center gap-s">
-          <span className="hidden lg:block">
+          {/* <span className="hidden lg:block">
             <CountrySelector />
-          </span>
+          </span> */}
           <Suspense
             fallback={
               <div className="relative h-10 w-10 p-2">

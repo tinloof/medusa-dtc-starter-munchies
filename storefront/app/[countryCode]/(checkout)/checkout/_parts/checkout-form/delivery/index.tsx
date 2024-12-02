@@ -1,16 +1,16 @@
 "use client";
-import type { StoreCart, StoreCartShippingOption } from "@medusajs/types";
-import type { Dispatch, SetStateAction } from "react";
+import type {StoreCart, StoreCartShippingOption} from "@medusajs/types";
+import type {Dispatch, SetStateAction} from "react";
 
-import { setShippingMethod } from "@/actions/medusa/order";
-import { Cta } from "@/components/shared/button";
+import {setShippingMethod} from "@/actions/medusa/order";
+import {Cta} from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import { useResetableActionState } from "@/hooks/use-resetable-action-state";
-import { convertToLocale } from "@/utils/medusa/money";
-import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
-import { useEffect, useTransition } from "react";
-import { useFormStatus } from "react-dom";
+import {useResetableActionState} from "@/hooks/use-resetable-action-state";
+import {convertToLocale} from "@/utils/medusa/money";
+import {Indicator, Item, Root} from "@radix-ui/react-radio-group";
+import {useEffect, useTransition} from "react";
+import {useFormStatus} from "react-dom";
 
 export default function Delivery({
   active,
@@ -61,18 +61,18 @@ export default function Delivery({
     <div className="flex w-full flex-col gap-8 border-t border-accent py-8">
       <div className="flex items-center justify-between">
         <Heading desktopSize="xs" font="sans" mobileSize="xs" tag="h6">
-          Delivery
+          Livraison
         </Heading>
         {isFilled && (
           <Cta onClick={() => setStep("delivery")} size="sm" variant="outline">
-            Edit
+            Modifier
           </Cta>
         )}
       </div>
       {isFilled && (
         <div className="flex flex-1 flex-col gap-4">
           <Body className="font-semibold" font="sans">
-            Method
+            Mode de livraison
           </Body>
           <Body font="sans">
             {activeShippingMethod.name} ({activeShippingMethodPrice})
@@ -123,7 +123,7 @@ function SubmitButton() {
   const {pending} = useFormStatus();
   return (
     <Cta loading={pending} size="sm" type="submit">
-      Continue to payment
+      Continuer vers le paiement
     </Cta>
   );
 }

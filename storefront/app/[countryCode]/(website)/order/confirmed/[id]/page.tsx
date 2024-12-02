@@ -41,28 +41,29 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
           mobileSize="lg"
           tag="h1"
         >
-          Thank you! Your order was placed successfully
+          Merci ! Votre commande a été passée avec succès
         </Heading>
 
         <Body className="font-medium" desktopSize="xl" font="sans">
-          We have sent the order confirmation details to {order.email}
+          Nous avons envoyé les détails de la confirmation de commande à{" "}
+          {order.email}
         </Body>
 
         <Body desktopSize="base" font="sans">
-          Order date:{" "}
-          {new Date(order.created_at).toLocaleDateString("en-US", {
+          Date de la commande :{" "}
+          {new Date(order.created_at).toLocaleDateString("fr-FR", {
             day: "numeric",
             month: "long",
             year: "numeric",
           })}
         </Body>
         <Body desktopSize="base" font="sans">
-          Order number: {order.display_id}
+          Numéro de commande : {order.display_id}
         </Body>
       </div>
       <div className="flex flex-col gap-s">
         <Heading desktopSize="xl" font="serif" mobileSize="lg" tag="h2">
-          Summary
+          Sommaire
         </Heading>
         <div className="flex flex-col gap-s">
           {order.items.map((item) => {
@@ -76,7 +77,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
           })}
           <Separator />
           <SubLineItem
-            title="Subtotal"
+            title="Sous-total"
             value={convertMoney(order.item_subtotal)}
           />
           <SubLineItem title="Taxes" value={convertMoney(order.tax_total)} />
@@ -98,7 +99,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
       </div>
       <div className="flex flex-col gap-s">
         <Heading desktopSize="xl" font="serif" mobileSize="lg" tag="h2">
-          Delivery
+          Livraison
         </Heading>
         <div className="flex flex-col gap-xl lg:flex-row lg:gap-s">
           <div className="flex flex-1 flex-col gap-[6px]">
@@ -107,7 +108,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
               desktopSize="base"
               font="sans"
             >
-              Shipping Address
+              Adresse de livraison
             </Body>
             <Body className="font-medium" desktopSize="base" font="sans">
               {order.shipping_address?.first_name}{" "}
@@ -141,7 +142,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
                 desktopSize="base"
                 font="sans"
               >
-                Method
+                Mode de paiement
               </Body>
               <Body className="font-medium" desktopSize="base" font="sans">
                 {shippingMethod?.name}

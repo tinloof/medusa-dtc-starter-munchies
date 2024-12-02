@@ -22,7 +22,7 @@ export default function ClearAllButton({
       {variant === "underline" ? (
         <button onClick={clearSearchParams}>
           <Body className="underline" font="sans" mobileSize="sm">
-            Clear all
+            Tout effacer
           </Body>
         </button>
       ) : (
@@ -33,7 +33,7 @@ export default function ClearAllButton({
           size="sm"
           variant="outline"
         >
-          Clear filters
+          Réinitialiser les filtres
         </Link>
       )}
     </Fragment>

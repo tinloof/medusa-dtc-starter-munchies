@@ -104,7 +104,7 @@ export async function addToCart({
 }
 
 export async function updateCartQuantity({
-  countryCode = "us",
+  countryCode = "ca",
   lineItem,
   quantity,
 }: {

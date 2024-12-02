@@ -54,11 +54,11 @@ export default function AddressForm({
     >
       <div className="flex items-center justify-between">
         <Heading desktopSize="xs" font="sans" mobileSize="xs" tag="h6">
-          Shipping Address
+          Adresse de livraison
         </Heading>
         {isFilled && (
           <Cta onClick={() => setStep("addresses")} size="sm" variant="outline">
-            Edit
+            Modifier
           </Cta>
         )}
       </div>
@@ -66,7 +66,7 @@ export default function AddressForm({
         <div className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="flex flex-1 flex-col gap-4">
             <Body className="font-semibold" font="sans">
-              Shipping address
+              Adresse de livraison
             </Body>
             <div className="flex flex-col gap-[6px]">
               <Body font="sans">
@@ -114,14 +114,14 @@ export default function AddressForm({
             <Input
               defaultValue={cart.shipping_address?.phone}
               name="phone"
-              placeholder="Phone"
+              placeholder="Téléphone"
             />
           </div>
 
           {!checked && (
             <>
               <Heading desktopSize="xs" font="sans" mobileSize="xs" tag="h6">
-                Billing address
+                Adresse de facturation
               </Heading>
               <div className="grid gap-4 lg:grid-cols-2">
                 <AddressInputs
@@ -132,7 +132,7 @@ export default function AddressForm({
                 <Input
                   defaultValue={cart.billing_address?.phone}
                   name="billing_address.phone"
-                  placeholder="Phone"
+                  placeholder="Téléphone"
                 />
               </div>
             </>
@@ -148,7 +148,7 @@ function SubmitButton() {
   const {pending} = useFormStatus();
   return (
     <Cta loading={pending} size="sm" type="submit">
-      Continue to delivery
+      Continuer vers la livraison
     </Cta>
   );
 }
@@ -169,36 +169,36 @@ function AddressInputs({
       <Input
         defaultValue={address?.first_name}
         name={inputName("first_name")}
-        placeholder="First name"
+        placeholder="Prénom"
         required
       />
       <Input
         defaultValue={address?.last_name}
         name={inputName("last_name")}
-        placeholder="Last name"
+        placeholder="Nom"
         required
       />
       <Input
         defaultValue={address?.address_1}
         name={inputName("address_1")}
-        placeholder="Address"
+        placeholder="Adresse"
         required
       />
       <Input
         defaultValue={address?.company}
         name={inputName("company")}
-        placeholder="Company"
+        placeholder="Compagnie"
       />
       <Input
         defaultValue={address?.postal_code}
         name={inputName("postal_code")}
-        placeholder="Postal code"
+        placeholder="Code postal"
         required
       />
       <Input
         defaultValue={address?.city}
         name={inputName("city")}
-        placeholder="City"
+        placeholder="Ville"
         required
       />
       <InputCombobox
@@ -220,13 +220,13 @@ function AddressInputs({
               label: display_name,
             })) || []
         }
-        placeholder="Country"
+        placeholder="Pays"
         required
       />
       <Input
         defaultValue={address?.province}
         name={inputName("province")}
-        placeholder="State/Province"
+        placeholder="Province"
         required
       />
     </>

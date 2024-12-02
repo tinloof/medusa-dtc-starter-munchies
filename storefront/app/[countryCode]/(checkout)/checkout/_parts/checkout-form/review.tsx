@@ -19,14 +19,15 @@ export default function Review({
   return (
     <div className="flex w-full flex-col gap-8 border-t border-accent py-8">
       <Heading desktopSize="xs" font="sans" mobileSize="xs" tag="h6">
-        Review
+        Révision
       </Heading>
       <>
         <Body>
-          By clicking the ‘Complete order’ button, you confirm that you have
-          read, understand, and accept our Terms of Use, Terms of Sale and
-          Returns Policy and acknowledge that you have read Medusa Store’s
-          Privacy Policy.
+          En cliquant sur le bouton « Finaliser la commande », vous confirmez
+          que vous avez lu, compris et accepté nos Conditions
+          d&apos;utilisation, nos Conditions de vente et notre Politique de
+          retour, et reconnaissez avoir pris connaissance de la Politique de
+          confidentialité de Lakikabio.
         </Body>
         <PaymentButton cart={cart} />
       </>

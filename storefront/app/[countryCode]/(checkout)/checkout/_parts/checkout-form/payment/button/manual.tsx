@@ -22,7 +22,7 @@ export default function ManualPaymentButton({notReady}: {notReady: boolean}) {
       size="sm"
       type="submit"
     >
-      Complete order
+      Finaliser la commande
     </Cta>
   );
 }

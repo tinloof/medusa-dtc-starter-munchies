@@ -23,7 +23,7 @@ export default function AddToCart({
         "!h-[60px] w-fit": variant === "sticky",
         "w-full": variant === "PDP",
       })}
-      label="Add to cart"
+      label="Ajouter au panier"
       productVariant={activeVariant}
       regionId={region_id}
       size={variant === "PDP" ? "xl" : "md"}

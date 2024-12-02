@@ -68,7 +68,7 @@ export default function ProductCard({
           font="sans"
           mobileSize="sm"
         >
-          from {cheapestPrice?.calculated_price || "NA"}
+          à partir de {cheapestPrice?.calculated_price || "NA"}
         </Body>
       </div>
     </LocalizedLink>

@@ -59,7 +59,7 @@ export default async function PaginatedProducts({
           href={"?page=" + (page + 1).toString()}
           variant="outline"
         >
-          Load more
+          Voir plus
         </Link>
       )}
     </>

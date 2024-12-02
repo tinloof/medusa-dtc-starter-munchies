@@ -21,7 +21,7 @@ export default function Checkbox({
         </Indicator>
       </Root>
       <label className="pl-[15px] text-[15px] leading-none">
-        Billing address same as shipping address
+        Identique à l&apos;adresse de livraison
       </label>
     </div>
   );

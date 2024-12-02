@@ -1,26 +1,26 @@
 "use client";
-import type { StoreCart, StorePaymentProvider } from "@medusajs/types";
-import type { StripeCardElementOptions } from "@stripe/stripe-js";
+import type {StoreCart, StorePaymentProvider} from "@medusajs/types";
+import type {StripeCardElementOptions} from "@stripe/stripe-js";
 
-import { initiatePaymentSession } from "@/actions/medusa/order";
-import { Cta } from "@/components/shared/button";
+import {initiatePaymentSession} from "@/actions/medusa/order";
+import {Cta} from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import { useResetableActionState } from "@/hooks/use-resetable-action-state";
-import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
-import { CardElement } from "@stripe/react-stripe-js";
+import {useResetableActionState} from "@/hooks/use-resetable-action-state";
+import {Indicator, Item, Root} from "@radix-ui/react-radio-group";
+import {CardElement} from "@stripe/react-stripe-js";
 import {
-    type Dispatch,
-    type SetStateAction,
-    useContext,
-    useEffect,
-    useState,
-    useTransition,
+  type Dispatch,
+  type SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+  useTransition,
 } from "react";
 
 import PaymentButton from "./button";
-import { isStripe as isStripeFunc } from "./utils";
-import { StripeContext } from "./wrapper";
+import {isStripe as isStripeFunc} from "./utils";
+import {StripeContext} from "./wrapper";
 
 export default function Payment({
   active,
@@ -47,7 +47,6 @@ export default function Payment({
   );
 
   const [, resetTransition] = useTransition();
-
 
   const isStripe = isStripeFunc(selectedPaymentMethod);
   const stripeReady = useContext(StripeContext);
@@ -91,18 +90,18 @@ export default function Payment({
     <div className="flex w-full flex-col gap-8 border-t border-accent py-8">
       <div className="flex items-center justify-between">
         <Heading desktopSize="xs" font="sans" mobileSize="xs" tag="h6">
-          Payment
+          Paiement
         </Heading>
         {isFilled && (
           <Cta onClick={() => setStep("payment")} size="sm" variant="outline">
-            Edit
+            Modifier
           </Cta>
         )}
       </div>
       {isFilled && (
         <div className="flex flex-1 flex-col gap-4">
           <Body className="font-semibold" font="sans">
-            Method
+            Mode de paiement
           </Body>
           <Body font="sans">{method.name}</Body>
         </div>
@@ -134,7 +133,7 @@ export default function Payment({
           })}
           {isStripe && stripeReady && (
             <div className="mt-5 flex flex-col gap-2 transition-all duration-150 ease-in-out">
-              <Body font="sans">Enter your card details:</Body>
+              <Body font="sans">Entrez les détails de votre carte :</Body>
 
               <CardElement
                 onChange={(e) => {
@@ -156,7 +155,9 @@ export default function Payment({
               size="sm"
               type="submit"
             >
-              {isStripe ? "Add card details" : "Continue to review"}
+              {isStripe
+                ? "Ajouter les détails de la carte"
+                : "Continuer vers la révision"}
             </Cta>
           )}
         </Root>

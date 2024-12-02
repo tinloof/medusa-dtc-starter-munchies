@@ -19,7 +19,7 @@ export default async function CollectionPage(props: CollectionPageProps) {
     <section className="mx-auto flex max-w-max-screen flex-col gap-10 px-m pb-10 pt-[6.5rem] lg:px-xl">
       <div>
         <Heading desktopSize="7xl" font="serif" mobileSize="2xl" tag="h1">
-          Shop all products
+          Magasiner tous les produits
         </Heading>
       </div>
       <div className="flex flex-col gap-6">

@@ -37,7 +37,7 @@ export default function CartUI({
             <div className="flex flex-col gap-4 p-4">
               {isEmptyCart ? (
                 <Body font="sans" mobileSize="base">
-                  Your bag is currently empty.
+                  Votre panier est actuellement vide.
                 </Body>
               ) : (
                 cart.items?.map((item) => <LineItem key={item.id} {...item} />)

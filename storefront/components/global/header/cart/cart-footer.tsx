@@ -27,10 +27,10 @@ export default function CartFooter() {
         <div className="flex w-full justify-between gap-4">
           <div>
             <Body className="font-semibold" font="sans" mobileSize="base">
-              Subtotal
+              Sous-total
             </Body>
             <Body font="sans" mobileSize="sm">
-              Taxes and shipping calculated at checkout
+              Taxes et frais de livraison calculés lors du paiement
             </Body>
           </div>
           {item_total && (
@@ -41,7 +41,7 @@ export default function CartFooter() {
         </div>
         {!cartIsEmpty && !isUpdating ? (
           <Link className="w-full" href="/checkout" size="lg" variant="primary">
-            Go to checkout
+            Aller au paiement
           </Link>
         ) : (
           <Cta className="w-full" disabled size="lg" variant="primary">

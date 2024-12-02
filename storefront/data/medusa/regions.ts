@@ -71,7 +71,7 @@ export const getRegion = unstable_cache(
 
       const region = countryCode
         ? regionMap.get(countryCode)
-        : regionMap.get("us");
+        : regionMap.get("ca");
 
       return region;
     } catch (e: any) {
