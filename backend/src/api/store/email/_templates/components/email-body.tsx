@@ -7,11 +7,7 @@ interface EmailBodyProps {
   signature?: boolean;
 }
 
-export default function EmailBody({
-  firstName,
-  paragraphs,
-  signature,
-}: EmailBodyProps) {
+export default function EmailBody({ firstName, paragraphs, signature }: EmailBodyProps) {
   const greeting = firstName ? `Hi ${firstName},` : "Hi,";
 
   return (
@@ -25,8 +21,8 @@ export default function EmailBody({
       ))}
       {signature && (
         <span style={body}>
-          Warm regards,
-          <br /> The Munchies Team
+          Cordialement,
+          <br /> L'équipe Lakikabio
         </span>
       )}
     </Text>

@@ -1,14 +1,6 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk";
 import { Sanity } from "@medusajs/icons";
-import {
-  Badge,
-  Button,
-  Container,
-  Heading,
-  Table,
-  Toaster,
-  toast,
-} from "@medusajs/ui";
+import { Badge, Button, Container, Heading, Table, Toaster, toast } from "@medusajs/ui";
 import { useSanitySyncs, useTriggerSanitySync } from "../../hooks/sanity";
 
 const SanityRoute = () => {
@@ -42,15 +34,8 @@ const SanityRoute = () => {
     <>
       <Container className="flex flex-col p-0 overflow-hidden">
         <div className="p-6 flex justify-between">
-          <Heading className="font-sans font-medium h1-core">
-            Sanity Syncs
-          </Heading>
-          <Button
-            variant="secondary"
-            size="small"
-            onClick={handleSync}
-            disabled={isPending}
-          >
+          <Heading className="font-sans font-medium h1-core">Sanity Syncs</Heading>
+          <Button variant="secondary" size="small" onClick={handleSync} disabled={isPending}>
             Trigger Sync
           </Button>
         </div>
@@ -69,17 +54,11 @@ const SanityRoute = () => {
               <Table.Row
                 key={execution.id}
                 className="cursor-pointer"
-                onClick={() =>
-                  (window.location.href = `/app/sanity/${execution.id}`)
-                }
+                onClick={() => (window.location.href = `/app/sanity/${execution.id}`)}
               >
                 <Table.Cell>{execution.id}</Table.Cell>
                 <Table.Cell>
-                  <Badge
-                    rounded="full"
-                    size="2xsmall"
-                    color={getBadgeColor(execution.state)}
-                  >
+                  <Badge rounded="full" size="2xsmall" color={getBadgeColor(execution.state)}>
                     {execution.state}
                   </Badge>
                 </Table.Cell>

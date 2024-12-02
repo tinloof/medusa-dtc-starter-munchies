@@ -2,10 +2,7 @@ import { defineWidgetConfig } from "@medusajs/admin-sdk";
 import { ArrowUpRightOnBox } from "@medusajs/icons";
 import { Button, CodeBlock, Container, StatusBadge, toast } from "@medusajs/ui";
 import { useState } from "react";
-import {
-  useSanityDocument,
-  useTriggerSanityProductSync,
-} from "../hooks/sanity";
+import { useSanityDocument, useTriggerSanityProductSync } from "../hooks/sanity";
 
 const ProductWidget = ({ data }) => {
   const { mutateAsync, isPending } = useTriggerSanityProductSync(data.id);
@@ -29,29 +26,20 @@ const ProductWidget = ({ data }) => {
           <div>
             {isLoading ? (
               "Loading..."
-            ) : sanity_document.handle === data.handle ? (
+            ) : sanity_document?.handle === data.handle ? (
               <StatusBadge color="green">Synced</StatusBadge>
             ) : (
               <StatusBadge color="red">Not Synced</StatusBadge>
             )}
           </div>
         </div>
-        <Button
-          size="small"
-          variant="secondary"
-          onClick={handleSync}
-          disabled={isPending}
-        >
+        <Button size="small" variant="secondary" onClick={handleSync} disabled={isPending}>
           Sync
         </Button>
       </div>
       <div className="mt-6">
         <div className="mb-4 flex gap-4">
-          <Button
-            size="small"
-            variant="secondary"
-            onClick={() => setShowCodeBlock(!showCodeBlock)}
-          >
+          <Button size="small" variant="secondary" onClick={() => setShowCodeBlock(!showCodeBlock)}>
             {showCodeBlock ? "Hide" : "Show"} Sanity Document
           </Button>
           <a href={studio_url} target="_blank" rel="noreferrer">

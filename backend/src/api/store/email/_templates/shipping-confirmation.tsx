@@ -5,20 +5,20 @@ import { title } from "./components/style";
 
 export default function ShippingConfirmation() {
   return (
-    <Layout preview="Shipping confirmation">
+    <Layout preview="Confirmation d'expédition">
       <Section className="w-full max-w-[565px] mb-16 px-5" align="left">
         <Img
           className="max-w-[291px]"
           src="https://cdn.sanity.io/images/1wtf7iqx/production/e04b80a29759293982d74afcde82a169505a3aaa-1166x112.png"
         />
         <Heading className="mb-3 mt-16" style={title}>
-          Your order is on its way!
+          Votre commande est en route!
         </Heading>
         <EmailBody
           paragraphs={[
-            "Great news! Your order [Order Number] has been shipped and is on its way to you.",
-            "If you have any questions about your delivery, please don't hesitate to contact us at [Customer Support Email] or [Customer Support Phone Number]. We're always happy to assist!",
-            "We hope you're as excited as we are for your purchase to arrive. Thank you for shopping with Munchies!",
+            "Bonne nouvelle! Votre commande [Numéro de commande] a été expédiée et est en chemin vers vous.",
+            "Si vous avez des questions concernant votre livraison, n'hésitez pas à nous contacter à [Courriel du service client] ou au [Numéro de téléphone du service client]. Il nous fera plaisir de vous aider!",
+            "Nous espérons que vous êtes aussi enthousiaste que nous à l'idée de recevoir votre achat. Merci d'avoir magasiné chez Lakikabio !",
           ]}
           signature
         />
