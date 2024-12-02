@@ -3,7 +3,7 @@ const config = {
   images: {
     remotePatterns: [
       {hostname: "cdn.sanity.io"},
-      {hostname: "munchies.medusajs.app"},
+      {hostname: "tvcjazpkomdzrloalhxn.supabase.co"},
       {hostname: "tinloof-munchies.s3.eu-north-1.amazonaws.com"},
       {hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com"},
     ],
@@ -25,8 +25,8 @@ const config = {
     return [
       {
         source:
-          "/:path((?!us|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico).*)",
-        destination: "/us/:path*",
+          "/:path((?!pk|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico).*)",
+        destination: "/pk/:path*",
       },
     ];
   },
