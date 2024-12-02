@@ -6,6 +6,8 @@ import {client} from "@/data/sanity/client";
 import {SITEMAP_QUERY} from "@/data/sanity/queries";
 import {pathToAbsUrl} from "@tinloof/sanity-web";
 
+export const dynamic = "force-dynamic";
+
 const sanityClient = client.withConfig({
   perspective: "published",
   stega: false,
