@@ -24,7 +24,7 @@ export default function Price({
         {variantPrice?.calculated_price ? (
           variantPrice.calculated_price
         ) : (
-          <>from {cheapestPrice?.calculated_price}</>
+          <>à partir de {cheapestPrice?.calculated_price}</>
         )}
       </Body>
     )

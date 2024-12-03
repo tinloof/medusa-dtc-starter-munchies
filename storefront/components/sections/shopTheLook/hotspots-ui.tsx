@@ -128,7 +128,7 @@ export default function HotspotsUi({
               font="sans"
               mobileSize="sm"
             >
-              from {cheapestPrice?.calculated_price || "NA"}
+              à partir de {cheapestPrice?.calculated_price || "NA"}
             </Body>
           </div>
         </div>
@@ -169,7 +169,7 @@ export default function HotspotsUi({
                   {product?.title}
                 </Body>
                 <Body font="sans" mobileSize="sm">
-                  from {cheapestPrice?.calculated_price || "NA"}
+                  à partir de {cheapestPrice?.calculated_price || "NA"}
                 </Body>
               </div>
             </LocalizedLink>
