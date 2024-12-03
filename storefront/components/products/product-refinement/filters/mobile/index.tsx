@@ -51,7 +51,7 @@ export default function MobileFilterDropdown({children}: Props) {
     }
   };
   return (
-    <DropDown isOpen={isOpen} placeholder="Filter" setOpen={setOpen}>
+    <DropDown isOpen={isOpen} placeholder="Filtrer" setOpen={setOpen}>
       <div
         className="relative max-h-[360px] w-full overflow-y-auto rounded"
         onScroll={handleScroll}
@@ -88,11 +88,11 @@ export default function MobileFilterDropdown({children}: Props) {
 
       <div className="sticky bottom-0 my-2 flex w-[calc(100vw-40px)] flex-col justify-center gap-s px-xs">
         <Cta className="w-full" onClick={() => setOpen(false)} size="md">
-          Show Results
+          Afficher les résultats
         </Cta>
         <button onClick={() => clearSearchParams()}>
           <Body className="underline" font="sans" mobileSize="sm">
-            Clear all
+            Tout effacer
           </Body>
         </button>
       </div>
