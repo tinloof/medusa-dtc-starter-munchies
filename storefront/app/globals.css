@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    zoom: 0.9;
-  }
   html body[data-scroll-locked] {
     overflow: visible !important;
   }
