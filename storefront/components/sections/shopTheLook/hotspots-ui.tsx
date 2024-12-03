@@ -139,7 +139,7 @@ export default function HotspotsUi({
           size="xl"
           variant="outline"
         >
-          Shop now
+          Acheter maintenant
         </Link>
       </LocalizedLink>
       <div className="flex flex-col gap-xs lg:hidden">
@@ -182,7 +182,7 @@ export default function HotspotsUi({
           size="xl"
           variant="outline"
         >
-          Shop now
+          Acheter maintenant
         </Link>
       </div>
     </div>
