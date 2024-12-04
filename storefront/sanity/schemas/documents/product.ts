@@ -1,4 +1,5 @@
 import definePage from "@/sanity/helpers/define-page";
+import {LuShirt} from "react-icons/lu";
 
 export default definePage({
   fields: [
@@ -24,7 +25,7 @@ export default definePage({
     },
     {
       fields: [
-        {name: "title", title: "Title", type: "string"},
+        {name: "internalTitle", title: "Title", type: "string"},
         {
           name: "products",
           of: [{to: [{type: "product"}], type: "reference"}],
@@ -52,7 +53,19 @@ export default definePage({
   },
   preview: {
     select: {
-      title: "title",
+      title: "internalTitle",
+      createdAt: "_createdAt",
+      updatedAt: "_updatedAt",
+    },
+    prepare(selection) {
+      const {title, createdAt, updatedAt} = selection;
+      return {
+        title: title,
+        subtitle: createdAt === updatedAt
+          ? `created ${new Date(createdAt).toLocaleDateString()}`
+          : `updated ${new Date(updatedAt).toLocaleDateString()}`,
+        media: LuShirt,
+      };
     },
   },
   title: "Product Page",

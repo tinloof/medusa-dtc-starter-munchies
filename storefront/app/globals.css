@@ -19,6 +19,8 @@
     --background: #fff6e6;
     --accent: #ff5227;
     --accent-40: rgba(255, 82, 39, 0.4);
+    /* --accent: #dc2626;
+    --accent-40: #f87171; */
     --secondary: #f9dff2;
     --base-font-size: 16px;
   }
@@ -36,7 +38,7 @@
   .newletter-text:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
     box-shadow: 0 0 0px 1000px transparent inset !important;
-    -webkit-text-fill-color: #ff5227 !important;
+    -webkit-text-fill-color: var(--accent) !important;
     transition: background-color 5000s ease-in-out 0s !important;
   }
 
@@ -45,17 +47,17 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #ff52273c;
+    background: var(--accent-40);
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #ff5227;
+    background-color: var(--accent);
     border-radius: 10px;
   }
   * {
     scrollbar-width: thin;
-    scrollbar-color: #ff5227 #ff52273c;
+    scrollbar-color: var(--accent) var(--accent-40);
   }
   @layer utilities {
     .scrollbar-hide::-webkit-scrollbar {

@@ -38,7 +38,7 @@ export default function ProductCard({
         {thumbnail && (
           <Image
             alt={product.title}
-            className="aspect-square w-full rounded-lg"
+            className="aspect-square w-full rounded-lg object-cover"
             height={450}
             priority={index !== undefined && index <= 2}
             src={thumbnail}
