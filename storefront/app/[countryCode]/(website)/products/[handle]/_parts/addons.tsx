@@ -5,9 +5,9 @@ import Heading from "@/components/shared/typography/heading";
 import {getProductsByIds} from "@/data/medusa/products";
 
 export default async function Addons({
+  internalTitle: title,
   products: productRefs,
   region_id,
-  title,
 }: {
   region_id: string;
 } & Product["addons"]) {

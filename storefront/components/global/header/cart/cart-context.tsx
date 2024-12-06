@@ -61,7 +61,6 @@ export function CartProvider({
 
       startTransition(async () => {
         setOptimisticCart((prev) => {
-          console.log({prev: cart?.items?.length});
 
           const items = [...(prev?.items || [])];
 

@@ -44,9 +44,9 @@ export default function ProductInformation(props: Props) {
           <AddToCart region_id={props.region_id} variant="PDP" />
         </div>
         <Addons
+          internalTitle={props.content?.addons?.internalTitle}
           products={props.content?.addons?.products}
           region_id={props.region_id}
-          title={props.content?.addons?.title}
         />
         <ProductSpecs specs={props.content?.specs} />
       </div>
