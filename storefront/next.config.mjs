@@ -3,7 +3,7 @@ const config = {
   images: {
     remotePatterns: [
       {hostname: "cdn.sanity.io"},
-      {hostname: "tvcjazpkomdzrloalhxn.supabase.co"},
+      {hostname: "pub-f6bdb5ce4859422aae8d11a03552fccf.r2.dev"},
       {hostname: "tinloof-munchies.s3.eu-north-1.amazonaws.com"},
       {hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com"},
     ],

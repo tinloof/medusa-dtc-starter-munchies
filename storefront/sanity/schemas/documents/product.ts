@@ -48,7 +48,7 @@ export default definePage({
   options: {
     disableCreation: true,
     hideInternalTitle: true,
-    hideSeo: true,
+    // hideSeo: true,
     localized: false,
   },
   preview: {
