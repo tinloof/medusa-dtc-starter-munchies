@@ -1,13 +1,13 @@
 "use client";
 
-import {Link} from "@/components/shared/button";
+import {Cta, Link} from "@/components/shared/button";
 import Body from "@/components/shared/typography/body";
 import {convertToLocale} from "@/utils/medusa/money";
 
 import {useCart} from "./cart-context";
 
 export default function CartFooter() {
-  const {cart} = useCart();
+  const {cart, isUpdating} = useCart();
 
   const item_total = cart
     ? convertToLocale({
@@ -39,10 +39,14 @@ export default function CartFooter() {
             </Body>
           )}
         </div>
-        {!cartIsEmpty && (
+        {!cartIsEmpty && !isUpdating ? (
           <Link className="w-full" href="/checkout" size="lg" variant="primary">
             Go to checkout
           </Link>
+        ) : (
+          <Cta className="w-full" disabled size="lg" variant="primary">
+            Go to checkout
+          </Cta>
         )}
       </div>
     </>
