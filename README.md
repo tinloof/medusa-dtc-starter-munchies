@@ -14,7 +14,7 @@ git clone --depth 1 https://github.com/tinloof/medusa-b2c-starter
 
 2. Install dependencies:
 
-This project utilizes pnpm for package management and monorepo functionality. To install dependencies using pnpm, execute the following command:
+This project utilizes [pnpm](https://pnpm.io/installation) for package management and monorepo functionality. To install dependencies using pnpm, execute the following command:
 
 ```
 pnpm install
