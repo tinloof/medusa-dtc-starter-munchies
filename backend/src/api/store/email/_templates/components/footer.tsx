@@ -64,7 +64,7 @@ export default function Footer() {
 
         <Section className="text-center">
           <Text style={footer} className="pb-5">
-            © {year} MUNCHIES
+            © {year} MUATTAR STORE
           </Text>
         </Section>
       </Tailwind>

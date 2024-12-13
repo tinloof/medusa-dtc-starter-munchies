@@ -2428,10 +2428,10 @@
     remove-trailing-slash "^0.1.1"
     uuid "^8.3.2"
 
-"@medusajs/test-utils@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/test-utils/-/test-utils-2.0.0.tgz#e25a725b661b92c8155096dc783b51ad2f4961b9"
-  integrity sha512-ezgNs0oJcOnytzAFTY7jzAZmhVhE+S3RFNztx/f9b2R0ThtuHxom33++kspE+kyrJRo9mSCNpJK2kHfarCNZlg==
+"@medusajs/test-utils@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@medusajs/test-utils/-/test-utils-2.1.0.tgz#c84910c2ec53872978f384876a5b7d1cee655266"
+  integrity sha512-YYNweEcKvI4GXEd5wB1UyJsP8G7YTSf/f3juLGqwoN3kFjTf57Ja1OsUakwnutmh5Nr0nc0ZqGSZocHJhGTRwg==
   dependencies:
     "@types/express" "^4.17.17"
     axios "^0.21.4"
