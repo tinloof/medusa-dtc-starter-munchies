@@ -36,6 +36,7 @@ const CartContext = createContext<
         lineItem: string,
         newQuantity: number,
       ) => Promise<void>;
+      isUpdating: boolean;
       setCartOpen: Dispatch<SetStateAction<boolean>>;
     }
   | undefined
@@ -119,7 +120,7 @@ export function CartProvider({
         });
       });
     },
-    [setCartOpen, setOptimisticCart],
+    [setCartOpen, setOptimisticCart, cart],
   );
 
   useEffect(() => {
@@ -185,6 +186,7 @@ export function CartProvider({
         cartOpen,
         handleDeleteItem,
         handleUpdateCartQuantity,
+        isUpdating: JSON.stringify(cart) !== JSON.stringify(optimisticCart),
         setCartOpen,
       }}
     >
