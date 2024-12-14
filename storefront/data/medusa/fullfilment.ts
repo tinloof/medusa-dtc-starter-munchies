@@ -7,10 +7,11 @@ export const listCartShippingMethods =
     return medusa.store.fulfillment
       .listCartOptions(
         {cart_id: cartId},
-        {...(await getCacheHeaders("fulfillment"))},
+        {...(await getCacheHeaders("fullfillment"))},
       )
       .then(({shipping_options}) => shipping_options)
-      .catch(() => {
+      .catch((error) => {
+        console.error("Shipping options error:", error)
         return null;
       });
   }
