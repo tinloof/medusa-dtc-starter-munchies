@@ -26,7 +26,7 @@ const config = {
     return [
       {
         source:
-          "/:path((?!pk|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico).*)",
+          "/:path((?!pk|us|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico).*)",
         destination: "/pk/:path*",
       },
     ];

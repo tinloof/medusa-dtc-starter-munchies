@@ -25,7 +25,7 @@ export default function CollectionList(
           mobileSize="lg"
           tag="h3"
         >
-          Shop our cookies
+          {props.title}
         </Heading>
       }
     />
