@@ -6,7 +6,8 @@ export const POST = async (req, res) => {
 
   const { data } = await query.graph({
     entity: "product",
-    fields: ["id", "sanity_product.id", "sanity_product.title"],
+    // fields: ["id", "sanity_product.id", "sanity_product.title"],
+    fields: ["id", "title"],
     pagination: { skip: 0, take: 100 },
   });
 
