@@ -10,15 +10,15 @@
 //   serviceName: 'my-medusa-project',
 // })
 
-// export function register() {
-//   registerOtel({
-//     serviceName: 'medusajs',
-//     // pass exporter
-//     exporter,
-//     instrument: {
-//       http: true,
-//       workflows: true,
-//       remoteQuery: true
-//     },
-//   })
-// }
+export function register() {
+  registerOtel({
+    serviceName: 'medusajs',
+    // pass exporter
+    exporter,
+    instrument: {
+      http: true,
+      workflows: true,
+      remoteQuery: true
+    },
+  })
+}
