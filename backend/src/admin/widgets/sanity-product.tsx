@@ -1,7 +1,7 @@
 import { defineWidgetConfig } from "@medusajs/admin-sdk";
 import { ArrowUpRightOnBox } from "@medusajs/icons";
 import { Button, CodeBlock, Container, StatusBadge, toast } from "@medusajs/ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useSanityDocument,
   useTriggerSanityProductSync,
@@ -11,6 +11,10 @@ const ProductWidget = ({ data }) => {
   const { mutateAsync, isPending } = useTriggerSanityProductSync(data.id);
   const { sanity_document, studio_url, isLoading } = useSanityDocument(data.id);
   const [showCodeBlock, setShowCodeBlock] = useState(false);
+  console.log(data);
+  useEffect(() => {
+    console.log("Sanity Document:", sanity_document);
+  }, [sanity_document]);
 
   const handleSync = async () => {
     try {
@@ -29,7 +33,7 @@ const ProductWidget = ({ data }) => {
           <div>
             {isLoading ? (
               "Loading..."
-            ) : sanity_document.handle === data.handle ? (
+            ) : sanity_document.id === data.id ? (
               <StatusBadge color="green">Synced</StatusBadge>
             ) : (
               <StatusBadge color="red">Not Synced</StatusBadge>
