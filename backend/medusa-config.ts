@@ -3,7 +3,6 @@ import { defineConfig, loadEnv, Modules } from "@medusajs/framework/utils";
 loadEnv(process.env.NODE_ENV, process.cwd());
 
 const REDIS_URL = process.env.REDIS_URL;
-const DATABASE_URL = process.env.DATABASE_URL;
 
 export default defineConfig({
   projectConfig: {

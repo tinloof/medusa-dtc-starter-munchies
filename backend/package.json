@@ -16,6 +16,7 @@
     "build": "medusa build && node ./script/postbuild.js",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "medusa start",
+    "customstart" : "cd .medusa/server && yarn predeploy && yarn start",
     "predeploy": "medusa db:migrate",
     "dev": "medusa develop",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
