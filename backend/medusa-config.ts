@@ -34,7 +34,7 @@ export default defineConfig({
         project_id: process.env.SANITY_PROJECT_ID,
         api_version: new Date().toISOString().split("T")[0],
         dataset: "production",
-        studio_url: "http://localhost:3000/cms",
+        studio_url: process.env.STORE_FRONT_URL ? process.env.STORE_FRONT_URL + "/cms" : "http://localhost:3000/cms",
         type_map: {
           collection: "collection",
           category: "category",
