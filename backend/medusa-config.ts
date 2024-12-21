@@ -2,13 +2,17 @@ import { defineConfig, loadEnv, Modules } from "@medusajs/framework/utils";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
-const REDIS_URL = process.env.REDIS_URL
-const DATABASE_URL = process.env.DATABASE_URL
+const REDIS_URL = process.env.REDIS_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 
 export default defineConfig({
   projectConfig: {
     redisUrl: process.env.REDIS_URL,
     databaseUrl: process.env.DATABASE_URL,
+    workerMode: process.env.MEDUSA_WORKER_MODE as
+      | "shared"
+      | "worker"
+      | "server",
     databaseLogging: true,
     http: {
       storeCors: process.env.STORE_CORS,
@@ -19,8 +23,9 @@ export default defineConfig({
     },
   },
   admin: {
-    backendUrl: process.env.BACKEND_URL || "http://localhost:9000"
+    backendUrl: process.env.BACKEND_URL || "http://localhost:9000",
     // backendUrl: "http://localhost:9000",
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
   modules: [
     {
@@ -38,25 +43,30 @@ export default defineConfig({
         },
       },
     },
-    ...(REDIS_URL ? [{
-      key: Modules.EVENT_BUS,
-      resolve: '@medusajs/event-bus-redis',
-      options: {
-        redisUrl: REDIS_URL
-      }
-    },
-    {
-      key: Modules.WORKFLOW_ENGINE,
-      resolve: '@medusajs/workflow-engine-redis',
-      options: {
-        redis: {
-          url: REDIS_URL,
-        },
-        database: {
-          clientUrl: DATABASE_URL || "postgres://postgres:sham@localhost/medusa-v2"
-        }
-      }
-    }] : []),
+    ...(REDIS_URL
+      ? [
+          {
+            resolve: "@medusajs/medusa/cache-redis",
+            options: {
+              redisUrl: process.env.REDIS_URL,
+            },
+          },
+          {
+            resolve: "@medusajs/medusa/event-bus-redis",
+            options: {
+              redisUrl: process.env.REDIS_URL,
+            },
+          },
+          {
+            resolve: "@medusajs/medusa/workflow-engine-redis",
+            options: {
+              redis: {
+                url: process.env.REDIS_URL,
+              },
+            },
+          },
+        ]
+      : []),
     {
       resolve: "@medusajs/file",
       key: Modules.FILE,
