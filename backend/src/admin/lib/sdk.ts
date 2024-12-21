@@ -1,6 +1,6 @@
 import Medusa from "@medusajs/js-sdk";
 
-export const backendUrl = "http://localhost:9000";
+export const backendUrl = process.env.BACKEND_URL || "http://localhost:9000";
 
 export const sdk = new Medusa({
   baseUrl: backendUrl,
