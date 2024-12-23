@@ -12,7 +12,7 @@ export default defineConfig({
       | "shared"
       | "worker"
       | "server",
-    databaseLogging: true,
+    // databaseLogging: true,
     http: {
       storeCors: process.env.STORE_CORS,
       adminCors: process.env.ADMIN_CORS,

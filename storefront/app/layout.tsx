@@ -40,6 +40,7 @@ export default function RootLayout({
       lang="en"
     >
       <head>
+      <meta content="GmKluG9hc_vXFyw9Wea_KXy_8KBNvfs67yY29tzG8tI" name="google-site-verification" />
         <link href="/favicon.ico" rel="icon" type="image/x-icon" />
         <script dangerouslySetInnerHTML={{__html: dynamicFavicon}} />
       </head>
