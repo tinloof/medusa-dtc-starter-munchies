@@ -15,7 +15,7 @@ export default function ProductOg({product}: {product: StoreProduct}) {
           style={{fontFamily: "Climate Crisis"}}
           tw="flex uppercase text-[43px]"
         >
-          Munchies
+          Muattar Store
         </div>
         <div tw="flex flex-col items-start justify-start">
           <div tw="text-[64px] tracking-[-1.28px] mb-6">{product.title}</div>

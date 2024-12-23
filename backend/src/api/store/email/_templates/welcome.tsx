@@ -7,7 +7,7 @@ import { title } from "./components/style";
 
 export default function Welcome({ products }: { products: ProductDTO[] }) {
   return (
-    <Layout preview="Welcome to Munchies!">
+    <Layout preview="Welcome to Muattar Store!">
       <Section className="w-full px-5 my-20" align="left">
         <Img
           src="https://cdn.sanity.io/images/1wtf7iqx/production/0ebbdf446bb2d4e4287c722fb82fe385d13d6dea-2400x1260.png"
@@ -18,8 +18,8 @@ export default function Welcome({ products }: { products: ProductDTO[] }) {
         </Heading>
         <EmailBody
           paragraphs={[
-            "Welcome to the Munchies family – your new go-to spot for the most delicious, freshly baked cookies!  We’re thrilled to have you here and can’t wait to satisfy your sweet tooth with our mouthwatering treats.",
-            "What’s Baking at Munchies?",
+            "Welcome to the Muattar Store family – your new go-to spot for the most delicious, freshly baked cookies!  We’re thrilled to have you here and can’t wait to satisfy your sweet tooth with our mouthwatering treats.",
+            "What’s Baking at Muattar Store?",
             ". Freshly Baked Goodness: All our cookies are made fresh, with love, using the finest ingredients.",
             ". Exclusive Offers: Be the first to know about our seasonal specials and flash cookie sales",
             ". Cookie Lover Perks: Sign up for rewards, and get cookies on your birthday!",

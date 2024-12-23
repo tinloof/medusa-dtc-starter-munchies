@@ -18,7 +18,7 @@ export default function ShippingConfirmation() {
           paragraphs={[
             "Great news! Your order [Order Number] has been shipped and is on its way to you.",
             "If you have any questions about your delivery, please don't hesitate to contact us at [Customer Support Email] or [Customer Support Phone Number]. We're always happy to assist!",
-            "We hope you're as excited as we are for your purchase to arrive. Thank you for shopping with Munchies!",
+            "We hope you're as excited as we are for your purchase to arrive. Thank you for shopping with Muattar Store!",
           ]}
           signature
         />

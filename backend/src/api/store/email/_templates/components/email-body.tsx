@@ -26,7 +26,7 @@ export default function EmailBody({
       {signature && (
         <span style={body}>
           Warm regards,
-          <br /> The Munchies Team
+          <br /> The Muattar Store Team
         </span>
       )}
     </Text>

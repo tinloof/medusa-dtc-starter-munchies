@@ -21,7 +21,7 @@ const config = {
     // Not exposed to the front-end, used solely by the server
     token: process.env.SANITY_API_TOKEN || "",
   },
-  siteName: "Munchies",
+  siteName: "Muattar Store",
 };
 
 export default config;
