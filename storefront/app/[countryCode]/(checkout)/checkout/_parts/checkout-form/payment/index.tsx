@@ -185,7 +185,7 @@ function getMethodInfo(id?: string) {
     case "pp_system_default":
       return {
         id,
-        name: "Testing method",
+        name: "Cash on delivery",
       };
     case "pp_stripe_stripe":
       return {
