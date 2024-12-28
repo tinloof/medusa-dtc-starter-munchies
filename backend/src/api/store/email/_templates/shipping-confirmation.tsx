@@ -15,7 +15,7 @@ export default function ShippingConfirmation({display_id,customer_suffort_email,
       <Section className="w-full max-w-[565px] mb-16 px-5" align="left">
         <Img
           className="max-w-[291px]"
-          src="https://muattar-store.vercel.app/images/logo.png"
+          src="https://muattar-store.vercel.app/images/Logo.png"
         />
         <Heading className="mb-3 mt-16" style={title}>
           Your order is on its way!
