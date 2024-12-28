@@ -10,20 +10,20 @@ export default function Welcome({ products }: { products: ProductDTO[] }) {
     <Layout preview="Welcome to Muattar Store!">
       <Section className="w-full px-5 my-20" align="left">
         <Img
-          src="https://cdn.sanity.io/images/1wtf7iqx/production/0ebbdf446bb2d4e4287c722fb82fe385d13d6dea-2400x1260.png"
+          src="https://muattar-store.vercel.app/images/logo.svg"
           className="rounded-lg mb-8 w-full max-w-[560px]"
         />
         <Heading className="pb-3" style={title}>
-          Get ready for some sweet! 🍪
+          Get Ready for a Touch of Elegance! ✨
         </Heading>
         <EmailBody
           paragraphs={[
-            "Welcome to the Muattar Store family – your new go-to spot for the most delicious, freshly baked cookies!  We’re thrilled to have you here and can’t wait to satisfy your sweet tooth with our mouthwatering treats.",
-            "What’s Baking at Muattar Store?",
-            ". Freshly Baked Goodness: All our cookies are made fresh, with love, using the finest ingredients.",
-            ". Exclusive Offers: Be the first to know about our seasonal specials and flash cookie sales",
-            ". Cookie Lover Perks: Sign up for rewards, and get cookies on your birthday!",
-            "Let’s make your cookie dreams come true!",
+            "Welcome to the Muattar Store family – your ultimate destination for luxurious and artistic crochet outfits! We’re thrilled to have you here and can’t wait to elevate your wardrobe with our meticulously handcrafted designs.",
+            "What’s Special at Muattar Store?",
+            ". Elegance in Every Stitch: Each piece is a work of art, crafted with love and precision to add charm and sophistication to your style",
+            ". Exclusive Designs: Be the first to explore our limited-edition collections and seasonal favorites.",
+            ". Style Rewards: Join our community to enjoy perks and stay updated on the latest trends.",
+            "Let’s make your crochet fashion dreams come true!",
           ]}
           signature
         />

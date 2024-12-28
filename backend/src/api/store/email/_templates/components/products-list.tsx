@@ -35,7 +35,7 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
           })}
         </Row>
       </Section>
-      <CtaButton href="http://localhost:3000" label="Shop now" />
+      <CtaButton href="https://muattar-store.vercel.app" label="Shop now" />
     </Section>
   );
 }
