@@ -3,17 +3,19 @@ import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
 export default async function orderShippedHandler({
   event,
   container,
-}: SubscriberArgs<{ id: string }>) {
+}: SubscriberArgs<{ order_id: string }>) {
   try {
     const response = await fetch(
-      `${process.env.BACKEND_URL || "http://localhost:9000"}/store/email/shipping-confirmation/${event.data.id}`,
+      `${process.env.BACKEND_URL || "http://localhost:9000"}/store/email/shipping-confirmation/${
+        event.data.order_id
+      }`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "x-publishable-api-key": process.env.MEDUSA_PUBLISHABLE_KEY,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
