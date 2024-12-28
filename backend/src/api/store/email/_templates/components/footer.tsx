@@ -33,7 +33,7 @@ export default function Footer() {
           <Row>
             <Column className="pr-12" align="center">
               <Link
-                href="/"
+                href="https://www.instagram.com/muattarstore"
                 className="text-background uppercase"
                 style={footer}
               >
@@ -43,20 +43,11 @@ export default function Footer() {
 
             <Column className="pr-12" align="center">
               <Link
-                href="/"
+                href="https://www.facebook.com/people/Muattar-crochet-crafts/61571016874389"
                 className="text-background uppercase"
                 style={footer}
               >
                 FACEBOOK
-              </Link>
-            </Column>
-            <Column className="pr-0" align="center">
-              <Link
-                href="/"
-                className="text-background uppercase"
-                style={footer}
-              >
-                LINKEDIN
               </Link>
             </Column>
           </Row>

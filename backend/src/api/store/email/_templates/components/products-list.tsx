@@ -7,7 +7,7 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
   return (
     <Section className="mt-12">
       <Text style={titleSmall} className="">
-        Freshly baked
+        New Arrived
       </Text>
       <Section className="mb-6 mt-2">
         <Row>

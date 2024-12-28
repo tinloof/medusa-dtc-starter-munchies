@@ -21,7 +21,7 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
       <Section className="w-full px-5 mt-5 mb-12" align="left">
         <Img
           className="max-w-[291px] mb-20"
-          src="https://muattar-store.vercel.app/images/logo.svg"
+          src="https://muattar-store.vercel.app/images/logo.png"
         />
         <Heading className="pb-3" style={title}>
           Thank you for your order!

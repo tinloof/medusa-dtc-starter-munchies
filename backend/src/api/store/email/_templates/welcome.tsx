@@ -10,7 +10,7 @@ export default function Welcome({ products }: { products: ProductDTO[] }) {
     <Layout preview="Welcome to Muattar Store!">
       <Section className="w-full px-5 my-20" align="left">
         <Img
-          src="https://muattar-store.vercel.app/images/logo.svg"
+          src="https://muattar-store.vercel.app/images/logo.png"
           className="rounded-lg mb-8 w-full max-w-[560px]"
         />
         <Heading className="pb-3" style={title}>
