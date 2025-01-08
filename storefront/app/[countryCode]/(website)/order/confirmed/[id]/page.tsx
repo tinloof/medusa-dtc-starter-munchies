@@ -41,7 +41,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
           mobileSize="lg"
           tag="h1"
         >
-          Merci ! Votre commande a été passée avec succès
+          Merci ! Votre commande a été passée avec succès.
         </Heading>
 
         <Body className="font-medium" desktopSize="xl" font="sans">
@@ -142,7 +142,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
                 desktopSize="base"
                 font="sans"
               >
-                Mode de paiement
+                Mode
               </Body>
               <Body className="font-medium" desktopSize="base" font="sans">
                 {shippingMethod?.name}

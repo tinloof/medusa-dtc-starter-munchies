@@ -7,6 +7,8 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./modules/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@medusajs/ui/dist/**/*.{js,jsx,ts,tsx}",
   ],
   future: {
     hoverOnlyWhenSupported: true,
@@ -17,6 +19,13 @@ const config: Config = {
     },
   },
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       fontFamily: {
         sans: "var(--font-instrumentSans)",
@@ -29,6 +38,15 @@ const config: Config = {
         "accent-40": "var(--accent-40)",
         secondary: "var(--secondary)",
         error: "#FF0000",
+      },
+      screens: {
+        "2xsmall": "320px",
+        xsmall: "512px",
+        small: "1024px",
+        medium: "1280px",
+        large: "1440px",
+        xlarge: "1680px",
+        "2xlarge": "1920px",
       },
       fontSize: {
         // body

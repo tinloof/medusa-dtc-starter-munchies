@@ -37,3 +37,5 @@ next-env.d.ts
 # Typegen
 /types/schema.json
 /types/*.generated.d.ts
+
+.DS_Store

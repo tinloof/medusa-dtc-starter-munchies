@@ -27,7 +27,19 @@ export default function Header(props: {countryCode: string} & Header) {
             </LocalizedLink>
           </div>
           <Suspense>
-            <Navigation data={props} />
+            <Navigation
+              data={{
+                ...props,
+                navigation: [
+                  ...(props.navigation || []),
+                  {
+                    _key: "account-link",
+                    _type: "link",
+                    cta: {_type: "cta", label: "Mon compte", link: "/account"},
+                  },
+                ],
+              }}
+            />
           </Suspense>
         </div>
         <div className="flex items-center gap-s">
