@@ -9,9 +9,9 @@ import {useCart} from "./cart-context";
 export default function CartFooter() {
   const {cart, isUpdating} = useCart();
 
-  const item_total = cart
+  const subtotal = cart
     ? convertToLocale({
-        amount: cart.item_total,
+        amount: cart.subtotal,
         currency_code: cart.currency_code,
       })
     : null;
@@ -33,9 +33,9 @@ export default function CartFooter() {
               Taxes et frais de livraison calculés lors du paiement
             </Body>
           </div>
-          {item_total && (
+          {subtotal && (
             <Body font="sans" mobileSize="base">
-              {item_total}
+              {subtotal}
             </Body>
           )}
         </div>
@@ -44,8 +44,14 @@ export default function CartFooter() {
             Aller au paiement
           </Link>
         ) : (
-          <Cta className="w-full" disabled size="lg" variant="primary">
-            Go to checkout
+          <Cta
+            className="w-full"
+            disabled
+            loading={isUpdating}
+            size="lg"
+            variant="primary"
+          >
+            Aller au paiement
           </Cta>
         )}
       </div>
