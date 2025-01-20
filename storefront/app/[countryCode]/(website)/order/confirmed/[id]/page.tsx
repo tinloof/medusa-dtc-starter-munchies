@@ -46,7 +46,7 @@ export default async function OrderConfirmedPage(props: PageProps<"id">) {
 
         <Body className="font-medium" desktopSize="xl" font="sans">
           Nous avons envoyé les détails de la confirmation de commande à{" "}
-          {order.email}
+          {order.email}.
         </Body>
 
         <Body desktopSize="base" font="sans">

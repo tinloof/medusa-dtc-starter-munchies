@@ -2,6 +2,8 @@
 import type {StoreCartLineItem} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
+import LineItemPrice from "@/modules/common/components/line-item-price";
+import LineItemUnitPrice from "@/modules/common/components/line-item-unit-price";
 import {convertToLocale} from "@/utils/medusa/money";
 import Image from "next/image";
 
@@ -48,8 +50,22 @@ export default function LineItem(props: StoreCartLineItem) {
               {item.quantity} x {unit_price}
             </Body>
             <Body className="font-semibold" font="sans" mobileSize="base">
-              {item_price}
+              TODO: {item_price}
             </Body>
+            <LineItemPrice
+              currencyCode={
+                item.variant?.calculated_price?.currency_code as string
+              }
+              item={item}
+              style="tight"
+            />
+            <LineItemUnitPrice
+              currencyCode={
+                item.variant?.calculated_price?.currency_code as string
+              }
+              item={item}
+              style="tight"
+            />
           </div>
         </div>
       </div>

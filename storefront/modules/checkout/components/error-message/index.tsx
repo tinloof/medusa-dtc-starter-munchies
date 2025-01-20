@@ -13,7 +13,7 @@ const ErrorMessage = ({
 
   return (
     <div
-      className="text-small-regular pt-2 text-rose-500"
+      className="text-small-regular mt-2 rounded-lg bg-rose-200 p-4 text-rose-500"
       data-testid={dataTestid}
     >
       <Body font="sans">{error}</Body>

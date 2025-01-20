@@ -32,7 +32,7 @@ export default function TransferRequestForm() {
             Transfert de commande
           </Heading>
           <Body className="text-base-regular" font="sans" mobileSize="sm">
-            Vous ne trouvez pas la commande que vous cherchez?
+            Vous ne trouvez pas la commande que vous cherchez ?
             <br /> Connectez une commande à votre compte.
           </Body>
         </div>

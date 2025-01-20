@@ -21,7 +21,7 @@ export default function OrderItem({
     currency_code: currency_code,
   });
 
-  const image = product?.images?.[0]?.url;
+  const image = product?.thumbnail || product?.images?.[0]?.url;
 
   return (
     <div className="flex w-full gap-xs">

@@ -42,8 +42,13 @@ export default function LineItem(props: StoreCartLineItem) {
             </Body>
           </div>
           <Body className="font-semibold" font="sans" mobileSize="base">
-            {item_price}
+            TODO: {item_price}
           </Body>
+          {/* <LineItemPrice
+            currencyCode={cart?.currency_code as string}
+            item={item as StoreCartLineItem}
+            style="tight"
+          /> */}
         </div>
         <div className="flex w-full items-center justify-between gap-4">
           <div className="flex h-10 w-32 items-center justify-center gap-1 overflow-hidden rounded-lg border border-accent">
