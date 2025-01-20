@@ -1,4 +1,4 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
 import { Modules } from "@medusajs/framework/utils";
 import Welcome from "../../_templates/welcome";
 import { sendEmail } from "../../lib";

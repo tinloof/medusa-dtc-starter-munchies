@@ -17,10 +17,15 @@ import {
 } from "./cookies";
 import {getRegion} from "./regions";
 
-export async function retrieveCart() {
-  const cartId = await getCartId();
+/**
+ * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
+ * @param cartId - optional - The ID of the cart to retrieve.
+ * @returns The cart object if found, or null if not found.
+ */
+export async function retrieveCart(cartId?: string) {
+  const id = cartId || (await getCartId());
 
-  if (!cartId) {
+  if (!id) {
     return null;
   }
 
@@ -33,7 +38,7 @@ export async function retrieveCart() {
   };
 
   return await sdk.client
-    .fetch<HttpTypes.StoreCartResponse>(`/store/carts/${cartId}`, {
+    .fetch<HttpTypes.StoreCartResponse>(`/store/carts/${id}`, {
       cache: "force-cache",
       headers,
       method: "GET",
@@ -369,10 +374,15 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
   );
 }
 
-export async function placeOrder() {
-  const cartId = await getCartId();
+/**
+ * Places an order for a cart. If no cart ID is provided, it will use the cart ID from the cookies.
+ * @param cartId - optional - The ID of the cart to place an order for.
+ * @returns The cart object if the order was successful, or null if not.
+ */
+export async function placeOrder(cartId?: string) {
+  const id = cartId || (await getCartId());
 
-  if (!cartId) {
+  if (!id) {
     throw new Error("No existing cart found when placing an order");
   }
 
@@ -381,7 +391,7 @@ export async function placeOrder() {
   };
 
   const cartRes = await sdk.store.cart
-    .complete(cartId, {}, headers)
+    .complete(id, {}, headers)
     .then(async (cartRes) => {
       const cartCacheTag = await getCacheTag("carts");
       revalidateTag(cartCacheTag);
