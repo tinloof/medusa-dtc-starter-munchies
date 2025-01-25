@@ -21,7 +21,7 @@
     "@medusajs/js-sdk": "2.0.0",
     "@medusajs/types": "2.0.0",
     "@medusajs/ui": "^4.0.2",
-    "@next/env": "15.0.0",
+    "@next/env": "15.1.6",
     "@portabletext/react": "^3.1.0",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -47,11 +47,11 @@
     "embla-carousel-react": "^8.3.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.469.0",
-    "next": "15.0.0",
+    "next": "15.1.6",
     "next-sanity": "^9.7.1",
     "nuqs": "^1.20.0",
-    "react": "19.0.0-rc-65a56d0e-20241020",
-    "react-dom": "19.0.0-rc-65a56d0e-20241020",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-icons": "^5.3.0",
     "react-remove-scroll": "^2.6.0",
     "sanity": "^3.62.0",
@@ -64,11 +64,11 @@
     "@portabletext/types": "^2.0.13",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.9",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
-    "eslint-config-next": "15.0.0",
+    "eslint-config-next": "15.1.6",
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -83,8 +83,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+      "@types/react": "19.0.8",
+      "@types/react-dom": "19.0.3"
     }
   },
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
