@@ -16,7 +16,7 @@ export const paymentInfoMap: Record<
   },
   pp_stripe_stripe: {
     icon: <CreditCard />,
-    title: "Credit card",
+    title: "Carte de crédit/débit",
   },
   "pp_stripe-bancontact_stripe": {
     icon: <Bancontact />,

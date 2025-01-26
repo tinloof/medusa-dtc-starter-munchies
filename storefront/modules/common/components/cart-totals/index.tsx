@@ -10,11 +10,11 @@ import Divider from "../divider";
 type CartTotalsProps = {
   totals: {
     currency_code: string;
-    discount_total?: null | number;
+    discount_subtotal?: null | number;
     gift_card_total?: null | number;
+    item_subtotal?: null | number;
     shipping_subtotal?: null | number;
     shipping_total?: null | number;
-    subtotal?: null | number;
     tax_total?: null | number;
     total?: null | number;
   };
@@ -23,10 +23,10 @@ type CartTotalsProps = {
 const CartTotals: React.FC<CartTotalsProps> = ({totals}) => {
   const {
     currency_code,
-    discount_total,
+    discount_subtotal,
     gift_card_total,
+    item_subtotal,
     shipping_subtotal,
-    subtotal,
     tax_total,
     total,
   } = totals;
@@ -43,12 +43,12 @@ const CartTotals: React.FC<CartTotalsProps> = ({totals}) => {
       <div className="flex flex-col gap-s">
         <SubLineItem
           title="Sous-total (hors frais de livraison et taxes)"
-          value={convertMoney(subtotal)}
+          value={convertMoney(item_subtotal)}
         />
-        {!!discount_total && (
+        {!!discount_subtotal && (
           <SubLineItem
             title="Rabais"
-            value={`- ${convertMoney(discount_total)}`}
+            value={`- ${convertMoney(discount_subtotal)}`}
           />
         )}
         <SubLineItem
@@ -74,8 +74,6 @@ const CartTotals: React.FC<CartTotalsProps> = ({totals}) => {
           {convertMoney(total)}
         </Heading>
       </div>
-
-      <Separator />
     </div>
   );
 };

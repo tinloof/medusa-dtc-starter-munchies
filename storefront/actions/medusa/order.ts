@@ -97,7 +97,7 @@ export async function setCheckoutAddresses(
         country_code: formData.get("shipping_address.country_code"),
         first_name: formData.get("shipping_address.first_name"),
         last_name: formData.get("shipping_address.last_name"),
-        phone: formData.get("billing_address.phone"),
+        phone: formData.get("phone"), // formData.get("billing_address.phone"),
         postal_code: formData.get("shipping_address.postal_code"),
         province: formData.get("shipping_address.province"),
       },

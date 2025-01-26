@@ -2,6 +2,7 @@ import type {HttpTypes} from "@medusajs/types";
 
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
+import CartTotals from "@/modules/common/components/cart-totals";
 import {convertToLocale} from "@/utils/medusa/money";
 
 import LineItem from "./line-item";
@@ -12,9 +13,12 @@ export default function CartDetails({cart}: {cart: HttpTypes.StoreCart}) {
       <Heading desktopSize="xl" font="serif" mobileSize="lg" tag="h3">
         Détails de la commande
       </Heading>
+      {/* TODO: Add DiscountCode component */}
+      {/* <DiscountCode cart={cart} /> */}
       {cart.items?.map((item) => <LineItem key={item.id} {...item} />)}
       <div className="h-px w-full bg-accent" />
-      <CheckoutSummary cart={cart} />
+      {/* <CheckoutSummary cart={cart} /> */}
+      <CartTotals totals={cart} />
     </div>
   );
 }

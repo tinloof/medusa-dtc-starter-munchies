@@ -20,6 +20,7 @@ const StripeWrapper: React.FC<StripeWrapperProps> = ({
 }) => {
   const options: StripeElementsOptions = {
     clientSecret: paymentSession!.data?.client_secret as string | undefined,
+    locale: "fr-CA",
   };
 
   if (!stripeKey) {

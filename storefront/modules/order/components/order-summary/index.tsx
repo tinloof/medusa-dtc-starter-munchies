@@ -31,7 +31,10 @@ const OrderSummary = ({order}: OrderSummaryProps) => {
         Sommaire de la commande
       </Heading>
       <div className="flex flex-col gap-s">
-        <SubLineItem title="Subtotal" value={getAmount(order.subtotal) || ""} />
+        <SubLineItem
+          title="Subtotal"
+          value={getAmount(order.item_subtotal) || ""}
+        />
         {order.discount_total > 0 && (
           <SubLineItem
             title="Rabais"
@@ -46,7 +49,7 @@ const OrderSummary = ({order}: OrderSummaryProps) => {
         )}
         <SubLineItem
           title="Livraison"
-          value={getAmount(order.shipping_total) || ""}
+          value={getAmount(order.shipping_subtotal) || ""}
         />
         <SubLineItem title="Taxes" value={getAmount(order.tax_total) || ""} />
       </div>
