@@ -14,13 +14,13 @@ export default function CustomerInformation({
   return (
     <Section>
       <Text className="pb-4 font-bold" style={bodySmall}>
-        Customer information
+        Informations du client
       </Text>
       <Row className="mb-8">
         {shippingAddress?.address_1 && (
           <Column>
             <Text className="pb-2 font-bold" style={bodyXSmall}>
-              Shipping address
+              Adresse de livraison
             </Text>
             <Text style={bodyLargeLeading}>
               {shippingAddress?.first_name + " " + shippingAddress?.last_name}
@@ -37,7 +37,7 @@ export default function CustomerInformation({
         {billingAddress?.address_1 && (
           <Column className="pl-6">
             <Text className="pb-2 font-bold" style={bodyXSmall}>
-              Billing address
+              Adresse de facturation
             </Text>
             <Text style={bodyLargeLeading}>
               {billingAddress?.first_name + " " + billingAddress?.last_name}
@@ -55,7 +55,7 @@ export default function CustomerInformation({
       {method && (
         <>
           <Text className="pb-2 font-bold" style={bodyXSmall}>
-            Shipping method
+            Mode de livraison
           </Text>
           <Text style={bodyLargeLeading}>{method}</Text>
         </>

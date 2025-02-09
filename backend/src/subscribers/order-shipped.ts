@@ -1,29 +1,14 @@
-import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework";
+import { sendOrderShipmentWorkflow } from "src/workflows/send-shipment-confirmation";
 
-export default async function orderShippedHandler({
-  event,
-  container,
-}: SubscriberArgs<{ id: string }>) {
-  try {
-    const response = await fetch(
-      "https://munchies.medusajs.app/store/email/shipping-confirmation/" +
-        event.data.id,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-publishable-api-key": process.env.MEDUSA_PUBLISHABLE_KEY,
-        },
-      },
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
+export default async function orderShippedHandler({ event: { data }, container }: SubscriberArgs<{ id: string }>) {
+  await sendOrderShipmentWorkflow(container).run({
+    input: {
+      id: data.id,
+    },
+  });
 }
 
 export const config: SubscriberConfig = {
-  event: ["order.fulfillment_created"],
+  event: "order.fulfillment_created",
 };

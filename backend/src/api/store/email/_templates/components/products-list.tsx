@@ -7,7 +7,7 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
   return (
     <Section className="mt-12">
       <Text style={titleSmall} className="">
-        Freshly baked
+        Découvrez nos produits
       </Text>
       <Section className="mb-6 mt-2">
         <Row>
@@ -20,7 +20,8 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
                   {thumbnail && (
                     <Img
                       src={thumbnail}
-                      alt="Brand Your"
+                      alt="Produit ..."
+                      // alt="Brand Your"
                       className="w-full max-w-[279px] h-auto aspect-square rounded-lg"
                     />
                   )}
@@ -35,7 +36,7 @@ export default function ProductsList({ products }: { products: ProductDTO[] }) {
           })}
         </Row>
       </Section>
-      <CtaButton href="https://munchies-tinloof.vercel.app" label="Shop now" />
+      <CtaButton href="https://lakika.ca" label="Magasinez maintenant" />
     </Section>
   );
 }

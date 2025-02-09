@@ -8,7 +8,7 @@ interface EmailBodyProps {
 }
 
 export default function EmailBody({ firstName, paragraphs, signature }: EmailBodyProps) {
-  const greeting = firstName ? `Hi ${firstName},` : "Hi,";
+  const greeting = firstName ? `Bonjour ${firstName},` : "Bonjour,";
 
   return (
     <Text className="mb-[50px]" style={body}>
@@ -22,7 +22,7 @@ export default function EmailBody({ firstName, paragraphs, signature }: EmailBod
       {signature && (
         <span style={body}>
           Cordialement,
-          <br /> L'équipe Lakikabio
+          <br /> L'Équipe Lakika
         </span>
       )}
     </Text>

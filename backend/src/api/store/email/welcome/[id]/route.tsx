@@ -15,7 +15,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   try {
     await sendEmail({
       to: customer.email,
-      subject: "Welcome to our newsletter!",
+      subject: "Bienvenue dans notre communauté ! 🎉",
       react: <Welcome products={products} />,
     });
 
