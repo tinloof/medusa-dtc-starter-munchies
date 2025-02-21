@@ -2,6 +2,8 @@
 
 This monorepo serves as a starter template/example for building B2C e-commerce applications using [Medusa](https://medusajs.com/) for e-commerce functionality, [Next.js](nextjs.org/) for the frontend, and [Sanity](https://sanity.io/) for content management.
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template/BB0wcX?referralCode=r0zA-Y)
+
 ## Project Setup
 
 To get started with this project, follow these steps:
