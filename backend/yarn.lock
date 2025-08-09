@@ -38,26 +38,26 @@
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-"@ariakit/core@0.4.12":
-  version "0.4.12"
-  resolved "https://registry.yarnpkg.com/@ariakit/core/-/core-0.4.12.tgz#110bcd7274daf1dd534433fc70dd98e1a59ad7a5"
-  integrity sha512-+NNpy88tdP/w9mOBPuDrMTbtapPbo/8yVIzpQB7TAmN0sPh/Cq3nU1f2KCTCIujPmwRvAcMSW9UHOlFmbKEPOA==
+"@ariakit/core@0.4.15":
+  version "0.4.15"
+  resolved "https://registry.yarnpkg.com/@ariakit/core/-/core-0.4.15.tgz#b44368a5cbf08e2687cf5b4c385b16973415e504"
+  integrity sha512-vvxmZvkNhiisKM+Y1TbGMUfVVchV/sWu9F0xw0RYADXcimWPK31dd9JnIZs/OQ5pwAryAHmERHwuGQVESkSjwQ==
 
-"@ariakit/react-core@0.4.13":
-  version "0.4.13"
-  resolved "https://registry.yarnpkg.com/@ariakit/react-core/-/react-core-0.4.13.tgz#a31ffae5797b564193994cbbbf80b5f650f7d429"
-  integrity sha512-iIjQeupP9d0pOubOzX4a0UPXbhXbp0ZCduDpkv7+u/pYP/utk/YRECD0M/QpZr6YSeltmDiNxKjdyK8r9Yhv4Q==
+"@ariakit/react-core@0.4.17":
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/@ariakit/react-core/-/react-core-0.4.17.tgz#d14b9e1e47f51c26df99a32711e8dac42d58e770"
+  integrity sha512-kFF6n+gC/5CRQIyaMTFoBPio2xUe0k9rZhMNdUobWRmc/twfeLVkODx+8UVYaNyKilTge8G0JFqwvFKku/jKEw==
   dependencies:
-    "@ariakit/core" "0.4.12"
+    "@ariakit/core" "0.4.15"
     "@floating-ui/dom" "^1.0.0"
     use-sync-external-store "^1.2.0"
 
-"@ariakit/react@^0.4.1":
-  version "0.4.13"
-  resolved "https://registry.yarnpkg.com/@ariakit/react/-/react-0.4.13.tgz#9ea7616755624f113fe3942ff4af685c1376244a"
-  integrity sha512-pTGYgoqCojfyt2xNJ5VQhejxXwwtcP7VDDqcnnVChv7TA2TWWyYerJ5m4oxViI1pgeNqnHZwKlQ79ZipF7W2kQ==
+"@ariakit/react@^0.4.15":
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/@ariakit/react/-/react-0.4.17.tgz#6e2c42c2cbd15e875d8529c2d421b10a95908f9c"
+  integrity sha512-HQaIboE2axtlncJz1hRTaiQfJ1GGjhdtNcAnPwdjvl2RybfmlHowIB+HTVBp36LzroKPs/M4hPCxk7XTaqRZGg==
   dependencies:
-    "@ariakit/react-core" "0.4.13"
+    "@ariakit/react-core" "0.4.17"
 
 "@aws-crypto/crc32@5.2.0":
   version "5.2.0"
@@ -829,10 +829,20 @@
     "@babel/traverse" "^7.25.9"
     "@babel/types" "^7.25.9"
 
+"@babel/helper-string-parser@^7.24.8":
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/@babel/helper-string-parser/-/helper-string-parser-7.27.1.tgz#54da796097ab19ce67ed9f88b47bb2ec49367687"
+  integrity sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==
+
 "@babel/helper-string-parser@^7.25.9":
   version "7.25.9"
   resolved "https://registry.yarnpkg.com/@babel/helper-string-parser/-/helper-string-parser-7.25.9.tgz#1aabb72ee72ed35789b4bbcad3ca2862ce614e8c"
   integrity sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==
+
+"@babel/helper-validator-identifier@^7.24.7":
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.27.1.tgz#a7054dcc145a967dd4dc8fee845a57c1316c9df8"
+  integrity sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==
 
 "@babel/helper-validator-identifier@^7.25.9":
   version "7.25.9"
@@ -1200,6 +1210,11 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.10.0":
+  version "7.27.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.27.3.tgz#10491113799fb8d77e1d9273384d5d68deeea8f6"
+  integrity sha512-7EYtGezsdiDMyY80+65EzwiGmcJqpmcZCojSXaRgdrBaGtWTgDZKq69cPIVped6MkIM78cTQ2GOiEYjwOlG4xw==
+
 "@babel/template@^7.25.0", "@babel/template@^7.25.9", "@babel/template@^7.3.3":
   version "7.25.9"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.25.9.tgz#ecb62d81a8a6f5dc5fe8abfc3901fc52ddf15016"
@@ -1234,6 +1249,15 @@
     "@babel/types" "^7.25.9"
     debug "^4.3.1"
     globals "^11.1.0"
+
+"@babel/types@7.25.6":
+  version "7.25.6"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.25.6.tgz#893942ddb858f32ae7a004ec9d3a76b3463ef8e6"
+  integrity sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==
+  dependencies:
+    "@babel/helper-string-parser" "^7.24.8"
+    "@babel/helper-validator-identifier" "^7.24.7"
+    to-fast-properties "^2.0.0"
 
 "@babel/types@^7.0.0", "@babel/types@^7.20.7", "@babel/types@^7.25.6", "@babel/types@^7.25.9", "@babel/types@^7.3.3":
   version "7.25.9"
@@ -1965,100 +1989,121 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@medusajs/admin-bundler@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/admin-bundler/-/admin-bundler-2.0.0.tgz#8ef8ba11e37ac4b47ae540579fb649d30b0cbcde"
-  integrity sha512-gLME0V7AnQi5Tl+Q0heEsKK3FCzRfry5lmng3SvHpW5jj1TcIevf4ya2Jx6rmYfx2Utgx4PcBIwJoPwq5ycOew==
+"@medusajs/admin-bundler@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/admin-bundler/-/admin-bundler-2.8.3.tgz#d180dac102637107862cfe9d09e0e5bc6be6bb90"
+  integrity sha512-ymRz/kA58T7I5aQfdRIgbuTbnYO0Kd5hYS+NjJNJMvmOKes9bnuxwdSqbJ+KSZbI7/0CoHQQyHA++P+UcwtirQ==
   dependencies:
-    "@medusajs/admin-shared" "2.0.0"
-    "@medusajs/admin-vite-plugin" "2.0.0"
-    "@medusajs/dashboard" "2.0.0"
+    "@medusajs/admin-shared" "2.8.3"
+    "@medusajs/admin-vite-plugin" "2.8.3"
+    "@medusajs/dashboard" "2.8.3"
     "@vitejs/plugin-react" "^4.2.1"
     autoprefixer "^10.4.16"
     compression "^1.7.4"
+    express "^4.21.0"
+    get-port "^5.1.1"
+    glob "^10.3.10"
+    outdent "^0.8.0"
     postcss "^8.4.32"
     tailwindcss "^3.3.6"
-    vite "^5.2.11"
+    vite "^5.4.14"
 
-"@medusajs/admin-sdk@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/admin-sdk/-/admin-sdk-2.0.0.tgz#42efbb518a4fe78d6133533e4e13a7312bcabef1"
-  integrity sha512-NfHuB21NGU3sf9pNpESYn8NWgVgXQzHkFPe3fQT142xhQ6vc1rLlbbq+puv3LdBWzMVtDDzjVCjnw9rHYV7HkQ==
+"@medusajs/admin-sdk@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/admin-sdk/-/admin-sdk-2.8.3.tgz#8764fc30d8f0c1b45514524958f79f09fb9925b9"
+  integrity sha512-d4D6hgVJq3ahDwEGVhsEzpXIhh18qM9vGVvCQg3OrVUIVkT6H0Wca1DubAGHEfQ11h+Ii+gBu4Fw1nc+9Ag6nw==
   dependencies:
-    "@medusajs/admin-shared" "^2.0.0"
+    "@medusajs/admin-shared" "2.8.3"
+    zod "3.22.4"
 
-"@medusajs/admin-shared@2.0.0", "@medusajs/admin-shared@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/admin-shared/-/admin-shared-2.0.0.tgz#41c17cf0cdff929818b7ff34fd491241eb0ca258"
-  integrity sha512-kPfAXccrDCm1LRzSKHu0dSJ5nBrcexbMxeFpwhGW/jt+KKCghT9sFonA40eptCxz6G+YXWJMPLlRkFwt+PgNcw==
+"@medusajs/admin-shared@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/admin-shared/-/admin-shared-2.8.3.tgz#3fd37862bafc42021b89a6e82423bddf706a491b"
+  integrity sha512-7fPECOGClEZT9cq4t/6O1xI5s0a2OQQ5cuplUivi/3luNZEhFktFTYWUIECaX9oO7im3WrsUHQJiKn7zERGsew==
 
-"@medusajs/admin-vite-plugin@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/admin-vite-plugin/-/admin-vite-plugin-2.0.0.tgz#a26718ec7370148225a2784f9e4974cc98abe57b"
-  integrity sha512-N6CHmflS+n4svKS/J+Jq2iUtR/WGsjigGjilOUd5sGywBcrqe5P3tj06mcHwxvOvkbD3b7+s170MZS7p19uHsw==
+"@medusajs/admin-vite-plugin@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/admin-vite-plugin/-/admin-vite-plugin-2.8.3.tgz#5167732910ddf27077f8cc0a78863d7e429f6c1b"
+  integrity sha512-FFHHHOTeCD6RZ1jnYdUWSkxdWgZKS3mGZFayiHzxuYTQTvraR5zbS68EmBUwFa538VoVjGvN2kQTxyHuWNLJGg==
   dependencies:
     "@babel/parser" "7.25.6"
     "@babel/traverse" "7.25.6"
-    "@medusajs/admin-shared" "2.0.0"
+    "@babel/types" "7.25.6"
+    "@medusajs/admin-shared" "2.8.3"
     chokidar "3.5.3"
     fdir "6.1.1"
     magic-string "0.30.5"
     outdent "^0.8.0"
     picocolors "^1.1.0"
 
-"@medusajs/api-key@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/api-key/-/api-key-2.0.0.tgz#cef97e6dc7507fb0d1ab08b4ff99802d04f178cb"
-  integrity sha512-ERB5RzeMFjuU2mCdRFseVUSLeIy8+nnku2zqrH37PL2kzbbSLYVr+zswotR/AH/GW806dSj2PAS+aCQ3KzaISA==
+"@medusajs/analytics-local@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/analytics-local/-/analytics-local-2.8.3.tgz#c61266b29cdbf202b4ac893165f687b8dc2bf047"
+  integrity sha512-l0AVEbejqYLDelXOf7tR0qAriw+c5+OISHxg6A8+9aOTOtvAM1cQqdDsqf+BbXrhqR9ebxHwJx0lrxzaCBYPZw==
 
-"@medusajs/auth-emailpass@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/auth-emailpass/-/auth-emailpass-2.0.0.tgz#76cbd86aa4c3fd464a0f03bddbddf0bda82c2478"
-  integrity sha512-pSc3wMgj7Ka11ds+r8/fGcPEkRAeTxkYshL/E/GNx8GFwfxzUOAlJfstOf69xmMDBnwv1LfevQiwmfofSWZNfQ==
+"@medusajs/analytics-posthog@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/analytics-posthog/-/analytics-posthog-2.8.3.tgz#715298607f041c87a1902b216b6824b3eb090c20"
+  integrity sha512-v8/eM8G785FL8D5PBgRX0YfUdWho7veyp7aXU5Ezlmh1GHJWMrE4yTXpbKHCpK/2dQr6U4LkKbaprXIXHXXMoA==
+
+"@medusajs/analytics@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/analytics/-/analytics-2.8.3.tgz#317cd656b7cad929841e1ddbaebf5ede00547899"
+  integrity sha512-OukUyg9FsK3LHwo8NwxkO9KcMj8jpxsLNxIEsptaUDwaYmS9jXJ/YkdSG6IgDFP+orxy3bRMB0TSm/vh21m9sA==
+
+"@medusajs/api-key@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/api-key/-/api-key-2.8.3.tgz#7975b365a80af71f875884dd247dee59b40330d5"
+  integrity sha512-3n1u5DP5cYaqOUT7BbKZfHodhyc7mg6V00XR06eQFhJuI2eIL2AyyhVqLsreEqCRRru44/t3XLlwR18n5fKozg==
+
+"@medusajs/auth-emailpass@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/auth-emailpass/-/auth-emailpass-2.8.3.tgz#377fe3a632b2e055e004e972621078a29147ce01"
+  integrity sha512-NSVZygWUoeFElpRdDCBLlBO4NIoKZYBZkXrn9pUQPnyzklcqJBOM6g+YIvV8D+Yjf3XT8UXp2Obyw893CQxPCA==
   dependencies:
     scrypt-kdf "^2.0.1"
 
-"@medusajs/auth-github@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/auth-github/-/auth-github-2.0.0.tgz#105730aa52be4ee79d6d8eec504007099deca3b4"
-  integrity sha512-UbHnW23dDP1kfIHEY+Au+2fu7lo83kook9Bp+S38xCTIhCPIKy8dAPjKQMrPZ5qN/U0MdRWhfQ4k8VAHVUQhzQ==
+"@medusajs/auth-github@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/auth-github/-/auth-github-2.8.3.tgz#37ca12cbdbe8db63b330beac3c779fc031a63a4f"
+  integrity sha512-7oq97DGhZy+ng0P3y770DZGw1PzPW6P/j/+ZGiPd41BrDGam3VE46aarzeK132x4JPeOGhATRfxl0ZR7ctKX0A==
 
-"@medusajs/auth-google@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/auth-google/-/auth-google-2.0.0.tgz#6ff30ff61c420e804a94d5333df56b7de65d0f66"
-  integrity sha512-UWfcAx0aZ+lV07lWbK03QNkMqR7hH8uf/eT+ZBT8FGmiYsdrVKTOjC7hTomAcYO1C+YeFp75jguXONI9wF+yVg==
+"@medusajs/auth-google@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/auth-google/-/auth-google-2.8.3.tgz#0ca7c21781bf7d086b5db48fe7c6dd745727bc71"
+  integrity sha512-3qumRLEUut8kkjem6/uz7NQzZyNrQjTPT5i45cw61rjU9vNf5OVqe8fo/mu+iAo++YVdJxIwFgVB7a+7pk8dng==
   dependencies:
     jsonwebtoken "^9.0.2"
 
-"@medusajs/auth@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/auth/-/auth-2.0.0.tgz#3dc623ee697b51857438898f35b1a79497328f61"
-  integrity sha512-Z8OAAfM17LBLtuOb6IG/PVY+s7zBXCfbJ7UM0PXjnKrfuqikz6+ESfvI+x61dYv436JWxjMo3By3+tN1TS0XUw==
+"@medusajs/auth@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/auth/-/auth-2.8.3.tgz#7b3659d0358584ee8bfd28c1929d595d185278c7"
+  integrity sha512-0SwwW6xhqG4ji9acHcNyLVn3Ne6YHMjBgkOM8sO3o7vG2KZdnIp2I25z6I+O4gm6Y0KkNdG34pPT0KFRN269wA==
 
-"@medusajs/cache-inmemory@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/cache-inmemory/-/cache-inmemory-2.0.0.tgz#7564c9cdb53823ccbec0c2b6bcbd3bb54eb9e73b"
-  integrity sha512-L8Ev4RuJDVpgfKGvKzKiga/p+LZsELflBYnj8g2dzxz+v6t73DphbTX787vox4c4g8Gwe1831n4/XG/+q4wmGg==
+"@medusajs/cache-inmemory@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/cache-inmemory/-/cache-inmemory-2.8.3.tgz#3dc124bda81dd7fc4546bf58e1215c10727bea7c"
+  integrity sha512-aPmgbWIxcyC1/6a3RLxEVAH0kXlDLoVJE07ZBWTfbc0Zl7IJgc/KJxF/4bnkvKEj8GKvRDDAavY+kVMpWuYbYg==
 
-"@medusajs/cache-redis@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/cache-redis/-/cache-redis-2.0.0.tgz#70228e0af0467f175921002961283b7841065a65"
-  integrity sha512-L/qOFfVnsMVxEDzMGbAeIQt2/FqwIBO9MelIn3RLkZ8GIPj71VsN1qC+71hESEApklmrDKfW/dplMqsuL9ABgw==
+"@medusajs/cache-redis@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/cache-redis/-/cache-redis-2.8.3.tgz#0c0e5fc280f5381e2ea60088c87a08a1f071dd6e"
+  integrity sha512-CKwkGF4g7ba50m48vYOoaFyuWp9sIuBMVczw64v64Exupz4RhFJ6j9bA9luP8G/ndyxBsc6/CBVC9bGj9iqMmA==
   dependencies:
     ioredis "^5.4.1"
 
-"@medusajs/cart@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/cart/-/cart-2.0.0.tgz#3950c6a2d9683f8f348ce17e96fffc00757ff1f2"
-  integrity sha512-rLdUzNfLZC+K1H0O+3tmPsoTGOOd5gwSZ/pjt7nSYKfwXC7GnwP53216Mb+6qsE9n/6i4IucrkA2fhDlu7RQgw==
+"@medusajs/cart@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/cart/-/cart-2.8.3.tgz#8b83009b8df942c4fe3913c8f35e79c6c8e3abd3"
+  integrity sha512-4Jl5SUmTxN0uNmIXB2gqZNDE47q8JppssqDk6Xy1Ha7EjR2Z72LQeha6QsURNqbRvJJcK6k9JdVJVHj7SJ9kmA==
 
-"@medusajs/cli@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/cli/-/cli-2.0.0.tgz#a3c5d2d37c5ad42c09cc72a36d37383c49cbd061"
-  integrity sha512-oaJL/24R7LFBDeLWqFNPz/30ZMOgUuKMkNeZSFj1fL1Zrl6UtE2hkcTFW8DNMQ+d8jfHNOQ5Vv0UnPD4NbcIFA==
+"@medusajs/cli@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/cli/-/cli-2.8.3.tgz#97de948c7bd3565c3d1ecd8bb61cd50d362cab59"
+  integrity sha512-69Sx4EucSiSkyZxXwMXXelViZBhXqrtiEni2XDUjtRBL5h7YOJjKrjvW+GUYvbODyNGtuRVoUWYR5MJ5hwTqAQ==
   dependencies:
-    "@medusajs/telemetry" "^2.0.0"
-    "@medusajs/utils" "2.0.0"
+    "@medusajs/telemetry" "2.8.3"
+    "@medusajs/utils" "2.8.3"
     "@types/express" "^4.17.17"
     chalk "^4.0.0"
     configstore "5.0.1"
@@ -2067,7 +2112,7 @@
     express "^4.21.0"
     fs-exists-cached "^1.0.0"
     fs-extra "^10.0.0"
-    glob "^7.1.6"
+    glob "^10.3.10"
     hosted-git-info "^4.0.2"
     inquirer "^8.0.0"
     is-valid-path "^0.1.1"
@@ -2082,51 +2127,53 @@
     winston "^3.8.2"
     yargs "^15.3.1"
 
-"@medusajs/core-flows@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/core-flows/-/core-flows-2.0.0.tgz#ac1cdd2ec5383d852f1f218ec85b583d92ee36d6"
-  integrity sha512-TRFYvw+7MG7YxPNKxK7QyD1dgW95hYgkBq3Cq/JZUv6+9eD57qHSb6seH1jWJsrfLzSC1x9B0b7Bg7afyoYnEw==
+"@medusajs/core-flows@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/core-flows/-/core-flows-2.8.3.tgz#94a7e60a39c273b5e98b4a35330ade3bac322b1e"
+  integrity sha512-EiVceQb6Osv8bSvVUb1RmCaM/X1qTFOIFJGaxh+THNdRlyJ1mzVmMGsG11H5477NEbg0O5e6xfpKrOE0ezUVOQ==
   dependencies:
     json-2-csv "^5.5.4"
 
-"@medusajs/currency@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/currency/-/currency-2.0.0.tgz#a3be101e8756a09bc5243fabcfe1640bd8086d76"
-  integrity sha512-XBhoTa+O/R5Z/HfcIynfWLg9CzDLLmdT52IUsSe8fN9ujtdb2r6gR8GlcKaummGpewoC1AQexTUQXeq22T5jYA==
+"@medusajs/currency@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/currency/-/currency-2.8.3.tgz#785d9d19d55983136a857a6fc04e8e929a879322"
+  integrity sha512-kGrpws7VfE5hIacSErMK5inlhqjwSE1rumO89k0QABzrETSRqTZzTcnwqR4qXGMOGFX2ZH2q7+zFrBtRV8fiYQ==
 
-"@medusajs/customer@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/customer/-/customer-2.0.0.tgz#bb2662cb238ad75cb0cff3bfffe8d9990d8a5e54"
-  integrity sha512-dnGsBIGlkFmi1ni1RYQXVlALswy79ksIb/22/HZPbpu8U8+GRQOXuR05E1DPl/QdCTnxbCnPQE947LWwtjzGEQ==
+"@medusajs/customer@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/customer/-/customer-2.8.3.tgz#721e3e99d7a8da1cc1d6cf76cb99f678cf22a34f"
+  integrity sha512-wsNmWrrhjtkuq+30RvoiEpVo54+R1Ws2gu48hw386N3iO41T+tzcOtYuJsSl+FJ414F14htNK/dNDxQ4MgBf9Q==
 
-"@medusajs/dashboard@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/dashboard/-/dashboard-2.0.0.tgz#82ec25f5c8d563994204289a4016dc4a1e75d445"
-  integrity sha512-2kk5K4vJeWoGdjC2SXJ67g/HM7dCXCGU2kXo2ecfmrBoaD7QBrfyp/M6XP/DSy6h4vxt5X52F0HQZHvhIoEZxQ==
+"@medusajs/dashboard@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/dashboard/-/dashboard-2.8.3.tgz#49ddc97bcc89faa45ab8c03ea668286a1def65b8"
+  integrity sha512-pKamDF4SUDqZJ6qt9WDkROVjbHcoMcQX3HtnywQf6Lxbtzgt3mgF0HtYUQckwToggl9ELjnymThes4uK8kfLyw==
   dependencies:
-    "@ariakit/react" "^0.4.1"
+    "@ariakit/react" "^0.4.15"
     "@dnd-kit/core" "^6.1.0"
     "@dnd-kit/sortable" "^8.0.0"
+    "@dnd-kit/utilities" "^3.2.2"
     "@hookform/error-message" "^2.0.1"
     "@hookform/resolvers" "3.4.2"
-    "@medusajs/admin-shared" "2.0.0"
-    "@medusajs/icons" "2.0.0"
-    "@medusajs/js-sdk" "2.0.0"
-    "@medusajs/ui" "4.0.0"
-    "@radix-ui/react-collapsible" "1.1.0"
-    "@tanstack/react-query" "^5.28.14"
+    "@medusajs/admin-shared" "2.8.3"
+    "@medusajs/icons" "2.8.3"
+    "@medusajs/js-sdk" "2.8.3"
+    "@medusajs/ui" "4.0.13"
+    "@tanstack/react-query" "5.64.2"
     "@tanstack/react-table" "8.20.5"
     "@tanstack/react-virtual" "^3.8.3"
     "@uiw/react-json-view" "^2.0.0-alpha.17"
     cmdk "^0.2.0"
+    copy-to-clipboard "^3.3.3"
     date-fns "^3.6.0"
-    framer-motion "^11.0.3"
     i18next "23.7.11"
     i18next-browser-languagedetector "7.2.0"
     i18next-http-backend "2.4.2"
     lodash "^4.17.21"
     match-sorter "^6.3.4"
+    motion "^11.15.0"
     qs "^6.12.0"
+    radix-ui "1.1.2"
     react "^18.2.0"
     react-country-flag "^3.1.0"
     react-currency-input-field "^3.6.11"
@@ -2138,173 +2185,179 @@
     react-router-dom "6.20.1"
     zod "3.22.4"
 
-"@medusajs/event-bus-local@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/event-bus-local/-/event-bus-local-2.0.0.tgz#463de9e5b802fd6a1835e70dae05e4f19a91ffc2"
-  integrity sha512-D+i5viBXntEhRyPuAHA6hWBqVwJwu0jiLFXkkNXuAPejtvdHv+Rf9bicMcveyCrNSmbeMLXG4wo5M4AbQE/J9w==
+"@medusajs/event-bus-local@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/event-bus-local/-/event-bus-local-2.8.3.tgz#167b0d5283e12644b83948177b245c1980f149c1"
+  integrity sha512-pzmyIKdLQ1BE1HJEX1ued9mBokXRzT2BOOHGunpQKGw+MqYjHInEvRPBxF63cM5yIO4eAp0deU+ct1ws/+YMpw==
   dependencies:
     ulid "^2.3.0"
 
-"@medusajs/event-bus-redis@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/event-bus-redis/-/event-bus-redis-2.0.0.tgz#5551d832f32566c2b503395535acf49c0c706cea"
-  integrity sha512-WQnV/jNslzNIuRkQLp8ywXJEg5ucrcxWsdcnbMLqWeLxhpO29D5UG2VB6jMWmPQYecgxiVr5VUdMovbLo/yxLw==
+"@medusajs/event-bus-redis@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/event-bus-redis/-/event-bus-redis-2.8.3.tgz#836a6753ecdc7bd016a121afc90c33697a86c4c6"
+  integrity sha512-96w2OSMF1K+FJsMW70x0eGGdOuVPngIazbXkGqUYq1Yc0ewQ3KNTzzhyC3E3qHHfyN64t7d45WF97t8wRN+e9w==
   dependencies:
     bullmq "5.13.0"
     ioredis "^5.4.1"
 
-"@medusajs/file-local@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/file-local/-/file-local-2.0.0.tgz#9522e26e8636f95ac2f7f67a72ccc273f1884934"
-  integrity sha512-zi1i2KRuohriS4isbCpNXQZXh/wkXpu0v8xiP4yLjCfLHelSjR42/TkG4vapQhrea0wKhgB5oTOkBObOnIg5Bg==
+"@medusajs/file-local@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/file-local/-/file-local-2.8.3.tgz#02620ffd80a9859ed4a0aa09831b93636d148b1f"
+  integrity sha512-kB/w/DvilhT3Wp5nyS2j2UMyLHzlXQJfwTic21gqJRHdgp62qcNLVERlUsEpavulecL6V/ABYY6S2sMyPV/ujw==
 
-"@medusajs/file-s3@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/file-s3/-/file-s3-2.0.0.tgz#a0cccd6518459001449788753d9fe1230c3e9348"
-  integrity sha512-YnwoC/BvsMQItT5Z3BiusDtQUDA55xZIgnESWZrigvvHr4hgnZvNKPVLQ/Qx6ozdQQP27FnizBA3DXCWx7uCJw==
+"@medusajs/file-s3@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/file-s3/-/file-s3-2.8.3.tgz#c849f962f4dd9d3ebf8eb09d31d92b4c9696a03e"
+  integrity sha512-86gnW2y71riPFHjs3IzXpIEeYDrV8tfzN+TjM1H1lYCEU6XjzsCj1qam1WeHKYiD9pGI/a/MKI4ZzGXAogL/Fg==
   dependencies:
     "@aws-sdk/client-s3" "^3.556.0"
     "@aws-sdk/s3-request-presigner" "^3.556.0"
     ulid "^2.3.0"
 
-"@medusajs/file@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/file/-/file-2.0.0.tgz#aca9e668d6a5afa0e4da2a461e64f3a0fe9f14c0"
-  integrity sha512-qBnXNfcmtp2SusE2eoSwbkWkyCJ9mCFQrGrTGdVFTLfpqFTvxL/Hfw/DXD6xuQagnFn54GjGUq+gCTss4IOpfw==
+"@medusajs/file@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/file/-/file-2.8.3.tgz#97a20236e09dd437689083969236873656ac53bc"
+  integrity sha512-esyJ+uUzLWzDlREydizNESBQbCTtbKGUX3MFJO1ZpSxSqSO2NxgLiIrWr9yUoCYYPX1iqSdd7bZe+MwwjreUfw==
 
-"@medusajs/framework@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/framework/-/framework-2.0.0.tgz#3ce8103a53f3ebddbdb87262393926c3456446f7"
-  integrity sha512-vJ/+kyo2b8TmXwaqw9pNfn87Smi4nzMBOucaMmJKW9sAcbtne0hCFD7eNOKU8Ml8IJjoWeJToe96ZwdD2INTKw==
+"@medusajs/framework@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/framework/-/framework-2.8.3.tgz#85e6f6e596ff8fe886326bee4ad4b6ed0f739830"
+  integrity sha512-SdnQ1RcC30E5fW0nwnik+7t5FyLStJZdUk9W4jc37ZzxpzutDLYEcFhL8T0psLuxu5k6gl10CtBK/CIA/VhwLQ==
   dependencies:
     "@jercle/yargonaut" "^1.1.5"
-    "@medusajs/modules-sdk" "^2.0.0"
-    "@medusajs/orchestration" "^2.0.0"
-    "@medusajs/telemetry" "^2.0.0"
-    "@medusajs/types" "^2.0.0"
-    "@medusajs/utils" "^2.0.0"
-    "@medusajs/workflows-sdk" "^2.0.0"
+    "@medusajs/modules-sdk" "2.8.3"
+    "@medusajs/orchestration" "2.8.3"
+    "@medusajs/telemetry" "2.8.3"
+    "@medusajs/types" "2.8.3"
+    "@medusajs/utils" "2.8.3"
+    "@medusajs/workflows-sdk" "2.8.3"
     "@opentelemetry/api" "^1.9.0"
     "@types/express" "^4.17.17"
+    chokidar "^3.4.2"
+    compression "1.7.4"
     connect-redis "5.2.0"
     cookie-parser "^1.4.6"
     cors "^2.8.5"
     express "^4.21.0"
     express-session "^1.17.3"
+    glob "7.2.3"
     jsonwebtoken "^9.0.2"
+    lodash "4.17.21"
     morgan "^1.9.1"
+    path-to-regexp "^0.1.10"
     tsconfig-paths "^4.2.0"
     zod "3.22.4"
 
-"@medusajs/fulfillment-manual@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/fulfillment-manual/-/fulfillment-manual-2.0.0.tgz#db8524ce38ed32177190fb2d6797cbb2a7e2bd5f"
-  integrity sha512-LonWk+7j5c1sGKeWcd1CxmD8cnX+rsJZOjY9D36Gj+Efqz9u0RDgBW66Jtiun97AUDGaaJNbpW9pycc0T/UBYg==
+"@medusajs/fulfillment-manual@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/fulfillment-manual/-/fulfillment-manual-2.8.3.tgz#2754aaf5639a276409bbef3d66882af54ae48177"
+  integrity sha512-U181P2gGb2PzTTuYuqvfbTeDqw+yzI/Pc+bgcoku07U6Tzp3Ofd1UDXr4/W+gsZYBIVuE5EUmn0Jl7nGbeXm9g==
 
-"@medusajs/fulfillment@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/fulfillment/-/fulfillment-2.0.0.tgz#c7432e61bcf6a3b679f84d3573b95100f1c6fca3"
-  integrity sha512-hN/a6gZ2I9Mu2qLoEs0gHQMk4oi+w39B/T9cOPxFODJ98ptHYwJg8AUR9IQCWvwZSSwMT2qT7VyQZamQkh/FZw==
+"@medusajs/fulfillment@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/fulfillment/-/fulfillment-2.8.3.tgz#b6584bda2c8bf956807a02980db5c182b661ea6c"
+  integrity sha512-97QPG2NvMifPt7vy37dsKMBkaXCeGjtf3oRn1LMFhw9aGIn/gxzWMZ9vEUEoZA9xcYd2GvecnloRvARbc8J2Wg==
 
-"@medusajs/icons@2.0.0", "@medusajs/icons@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/icons/-/icons-2.0.0.tgz#510c56c3745dd6b548c17081c694476f78a4631b"
-  integrity sha512-ruNWxiiwf/LcPhLo+bO+UDi1ToxU6fo3Sm4/U3FSn4QP4Ohtf5uJPxpxKy8bB4ROM3rV7fSpYNsW+e5V19FOhQ==
+"@medusajs/icons@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/icons/-/icons-2.8.3.tgz#3cbcf7f6637d4153377f877d2e83ce4560a4f01b"
+  integrity sha512-kPF6vuEIaRhV5+V529iAvVUyAiVji878MYZxzPIb1MYtPUAXiqwv8g3KIBEH8tWfUqBi+Xad+ZT41u5nckljxQ==
 
-"@medusajs/index@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/index/-/index-2.0.0.tgz#d8826667d8d959efc37e239319a155acec731cd9"
-  integrity sha512-jxuzUq/f7ItQZt8Gk7KSxvOgTtA7qZkUPlZcy3to5O7E+fVYa0LyMA/JmksEiS59RlQ1wQrH96Zx+zta9M2BVg==
+"@medusajs/index@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/index/-/index-2.8.3.tgz#e024fc7539eba6d518a54303e97f12f319da1b57"
+  integrity sha512-L9xaLxkonm5A76yHJ9kVArjse8fLhvGpCdMKy5/HEYk58VWnrSuZmdHkMiY4AZJcWOuVnw4i9U9dWcqJfS+Z5Q==
 
-"@medusajs/inventory@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/inventory/-/inventory-2.0.0.tgz#2098ad54524589de5ac6dcd215ec269edaccad1f"
-  integrity sha512-hlCqDXHSUzB61YszrYzVo/WZAfh7bn5fIfoJ6KSOyse5bo5CFC9SqKQYOgN8ZUDKWib/E5kHUZiScgeamzfLoA==
+"@medusajs/inventory@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/inventory/-/inventory-2.8.3.tgz#d49e063315c53cdea6c98355f22d2d5e17c49bae"
+  integrity sha512-/nYR05lSXPeDosv6SgNPCIwUrQLT+mV9SMlzP2ewRMVlvd/0zVUdZjKl2aCKCjkSI2Jwjz54uDcbrIi3J1BBvA==
 
-"@medusajs/js-sdk@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/js-sdk/-/js-sdk-2.0.0.tgz#5e84e5eb9933f2ebad01a5173e6759df53491542"
-  integrity sha512-exIg5FF6qZfMgT7aNTO7CsKRO8aw5revxckmvSP9jJ7H6hjqgKlLw2aAyVW3SgMmGRQERrwu94gJ50348BYPJA==
+"@medusajs/js-sdk@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/js-sdk/-/js-sdk-2.8.3.tgz#c8b42ace428703555a716c272589cf5b75ab4836"
+  integrity sha512-CcN1oIWdAyElPVgMJ/Lm8FA1y5TqcL0NABAttj55iZvCrAkJF0ML0GJKY6STXNHRdKZaxI3+j9hZiMuo5yXqGg==
   dependencies:
-    "@medusajs/types" "^2.0.0"
+    "@medusajs/types" "2.8.3"
     fetch-event-stream "^0.1.5"
     qs "^6.12.1"
 
-"@medusajs/link-modules@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/link-modules/-/link-modules-2.0.0.tgz#d9d9cdda9091a50f88dd644c362a41c491081754"
-  integrity sha512-XPmmQ0PHZ+jWmifG86hiO6qzexnj/RCNNqCEhIqiGmxDm22xCUtJQzm5psV/U3TOKnPw7U91sTIA4PjdvITPwA==
+"@medusajs/link-modules@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/link-modules/-/link-modules-2.8.3.tgz#af564c8755778965ebf25ed727b414330d19bf48"
+  integrity sha512-7BADvooTXBk+Pa5wGEOHeQQumOYKBhpWM8sG5WQn9Gd8QUC51qwRiXCzpayEinW+W7aXU/SYKQ5JUieH3Mzu4A==
 
-"@medusajs/locking-postgres@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/locking-postgres/-/locking-postgres-2.0.0.tgz#246dc9f9ba3781d8fdb9b65e1290504bf6089fd4"
-  integrity sha512-HeMSKX4g2LYuulZGUCdPsKdnPrxY3bZi1EXCfT1lIf85R9MLIoae/AsDKUN3dcm81LF43woNHzZYKTCBgszyIQ==
+"@medusajs/locking-postgres@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/locking-postgres/-/locking-postgres-2.8.3.tgz#f47807c045274a9ffcbddb0a7d77391e38fe3e69"
+  integrity sha512-uUcXnUEnt0YFMKpmzRfALCk9uv2RdkQvOrLNz4d2YVfcdPD2vAdjaHtIWImMdRB+2fbLm95cVCo0BY0/D/lp5w==
 
-"@medusajs/locking-redis@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/locking-redis/-/locking-redis-2.0.0.tgz#f4f90faf32e6057ae954c00159d07d417734a141"
-  integrity sha512-Kk0b/PtS+Rkulyr4eV9ASJmGaLH7RdvbktzfqvszVnMsuAZJRGYYNwNvabirxbuc/BcLel34JBodDOK5FXff9Q==
+"@medusajs/locking-redis@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/locking-redis/-/locking-redis-2.8.3.tgz#b957ab416a7ee55d6e4e6fdc9c3e21375e8d1d6d"
+  integrity sha512-IJZ7HuxO7zop8aqeXjG0gyfGOBxEokjbwIG6MS7r5UEkXBrxZBpcAPEFReZOlIEMwqd39V9cB8QoGuO6HtFrkg==
   dependencies:
     ioredis "^5.4.1"
 
-"@medusajs/locking@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/locking/-/locking-2.0.0.tgz#335e3bc055d9112efe5af0b754b3e64ef0e42007"
-  integrity sha512-XU18Ds7UnuWqLOi3golXC11ysMAoXO9G6GK/HVodD+STZVJoe50GFy+XcsOFEaOcb+2Ki/QbbZg+fmr6V+xGnA==
+"@medusajs/locking@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/locking/-/locking-2.8.3.tgz#92bab5f4f76b7f7c51a53177150a4eeaae831f54"
+  integrity sha512-j4vC657ySVqJ0o2jRXCIAaaFne+UIocU7fkx60A/bm5JkDpmFMWhea0ZVjcdL1hdU9Wv+iqeeiLcuTitQb/CJg==
 
-"@medusajs/medusa@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/medusa/-/medusa-2.0.0.tgz#632b2124f60ab3b39c75c7fa1e85acb3c3e519e6"
-  integrity sha512-l3bTSGpfYh6FUiZSr5HceLws45zwgiknaQsh2El+KaTswPEErhEFZUaQa3OlhxJeAOD6+4JnQh5+iWjopHLskw==
+"@medusajs/medusa@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/medusa/-/medusa-2.8.3.tgz#89ee5c9aa9169560c84ad180cac14b7fc734c91d"
+  integrity sha512-FH5K2u7Uvs0Il5Sb46wBCt1y0Ik6w7OrLq0gYm8n+wav54w7ZAIzG3et3Ry7fuBamDN3PPJpRNgqIY1p7wPNzQ==
   dependencies:
     "@inquirer/checkbox" "^2.3.11"
     "@inquirer/input" "^2.2.9"
-    "@medusajs/admin-bundler" "^2.0.0"
-    "@medusajs/api-key" "^2.0.0"
-    "@medusajs/auth" "^2.0.0"
-    "@medusajs/auth-emailpass" "^2.0.0"
-    "@medusajs/auth-github" "^2.0.0"
-    "@medusajs/auth-google" "^2.0.0"
-    "@medusajs/cache-inmemory" "^2.0.0"
-    "@medusajs/cache-redis" "^2.0.0"
-    "@medusajs/cart" "^2.0.0"
-    "@medusajs/core-flows" "^2.0.0"
-    "@medusajs/currency" "^2.0.0"
-    "@medusajs/customer" "^2.0.0"
-    "@medusajs/event-bus-local" "^2.0.0"
-    "@medusajs/event-bus-redis" "^2.0.0"
-    "@medusajs/file" "^2.0.0"
-    "@medusajs/file-local" "^2.0.0"
-    "@medusajs/file-s3" "^2.0.0"
-    "@medusajs/fulfillment" "^2.0.0"
-    "@medusajs/fulfillment-manual" "^2.0.0"
-    "@medusajs/index" "^2.0.0"
-    "@medusajs/inventory" "^2.0.0"
-    "@medusajs/link-modules" "^2.0.0"
-    "@medusajs/locking" "^2.0.0"
-    "@medusajs/locking-postgres" "^2.0.0"
-    "@medusajs/locking-redis" "^2.0.0"
-    "@medusajs/notification" "^2.0.0"
-    "@medusajs/notification-local" "^2.0.0"
-    "@medusajs/notification-sendgrid" "^2.0.0"
-    "@medusajs/order" "^2.0.0"
-    "@medusajs/payment" "^2.0.0"
-    "@medusajs/payment-stripe" "^2.0.0"
-    "@medusajs/pricing" "^2.0.0"
-    "@medusajs/product" "^2.0.0"
-    "@medusajs/promotion" "^2.0.0"
-    "@medusajs/region" "^2.0.0"
-    "@medusajs/sales-channel" "^2.0.0"
-    "@medusajs/stock-location" "^2.0.0"
-    "@medusajs/store" "^2.0.0"
-    "@medusajs/tax" "^2.0.0"
-    "@medusajs/telemetry" "^2.0.0"
-    "@medusajs/user" "^2.0.0"
-    "@medusajs/workflow-engine-inmemory" "^2.0.0"
-    "@medusajs/workflow-engine-redis" "^2.0.0"
-    "@swc/core" "1.5.7"
-    "@swc/helpers" "^0.5.11"
-    "@types/express" "^4.17.17"
+    "@medusajs/admin-bundler" "2.8.3"
+    "@medusajs/analytics" "2.8.3"
+    "@medusajs/analytics-local" "2.8.3"
+    "@medusajs/analytics-posthog" "2.8.3"
+    "@medusajs/api-key" "2.8.3"
+    "@medusajs/auth" "2.8.3"
+    "@medusajs/auth-emailpass" "2.8.3"
+    "@medusajs/auth-github" "2.8.3"
+    "@medusajs/auth-google" "2.8.3"
+    "@medusajs/cache-inmemory" "2.8.3"
+    "@medusajs/cache-redis" "2.8.3"
+    "@medusajs/cart" "2.8.3"
+    "@medusajs/core-flows" "2.8.3"
+    "@medusajs/currency" "2.8.3"
+    "@medusajs/customer" "2.8.3"
+    "@medusajs/event-bus-local" "2.8.3"
+    "@medusajs/event-bus-redis" "2.8.3"
+    "@medusajs/file" "2.8.3"
+    "@medusajs/file-local" "2.8.3"
+    "@medusajs/file-s3" "2.8.3"
+    "@medusajs/fulfillment" "2.8.3"
+    "@medusajs/fulfillment-manual" "2.8.3"
+    "@medusajs/index" "2.8.3"
+    "@medusajs/inventory" "2.8.3"
+    "@medusajs/link-modules" "2.8.3"
+    "@medusajs/locking" "2.8.3"
+    "@medusajs/locking-postgres" "2.8.3"
+    "@medusajs/locking-redis" "2.8.3"
+    "@medusajs/notification" "2.8.3"
+    "@medusajs/notification-local" "2.8.3"
+    "@medusajs/notification-sendgrid" "2.8.3"
+    "@medusajs/order" "2.8.3"
+    "@medusajs/payment" "2.8.3"
+    "@medusajs/payment-stripe" "2.8.3"
+    "@medusajs/pricing" "2.8.3"
+    "@medusajs/product" "2.8.3"
+    "@medusajs/promotion" "2.8.3"
+    "@medusajs/region" "2.8.3"
+    "@medusajs/sales-channel" "2.8.3"
+    "@medusajs/stock-location" "2.8.3"
+    "@medusajs/store" "2.8.3"
+    "@medusajs/tax" "2.8.3"
+    "@medusajs/telemetry" "2.8.3"
+    "@medusajs/user" "2.8.3"
+    "@medusajs/workflow-engine-inmemory" "2.8.3"
+    "@medusajs/workflow-engine-redis" "2.8.3"
+    "@opentelemetry/api" "^1.9.0"
     boxen "^5.0.1"
     chalk "^4.0.0"
     chokidar "^3.4.2"
@@ -2321,101 +2374,102 @@
     uuid "^9.0.0"
     zod "3.22.4"
 
-"@medusajs/modules-sdk@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/modules-sdk/-/modules-sdk-2.0.0.tgz#398c20913ddee39241b39136053e735c0df8c690"
-  integrity sha512-9zZnlEkvQ0Zh83DATXlub3bK4e3X4uHWZ1meHzWLbW8Jy3PB9njPezFGkerEaXwXH3F9mXPx4WW3rGeGVZ4WPw==
+"@medusajs/modules-sdk@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/modules-sdk/-/modules-sdk-2.8.3.tgz#17bff29d187f6b610c7384a7ca68c67ba9890c97"
+  integrity sha512-wPFQ/i4nrsYCX+KiLePlOeBVvv2WeTh+N4Th1P0jTB/Dv3nRwuUXlWtm58sPT1l/aGt4zqdSwtiFvehwQWVSNQ==
   dependencies:
-    "@medusajs/orchestration" "^2.0.0"
-    "@medusajs/types" "^2.0.0"
-    "@medusajs/utils" "^2.0.0"
+    "@medusajs/orchestration" "2.8.3"
+    "@medusajs/types" "2.8.3"
+    "@medusajs/utils" "2.8.3"
 
-"@medusajs/notification-local@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/notification-local/-/notification-local-2.0.0.tgz#2fe5133699bf011b37bb8f0e235b8140dcc64ad8"
-  integrity sha512-mrw6659yX3yxjLdS7qDShLwElk7+mwUHld8liS+8qKFHMGwHFDx3Mp6r5nJbPHejuIBSIt7roE2qPjYPK1kEFw==
+"@medusajs/notification-local@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/notification-local/-/notification-local-2.8.3.tgz#5ef8792c61265f2706b92cac2be6027feab029a5"
+  integrity sha512-YRvWBYLU6ujvDes0rvIgik3WXbcbt6hFQXMGONyfP2G259s3xagCWqJd7pE5+M7bu57nKRQfsUxzvM6VuE1Pnw==
 
-"@medusajs/notification-sendgrid@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/notification-sendgrid/-/notification-sendgrid-2.0.0.tgz#e71bb5b1292f22368dfd88bada098e063538983d"
-  integrity sha512-CzvbIbLdhNRbKw0Wak8CdftyafPU9Wz+EKP/WnKPUDXoyh/vqGXhSSKBFJqWu1BY7wgqAmraSrSUjEYiQhvwng==
+"@medusajs/notification-sendgrid@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/notification-sendgrid/-/notification-sendgrid-2.8.3.tgz#c3fd73a9cd5936829b8fc216660b92eec2cbaed6"
+  integrity sha512-lQqivfg5x5WpNQbmD/elfeqr6WS9t5ZwIG+VfNyRBdqmfxWPpoaF9ME/dmB2iWWGjdRJQcxlXGHhfW/Mlx18EQ==
   dependencies:
     "@sendgrid/mail" "^8.1.3"
 
-"@medusajs/notification@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/notification/-/notification-2.0.0.tgz#c4e7da535c5b64bc44a2d192a1f0699d3df14169"
-  integrity sha512-nwMwQ7yZejL2WOHyDP8eHIloLisA2o8bavkla/XivHwFUsffcYI38QJNsPrz8E5LJ2UYePT3mTHIrx3LBuwGAA==
+"@medusajs/notification@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/notification/-/notification-2.8.3.tgz#648c7375cb92b42d71e3533c419962e6eb551411"
+  integrity sha512-iiJwE2s9Gozb9VhXy/X2f6Ted7S1nr4II1Evro3n8itC3rwKLS7TIfNh/zLv5F0t0X7+FMzmDiJ5D3nqg7fTMw==
 
-"@medusajs/orchestration@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/orchestration/-/orchestration-2.0.0.tgz#6e623905fc0f767c27b8db7a1bd3009ecc574b65"
-  integrity sha512-LfJZYymD5Y8eTPcexkxJnjQAuYr7KmvXmIdglDPfJ1U0QY4E8X06i7BsRF9D1Cxv2FqXSyxlnstYdse7TecpNQ==
+"@medusajs/orchestration@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/orchestration/-/orchestration-2.8.3.tgz#7b020434b83f5c3642cafe5f532ad0b456e8578d"
+  integrity sha512-mBmbBMx73421CgNBxk6mSeNwMwmhYCTsqc1SmyIbWeywoCthoy2BewYe8N6FFaBOZeGFnNUpivwaZgjHnrA2EQ==
   dependencies:
-    "@medusajs/types" "^2.0.0"
-    "@medusajs/utils" "^2.0.0"
+    "@medusajs/types" "2.8.3"
+    "@medusajs/utils" "2.8.3"
+    ulid "^2.3.0"
 
-"@medusajs/order@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/order/-/order-2.0.0.tgz#5a0cc679d44d1d5fde759fc5eb434473f9fb3153"
-  integrity sha512-Jzrx47NOp3KmE9CitD+0eM6gjJ/lsrcJHRromU/dZ2gvy3itu5mJs9mdpVbo4psVwE4ZrFmQUqVPphFbvIptpw==
+"@medusajs/order@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/order/-/order-2.8.3.tgz#a0958b4872ba306caa14fdab8ff5e39fbfe3e816"
+  integrity sha512-HbQaEFoMXA9vWtPv546RoLPQAJ6oVTf7DdomhyCspLFGQ+4nfYL5nsMsO2hCqQ6TwJ5PPvDwqm58LNzdVXVKBg==
 
-"@medusajs/payment-stripe@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/payment-stripe/-/payment-stripe-2.0.0.tgz#7ab533567529cee73ab0a713d35f51d84170a42b"
-  integrity sha512-6edXzhDFg+ASg8GlFQx0eYnDz5A8eCiHKNqh+bay7604n6bXQ9RxIxQQYA+a1XJTi5TAKnbTt1zkaUgQbDZDVA==
+"@medusajs/payment-stripe@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/payment-stripe/-/payment-stripe-2.8.3.tgz#1b90bfe6ff7d5e09cb6ec7ebf0e3fe5f61dfb9af"
+  integrity sha512-LMvNlnv/VaqjkT3QsnXZnZGiauKDIcumZWMQqAzqpzq1pJP8asYgZBaGgVX/lhODVnEbFGXXkUrF34+/8hft3g==
   dependencies:
     stripe "^15.5.0"
 
-"@medusajs/payment@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/payment/-/payment-2.0.0.tgz#77ddb10fd0b3a2b37d7a62ac999572b9dcb323cc"
-  integrity sha512-VvNrLYW9+BZqc9jg+/zFHugHczwhRsjfpuqPpcYCdYW/NDRFTecVJ1E2d3ZAZZVRBlyUvIYGfc+6eS2TL1UL7Q==
+"@medusajs/payment@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/payment/-/payment-2.8.3.tgz#5e1dbbc1128f5223134dd73dec9280914b8d50b6"
+  integrity sha512-m4H1jgYUZhpN4CpSTTTcCFQ3gbKjoGLzxcB9tWMLvtGUiqp08N2SjeHf3yJdX+rmLuysPNx0iCfabVFEXl7ntQ==
 
-"@medusajs/pricing@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/pricing/-/pricing-2.0.0.tgz#94cfa223a0b9ede3fa8253cd4884ed274e3e473e"
-  integrity sha512-qTpbe/cTkZqqjc4U/KNpqlWQrGOhixC+VfbTXwBqD8MWDl4pjkZ1Gre/O4ZLfOigskEt0v4HGRRCAqO+pR+EeQ==
+"@medusajs/pricing@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/pricing/-/pricing-2.8.3.tgz#4af67dc49dbfa59cbf0d009de92f7eb50d1808eb"
+  integrity sha512-cxDd72EOx7EdTQen8ggSnvZQekmMWCROYRxyDyDqrJ4C0EGUHISpOcR7ifutemKV+ZzZHB+coB4PPWUAdhp9pg==
 
-"@medusajs/product@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/product/-/product-2.0.0.tgz#85c60c23bd76d1a76f12146c942c9bf02a2ea306"
-  integrity sha512-KjUfmuMig8rIL0+dMGwKG8LMD13o/D73/OEuS0Q13IK5YfFzun+RBirC6z2W5P3jaHS+hHp97NehuWuT/9Tbdw==
+"@medusajs/product@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/product/-/product-2.8.3.tgz#60238c95a43c9947d6887c1ac15b301766ca78bb"
+  integrity sha512-flkmFz4bjM3tg6EhsrJzTwiIL8N2eesJoQd5E31OuVtVLtQnMmskyZ8yPXSHXetyLMdTTQ1eJTeS3x0ySFlGxw==
 
-"@medusajs/promotion@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/promotion/-/promotion-2.0.0.tgz#6895077ce288b09d2d4316acd9cdc10a1191f7e1"
-  integrity sha512-/BEXxTwQqs4o642TZIuYCeiGDKaIMEvVTd9YRQHhz3J5gXTfyl164f5vxOtfQETxfBPYH9TCpjjzqqj8Jxb7OA==
+"@medusajs/promotion@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/promotion/-/promotion-2.8.3.tgz#64425b1541a78f274933abee99784cc6479b2e02"
+  integrity sha512-akri9JeGh9AiHmpn9fVw5W8agdITOdJ/HEyDR5j0Ulcz63pMraBnkQC3XxMTouK4hrVkFPwHeGp81mWawGy28Q==
 
-"@medusajs/region@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/region/-/region-2.0.0.tgz#4fecaee175ffdd383714185a9024eebcf4d08aaf"
-  integrity sha512-eqzAqDxyTpm2axqxzsQmvYBpAMvg5Sg5s8iYS9TOUqMBQu2qiuM2Ca+DGSnqa+5fYfTu6KYjoRcJEmBtbvXMIA==
+"@medusajs/region@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/region/-/region-2.8.3.tgz#07cea3a8f1a68d5f9a494883d2282b8718c16b96"
+  integrity sha512-G6fQpBC330bb5Q/p2CjKwcbKQ55JTMNSzuM+gWxZeoCZD0oMT/RqcMWYkHtn6qAHcJ15HtwCLc+iGgPZ67FE/A==
 
-"@medusajs/sales-channel@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/sales-channel/-/sales-channel-2.0.0.tgz#01510952010f7bd5e9be903ef87e6d0e1921c18b"
-  integrity sha512-Aef3o439hkOhwDT8TElJTd55irdWQzLX0fgKo+oQTVYYe3E+Rv0Jj5kgyZ2YHDIUkoRIfoWQmgpa0QwkDExPwA==
+"@medusajs/sales-channel@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/sales-channel/-/sales-channel-2.8.3.tgz#cecf6fa737102c8bb5f72f5f48bae478d24572d4"
+  integrity sha512-uYh/4oq1e6qYhhtz6g6xoYohuZsGJtDE8+3dijsk6bvXnIZiRgEM/7sZaDpe3x+079wlj9Y/2r8BI0r+TCXbzw==
 
-"@medusajs/stock-location@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/stock-location/-/stock-location-2.0.0.tgz#bbce24f33652e7a2ebcbb4d1a847a1b4cee787ef"
-  integrity sha512-Nos+mohl5Argi0itVJcg1G6V98aVAdxYStitk8M4Udr9zOsIysKa+qDhIS84ejrUw7ouXzsjnosHFBlrUA+KRg==
+"@medusajs/stock-location@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/stock-location/-/stock-location-2.8.3.tgz#e35fb7e2cab296c522f20d72d2222af95145dc8e"
+  integrity sha512-kGyZGn+9BXgtMQDZiL6z4Qg1inhtHN77jdBY2JTGwR4qRzUQfrjqQuWEBsr7CQvaLUVW/NNZyrCt5rdhxthjqg==
 
-"@medusajs/store@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/store/-/store-2.0.0.tgz#540e87ab31b85a86f6e5481fb1971760d75d4074"
-  integrity sha512-Y0XPwtwWkygXfrUC3XnyHfluOxXk/TFwGshd1T+BAMbMbV38uiaofFmiEe2DQwXGE3jotZQD27P6yW1vwfL69A==
+"@medusajs/store@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/store/-/store-2.8.3.tgz#f7fe9ebc8ca80c2b18bffe11b7c91894b45ac926"
+  integrity sha512-/5MBK8402Yfzu/LxzFJwSgjklBXBBnucmxpDR1ZxwB6enZbhbhxTZsMrrh8ZtIdRP+4JgLImT/uVyvlxkkXdIQ==
 
-"@medusajs/tax@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/tax/-/tax-2.0.0.tgz#820ad8a86355e83c569e9b0b049a62c34a17cc63"
-  integrity sha512-l25scI3/B9McBFP5xcxc7hwI0P/1dmliAmr7X7TxtW7JFFwNHRoDfIngwyKsWBu9jrdujaTXLGE3ZcaYBzHhew==
+"@medusajs/tax@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/tax/-/tax-2.8.3.tgz#ea1b4812371716ca9ed5a9a038cd1abbe8f8621e"
+  integrity sha512-pbRvusdfhE5DLZynFMxkBgop0BkDndZI1vuKD1Z3JbwotMs+3AJ6ZPtS1RfpBtUgF06cyl8mZ9CWCEqnsRwn/g==
 
-"@medusajs/telemetry@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/telemetry/-/telemetry-2.0.0.tgz#42fbbbc6c50ea2b48fb50936ffe2cbf695be4c09"
-  integrity sha512-hq1q5XUFHeIRrSo0mprWte2lahhNNIZeetWsg6XUqRiKU1lfLetIyohNaijJKv96UYb5k8AbLn6CkWalST0zoQ==
+"@medusajs/telemetry@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/telemetry/-/telemetry-2.8.3.tgz#d7c92d222eed89bc65ca8cbc857a50f9eb27f6bb"
+  integrity sha512-FYjT5rflCsTz+1CIuNgBrw7blbZv7xs6iPDP5DAlSI1k7WUiV9jZzbycVBiVxMpbLG7i/daX0ohJaqFf5Y5MHg==
   dependencies:
     "@babel/runtime" "^7.22.10"
     axios "^0.21.4"
@@ -2428,10 +2482,10 @@
     remove-trailing-slash "^0.1.1"
     uuid "^8.3.2"
 
-"@medusajs/test-utils@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/test-utils/-/test-utils-2.0.0.tgz#e25a725b661b92c8155096dc783b51ad2f4961b9"
-  integrity sha512-ezgNs0oJcOnytzAFTY7jzAZmhVhE+S3RFNztx/f9b2R0ThtuHxom33++kspE+kyrJRo9mSCNpJK2kHfarCNZlg==
+"@medusajs/test-utils@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/test-utils/-/test-utils-2.8.3.tgz#c12da9cb305146fd568f1fedb0731a18c136108f"
+  integrity sha512-2JRlEpM27SHwwC/pk1rRydm8f0PLvI843CYE5im3oztnTSNZOysRMOr3EWQO0vlQ7Uf9Y73TmowsWAQ9BTUYKA==
   dependencies:
     "@types/express" "^4.17.17"
     axios "^0.21.4"
@@ -2439,62 +2493,50 @@
     get-port "^5.1.0"
     randomatic "^3.1.1"
 
-"@medusajs/types@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/types/-/types-2.0.0.tgz#ff2b39b69c9d78f5548264baa9f5f24ad47e25bf"
-  integrity sha512-tgjg0SdShHaKb48LVaxORRVvmCcZ58Y0Qj/cU1kv67jscKVuDRXFRgxtnGFJ5XblJkJXJOphSOVsO6U51lMYgg==
+"@medusajs/types@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/types/-/types-2.8.3.tgz#8013d89a69fe94453fc596ed42cd0682e3b9c13b"
+  integrity sha512-VCgoyYM9yMY9U7EcejerhniVzG0+ZETQhi30Ho8ifrH+I0KnecB3i99vP2dD6pOzbPj7XrbK+KzItBi80o9yqQ==
   dependencies:
     bignumber.js "^9.1.2"
 
-"@medusajs/ui@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/ui/-/ui-4.0.0.tgz#2a63e73ced575ed57c6dfdf6fd468b1a27260c98"
-  integrity sha512-Y3Cz+Edp1h2bwwTLBoWIZBVHHEe8oV9ve/6c+pKFhujnRVamEd2GI+es2sfel8yUz05xKxM15Dnt1Ph9JNFrig==
+"@medusajs/ui@4.0.13":
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/@medusajs/ui/-/ui-4.0.13.tgz#16d2e03b1d4080d900bd356f03292e121a467e41"
+  integrity sha512-9ES1NCZqs290GHJYfm9HDrGvR0lvGXmuY50mZ3FwrcI5mjhVsAd6YRrFO2gFEpoHaNIVdcqApTPSjIyxGANUvA==
   dependencies:
-    "@medusajs/icons" "^2.0.0"
-    "@radix-ui/react-accordion" "1.2.0"
-    "@radix-ui/react-alert-dialog" "1.1.1"
-    "@radix-ui/react-avatar" "1.1.0"
-    "@radix-ui/react-checkbox" "1.1.1"
-    "@radix-ui/react-dialog" "1.1.1"
-    "@radix-ui/react-dropdown-menu" "2.1.1"
-    "@radix-ui/react-label" "2.1.0"
-    "@radix-ui/react-popover" "1.1.1"
-    "@radix-ui/react-portal" "1.1.1"
-    "@radix-ui/react-radio-group" "1.2.0"
-    "@radix-ui/react-select" "2.1.1"
-    "@radix-ui/react-slot" "1.1.0"
-    "@radix-ui/react-switch" "1.1.0"
-    "@radix-ui/react-tabs" "1.1.0"
-    "@radix-ui/react-tooltip" "1.1.2"
+    "@medusajs/icons" "2.8.3"
+    "@tanstack/react-table" "8.20.5"
     clsx "^1.2.1"
     copy-to-clipboard "^3.3.3"
     cva "1.0.0-beta.1"
     prism-react-renderer "^2.0.6"
     prismjs "^1.29.0"
+    radix-ui "1.1.2"
     react-aria "^3.33.1"
     react-currency-input-field "^3.6.11"
     react-stately "^3.31.1"
     sonner "^1.5.0"
     tailwind-merge "^2.2.1"
 
-"@medusajs/user@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/user/-/user-2.0.0.tgz#e3f154349c0ae16551ad74c41b024aa04f3a06d9"
-  integrity sha512-7Yq5h+7XEj8+A0JuV+vKNN3K1ZoZE1y3rGtWrY8QEmcL4GEgBthM0N/1UF7CioYvhannY3RWkLJYpG52RZlygw==
+"@medusajs/user@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/user/-/user-2.8.3.tgz#66e985e55116045bf3781723f3cf936f58f01587"
+  integrity sha512-OUmraaLlDO2P4QWbBqJhQezYJzyFeHtxJ49uCs7UDAWbqJ5B1getxLxGJFZIKayA9FSGrymNnjYMDMfokAuBiw==
   dependencies:
     jsonwebtoken "^9.0.2"
 
-"@medusajs/utils@2.0.0", "@medusajs/utils@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/utils/-/utils-2.0.0.tgz#59b5df1be6c3a2c953ccc40f3d013b7bc751beb1"
-  integrity sha512-a1VWWmF+qzValgTDDL73iJN8koKLgG3rdudWxCJMSR2JjkduRUOHqn/x1wK7c1HTP1rhQIPMAi2Oa3+LxNdfRw==
+"@medusajs/utils@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/utils/-/utils-2.8.3.tgz#06c75b4afa6e25d83c1a7dd56750fa9b42c719ad"
+  integrity sha512-kg9ztQZIWiRpqv8joetb3I28CUVeERIDOthHhm3PeeVeA6XVqXWRudLzHMkBh08w0deToGQuYA+3YeoiKR0d3w==
   dependencies:
     "@graphql-codegen/core" "^4.0.2"
     "@graphql-codegen/typescript" "^4.0.9"
     "@graphql-tools/merge" "^9.0.7"
     "@graphql-tools/schema" "^10.0.6"
-    "@medusajs/types" "^2.0.0"
+    "@medusajs/types" "2.8.3"
+    "@types/pluralize" "^0.0.33"
     bignumber.js "^9.1.2"
     dotenv "^16.4.5"
     dotenv-expand "^11.0.6"
@@ -2503,86 +2545,89 @@
     pg-connection-string "^2.7.0"
     pluralize "^8.0.0"
     ulid "^2.3.0"
+    zod "3.22.4"
 
-"@medusajs/workflow-engine-inmemory@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/workflow-engine-inmemory/-/workflow-engine-inmemory-2.0.0.tgz#9c178a862e3cddcf40afc18c86a24eabcef71c2d"
-  integrity sha512-u2MBIXXpYxM3ZZEdAvaJIdgsp/KVG1efykTKfSaiNS6DC1QVvmJtI14zISD9mv3NQ/JYH8tsxgHhh1LdcttQNA==
+"@medusajs/workflow-engine-inmemory@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/workflow-engine-inmemory/-/workflow-engine-inmemory-2.8.3.tgz#e7f35386e08bb51794960c54b79c3a6b3c6b99eb"
+  integrity sha512-pi10eAOY9UcieCJpeYWaKNAQXvyBCpVqCU4/bs7megF9Y2x+u4Ljas1KJ6O59D2Wb0fKfrKYnMbiaNq+wHQsEA==
   dependencies:
     cron-parser "^4.9.0"
     ulid "^2.3.0"
 
-"@medusajs/workflow-engine-redis@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/workflow-engine-redis/-/workflow-engine-redis-2.0.0.tgz#c97171f59a63d9d7ebc9a08afb09660984d52ffe"
-  integrity sha512-5IrYuZIESQ3OudY2SykHiaiNP8UwhIRbjOutZXUQ9CkOUf5kJ4ySIZewl4xLCTsOBQVgjqdOPcyikfIz6JJc/w==
+"@medusajs/workflow-engine-redis@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/workflow-engine-redis/-/workflow-engine-redis-2.8.3.tgz#467218012a9ced80b0bb7328708ce7c43b0ba71b"
+  integrity sha512-9xQiWE2jDCZ7WDCI+YglSYBnkxnH9Ul2IsYJJaUqKLVmxQRST0SYl8tGIhn1K9CgqlWe3LWVC46J6I6QvN/Jdw==
   dependencies:
     bullmq "5.13.0"
     ioredis "^5.4.1"
     ulid "^2.3.0"
 
-"@medusajs/workflows-sdk@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@medusajs/workflows-sdk/-/workflows-sdk-2.0.0.tgz#66b5a4388129f14aca0ccc2fb780ec1783224389"
-  integrity sha512-Y+WGNZeXiWOEjdYMzb6EMmSwp+k1/NuEEhEiftnuv4x6AbEaygkwr1ujA1Ii0TfyJPe2GTuASfbq3Tpv8iAZQw==
+"@medusajs/workflows-sdk@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@medusajs/workflows-sdk/-/workflows-sdk-2.8.3.tgz#922f4655bcecf280b9204a309e8531ba8180e6e8"
+  integrity sha512-kZcXSaB9yVvZBGUovofms6bc9G0z06arHcbGq0kCHSES+I8bm8H4t4Dbb65oJkYVyT95FPfB1cgocOOAhD21wQ==
   dependencies:
-    "@medusajs/modules-sdk" "^2.0.0"
-    "@medusajs/orchestration" "^2.0.0"
-    "@medusajs/types" "^2.0.0"
-    "@medusajs/utils" "^2.0.0"
+    "@medusajs/modules-sdk" "2.8.3"
+    "@medusajs/orchestration" "2.8.3"
+    "@medusajs/types" "2.8.3"
+    "@medusajs/utils" "2.8.3"
     ulid "^2.3.0"
 
-"@mikro-orm/cli@5.9.7":
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-5.9.7.tgz#8b76fe23cb51ecb6eda34c815167794dc86f69fd"
-  integrity sha512-RHMep4lOFRqniz3m97/JXl5DNFhZbGMpTtjw6C1ITYI9ZwWsSZbfBUTGy+PQTZKl9OinFoyR6E/Os/gj8y+NUg==
+"@mikro-orm/cli@6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-6.4.3.tgz#d88855cb0be5cb67c3eecd81c23f6f2f3b6ea8a5"
+  integrity sha512-DWnYNxoyMgU6L90TGBlT0eziTu6yl15ArnnFoq0kyOjp8JEMRjin+8cizSrKyQ3QiQZ5iop5fB0i9Sp+Hbgd8Q==
   dependencies:
     "@jercle/yargonaut" "1.1.5"
-    "@mikro-orm/core" "5.9.7"
-    "@mikro-orm/knex" "5.9.7"
-    fs-extra "11.1.1"
+    "@mikro-orm/core" "6.4.3"
+    "@mikro-orm/knex" "6.4.3"
+    fs-extra "11.2.0"
     tsconfig-paths "4.2.0"
     yargs "17.7.2"
 
-"@mikro-orm/core@5.9.7":
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-5.9.7.tgz#fe35c8790c49684833fc77b3328384781a08e701"
-  integrity sha512-VzbpJPQlwuK6Q/4FkppWNGKvzyYL31Gsw/qskr/GCa/010yLO8u3RQio/Q1EKRi+tNsjhqTPGA1b7OOM+DvpiQ==
+"@mikro-orm/core@6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-6.4.3.tgz#6417a984011a50eb057825a163b78de0954f621b"
+  integrity sha512-UTaqKs1bomYtGmEEZ8sNBOmW2OqT5NcMh+pBV2iJ6WLM5MuiIEuNhDMuvvPE5gNEwUzc1HyRhUV87bRDhDIGRg==
   dependencies:
-    acorn-loose "8.3.0"
-    acorn-walk "8.2.0"
-    dotenv "16.3.1"
-    fs-extra "11.1.1"
+    dataloader "2.2.3"
+    dotenv "16.4.7"
+    esprima "4.0.1"
+    fs-extra "11.2.0"
     globby "11.1.0"
-    mikro-orm "5.9.7"
-    reflect-metadata "0.1.13"
+    mikro-orm "6.4.3"
+    reflect-metadata "0.2.2"
 
-"@mikro-orm/knex@5.9.7":
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/knex/-/knex-5.9.7.tgz#41a5f0cc04f9b4da4d61dabaadb45d18c0c44334"
-  integrity sha512-LmyoXPXrEtTJ4/D/2/ppWMjRxIHwyk/E/2SNz28/fmN+nK9of6Sqa0ql6M0WJRNxYOxLiVOGZWy1fGJAGW3lCg==
+"@mikro-orm/knex@6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/knex/-/knex-6.4.3.tgz#b7501bf50a56be0e3b643370ada965db848a213f"
+  integrity sha512-gVkRD/cIn6qxk/P9nR+IufZxJwuCCdv0AtcGvShxXXvaoIrQPJYDV7HRxBOHCEyNygr6M3Fqpph1oPoT6aezTQ==
   dependencies:
-    fs-extra "11.1.1"
-    knex "2.5.1"
+    fs-extra "11.2.0"
+    knex "3.1.0"
     sqlstring "2.3.3"
 
-"@mikro-orm/migrations@5.9.7":
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-5.9.7.tgz#d0ca7d7c2a8b14438991933a0feaadc54dbf4f99"
-  integrity sha512-5CFVIwmGMxN7p7Rs3KRQmYlDVy47DN2MJQqtDOSVG9ww0xzOP0suCLDA/yRG1uFcPnTn/Ru6lwAH6nllqV75FQ==
+"@mikro-orm/migrations@6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-6.4.3.tgz#da4a0aa6078ea3d9388675b43f25605688d1d226"
+  integrity sha512-VrsKq95esUBEMhwp9vVX+YUj2+/cNwb8UZ63HfgaqPo+pYj8r1RBSTboFOE9V0Md0n3ol9b5xByfPPa3qHmL0g==
   dependencies:
-    "@mikro-orm/knex" "5.9.7"
-    fs-extra "11.1.1"
-    knex "2.5.1"
-    umzug "3.3.1"
+    "@mikro-orm/knex" "6.4.3"
+    fs-extra "11.2.0"
+    umzug "3.8.2"
 
-"@mikro-orm/postgresql@5.9.7":
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-5.9.7.tgz#875f99f33e911460b727cbe81c9f62ca29ccc027"
-  integrity sha512-GbWWR/1QWjqTx10I4bjvMQjSN1SDVgNcQYm0kiY54sGvRxOqam55aiwA3Hb9Jp4myyKufKfDjAU0lCFmlpTWyQ==
+"@mikro-orm/postgresql@6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-6.4.3.tgz#4a4a4efe4856ba8ce4f366ca0d1b7aa0df0e7b39"
+  integrity sha512-3cGi1gW6ME3SyuRRiJmSBtzHFa6Kavy6bK9rsSAAfXz+Pso6UBsqvesATbruKxDF7/CLdQlIY3CZZHXksUIrQg==
   dependencies:
-    "@mikro-orm/knex" "5.9.7"
-    pg "8.11.3"
+    "@mikro-orm/knex" "6.4.3"
+    pg "8.13.1"
+    postgres-array "3.0.2"
+    postgres-date "2.1.0"
+    postgres-interval "4.0.2"
 
 "@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3":
   version "3.0.3"
@@ -2784,92 +2829,106 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/primitive@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/primitive/-/primitive-1.1.0.tgz#42ef83b3b56dccad5d703ae8c42919a68798bbe2"
-  integrity sha512-4Z8dn6Upk0qk4P74xBhZ6Hd/w0mPEzOOLxy4xiPXOXqjF7jZS0VAKk7/x/H6FyY2zCkYJqePf1G5KmkmNJ4RBA==
+"@radix-ui/primitive@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/primitive/-/primitive-1.1.1.tgz#fc169732d755c7fbad33ba8d0cd7fd10c90dc8e3"
+  integrity sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==
 
-"@radix-ui/react-accordion@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.2.0.tgz#aed0770fcb16285db992d81873ccd7a014c7f17d"
-  integrity sha512-HJOzSX8dQqtsp/3jVxCU3CXEONF7/2jlGAB28oX8TTw1Dz8JYbEI1UcL8355PuLBE41/IRRMvCw7VkiK/jcUOQ==
+"@radix-ui/react-accessible-icon@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-accessible-icon/-/react-accessible-icon-1.1.1.tgz#e34754ab037100d9124318c28af050a6d49cb44f"
+  integrity sha512-DH8vuU7oqHt9RhO3V9Z1b8ek+bOl4+9VLsh0cgL6t7f2WhbuOChm3ft0EmCCsfd4ORi7Cs3II4aNcTXi+bh+wg==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-collapsible" "1.1.0"
-    "@radix-ui/react-collection" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/react-visually-hidden" "1.1.1"
+
+"@radix-ui/react-accordion@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.2.2.tgz#96ac3de896189553219e342d5e773589eb119dce"
+  integrity sha512-b1oh54x4DMCdGsB4/7ahiSrViXxaBwRPotiZNnYXjLha9vfuURSAZErki6qjDoSIV0eXx5v57XnTGVtGwnfp2g==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collapsible" "1.1.2"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
 
-"@radix-ui/react-alert-dialog@1.1.1":
+"@radix-ui/react-alert-dialog@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-alert-dialog/-/react-alert-dialog-1.1.5.tgz#d937512a727d8b7afa8959d43dbd7e557d52a1eb"
+  integrity sha512-1Y2sI17QzSZP58RjGtrklfSGIf3AF7U/HkD3aAcAnhOUJrm7+7GG1wRDFaUlSe0nW5B/t4mYd/+7RNbP2Wexug==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dialog" "1.1.5"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
+
+"@radix-ui/react-arrow@1.1.1":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-alert-dialog/-/react-alert-dialog-1.1.1.tgz#f49c987b9e4f2bf37005b3864933e2b3beac907a"
-  integrity sha512-wmCoJwj7byuVuiLKqDLlX7ClSUU0vd9sdCeM+2Ls+uf13+cpSJoMgwysHq1SGVVkJj5Xn0XWi1NoRCdkMpr6Mw==
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-arrow/-/react-arrow-1.1.1.tgz#2103721933a8bfc6e53bbfbdc1aaad5fc8ba0dd7"
+  integrity sha512-NaVpZfmv8SKeZbn4ijN2V3jlHA9ngBG16VnIIm22nUR0Yk8KUALyBxT3KYEUnNuch9sTE8UTsS3whzBgKOL30w==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-dialog" "1.1.1"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
 
-"@radix-ui/react-arrow@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-arrow/-/react-arrow-1.1.0.tgz#744f388182d360b86285217e43b6c63633f39e7a"
-  integrity sha512-FmlW1rCg7hBpEBwFbjHwCW6AmWLQM6g/v0Sn8XbP9NvmSZ2San1FpQeyPtufzOMSIx7Y4dzjlHoifhp+7NkZhw==
+"@radix-ui/react-aspect-ratio@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-aspect-ratio/-/react-aspect-ratio-1.1.1.tgz#95d7692e61bab5eb7fec91f241ea993899593313"
+  integrity sha512-kNU4FIpcFMBLkOUcgeIteH06/8JLBcYY6Le1iKenDGCYNYFX3TQqCZjzkOsz37h7r94/99GTb7YhEr98ZBJibw==
   dependencies:
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-primitive" "2.0.1"
 
-"@radix-ui/react-avatar@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-avatar/-/react-avatar-1.1.0.tgz#457c81334c93f4608df15f081e7baa286558d6a2"
-  integrity sha512-Q/PbuSMk/vyAd/UoIShVGZ7StHHeRFYU7wXmi5GV+8cLXflZAEpHL/F697H1klrzxKXNtZ97vWiC0q3RKUH8UA==
+"@radix-ui/react-avatar@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-avatar/-/react-avatar-1.1.2.tgz#24af4c66bb5271460a4a6b74c4f4f9d4789d3d90"
+  integrity sha512-GaC7bXQZ5VgZvVvsJ5mu/AEbjYLnhhkoidOboC50Z6FFlLA03wG2ianUoH+zgDQ31/9gCF59bE4+2bBgTyMiig==
   dependencies:
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-layout-effect" "1.1.0"
 
-"@radix-ui/react-checkbox@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-checkbox/-/react-checkbox-1.1.1.tgz#a559c4303957d797acee99914480b755aa1f27d6"
-  integrity sha512-0i/EKJ222Afa1FE0C6pNJxDq1itzcl3HChE9DwskA4th4KRse8ojx8a1nVcOjwJdbpDLcz7uol77yYnQNMHdKw==
+"@radix-ui/react-checkbox@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-checkbox/-/react-checkbox-1.1.3.tgz#0e2ab913fddf3c88603625f7a9457d73882c8a32"
+  integrity sha512-HD7/ocp8f1B3e6OHygH0n7ZKjONkhciy1Nh0yuBgObqThc3oyx+vuMfFHKAknXRHHWVE9XvXStxJFyjUmB8PIw==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
     "@radix-ui/react-use-previous" "1.1.0"
     "@radix-ui/react-use-size" "1.1.0"
 
-"@radix-ui/react-collapsible@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-collapsible/-/react-collapsible-1.1.0.tgz#4d49ddcc7b7d38f6c82f1fd29674f6fab5353e77"
-  integrity sha512-zQY7Epa8sTL0mq4ajSJpjgn2YmCgyrG7RsQgLp3C0LQVkG7+Tf6Pv1CeNWZLyqMjhdPkBa5Lx7wYBeSu7uCSTA==
+"@radix-ui/react-collapsible@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-collapsible/-/react-collapsible-1.1.2.tgz#42477c428bb0d2eec35b9b47601c5ff0a6210165"
+  integrity sha512-PliMB63vxz7vggcyq0IxNYk8vGDrLXVWw4+W4B8YnwI1s18x7YZYqlG9PLX7XxAJUi0g2DxP4XKJMFHh/iVh9A==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
     "@radix-ui/react-use-layout-effect" "1.1.0"
 
-"@radix-ui/react-collection@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-collection/-/react-collection-1.1.0.tgz#f18af78e46454a2360d103c2251773028b7724ed"
-  integrity sha512-GZsZslMJEyo1VKm5L1ZJY8tGDxZNPAoUeQUIbKeJfoi7Q4kmig5AsgLMYYuyYbfjd8fBmFORAIwYAkXMnXZgZw==
+"@radix-ui/react-collection@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-collection/-/react-collection-1.1.1.tgz#be2c7e01d3508e6d4b6d838f492e7d182f17d3b0"
+  integrity sha512-LwT3pSho9Dljg+wY2KN2mrrh6y3qELfftINERIzBUO9e0N+t0oMTyn3k9iv+ZqgrwGkRnLpNJrsMv9BZlt2yuA==
   dependencies:
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
 
 "@radix-ui/react-compose-refs@1.0.0":
   version "1.0.0"
@@ -2878,10 +2937,22 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/react-compose-refs@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-compose-refs/-/react-compose-refs-1.1.0.tgz#656432461fc8283d7b591dcf0d79152fae9ecc74"
-  integrity sha512-b4inOtiaOnYf9KWyO3jAeeCG6FeyfY6ldiEPanbUjWd+xIk5wZeHa8yVwmrJ2vderhu/BQvzCrJI0lHd+wIiqw==
+"@radix-ui/react-compose-refs@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-compose-refs/-/react-compose-refs-1.1.1.tgz#6f766faa975f8738269ebb8a23bad4f5a8d2faec"
+  integrity sha512-Y9VzoRDSJtgFMUCoiZBDVo084VQ5hfpXxVE+NgkdNsjiDBByiImMZKKhxMwCbdHvhlENG6a833CbFkOQvTricw==
+
+"@radix-ui/react-context-menu@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-context-menu/-/react-context-menu-2.2.5.tgz#56eec9d96c6b27fb37a5e08f62caf2e263e29d4b"
+  integrity sha512-MY5PFCwo/ICaaQtpQBQ0g19AyjzI0mhz+a2GUWA2pJf4XFkvglAdcgDV2Iqm+lLbXn8hb+6rbLgcmRtc6ImPvg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-menu" "2.1.5"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
 
 "@radix-ui/react-context@1.0.0":
   version "1.0.0"
@@ -2890,10 +2961,10 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/react-context@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-context/-/react-context-1.1.0.tgz#6df8d983546cfd1999c8512f3a8ad85a6e7fcee8"
-  integrity sha512-OKrckBy+sMEgYM/sMmqmErVn0kZqrHPJze+Ql3DzYsDDp0hl0L62nx/2122/Bvps1qz645jlcu2tD9lrRSdf8A==
+"@radix-ui/react-context@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-context/-/react-context-1.1.1.tgz#82074aa83a472353bb22e86f11bcbd1c61c4c71a"
+  integrity sha512-UASk9zi+crv9WteK/NU4PLvOoL3OuE6BWVKNF6hPRBtYBDXQ2u5iu3O59zUlJiTVvkyuycnqrztsHVJwcK9K+Q==
 
 "@radix-ui/react-dialog@1.0.0":
   version "1.0.0"
@@ -2916,25 +2987,25 @@
     aria-hidden "^1.1.1"
     react-remove-scroll "2.5.4"
 
-"@radix-ui/react-dialog@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-1.1.1.tgz#4906507f7b4ad31e22d7dad69d9330c87c431d44"
-  integrity sha512-zysS+iU4YP3STKNS6USvFVqI4qqx8EpiwmT5TuCApVEBca+eRCbONi4EgzfNSuVnOXvC5UPHHMjs8RXO6DH9Bg==
+"@radix-ui/react-dialog@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-1.1.5.tgz#1bb2880e6b0ef9d9d0d9f440e1414c94bbacb55b"
+  integrity sha512-LaO3e5h/NOEL4OfXjxD43k9Dx+vn+8n+PCFt6uhX/BADFflllyv3WJG6rgvvSVBxpTch938Qq/LGc2MMxipXPw==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-dismissable-layer" "1.1.0"
-    "@radix-ui/react-focus-guards" "1.1.0"
-    "@radix-ui/react-focus-scope" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-portal" "1.1.1"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
-    aria-hidden "^1.1.1"
-    react-remove-scroll "2.5.7"
+    aria-hidden "^1.2.4"
+    react-remove-scroll "^2.6.2"
 
 "@radix-ui/react-direction@1.1.0":
   version "1.1.0"
@@ -2953,28 +3024,28 @@
     "@radix-ui/react-use-callback-ref" "1.0.0"
     "@radix-ui/react-use-escape-keydown" "1.0.0"
 
-"@radix-ui/react-dismissable-layer@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-dismissable-layer/-/react-dismissable-layer-1.1.0.tgz#2cd0a49a732372513733754e6032d3fb7988834e"
-  integrity sha512-/UovfmmXGptwGcBQawLzvn2jOfM0t4z3/uKffoBlj724+n3FvBbZ7M0aaBOmkp6pqFYpO4yx8tSVJjx3Fl2jig==
+"@radix-ui/react-dismissable-layer@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dismissable-layer/-/react-dismissable-layer-1.1.4.tgz#6e31ad92e7d9e77548001fd8c04f8561300c02a9"
+  integrity sha512-XDUI0IVYVSwjMXxM6P4Dfti7AH+Y4oS/TB+sglZ/EXc7cqLwGAmp1NlMrcUjj7ks6R5WTZuWKv44FBbLpwU3sA==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-escape-keydown" "1.1.0"
 
-"@radix-ui/react-dropdown-menu@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-2.1.1.tgz#3dc578488688250dbbe109d9ff2ca28a9bca27ec"
-  integrity sha512-y8E+x9fBq9qvteD2Zwa4397pUVhYsh9iq44b5RD5qu1GMJWBCBuVg1hMyItbc6+zH00TxGRqd9Iot4wzf3OoBQ==
+"@radix-ui/react-dropdown-menu@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-2.1.5.tgz#82293e6a7572f77c18f3aebb943676019a7872da"
+  integrity sha512-50ZmEFL1kOuLalPKHrLWvPFMons2fGx9TqQCWlPwDVpbAnaUJ1g4XNcKqFNMQymYU0kKWR4MDDi+9vUQBGFgcQ==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-menu" "2.1.1"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-menu" "2.1.5"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
 
 "@radix-ui/react-focus-guards@1.0.0":
@@ -2984,10 +3055,10 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/react-focus-guards@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-guards/-/react-focus-guards-1.1.0.tgz#8e9abb472a9a394f59a1b45f3dd26cfe3fc6da13"
-  integrity sha512-w6XZNUPVv6xCpZUqb/yN9DL6auvpGX3C/ee6Hdi16v2UUy25HV2Q5bcflsiDyT/g5RwbPQ/GIT1vLkeRb+ITBw==
+"@radix-ui/react-focus-guards@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-guards/-/react-focus-guards-1.1.1.tgz#8635edd346304f8b42cae86b05912b61aef27afe"
+  integrity sha512-pSIwfrT1a6sIoDASCSpFwOasEwKTZWDw/iBdtnqKO7v6FeOzYJ7U53cPzYFVR3geGGXgVHaH+CdngrrAzqUGxg==
 
 "@radix-ui/react-focus-scope@1.0.0":
   version "1.0.0"
@@ -2999,14 +3070,41 @@
     "@radix-ui/react-primitive" "1.0.0"
     "@radix-ui/react-use-callback-ref" "1.0.0"
 
-"@radix-ui/react-focus-scope@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-scope/-/react-focus-scope-1.1.0.tgz#ebe2891a298e0a33ad34daab2aad8dea31caf0b2"
-  integrity sha512-200UD8zylvEyL8Bx+z76RJnASR2gRMuxlgFCPAe/Q/679a/r0eK3MBVYMb7vZODZcffZBdob1EGnky78xmVvcA==
+"@radix-ui/react-focus-scope@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-scope/-/react-focus-scope-1.1.1.tgz#5c602115d1db1c4fcfa0fae4c3b09bb8919853cb"
+  integrity sha512-01omzJAYRxXdG2/he/+xy+c8a8gCydoQ1yOxnWNcRhrrBW5W+RQJ22EK1SaO8tb3WoUsuEw7mJjBozPzihDFjA==
   dependencies:
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
+
+"@radix-ui/react-form@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-form/-/react-form-0.1.1.tgz#eb9241a02f8d43f3a7e9cb448ab99a5926a29690"
+  integrity sha512-Ah2TBvzl2trb4DL9DQtyUJgAUfq/djMN7j5CHzdpbdR3W7OL8N4JcJgE80cXMf3ssCE+8yg0zFQoJ0srxqfsFA==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-label" "2.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+
+"@radix-ui/react-hover-card@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-hover-card/-/react-hover-card-1.1.5.tgz#3dde89522539af74aa6a6329f43d45e187d008ac"
+  integrity sha512-0jPlX3ZrUIhtMAY0m1SBn1koI4Yqsizq2UwdUiQF1GseSZLZBPa6b8tNS+m32K94Yb4wxtWFSQs85wujQvwahg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
 
 "@radix-ui/react-id@1.0.0":
   version "1.0.0"
@@ -3023,68 +3121,104 @@
   dependencies:
     "@radix-ui/react-use-layout-effect" "1.1.0"
 
-"@radix-ui/react-label@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-label/-/react-label-2.1.0.tgz#3aa2418d70bb242be37c51ff5e51a2adcbc372e3"
-  integrity sha512-peLblDlFw/ngk3UWq0VnYaOLy6agTZZ+MUO/WhVfm14vJGML+xH4FAl2XQGLqdefjNb7ApRg6Yn7U42ZhmYXdw==
-  dependencies:
-    "@radix-ui/react-primitive" "2.0.0"
-
-"@radix-ui/react-menu@2.1.1":
+"@radix-ui/react-label@2.1.1":
   version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-menu/-/react-menu-2.1.1.tgz#bd623ace0e1ae1ac78023a505fec0541d59fb346"
-  integrity sha512-oa3mXRRVjHi6DZu/ghuzdylyjaMXLymx83irM7hTxutQbD+7IhPKdMdRHD26Rm+kHRrWcrUkkRPv5pd47a2xFQ==
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-label/-/react-label-2.1.1.tgz#f30bd577b26873c638006e4f65761d4c6b80566d"
+  integrity sha512-UUw5E4e/2+4kFMH7+YxORXGWggtY6sM8WIwh5RZchhLuUg2H1hc98Py+pr8HMz6rdaYrK2t296ZEjYLOCO5uUw==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-collection" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
+
+"@radix-ui/react-menu@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-menu/-/react-menu-2.1.5.tgz#0c2e7a368771b6061e7f3692f18240917547ef7f"
+  integrity sha512-uH+3w5heoMJtqVCgYOtYVMECk1TOrkUn0OG0p5MqXC0W2ppcuVeESbou8PTHoqAjbdTEK19AGXBWcEtR5WpEQg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
-    "@radix-ui/react-dismissable-layer" "1.1.0"
-    "@radix-ui/react-focus-guards" "1.1.0"
-    "@radix-ui/react-focus-scope" "1.1.0"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-popper" "1.2.0"
-    "@radix-ui/react-portal" "1.1.1"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-roving-focus" "1.1.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
+    "@radix-ui/react-slot" "1.1.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
-    aria-hidden "^1.1.1"
-    react-remove-scroll "2.5.7"
+    aria-hidden "^1.2.4"
+    react-remove-scroll "^2.6.2"
 
-"@radix-ui/react-popover@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.1.1.tgz#604b783cdb3494ed4f16a58c17f0e81e61ab7775"
-  integrity sha512-3y1A3isulwnWhvTTwmIreiB8CF4L+qRjZnK1wYLO7pplddzXKby/GnZ2M7OZY3qgnl6p9AodUIHRYGXNah8Y7g==
+"@radix-ui/react-menubar@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-menubar/-/react-menubar-1.1.5.tgz#eaf7ffb507c27a6db8d5fc68d8dcc0e2e1013eb5"
+  integrity sha512-Kzbpcf2bxUmI/G+949+LvSvGkyzIaY7ctb8loydt6YpJR8pQF+j4QbVhYvjs7qxaWK0DEJL3XbP2p46YPRkS3A==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-dismissable-layer" "1.1.0"
-    "@radix-ui/react-focus-guards" "1.1.0"
-    "@radix-ui/react-focus-scope" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-popper" "1.2.0"
-    "@radix-ui/react-portal" "1.1.1"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-menu" "2.1.5"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
-    aria-hidden "^1.1.1"
-    react-remove-scroll "2.5.7"
 
-"@radix-ui/react-popper@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-popper/-/react-popper-1.2.0.tgz#a3e500193d144fe2d8f5d5e60e393d64111f2a7a"
-  integrity sha512-ZnRMshKF43aBxVWPWvbj21+7TQCvhuULWJ4gNIKYpRlQt5xGRhLx66tMp8pya2UkGHTSlhpXwmjqltDYHhw7Vg==
+"@radix-ui/react-navigation-menu@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-navigation-menu/-/react-navigation-menu-1.2.4.tgz#aba3ac0d343b1842924fdaf403d8922240fcfef6"
+  integrity sha512-wUi01RrTDTOoGtjEPHsxlzPtVzVc3R/AZ5wfh0dyqMAqolhHAHvG5iQjBCTi2AjQqa77FWWbA3kE3RkD+bDMgQ==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-use-previous" "1.1.0"
+    "@radix-ui/react-visually-hidden" "1.1.1"
+
+"@radix-ui/react-popover@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.1.5.tgz#d5ad80f0643368e4ed680832c819b4fb47a1fce5"
+  integrity sha512-YXkTAftOIW2Bt3qKH8vYr6n9gCkVrvyvfiTObVjoHVTHnNj26rmvO87IKa3VgtgCjb8FAQ6qOjNViwl+9iIzlg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    aria-hidden "^1.2.4"
+    react-remove-scroll "^2.6.2"
+
+"@radix-ui/react-popper@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popper/-/react-popper-1.2.1.tgz#2fc66cfc34f95f00d858924e3bee54beae2dff0a"
+  integrity sha512-3kn5Me69L+jv82EKRuQCXdYyf1DqHwD2U/sxoNgBGCB7K9TRc3bQamQ+5EPM9EvyPdli0W41sROd+ZU1dTCztw==
   dependencies:
     "@floating-ui/react-dom" "^2.0.0"
-    "@radix-ui/react-arrow" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-arrow" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-layout-effect" "1.1.0"
     "@radix-ui/react-use-rect" "1.1.0"
@@ -3099,12 +3233,12 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.0"
 
-"@radix-ui/react-portal@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-portal/-/react-portal-1.1.1.tgz#1957f1eb2e1aedfb4a5475bd6867d67b50b1d15f"
-  integrity sha512-A3UtLk85UtqhzFqtoC8Q0KvR2GbXF3mtPgACSazajqq6A41mEQgo53iPzY4i6BwDxlIFqWIhiQ2G729n+2aw/g==
+"@radix-ui/react-portal@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-portal/-/react-portal-1.1.3.tgz#b0ea5141103a1671b715481b13440763d2ac4440"
+  integrity sha512-NciRqhXnGojhT93RPyDaMPfLH3ZSl4jjIFbZQ1b/vxvZEdHsBZ49wP9w8L3HzUQwep01LcWtkUvm0OVB5JAHTw==
   dependencies:
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-layout-effect" "1.1.0"
 
 "@radix-ui/react-presence@1.0.0":
@@ -3116,12 +3250,12 @@
     "@radix-ui/react-compose-refs" "1.0.0"
     "@radix-ui/react-use-layout-effect" "1.0.0"
 
-"@radix-ui/react-presence@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-presence/-/react-presence-1.1.0.tgz#227d84d20ca6bfe7da97104b1a8b48a833bfb478"
-  integrity sha512-Gq6wuRN/asf9H/E/VzdKoUtT8GC9PQc9z40/vEr0VCJ4u5XvvhWIrSsCB6vD2/cH7ugTdSfYq9fLJCcM00acrQ==
+"@radix-ui/react-presence@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-presence/-/react-presence-1.1.2.tgz#bb764ed8a9118b7ec4512da5ece306ded8703cdc"
+  integrity sha512-18TFr80t5EVgL9x1SwF/YGtfG+l0BS0PRAlCWBDoBEiDQjeKgnNZRVJp/oVBl24sr3Gbfwc/Qpj4OcWTQMsAEg==
   dependencies:
-    "@radix-ui/react-compose-refs" "1.1.0"
+    "@radix-ui/react-compose-refs" "1.1.1"
     "@radix-ui/react-use-layout-effect" "1.1.0"
 
 "@radix-ui/react-primitive@1.0.0":
@@ -3132,70 +3266,117 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-slot" "1.0.0"
 
-"@radix-ui/react-primitive@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-primitive/-/react-primitive-2.0.0.tgz#fe05715faa9203a223ccc0be15dc44b9f9822884"
-  integrity sha512-ZSpFm0/uHa8zTvKBDjLFWLo8dkr4MBsiDLz0g3gMUwqgLHz9rTaRRGYDgvZPtBJgYCBKXkS9fzmoySgr8CO6Cw==
+"@radix-ui/react-primitive@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-primitive/-/react-primitive-2.0.1.tgz#6d9efc550f7520135366f333d1e820cf225fad9e"
+  integrity sha512-sHCWTtxwNn3L3fH8qAfnF3WbUZycW93SM1j3NFDzXBiz8D6F5UTTy8G1+WFEaiCdvCVRJWj6N2R4Xq6HdiHmDg==
   dependencies:
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-slot" "1.1.1"
 
-"@radix-ui/react-radio-group@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-radio-group/-/react-radio-group-1.2.0.tgz#f937dd6b9436ded80c4bebdf3901c20cb8bcbb5a"
-  integrity sha512-yv+oiLaicYMBpqgfpSPw6q+RyXlLdIpQWDHZbUKURxe+nEh53hFXPPlfhfQQtYkS5MMK/5IWIa76SksleQZSzw==
+"@radix-ui/react-progress@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-progress/-/react-progress-1.1.1.tgz#af923714ba3723be9c510536749d6c530d8670e4"
+  integrity sha512-6diOawA84f/eMxFHcWut0aE1C2kyE9dOyCTQOMRR2C/qPiXz/X0SaiA/RLbapQaXUCmy0/hLMf9meSccD1N0pA==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+
+"@radix-ui/react-radio-group@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-radio-group/-/react-radio-group-1.2.2.tgz#a37e9bd9d80b33bb8c1b7af8cf1dc9e5014e52d0"
+  integrity sha512-E0MLLGfOP0l8P/NxgVzfXJ8w3Ch8cdO6UDzJfDChu4EJDy+/WdO5LqpdY8PYnCErkmZH3gZhDL1K7kQ41fAHuQ==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-roving-focus" "1.1.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
     "@radix-ui/react-use-previous" "1.1.0"
     "@radix-ui/react-use-size" "1.1.0"
 
-"@radix-ui/react-roving-focus@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-roving-focus/-/react-roving-focus-1.1.0.tgz#b30c59daf7e714c748805bfe11c76f96caaac35e"
-  integrity sha512-EA6AMGeq9AEeQDeSH0aZgG198qkfHSbvWTf1HvoDmOB5bBG/qTxjYMWUKMnYiV6J/iP/J8MEFSuB2zRU2n7ODA==
+"@radix-ui/react-roving-focus@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-roving-focus/-/react-roving-focus-1.1.1.tgz#3b3abb1e03646937f28d9ab25e96343667ca6520"
+  integrity sha512-QE1RoxPGJ/Nm8Qmk0PxP8ojmoaS67i0s7hVssS7KuI2FQoc/uzVlZsqKfQvxPE6D8hICCPHJ4D88zNhT3OOmkw==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-collection" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-controllable-state" "1.1.0"
 
-"@radix-ui/react-select@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-select/-/react-select-2.1.1.tgz#df05cb0b29d3deaef83b505917c4042e0e418a9f"
-  integrity sha512-8iRDfyLtzxlprOo9IicnzvpsO1wNCkuwzzCM+Z5Rb5tNOpCdMvcc2AkzX0Fz+Tz9v6NJ5B/7EEgyZveo4FBRfQ==
+"@radix-ui/react-scroll-area@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-scroll-area/-/react-scroll-area-1.2.2.tgz#28e34fd4d83e9de5d987c5e8914a7bd8be9546a5"
+  integrity sha512-EFI1N/S3YxZEW/lJ/H1jY3njlvTd8tBmgKEn4GHi51+aMm94i6NmAJstsm5cu3yJwYqYc93gpCPm21FeAbFk6g==
   dependencies:
     "@radix-ui/number" "1.1.0"
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-collection" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
-    "@radix-ui/react-dismissable-layer" "1.1.0"
-    "@radix-ui/react-focus-guards" "1.1.0"
-    "@radix-ui/react-focus-scope" "1.1.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+
+"@radix-ui/react-select@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-select/-/react-select-2.1.5.tgz#f005e61f7c04e9d6105baa271569868fd08db41a"
+  integrity sha512-eVV7N8jBXAXnyrc+PsOF89O9AfVgGnbLxUtBb0clJ8y8ENMWLARGMI/1/SBRLz7u4HqxLgN71BJ17eono3wcjA==
+  dependencies:
+    "@radix-ui/number" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-popper" "1.2.0"
-    "@radix-ui/react-portal" "1.1.1"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
     "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-controllable-state" "1.1.0"
     "@radix-ui/react-use-layout-effect" "1.1.0"
     "@radix-ui/react-use-previous" "1.1.0"
-    "@radix-ui/react-visually-hidden" "1.1.0"
-    aria-hidden "^1.1.1"
-    react-remove-scroll "2.5.7"
+    "@radix-ui/react-visually-hidden" "1.1.1"
+    aria-hidden "^1.2.4"
+    react-remove-scroll "^2.6.2"
+
+"@radix-ui/react-separator@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-separator/-/react-separator-1.1.1.tgz#dd60621553c858238d876be9b0702287424866d2"
+  integrity sha512-RRiNRSrD8iUiXriq/Y5n4/3iE8HzqgLHsusUSg5jVpU2+3tqcUFPJXHDymwEypunc2sWxDUS3UC+rkZRlHedsw==
+  dependencies:
+    "@radix-ui/react-primitive" "2.0.1"
+
+"@radix-ui/react-slider@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slider/-/react-slider-1.2.2.tgz#4ca883e3f0dea7b97d43c6cbc6c4305c64e75a86"
+  integrity sha512-sNlU06ii1/ZcbHf8I9En54ZPW0Vil/yPVg4vQMcFNjrIx51jsHbFl1HYHQvCIWJSr1q0ZmA+iIs/ZTv8h7HHSA==
+  dependencies:
+    "@radix-ui/number" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-use-previous" "1.1.0"
+    "@radix-ui/react-use-size" "1.1.0"
 
 "@radix-ui/react-slot@1.0.0":
   version "1.0.0"
@@ -3205,57 +3386,110 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.0"
 
-"@radix-ui/react-slot@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.1.0.tgz#7c5e48c36ef5496d97b08f1357bb26ed7c714b84"
-  integrity sha512-FUCf5XMfmW4dtYl69pdS4DbxKy8nj4M7SafBgPllysxmdachynNflAdp/gCsnYWNDnge6tI9onzMp5ARYc1KNw==
+"@radix-ui/react-slot@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.1.1.tgz#ab9a0ffae4027db7dc2af503c223c978706affc3"
+  integrity sha512-RApLLOcINYJA+dMVbOju7MYv1Mb2EBp2nH4HdDzXTSyaR5optlm6Otrz1euW3HbdOR8UmmFK06TD+A9frYWv+g==
   dependencies:
-    "@radix-ui/react-compose-refs" "1.1.0"
+    "@radix-ui/react-compose-refs" "1.1.1"
 
-"@radix-ui/react-switch@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-switch/-/react-switch-1.1.0.tgz#fcf8e778500f1d60d4b2bec2fc3fad77a7c118e3"
-  integrity sha512-OBzy5WAj641k0AOSpKQtreDMe+isX0MQJ1IVyF03ucdF3DunOnROVrjWs8zsXUxC3zfZ6JL9HFVCUlMghz9dJw==
+"@radix-ui/react-switch@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-switch/-/react-switch-1.1.2.tgz#61323f4cccf25bf56c95fceb3b56ce1407bc9aec"
+  integrity sha512-zGukiWHjEdBCRyXvKR6iXAQG6qXm2esuAD6kDOi9Cn+1X6ev3ASo4+CsYaD6Fov9r/AQFekqnD/7+V0Cs6/98g==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
     "@radix-ui/react-use-previous" "1.1.0"
     "@radix-ui/react-use-size" "1.1.0"
 
-"@radix-ui/react-tabs@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-1.1.0.tgz#0a6db1caed56776a1176aae68532060e301cc1c0"
-  integrity sha512-bZgOKB/LtZIij75FSuPzyEti/XBhJH52ExgtdVqjCIh+Nx/FW+LhnbXtbCzIi34ccyMsyOja8T0thCzoHFXNKA==
+"@radix-ui/react-tabs@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-1.1.2.tgz#a72da059593cba30fccb30a226d63af686b32854"
+  integrity sha512-9u/tQJMcC2aGq7KXpGivMm1mgq7oRJKXphDwdypPd/j21j/2znamPU8WkXgnhUaTrSFNIt8XhOyCAupg8/GbwQ==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-roving-focus" "1.1.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
 
-"@radix-ui/react-tooltip@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-tooltip/-/react-tooltip-1.1.2.tgz#c42db2ffd7dcc6ff3d65407c8cb70490288f518d"
-  integrity sha512-9XRsLwe6Yb9B/tlnYCPVUd/TFS4J7HuOZW345DCeC6vKIxQGMZdx21RK4VoZauPD5frgkXTYVS5y90L+3YBn4w==
+"@radix-ui/react-toast@1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-toast/-/react-toast-1.2.5.tgz#d296d98e9b1e86389c167d334f178b1d60ff61ee"
+  integrity sha512-ZzUsAaOx8NdXZZKcFNDhbSlbsCUy8qQWmzTdgrlrhhZAOx2ofLtKrBDW9fkqhFvXgmtv560Uj16pkLkqML7SHA==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-dismissable-layer" "1.1.0"
-    "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-popper" "1.2.0"
-    "@radix-ui/react-portal" "1.1.1"
-    "@radix-ui/react-presence" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-controllable-state" "1.1.0"
-    "@radix-ui/react-visually-hidden" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-visually-hidden" "1.1.1"
+
+"@radix-ui/react-toggle-group@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-toggle-group/-/react-toggle-group-1.1.1.tgz#81fc65212758f3a4c9d505d38c0053f463c2e247"
+  integrity sha512-OgDLZEA30Ylyz8YSXvnGqIHtERqnUt1KUYTKdw/y8u7Ci6zGiJfXc02jahmcSNK3YcErqioj/9flWC9S1ihfwg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
+    "@radix-ui/react-toggle" "1.1.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+
+"@radix-ui/react-toggle@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-toggle/-/react-toggle-1.1.1.tgz#939162f87d2c6cfba912a9908ed5ee651bd1ce8f"
+  integrity sha512-i77tcgObYr743IonC1hrsnnPmszDRn8p+EGUsUt+5a/JFn28fxaM88Py6V2mc8J5kELMWishI0rLnuGLFD/nnQ==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+
+"@radix-ui/react-toolbar@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-toolbar/-/react-toolbar-1.1.1.tgz#cfc142d18858863cc328973087967242d2790bd4"
+  integrity sha512-r7T80WOCHc2n3KRzFCbHWGVzkfVTCzDofGU4gqa5ZuIzgnVaLogGsdyifFJXWQDp0lAr5hrf+X9uqQdE0pa6Ww==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
+    "@radix-ui/react-separator" "1.1.1"
+    "@radix-ui/react-toggle-group" "1.1.1"
+
+"@radix-ui/react-tooltip@1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tooltip/-/react-tooltip-1.1.7.tgz#2984dc0374874029b7ea8a1987f23247b3334b2a"
+  integrity sha512-ss0s80BC0+g0+Zc53MvilcnTYSOi4mSuFWBPYPuTOFGjx+pUU+ZrmamMNwS56t8MTFlniA5ocjd4jYm/CdhbOg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-visually-hidden" "1.1.1"
 
 "@radix-ui/react-use-callback-ref@1.0.0":
   version "1.0.0"
@@ -3330,12 +3564,12 @@
   dependencies:
     "@radix-ui/react-use-layout-effect" "1.1.0"
 
-"@radix-ui/react-visually-hidden@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-visually-hidden/-/react-visually-hidden-1.1.0.tgz#ad47a8572580f7034b3807c8e6740cd41038a5a2"
-  integrity sha512-N8MDZqtgCgG5S3aV60INAB475osJousYpZ4cTJ2cFbMpdHS5Y6loLTH8LPtkj2QN0x93J30HT/M3qJXM0+lyeQ==
+"@radix-ui/react-visually-hidden@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-visually-hidden/-/react-visually-hidden-1.1.1.tgz#f7b48c1af50dfdc366e92726aee6d591996c5752"
+  integrity sha512-vVfA2IZ9q/J+gEamvj761Oq1FpWgCDaNOOIfbPVp2MVPLEomUr5+Vf7kJGwQ24YxZSlQVar7Bes8kyTo5Dshpg==
   dependencies:
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-primitive" "2.0.1"
 
 "@radix-ui/rect@1.1.0":
   version "1.1.0"
@@ -5289,7 +5523,7 @@
   resolved "https://registry.yarnpkg.com/@swc/counter/-/counter-0.1.3.tgz#cc7463bd02949611c6329596fccd2b0ec782b0e9"
   integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
 
-"@swc/helpers@^0.5.0", "@swc/helpers@^0.5.11":
+"@swc/helpers@^0.5.0":
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.5.13.tgz#33e63ff3cd0cade557672bd7888a39ce7d115a8c"
   integrity sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==
@@ -5312,17 +5546,17 @@
   dependencies:
     "@swc/counter" "^0.1.3"
 
-"@tanstack/query-core@5.59.13":
-  version "5.59.13"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.59.13.tgz#8c962980af174bbd446b7e9b9999f7432897df80"
-  integrity sha512-Oou0bBu/P8+oYjXsJQ11j+gcpLAMpqW42UlokQYEz4dE7+hOtVO9rVuolJKgEccqzvyFzqX4/zZWY+R/v1wVsQ==
+"@tanstack/query-core@5.64.2":
+  version "5.64.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.64.2.tgz#be06e7c7966d14ea3e7c82bea1086b463f2f6809"
+  integrity sha512-hdO8SZpWXoADNTWXV9We8CwTkXU88OVWRBcsiFrk7xJQnhm6WRlweDzMD+uH+GnuieTBVSML6xFa17C2cNV8+g==
 
-"@tanstack/react-query@^5.28.14":
-  version "5.59.15"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.59.15.tgz#fa1c5b4d96e6a148ec761f214304bbf5ac1906be"
-  integrity sha512-QbVlAkTI78wB4Mqgf2RDmgC0AOiJqer2c5k9STOOSXGv1S6ZkY37r/6UpE8DbQ2Du0ohsdoXgFNEyv+4eDoPEw==
+"@tanstack/react-query@5.64.2":
+  version "5.64.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.64.2.tgz#199c8a5a8ff92a8565f8cdd378747398347512a2"
+  integrity sha512-3pakNscZNm8KJkxmovvtZ4RaXLyiYYobwleTMvpIGUoKRa8j8VlrQKNl5W8VUEfVfZKkikvXVddLuWMbcSCA1Q==
   dependencies:
-    "@tanstack/query-core" "5.59.13"
+    "@tanstack/query-core" "5.64.2"
 
 "@tanstack/react-table@8.20.5":
   version "8.20.5"
@@ -5528,6 +5762,11 @@
   dependencies:
     undici-types "~6.19.2"
 
+"@types/pluralize@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@types/pluralize/-/pluralize-0.0.33.tgz#8ad9018368c584d268667dd9acd5b3b806e8c82a"
+  integrity sha512-JOqsl+ZoCpP4e8TDke9W79FDcSgPAR0l6pixx2JHkhnRjvShyYiAYw2LVsnA7K08Y6DeOnaU6ujmENO4os/cYg==
+
 "@types/prismjs@^1.26.0":
   version "1.26.5"
   resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.26.5.tgz#72499abbb4c4ec9982446509d2f14fb8483869d6"
@@ -5650,18 +5889,6 @@ accepts@~1.3.5, accepts@~1.3.8:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
-acorn-loose@8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/acorn-loose/-/acorn-loose-8.3.0.tgz#0cd62461d21dce4f069785f8d3de136d5525029a"
-  integrity sha512-75lAs9H19ldmW+fAbyqHdjgdCrz0pWGXKmnqFoh8PyVd1L2RIb4RzYrSjmopeqv3E1G3/Pimu6GgLlrGbrkF7w==
-  dependencies:
-    acorn "^8.5.0"
-
-acorn-walk@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.2.0.tgz#741210f2e2426454508853a2f44d0ab83b7f69c1"
-  integrity sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
-
 acorn-walk@^8.1.1:
   version "8.3.4"
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.3.4.tgz#794dd169c3977edf4ba4ea47583587c5866236b7"
@@ -5669,7 +5896,7 @@ acorn-walk@^8.1.1:
   dependencies:
     acorn "^8.11.0"
 
-acorn@^8.11.0, acorn@^8.4.1, acorn@^8.5.0:
+acorn@^8.11.0, acorn@^8.4.1:
   version "8.13.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.13.0.tgz#2a30d670818ad16ddd6a35d3842dacec9e5d7ca3"
   integrity sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==
@@ -5801,6 +6028,13 @@ aria-hidden@^1.1.1:
   dependencies:
     tslib "^2.0.0"
 
+aria-hidden@^1.2.4:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/aria-hidden/-/aria-hidden-1.2.6.tgz#73051c9b088114c795b1ea414e9c0fff874ffc1a"
+  integrity sha512-ik3ZgC9dY/lYVVM++OISsaYDeg1tb0VtP5uL3ouh1koGOaUMDPpbFIei4JkFimWUFPn90sbMNMXQAIVOlnYKJA==
+  dependencies:
+    tslib "^2.0.0"
+
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
@@ -5870,6 +6104,15 @@ axios@^1.7.4:
   version "1.7.7"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.7.tgz#2f554296f9892a72ac8d8e4c5b79c14a91d0a47f"
   integrity sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.8.2:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.9.0.tgz#25534e3b72b54540077d33046f77e3b8d7081901"
+  integrity sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -6097,11 +6340,6 @@ buffer-from@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
   integrity sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==
-
-buffer-writer@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/buffer-writer/-/buffer-writer-2.0.0.tgz#ce7eb81a38f7829db09c873f2fbb792c0c98ec04"
-  integrity sha512-a7ZpuTZU1TRtnwyCNW3I5dc0wWNC3VR9S++Ewyk2HHZdrO3CQJqSpd+95Us590V6AL7JqUAH2IwZ/398PmNFgw==
 
 buffer@^5.5.0:
   version "5.7.1"
@@ -6526,7 +6764,7 @@ compressible@~2.0.16:
   dependencies:
     mime-db ">= 1.43.0 < 2"
 
-compression@^1.7.4:
+compression@1.7.4, compression@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/compression/-/compression-1.7.4.tgz#95523eff170ca57c29a0ca41e6fe131f41e5bb8f"
   integrity sha512-jaSIDzP9pZVS4ZfQ+TzvtiWhdpFhE2RDHz8QJkpX9SIpLq88VueF5jJw6t+6CUQcAoA6t+x89MLrWAqpfDE8iQ==
@@ -6730,6 +6968,11 @@ cva@1.0.0-beta.1:
   dependencies:
     clsx "2.0.0"
 
+dataloader@2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-2.2.3.tgz#42d10b4913515f5b37c6acedcb4960d6ae1b1517"
+  integrity sha512-y2krtASINtPFS1rSDjacrFgn1dcUuoREVabwlOGOe4SdxenREqwjwjElAdwvbGM7kgZz9a3KVicWR7vcz8rnzA==
+
 date-fns@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.6.0.tgz#f20ca4fe94f8b754951b24240676e8618c0206bf"
@@ -6928,10 +7171,10 @@ dotenv-expand@^11.0.6:
   dependencies:
     dotenv "^16.4.4"
 
-dotenv@16.3.1:
-  version "16.3.1"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
-  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
+dotenv@16.4.7:
+  version "16.4.7"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.7.tgz#0e20c5b82950140aa99be360a8a5f52335f53c26"
+  integrity sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==
 
 dotenv@^16.4.4, dotenv@^16.4.5:
   version "16.4.5"
@@ -7088,7 +7331,7 @@ esm@^3.2.25:
   resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
   integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
 
-esprima@^4.0.0, esprima@~4.0.0:
+esprima@4.0.1, esprima@^4.0.0, esprima@~4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
@@ -7235,6 +7478,17 @@ fast-glob@^3.2.12, fast-glob@^3.2.9, fast-glob@^3.3.0:
     merge2 "^1.3.0"
     micromatch "^4.0.4"
 
+fast-glob@^3.3.2:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.3.3.tgz#d06d585ce8dba90a16b0505c543c3ccfb3aeb818"
+  integrity sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==
+  dependencies:
+    "@nodelib/fs.stat" "^2.0.2"
+    "@nodelib/fs.walk" "^1.2.3"
+    glob-parent "^5.1.2"
+    merge2 "^1.3.0"
+    micromatch "^4.0.8"
+
 fast-json-stable-stringify@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz#874bf69c6f404c2b5d99c481341399fd55892633"
@@ -7376,11 +7630,13 @@ fraction.js@^4.3.7:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-framer-motion@^11.0.3:
-  version "11.11.9"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-11.11.9.tgz#a60ddf5abbd924812df923068628537a5c6ad8b9"
-  integrity sha512-XpdZseuCrZehdHGuW22zZt3SF5g6AHJHJi7JwQIigOznW4Jg1n0oGPMJQheMaKLC+0rp5gxUKMRYI6ytd3q4RQ==
+framer-motion@^11.18.2:
+  version "11.18.2"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-11.18.2.tgz#0c6bd05677f4cfd3b3bdead4eb5ecdd5ed245718"
+  integrity sha512-5F5Och7wrvtLVElIpclDT0CBzMVg3dL22B64aZwHtsIY8RB4mXICLrkajK4G9R+ieSAGcgrLeae2SeUTg2pr6w==
   dependencies:
+    motion-dom "^11.18.1"
+    motion-utils "^11.18.1"
     tslib "^2.4.0"
 
 fresh@0.5.2:
@@ -7393,10 +7649,10 @@ fs-exists-cached@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs-exists-cached/-/fs-exists-cached-1.0.0.tgz#cf25554ca050dc49ae6656b41de42258989dcbce"
   integrity sha512-kSxoARUDn4F2RPXX48UXnaFKwVU7Ivd/6qpzZL29MCDmr9sTvybv4gFCp+qaI4fM9m0z9fgz/yJvi56GAz+BZg==
 
-fs-extra@11.1.1:
-  version "11.1.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.1.1.tgz#da69f7c39f3b002378b0954bb6ae7efdc0876e2d"
-  integrity sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==
+fs-extra@11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.2.0.tgz#e70e17dfad64232287d01929399e0ea7c86b0e5b"
+  integrity sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
@@ -7488,7 +7744,7 @@ get-package-type@^0.1.0:
   resolved "https://registry.yarnpkg.com/get-package-type/-/get-package-type-0.1.0.tgz#8de2d803cff44df3bc6c456e6668b36c3926e11a"
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
-get-port@^5.1.0:
+get-port@^5.1.0, get-port@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/get-port/-/get-port-5.1.1.tgz#0469ed07563479de6efb986baf053dcd7d4e3193"
   integrity sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==
@@ -7517,19 +7773,7 @@ glob-parent@^6.0.2:
   dependencies:
     is-glob "^4.0.3"
 
-glob@^10.3.10, glob@^10.3.3:
-  version "10.4.5"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
-  integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
-  dependencies:
-    foreground-child "^3.1.0"
-    jackspeak "^3.1.2"
-    minimatch "^9.0.4"
-    minipass "^7.1.2"
-    package-json-from-dist "^1.0.0"
-    path-scurry "^1.11.1"
-
-glob@^7.1.1, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
+glob@7.2.3, glob@^7.1.1, glob@^7.1.3, glob@^7.1.4:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
   integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
@@ -7541,16 +7785,17 @@ glob@^7.1.1, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^8.0.3:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-8.1.0.tgz#d388f656593ef708ee3e34640fdfb99a9fd1c33e"
-  integrity sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==
+glob@^10.3.10, glob@^10.3.3:
+  version "10.4.5"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
+  integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
   dependencies:
-    fs.realpath "^1.0.0"
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "^5.0.1"
-    once "^1.3.0"
+    foreground-child "^3.1.0"
+    jackspeak "^3.1.2"
+    minimatch "^9.0.4"
+    minipass "^7.1.2"
+    package-json-from-dist "^1.0.0"
+    path-scurry "^1.11.1"
 
 global@^4.4.0:
   version "4.4.0"
@@ -8582,10 +8827,10 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-knex@2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-2.5.1.tgz#a6c6b449866cf4229f070c17411f23871ba52ef9"
-  integrity sha512-z78DgGKUr4SE/6cm7ku+jHvFT0X97aERh/f0MUKAKgFnwCYBEW4TFBqtHWFYiJFid7fMrtpZ/gxJthvz5mEByA==
+knex@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-3.1.0.tgz#b6ddd5b5ad26a6315234a5b09ec38dc4a370bd8c"
+  integrity sha512-GLoII6hR0c4ti243gMs5/1Rb3B+AjwMOfjYm97pu0FOQa7JH56hgBxYf5WK2525ceSbBY1cjeZ9yk99GPMB6Kw==
   dependencies:
     colorette "2.0.19"
     commander "^10.0.0"
@@ -8596,7 +8841,7 @@ knex@2.5.1:
     getopts "2.3.0"
     interpret "^2.2.0"
     lodash "^4.17.21"
-    pg-connection-string "2.6.1"
+    pg-connection-string "2.6.2"
     rechoir "^0.8.0"
     resolve-from "^5.0.0"
     tarn "^3.0.2"
@@ -8684,7 +8929,7 @@ lodash.once@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==
 
-lodash@^4.17.21, lodash@~4.17.0:
+lodash@4.17.21, lodash@^4.17.21, lodash@~4.17.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -8852,7 +9097,7 @@ methods@~1.1.2:
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
 
-micromatch@^4.0.4, micromatch@^4.0.5:
+micromatch@^4.0.4, micromatch@^4.0.5, micromatch@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
   integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
@@ -8860,10 +9105,10 @@ micromatch@^4.0.4, micromatch@^4.0.5:
     braces "^3.0.3"
     picomatch "^2.3.1"
 
-mikro-orm@5.9.7:
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-5.9.7.tgz#8fa930c819b03c6811b5c9813d4601a5ea6953be"
-  integrity sha512-0AxNDxQWk45n5N5g5q/K2tVj1/Narf4h5+1fhFc0uYAp/tOGAGvjmVK43Xy4TisEm/1VpBNOtS7FYKvh14WVOQ==
+mikro-orm@6.4.3:
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-6.4.3.tgz#e30a4ddca4f7564c36362efdafea836699896f54"
+  integrity sha512-xDNzmLiL4EUTMOu9CbZ2d0sNIaUdH4RzDv4oqw27+u0/FPfvZTIagd+luxx1lWWqe/vg/iNtvqr5OcNQIYYrtQ==
 
 mime-db@1.52.0:
   version "1.52.0"
@@ -8918,13 +9163,6 @@ minimatch@^3.0.4, minimatch@^3.1.1:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^5.0.1:
-  version "5.1.6"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.6.tgz#1cfcb8cf5522ea69952cd2af95ae09477f122a96"
-  integrity sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==
-  dependencies:
-    brace-expansion "^2.0.1"
-
 minimatch@^9.0.4:
   version "9.0.5"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.5.tgz#d74f9dd6b57d83d8e98cfb82133b03978bc929e5"
@@ -8959,6 +9197,26 @@ morgan@^1.9.1:
     depd "~2.0.0"
     on-finished "~2.3.0"
     on-headers "~1.0.2"
+
+motion-dom@^11.18.1:
+  version "11.18.1"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-11.18.1.tgz#e7fed7b7dc6ae1223ef1cce29ee54bec826dc3f2"
+  integrity sha512-g76KvA001z+atjfxczdRtw/RXOM3OMSdd1f4DL77qCTF/+avrRJiawSG4yDibEQ215sr9kpinSlX2pCTJ9zbhw==
+  dependencies:
+    motion-utils "^11.18.1"
+
+motion-utils@^11.18.1:
+  version "11.18.1"
+  resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-11.18.1.tgz#671227669833e991c55813cf337899f41327db5b"
+  integrity sha512-49Kt+HKjtbJKLtgO/LKj9Ld+6vw9BjH5d9sc40R/kVyH8GLAXgT42M2NnuPcJNuA3s9ZfZBUcwIgpmZWGEE+hA==
+
+motion@^11.15.0:
+  version "11.18.2"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-11.18.2.tgz#17fb372f3ed94fc9ee1384a25a9068e9da1951e7"
+  integrity sha512-JLjvFDuFr42NFtcVoMAyC2sEjnpA8xpy6qWPyzQvCloznAyQ8FIXioxWfHiLtgYhoVpfUqSWpn1h9++skj9+Wg==
+  dependencies:
+    framer-motion "^11.18.2"
+    tslib "^2.4.0"
 
 ms@2.0.0:
   version "2.0.0"
@@ -9239,11 +9497,6 @@ package-json-from-dist@^1.0.0:
   resolved "https://registry.yarnpkg.com/package-json-from-dist/-/package-json-from-dist-1.0.1.tgz#4f1471a010827a86f94cfd9b0727e36d267de505"
   integrity sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==
 
-packet-reader@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/packet-reader/-/packet-reader-1.0.0.tgz#9238e5480dedabacfe1fe3f2771063f164157d74"
-  integrity sha512-HAKu/fG3HpHFO0AA8WE8q2g+gBJaZ9MG7fcKk+IJPLTGAD6Psw4443l+9DGRbOIh3/aXr7Phy0TjilYivJo5XQ==
-
 param-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/param-case/-/param-case-3.0.4.tgz#7d17fe4aa12bde34d4a77d91acfb6219caad01c5"
@@ -9358,6 +9611,11 @@ path-to-regexp@0.1.10:
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.10.tgz#67e9108c5c0551b9e5326064387de4763c4d5f8b"
   integrity sha512-7lf7qcQidTku0Gu3YDPc8DJ1q7OOucfa/BSsIwjuh56VU7katFvuM8hULfkwB3Fns/rsVF7PwPKVw1sl5KQS9w==
 
+path-to-regexp@^0.1.10:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.12.tgz#d5e1a12e478a976d432ef3c58d534b9923164bb7"
+  integrity sha512-RA1GjUVMnvYFxuqovrEqZoxxW5NUZqbwKtYz/Tt7nXerk0LbLblQmrsgdeOxV5SFHf0UDggjS/bSeOZwt1pmEQ==
+
 path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
@@ -9373,12 +9631,12 @@ pg-cloudflare@^1.1.1:
   resolved "https://registry.yarnpkg.com/pg-cloudflare/-/pg-cloudflare-1.1.1.tgz#e6d5833015b170e23ae819e8c5d7eaedb472ca98"
   integrity sha512-xWPagP/4B6BgFO+EKz3JONXv3YDgvkbVrGw2mTo3D6tVDQRh1e7cqVGvyR3BE+eQgAvx1XhW/iEASj4/jCWl3Q==
 
-pg-connection-string@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.6.1.tgz#78c23c21a35dd116f48e12e23c0965e8d9e2cbfb"
-  integrity sha512-w6ZzNu6oMmIzEAYVw+RLK0+nqHPt8K3ZnknKi+g48Ak2pr3dtljJW3o+D/n2zzCG07Zoe9VOX3aiKpj+BN0pjg==
+pg-connection-string@2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.6.2.tgz#713d82053de4e2bd166fab70cd4f26ad36aab475"
+  integrity sha512-ch6OwaeaPYcova4kKZ15sbJ2hKb/VP48ZD2gE7i1J+L4MspCtBMAx8nMgz7bksc7IojCIIWuEhHibSMFH8m8oA==
 
-pg-connection-string@^2.6.2, pg-connection-string@^2.7.0:
+pg-connection-string@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.7.0.tgz#f1d3489e427c62ece022dba98d5262efcb168b37"
   integrity sha512-PI2W9mv53rXJQEOb8xNR8lH7Hr+EKa6oJa38zsK0S/ky2er16ios1wLKhZyxzD7jUReiWokc9WK5nxSnC7W1TA==
@@ -9400,12 +9658,12 @@ pg-int8@1.0.1:
   resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"
   integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
 
-pg-pool@^3.6.1, pg-pool@^3.7.0:
+pg-pool@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.7.0.tgz#d4d3c7ad640f8c6a2245adc369bafde4ebb8cbec"
   integrity sha512-ZOBQForurqh4zZWjrgSwwAtzJ7QiRX0ovFkZr2klsen3Nm0aoh33Ls0fzfv3imeH/nw/O27cjdz5kzYJfeGp/g==
 
-pg-protocol@^1.6.0, pg-protocol@^1.7.0:
+pg-protocol@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.7.0.tgz#ec037c87c20515372692edac8b63cf4405448a93"
   integrity sha512-hTK/mE36i8fDDhgDFjy6xNOG+LCorxLG3WO17tku+ij6sVHXh1jQUJ8hYAnRhNla4QVD2H8er/FOjc/+EgC6yQ==
@@ -9421,16 +9679,14 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@8.11.3:
-  version "8.11.3"
-  resolved "https://registry.yarnpkg.com/pg/-/pg-8.11.3.tgz#d7db6e3fe268fcedd65b8e4599cda0b8b4bf76cb"
-  integrity sha512-+9iuvG8QfaaUrrph+kpF24cXkH1YOOUeArRNYIxq1viYHZagBxrTno7cecY1Fa44tJeZvaoG+Djpkc3JwehN5g==
+pg@8.13.1:
+  version "8.13.1"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-8.13.1.tgz#6498d8b0a87ff76c2df7a32160309d3168c0c080"
+  integrity sha512-OUir1A0rPNZlX//c7ksiu7crsGZTKSOXJPgtNiHGIlC9H0lO+NC6ZDYksSgBYY/thSWhnSRBv8w1lieNNGATNQ==
   dependencies:
-    buffer-writer "2.0.0"
-    packet-reader "1.0.0"
-    pg-connection-string "^2.6.2"
-    pg-pool "^3.6.1"
-    pg-protocol "^1.6.0"
+    pg-connection-string "^2.7.0"
+    pg-pool "^3.7.0"
+    pg-protocol "^1.7.0"
     pg-types "^2.1.0"
     pgpass "1.x"
   optionalDependencies:
@@ -9546,6 +9802,11 @@ postcss@^8.4.23, postcss@^8.4.32, postcss@^8.4.43:
     picocolors "^1.1.0"
     source-map-js "^1.2.1"
 
+postgres-array@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-3.0.2.tgz#68d6182cb0f7f152a7e60dc6a6889ed74b0a5f98"
+  integrity sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==
+
 postgres-array@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-2.0.0.tgz#48f8fce054fbc69671999329b8834b772652d82e"
@@ -9556,10 +9817,20 @@ postgres-bytea@~1.0.0:
   resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-1.0.0.tgz#027b533c0aa890e26d172d47cf9ccecc521acd35"
   integrity sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==
 
+postgres-date@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/postgres-date/-/postgres-date-2.1.0.tgz#b85d3c1fb6fb3c6c8db1e9942a13a3bf625189d0"
+  integrity sha512-K7Juri8gtgXVcDfZttFKVmhglp7epKb1K4pgrkLxehjqkrgPhfG6OO8LHLkfaqkbpjNRnra018XwAr1yQFWGcA==
+
 postgres-date@~1.0.4:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/postgres-date/-/postgres-date-1.0.7.tgz#51bc086006005e5061c591cee727f2531bf641a8"
   integrity sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==
+
+postgres-interval@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/postgres-interval/-/postgres-interval-4.0.2.tgz#f0b86ab1392c27dadee9b3cc288de371ae2ac06b"
+  integrity sha512-EMsphSQ1YkQqKZL2cuG0zHkmjCCzQqQ71l2GXITqRwjhRleCdv00bDk/ktaSi0LnlaPzAc3535KTrjXsTdtx7A==
 
 postgres-interval@^1.1.0:
   version "1.2.0"
@@ -9567,6 +9838,13 @@ postgres-interval@^1.1.0:
   integrity sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==
   dependencies:
     xtend "^4.0.0"
+
+posthog-node@^4.17.1:
+  version "4.18.0"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-4.18.0.tgz#dc520b857a5de7c3b03683a20e90257d84344af0"
+  integrity sha512-XROs1h+DNatgKh/AlIlCtDxWzwrKdYDb2mOs58n4yN8BkGN9ewqeQwG5ApS4/IzwCb7HPttUkOVulkYatd2PIw==
+  dependencies:
+    axios "^1.8.2"
 
 pretty-format@^29.0.0, pretty-format@^29.7.0:
   version "29.7.0"
@@ -9671,6 +9949,62 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+radix-ui@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/radix-ui/-/radix-ui-1.1.2.tgz#264361dca3ef2434456a7e6105fe93768676013a"
+  integrity sha512-P2F30iTIG/eheoZbF3QXo7kDoFgnj/zxX1NwPq02G00ggq7OSXFsMuyn98WHtQCql2DsO8ZCbBk+VbbgVrlwOg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-accessible-icon" "1.1.1"
+    "@radix-ui/react-accordion" "1.2.2"
+    "@radix-ui/react-alert-dialog" "1.1.5"
+    "@radix-ui/react-aspect-ratio" "1.1.1"
+    "@radix-ui/react-avatar" "1.1.2"
+    "@radix-ui/react-checkbox" "1.1.3"
+    "@radix-ui/react-collapsible" "1.1.2"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-context-menu" "2.2.5"
+    "@radix-ui/react-dialog" "1.1.5"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-dismissable-layer" "1.1.4"
+    "@radix-ui/react-dropdown-menu" "2.1.5"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
+    "@radix-ui/react-form" "0.1.1"
+    "@radix-ui/react-hover-card" "1.1.5"
+    "@radix-ui/react-label" "2.1.1"
+    "@radix-ui/react-menu" "2.1.5"
+    "@radix-ui/react-menubar" "1.1.5"
+    "@radix-ui/react-navigation-menu" "1.2.4"
+    "@radix-ui/react-popover" "1.1.5"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-progress" "1.1.1"
+    "@radix-ui/react-radio-group" "1.2.2"
+    "@radix-ui/react-roving-focus" "1.1.1"
+    "@radix-ui/react-scroll-area" "1.2.2"
+    "@radix-ui/react-select" "2.1.5"
+    "@radix-ui/react-separator" "1.1.1"
+    "@radix-ui/react-slider" "1.2.2"
+    "@radix-ui/react-slot" "1.1.1"
+    "@radix-ui/react-switch" "1.1.2"
+    "@radix-ui/react-tabs" "1.1.2"
+    "@radix-ui/react-toast" "1.2.5"
+    "@radix-ui/react-toggle" "1.1.1"
+    "@radix-ui/react-toggle-group" "1.1.1"
+    "@radix-ui/react-toolbar" "1.1.1"
+    "@radix-ui/react-tooltip" "1.1.7"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-use-escape-keydown" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-use-size" "1.1.0"
+    "@radix-ui/react-visually-hidden" "1.1.1"
 
 random-bytes@~1.0.0:
   version "1.0.0"
@@ -9819,12 +10153,20 @@ react-refresh@^0.14.2:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
   integrity sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==
 
-react-remove-scroll-bar@^2.3.3, react-remove-scroll-bar@^2.3.4:
+react-remove-scroll-bar@^2.3.3:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/react-remove-scroll-bar/-/react-remove-scroll-bar-2.3.6.tgz#3e585e9d163be84a010180b18721e851ac81a29c"
   integrity sha512-DtSYaao4mBmX+HDo5YWYdBWQwYIQQshUV/dVxFxK+KM26Wjwp1gZ6rv6OC3oujI6Bfu6Xyg3TwK533AQutsn/g==
   dependencies:
     react-style-singleton "^2.2.1"
+    tslib "^2.0.0"
+
+react-remove-scroll-bar@^2.3.7:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/react-remove-scroll-bar/-/react-remove-scroll-bar-2.3.8.tgz#99c20f908ee467b385b68a3469b4a3e750012223"
+  integrity sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==
+  dependencies:
+    react-style-singleton "^2.2.2"
     tslib "^2.0.0"
 
 react-remove-scroll@2.5.4:
@@ -9838,16 +10180,16 @@ react-remove-scroll@2.5.4:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
-react-remove-scroll@2.5.7:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/react-remove-scroll/-/react-remove-scroll-2.5.7.tgz#15a1fd038e8497f65a695bf26a4a57970cac1ccb"
-  integrity sha512-FnrTWO4L7/Bhhf3CYBNArEG/yROV0tKmTv7/3h9QCFvH6sndeFf1wPqOcbFVu5VAulS5dV1wGT3GZZ/1GawqiA==
+react-remove-scroll@^2.6.2:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-remove-scroll/-/react-remove-scroll-2.7.0.tgz#0a483417fe9919acd3e459ce92008640cf898669"
+  integrity sha512-sGsQtcjMqdQyijAHytfGEELB8FufGbfXIsvUTe+NLx1GDRJCXtCFLBLUI1eyZCKXXvbEU2C6gai0PZKoIE9Vbg==
   dependencies:
-    react-remove-scroll-bar "^2.3.4"
-    react-style-singleton "^2.2.1"
+    react-remove-scroll-bar "^2.3.7"
+    react-style-singleton "^2.2.3"
     tslib "^2.1.0"
-    use-callback-ref "^1.3.0"
-    use-sidecar "^1.1.2"
+    use-callback-ref "^1.3.3"
+    use-sidecar "^1.1.3"
 
 react-router-dom@6.20.1:
   version "6.20.1"
@@ -9901,6 +10243,14 @@ react-style-singleton@^2.2.1:
   dependencies:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
+    tslib "^2.0.0"
+
+react-style-singleton@^2.2.2, react-style-singleton@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-2.2.3.tgz#4265608be69a4d70cfe3047f2c6c88b2c3ace388"
+  integrity sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==
+  dependencies:
+    get-nonce "^1.0.0"
     tslib "^2.0.0"
 
 react@^18.2.0:
@@ -9983,10 +10333,10 @@ redis-parser@^3.0.0:
   dependencies:
     redis-errors "^1.0.0"
 
-reflect-metadata@0.1.13:
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
-  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
+reflect-metadata@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.2.2.tgz#400c845b6cba87a21f2c65c4aeb158f4fa4d9c5b"
+  integrity sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==
 
 regenerator-runtime@^0.14.0:
   version "0.14.1"
@@ -10662,6 +11012,11 @@ tmpl@1.0.5:
   resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"
   integrity sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==
 
+to-fast-properties@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
+  integrity sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"
@@ -10759,10 +11114,10 @@ type-fest@^0.21.3:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
 
-type-fest@^3.0.0:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.13.1.tgz#bb744c1f0678bea7543a2d1ec24e83e68e8c8706"
-  integrity sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==
+type-fest@^4.0.0:
+  version "4.41.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.41.0.tgz#6ae1c8e5731273c2bf1f58ad39cbae2c91a46c58"
+  integrity sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==
 
 type-is@^1.6.4, type-is@~1.6.18:
   version "1.6.18"
@@ -10806,16 +11161,16 @@ ulid@^2.3.0:
   resolved "https://registry.yarnpkg.com/ulid/-/ulid-2.3.0.tgz#93063522771a9774121a84d126ecd3eb9804071f"
   integrity sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==
 
-umzug@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/umzug/-/umzug-3.3.1.tgz#4ed726e7ec216049d826623a9c4faf66d412eb61"
-  integrity sha512-jG3C35jti1YnCuH/k3fJEfHbnIG9c3Q9ITZ0B9eWwnXngh/AUd0mRHv8OdpE2Q9VoK7tB6xL990JrMCr0LtfNA==
+umzug@3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/umzug/-/umzug-3.8.2.tgz#53c2189604d36956d7b75a89128108d0e3073a9f"
+  integrity sha512-BEWEF8OJjTYVC56GjELeHl/1XjFejrD7aHzn+HldRJTx+pL1siBrKHZC8n4K/xL3bEzVA9o++qD1tK2CpZu4KA==
   dependencies:
     "@rushstack/ts-command-line" "^4.12.2"
     emittery "^0.13.0"
-    glob "^8.0.3"
+    fast-glob "^3.3.2"
     pony-cause "^2.1.4"
-    type-fest "^3.0.0"
+    type-fest "^4.0.0"
 
 unc-path-regex@^0.1.2:
   version "0.1.2"
@@ -10885,10 +11240,25 @@ use-callback-ref@^1.3.0:
   dependencies:
     tslib "^2.0.0"
 
+use-callback-ref@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.3.3.tgz#98d9fab067075841c5b2c6852090d5d0feabe2bf"
+  integrity sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==
+  dependencies:
+    tslib "^2.0.0"
+
 use-sidecar@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.1.2.tgz#2f43126ba2d7d7e117aa5855e5d8f0276dfe73c2"
   integrity sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==
+  dependencies:
+    detect-node-es "^1.1.0"
+    tslib "^2.0.0"
+
+use-sidecar@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.1.3.tgz#10e7fd897d130b896e2c546c63a5e8233d00efdb"
+  integrity sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==
   dependencies:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
@@ -10946,6 +11316,17 @@ vite@^5.2.11:
   version "5.4.10"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.10.tgz#d358a7bd8beda6cf0f3b7a450a8c7693a4f80c18"
   integrity sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==
+  dependencies:
+    esbuild "^0.21.3"
+    postcss "^8.4.43"
+    rollup "^4.20.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
+vite@^5.4.14:
+  version "5.4.19"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.19.tgz#20efd060410044b3ed555049418a5e7d1998f959"
+  integrity sha512-qO3aKv3HoQC8QKiNSTuUM1l9o/XX3+c+VTgLHbJWHZGeTPVAg2XwazI9UWzoxjIJCGCV2zU60uqMzjeLZuULqA==
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
