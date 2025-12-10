@@ -4,7 +4,7 @@ import type {PropsWithChildren} from "react";
 import {CountryCodeProvider} from "@/components/context/country-code-context";
 import {ExitPreview} from "@/components/exit-preview";
 import {Analytics} from "@vercel/analytics/react";
-import cache from "next/cache";
+import {revalidatePath, updateTag} from "next/cache";
 import {draftMode} from "next/headers";
 import VisualEditing from "next-sanity/visual-editing/client-component";
 
@@ -37,12 +37,12 @@ export default async function Layout(props: LayoutProps) {
                 if (payload.document.slug?.current) {
                   const tag = `${payload.document._type}:${payload.document.slug.current}`;
                   console.log("Revalidate slug", tag);
-                  await cache.revalidateTag(tag);
+                  updateTag(tag);
                 }
                 console.log("Revalidate tag", payload.document._type);
-                return cache.revalidateTag(payload.document._type);
+                updateTag(payload.document._type);
               }
-              await cache.revalidatePath("/", "layout");
+              revalidatePath("/", "layout");
             }}
           />
         )}

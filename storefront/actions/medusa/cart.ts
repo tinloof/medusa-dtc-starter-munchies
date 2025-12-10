@@ -12,7 +12,7 @@ import {
 } from "@/data/medusa/cookies";
 import {getRegion} from "@/data/medusa/regions";
 import medusaError from "@/utils/medusa/error";
-import {revalidateTag} from "next/cache";
+import {updateTag} from "next/cache";
 
 async function createCart(region_id: string) {
   const body = {
@@ -28,7 +28,7 @@ async function createCart(region_id: string) {
     await getAuthHeaders(),
   );
   await setCartId(cartResp.cart.id);
-  revalidateTag(await getCacheTag("carts"));
+  updateTag(await getCacheTag("carts"));
 
   return cartResp.cart;
 }
@@ -54,7 +54,7 @@ export async function getOrSetCart(countryCode: string) {
       {},
       await getAuthHeaders(),
     );
-    revalidateTag(cacheTag);
+    updateTag(cacheTag);
   }
 
   return cart;
@@ -98,7 +98,7 @@ export async function addToCart({
       await getAuthHeaders(),
     )
     .then(() => {
-      revalidateTag(cacheTag);
+      updateTag(cacheTag);
     })
     .catch(medusaError);
 }
@@ -122,7 +122,7 @@ export async function updateCartQuantity({
 
   if (!(quantity > 0)) {
     await medusa.store.cart.deleteLineItem(cart.id, lineItem).then(() => {
-      revalidateTag(cacheTag);
+      updateTag(cacheTag);
     });
   } else {
     await medusa.store.cart
@@ -136,7 +136,7 @@ export async function updateCartQuantity({
         await getAuthHeaders(),
       )
       .then(() => {
-        revalidateTag(cacheTag);
+        updateTag(cacheTag);
       });
   }
 }
