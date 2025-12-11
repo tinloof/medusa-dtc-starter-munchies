@@ -49,7 +49,6 @@ export async function initiatePaymentSession(
   payaload: {
     cart: StoreCart;
     data: {
-      context?: Record<string, unknown>;
       provider_id: string;
     };
   },

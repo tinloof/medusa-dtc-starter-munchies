@@ -6,7 +6,6 @@ export default defineConfig({
   projectConfig: {
     redisUrl: process.env.REDIS_URL,
     databaseUrl: process.env.DATABASE_URL,
-    databaseLogging: true,
     http: {
       storeCors: process.env.STORE_CORS,
       adminCors: process.env.ADMIN_CORS,
