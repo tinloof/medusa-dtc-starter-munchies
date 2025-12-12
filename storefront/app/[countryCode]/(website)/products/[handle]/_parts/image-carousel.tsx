@@ -27,12 +27,13 @@ export function ProductImagesCarousel({
   if (images?.length === 0 || !images) return null;
 
   const slides = images?.map((image, index) => {
+    console.info(image);
     return (
       <Fragment key={image.id}>
         {product.type?.value && (
-          <Tag className="absolute right-4 top-4" text={product.type?.value} />
+          <Tag className="absolute top-4 right-4" text={product.type?.value} />
         )}
-        <Image
+        {/* <Image
           alt={product.title}
           className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
           height={591}
@@ -41,10 +42,12 @@ export function ProductImagesCarousel({
           src={image.url}
           style={{background: "transparent"}}
           width={591}
-        />
+        /> */}
       </Fragment>
     );
   });
+
+  console.info(images);
 
   return (
     <Root
@@ -68,7 +71,7 @@ export function ProductImagesCarousel({
           </div>
         )}
         <SlidesWrapper
-          className={cx("scrollbar-hide mt-1 h-fit w-full gap-xs px-m lg:px-0")}
+          className={cx("scrollbar-hide gap-xs px-m mt-1 h-fit w-full lg:px-0")}
         >
           <Slides
             content={slides}
@@ -110,14 +113,14 @@ function ItemCarousel({
         setSelectedImageIdex(index);
       }}
     >
-      <Image
+      {/* <Image
         alt={`carousel-item-${index}`}
         className="aspect-square h-[85px] w-[85px] object-cover object-center"
         height={85}
         sizes="85px"
         src={mediaItem.url}
         width={85}
-      />
+      /> */}
     </button>
   );
 }
