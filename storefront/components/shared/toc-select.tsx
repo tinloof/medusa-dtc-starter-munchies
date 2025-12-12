@@ -34,7 +34,7 @@ export default function TocSelect({outlines}: Props) {
         <Label font="sans" mobileSize="base">
           <RadixSelect.Value placeholder="On this page" />
         </Label>
-        <RadixSelect.Icon className="flex-shrink-0">
+        <RadixSelect.Icon className="shrink-0">
           <Icon
             className={cx(
               "transition-transforms data-[size=open] duration-300",
@@ -50,7 +50,7 @@ export default function TocSelect({outlines}: Props) {
       <RadixSelect.Portal>
         <RadixSelect.Content
           className={cx(
-            "z-50 my-5 max-h-[320px] w-[--radix-select-trigger-width] origin-top rounded-lg border-[1.5px] border-accent bg-background p-xs data-[state=closed]:animate-select-close data-[state=open]:animate-select-open",
+            "z-50 my-5 max-h-[320px] w-(--radix-select-trigger-width) origin-top rounded-lg border-[1.5px] border-accent bg-background p-xs data-[state=closed]:animate-select-close data-[state=open]:animate-select-open",
             {
               "data-[state=open]": open,
             },
@@ -82,7 +82,7 @@ function SelectItem({
   return (
     <RadixSelect.Item
       className={cx(
-        "cursor-pointer rounded-lg px-s py-[9.5px] data-[disabled]:pointer-events-none data-[state=checked]:bg-accent data-[state=checked]:text-background data-[highlighted]:outline-none",
+        "cursor-pointer rounded-lg px-s py-[9.5px] data-disabled:pointer-events-none data-[state=checked]:bg-accent data-[state=checked]:text-background data-highlighted:outline-none",
         className,
       )}
       {...props}

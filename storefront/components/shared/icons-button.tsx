@@ -66,7 +66,7 @@ export default function IconButton({
     >
       <img
         alt={`${icon} icon`}
-        className="h-full w-full flex-shrink-0 transition-all duration-300"
+        className="h-full w-full shrink-0 transition-all duration-300"
         src={iconSrc}
       />
     </button>

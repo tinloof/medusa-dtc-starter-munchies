@@ -123,7 +123,7 @@ function ProgressBar() {
   return (
     <div className="relative mx-auto mt-2xl h-[2px] w-[215px] self-center justify-self-end overflow-hidden bg-[#FFD2C7] lg:hidden">
       <div
-        className="absolute bottom-0 left-[-100%] top-0 w-full bg-accent transition-transform duration-300 ease-out"
+        className="absolute bottom-0 -left-full top-0 w-full bg-accent transition-transform duration-300 ease-out"
         style={{transform: `translateX(${scrollProgress}%)`}}
       />
     </div>

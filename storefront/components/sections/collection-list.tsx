@@ -39,13 +39,13 @@ function CollectionCard({
   if (!cta?.link) return null;
   return (
     <LocalizedLink
-      className="group relative flex aspect-[3/4] h-auto w-[88vw] min-w-[320px] max-w-[453px] flex-1 cursor-pointer rounded-lg"
+      className="group relative flex aspect-3/4 h-auto w-[88vw] min-w-[320px] max-w-[453px] flex-1 cursor-pointer rounded-lg"
       href={cta?.link}
       prefetch
     >
       {image ? (
         <SanityImage
-          className="aspect-[3/4] h-auto w-[88vw] min-w-[320px] max-w-[453px] rounded-lg object-cover object-center"
+          className="aspect-3/4 h-auto w-[88vw] min-w-[320px] max-w-[453px] rounded-lg object-cover object-center"
           data={image}
         />
       ) : (

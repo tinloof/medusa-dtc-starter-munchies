@@ -122,7 +122,7 @@ export default function Payment({
               >
                 <div className="size-4 rounded-full border border-accent">
                   <Indicator id={item.id}>
-                    <div className="size-4 rounded-full border-[4px] border-background" />
+                    <div className="size-4 rounded-full border-4 border-background" />
                   </Indicator>
                 </div>
                 <div className="flex w-full items-center justify-between">

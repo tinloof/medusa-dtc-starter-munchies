@@ -10,7 +10,7 @@ type linkData = {
 export function PtLink(props: PortableTextMarkComponentProps<linkData>) {
   if (!props.value) return <>{props.children}</>;
   return (
-    <LocalizedLink className="break-words underline" href={props.value.href}>
+    <LocalizedLink className="wrap-break-word underline" href={props.value.href}>
       {props.children}
     </LocalizedLink>
   );

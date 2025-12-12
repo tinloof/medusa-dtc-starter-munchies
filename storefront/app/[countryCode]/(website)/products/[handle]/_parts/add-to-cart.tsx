@@ -20,7 +20,7 @@ export default function AddToCart({
   return (
     <AddToCartButton
       className={cx("", {
-        "!h-[60px] w-fit": variant === "sticky",
+        "h-[60px]! w-fit": variant === "sticky",
         "w-full": variant === "PDP",
       })}
       label="Add to cart"

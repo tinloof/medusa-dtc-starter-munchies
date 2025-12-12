@@ -40,7 +40,7 @@ export default async function PaginatedProducts({
   return (
     <>
       {products.length === 0 && (
-        <div className="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
+        <div className="gap-xs py-2xl flex w-full flex-1 flex-col items-start">
           <Heading font="sans" mobileSize="xs" tag="h2">
             {productsDictionary?.noResultsText}
           </Heading>
@@ -71,17 +71,17 @@ export function ProductsSkeleton() {
     <div className="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
       {[...Array(9)].map((_, index) => (
         <div key={index}>
-          <div className="relative aspect-square w-full rounded-lg border border-accent">
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="border-accent relative aspect-square w-full rounded-lg border">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <Icon
-                className="size-10 animate-spin-loading"
+                className="animate-spin-loading size-10"
                 name="LoadingAccent"
               />
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center gap-1 px-lg py-s">
-            <div className="h-[30px] w-3/4 rounded-s bg-accent opacity-10" />
-            <div className="h-6 w-1/2 rounded-s bg-accent opacity-10" />
+          <div className="px-lg py-s flex flex-col items-center justify-center gap-1">
+            <div className="bg-accent h-[30px] w-3/4 rounded-s opacity-10" />
+            <div className="bg-accent h-6 w-1/2 rounded-s opacity-10" />
           </div>
         </div>
       ))}
