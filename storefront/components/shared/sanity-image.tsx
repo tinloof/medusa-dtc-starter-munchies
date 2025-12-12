@@ -17,7 +17,7 @@ export function SanityImage({data, ...props}: SanityImageProps) {
 import type {ImageUrlBuilder} from "sanity";
 
 import {getImageDimensions} from "@sanity/asset-utils";
-import imageUrlBuilder from "@sanity/image-url";
+import {createImageUrlBuilder} from "@sanity/image-url";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -43,7 +43,7 @@ export function resolveImageData({aspectRatio, data}: SanityImageProps) {
     ? parseFloat(aspectRatioValues[1])
     : undefined;
 
-  const urlBuilder = imageUrlBuilder(imageConfig)
+  const urlBuilder = createImageUrlBuilder(imageConfig)
     .image({
       _ref,
       crop: data.crop,

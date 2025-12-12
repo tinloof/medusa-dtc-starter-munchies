@@ -3,6 +3,7 @@ import {visionTool} from "@sanity/vision";
 import {pages} from "@tinloof/sanity-studio";
 import {defineConfig, isDev} from "sanity";
 import {structureTool} from "sanity/structure";
+import {withExtends} from "@tinloof/sanity-extends";
 import {imageHotspotArrayPlugin} from "sanity-plugin-hotspot-array";
 
 import {StudioLogo} from "./components/studio/logo";
@@ -55,7 +56,7 @@ export default defineConfig({
         (template) =>
           !disableCreationDocumentTypes?.includes(template.schemaType),
       ),
-    types: schemas,
+    types: withExtends(schemas),
   },
   title: config.siteName,
 });

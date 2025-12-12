@@ -1,5 +1,5 @@
 import type {Seo, Slug} from "@/types/sanity.generated";
-import type {SanityImageSource} from "@sanity/image-url/lib/types/types";
+import type {SanityImageSource} from "@sanity/image-url";
 import type {ResolvingMetadata} from "next";
 
 import config from "@/config";

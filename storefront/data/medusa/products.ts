@@ -1,4 +1,4 @@
-import type {StoreProductParams} from "@medusajs/types";
+import type {StoreProductListParams} from "@medusajs/types";
 
 import {unstable_cache} from "next/cache";
 
@@ -43,10 +43,7 @@ export const getProducts = unstable_cache(
   async function (
     page: number,
     region_id: string,
-    query?: Omit<
-      StoreProductParams,
-      "fields" | "limit" | "offset" | "region_id"
-    >,
+    query?: StoreProductListParams,
   ) {
     const limit = 12;
     const offset = (page - 1) * limit;

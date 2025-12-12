@@ -25,7 +25,7 @@ export const getCart = cache(async function () {
     .then(
       ({cart}) =>
         cart as {
-          promotions?: HttpTypes.StorePromotion[];
+          promotions?: HttpTypes.StoreCartPromotion[];
         } & HttpTypes.StoreCart,
     )
     .catch(() => {
