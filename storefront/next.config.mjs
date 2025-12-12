@@ -15,9 +15,6 @@ const config = {
       fullUrl: true,
     },
   },
-  experimental: {
-    taint: true,
-  },
   rewrites() {
     return [
       {
