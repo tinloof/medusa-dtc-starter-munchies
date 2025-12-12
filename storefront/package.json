@@ -43,7 +43,7 @@
     "embla-carousel": "^8.3.0",
     "embla-carousel-react": "^8.3.0",
     "lodash": "^4.17.21",
-    "next": "15.0.0",
+    "next": "15.0.7",
     "next-sanity": "^9.7.1",
     "nuqs": "^1.20.0",
     "react": "19.0.0-rc-65a56d0e-20241020",
