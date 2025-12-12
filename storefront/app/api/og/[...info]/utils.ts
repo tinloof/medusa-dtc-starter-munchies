@@ -16,13 +16,19 @@ export const generateOgEndpoint = ({
   countryCode: string;
   handle: string | string[];
   type: string;
-}) =>
-  new URL(
-    [
-      config.baseUrl,
-      "api/og",
-      countryCode,
-      type,
-      Array.isArray(handle) ? handle.join("/") : handle,
-    ].join("/"),
-  ).toString();
+}) => {
+  try {
+    return new URL(
+      [
+        config.baseUrl,
+        "api/og",
+        countryCode,
+        type,
+        Array.isArray(handle) ? handle.join("/") : handle,
+      ].join("/"),
+    ).toString();
+  } catch (error) {
+    console.error("Failed to generate OG endpoint URL:", error);
+    return "";
+  }
+};

@@ -27,13 +27,12 @@ export function ProductImagesCarousel({
   if (images?.length === 0 || !images) return null;
 
   const slides = images?.map((image, index) => {
-    console.info(image);
     return (
       <Fragment key={image.id}>
         {product.type?.value && (
           <Tag className="absolute top-4 right-4" text={product.type?.value} />
         )}
-        {/* <Image
+        <Image
           alt={product.title}
           className="aspect-thin aspect-square w-full rounded-2xl object-cover object-bottom"
           height={591}
@@ -42,12 +41,10 @@ export function ProductImagesCarousel({
           src={image.url}
           style={{background: "transparent"}}
           width={591}
-        /> */}
+        />
       </Fragment>
     );
   });
-
-  console.info(images);
 
   return (
     <Root
@@ -113,14 +110,14 @@ function ItemCarousel({
         setSelectedImageIdex(index);
       }}
     >
-      {/* <Image
+      <Image
         alt={`carousel-item-${index}`}
         className="aspect-square h-[85px] w-[85px] object-cover object-center"
         height={85}
         sizes="85px"
         src={mediaItem.url}
         width={85}
-      /> */}
+      />
     </button>
   );
 }
