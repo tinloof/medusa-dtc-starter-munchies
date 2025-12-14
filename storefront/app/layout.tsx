@@ -35,7 +35,7 @@ export default function RootLayout({
         instrumentSans.variable,
         instrumentSerif.variable,
         climateCrisis.variable,
-        "overflow-x-clip overscroll-none scroll-smooth",
+        "overflow-x-clip overscroll-y-none scroll-smooth",
       )}
       lang="en"
     >
