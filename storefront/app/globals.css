@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme inline {
   --font-sans: var(--font-instrumentSans);
@@ -196,7 +196,7 @@
   --accent: #ff5227;
   --accent-40: rgba(255, 82, 39, 0.4);
   --secondary: #f9dff2;
-  --error: #FF0000;
+  --error: #ff0000;
 
   --base-font-size: 16px;
   /* font sizes */
@@ -261,7 +261,6 @@
   --spacing-m: 20px;
   --spacing-s: 16px;
   --spacing-xs: 8px;
-
 }
 
 @layer base {
@@ -269,7 +268,7 @@
     overflow: visible !important;
   }
   body {
-    @apply font-sans bg-background text-accent;
+    @apply bg-background text-accent font-sans;
   }
   .font-serif {
     --base-font-size: 16px;
@@ -308,6 +307,10 @@
     scrollbar-color: #ff5227 #ff52273c;
   }
 
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @utility scrollbar-hide {
