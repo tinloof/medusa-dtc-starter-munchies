@@ -38,6 +38,7 @@ export default function RootLayout({
         "overflow-x-clip overscroll-y-none scroll-smooth",
       )}
       lang="en"
+      data-scroll-behavior="smooth"
     >
       <head>
         <link href="/favicon.ico" rel="icon" type="image/x-icon" />
