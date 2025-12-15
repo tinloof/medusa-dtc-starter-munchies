@@ -3,7 +3,7 @@
 import type {
   StoreCart,
   StoreCartLineItem,
-  StorePromotion,
+  StoreCartPromotion,
 } from "@medusajs/types";
 import type {Dispatch, PropsWithChildren, SetStateAction} from "react";
 
@@ -24,7 +24,7 @@ import type {AddToCartEventPayload} from "./event-bus";
 import {addToCartEventBus} from "./event-bus";
 
 type Cart = {
-  promotions?: StorePromotion[];
+  promotions?: StoreCartPromotion[];
 } & StoreCart;
 
 const CartContext = createContext<

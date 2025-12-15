@@ -9,7 +9,7 @@ import {
   removeCartId,
 } from "@/data/medusa/cookies";
 import {getCustomer} from "@/data/medusa/customer";
-import {revalidateTag} from "next/cache";
+import {updateTag} from "next/cache";
 import {redirect} from "next/navigation";
 
 import {updateCart} from "./cart";
@@ -32,7 +32,7 @@ export async function placeOrder() {
 
   const cacheTag = await getCacheTag("carts");
 
-  revalidateTag(cacheTag);
+  updateTag(cacheTag);
 
   if (cartRes?.type === "order") {
     await removeCartId();
@@ -49,7 +49,6 @@ export async function initiatePaymentSession(
   payaload: {
     cart: StoreCart;
     data: {
-      context?: Record<string, unknown>;
       provider_id: string;
     };
   },
@@ -62,7 +61,7 @@ export async function initiatePaymentSession(
       await getAuthHeaders(),
     )
     .then(async () => {
-      revalidateTag(await getCacheTag("carts"));
+      updateTag(await getCacheTag("carts"));
       return {error: null, status: "success"} as const;
     })
     .catch((e) => {
@@ -144,7 +143,7 @@ export async function setShippingMethod(
       await getAuthHeaders(),
     )
     .then(async () => {
-      revalidateTag(await getCacheTag("carts"));
+      updateTag(await getCacheTag("carts"));
       return {error: null, status: "success"} as const;
     })
     .catch((e) => ({error: e.message, status: "error"}));

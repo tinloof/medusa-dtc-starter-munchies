@@ -14,22 +14,22 @@ export async function sanityFetch<QueryResponse>({
 }): Promise<QueryResponse> {
   const isDraftMode = (await draftMode()).isEnabled;
 
-  const perspective = isDraftMode ? "previewDrafts" : "published";
+  const perspective = isDraftMode ? "drafts" : "published";
 
   const token = config.sanity.token;
 
   const stega =
-    perspective === "previewDrafts" || process.env.VERCEL_ENV === "preview";
+    perspective === "drafts" || process.env.VERCEL_ENV === "preview";
 
-  if (perspective === "previewDrafts") {
+  if (perspective === "drafts") {
     return client.fetch(query, await params, {
       // And we can't cache the responses as it would slow down the live preview experience
       next: {revalidate: 0},
-      perspective: "previewDrafts",
+      perspective: "drafts",
       stega,
       // The token is required to fetch draft content
       token,
-      // The `previewDrafts` perspective isn't available on the API CDN
+      // The `drafts` perspective isn't available on the API CDN
       useCdn: false,
     });
   }

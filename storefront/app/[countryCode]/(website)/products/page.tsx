@@ -16,7 +16,7 @@ export default async function CollectionPage(props: CollectionPageProps) {
   const searchParams = await props.searchParams;
   const params = await props.params;
   return (
-    <section className="mx-auto flex max-w-max-screen flex-col gap-10 px-m pb-10 pt-[6.5rem] lg:px-xl">
+    <section className="mx-auto flex max-w-max-screen flex-col gap-10 px-m pb-10 pt-26 lg:px-xl">
       <div>
         <Heading desktopSize="7xl" font="serif" mobileSize="2xl" tag="h1">
           Shop all products

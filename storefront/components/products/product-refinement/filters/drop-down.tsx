@@ -28,7 +28,7 @@ export default function DropDown({
   const ref = useOutsideClick<HTMLDivElement>(() => setOpen(false));
 
   return (
-    <div className="relative z-[15] h-full w-fit">
+    <div className="relative z-15 h-full w-fit">
       <div
         className={cx(
           (className = "rounded-t-lg border border-white"),

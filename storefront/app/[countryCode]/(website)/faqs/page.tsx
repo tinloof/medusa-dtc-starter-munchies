@@ -23,7 +23,7 @@ export async function generateMetadata(_: unknown, parent: ResolvingMetadata) {
 }
 export default async function FaqPage() {
   const data = await loadFaqs();
-  if (!data) return notFound;
+  if (!data) return notFound();
 
   return <Faq data={data} />;
 }

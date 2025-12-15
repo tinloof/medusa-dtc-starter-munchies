@@ -13,7 +13,6 @@ import {
   updateStoresWorkflow,
 } from "@medusajs/medusa/core-flows";
 import { Logger } from "@medusajs/medusa";
-import { RemoteLink } from "@medusajs/framework/modules-sdk";
 import {
   ExecArgs,
   IFulfillmentModuleService,
@@ -23,14 +22,13 @@ import {
 import {
   ContainerRegistrationKeys,
   Modules,
-  ProductStatus
+  ProductStatus,
 } from "@medusajs/framework/utils";
+import { Link } from "@medusajs/framework/modules-sdk";
 
 export default async function seedDemoData({ container }: ExecArgs) {
   const logger: Logger = container.resolve(ContainerRegistrationKeys.LOGGER);
-  const remoteLink: RemoteLink = container.resolve(
-    ContainerRegistrationKeys.REMOTE_LINK
-  );
+  const remoteLink: Link = container.resolve(ContainerRegistrationKeys.LINK);
   const fulfillmentModuleService: IFulfillmentModuleService = container.resolve(
     Modules.FULFILLMENT
   );

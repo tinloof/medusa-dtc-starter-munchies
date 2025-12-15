@@ -45,7 +45,7 @@ export async function generateMetadata(
       images: [
         {
           height: 630,
-          url: url.toString(),
+          url: url || "",
           width: 1200,
         },
       ],
@@ -71,7 +71,7 @@ export default async function ProductPage(props: ProductPageProps) {
   }
   return (
     <>
-      <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
+      <section className="max-w-max-screen gap-s lg:gap-xs lg:px-xl lg:py-m mx-auto flex flex-col items-start justify-start lg:flex-row">
         <ProductImagesCarousel product={product} />
         <ProductInformation
           content={content}

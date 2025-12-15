@@ -19,9 +19,6 @@ export const faqEntry = defineType({
   ],
   icon: HelpCircleIcon,
   name: "faq.entry",
-  options: {
-    localized: false,
-  },
   preview: {
     prepare({title}) {
       return {

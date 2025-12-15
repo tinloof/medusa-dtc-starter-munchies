@@ -75,7 +75,7 @@ export default function FilterSelect(
             className={cx(
               "absolute left-0 top-0 flex w-full cursor-pointer items-center justify-center border-b-[1.5px] border-accent bg-background transition-all duration-300",
               {
-                "translate-y-[-100%]": !showTopArrow,
+                "-translate-y-full": !showTopArrow,
               },
             )}
             onClick={() => scrollBy(-250)}
@@ -92,10 +92,10 @@ export default function FilterSelect(
                 key={option.value}
                 onClick={() => setFilter(option.value)}
               >
-                <div className="flex !size-4 items-center justify-center rounded-[4px] border border-accent">
+                <div className="flex size-4! items-center justify-center rounded-[4px] border border-accent">
                   <Icon
                     className={cx(
-                      "!size-3 shrink-0 transform opacity-0 transition-transform duration-300",
+                      "size-3! shrink-0 transform opacity-0 transition-transform duration-300",
                       {"opacity-100": selected},
                     )}
                     height={24}
@@ -119,7 +119,7 @@ export default function FilterSelect(
             className={cx(
               "sticky bottom-0 left-0 flex w-full cursor-pointer items-center justify-center border-t-[1.5px] border-accent bg-background transition-all duration-300",
               {
-                "translate-y-[100%]": !showBottomArrow,
+                "translate-y-full": !showBottomArrow,
               },
             )}
             onClick={() => scrollBy(250)}

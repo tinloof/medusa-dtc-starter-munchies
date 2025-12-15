@@ -12,7 +12,7 @@ export default function SimpleHero(props: ModularPageSection<"section.hero">) {
     <div className="flex flex-col items-stretch justify-center gap-xs lg:flex-row-reverse">
       <div className="flex min-h-[470px] w-full flex-col items-center justify-center gap-s rounded-lg bg-secondary px-m py-4xl text-center lg:w-1/2 lg:py-m">
         <Heading
-          className="!leading-[100%]"
+          className="leading-[100%]!"
           desktopSize="5xl"
           font="serif"
           mobileSize="3xl"

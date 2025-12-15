@@ -46,7 +46,7 @@ export default function Navigation({data}: {data: Header}) {
             return (
               <LocalizedLink
                 className={cx(
-                  "h-full whitespace-nowrap px-5 py-[14.5px] transition-opacity duration-300 hover:!opacity-100 group-hover:opacity-50",
+                  "h-full whitespace-nowrap px-5 py-[14.5px] transition-opacity duration-300 hover:opacity-100! group-hover:opacity-50",
                   {
                     "opacity-50": !!openDropdown,
                   },
@@ -69,7 +69,7 @@ export default function Navigation({data}: {data: Header}) {
               <NavigationMenu.Item key={item._key}>
                 <NavigationMenu.Trigger
                   className={cx(
-                    "whitespace-nowrap px-5 py-[14.5px] transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 data-[state=open]:opacity-100",
+                    "whitespace-nowrap px-5 py-[14.5px] transition-all duration-300 hover:opacity-100! group-hover:opacity-50 data-[state=open]:opacity-100",
                     {
                       "opacity-50": !!openDropdown,
                     },
@@ -79,7 +79,7 @@ export default function Navigation({data}: {data: Header}) {
                     {item.title}
                   </Body>
                 </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="absolute left-0 top-0 z-[30] w-full bg-background data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <NavigationMenu.Content className="absolute left-0 top-0 z-30 w-full bg-background data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                   <Content {...item} />
                 </NavigationMenu.Content>
               </NavigationMenu.Item>
@@ -90,7 +90,7 @@ export default function Navigation({data}: {data: Header}) {
 
       <div className="perspective-[2000px] absolute left-0 top-full flex w-full flex-1 flex-col justify-center overflow-hidden bg-transparent">
         <BottomBorder DropdownOpen={!!openDropdown} />
-        <NavigationMenu.Viewport className="relative mx-auto h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden bg-background transition-[width,_height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
+        <NavigationMenu.Viewport className="relative mx-auto h-(--radix-navigation-menu-viewport-height) w-full origin-[top_center] overflow-hidden bg-background transition-[width,height] duration-300 data-[state=closed]:animate-exitToTop data-[state=open]:animate-enterFromTop" />
         <div
           className={cx(
             "relative w-full bg-accent transition-all duration-300",
@@ -128,7 +128,7 @@ function Content({cards, columns}: DropdownType) {
                       className={cx(
                         "py-xs opacity-100 transition-opacity duration-300 last:pb-0 group-hover:opacity-50",
                         {
-                          "!opacity-100": hoveredKey === link._key,
+                          "opacity-100!": hoveredKey === link._key,
                         },
                       )}
                       href={link.link}

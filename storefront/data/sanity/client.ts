@@ -1,7 +1,7 @@
 import type {ClientPerspective} from "next-sanity";
 
 import config from "@/config";
-import createImageUrlBuilder from "@sanity/image-url";
+import {createImageUrlBuilder} from "@sanity/image-url";
 import {createClient} from "next-sanity";
 
 const clientConfig = {

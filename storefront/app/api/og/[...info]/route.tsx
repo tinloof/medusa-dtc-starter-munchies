@@ -1,4 +1,3 @@
-import type {PageProps} from "@/types";
 import type {ImageResponseOptions, NextRequest} from "next/server";
 
 import {getProductByHandle} from "@/data/medusa/products";
@@ -9,8 +8,11 @@ import ProductOg from "./product-og";
 
 export const runtime = "edge";
 
-export async function GET(_: NextRequest, props: PageProps<"...info">) {
-  const params = await props.params;
+export async function GET(
+  _: NextRequest,
+  {params}: {params: Promise<{info: string[]}>},
+) {
+  const {info} = await params;
   const instrumentSerif = await fetch(
     new URL("../../../fonts/InstrumentSerif-Regular.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
@@ -49,12 +51,12 @@ export async function GET(_: NextRequest, props: PageProps<"...info">) {
       width: 1200,
     };
 
-    if (params.info[1] !== "products") {
+    if (info[1] !== "products") {
       return new Response("Invalid type", {status: 400});
     }
 
-    const countryCode = params.info[0];
-    const handle = params.info[2];
+    const countryCode = info[0];
+    const handle = info[2];
 
     const region = await getRegion(countryCode);
     if (!region) {

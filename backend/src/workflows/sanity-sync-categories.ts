@@ -5,7 +5,10 @@ import {
   StepResponse,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk";
-import { FilterableProductProps } from "@medusajs/types";
+import {
+  FilterableProductCategoryProps,
+  FilterableProductProps,
+} from "@medusajs/types";
 import SanityModuleService from "../modules/sanity/service";
 
 const step = createStep;
@@ -26,7 +29,7 @@ const syncStep = step(
     const batchSize = 200;
     let hasMore = true;
     let offset = 0;
-    let filter: FilterableProductProps = {};
+    let filter: FilterableProductCategoryProps = {};
     if (isDefined(input.category_ids)) {
       filter.id = input.category_ids;
     }
@@ -50,7 +53,7 @@ const syncStep = step(
       await promiseAll(
         categories.map((prod) => {
           return sanityModule.upsertSyncDocument("category", prod);
-        }),
+        })
       );
 
       offset += batchSize;
@@ -59,7 +62,7 @@ const syncStep = step(
     }
 
     return new StepResponse({ total });
-  },
+  }
 );
 
 const id = "sanity-category-sync";
@@ -70,5 +73,5 @@ export const sanityCategorySyncWorkflow = wf(
     const result = syncStep(input);
 
     return new WorkflowResponse(result);
-  },
+  }
 );

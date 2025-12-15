@@ -10,12 +10,12 @@ import { useResetableActionState } from "@/hooks/use-resetable-action-state";
 import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
 import { CardElement } from "@stripe/react-stripe-js";
 import {
-    type Dispatch,
-    type SetStateAction,
-    useContext,
-    useEffect,
-    useState,
-    useTransition,
+  type Dispatch,
+  type SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+  useTransition,
 } from "react";
 
 import PaymentButton from "./button";
@@ -66,7 +66,6 @@ export default function Payment({
       action({
         cart,
         data: {
-          context: {},
           provider_id: selectedPaymentMethod,
         },
       });
@@ -123,7 +122,7 @@ export default function Payment({
               >
                 <div className="size-4 rounded-full border border-accent">
                   <Indicator id={item.id}>
-                    <div className="size-4 rounded-full border-[4px] border-background" />
+                    <div className="size-4 rounded-full border-4 border-background" />
                   </Indicator>
                 </div>
                 <div className="flex w-full items-center justify-between">

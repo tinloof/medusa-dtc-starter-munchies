@@ -36,7 +36,7 @@ export default async function Layout(props: LayoutProps) {
   return (
     <>
       <PreventBackNavigationSmoothScroll />
-      <div className="sticky top-0 z-[20] w-screen bg-background">
+      <div className="sticky top-0 z-20 w-screen bg-background">
         <div className="mx-auto my-s w-full max-w-max-screen bg-background px-m lg:px-xl">
           <LocalizedLink href="/" prefetch>
             <img

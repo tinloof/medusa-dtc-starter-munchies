@@ -30,7 +30,7 @@ export function ProductImagesCarousel({
     return (
       <Fragment key={image.id}>
         {product.type?.value && (
-          <Tag className="absolute right-4 top-4" text={product.type?.value} />
+          <Tag className="absolute top-4 right-4" text={product.type?.value} />
         )}
         <Image
           alt={product.title}
@@ -68,7 +68,7 @@ export function ProductImagesCarousel({
           </div>
         )}
         <SlidesWrapper
-          className={cx("scrollbar-hide mt-1 h-fit w-full gap-xs px-m lg:px-0")}
+          className={cx("scrollbar-hide gap-xs px-m mt-1 h-fit w-full lg:px-0")}
         >
           <Slides
             content={slides}

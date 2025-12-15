@@ -62,7 +62,7 @@ export default function MobileFilterDropdown({children}: Props) {
             className={cx(
               "absolute left-0 top-0 flex w-full cursor-pointer items-center justify-center border-b-[1.5px] border-accent bg-background transition-all duration-300",
               {
-                "translate-y-[-100%]": !showTopArrow,
+                "-translate-y-full": !showTopArrow,
               },
             )}
             onClick={() => scrollBy(-250)}
@@ -76,7 +76,7 @@ export default function MobileFilterDropdown({children}: Props) {
             className={cx(
               "sticky bottom-0 left-0 flex w-full cursor-pointer items-center justify-center border-t-[1.5px] border-accent bg-background transition-all duration-300",
               {
-                "translate-y-[100%]": !showBottomArrow,
+                "translate-y-full": !showBottomArrow,
               },
             )}
             onClick={() => scrollBy(250)}

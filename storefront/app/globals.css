@@ -1,26 +1,274 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-instrumentSans);
+  --font-serif: var(--font-instrumentSerif);
+  --font-display: var(--font-climateCrisis);
+  --color-background: var(--background);
+  --color-accent: var(--accent);
+  --color-accent-40: var(--accent-40);
+  --color-secondary: var(--secondary);
+  --color-error: var(--error);
+  --text-body-8xl: var(--body-8xl);
+  --text-body-6xl: var(--body-6xl);
+  --text-body-5xl: var(--body-5xl);
+  --text-body-4xl: var(--body-4xl);
+  --text-body-3xl: var(--body-3xl);
+  --text-body-2xl: var(--body-2xl);
+  --text-body-xl: var(--body-xl);
+  --text-body-lg: var(--body-lg);
+  --text-body-base: var(--body-base);
+  --text-body-sm: var(--body-sm);
+  --text-body-xs: var(--body-xs);
+  --text-heading-9xl: var(--heading-9xl);
+  --text-heading-8xl: var(--heading-8xl);
+  --text-heading-7xl: var(--heading-7xl);
+  --text-heading-6xl: var(--heading-6xl);
+  --text-heading-5xl: var(--heading-5xl);
+  --text-heading-4xl: var(--heading-4xl);
+  --text-heading-3xl: var(--heading-3xl);
+  --text-heading-2xl: var(--heading-2xl);
+  --text-heading-xl: var(--heading-xl);
+  --text-heading-lg: var(--heading-lg);
+  --text-heading-base: var(--heading-base);
+  --text-heading-sm: var(--heading-sm);
+  --text-heading-xs: var(--heading-xs);
+  --text-heading-2xs: var(--heading-2xs);
+  --text-label-9xl: var(--label-9xl);
+  --text-label-8xl: var(--label-8xl);
+  --text-label-7xl: var(--label-7xl);
+  --text-label-6xl: var(--label-6xl);
+  --text-label-5xl: var(--label-5xl);
+  --text-label-4xl: var(--label-4xl);
+  --text-label-3xl: var(--label-3xl);
+  --text-label-2xl: var(--label-2xl);
+  --text-label-xl: var(--label-xl);
+  --text-label-lg: var(--label-lg);
+  --text-label-base: var(--label-base);
+  --text-label-sm: var(--label-sm);
+  --text-label-xs: var(--label-xs);
+  --text-label-2xs: var(--label-2xs);
+
+  /* Spacing */
+  --spacing-max-screen: var(--max-width);
+  --spacing-min-screen: var(--min-width);
+  --spacing-8xl: 80px;
+  --spacing-7xl: 72px;
+  --spacing-6xl: 64px;
+  --spacing-5xl: 50px;
+  --spacing-4xl: 48px;
+  --spacing-3xl: 44px;
+  --spacing-2xl: 40px;
+  --spacing-xl: 32px;
+  --spacing-lg: 24px;
+  --spacing-m: 20px;
+  --spacing-s: 16px;
+  --spacing-xs: 8px;
+
+  /* Animations */
+  --animate-spin-loading: spin 1.5s linear infinite;
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-select-open: selectOpen 0.2s ease-out forwards;
+  --animate-select-close: selectClose 0.2s ease-in forwards;
+  --animate-enterFromTop: enterFromTop 300ms ease;
+  --animate-enterFromLeft: enterFromLeft 450ms ease;
+  --animate-enterFromRight: enterFromRight 450ms ease;
+  --animate-exitToTop: exitToTop 300ms ease;
+  --animate-exitToRight: exitToRight 450ms ease;
+  --animate-exitToLeft: exitToLeft 450ms ease;
+  --animate-fadeInUp: fadeInUp 450ms ease;
+  --animate-fadeOutLeft: fadeOutLeft var(--duration) ease-in-out;
+
+  /* Keyframes */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes selectOpen {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes selectClose {
+    from {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px);
+      -webkit-filter: blur(0px);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+      filter: blur(4px);
+      -webkit-filter: blur(4px);
+    }
+  }
+  @keyframes enterFromTop {
+    from {
+      opacity: 0.5;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes enterFromRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes enterFromLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes exitToTop {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+  @keyframes exitToRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes exitToLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeOutLeft {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+  }
+}
+
+:root {
+  /* dimensions */
+  --max-width: 1440px;
+  --min-width: 320px;
+
+  /* colors */
+  --background: #fff6e6;
+  --accent: #ff5227;
+  --accent-40: rgba(255, 82, 39, 0.4);
+  --secondary: #f9dff2;
+  --error: #ff0000;
+
+  --base-font-size: 16px;
+  /* font sizes */
+
+  /* Body */
+  --body-8xl: calc(var(--base-font-size) + 32px);
+  --body-6xl: calc(var(--base-font-size) + 24px);
+  --body-5xl: calc(var(--base-font-size) + 20px);
+  --body-4xl: calc(var(--base-font-size) + 16px);
+  --body-3xl: calc(var(--base-font-size) + 12px);
+  --body-2xl: calc(var(--base-font-size) + 8px);
+  --body-xl: calc(var(--base-font-size) + 4px);
+  --body-lg: calc(var(--base-font-size) + 2px);
+  --body-base: var(--base-font-size);
+  --body-sm: calc(var(--base-font-size) - 2px);
+  --body-xs: calc(var(--base-font-size) - 4px);
+
+  /* Heading */
+  --heading-9xl: calc(var(--base-font-size) + 112px);
+  --heading-8xl: calc(var(--base-font-size) + 96px);
+  --heading-7xl: calc(var(--base-font-size) + 80px);
+  --heading-6xl: calc(var(--base-font-size) + 72px);
+  --heading-5xl: calc(var(--base-font-size) + 64px);
+  --heading-4xl: calc(var(--base-font-size) + 56px);
+  --heading-3xl: calc(var(--base-font-size) + 48px);
+  --heading-2xl: calc(var(--base-font-size) + 40px);
+  --heading-xl: calc(var(--base-font-size) + 32px);
+  --heading-lg: calc(var(--base-font-size) + 24px);
+  --heading-base: calc(var(--base-font-size) + 16px);
+  --heading-sm: calc(var(--base-font-size) + 12px);
+  --heading-xs: calc(var(--base-font-size) + 8px);
+  --heading-2xs: calc(var(--base-font-size) + 4px);
+
+  /* Label */
+  --label-9xl: calc(var(--base-font-size) + 36px);
+  --label-8xl: calc(var(--base-font-size) + 32px);
+  --label-7xl: calc(var(--base-font-size) + 28px);
+  --label-6xl: calc(var(--base-font-size) + 24px);
+  --label-5xl: calc(var(--base-font-size) + 20px);
+  --label-4xl: calc(var(--base-font-size) + 16px);
+  --label-3xl: calc(var(--base-font-size) + 12px);
+  --label-2xl: calc(var(--base-font-size) + 8px);
+  --label-xl: calc(var(--base-font-size) + 4px);
+  --label-lg: calc(var(--base-font-size) + 2px);
+  --label-base: var(--base-font-size);
+  --label-sm: calc(var(--base-font-size) - 2px);
+  --label-xs: calc(var(--base-font-size) - 4px);
+  --label-2xs: calc(var(--base-font-size) - 6px);
+
+  /* Spacing */
+  --spacing-max-screen: var(--max-width);
+  --spacing-min-screen: var(--min-width);
+  --spacing-8xl: 80px;
+  --spacing-7xl: 72px;
+  --spacing-6xl: 64px;
+  --spacing-5xl: 50px;
+  --spacing-4xl: 48px;
+  --spacing-3xl: 44px;
+  --spacing-2xl: 40px;
+  --spacing-xl: 32px;
+  --spacing-lg: 24px;
+  --spacing-m: 20px;
+  --spacing-s: 16px;
+  --spacing-xs: 8px;
+}
 
 @layer base {
   html body[data-scroll-locked] {
     overflow: visible !important;
   }
   body {
-    color: var(--accent);
-    background: var(--background);
-    @apply font-sans;
-  }
-  :root {
-    @apply [--header-height:_89px] lg:[--header-height:_108px];
-    --max-width: 1440px;
-    --min-width: 320px;
-    /* colors */
-    --background: #fff6e6;
-    --accent: #ff5227;
-    --accent-40: rgba(255, 82, 39, 0.4);
-    --secondary: #f9dff2;
-    --base-font-size: 16px;
+    @apply bg-background text-accent font-sans;
   }
   .font-serif {
     --base-font-size: 16px;
@@ -53,17 +301,23 @@
     background-color: #ff5227;
     border-radius: 10px;
   }
+
   * {
     scrollbar-width: thin;
     scrollbar-color: #ff5227 #ff52273c;
   }
-  @layer utilities {
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

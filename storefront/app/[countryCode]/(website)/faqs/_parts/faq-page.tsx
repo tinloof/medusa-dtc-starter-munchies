@@ -164,7 +164,7 @@ export default function Faq({
               {searchResults.length > 0 ? (
                 <div className="absolute left-0 top-full z-10 mt-[5px] w-full max-w-[420px] rounded-lg border-[1.5px] border-accent bg-background p-2 text-accent">
                   <div
-                    className="max-h-[16rem] overflow-y-auto outline-none"
+                    className="max-h-64 overflow-y-auto outline-none"
                     ref={searchResultsRef}
                     tabIndex={0}
                   >
