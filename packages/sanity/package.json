@@ -44,7 +44,6 @@
     "watch": "^1.0.2"
   },
   "exports": {
-    "./queries": "./src/queries/index.ts",
     "./types": "./sanity.types.ts"
   }
 }
