@@ -1,9 +1,9 @@
 "use client";
-import type {VariantProps} from "cva";
-import type {ComponentProps} from "react";
+import type { VariantProps } from "class-variance-authority";
+import type { ComponentProps } from "react";
 
-import {cva} from "cva";
-import {useState} from "react";
+import { cva } from "class-variance-authority";
+import { useState } from "react";
 
 export const icons = {
   ArrowLeft: {
@@ -35,7 +35,7 @@ const iconButtonVariants = cva(
         xs: "size-8",
       },
     },
-  },
+  }
 );
 
 export type IconButtonProps = {
@@ -58,7 +58,7 @@ export default function IconButton({
 
   return (
     <button
-      className={iconButtonVariants({className, disabled, size})}
+      className={iconButtonVariants({ className, disabled, size })}
       disabled={disabled}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

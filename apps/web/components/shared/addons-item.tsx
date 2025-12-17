@@ -1,8 +1,8 @@
-import type {StoreProduct} from "@medusajs/types";
+import type { StoreProduct } from "@medusajs/types";
 
-import {AddToCartButton} from "@/app/[countryCode]/(website)/products/[handle]/_parts/add-to-cart";
-import {getProductPrice} from "@/utils/medusa/get-product-price";
-import {cx} from "cva";
+import { AddToCartButton } from "@/app/[countryCode]/(website)/products/[handle]/_parts/add-to-cart";
+import { getProductPrice } from "@/utils/medusa/get-product-price";
+import { cx } from "class-variance-authority";
 import Image from "next/image";
 
 import LocalizedLink from "./localized-link";
@@ -13,15 +13,15 @@ type Props = {
   variant?: "PDP" | "cart";
 } & StoreProduct;
 
-export function AddonsItem({region_id, variant = "PDP", ...product}: Props) {
-  const {cheapestPrice} = getProductPrice({
+export function AddonsItem({ region_id, variant = "PDP", ...product }: Props) {
+  const { cheapestPrice } = getProductPrice({
     product,
   });
 
   const default_variant = product.variants?.[0];
   const variantWithProduct = !default_variant
     ? default_variant
-    : {...default_variant, product};
+    : { ...default_variant, product };
 
   return (
     <LocalizedLink

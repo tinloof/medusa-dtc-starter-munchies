@@ -1,6 +1,6 @@
-import type {VariantProps} from "cva";
+import type { VariantProps } from "class-variance-authority";
 
-import {cva} from "cva";
+import { cva } from "class-variance-authority";
 
 export const labelStyles = cva("", {
   defaultVariants: {
@@ -48,7 +48,7 @@ export default function Label({
 }: LabelProps) {
   return (
     <div
-      className={labelStyles({className, desktopSize, font, mobileSize})}
+      className={labelStyles({ className, desktopSize, font, mobileSize })}
       {...rest}
     >
       {children}

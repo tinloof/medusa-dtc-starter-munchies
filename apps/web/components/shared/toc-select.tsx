@@ -1,23 +1,23 @@
 "use client";
 
-import type {BlocksBody} from "@/utils/content/toc";
+import type { BlocksBody } from "@/utils/content/toc";
 
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import Label from "@/components/shared/typography/label";
-import {getPtComponentId} from "@/utils/ids";
-import {toPlainText} from "@portabletext/react";
+import { getPtComponentId } from "@/utils/ids";
+import { toPlainText } from "@portabletext/react";
 import * as RadixSelect from "@radix-ui/react-select";
-import {cx} from "cva";
-import {useState} from "react";
+import { cx } from "class-variance-authority";
+import { useState } from "react";
 
 import LocalizedLink from "./localized-link";
 
 type Props = {
-  outlines: {block: BlocksBody; isSub: boolean}[];
+  outlines: { block: BlocksBody; isSub: boolean }[];
 };
 
-export default function TocSelect({outlines}: Props) {
+export default function TocSelect({ outlines }: Props) {
   const [open, setOpen] = useState(false);
 
   if (!outlines || outlines.length === 0) return null;
@@ -40,7 +40,7 @@ export default function TocSelect({outlines}: Props) {
               "transition-transforms data-[size=open] duration-300",
               {
                 "rotate-180": open,
-              },
+              }
             )}
             name="AccordionTop"
           />
@@ -53,7 +53,7 @@ export default function TocSelect({outlines}: Props) {
             "z-50 my-5 max-h-[320px] w-(--radix-select-trigger-width) origin-top rounded-lg border-[1.5px] border-accent bg-background p-xs data-[state=closed]:animate-select-close data-[state=open]:animate-select-open",
             {
               "data-[state=open]": open,
-            },
+            }
           )}
           position="popper"
         >
@@ -83,7 +83,7 @@ function SelectItem({
     <RadixSelect.Item
       className={cx(
         "cursor-pointer rounded-lg px-s py-[9.5px] data-disabled:pointer-events-none data-[state=checked]:bg-accent data-[state=checked]:text-background data-highlighted:outline-none",
-        className,
+        className
       )}
       {...props}
     >

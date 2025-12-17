@@ -1,10 +1,10 @@
-import {cx} from "cva";
-import {forwardRef} from "react";
+import { cx } from "class-variance-authority";
+import { forwardRef } from "react";
 
 export default forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
->(function Input({className, placeholder, required, type, ...props}, ref) {
+>(function Input({ className, placeholder, required, type, ...props }, ref) {
   return (
     <input
       className={cx(
@@ -13,7 +13,7 @@ export default forwardRef<
         {
           "size-4 border-2 border-accent bg-transparent p-1 accent-accent outline-none":
             type === "checkbox",
-        },
+        }
       )}
       placeholder={
         placeholder ? placeholder + (required ? "*" : "") : undefined

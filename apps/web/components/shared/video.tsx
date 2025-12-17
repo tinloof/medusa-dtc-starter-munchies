@@ -7,7 +7,7 @@ import {
   resolveImageData,
 } from "@/components/shared/sanity-image";
 import useInView from "@/hooks/use-in-view";
-import { cx } from "cva";
+import { cx } from "class-variance-authority";
 import React, { useEffect, useState } from "react";
 
 export type VideoProps = {

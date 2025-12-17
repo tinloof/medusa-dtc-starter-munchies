@@ -1,7 +1,7 @@
-import type {StoreProduct} from "@medusajs/types";
+import type { StoreProduct } from "@medusajs/types";
 
-import {getProductPrice} from "@/utils/medusa/get-product-price";
-import {cx} from "cva";
+import { getProductPrice } from "@/utils/medusa/get-product-price";
+import { cx } from "class-variance-authority";
 import Image from "next/image";
 
 import LocalizedLink from "./localized-link";
@@ -19,7 +19,7 @@ export default function ProductCard({
 }) {
   if (!product) return null;
 
-  const {cheapestPrice} = getProductPrice({product});
+  const { cheapestPrice } = getProductPrice({ product });
 
   const thumbnail = product.thumbnail || product.images?.[0]?.url;
 
@@ -29,7 +29,7 @@ export default function ProductCard({
         "flex flex-1 flex-col items-center justify-center rounded-lg",
         {
           "w-[88vw] max-w-[450px]": size === "default",
-        },
+        }
       )}
       href={`/products/${product?.handle}`}
       prefetch

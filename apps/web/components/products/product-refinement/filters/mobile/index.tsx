@@ -1,9 +1,9 @@
 "use client";
-import {Cta} from "@/components/shared/button";
+import { Cta } from "@/components/shared/button";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
-import {cx} from "cva";
-import {usePathname, useRouter} from "next/navigation";
+import { cx } from "class-variance-authority";
+import { usePathname, useRouter } from "next/navigation";
 import {
   type PropsWithChildren,
   useCallback,
@@ -16,7 +16,7 @@ import DropDown from "../drop-down";
 
 type Props = PropsWithChildren;
 
-export default function MobileFilterDropdown({children}: Props) {
+export default function MobileFilterDropdown({ children }: Props) {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -35,7 +35,7 @@ export default function MobileFilterDropdown({children}: Props) {
       setShowTopArrow(container.scrollTop > 0);
       setShowBottomArrow(
         container.scrollHeight - container.clientHeight >
-          container.scrollTop + 1,
+          container.scrollTop + 1
       );
     }
   };
@@ -47,7 +47,7 @@ export default function MobileFilterDropdown({children}: Props) {
   const scrollBy = (amount: number) => {
     const container = scrollContainerRef.current;
     if (container) {
-      container.scrollBy({behavior: "smooth", top: amount});
+      container.scrollBy({ behavior: "smooth", top: amount });
     }
   };
   return (
@@ -63,7 +63,7 @@ export default function MobileFilterDropdown({children}: Props) {
               "absolute left-0 top-0 flex w-full cursor-pointer items-center justify-center border-b-[1.5px] border-accent bg-background transition-all duration-300",
               {
                 "-translate-y-full": !showTopArrow,
-              },
+              }
             )}
             onClick={() => scrollBy(-250)}
           >
@@ -77,7 +77,7 @@ export default function MobileFilterDropdown({children}: Props) {
               "sticky bottom-0 left-0 flex w-full cursor-pointer items-center justify-center border-t-[1.5px] border-accent bg-background transition-all duration-300",
               {
                 "translate-y-full": !showBottomArrow,
-              },
+              }
             )}
             onClick={() => scrollBy(250)}
           >

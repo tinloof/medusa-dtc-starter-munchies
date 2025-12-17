@@ -1,15 +1,15 @@
-import {cx} from "cva";
-import {stegaClean} from "next-sanity";
+import { cx } from "class-variance-authority";
+import { stegaClean } from "next-sanity";
 import React from "react";
 
-import type {ModularPageSection} from "./types";
+import type { ModularPageSection } from "./types";
 
-import {SanityImage} from "../shared/sanity-image";
+import { SanityImage } from "../shared/sanity-image";
 import Body from "../shared/typography/body";
 import Label from "../shared/typography/label";
 
 export default function MediaText(
-  props: ModularPageSection<"section.mediaText">,
+  props: ModularPageSection<"section.mediaText">
 ) {
   const position = stegaClean(props.imagePosition);
   return (
@@ -20,7 +20,7 @@ export default function MediaText(
         {
           "lg:flex-row": position === "right",
           "lg:flex-row-reverse": position === "left",
-        },
+        }
       )}
     >
       <div className="relative flex min-h-[390px] flex-col items-center justify-start gap-11 rounded-lg border border-accent p-s sm:justify-center lg:w-1/2 lg:py-7xl">

@@ -1,18 +1,18 @@
 "use client";
 
-import type {StoreProduct} from "@medusajs/types";
+import type { StoreProduct } from "@medusajs/types";
 
-import {cx} from "cva";
-import {useEffect, useState} from "react";
+import { cx } from "class-variance-authority";
+import { useEffect, useState } from "react";
 
-import {ProductVariantsProvider} from "../product-context";
+import { ProductVariantsProvider } from "../product-context";
 import AddToCart from "./add-to-cart";
 import OptionsSelect from "./options";
 
 export default function StickyAtc({
   region_id,
   ...product
-}: {region_id: string} & StoreProduct) {
+}: { region_id: string } & StoreProduct) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -38,13 +38,13 @@ export default function StickyAtc({
           {
             "translate-y-0": isVisible,
             "translate-y-full": !isVisible,
-          },
+          }
         )}
       >
         <div className="flex items-center justify-center gap-3">
           {product.options &&
             product.options.some(
-              (option) => (option.values?.length || 0) > 1,
+              (option) => (option.values?.length || 0) > 1
             ) && (
               <div className="w-fit">
                 <OptionsSelect options={product.options} />

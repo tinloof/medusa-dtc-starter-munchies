@@ -1,17 +1,17 @@
 "use client";
-import type {StoreProduct} from "@medusajs/types";
+import type { StoreProduct } from "@medusajs/types";
 
-import {Link} from "@/components/shared/button";
+import { Link } from "@/components/shared/button";
 import LocalizedLink from "@/components/shared/localized-link";
-import {SanityImage} from "@/components/shared/sanity-image";
+import { SanityImage } from "@/components/shared/sanity-image";
 import Tag from "@/components/shared/tag";
 import Body from "@/components/shared/typography/body";
-import {getProductPrice} from "@/utils/medusa/get-product-price";
-import {cx} from "cva";
+import { getProductPrice } from "@/utils/medusa/get-product-price";
+import { cx } from "class-variance-authority";
 import Image from "next/image";
-import {useState} from "react";
+import { useState } from "react";
 
-import type {ModularPageSection} from "../types";
+import type { ModularPageSection } from "../types";
 
 export default function HotspotsUi({
   image,
@@ -24,17 +24,17 @@ export default function HotspotsUi({
   "image" | "productHotSpots"
 >) {
   const [selectedProduct, setSelectedProduct] = useState<string | undefined>(
-    productHotSpots?.[0]?.product?._ref,
+    productHotSpots?.[0]?.product?._ref
   );
   const referencedProducts = products.filter((product) =>
-    productHotSpots?.some((hotspot) => hotspot.product?._ref === product.id),
+    productHotSpots?.some((hotspot) => hotspot.product?._ref === product.id)
   );
 
   const product = referencedProducts.find(
-    (product) => product.id === selectedProduct,
+    (product) => product.id === selectedProduct
   );
   if (!product) return null;
-  const {cheapestPrice} = getProductPrice({product});
+  const { cheapestPrice } = getProductPrice({ product });
 
   const thumbnailUrl = product?.thumbnail || product?.images?.[0].url;
 
@@ -50,7 +50,7 @@ export default function HotspotsUi({
                   "group relative h-6 w-6 cursor-pointer rounded-full bg-accent transition-all duration-300 hover:bg-secondary lg:h-8 lg:w-8",
                   {
                     "bg-secondary": selectedProduct === hotSpot.product?._ref,
-                  },
+                  }
                 )}
                 key={hotSpot._key}
                 onClick={() =>
@@ -69,7 +69,7 @@ export default function HotspotsUi({
                       "bg-accent": selectedProduct === hotSpot.product?._ref,
                       "bg-background":
                         selectedProduct !== hotSpot.product?._ref,
-                    },
+                    }
                   )}
                 />
                 <span
@@ -80,7 +80,7 @@ export default function HotspotsUi({
                         selectedProduct !== hotSpot.product?._ref,
                       "rotate-90 bg-accent":
                         selectedProduct === hotSpot.product?._ref,
-                    },
+                    }
                   )}
                 />
               </div>
@@ -144,7 +144,7 @@ export default function HotspotsUi({
       </LocalizedLink>
       <div className="flex flex-col gap-xs lg:hidden">
         {referencedProducts.map((product) => {
-          const {cheapestPrice} = getProductPrice({product});
+          const { cheapestPrice } = getProductPrice({ product });
           const thumbnailUrl = product?.thumbnail || product?.images?.[0].url;
           return (
             <LocalizedLink

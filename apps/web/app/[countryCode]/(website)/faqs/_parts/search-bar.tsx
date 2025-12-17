@@ -1,6 +1,6 @@
 import Icon from "@/components/shared/icon";
-import {cx} from "cva";
-import {type KeyboardEvent, useEffect, useRef} from "react";
+import { cx } from "class-variance-authority";
+import { type KeyboardEvent, useEffect, useRef } from "react";
 
 type SearchbarProps = {
   className?: string;
@@ -45,7 +45,7 @@ export default function SearchBar({
     <div
       className={cx(
         "relative mt-7 flex w-full items-start rounded-lg lg:max-w-[420px]",
-        className,
+        className
       )}
     >
       <Icon

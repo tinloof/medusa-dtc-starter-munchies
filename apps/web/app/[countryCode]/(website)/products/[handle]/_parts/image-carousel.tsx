@@ -1,6 +1,6 @@
 "use client";
 
-import type {StoreProduct, StoreProductImage} from "@medusajs/types";
+import type { StoreProduct, StoreProductImage } from "@medusajs/types";
 
 import {
   Root,
@@ -9,9 +9,9 @@ import {
   useCarousel,
 } from "@/components/shared/carousel";
 import Tag from "@/components/shared/tag";
-import {cx} from "cva";
+import { cx } from "class-variance-authority";
 import Image from "next/image";
-import {Fragment, useEffect, useState} from "react";
+import { Fragment, useEffect, useState } from "react";
 
 type CommonProductImagesCarouselProps = {
   product: StoreProduct;
@@ -39,7 +39,7 @@ export function ProductImagesCarousel({
           priority={index === 0}
           sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
           src={image.url}
-          style={{background: "transparent"}}
+          style={{ background: "transparent" }}
           width={591}
         />
       </Fragment>
@@ -48,7 +48,7 @@ export function ProductImagesCarousel({
 
   return (
     <Root
-      options={{containScroll: "trimSnaps", dragFree: true}}
+      options={{ containScroll: "trimSnaps", dragFree: true }}
       slidesCount={images?.length || 0}
     >
       <div className="mx-auto flex w-full gap-2 lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:mx-0 lg:max-w-[684px]">
@@ -97,7 +97,7 @@ function ItemCarousel({
   selectedImageIndex: number;
   setSelectedImageIdex: (index: number) => void;
 }) {
-  const {api} = useCarousel();
+  const { api } = useCarousel();
 
   useEffect(() => {
     api?.scrollTo(selectedImageIndex);

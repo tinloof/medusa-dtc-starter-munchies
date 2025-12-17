@@ -1,7 +1,7 @@
 "use client";
 
-import {cx} from "cva";
-import {useEffect, useState} from "react";
+import { cx } from "class-variance-authority";
+import { useEffect, useState } from "react";
 
 export default function BottomBorder({
   DropdownOpen,
@@ -34,7 +34,7 @@ export default function BottomBorder({
           "bg-accent": isVisible && !DropdownOpen,
           "bg-background": !isVisible,
           "bg-background transition-none": DropdownOpen,
-        },
+        }
       )}
     />
   );

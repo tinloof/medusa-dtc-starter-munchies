@@ -3,16 +3,16 @@ import type Select from "@/components/shared/select";
 
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
-import {cx} from "cva";
-import {parseAsArrayOf, parseAsString, useQueryState} from "nuqs";
-import {type ComponentProps, useEffect, useRef, useState} from "react";
+import { cx } from "class-variance-authority";
+import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
+import { type ComponentProps, useEffect, useRef, useState } from "react";
 
 import DropDown from "./drop-down";
 
 export function useMultiFilter(name: string) {
   const [state, setState] = useQueryState(
     name,
-    parseAsArrayOf(parseAsString).withOptions({shallow: false}),
+    parseAsArrayOf(parseAsString).withOptions({ shallow: false })
   );
 
   const setFilter = (value: string) => {
@@ -25,16 +25,16 @@ export function useMultiFilter(name: string) {
     });
   };
 
-  return {filter: state, setFilter};
+  return { filter: state, setFilter };
 }
 
 export default function FilterSelect(
-  props: {name: string; placeholder: string} & Omit<
+  props: { name: string; placeholder: string } & Omit<
     ComponentProps<typeof Select>,
     "setOption" | "variant"
-  >,
+  >
 ) {
-  const {filter, setFilter} = useMultiFilter(props.name);
+  const { filter, setFilter } = useMultiFilter(props.name);
 
   const [isOpen, setOpen] = useState(false);
   const [showTopArrow, setShowTopArrow] = useState(false);
@@ -47,7 +47,7 @@ export default function FilterSelect(
       setShowTopArrow(container.scrollTop > 0);
       setShowBottomArrow(
         container.scrollHeight - container.clientHeight >
-          container.scrollTop + 1,
+          container.scrollTop + 1
       );
     }
   };
@@ -59,7 +59,7 @@ export default function FilterSelect(
   const scrollBy = (amount: number) => {
     const container = scrollContainerRef.current;
     if (container) {
-      container.scrollBy({behavior: "smooth", top: amount});
+      container.scrollBy({ behavior: "smooth", top: amount });
     }
   };
 
@@ -76,7 +76,7 @@ export default function FilterSelect(
               "absolute left-0 top-0 flex w-full cursor-pointer items-center justify-center border-b-[1.5px] border-accent bg-background transition-all duration-300",
               {
                 "-translate-y-full": !showTopArrow,
-              },
+              }
             )}
             onClick={() => scrollBy(-250)}
           >
@@ -96,7 +96,7 @@ export default function FilterSelect(
                   <Icon
                     className={cx(
                       "size-3! shrink-0 transform opacity-0 transition-transform duration-300",
-                      {"opacity-100": selected},
+                      { "opacity-100": selected }
                     )}
                     height={24}
                     name="Check"
@@ -120,7 +120,7 @@ export default function FilterSelect(
               "sticky bottom-0 left-0 flex w-full cursor-pointer items-center justify-center border-t-[1.5px] border-accent bg-background transition-all duration-300",
               {
                 "translate-y-full": !showBottomArrow,
-              },
+              }
             )}
             onClick={() => scrollBy(250)}
           >

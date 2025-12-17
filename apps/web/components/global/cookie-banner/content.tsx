@@ -5,7 +5,7 @@ import { Cta } from "@/components/shared/button";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
-import { cx } from "cva";
+import { cx } from "class-variance-authority";
 import React, { useState } from "react";
 
 export default function Content({ data }: { data: COOKIE_BANNER_QUERYResult }) {

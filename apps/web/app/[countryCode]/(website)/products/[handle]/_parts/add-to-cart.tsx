@@ -1,13 +1,13 @@
 "use client";
-import type {ButtonProps} from "@/components/shared/button";
-import type {StoreProductVariant} from "@medusajs/types";
+import type { ButtonProps } from "@/components/shared/button";
+import type { StoreProductVariant } from "@medusajs/types";
 
-import {addToCartEventBus} from "@/components/global/header/cart/event-bus";
-import {Cta} from "@/components/shared/button";
-import {track} from "@vercel/analytics";
-import {cx} from "cva";
+import { addToCartEventBus } from "@/components/global/header/cart/event-bus";
+import { Cta } from "@/components/shared/button";
+import { track } from "@vercel/analytics";
+import { cx } from "class-variance-authority";
 
-import {useProductVariants} from "../product-context";
+import { useProductVariants } from "../product-context";
 
 export default function AddToCart({
   region_id,
@@ -16,7 +16,7 @@ export default function AddToCart({
   region_id: string;
   variant: "PDP" | "sticky";
 }) {
-  const {activeVariant} = useProductVariants();
+  const { activeVariant } = useProductVariants();
   return (
     <AddToCartButton
       className={cx("", {

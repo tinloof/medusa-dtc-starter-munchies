@@ -1,10 +1,10 @@
 "use client";
 
 import Icon from "@/components/shared/icon";
-import {cx} from "cva";
-import {useEffect, useRef, useState} from "react";
+import { cx } from "class-variance-authority";
+import { useEffect, useRef, useState } from "react";
 
-import {useMultiFilter} from "../filter-select";
+import { useMultiFilter } from "../filter-select";
 
 export default function Accordion({
   heading,
@@ -13,7 +13,7 @@ export default function Accordion({
 }: {
   heading: string;
   name: string;
-  options: {label: string; value: string}[];
+  options: { label: string; value: string }[];
 }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<null | number>(null);
@@ -25,7 +25,7 @@ export default function Accordion({
     }
   }, [isOpen]);
 
-  const {filter, setFilter} = useMultiFilter(name);
+  const { filter, setFilter } = useMultiFilter(name);
 
   return (
     <div className="overflow-hidden">
@@ -40,7 +40,7 @@ export default function Accordion({
               "transition-transforms data-[size=open] duration-300",
               {
                 "rotate-180": isOpen,
-              },
+              }
             )}
             name="AccordionTop"
           />
@@ -54,7 +54,7 @@ export default function Accordion({
             transition: "height 0.5s",
           }}
         >
-          {options.map(({label, value}) => {
+          {options.map(({ label, value }) => {
             const selected = filter?.includes(value);
 
             return (
@@ -67,7 +67,7 @@ export default function Accordion({
                   <Icon
                     className={cx(
                       "size-3! shrink-0 transform opacity-0 transition-transform duration-300",
-                      {"opacity-100": selected},
+                      { "opacity-100": selected }
                     )}
                     name="Check"
                   />

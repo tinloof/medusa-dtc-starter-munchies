@@ -1,6 +1,6 @@
-import type {VariantProps} from "cva";
+import type { VariantProps } from "class-variance-authority";
 
-import {cva} from "cva";
+import { cva } from "class-variance-authority";
 
 export const headingStyles = cva("", {
   defaultVariants: {
@@ -61,7 +61,7 @@ export default function Heading({
   const Tag = tag;
   return (
     <Tag
-      className={headingStyles({className, desktopSize, font, mobileSize})}
+      className={headingStyles({ className, desktopSize, font, mobileSize })}
       id={id}
       {...props}
     >

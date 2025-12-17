@@ -1,11 +1,11 @@
 "use client";
 
-import type {Dispatch, SetStateAction} from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 import Body from "@/components/shared/typography/body";
-import {useOutsideClick} from "@/hooks/use-outside-click";
-import {cx} from "cva";
-import {type PropsWithChildren} from "react";
+import { useOutsideClick } from "@/hooks/use-outside-click";
+import { cx } from "class-variance-authority";
+import { type PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{
   className?: string;
@@ -35,7 +35,7 @@ export default function DropDown({
           {
             "!border-border-grey border": isOpen,
           },
-          className,
+          className
         )}
         id={id}
         ref={ref}
@@ -43,7 +43,7 @@ export default function DropDown({
         <button
           className={cx(
             "flex w-fit items-center justify-between gap-lg bg-background px-s py-[6px] outline-none",
-            "rounded-lg border-[1.5px] border-accent",
+            "rounded-lg border-[1.5px] border-accent"
           )}
           disabled={disabled}
           onClick={() => {
@@ -64,7 +64,7 @@ export default function DropDown({
             "absolute left-0 z-50 my-1 origin-top cursor-pointer overflow-y-scroll rounded-lg rounded-b-lg border-[1.5px] border-accent bg-background",
             {
               hidden: !isOpen,
-            },
+            }
           )}
         >
           {children}
@@ -74,7 +74,7 @@ export default function DropDown({
   );
 }
 
-function Caret({isOpen}: {isOpen: boolean}) {
+function Caret({ isOpen }: { isOpen: boolean }) {
   return (
     <svg
       className={cx("transition-transforms data-[size=open] duration-300", {

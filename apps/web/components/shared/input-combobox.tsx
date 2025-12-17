@@ -1,5 +1,5 @@
-import {cx} from "cva";
-import {forwardRef, useEffect, useState} from "react";
+import { cx } from "class-variance-authority";
+import { forwardRef, useEffect, useState } from "react";
 
 import Icon from "./icon";
 
@@ -7,7 +7,7 @@ export default forwardRef<
   HTMLInputElement,
   {
     defaultValue?: string;
-    options: Array<{id: string; label: string}>;
+    options: Array<{ id: string; label: string }>;
   } & React.InputHTMLAttributes<HTMLInputElement>
 >(function Input(
   {
@@ -20,7 +20,7 @@ export default forwardRef<
     type,
     ...props
   },
-  ref,
+  ref
 ) {
   const [selectedOption, setSelectedOption] = useState<{
     id: string;
@@ -33,7 +33,7 @@ export default forwardRef<
   useEffect(() => {
     if (defaultValue) {
       const defaultOption = options.find(
-        (option) => option.id === defaultValue,
+        (option) => option.id === defaultValue
       );
       if (defaultOption) {
         setSelectedOption(defaultOption);
@@ -50,13 +50,13 @@ export default forwardRef<
     setInputValue(value);
     setFilteredOptions(
       options.filter((option) =>
-        option.label.toLowerCase().includes(value.toLowerCase()),
-      ),
+        option.label.toLowerCase().includes(value.toLowerCase())
+      )
     );
     setIsOpen(true);
     setSelectedOption(null);
     const isValid = !!options.find(
-      ({label}) => label.toLowerCase() === value.toLowerCase(),
+      ({ label }) => label.toLowerCase() === value.toLowerCase()
     );
 
     if (!isValid) {
@@ -66,7 +66,7 @@ export default forwardRef<
     }
   };
 
-  const handleOptionSelect = (option: {id: string; label: string}) => {
+  const handleOptionSelect = (option: { id: string; label: string }) => {
     setSelectedOption(option);
     setInputValue(option.label);
     setIsOpen(false);
@@ -96,7 +96,7 @@ export default forwardRef<
               "pl-10": !isDisabled,
               "size-4 border-2 border-accent bg-transparent p-1 accent-accent outline-none":
                 type === "checkbox",
-            },
+            }
           )}
           disabled={isDisabled}
           onBlur={() => setTimeout(() => setIsOpen(false), 200)}

@@ -1,4 +1,4 @@
-import {cx} from "cva";
+import { cx } from "class-variance-authority";
 
 import Label from "./typography/label";
 

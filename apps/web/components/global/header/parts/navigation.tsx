@@ -9,7 +9,7 @@ import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import Label from "@/components/shared/typography/label";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { cx } from "cva";
+import { cx } from "class-variance-authority";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { RemoveScroll } from "react-remove-scroll";

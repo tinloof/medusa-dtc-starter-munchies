@@ -1,7 +1,7 @@
 "use client";
 
-import {cx} from "cva";
-import {useEffect, useRef, useState} from "react";
+import { cx } from "class-variance-authority";
+import { useEffect, useRef, useState } from "react";
 
 import Body from "./typography/body";
 import Heading from "./typography/heading";
@@ -14,7 +14,7 @@ export default function Accordion({
 }: {
   border?: boolean;
   initialOpen: null | string;
-  items: {content: string; id: string; title: string}[];
+  items: { content: string; id: string; title: string }[];
   type?: "faq" | "product";
 }) {
   const [openItemId, setOpenItemId] = useState<null | string>(initialOpen);
@@ -95,7 +95,7 @@ function AccordionItem({
           <span
             className={cx(
               "absolute left-1/2 top-1/2 h-3 w-[1.5px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent transition-all duration-300 group-hover:bg-background",
-              isOpen ? "rotate-90" : "rotate-0",
+              isOpen ? "rotate-90" : "rotate-0"
             )}
           />
         </div>
@@ -103,7 +103,7 @@ function AccordionItem({
       <div
         className="overflow-hidden transition-[height] duration-500"
         ref={contentRef}
-        style={{height: isOpen ? (height ?? 0) + 16 : 0}}
+        style={{ height: isOpen ? (height ?? 0) + 16 : 0 }}
       >
         <Body
           desktopSize="base"

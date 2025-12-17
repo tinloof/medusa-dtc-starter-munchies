@@ -4,11 +4,11 @@ import type {
   EmblaOptionsType,
   EmblaPluginType,
 } from "embla-carousel";
-import type {EmblaViewportRefType} from "embla-carousel-react";
-import type {ComponentProps, JSX, PropsWithChildren} from "react";
+import type { EmblaViewportRefType } from "embla-carousel-react";
+import type { ComponentProps, JSX, PropsWithChildren } from "react";
 
-import {Slot} from "@radix-ui/react-slot";
-import {cx} from "cva";
+import { Slot } from "@radix-ui/react-slot";
+import { cx } from "class-variance-authority";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   createContext,
@@ -54,7 +54,7 @@ export function useCarousel() {
 }
 
 export const useCarouselButtons = (): CarouselButtonsState => {
-  const {api} = useCarousel();
+  const { api } = useCarousel();
 
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(true);
@@ -88,7 +88,7 @@ export const useCarouselButtons = (): CarouselButtonsState => {
 };
 
 export function Root(props: CarouselRootProps) {
-  const {children, options, plugins, slidesCount} = props;
+  const { children, options, plugins, slidesCount } = props;
 
   const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
 
@@ -100,11 +100,11 @@ export function Root(props: CarouselRootProps) {
     (emblaApi: EmblaCarouselType) => {
       const progress = Math.max(
         defaultProgress,
-        Math.min(1, emblaApi.scrollProgress()),
+        Math.min(1, emblaApi.scrollProgress())
       );
       setScrollProgress(progress * 100);
     },
-    [defaultProgress],
+    [defaultProgress]
   );
 
   useEffect(() => {
@@ -119,7 +119,7 @@ export function Root(props: CarouselRootProps) {
 
   return (
     <CarouselContext.Provider
-      value={{api: emblaApi, ref: emblaRef, scrollProgress}}
+      value={{ api: emblaApi, ref: emblaRef, scrollProgress }}
     >
       {children}
     </CarouselContext.Provider>
@@ -127,8 +127,8 @@ export function Root(props: CarouselRootProps) {
 }
 
 export function SlidesWrapper(props: SlidesWrapperProps) {
-  const {children, className, ...passThrough} = props;
-  const {ref} = useCarousel();
+  const { children, className, ...passThrough } = props;
+  const { ref } = useCarousel();
   return (
     <div
       className={cx("overflow-hidden", className)}
@@ -140,9 +140,9 @@ export function SlidesWrapper(props: SlidesWrapperProps) {
   );
 }
 
-export function Slides({content, itemProps, wrapperDiv}: SlidesProps) {
-  const {className: wrapperClassName, ...passThroughWrapper} = wrapperDiv;
-  const {className: itemClassName, ...passThroughItemProps} = itemProps;
+export function Slides({ content, itemProps, wrapperDiv }: SlidesProps) {
+  const { className: wrapperClassName, ...passThroughWrapper } = wrapperDiv;
+  const { className: itemClassName, ...passThroughItemProps } = itemProps;
 
   return (
     <div className={cx("flex", wrapperClassName)} {...passThroughWrapper}>
@@ -161,22 +161,22 @@ export function Slides({content, itemProps, wrapperDiv}: SlidesProps) {
   );
 }
 
-type ButtonProps = {asChild?: boolean} & Omit<
+type ButtonProps = { asChild?: boolean } & Omit<
   ComponentProps<"button">,
   "disabled" | "onClick"
 >;
 
 const getComp = (asChild?: boolean) => (asChild ? Slot : "button");
 
-export function NextButton({asChild, ...props}: ButtonProps) {
-  const {nextDisabled, onNext} = useCarouselButtons();
+export function NextButton({ asChild, ...props }: ButtonProps) {
+  const { nextDisabled, onNext } = useCarouselButtons();
   const Comp = getComp(asChild);
 
   return <Comp disabled={nextDisabled} onClick={onNext} {...props} />;
 }
 
-export function PrevButton({asChild, ...props}: ButtonProps) {
-  const {onPrev, prevDisabled} = useCarouselButtons();
+export function PrevButton({ asChild, ...props }: ButtonProps) {
+  const { onPrev, prevDisabled } = useCarouselButtons();
   const Comp = getComp(asChild);
 
   return <Comp disabled={prevDisabled} onClick={onPrev} {...props} />;

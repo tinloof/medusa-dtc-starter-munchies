@@ -1,6 +1,6 @@
-import type {VariantProps} from "cva";
+import type { VariantProps } from "class-variance-authority";
 
-import {cva} from "cva";
+import { cva } from "class-variance-authority";
 
 export const bodyStyles = cva("", {
   defaultVariants: {
@@ -57,7 +57,7 @@ export default function Body({
 }: BodyProps) {
   return (
     <div
-      className={bodyStyles({className, desktopSize, font, mobileSize})}
+      className={bodyStyles({ className, desktopSize, font, mobileSize })}
       {...rest}
     >
       {children}

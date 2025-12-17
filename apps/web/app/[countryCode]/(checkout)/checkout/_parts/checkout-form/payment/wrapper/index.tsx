@@ -1,11 +1,11 @@
 "use client";
 
-import type {HttpTypes} from "@medusajs/types";
+import type { HttpTypes } from "@medusajs/types";
 
-import {loadStripe} from "@stripe/stripe-js";
-import React, {createContext} from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import React, { createContext } from "react";
 
-import {isStripe} from "../utils";
+import { isStripe } from "../utils";
 import StripeWrapper from "./stripe-wrapper";
 
 type WrapperProps = {
@@ -18,9 +18,9 @@ export const StripeContext = createContext(false);
 const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
 const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 
-const Wrapper: React.FC<WrapperProps> = ({cart, children}) => {
+const Wrapper: React.FC<WrapperProps> = ({ cart, children }) => {
   const paymentSession = cart.payment_collection?.payment_sessions?.find(
-    (s) => s.status === "pending",
+    (s) => s.status === "pending"
   );
 
   if (

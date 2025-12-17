@@ -1,13 +1,13 @@
 "use client";
 
 import * as RadixSelect from "@radix-ui/react-select";
-import {cx} from "cva";
-import {useState} from "react";
+import { cx } from "class-variance-authority";
+import { useState } from "react";
 
 import Icon from "./icon";
 import Body from "./typography/body";
 
-type Option = {label: string; value: string};
+type Option = { label: string; value: string };
 
 export default function Select({
   className,
@@ -44,7 +44,7 @@ export default function Select({
               "filter",
               "outline",
             ].includes(variant),
-          },
+          }
         )}
       >
         <Body
@@ -65,7 +65,7 @@ export default function Select({
               "transition-transforms data-[size=open] min-w-4 duration-300",
               {
                 "rotate-180": open,
-              },
+              }
             )}
             name="AccordionTop"
           />
@@ -78,7 +78,7 @@ export default function Select({
             "border-accent bg-background p-xs data-[state=closed]:animate-select-close data-[state=open]:animate-select-open z-100 my-1 max-h-[296px] w-(--radix-select-trigger-width) origin-top rounded-lg border-[1.5px]",
             {
               "data-[state=open]": open,
-            },
+            }
           )}
           position="popper"
         >
@@ -104,7 +104,7 @@ function SelectItem({
     <RadixSelect.Item
       className={cx(
         "px-s py-xs data-highlighted:bg-secondary data-[state=checked]:bg-accent data-[state=checked]:text-background cursor-pointer rounded-lg data-disabled:pointer-events-none data-highlighted:outline-none",
-        className,
+        className
       )}
       {...props}
     >

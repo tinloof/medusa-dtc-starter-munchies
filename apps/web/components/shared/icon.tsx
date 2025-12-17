@@ -1,6 +1,6 @@
-import {cx} from "cva";
-import {type ComponentProps} from "react";
-import {preload} from "react-dom";
+import { cx } from "class-variance-authority";
+import { type ComponentProps } from "react";
+import { preload } from "react-dom";
 
 export const icons = {
   AccordionBottom: "/icons/accordion-bottom.svg",
@@ -46,7 +46,10 @@ export const iconAlts: Record<Icon, string> = {
   Trash: "Trash icon",
 };
 
-export type IconProps = {fetchPriority?: "default" | "high"; name: Icon} & Omit<
+export type IconProps = {
+  fetchPriority?: "default" | "high";
+  name: Icon;
+} & Omit<
   ComponentProps<"img">,
   "alt" | "fetchPriority" | "sizes" | "src" | "srcSet"
 >;

@@ -1,8 +1,8 @@
-import type {VariantProps} from "cva";
-import type {LinkProps} from "next/link";
-import type {ComponentProps} from "react";
+import type { VariantProps } from "class-variance-authority";
+import type { LinkProps } from "next/link";
+import type { ComponentProps } from "react";
 
-import {cva, cx} from "cva";
+import { cva, cx } from "class-variance-authority";
 
 import Icon from "./icon";
 import LocalizedLink from "./localized-link";
@@ -10,7 +10,7 @@ import LocalizedLink from "./localized-link";
 export const styles = cva(
   cx(
     "flex font-serif relative items-center whitespace-nowrap leading-[150%] justify-center rounded-[999px] transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-accent focus-visible:ring-offset-background w-fit",
-    "disabled:opacity-50 disabled:cursor-not-allowed ",
+    "disabled:opacity-50 disabled:cursor-not-allowed "
   ),
   {
     defaultVariants: {
@@ -34,7 +34,7 @@ export const styles = cva(
           "bg-accent text-background border-[1.5px] border-accent hover:text-accent hover:bg-background group-hover:bg-accent group-hover:text-background disabled:bg-accent disabled:text-background disabled:border-accent",
       },
     },
-  },
+  }
 );
 
 export type ButtonProps = {
@@ -55,7 +55,7 @@ export function Cta({
     variant === "primary" ? "LoadingPrimary" : "LoadingAccent";
   return (
     <button
-      className={styles({className, loading, size, variant})}
+      className={styles({ className, loading, size, variant })}
       disabled={disabled}
       {...rest}
     >

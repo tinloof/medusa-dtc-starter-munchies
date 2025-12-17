@@ -10,7 +10,7 @@ import Heading from "@/components/shared/typography/heading";
 import Label from "@/components/shared/typography/label";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { cx } from "cva";
+import { cx } from "class-variance-authority";
 import NextLink from "next/link";
 import { useState } from "react";
 import { RemoveScroll } from "react-remove-scroll";

@@ -1,11 +1,11 @@
 "use client";
 
-import type {EmblaOptionsType} from "embla-carousel";
-import type {ReactNode} from "react";
+import type { EmblaOptionsType } from "embla-carousel";
+import type { ReactNode } from "react";
 
-import {cx} from "cva";
+import { cx } from "class-variance-authority";
 
-import {Link} from "./button";
+import { Link } from "./button";
 import {
   NextButton,
   PrevButton,
@@ -47,7 +47,9 @@ export default function CarouselSection(props: Props) {
     <Root
       options={{
         ...options,
-        breakpoints: {"(min-width: 1024px)": {watchDrag: !disableDesktopDrag}},
+        breakpoints: {
+          "(min-width: 1024px)": { watchDrag: !disableDesktopDrag },
+        },
         containScroll: "trimSnaps",
         dragFree: true,
       }}
@@ -96,7 +98,7 @@ export default function CarouselSection(props: Props) {
   );
 }
 
-function Buttons({variant}: {variant: "cart" | "default"}) {
+function Buttons({ variant }: { variant: "cart" | "default" }) {
   return (
     <div className="hidden gap-2 lg:flex">
       <PrevButton asChild>
@@ -118,13 +120,13 @@ function Buttons({variant}: {variant: "cart" | "default"}) {
 }
 
 function ProgressBar() {
-  const {scrollProgress} = useCarousel();
+  const { scrollProgress } = useCarousel();
 
   return (
     <div className="relative mx-auto mt-2xl h-[2px] w-[215px] self-center justify-self-end overflow-hidden bg-[#FFD2C7] lg:hidden">
       <div
         className="absolute bottom-0 -left-full top-0 w-full bg-accent transition-transform duration-300 ease-out"
-        style={{transform: `translateX(${scrollProgress}%)`}}
+        style={{ transform: `translateX(${scrollProgress}%)` }}
       />
     </div>
   );

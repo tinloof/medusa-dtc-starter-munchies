@@ -1,4 +1,4 @@
-import {cx} from "cva";
+import { cx } from "class-variance-authority";
 import {
   Climate_Crisis,
   Instrument_Sans,
@@ -35,14 +35,14 @@ export default function RootLayout({
         instrumentSans.variable,
         instrumentSerif.variable,
         climateCrisis.variable,
-        "overflow-x-clip overscroll-y-none scroll-smooth",
+        "overflow-x-clip overscroll-y-none scroll-smooth"
       )}
       lang="en"
       data-scroll-behavior="smooth"
     >
       <head>
         <link href="/favicon.ico" rel="icon" type="image/x-icon" />
-        <script dangerouslySetInnerHTML={{__html: dynamicFavicon}} />
+        <script dangerouslySetInnerHTML={{ __html: dynamicFavicon }} />
       </head>
       {children}
     </html>

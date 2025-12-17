@@ -1,6 +1,6 @@
 "use client";
 
-import {useCountryCode} from "@/components/context/country-code-context";
+import { useCountryCode } from "@/components/context/country-code-context";
 import Icon from "@/components/shared/icon";
 import {
   CloseDialog,
@@ -10,11 +10,11 @@ import {
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import config from "@/config";
-import {Dialog, Title} from "@radix-ui/react-dialog";
-import {cx} from "cva";
+import { Dialog, Title } from "@radix-ui/react-dialog";
+import { cx } from "class-variance-authority";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {Suspense, useState} from "react";
+import { usePathname } from "next/navigation";
+import { Suspense, useState } from "react";
 
 export type Country = {
   code: string;
@@ -67,7 +67,7 @@ export default function CountrySelectorDialog({
         <Body
           className={cx(
             "overflow-hidden whitespace-nowrap rounded-lg border-[1.5px] border-accent p-2 lg:border-none",
-            className,
+            className
           )}
           font="sans"
           mobileSize="lg"
