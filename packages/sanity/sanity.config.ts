@@ -15,12 +15,13 @@ import {
   singletonActions,
   singletonsTypes,
 } from "@/schema/structure/singletons";
+import { StudioLogo } from "@/components/logo";
 
 export default defineConfig({
   title: config.siteName,
-  basePath: config.sanity.studioUrl,
   dataset: config.sanity.dataset,
   projectId: config.sanity.projectId,
+  icon: StudioLogo,
   document: {
     // For singleton types, filter out actions that are not explicitly included
     // in the `singletonActions` list defined above

@@ -17,7 +17,7 @@ export default defineCliConfig({
     generates: "./sanity.types.ts",
   },
   project: {
-    basePath: "/cms"
+    basePath: config.sanity.studioUrl
   },
   vite: {
     resolve: {
