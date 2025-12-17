@@ -18,16 +18,12 @@ const config = {
   rewrites() {
     return [
       {
-        source: "/static/:path*",
-        destination: "/cms/static/:path*",
-      },
-      {
         source: "/cms/:path*",
         destination: "/cms/index.html",
       },
       {
         source:
-          "/:path((?!us|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico|static).*)",
+          "/:path((?!us|dk|fr|de|es|jp|gb|ca|ar|za|mx|my|au|nz|dz|br|cms|api|images|icons|favicon.ico|sections|favicon-inactive.ico).*)",
         destination: "/us/:path*",
       },
     ];

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
-    "build": "sanity build ../../apps/web/public/cms -y",
+    "build": "sanity build ../../apps/web/public/cms -y && node scripts/fix-static-paths.mjs",
     "typegen:watch": "watch \"pnpm run typegen\" ./src",
     "typegen": "sanity schema extract && sanity typegen generate"
   },
