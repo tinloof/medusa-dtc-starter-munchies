@@ -1,42 +1,41 @@
+import { SITEMAP_QUERY } from "@packages/sanity/queries";
 import type { SITEMAP_QUERYResult } from "@packages/sanity/types";
+import { pathToAbsUrl } from "@tinloof/sanity-web";
 import type { MetadataRoute } from "next";
-
 import config from "@/config";
 import { client } from "@/data/sanity/client";
-import { SITEMAP_QUERY } from "@packages/sanity/queries";
-import { pathToAbsUrl } from "@tinloof/sanity-web";
 
 const sanityClient = client.withConfig({
-  perspective: "published",
-  stega: false,
-  token: config.sanity.token,
-  useCdn: false,
+	perspective: "published",
+	stega: false,
+	token: config.sanity.token,
+	useCdn: false,
 });
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const publicSanityRoutes =
-    await sanityClient.fetch<SITEMAP_QUERYResult | null>(
-      SITEMAP_QUERY,
-      {},
-      {
-        next: {
-          revalidate: 0,
-        },
-      }
-    );
+	const publicSanityRoutes =
+		await sanityClient.fetch<SITEMAP_QUERYResult | null>(
+			SITEMAP_QUERY,
+			{},
+			{
+				next: {
+					revalidate: 0,
+				},
+			},
+		);
 
-  return (
-    publicSanityRoutes?.map((route) => {
-      const url = route.pathname?.current
-        ? pathToAbsUrl({
-            baseUrl: config.baseUrl,
-            path: route.pathname.current,
-          }) || ""
-        : "";
-      return {
-        lastModified: route.lastModified || undefined,
-        url,
-      };
-    }) ?? []
-  );
+	return (
+		publicSanityRoutes?.map((route) => {
+			const url = route.pathname?.current
+				? pathToAbsUrl({
+						baseUrl: config.baseUrl,
+						path: route.pathname.current,
+					}) || ""
+				: "";
+			return {
+				lastModified: route.lastModified || undefined,
+				url,
+			};
+		}) ?? []
+	);
 }

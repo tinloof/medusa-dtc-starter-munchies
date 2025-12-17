@@ -1,16 +1,16 @@
+import type { Header } from "@packages/sanity/types";
 import { listCountries } from "@/data/medusa/regions";
-import { type Header } from "@packages/sanity/types";
 
 import type { Country } from "../../country-selector/country-selector-dialog";
 
 import Hamburger from ".";
 
 export default async function HamburgerContainer({
-  sanityData,
+	sanityData,
 }: {
-  sanityData: Header;
+	sanityData: Header;
 }) {
-  const countries = (await listCountries()).filter(Boolean) as Country[];
+	const countries = (await listCountries()).filter(Boolean) as Country[];
 
-  return <Hamburger countries={countries} data={sanityData} />;
+	return <Hamburger countries={countries} data={sanityData} />;
 }

@@ -2,33 +2,33 @@ import { Text } from "@react-email/components";
 import { body } from "./style";
 
 interface EmailBodyProps {
-  firstName?: string;
-  paragraphs: string[];
-  signature?: boolean;
+	firstName?: string;
+	paragraphs: string[];
+	signature?: boolean;
 }
 
 export default function EmailBody({
-  firstName,
-  paragraphs,
-  signature,
+	firstName,
+	paragraphs,
+	signature,
 }: EmailBodyProps) {
-  const greeting = firstName ? `Hi ${firstName},` : "Hi,";
+	const greeting = firstName ? `Hi ${firstName},` : "Hi,";
 
-  return (
-    <Text className="mb-[50px]" style={body}>
-      {greeting} <br />
-      {paragraphs.map((paragraph, index) => (
-        <span key={index} style={body}>
-          {paragraph}
-          <br /> <br />
-        </span>
-      ))}
-      {signature && (
-        <span style={body}>
-          Warm regards,
-          <br /> The Munchies Team
-        </span>
-      )}
-    </Text>
-  );
+	return (
+		<Text className="mb-5xl" style={body}>
+			{greeting} <br />
+			{paragraphs.map((paragraph, index) => (
+				<span key={index.toString()} style={body}>
+					{paragraph}
+					<br /> <br />
+				</span>
+			))}
+			{signature && (
+				<span style={body}>
+					Warm regards,
+					<br /> The Munchies Team
+				</span>
+			)}
+		</Text>
+	);
 }

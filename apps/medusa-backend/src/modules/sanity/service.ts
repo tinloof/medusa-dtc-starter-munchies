@@ -144,7 +144,7 @@ export default class SanityModuleService {
     const data = await this.client.getDocuments(filter.id);
 
     return data.map((doc) => ({
-      id: doc._id,
+      id: doc?._id,
       ...doc,
     }));
   }

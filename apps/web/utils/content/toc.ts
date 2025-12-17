@@ -1,23 +1,23 @@
 import type {
-  ArbitraryTypedObject,
-  PortableTextBlock,
+	ArbitraryTypedObject,
+	PortableTextBlock,
 } from "@portabletext/types";
 
 export type BlocksBody = (ArbitraryTypedObject | PortableTextBlock)[];
 
 export default function getBlocksToc(blocks: BlocksBody | undefined) {
-  if (!blocks) return [];
+	if (!blocks) return [];
 
-  return blocks
-    .map((block) => {
-      if (block.style?.length === 2 && block.style?.[0] === "h") {
-        return {
-          block,
-          isSub: block.style?.[1] !== "2",
-        } as any;
-      }
+	return blocks
+		.map((block) => {
+			if (block.style?.length === 2 && block.style?.[0] === "h") {
+				return {
+					block,
+					isSub: block.style?.[1] !== "2",
+				} as any;
+			}
 
-      return null;
-    })
-    .filter(Boolean) as {block: BlocksBody; isSub: boolean}[];
+			return null;
+		})
+		.filter(Boolean) as { block: BlocksBody; isSub: boolean }[];
 }

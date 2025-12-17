@@ -4,38 +4,38 @@ import { cx } from "class-variance-authority";
 import { useEffect, useState } from "react";
 
 export default function BottomBorder({
-  DropdownOpen,
-  className,
+	DropdownOpen,
+	className,
 }: {
-  DropdownOpen?: boolean;
-  className?: string;
+	DropdownOpen?: boolean;
+	className?: string;
 }) {
-  const [isVisible, setIsVisible] = useState(false);
+	const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 0);
-    };
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsVisible(window.scrollY > 0);
+		};
 
-    handleScroll();
+		handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
-  return (
-    <div
-      className={cx(
-        className,
-        "h-[1.5px] w-screen transition-all duration-300",
-        {
-          "bg-accent": isVisible && !DropdownOpen,
-          "bg-background": !isVisible,
-          "bg-background transition-none": DropdownOpen,
-        }
-      )}
-    />
-  );
+	return (
+		<div
+			className={cx(
+				className,
+				"h-[1.5px] w-screen transition-all duration-300",
+				{
+					"bg-accent": isVisible && !DropdownOpen,
+					"bg-background": !isVisible,
+					"bg-background transition-none": DropdownOpen,
+				},
+			)}
+		/>
+	);
 }

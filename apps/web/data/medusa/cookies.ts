@@ -1,66 +1,66 @@
-import {cookies} from "next/headers";
+import { cookies } from "next/headers";
 import "server-only";
 
 export const getAuthHeaders = async (): Promise<
-  {authorization: string} | NonNullable<unknown>
+	{ authorization: string } | NonNullable<unknown>
 > => {
-  const token = (await cookies()).get("_medusa_jwt")?.value;
+	const token = (await cookies()).get("_medusa_jwt")?.value;
 
-  if (token) {
-    return {authorization: `Bearer ${token}`};
-  }
+	if (token) {
+		return { authorization: `Bearer ${token}` };
+	}
 
-  return {};
+	return {};
 };
 
 export const getCacheTag = async (tag: string): Promise<string> => {
-  const cacheId = (await cookies()).get("_medusa_cache_id")?.value;
+	const cacheId = (await cookies()).get("_medusa_cache_id")?.value;
 
-  if (cacheId) {
-    return `${tag}-${cacheId}`;
-  }
+	if (cacheId) {
+		return `${tag}-${cacheId}`;
+	}
 
-  return "";
+	return "";
 };
 
 export const getCacheHeaders = async (
-  tag: string,
-): Promise<{next: {tags: string[]}} | NonNullable<unknown>> => {
-  const cacheTag = await getCacheTag(tag);
+	tag: string,
+): Promise<{ next: { tags: string[] } } | NonNullable<unknown>> => {
+	const cacheTag = await getCacheTag(tag);
 
-  if (cacheTag) {
-    return {next: {tags: [`${cacheTag}`]}};
-  }
+	if (cacheTag) {
+		return { next: { tags: [`${cacheTag}`] } };
+	}
 
-  return {};
+	return {};
 };
 
 export const setAuthToken = async (token: string) => {
-  (await cookies()).set("_medusa_jwt", token, {
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 7,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-  });
+	(await cookies()).set("_medusa_jwt", token, {
+		httpOnly: true,
+		maxAge: 60 * 60 * 24 * 7,
+		sameSite: "strict",
+		secure: process.env.NODE_ENV === "production",
+	});
 };
 
 export const removeAuthToken = async () => {
-  (await cookies()).set("_medusa_jwt", "", {maxAge: -1});
+	(await cookies()).set("_medusa_jwt", "", { maxAge: -1 });
 };
 
 export const getCartId = async () => {
-  return (await cookies()).get("_medusa_cart_id")?.value;
+	return (await cookies()).get("_medusa_cart_id")?.value;
 };
 
 export const setCartId = async (cartId: string) => {
-  (await cookies()).set("_medusa_cart_id", cartId, {
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 7,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-  });
+	(await cookies()).set("_medusa_cart_id", cartId, {
+		httpOnly: true,
+		maxAge: 60 * 60 * 24 * 7,
+		sameSite: "strict",
+		secure: process.env.NODE_ENV === "production",
+	});
 };
 
 export const removeCartId = async () => {
-  (await cookies()).set("_medusa_cart_id", "", {maxAge: -1});
+	(await cookies()).set("_medusa_cart_id", "", { maxAge: -1 });
 };

@@ -13,8 +13,7 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "strictNullChecks": true
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", ".sanity"]

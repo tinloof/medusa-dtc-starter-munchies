@@ -1,75 +1,75 @@
 "use client";
 
-import type {StoreProduct, StoreProductVariant} from "@medusajs/types";
-import type {PropsWithChildren} from "react";
-
-import {parseAsString, useQueryStates} from "nuqs";
-import React, {createContext, useContext} from "react";
+import type { StoreProduct, StoreProductVariant } from "@medusajs/types";
+import { parseAsString, useQueryStates } from "nuqs";
+import type React from "react";
+import type { PropsWithChildren } from "react";
+import { createContext, useContext } from "react";
 
 interface ProductVariantsContextType {
-  activeVariant: StoreProductVariant | undefined;
-  selectedOptions: Record<string, string | undefined>;
-  setSelectedOptions: React.Dispatch<
-    React.SetStateAction<Record<string, string | undefined>>
-  >;
+	activeVariant: StoreProductVariant | undefined;
+	selectedOptions: Record<string, string | undefined>;
+	setSelectedOptions: React.Dispatch<
+		React.SetStateAction<Record<string, string | undefined>>
+	>;
 }
 
 const ProductVariantsContext = createContext<
-  ProductVariantsContextType | undefined
+	ProductVariantsContextType | undefined
 >(undefined);
 
 export function ProductVariantsProvider({
-  children,
-  product,
+	children,
+	product,
 }: PropsWithChildren<{
-  product: StoreProduct;
+	product: StoreProduct;
 }>) {
-  const [selectedOptions, setSelectedOptions] = useQueryStates(
-    Object.fromEntries(
-      product.options?.map((option) => [
-        option.title.toLowerCase(),
-        parseAsString.withDefault(
-          option.values?.[0]?.value.toLowerCase() ?? "",
-        ),
-      ]) ?? [],
-    ),
-    {
-      history: "push",
-    },
-  );
+	const [selectedOptions, setSelectedOptions] = useQueryStates(
+		Object.fromEntries(
+			product.options?.map((option) => [
+				option.title.toLowerCase(),
+				parseAsString.withDefault(
+					option.values?.[0]?.value.toLowerCase() ?? "",
+				),
+			]) ?? [],
+		),
+		{
+			history: "push",
+		},
+	);
 
-  const activeVariant =
-    product.variants?.find((variant) => {
-      return variant?.options?.every(
-        ({option, value}) =>
-          selectedOptions[option?.title.toLowerCase() || ""] ===
-          value.toLowerCase(),
-      );
-    }) || product.variants?.[0];
+	const activeVariant =
+		product.variants?.find((variant) => {
+			return variant?.options?.every(
+				({ option, value }) =>
+					selectedOptions[option?.title.toLowerCase() || ""] ===
+					value.toLowerCase(),
+			);
+		}) || product.variants?.[0];
 
-  const activeVariantWithProduct = !activeVariant
-    ? activeVariant
-    : {...activeVariant, product};
+	const activeVariantWithProduct = !activeVariant
+		? activeVariant
+		: { ...activeVariant, product };
 
-  return (
-    <ProductVariantsContext.Provider
-      value={{
-        activeVariant: activeVariantWithProduct,
-        selectedOptions,
-        setSelectedOptions,
-      }}
-    >
-      {children}
-    </ProductVariantsContext.Provider>
-  );
+	return (
+		<ProductVariantsContext.Provider
+			value={{
+				activeVariant: activeVariantWithProduct,
+				selectedOptions,
+				setSelectedOptions,
+			}}
+		>
+			{children}
+		</ProductVariantsContext.Provider>
+	);
 }
 
 export function useProductVariants() {
-  const context = useContext(ProductVariantsContext);
-  if (context === undefined) {
-    throw new Error(
-      "useProductVariants must be used within a ProductVariantsProvider",
-    );
-  }
-  return context;
+	const context = useContext(ProductVariantsContext);
+	if (context === undefined) {
+		throw new Error(
+			"useProductVariants must be used within a ProductVariantsProvider",
+		);
+	}
+	return context;
 }

@@ -17,15 +17,15 @@ const SanityRoute = () => {
 
   const handleSync = async () => {
     try {
-      await mutateAsync({});
+      await mutateAsync(undefined);
       toast.success(`Sync triggered.`);
       refetch();
-    } catch (err) {
+    } catch (err: any) {
       toast.error(`Couldn't trigger sync: ${err.message}`);
     }
   };
 
-  const getBadgeColor = (state) => {
+  const getBadgeColor = (state: string) => {
     switch (state) {
       case "invoking":
         return "blue";

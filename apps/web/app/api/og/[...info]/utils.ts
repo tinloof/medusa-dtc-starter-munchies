@@ -9,26 +9,26 @@ import config from "@/config";
  * @returns The full URL to the OG image endpoint.
 //  */
 export const generateOgEndpoint = ({
-  countryCode,
-  handle,
-  type,
+	countryCode,
+	handle,
+	type,
 }: {
-  countryCode: string;
-  handle: string | string[];
-  type: string;
+	countryCode: string;
+	handle: string | string[];
+	type: string;
 }) => {
-  try {
-    return new URL(
-      [
-        config.baseUrl,
-        "api/og",
-        countryCode,
-        type,
-        Array.isArray(handle) ? handle.join("/") : handle,
-      ].join("/"),
-    ).toString();
-  } catch (error) {
-    console.error("Failed to generate OG endpoint URL:", error);
-    return "";
-  }
+	try {
+		return new URL(
+			[
+				config.baseUrl,
+				"api/og",
+				countryCode,
+				type,
+				Array.isArray(handle) ? handle.join("/") : handle,
+			].join("/"),
+		).toString();
+	} catch (error) {
+		console.error("Failed to generate OG endpoint URL:", error);
+		return "";
+	}
 };

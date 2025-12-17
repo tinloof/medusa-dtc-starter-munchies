@@ -1,28 +1,32 @@
-import {placeOrder} from "@/actions/medusa/order";
-import {Cta} from "@/components/shared/button";
-import {track} from "@vercel/analytics";
-import {useTransition} from "react";
+import { track } from "@vercel/analytics";
+import { useTransition } from "react";
+import { placeOrder } from "@/actions/medusa/order";
+import { Cta } from "@/components/shared/button";
 
-export default function ManualPaymentButton({notReady}: {notReady: boolean}) {
-  const [isPending, startTransition] = useTransition();
+export default function ManualPaymentButton({
+	notReady,
+}: {
+	notReady: boolean;
+}) {
+	const [isPending, startTransition] = useTransition();
 
-  const handleClick = () => {
-    startTransition(() => {
-      track("checkout-completed");
+	const handleClick = () => {
+		startTransition(() => {
+			track("checkout-completed");
 
-      placeOrder();
-    });
-  };
+			placeOrder();
+		});
+	};
 
-  return (
-    <Cta
-      disabled={notReady}
-      loading={isPending}
-      onClick={handleClick}
-      size="sm"
-      type="submit"
-    >
-      Complete order
-    </Cta>
-  );
+	return (
+		<Cta
+			disabled={notReady}
+			loading={isPending}
+			onClick={handleClick}
+			size="sm"
+			type="submit"
+		>
+			Complete order
+		</Cta>
+	);
 }

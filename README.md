@@ -187,7 +187,7 @@ pnpm dev --filter=@packages/sanity
 | ------------------ | ---------------------------------- |
 | `pnpm dev`         | Start all apps in development mode |
 | `pnpm build`       | Build all apps and packages        |
-| `pnpm check-types` | Run TypeScript type checking       |
+| `pnpm typecheck`   | Run TypeScript type checking       |
 | `pnpm typegen`     | Generate Sanity TypeScript types   |
 
 ---

@@ -1,18 +1,18 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
+import type { MedusaRequest, MedusaResponse } from "@medusajs/framework";
 import { CreateCustomer } from "@medusajs/medusa/api/admin/customers/validators";
 import subscribeToNewsletterWorkflow, {
-  WorkflowInput,
+	type WorkflowInput,
 } from "../../../workflows/subscribe-to-newsletter";
 
 export async function POST(
-  req: MedusaRequest<WorkflowInput>,
-  res: MedusaResponse,
+	req: MedusaRequest<WorkflowInput>,
+	res: MedusaResponse,
 ): Promise<void> {
-  const input = CreateCustomer.parse(req.body);
+	const input = CreateCustomer.parse(req.body);
 
-  await subscribeToNewsletterWorkflow(req.scope).run({
-    input,
-  });
+	await subscribeToNewsletterWorkflow(req.scope).run({
+		input,
+	});
 
-  res.sendStatus(200);
+	res.sendStatus(200);
 }
