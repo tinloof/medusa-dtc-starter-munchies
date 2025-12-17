@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 
 import config from "@/config";
 import { client } from "@/data/sanity/client";
-import { SITEMAP_QUERY } from "@/data/sanity/queries";
+import { SITEMAP_QUERY } from "@packages/sanity/queries";
 import { pathToAbsUrl } from "@tinloof/sanity-web";
 
 const sanityClient = client.withConfig({

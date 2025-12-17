@@ -11,7 +11,6 @@ import type {
   ROUTE_QUERYResult,
   TEXT_PAGE_QUERYResult,
 } from "@packages/sanity/types";
-
 import {
   COOKIE_BANNER_QUERY,
   DICTIONARY_QUERY,
@@ -24,7 +23,8 @@ import {
   REDIRECT_QUERY,
   ROUTE_QUERY,
   TEXT_PAGE_QUERY,
-} from "./queries";
+} from "@packages/sanity/queries";
+
 import { sanityFetch } from "./sanity-fetch";
 
 // Loader for routes
