@@ -20,10 +20,10 @@ This package contains:
 
 ### Environment Variables
 
-Create a `.env` file in this directory:
+Create a `.env` file in this directory (see `.env.template` for reference):
 
 ```env
-SANITY_STUDIO_PROJECT_ID=your-project-id
+SANITY_STUDIO_PROJECT_ID=
 SANITY_STUDIO_DATASET=production
 ```
 

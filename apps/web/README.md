@@ -22,19 +22,22 @@ This is the customer-facing storefront built with:
 
 ### Environment Variables
 
-Create a `.env` file in this directory:
+Create a `.env` file in this directory (see `.env.template` for reference):
 
 ```env
 # Medusa
 NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
-NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_...
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=
+
+# Stripe
+NEXT_PUBLIC_STRIPE_KEY=
 
 # Sanity
-NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-SANITY_API_TOKEN=your-sanity-token
-SANITY_REVALIDATE_SECRET=your-revalidate-secret
+SANITY_API_TOKEN=
+SANITY_REVALIDATE_SECRET=
 ```
 
 ### Development

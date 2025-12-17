@@ -22,18 +22,18 @@ This is the commerce engine powering the storefront, built with:
 
 ### Environment Variables
 
-Create a `.env` file in this directory:
+Create a `.env` file in this directory (see `.env.template` for reference):
 
 ```env
 # Database
 DATABASE_URL=postgres://user:password@localhost:5432/medusa
 
 # Redis (optional)
-REDIS_URL=redis://localhost:6379
+REDIS_URL=
 
 # Security
-JWT_SECRET=your-jwt-secret
-COOKIE_SECRET=your-cookie-secret
+JWT_SECRET=supersecret
+COOKIE_SECRET=supersecret
 
 # CORS
 STORE_CORS=http://localhost:3000
@@ -41,17 +41,23 @@ ADMIN_CORS=http://localhost:9000
 AUTH_CORS=http://localhost:9000
 
 # Stripe
-STRIPE_API_KEY=sk_test_...
+STRIPE_API_KEY=
+
+# Resend (for emails)
+RESEND_API_KEY=
+
+# Medusa Publishable Key (for internal API calls)
+MEDUSA_PUBLISHABLE_KEY=
+
+# Sanity
+SANITY_API_TOKEN=
+SANITY_PROJECT_ID=
 
 # S3 Storage (optional)
 S3_FILE_URL=
 S3_REGION=
 S3_BUCKET=
 S3_ENDPOINT=
-
-# Sanity
-SANITY_API_TOKEN=your-sanity-token
-SANITY_PROJECT_ID=your-project-id
 ```
 
 ### Database Setup
