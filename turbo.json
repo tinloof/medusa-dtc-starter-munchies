@@ -46,7 +46,6 @@
       ]
     },
     "@apps/medusa-backend#build": {
-      "dependsOn": ["@packages/sanity#build"],
       "outputs": [".medusa/**"],
       "cache": true,
       "env": [
