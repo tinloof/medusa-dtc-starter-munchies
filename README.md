@@ -1,135 +1,276 @@
-# Turborepo starter
+# Munchies – Medusa DTC Starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+A production-ready monorepo for building modern DTC (Direct-to-Consumer) e-commerce experiences using [Medusa](https://medusajs.com/) for commerce, [Next.js](https://nextjs.org/) for the storefront, and [Sanity](https://sanity.io/) for content management.
 
-## Using this example
+Built with [Turborepo](https://turbo.build/repo) for fast, efficient builds across the entire stack.
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## What's Inside
+
+This monorepo contains the following apps and packages:
+
+### Apps
+
+| App                       | Description                                                                    | Port   |
+| ------------------------- | ------------------------------------------------------------------------------ | ------ |
+| **`apps/web`**            | Next.js 16 storefront with App Router, Tailwind CSS v4, and Sanity integration | `3000` |
+| **`apps/medusa-backend`** | Medusa v2 backend with admin dashboard, Sanity sync, and Stripe payments       | `9000` |
+
+### Packages
+
+| Package               | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| **`packages/sanity`** | Sanity Studio configuration, schemas, and shared queries |
+
+---
+
+## Prerequisites
+
+- **Node.js** >= 18 (backend requires >= 20)
+- **pnpm** >= 9.0.0
+- **PostgreSQL** database
+- **Redis** (optional, for caching)
+- **Stripe** account (for payments)
+- **Sanity** project
+
+---
+
+## Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone --depth 1 https://github.com/tinloof/medusa-dtc-starter-munchies.git
+cd medusa-dtc-starter-munchies
 ```
 
-## What's inside?
+### 2. Install Dependencies
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm install
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 3. Set Up Environment Variables
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+Create `.env` files in each app/package directory. Below are the required variables:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+#### `apps/medusa-backend/.env`
 
-### Develop
+```env
+# Database
+DATABASE_URL=postgres://user:password@localhost:5432/medusa
 
-To develop all apps and packages, run the following command:
+# Redis (optional)
+REDIS_URL=redis://localhost:6379
 
-```
-cd my-turborepo
+# Security
+JWT_SECRET=your-jwt-secret
+COOKIE_SECRET=your-cookie-secret
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+# CORS
+STORE_CORS=http://localhost:3000
+ADMIN_CORS=http://localhost:9000
+AUTH_CORS=http://localhost:9000
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+# Stripe
+STRIPE_API_KEY=sk_test_...
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+# S3 Storage (optional)
+S3_FILE_URL=
+S3_REGION=
+S3_BUCKET=
+S3_ENDPOINT=
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+# Sanity
+SANITY_API_TOKEN=your-sanity-token
+SANITY_PROJECT_ID=your-project-id
 ```
 
-### Remote Caching
+#### `apps/web/.env`
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+```env
+# Medusa
+NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_...
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Sanity
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+SANITY_API_TOKEN=your-sanity-token
+SANITY_REVALIDATE_SECRET=your-revalidate-secret
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+#### `packages/sanity/.env`
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```env
+SANITY_STUDIO_PROJECT_ID=your-project-id
+SANITY_STUDIO_DATASET=production
+```
+
+### 4. Set Up Sanity
+
+If starting fresh, initialize Sanity in the `packages/sanity` directory:
+
+```bash
+cd packages/sanity
+pnpx sanity init --env
+```
+
+To get your `SANITY_API_TOKEN`:
+
+1. Go to [Sanity Manage Dashboard](https://www.sanity.io/manage)
+2. Select your project
+3. Navigate to **API** → **Tokens**
+4. Create a token with **Editor** permissions
+
+### 5. Set Up Medusa
+
+Run database migrations and seed data:
+
+```bash
+cd apps/medusa-backend
+pnpm medusa db:migrate
+pnpm seed
+```
+
+Create an admin user:
+
+```bash
+pnpm add-user
+# Creates: admin@medusa.com / supersecret
+```
+
+### 6. Set Up Publishable API Key
+
+1. Start the Medusa backend: `pnpm dev --filter=@apps/medusa-backend`
+2. Open the admin dashboard at `http://localhost:9000/app`
+3. Go to **Settings** → **API Key Management** → **Publishable API Keys**
+4. Create a new key and copy it to `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` in `apps/web/.env`
+
+---
+
+## Development
+
+Run all apps and packages in development mode:
+
+```bash
+pnpm dev
+```
+
+Or run specific apps:
+
+```bash
+# Run only the storefront
+pnpm dev --filter=@apps/web
+
+# Run only the Medusa backend
+pnpm dev --filter=@apps/medusa-backend
+
+# Run only Sanity Studio
+pnpm dev --filter=@packages/sanity
+```
+
+### Available Scripts
+
+| Command            | Description                        |
+| ------------------ | ---------------------------------- |
+| `pnpm dev`         | Start all apps in development mode |
+| `pnpm build`       | Build all apps and packages        |
+| `pnpm check-types` | Run TypeScript type checking       |
+| `pnpm typegen`     | Generate Sanity TypeScript types   |
+
+---
+
+## Build
+
+Build all apps for production:
+
+```bash
+pnpm build
+```
+
+Build specific apps:
+
+```bash
+pnpm build --filter=@apps/web
+pnpm build --filter=@apps/medusa-backend
+```
+
+---
+
+## Project Structure
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+├── apps/
+│   ├── medusa-backend/     # Medusa v2 e-commerce backend
+│   │   ├── src/
+│   │   │   ├── admin/      # Admin dashboard customizations
+│   │   │   ├── api/        # Custom API routes
+│   │   │   ├── modules/    # Custom modules (Sanity sync)
+│   │   │   ├── subscribers/# Event subscribers
+│   │   │   └── workflows/  # Custom workflows
+│   │   └── medusa-config.ts
+│   │
+│   └── web/                # Next.js 16 storefront
+│       ├── app/            # App Router pages
+│       ├── components/     # React components
+│       ├── data/           # Data fetching (Medusa & Sanity)
+│       ├── actions/        # Server actions
+│       └── config.ts
+│
+├── packages/
+│   └── sanity/             # Sanity Studio & schemas
+│       ├── src/
+│       │   ├── schema/     # Content schemas
+│       │   └── queries/    # GROQ queries
+│       ├── sanity.config.ts
+│       └── sanity.types.ts # Generated types
+│
+├── turbo.json              # Turborepo configuration
+├── pnpm-workspace.yaml     # pnpm workspace config
+└── package.json            # Root package.json
 ```
+
+---
+
+## Key Features
+
+- **🛒 Medusa v2** – Modern, modular e-commerce backend
+- **⚡ Next.js 16** – App Router, Server Components, Server Actions
+- **📝 Sanity CMS** – Flexible content management with live preview
+- **🎨 Tailwind CSS v4** – Modern styling with CSS-first configuration
+- **💳 Stripe Payments** – Secure payment processing
+- **🔄 Sanity Sync** – Automatic product/collection sync to CMS
+- **🚀 Turborepo** – Fast, cached builds across the monorepo
+- **📦 pnpm** – Efficient package management
+
+---
+
+## Tech Stack
+
+| Layer               | Technology           |
+| ------------------- | -------------------- |
+| **Commerce**        | Medusa v2.12         |
+| **Storefront**      | Next.js 16, React 19 |
+| **CMS**             | Sanity v4            |
+| **Styling**         | Tailwind CSS v4      |
+| **Payments**        | Stripe               |
+| **Monorepo**        | Turborepo            |
+| **Package Manager** | pnpm                 |
+
+---
 
 ## Useful Links
 
-Learn more about the power of Turborepo:
+- [Medusa Documentation](https://docs.medusajs.com/)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [Turborepo Documentation](https://turbo.build/repo/docs)
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+---
+
+## License
+
+MIT

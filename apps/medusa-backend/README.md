@@ -1,70 +1,193 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
-<h1 align="center">
-  Medusa
-</h1>
+# @apps/medusa-backend
 
-<h4 align="center">
-  <a href="https://docs.medusajs.com">Documentation</a> |
-  <a href="https://www.medusajs.com">Website</a>
-</h4>
+Medusa v2 e-commerce backend for the Munchies platform.
 
-<p align="center">
-  Building blocks for digital commerce
-</p>
-<p align="center">
-  <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
-  </a>
-    <a href="https://www.producthunt.com/posts/medusa"><img src="https://img.shields.io/badge/Product%20Hunt-%231%20Product%20of%20the%20Day-%23DA552E" alt="Product Hunt"></a>
-  <a href="https://discord.gg/xpCwq3Kfn8">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
-  </a>
-</p>
+## Overview
 
-## Compatibility
+This is the commerce engine powering the storefront, built with:
 
-This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
+- **Medusa v2** – Modern, modular e-commerce framework
+- **Admin Dashboard** – Built-in admin UI for managing products, orders, and customers
+- **Sanity Sync** – Automatic synchronization of products, collections, and categories to Sanity CMS
+- **Stripe Payments** – Secure payment processing
 
 ## Getting Started
 
-Visit the [Quickstart Guide](https://docs.medusajs.com/create-medusa-app) to set up a server.
+### Prerequisites
 
-Visit the [Docs](https://docs.medusajs.com/development/backend/prepare-environment) to learn more about our system requirements.
+- Node.js >= 20
+- PostgreSQL database
+- Redis (optional, for caching)
+- Stripe account
 
-## What is Medusa
+### Environment Variables
 
-Medusa is a set of commerce modules and tools that allow you to build rich, reliable, and performant commerce applications without reinventing core commerce logic. The modules can be customized and used to build advanced ecommerce stores, marketplaces, or any product that needs foundational commerce primitives. All modules are open-source and freely available on npm.
+Create a `.env` file in this directory:
 
-Learn more about [Medusa’s architecture](https://docs.medusajs.com/development/fundamentals/architecture-overview) and [commerce modules](https://docs.medusajs.com/modules/overview) in the Docs.
+```env
+# Database
+DATABASE_URL=postgres://user:password@localhost:5432/medusa
 
-## Roadmap, Upgrades & Plugins
+# Redis (optional)
+REDIS_URL=redis://localhost:6379
 
-You can view the planned, started and completed features in the [Roadmap discussion](https://github.com/medusajs/medusa/discussions/categories/roadmap).
+# Security
+JWT_SECRET=your-jwt-secret
+COOKIE_SECRET=your-cookie-secret
 
-Follow the [Upgrade Guides](https://docs.medusajs.com/upgrade-guides/) to keep your Medusa project up-to-date.
+# CORS
+STORE_CORS=http://localhost:3000
+ADMIN_CORS=http://localhost:9000
+AUTH_CORS=http://localhost:9000
 
-Check out all [available Medusa plugins](https://medusajs.com/plugins/).
+# Stripe
+STRIPE_API_KEY=sk_test_...
 
-## Community & Contributions
+# S3 Storage (optional)
+S3_FILE_URL=
+S3_REGION=
+S3_BUCKET=
+S3_ENDPOINT=
 
-The community and core team are available in [GitHub Discussions](https://github.com/medusajs/medusa/discussions), where you can ask for support, discuss roadmap, and share ideas.
+# Sanity
+SANITY_API_TOKEN=your-sanity-token
+SANITY_PROJECT_ID=your-project-id
+```
 
-Join our [Discord server](https://discord.com/invite/medusajs) to meet other community members.
+### Database Setup
 
-## Other channels
+Run database migrations:
 
-- [GitHub Issues](https://github.com/medusajs/medusa/issues)
-- [Twitter](https://twitter.com/medusajs)
-- [LinkedIn](https://www.linkedin.com/company/medusajs)
-- [Medusa Blog](https://medusajs.com/blog/)
+```bash
+pnpm medusa db:migrate
+```
+
+Seed the database with sample data:
+
+```bash
+pnpm seed
+```
+
+### Create Admin User
+
+```bash
+pnpm add-user
+# Creates: admin@medusa.com / supersecret
+```
+
+### Development
+
+From the monorepo root:
+
+```bash
+pnpm dev --filter=@apps/medusa-backend
+```
+
+Or from this directory:
+
+```bash
+pnpm dev
+```
+
+- **Backend API**: [http://localhost:9000](http://localhost:9000)
+- **Admin Dashboard**: [http://localhost:9000/app](http://localhost:9000/app)
+
+## Project Structure
+
+```
+├── src/
+│   ├── admin/
+│   │   ├── hooks/          # Admin React hooks
+│   │   ├── lib/            # Admin utilities
+│   │   ├── routes/         # Custom admin routes
+│   │   └── widgets/        # Admin dashboard widgets
+│   │
+│   ├── api/
+│   │   ├── admin/          # Custom admin API routes
+│   │   ├── store/          # Custom storefront API routes
+│   │   ├── query/          # GraphQL-like query routes
+│   │   └── trigger/        # Webhook triggers
+│   │
+│   ├── modules/
+│   │   └── sanity/         # Sanity integration module
+│   │
+│   ├── subscribers/        # Event subscribers
+│   │   ├── newsletter-sub.ts
+│   │   ├── order-created.ts
+│   │   ├── order-shipped.ts
+│   │   ├── sanity-category-sync.ts
+│   │   ├── sanity-collection-sync.ts
+│   │   └── sanity-product-sync.ts
+│   │
+│   ├── workflows/          # Custom workflows
+│   │   ├── sanity-full-sync.ts
+│   │   ├── sanity-sync-categories.ts
+│   │   ├── sanity-sync-collections.ts
+│   │   ├── sanity-sync-products.ts
+│   │   └── subscribe-to-newsletter.ts
+│   │
+│   └── scripts/
+│       └── seed.ts         # Database seeding script
+│
+├── integration-tests/      # HTTP integration tests
+├── medusa-config.ts        # Medusa configuration
+└── jest.config.js          # Test configuration
+```
+
+## Sanity Sync
+
+This backend automatically syncs data to Sanity CMS via event subscribers:
+
+| Event                      | Action                          |
+| -------------------------- | ------------------------------- |
+| Product created/updated    | Syncs product data to Sanity    |
+| Collection created/updated | Syncs collection data to Sanity |
+| Category created/updated   | Syncs category data to Sanity   |
+
+To trigger a full sync manually, use the workflow in the admin dashboard or run:
+
+```bash
+pnpm medusa exec ./src/workflows/sanity-full-sync.ts
+```
+
+## Custom Modules
+
+### Sanity Module
+
+Located in `src/modules/sanity/`, this module provides:
+
+- Sanity client configuration
+- Type mappings between Medusa and Sanity
+- Sync utilities
+
+## Scripts
+
+| Script                       | Description                    |
+| ---------------------------- | ------------------------------ |
+| `pnpm dev`                   | Start development server       |
+| `pnpm build`                 | Build for production           |
+| `pnpm start`                 | Start production server        |
+| `pnpm seed`                  | Seed database with sample data |
+| `pnpm add-user`              | Create admin user              |
+| `pnpm test:integration:http` | Run HTTP integration tests     |
+| `pnpm test:unit`             | Run unit tests                 |
+
+## API Endpoints
+
+### Store API
+
+Base URL: `http://localhost:9000/store`
+
+Standard Medusa store endpoints plus custom routes in `src/api/store/`.
+
+### Admin API
+
+Base URL: `http://localhost:9000/admin`
+
+Standard Medusa admin endpoints plus custom routes in `src/api/admin/`.
+
+## Useful Links
+
+- [Medusa Documentation](https://docs.medusajs.com/)
+- [Medusa v2 Migration Guide](https://docs.medusajs.com/upgrade-guides)
+- [Medusa Discord](https://discord.com/invite/medusajs)
