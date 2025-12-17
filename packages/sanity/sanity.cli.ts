@@ -16,6 +16,9 @@ export default defineCliConfig({
     schema: "./schema.json",
     generates: "./sanity.types.ts",
   },
+  project: {
+    basePath: "/cms"
+  },
   vite: {
     resolve: {
       alias: {
