@@ -5,7 +5,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const { id } = (req as any).params;
 
   const sanityModule: SanityModuleService = req.scope.resolve("sanity");
-  const [sanityDocument] = await sanityModule.list({ id: [id] }, {});
+  const [sanityDocument] = await sanityModule.list({ id: [id] });
 
   const url = await sanityModule.getStudioLink(
     sanityDocument?._type ?? "",
