@@ -10,13 +10,13 @@ import Testimonials from "./testimonials";
 import type { SectionList } from "./types";
 
 export const sectionsList: SectionList = {
-	"section.assurance": Assurance,
-	"section.centeredText": CenteredText,
-	"section.collectionList": CollectionList,
-	"section.featuredProducts": FeaturedProducts,
-	"section.hero": Hero,
-	"section.marquee": Marquee,
-	"section.mediaText": MediaText,
-	"section.shopTheLook": ShopTheLook,
-	"section.testimonials": Testimonials,
+  "section.assurance": Assurance,
+  "section.centeredText": CenteredText,
+  "section.collectionList": CollectionList,
+  "section.featuredProducts": FeaturedProducts,
+  "section.hero": Hero,
+  "section.marquee": Marquee,
+  "section.mediaText": MediaText,
+  "section.shopTheLook": ShopTheLook,
+  "section.testimonials": Testimonials,
 };

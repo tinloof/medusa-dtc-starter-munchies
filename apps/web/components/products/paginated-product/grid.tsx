@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 import ProductCard from "@/components/shared/product-card";
 
 export default function ProductGrid({
-	products,
+  products,
 }: {
-	products: StoreProduct[];
+  products: StoreProduct[];
 }) {
-	const [paginatedProducts, setPaginatedProducts] = useState<StoreProduct[]>(
-		products || [],
-	);
+  const [paginatedProducts, setPaginatedProducts] = useState<StoreProduct[]>(
+    products || []
+  );
 
-	useEffect(() => {
-		setPaginatedProducts(products);
-	}, [products]);
+  useEffect(() => {
+    setPaginatedProducts(products);
+  }, [products]);
 
-	return paginatedProducts?.map((product) => {
-		return <ProductCard key={product.id} product={product} size="PLP" />;
-	});
+  return paginatedProducts?.map((product) => (
+    <ProductCard key={product.id} product={product} size="PLP" />
+  ));
 }

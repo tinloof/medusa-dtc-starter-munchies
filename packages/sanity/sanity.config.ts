@@ -4,6 +4,7 @@ import { pages } from "@tinloof/sanity-studio";
 import { defineConfig, isDev } from "sanity";
 import { structureTool } from "sanity/structure";
 import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
+import { StudioLogo } from "@/components/logo";
 import config from "@/config";
 import schemas from "@/schema";
 import {
@@ -15,7 +16,6 @@ import {
   singletonActions,
   singletonsTypes,
 } from "@/schema/structure/singletons";
-import { StudioLogo } from "@/components/logo";
 
 export default defineConfig({
   title: config.siteName,

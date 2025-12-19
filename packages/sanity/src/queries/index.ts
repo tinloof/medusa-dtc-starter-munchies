@@ -1,6 +1,6 @@
-import {defineQuery, groq} from "next-sanity";
+import { defineQuery, groq } from "next-sanity";
 
-import {SECTIONS_BODY_FRAGMENT} from "./section";
+import { SECTIONS_BODY_FRAGMENT } from "./section";
 
 export const MODULAR_PAGE_QUERY = groq`*[pathname.current == $pathname && _type == "modular.page"][0]{
   ...,

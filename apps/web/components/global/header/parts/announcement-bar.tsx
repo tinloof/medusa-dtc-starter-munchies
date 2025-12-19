@@ -1,32 +1,32 @@
 "use client";
 
 import type { Header } from "@packages/sanity/types";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Icon from "@/components/shared/icon";
 import { RichText } from "@/components/shared/rich-text";
 import Body from "@/components/shared/typography/body";
 
 export default function AnnouncementBar({
-	announcementText,
-	showAnnouncement,
+  announcementText,
+  showAnnouncement,
 }: Pick<Header, "announcementText" | "showAnnouncement">) {
-	const [isActive, setIsActive] = useState(true);
-	return (
-		<Fragment>
-			{isActive && showAnnouncement && (
-				<div className="w-full bg-secondary">
-					<div className="mx-auto flex w-full max-w-max-screen items-center justify-between bg-secondary px-m py-[7.5px] lg:px-xl">
-						{announcementText && (
-							<Body desktopSize="sm" font="sans" mobileSize="xs">
-								<RichText value={announcementText} />
-							</Body>
-						)}
-						<button type="button" onClick={() => setIsActive(false)}>
-							<Icon className="h-[14px] w-[14px]" name="Close" />
-						</button>
-					</div>
-				</div>
-			)}
-		</Fragment>
-	);
+  const [isActive, setIsActive] = useState(true);
+  return (
+    <>
+      {isActive && showAnnouncement ? (
+        <div className="w-full bg-secondary">
+          <div className="mx-auto flex w-full max-w-max-screen items-center justify-between bg-secondary px-m py-[7.5px] lg:px-xl">
+            {announcementText ? (
+              <Body desktopSize="sm" font="sans" mobileSize="xs">
+                <RichText value={announcementText} />
+              </Body>
+            ) : null}
+            <button onClick={() => setIsActive(false)} type="button">
+              <Icon className="h-[14px] w-[14px]" name="Close" />
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
 }

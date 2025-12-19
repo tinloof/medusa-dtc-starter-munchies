@@ -1,56 +1,22 @@
 {
-	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-	"vcs": {
-		"enabled": true,
-		"clientKind": "git",
-		"useIgnoreFile": true
-	},
-	"files": {
-		"ignoreUnknown": false,
-		"includes": ["**", "!**/cms", "!**/sanity", "!**/.medusa", "!**/.next"]
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab"
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"complexity": {
-				"noImportantStyles": "off"
-			},
-			"suspicious": {
-				"noExplicitAny": "off"
-			},
-			"performance": {
-				"noImgElement": "off"
-			},
-			"a11y": {
-				"noStaticElementInteractions": "off",
-				"useKeyWithClickEvents": "off"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double"
-		}
-	},
-	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
-	},
-	"css": {
-		"formatter": {
-			"enabled": false
-		},
-		"parser": {
-			"tailwindDirectives": true
-		}
-	}
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noExplicitAny": "off"
+      },
+      "performance": {
+        "noImgElement": "off"
+      },
+      "correctness": {
+        "useImageSize": "off"
+      },
+      "a11y": {
+        "noNoninteractiveElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
+        "noStaticElementInteractions": "off"
+      }
+    }
+  }
 }

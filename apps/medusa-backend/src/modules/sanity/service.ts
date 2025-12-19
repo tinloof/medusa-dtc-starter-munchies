@@ -1,4 +1,4 @@
-import {
+import type {
   ModuleJoinerConfig,
   ProductCategoryDTO,
   ProductCollectionDTO,
@@ -6,8 +6,8 @@ import {
 } from "@medusajs/types";
 import {
   createClient,
-  FirstDocumentMutationOptions,
-  SanityClient,
+  type FirstDocumentMutationOptions,
+  type SanityClient,
 } from "@sanity/client";
 
 const SyncDocumentTypes = {
@@ -41,6 +41,7 @@ type TransformationMap<T> = Record<
   (data: SyncDocumentInputs<T>) => any
 >;
 
+// biome-ignore lint/complexity/noBannedTypes: biome ignore
 type InjectedDependencies = {};
 
 export default class SanityModuleService {
@@ -50,6 +51,7 @@ export default class SanityModuleService {
   private createTransformationMap: TransformationMap<SyncDocumentTypes>;
   private updateTransformationMap: TransformationMap<SyncDocumentTypes>;
 
+  // biome-ignore lint/correctness/noEmptyPattern: biome ignore
   constructor({}: InjectedDependencies, options: SanityOptions) {
     this.client = createClient({
       projectId: options.project_id,
@@ -59,15 +61,12 @@ export default class SanityModuleService {
     });
 
     this.studioUrl = options.studio_url;
-    this.typeMap = Object.assign(
-      {},
-      {
-        [SyncDocumentTypes.PRODUCT]: "product",
-        [SyncDocumentTypes.CATEGORY]: "category",
-        [SyncDocumentTypes.COLLECTION]: "collection",
-      },
-      options.type_map || {},
-    );
+    this.typeMap = {
+      [SyncDocumentTypes.PRODUCT]: "product",
+      [SyncDocumentTypes.CATEGORY]: "category",
+      [SyncDocumentTypes.COLLECTION]: "collection",
+      ...(options.type_map || {}),
+    };
 
     this.createTransformationMap = {
       [SyncDocumentTypes.PRODUCT]: this.transformProductForCreate,
@@ -84,7 +83,7 @@ export default class SanityModuleService {
 
   async upsertSyncDocument<T extends SyncDocumentTypes>(
     type: T,
-    data: SyncDocumentInputs<T>,
+    data: SyncDocumentInputs<T>
   ) {
     const existing = await this.client.getDocument(data.id);
     if (existing) {
@@ -97,7 +96,7 @@ export default class SanityModuleService {
   async createSyncDocument<T extends SyncDocumentTypes>(
     type: T,
     data: SyncDocumentInputs<T>,
-    options?: FirstDocumentMutationOptions,
+    options?: FirstDocumentMutationOptions
   ) {
     const doc = this.createTransformationMap[type](data);
     return await this.client.create(doc, options);
@@ -105,13 +104,13 @@ export default class SanityModuleService {
 
   async updateSyncDocument<T extends SyncDocumentTypes>(
     type: T,
-    data: SyncDocumentInputs<T>,
+    data: SyncDocumentInputs<T>
   ) {
     const operations = this.updateTransformationMap[type](data);
     return await this.client.patch(data.id, operations).commit();
   }
 
-  async deleteSyncDocument<T extends SyncDocumentTypes>(type: T, id: string) {
+  async deleteSyncDocument<T extends SyncDocumentTypes>(_: T, id: string) {
     return await this.client.delete(id);
   }
 
@@ -128,10 +127,10 @@ export default class SanityModuleService {
     };
   }
 
-  async getStudioLink(
+  getStudioLink(
     type: string,
     id: string,
-    config: { explicit_type?: boolean } = {},
+    config: { explicit_type?: boolean } = {}
   ) {
     const resolvedType = config.explicit_type ? type : this.typeMap[type];
     if (!this.studioUrl) {
@@ -140,7 +139,7 @@ export default class SanityModuleService {
     return `${this.studioUrl}/structure/${resolvedType};${id}`;
   }
 
-  async list(filter, config) {
+  async list(filter: { id: any }) {
     const data = await this.client.getDocuments(filter.id);
 
     return data.map((doc) => ({
@@ -149,20 +148,18 @@ export default class SanityModuleService {
     }));
   }
 
-  private transformProductForUpdate = (product: ProductDTO) => {
-    return {
-      set: {
-        internalTitle: product.title,
-        pathname: { _type: "slug", current: "/products/" + product.handle },
-      },
-    };
-  };
+  private transformProductForUpdate = (product: ProductDTO) => ({
+    set: {
+      internalTitle: product.title,
+      pathname: { _type: "slug", current: `/products/${product.handle}` },
+    },
+  });
 
   private transformCategoryForUpdate = (category: ProductCategoryDTO) => {
     return {
       set: {
         internalTitle: category.name,
-        pathname: { _type: "slug", current: "/categories/" + category.handle },
+        pathname: { _type: "slug", current: `/categories/${category.handle}` },
         // parent_category: category.parent_category_id
         //   ? {
         //       _type: "reference",
@@ -176,32 +173,30 @@ export default class SanityModuleService {
       },
     };
   };
-  private transformCollectionForUpdate = (collection: ProductCollectionDTO) => {
-    return {
-      set: {
-        internalTitle: collection.title,
-        pathname: {
-          _type: "slug",
-          current: "/collections/" + collection.handle,
-        },
+  private transformCollectionForUpdate = (
+    collection: ProductCollectionDTO
+  ) => ({
+    set: {
+      internalTitle: collection.title,
+      pathname: {
+        _type: "slug",
+        current: `/collections/${collection.handle}`,
       },
-    };
-  };
+    },
+  });
 
-  private transformProductForCreate = (product: ProductDTO) => {
-    return {
-      _type: this.typeMap[SyncDocumentTypes.PRODUCT],
-      _id: product.id,
-      internalTitle: product.title,
-      pathname: { _type: "slug", current: "/products/" + product.handle },
-    };
-  };
+  private transformProductForCreate = (product: ProductDTO) => ({
+    _type: this.typeMap[SyncDocumentTypes.PRODUCT],
+    _id: product.id,
+    internalTitle: product.title,
+    pathname: { _type: "slug", current: `/products/${product.handle}` },
+  });
   private transformCategoryForCreate = (category: ProductCategoryDTO) => {
     return {
       _type: this.typeMap[SyncDocumentTypes.CATEGORY],
       _id: category.id,
       internalTitle: category.name,
-      pathname: { _type: "slug", current: "/categories/" + category.handle },
+      pathname: { _type: "slug", current: `/categories/${category.handle}` },
       // parent_category: {
       //   _type: "reference",
       //   _ref: category.parent_category_id,
@@ -213,12 +208,12 @@ export default class SanityModuleService {
       // })),
     };
   };
-  private transformCollectionForCreate = (collection: ProductCollectionDTO) => {
-    return {
-      _type: this.typeMap[SyncDocumentTypes.COLLECTION],
-      _id: collection.id,
-      internalTitle: collection.title,
-      pathname: { _type: "slug", current: "/collections/" + collection.handle },
-    };
-  };
+  private transformCollectionForCreate = (
+    collection: ProductCollectionDTO
+  ) => ({
+    _type: this.typeMap[SyncDocumentTypes.COLLECTION],
+    _id: collection.id,
+    internalTitle: collection.title,
+    pathname: { _type: "slug", current: `/collections/${collection.handle}` },
+  });
 }

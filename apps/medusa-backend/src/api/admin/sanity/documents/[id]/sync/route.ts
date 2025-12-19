@@ -1,4 +1,4 @@
-import { MedusaRequest } from "@medusajs/framework";
+import type { MedusaRequest } from "@medusajs/framework";
 import { sanityProductSyncWorkflow } from "../../../../../../workflows/sanity-sync-products";
 
 export const POST = async (req: MedusaRequest, res) => {

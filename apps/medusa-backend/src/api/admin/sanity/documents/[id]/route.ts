@@ -1,5 +1,5 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
-import SanityModuleService from "../../../../../modules/sanity/service";
+import type { MedusaRequest, MedusaResponse } from "@medusajs/framework";
+import type SanityModuleService from "../../../../../modules/sanity/service";
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const { id } = (req as any).params;
@@ -10,7 +10,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const url = await sanityModule.getStudioLink(
     sanityDocument?._type ?? "",
     sanityDocument?._id ?? "",
-    { explicit_type: true },
+    { explicit_type: true }
   );
 
   res.json({ sanity_document: sanityDocument, studio_url: url });

@@ -7,35 +7,37 @@ import Select from "@/components/shared/select";
 import { useProductVariants } from "../product-context";
 
 type Props = {
-	options: StoreProductOption[];
+  options: StoreProductOption[];
 };
 
 export default function OptionsSelect({ options }: Props) {
-	const { selectedOptions, setSelectedOptions } = useProductVariants();
+  const { selectedOptions, setSelectedOptions } = useProductVariants();
 
-	return options?.map((option) => {
-		const values = option.values?.map(({ value }) => ({
-			label: value,
-			value: value.toLowerCase(),
-		}));
+  return options?.map((option) => {
+    const values = option.values?.map(({ value }) => ({
+      label: value,
+      value: value.toLowerCase(),
+    }));
 
-		if (!values || values.length <= 1) return null;
-		const activeOption = selectedOptions[option.title.toLowerCase()];
-		const setOption = (value: string) =>
-			setSelectedOptions((prev) => ({
-				...prev,
-				[option.title.toLowerCase()]: value,
-			}));
+    if (!values || values.length <= 1) {
+      return null;
+    }
+    const activeOption = selectedOptions[option.title.toLowerCase()];
+    const setOption = (value: string) =>
+      setSelectedOptions((prev) => ({
+        ...prev,
+        [option.title.toLowerCase()]: value,
+      }));
 
-		return (
-			<Select
-				className="w-fit"
-				key={option.id}
-				options={values}
-				placeholder={activeOption}
-				setOption={setOption}
-				variant="outline"
-			/>
-		);
-	});
+    return (
+      <Select
+        className="w-fit"
+        key={option.id}
+        options={values}
+        placeholder={activeOption}
+        setOption={setOption}
+        variant="outline"
+      />
+    );
+  });
 }

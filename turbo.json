@@ -1,69 +1,79 @@
 {
-	"$schema": "https://turborepo.com/schema.json",
-	"ui": "tui",
-	"tasks": {
-		"build": {
-			"dependsOn": ["^build"],
-			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": [".next/**", "!.next/cache/**"]
-		},
-		"typecheck": {
-			"dependsOn": ["^typecheck"]
-		},
-		"dev": {
-			"cache": false,
-			"persistent": true
-		},
-		"typegen": {
-			"cache": true,
-			"outputs": ["schema.json", "sanity.types.ts"],
-			"env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_PROJECT_ID"]
-		},
-		"@packages/sanity#typegen:watch": {
-			"outputs": ["schema.json", "sanity.types.ts"],
-			"cache": false,
-			"persistent": true
-		},
-		"@packages/sanity#build": {
-			"dependsOn": ["@packages/sanity#typegen"],
-			"outputs": ["../../apps/web/public/cms/**", "./sanity/**"],
-			"cache": true,
-			"env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_PROJECT_ID"]
-		},
-		"@packages/sanity#dev": {
-			"with": ["@packages/sanity#typegen:watch"],
-			"persistent": true
-		},
-		"@apps/web#build": {
-			"dependsOn": ["@packages/sanity#build"],
-			"outputs": [".next/**", "!.next/cache/**"],
-			"cache": true,
-			"env": [
-				"NEXT_PUBLIC_SANITY_PROJECT_ID",
-				"NEXT_PUBLIC_SANITY_DATASET",
-				"NEXT_PUBLIC_URL",
-				"SANITY_API_TOKEN"
-			]
-		},
-		"@apps/medusa-backend#build": {
-			"outputs": [".medusa/**"],
-			"cache": true,
-			"env": [
-				"DATABASE_URL",
-				"REDIS_URL",
-				"JWT_SECRET",
-				"COOKIE_SECRET",
-				"STORE_CORS",
-				"ADMIN_CORS",
-				"AUTH_CORS",
-				"STRIPE_API_KEY",
-				"S3_FILE_URL",
-				"S3_REGION",
-				"S3_BUCKET",
-				"S3_ENDPOINT",
-				"SANITY_API_TOKEN",
-				"SANITY_PROJECT_ID"
-			]
-		}
-	}
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "//#check": {},
+    "//#fix": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "typegen": {
+      "cache": true,
+      "outputs": ["schema.json", "sanity.types.ts"],
+      "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_PROJECT_ID"]
+    },
+    "@packages/sanity#typegen:watch": {
+      "outputs": ["schema.json", "sanity.types.ts"],
+      "cache": false,
+      "persistent": true
+    },
+    "@packages/sanity#build": {
+      "dependsOn": ["@packages/sanity#typegen"],
+      "outputs": ["../../apps/web/public/cms/**", "./sanity/**"],
+      "cache": true,
+      "env": [
+        "SANITY_STUDIO_DATASET",
+        "SANITY_STUDIO_PROJECT_ID",
+        "SANITY_API_VERSION"
+      ]
+    },
+    "@packages/sanity#dev": {
+      "with": ["@packages/sanity#typegen:watch"],
+      "persistent": true
+    },
+    "@apps/web#build": {
+      "dependsOn": ["@packages/sanity#build"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "cache": true,
+      "env": [
+        "NEXT_PUBLIC_SANITY_PROJECT_ID",
+        "NEXT_PUBLIC_SANITY_DATASET",
+        "NEXT_PUBLIC_URL",
+        "SANITY_API_TOKEN"
+      ]
+    },
+    "@apps/medusa-backend#build": {
+      "outputs": [".medusa/**"],
+      "cache": true,
+      "env": [
+        "DATABASE_URL",
+        "REDIS_URL",
+        "JWT_SECRET",
+        "COOKIE_SECRET",
+        "STORE_CORS",
+        "ADMIN_CORS",
+        "AUTH_CORS",
+        "STRIPE_API_KEY",
+        "S3_FILE_URL",
+        "S3_REGION",
+        "S3_BUCKET",
+        "S3_ENDPOINT",
+        "SANITY_API_TOKEN",
+        "SANITY_PROJECT_ID",
+        "MEDUSA_PUBLISHABLE_KEY",
+        "RESEND_API_KEY"
+      ]
+    }
+  }
 }

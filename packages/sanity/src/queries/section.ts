@@ -1,4 +1,4 @@
-import {groq} from "next-sanity";
+import { groq } from "next-sanity";
 
 export const TESTIMONIALS_SECTION_QUERY = groq`{
     ...,

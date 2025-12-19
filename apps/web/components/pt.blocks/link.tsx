@@ -3,18 +3,20 @@ import type { PortableTextMarkComponentProps } from "@portabletext/react";
 import LocalizedLink from "../shared/localized-link";
 
 type linkData = {
-	_key: string;
-	_type: "link";
-	href: string;
+  _key: string;
+  _type: "link";
+  href: string;
 };
 export function PtLink(props: PortableTextMarkComponentProps<linkData>) {
-	if (!props.value) return <>{props.children}</>;
-	return (
-		<LocalizedLink
-			className="wrap-break-word underline"
-			href={props.value.href}
-		>
-			{props.children}
-		</LocalizedLink>
-	);
+  if (!props.value) {
+    return <>{props.children}</>;
+  }
+  return (
+    <LocalizedLink
+      className="wrap-break-word underline"
+      href={props.value.href}
+    >
+      {props.children}
+    </LocalizedLink>
+  );
 }

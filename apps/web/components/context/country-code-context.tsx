@@ -4,29 +4,29 @@ import type { PropsWithChildren } from "react";
 import { createContext, useContext } from "react";
 
 type CountryCodeContextType = {
-	countryCode: string;
+  countryCode: string;
 };
 
 type CountryCodeProviderProps = PropsWithChildren<CountryCodeContextType>;
 
 export const CountryCodeContext = createContext<
-	CountryCodeContextType | undefined
+  CountryCodeContextType | undefined
 >(undefined);
 
 export function CountryCodeProvider({
-	children,
-	countryCode,
+  children,
+  countryCode,
 }: CountryCodeProviderProps) {
-	return (
-		<CountryCodeContext.Provider value={{ countryCode }}>
-			{children}
-		</CountryCodeContext.Provider>
-	);
+  return (
+    <CountryCodeContext.Provider value={{ countryCode }}>
+      {children}
+    </CountryCodeContext.Provider>
+  );
 }
 export function useCountryCode() {
-	const context = useContext(CountryCodeContext);
-	if (context === undefined) {
-		throw new Error("useCountryCode must be used within a CountryCodeProvider");
-	}
-	return context.countryCode;
+  const context = useContext(CountryCodeContext);
+  if (context === undefined) {
+    throw new Error("useCountryCode must be used within a CountryCodeProvider");
+  }
+  return context.countryCode;
 }

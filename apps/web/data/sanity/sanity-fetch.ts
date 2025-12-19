@@ -1,8 +1,7 @@
-import type {QueryParams} from "next-sanity";
-
+import { draftMode } from "next/headers";
+import type { QueryParams } from "next-sanity";
 import config from "@/config";
-import {client} from "@/data/sanity/client";
-import {draftMode} from "next/headers";
+import { client } from "@/data/sanity/client";
 import "server-only";
 
 export async function sanityFetch<QueryResponse>({
@@ -24,7 +23,7 @@ export async function sanityFetch<QueryResponse>({
   if (perspective === "drafts") {
     return client.fetch(query, await params, {
       // And we can't cache the responses as it would slow down the live preview experience
-      next: {revalidate: 0},
+      next: { revalidate: 0 },
       perspective: "drafts",
       stega,
       // The token is required to fetch draft content
@@ -36,7 +35,7 @@ export async function sanityFetch<QueryResponse>({
 
   return client.fetch(query, await params, {
     // When using the `published` perspective we use time-based revalidation to match the time-to-live on Sanity's API CDN (60 seconds)
-    next: {revalidate: 120},
+    next: { revalidate: 120 },
     perspective: "published",
     stega,
     // Only enable Stega in production if it's a Vercel Preview Deployment, as the Vercel Toolbar supports Visual Editing

@@ -1,4 +1,4 @@
-import {loadRedirects} from ".";
+import { loadRedirects } from ".";
 
 export type RedirectSetting = {
   destination: string;
@@ -12,7 +12,9 @@ export function getRedirect(source: string) {
 }
 
 function getPathVariations(path: string): string[] {
-  if (typeof path !== "string") return [];
+  if (typeof path !== "string") {
+    return [];
+  }
 
   let slashless = path.trim();
   if (slashless.startsWith("/")) {

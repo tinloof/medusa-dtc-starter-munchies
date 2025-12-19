@@ -1,16 +1,3 @@
-import type {
-  COOKIE_BANNER_QUERYResult,
-  DICTIONARY_QUERYResult,
-  FAQS_PAGE_QUERYResult,
-  GLOBAL_QUERYResult,
-  HOME_QUERYResult,
-  MODULAR_PAGE_QUERYResult,
-  NOT_FOUND_PAGE_QUERYResult,
-  PRODUCT_QUERYResult,
-  REDIRECT_QUERYResult,
-  ROUTE_QUERYResult,
-  TEXT_PAGE_QUERYResult,
-} from "@packages/sanity/types";
 import {
   COOKIE_BANNER_QUERY,
   DICTIONARY_QUERY,
@@ -24,6 +11,19 @@ import {
   ROUTE_QUERY,
   TEXT_PAGE_QUERY,
 } from "@packages/sanity/queries";
+import type {
+  COOKIE_BANNER_QUERYResult,
+  DICTIONARY_QUERYResult,
+  FAQS_PAGE_QUERYResult,
+  GLOBAL_QUERYResult,
+  HOME_QUERYResult,
+  MODULAR_PAGE_QUERYResult,
+  NOT_FOUND_PAGE_QUERYResult,
+  PRODUCT_QUERYResult,
+  REDIRECT_QUERYResult,
+  ROUTE_QUERYResult,
+  TEXT_PAGE_QUERYResult,
+} from "@packages/sanity/types";
 
 import { sanityFetch } from "./sanity-fetch";
 
@@ -35,14 +35,14 @@ export function loadRoute(pathname: string) {
   });
 }
 
-export async function loadModularPage(pathname: string) {
+export function loadModularPage(pathname: string) {
   return sanityFetch<MODULAR_PAGE_QUERYResult>({
     params: { pathname },
     query: MODULAR_PAGE_QUERY,
   });
 }
 
-export async function loadHome() {
+export function loadHome() {
   return sanityFetch<HOME_QUERYResult>({
     query: HOME_QUERY,
   });
@@ -61,9 +61,9 @@ export async function loadPageByPathname({
 }) {
   let pathname: string;
   if (Array.isArray(path) && path.length > 0) {
-    pathname = "/" + path.join("/");
+    pathname = `/${path.join("/")}`;
   } else if (path) {
-    pathname = "/" + path;
+    pathname = `/${path}`;
   } else {
     pathname = "/";
   }
@@ -102,7 +102,7 @@ export function loadCookieBanner() {
   });
 }
 
-export async function loadTextPage(pathname: string) {
+export function loadTextPage(pathname: string) {
   return sanityFetch<TEXT_PAGE_QUERYResult>({
     params: { pathname },
     query: TEXT_PAGE_QUERY,

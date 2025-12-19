@@ -1,13 +1,13 @@
 import type { Seo, Slug } from "@packages/sanity/types";
 import type { SanityImageSource } from "@sanity/image-url";
-import type { ResolvingMetadata } from "next";
-
-import config from "@/config";
 import { pathToAbsUrl } from "@tinloof/sanity-web";
+import type { ResolvingMetadata } from "next";
+import config from "@/config";
 
 import { imageBuilder } from "./client";
 
 export function getOgImages(image: SanityImageSource) {
+  // biome-ignore lint/suspicious/noFocusedTests: biome ignore
   const builder = imageBuilder.image(image).fit("max").auto("format");
 
   return [
@@ -46,9 +46,9 @@ export async function resolveSanityRouteMetadata(
   const title = seo?.title || config.siteName;
   const canonicalUrl =
     seo?.canonicalUrl || pathToAbsUrl({ baseUrl: config.baseUrl, path });
-  const ogImages = !seo?.image
-    ? parent.openGraph?.images
-    : getOgImages(seo.image);
+  const ogImages = seo?.image
+    ? getOgImages(seo.image)
+    : parent.openGraph?.images;
 
   return {
     alternates: {
@@ -60,7 +60,7 @@ export async function resolveSanityRouteMetadata(
       title,
       url: canonicalUrl,
     },
-    robots: !indexable ? "noindex nofollow" : undefined,
+    robots: indexable ? undefined : "noindex nofollow",
     title,
   };
 }

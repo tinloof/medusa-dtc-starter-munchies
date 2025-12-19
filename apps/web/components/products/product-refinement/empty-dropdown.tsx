@@ -3,11 +3,17 @@
 import DropDown from "./filters/drop-down";
 
 export default function EmptyDropdown({
-	placeholder,
+  placeholder,
 }: {
-	placeholder: string;
+  placeholder: string;
 }) {
-	return (
-		<DropDown isOpen={false} placeholder={placeholder} setOpen={() => {}} />
-	);
+  return (
+    <DropDown
+      isOpen={false}
+      placeholder={placeholder}
+      setOpen={() => {
+        return;
+      }}
+    />
+  );
 }

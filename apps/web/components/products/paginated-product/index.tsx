@@ -11,87 +11,89 @@ import ClearAllButton from "../product-refinement/filters/clear-button";
 import ProductGrid from "./grid";
 
 export default async function PaginatedProducts({
-	countryCode,
-	searchParams,
+  countryCode,
+  searchParams,
 }: {
-	countryCode: string;
-	searchParams: SearchParams<"category" | "collection" | "page" | "sort">;
+  countryCode: string;
+  searchParams: SearchParams<"category" | "collection" | "page" | "sort">;
 }) {
-	const category = parseSearchParam(searchParams.category)?.split(",");
-	const collection = parseSearchParam(searchParams.collection)?.split(",");
-	const page =
-		typeof searchParams.page === "string" ? parseInt(searchParams.page, 10) : 1;
+  const category = parseSearchParam(searchParams.category)?.split(",");
+  const collection = parseSearchParam(searchParams.collection)?.split(",");
+  const page =
+    typeof searchParams.page === "string"
+      ? Number.parseInt(searchParams.page, 10)
+      : 1;
 
-	const productsDictionary = await loadDictionary();
+  const productsDictionary = await loadDictionary();
 
-	const region = await getRegion(countryCode);
+  const region = await getRegion(countryCode);
 
-	if (!region) {
-		return null;
-	}
+  if (!region) {
+    return null;
+  }
 
-	const { hasNextPage, products } = await getProducts(page, region.id, {
-		category_id: category,
-		collection_id: collection,
-	});
+  const { hasNextPage, products } = await getProducts(page, region.id, {
+    category_id: category,
+    collection_id: collection,
+  });
 
-	const hasFilters = category || collection;
-	return (
-		<>
-			{products.length === 0 && (
-				<div className="gap-xs py-2xl flex w-full flex-1 flex-col items-start">
-					<Heading font="sans" mobileSize="xs" tag="h2">
-						{productsDictionary?.noResultsText}
-					</Heading>
-					<Body font="sans" mobileSize="lg">
-						{productsDictionary?.noResultsDescription}
-					</Body>
-					{hasFilters && <ClearAllButton variant="button" />}
-				</div>
-			)}
-			<div className="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
-				<ProductGrid products={products} />
-			</div>
-			{hasNextPage && (
-				<Link className="w-full" href={`?page=${page + 1}`} variant="outline">
-					Load more
-				</Link>
-			)}
-		</>
-	);
+  const hasFilters = category || collection;
+  return (
+    <>
+      {products.length === 0 && (
+        <div className="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
+          <Heading font="sans" mobileSize="xs" tag="h2">
+            {productsDictionary?.noResultsText}
+          </Heading>
+          <Body font="sans" mobileSize="lg">
+            {productsDictionary?.noResultsDescription}
+          </Body>
+          {hasFilters ? <ClearAllButton variant="button" /> : null}
+        </div>
+      )}
+      <div className="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
+        <ProductGrid products={products} />
+      </div>
+      {hasNextPage ? (
+        <Link className="w-full" href={`?page=${page + 1}`} variant="outline">
+          Load more
+        </Link>
+      ) : null}
+    </>
+  );
 }
 
 export function ProductsSkeleton() {
-	return (
-		<div className="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
-			{[...Array(9)].map((_, index) => (
-				<div key={index.toString()}>
-					<div className="border-accent relative aspect-square w-full rounded-lg border">
-						<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-							<Icon
-								className="animate-spin-loading size-10"
-								name="LoadingAccent"
-							/>
-						</div>
-					</div>
-					<div className="px-lg py-s flex flex-col items-center justify-center gap-1">
-						<div className="bg-accent h-[30px] w-3/4 rounded-s opacity-10" />
-						<div className="bg-accent h-6 w-1/2 rounded-s opacity-10" />
-					</div>
-				</div>
-			))}
-		</div>
-	);
+  return (
+    <div className="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
+      {new Array(9).fill(0).map((_, index) => (
+        <div key={index.toString()}>
+          <div className="relative aspect-square w-full rounded-lg border border-accent">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Icon
+                className="size-10 animate-spin-loading"
+                name="LoadingAccent"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-1 px-lg py-s">
+            <div className="h-[30px] w-3/4 rounded-s bg-accent opacity-10" />
+            <div className="h-6 w-1/2 rounded-s bg-accent opacity-10" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function parseSearchParam(
-	value: string | string[] | undefined,
+  value: string | string[] | undefined
 ): string | undefined {
-	if (typeof value === "string") {
-		return value;
-	} else if (Array.isArray(value)) {
-		return value[0];
-	} else {
-		return undefined;
-	}
+  if (typeof value === "string") {
+    return value;
+  }
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+  return;
 }

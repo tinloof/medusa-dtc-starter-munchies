@@ -16,78 +16,78 @@ import StickyAtc from "./_parts/sticky-atc";
 type ProductPageProps = PageProps<"countryCode" | "handle">;
 
 export async function generateMetadata(
-	props: ProductPageProps,
-	parent: ResolvingMetadata,
+  props: ProductPageProps,
+  parent: ResolvingMetadata
 ) {
-	const content = await loadProductContent((await props.params).handle);
+  const content = await loadProductContent((await props.params).handle);
 
-	if (!content) {
-		return notFound();
-	}
+  if (!content) {
+    return notFound();
+  }
 
-	const url = generateOgEndpoint({
-		countryCode: (await props.params).countryCode,
-		handle: (await props.params).handle,
-		type: "products",
-	});
+  const url = generateOgEndpoint({
+    countryCode: (await props.params).countryCode,
+    handle: (await props.params).handle,
+    type: "products",
+  });
 
-	const metadata = await resolveSanityRouteMetadata(
-		{
-			indexable: content?.indexable,
-			pathname: content?.pathname,
-			seo: content?.seo,
-		},
-		parent,
-	);
-	return {
-		...metadata,
-		openGraph: {
-			images: [
-				{
-					height: 630,
-					url: url || "",
-					width: 1200,
-				},
-			],
-		},
-	};
+  const metadata = await resolveSanityRouteMetadata(
+    {
+      indexable: content?.indexable,
+      pathname: content?.pathname,
+      seo: content?.seo,
+    },
+    parent
+  );
+  return {
+    ...metadata,
+    openGraph: {
+      images: [
+        {
+          height: 630,
+          url: url || "",
+          width: 1200,
+        },
+      ],
+    },
+  };
 }
 
 export default async function ProductPage(props: ProductPageProps) {
-	const params = await props.params;
-	const region = await getRegion(params.countryCode);
-	if (!region) {
-		console.log("No region found");
-		return notFound();
-	}
+  const params = await props.params;
+  const region = await getRegion(params.countryCode);
+  if (!region) {
+    console.log("No region found");
+    return notFound();
+  }
 
-	const product = await getProductByHandle(params.handle, region.id);
+  const product = await getProductByHandle(params.handle, region.id);
 
-	const content = await loadProductContent(params.handle);
+  const content = await loadProductContent(params.handle);
 
-	if (!product) {
-		console.log("No product found");
-		return notFound();
-	}
-	return (
-		<>
-			<section className="max-w-max-screen gap-s lg:gap-xs lg:px-xl lg:py-m mx-auto flex flex-col items-start justify-start lg:flex-row">
-				<ProductImagesCarousel product={product} />
-				<ProductInformation
-					content={content}
-					region_id={region.id}
-					{...product}
-				/>
-			</section>
+  if (!product) {
+    console.log("No product found");
+    return notFound();
+  }
+  return (
+    <>
+      <section className="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
+        <ProductImagesCarousel product={product} />
+        <ProductInformation
+          content={content}
+          region_id={region.id}
+          {...product}
+        />
+      </section>
 
-			{content?.sections && (
-				<SectionsRenderer
-					countryCode={params.countryCode}
-					fieldName="body"
-					sections={content.sections}
-				/>
-			)}
-			<StickyAtc {...product} region_id={region.id} />
-		</>
-	);
+      {content?.sections ? (
+        <SectionsRenderer
+          countryCode={params.countryCode}
+          fieldName="body"
+          sections={content.sections}
+        />
+      ) : null}
+      <StickyAtc {...product} region_id={region.id} />
+    </>
+  );
 }
