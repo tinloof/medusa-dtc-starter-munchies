@@ -5,11 +5,10 @@ import { notFound } from "next/navigation";
 import SectionsRenderer from "@/components/sections/section-renderer";
 import { loadPageByPathname } from "@/data/sanity";
 import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
 
 import TextPage from "./text-page.template";
 
-export type DynamicRouteProps = PageProps<"...path" | "countryCode">;
+export type DynamicRouteProps = PageProps<"/[countryCode]/[...path]">;
 
 export async function generateMetadata(
   props: DynamicRouteProps,

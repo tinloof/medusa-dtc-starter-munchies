@@ -6,10 +6,9 @@ import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigat
 import config from "@/config";
 import { loadGlobalData } from "@/data/sanity";
 import { getOgImages } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
 
 type LayoutProps = PropsWithChildren<
-  Omit<PageProps<"countryCode">, "searchParams">
+  Omit<PageProps<"/[countryCode]">, "searchParams">
 >;
 
 export async function generateMetadata(): Promise<Metadata> {

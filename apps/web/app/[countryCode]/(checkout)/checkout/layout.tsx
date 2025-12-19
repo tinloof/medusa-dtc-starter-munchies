@@ -7,10 +7,9 @@ import LocalizedLink from "@/components/shared/localized-link";
 import config from "@/config";
 import { loadGlobalData } from "@/data/sanity";
 import { getOgImages } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
 
 type LayoutProps = PropsWithChildren<
-  Omit<PageProps<"countryCode">, "searchParams">
+  Omit<PageProps<"/[countryCode]/checkout">, "searchParams">
 >;
 
 export async function generateMetadata(): Promise<Metadata> {

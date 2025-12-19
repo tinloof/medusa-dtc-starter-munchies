@@ -6,10 +6,9 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { PropsWithChildren } from "react";
 import { CountryCodeProvider } from "@/components/context/country-code-context";
 import { ExitPreview } from "@/components/exit-preview";
-import type { PageProps } from "@/types";
 
 type LayoutProps = PropsWithChildren<
-  Omit<PageProps<"countryCode">, "searchParams">
+  Omit<PageProps<"/[countryCode]">, "searchParams">
 >;
 
 export default async function Layout(props: LayoutProps) {

@@ -7,12 +7,13 @@ import {
   listCartShippingMethods,
 } from "@/data/medusa/fullfilment";
 import { enrichLineItems } from "@/data/medusa/line-items";
-import type { PageProps } from "@/types";
 
 import CartDetails from "./_parts/cart-details";
 import CheckoutForm from "./_parts/checkout-form";
 
-export default async function CheckoutPage(props: PageProps<"countryCode">) {
+export default async function CheckoutPage(
+  props: PageProps<"/[countryCode]/checkout">
+) {
   const params = await props.params;
 
   const { countryCode } = params;

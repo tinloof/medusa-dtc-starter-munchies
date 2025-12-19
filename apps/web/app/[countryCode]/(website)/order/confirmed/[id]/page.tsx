@@ -4,12 +4,13 @@ import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import { enrichLineItems } from "@/data/medusa/line-items";
 import { getOrder } from "@/data/medusa/order";
-import type { PageProps } from "@/types";
 import { convertToLocale } from "@/utils/medusa/money";
 
 import OrderItem from "./_parts/order-item";
 
-export default async function OrderConfirmedPage(props: PageProps<"id">) {
+export default async function OrderConfirmedPage(
+  props: PageProps<"/[countryCode]/order/confirmed/[id]">
+) {
   const params = await props.params;
   const baseOrder = await getOrder(params.id);
 

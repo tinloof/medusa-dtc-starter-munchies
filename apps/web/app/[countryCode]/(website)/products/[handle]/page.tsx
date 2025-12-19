@@ -7,13 +7,12 @@ import { getProductByHandle } from "@/data/medusa/products";
 import { getRegion } from "@/data/medusa/regions";
 import { loadProductContent } from "@/data/sanity";
 import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
 
 import { ProductImagesCarousel } from "./_parts/image-carousel";
 import ProductInformation from "./_parts/product-information";
 import StickyAtc from "./_parts/sticky-atc";
 
-type ProductPageProps = PageProps<"countryCode" | "handle">;
+type ProductPageProps = PageProps<"/[countryCode]/products/[handle]">;
 
 export async function generateMetadata(
   props: ProductPageProps,
