@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"analyze": "next experimental-analyze"
 	},
 	"dependencies": {
 		"@packages/sanity": "workspace:*",
@@ -31,7 +32,7 @@
 		"embla-carousel": "^8.3.0",
 		"embla-carousel-react": "^8.6.0",
 		"lodash": "^4.17.21",
-		"next": "16.0.10",
+		"next": "16.1.0",
 		"next-sanity": "^11.6.10",
 		"nuqs": "^2.8.5",
 		"react": "19.2.3",
@@ -46,7 +47,7 @@
 		"@tailwindcss/postcss": "^4.1.18",
 		"@types/lodash": "^4.17.6",
 		"@types/node": "^20.14.9",
-		"@types/react": "19.2.3",
+		"@types/react": "19.2.7",
 		"@types/react-dom": "19.2.3",
 		"autoprefixer": "^10.4.20",
 		"postcss": "^8.5.6",
