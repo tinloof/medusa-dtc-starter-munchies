@@ -19,7 +19,9 @@ export async function generateMetadata(
   props: ProductPageProps,
   parent: ResolvingMetadata
 ) {
-  const content = await loadProductContent((await props.params).handle);
+  const { data: content } = await loadProductContent(
+    (await props.params).handle
+  );
 
   if (!content) {
     return notFound();
@@ -63,7 +65,7 @@ export default async function ProductPage(props: ProductPageProps) {
 
   const product = await getProductByHandle(params.handle, region.id);
 
-  const content = await loadProductContent(params.handle);
+  const { data: content } = await loadProductContent(params.handle);
 
   if (!product) {
     console.log("No product found");

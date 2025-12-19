@@ -13,7 +13,7 @@ type LayoutProps = PropsWithChildren<
 >;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await loadGlobalData();
+  const { data } = await loadGlobalData();
 
   return {
     openGraph: {
@@ -31,7 +31,7 @@ export default async function Layout(props: LayoutProps) {
 
   const { children } = props;
 
-  const data = await loadGlobalData();
+  const { data } = await loadGlobalData();
 
   return (
     <>

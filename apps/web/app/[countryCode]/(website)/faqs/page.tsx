@@ -5,23 +5,23 @@ import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-m
 
 import Faq from "./_parts/faq-page";
 export async function generateMetadata(_: unknown, parent: ResolvingMetadata) {
-  const initialData = await loadFaqs();
+  const { data } = await loadFaqs();
 
-  if (!initialData) {
+  if (!data) {
     return notFound();
   }
 
   return resolveSanityRouteMetadata(
     {
-      indexable: initialData.indexable,
-      pathname: initialData.pathname,
-      seo: initialData?.seo,
+      indexable: data.indexable,
+      pathname: data.pathname,
+      seo: data?.seo,
     },
     parent
   );
 }
 export default async function FaqPage() {
-  const data = await loadFaqs();
+  const { data } = await loadFaqs();
   if (!data) {
     return notFound();
   }

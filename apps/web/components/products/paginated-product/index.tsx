@@ -24,7 +24,7 @@ export default async function PaginatedProducts({
       ? Number.parseInt(searchParams.page, 10)
       : 1;
 
-  const productsDictionary = await loadDictionary();
+  const { data: productsDictionary } = await loadDictionary();
 
   const region = await getRegion(countryCode);
 

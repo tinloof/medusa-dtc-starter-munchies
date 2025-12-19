@@ -1,11 +1,11 @@
-import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 
-export const TESTIMONIALS_SECTION_QUERY = groq`{
+export const TESTIMONIALS_SECTION_QUERY = defineQuery(`{
     ...,
     testimonials[] -> 
-}`;
+}`);
 
-export const SECTIONS_BODY_FRAGMENT = groq`{
+export const SECTIONS_BODY_FRAGMENT = defineQuery(`{
     ...,
     _type == "section.testimonials" => ${TESTIMONIALS_SECTION_QUERY},
-}`;
+}`);

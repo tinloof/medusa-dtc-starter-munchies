@@ -16,18 +16,20 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ) {
   const params = await props.params;
-  const initialData = await loadPageByPathname({ params });
+  const result = await loadPageByPathname({ params });
 
-  if (!initialData) {
+  const data = result?.data;
+
+  if (!data) {
     return notFound();
   }
 
   if (
-    initialData._type === "modular.page" ||
-    initialData._type === "home" ||
-    initialData._type === "text.page"
+    data._type === "modular.page" ||
+    data._type === "home" ||
+    data._type === "text.page"
   ) {
-    return resolveSanityRouteMetadata(initialData, parent);
+    return resolveSanityRouteMetadata(data, parent);
   }
 
   return {};
@@ -35,24 +37,24 @@ export async function generateMetadata(
 
 export default async function DynamicRoute(props: DynamicRouteProps) {
   const params = await props.params;
-  const initialData = await loadPageByPathname({ params });
-  if (!initialData) {
+  const result = await loadPageByPathname({ params });
+  const data = result?.data;
+
+  if (!data) {
     return notFound();
   }
 
-  switch (initialData._type) {
+  switch (data._type) {
     case "modular.page":
     case "home":
       return (
         <SectionsRenderer
           countryCode={params.countryCode}
-          {...{ fieldName: "body", sections: initialData.sections || [] }}
+          {...{ fieldName: "body", sections: data.sections || [] }}
         />
       );
     case "text.page":
-      return (
-        <TextPage data={initialData as NonNullable<TEXT_PAGE_QUERYResult>} />
-      );
+      return <TextPage data={data as NonNullable<TEXT_PAGE_QUERYResult>} />;
     default:
       return <div>Template not found</div>;
   }
