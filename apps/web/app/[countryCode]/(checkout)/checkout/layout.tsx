@@ -6,7 +6,7 @@ import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigat
 import LocalizedLink from "@/components/shared/localized-link";
 import config from "@/config";
 import { loadGlobalData } from "@/data/sanity";
-import { getOgImages } from "@/data/sanity/resolve-sanity-route-metadata";
+import { getOgImages } from "@/data/sanity/get-og-images";
 
 type LayoutProps = PropsWithChildren<
   Omit<PageProps<"/[countryCode]/checkout">, "searchParams">

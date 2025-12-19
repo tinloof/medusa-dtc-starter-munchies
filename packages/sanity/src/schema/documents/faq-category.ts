@@ -1,7 +1,9 @@
 import { OlistIcon } from "@sanity/icons";
-import defineSchema from "@/helpers/define-schema";
+import { contentSchemaGroup } from "@tinloof/sanity-studio";
+import { defineType } from "sanity";
 
-export const faqCategory = defineSchema({
+export const faqCategory = defineType({
+  groups: [contentSchemaGroup],
   fields: [
     {
       group: "content",
@@ -40,7 +42,10 @@ export const faqCategory = defineSchema({
   name: "faq.category",
   options: {
     disableCreation: true,
-    localized: true,
+    structureGroup: "FAQ",
+    structureOptions: {
+      title: "FAQ categories",
+    },
   },
   title: "FAQ category",
   type: "document",

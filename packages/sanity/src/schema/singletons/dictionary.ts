@@ -2,6 +2,14 @@ import { IceCreamIcon, InsertAboveIcon } from "@sanity/icons";
 import { defineType } from "sanity";
 
 export const dictionary = defineType({
+  extends: [
+    {
+      type: "singleton",
+      parameters: {
+        id: "dictionary",
+      },
+    },
+  ],
   __experimental_formPreviewTitle: false,
   fields: [
     {
@@ -28,6 +36,7 @@ export const dictionary = defineType({
   name: "dictionary",
   options: {
     disableCreation: true,
+    structureGroup: "Layout",
   },
   preview: {
     prepare: () => ({

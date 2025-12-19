@@ -1,6 +1,14 @@
 import { defineType } from "sanity";
 
 export const cookieBanner = defineType({
+  extends: [
+    {
+      type: "singleton",
+      parameters: {
+        id: "cookieBanner",
+      },
+    },
+  ],
   description: "Only relevant if you're storing user cookies",
   fields: [
     {
@@ -27,6 +35,7 @@ export const cookieBanner = defineType({
   name: "cookie.banner",
   options: {
     disableCreation: true,
+    structureGroup: "Layout",
   },
   preview: {
     select: {

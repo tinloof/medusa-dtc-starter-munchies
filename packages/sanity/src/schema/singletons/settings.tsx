@@ -2,6 +2,14 @@ import { CogIcon } from "@sanity/icons";
 import { defineType } from "sanity";
 
 export const settings = defineType({
+  extends: [
+    {
+      type: "singleton",
+      parameters: {
+        id: "settings",
+      },
+    },
+  ],
   __experimental_formPreviewTitle: false,
   fields: [
     {

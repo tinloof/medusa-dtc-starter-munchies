@@ -5,7 +5,7 @@ import Header from "@/components/global/header";
 import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigation-smooth-scroll";
 import config from "@/config";
 import { loadGlobalData } from "@/data/sanity";
-import { getOgImages } from "@/data/sanity/resolve-sanity-route-metadata";
+import { getOgImages } from "@/data/sanity/get-og-images";
 
 type LayoutProps = PropsWithChildren<
   Omit<PageProps<"/[countryCode]">, "searchParams">

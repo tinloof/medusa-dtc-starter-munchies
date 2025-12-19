@@ -1,19 +1,20 @@
 import type { TEXT_PAGE_QUERYResult } from "@packages/sanity/types";
-import type { ResolvingMetadata } from "next";
+import type { ResolvedMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import SectionsRenderer from "@/components/sections/section-renderer";
 import { loadPageByPathname } from "@/data/sanity";
-import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
 
+import { resolveSanityMetadata } from "@/data/sanity/client";
 import TextPage from "./text-page.template";
 
 export type DynamicRouteProps = PageProps<"/[countryCode]/[...path]">;
 
 export async function generateMetadata(
   props: DynamicRouteProps,
-  parent: ResolvingMetadata
+  parentPromise: Promise<ResolvedMetadata>
 ) {
+  const parent = await parentPromise;
   const params = await props.params;
   const result = await loadPageByPathname({ params });
 
@@ -28,7 +29,12 @@ export async function generateMetadata(
     data._type === "home" ||
     data._type === "text.page"
   ) {
-    return resolveSanityRouteMetadata(data, parent);
+    return resolveSanityMetadata({
+      parent,
+      title: data.title,
+      seo: data.seo,
+      pathname: data.pathname,
+    });
   }
 
   return {};

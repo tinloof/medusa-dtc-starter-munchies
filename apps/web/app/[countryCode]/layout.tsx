@@ -1,3 +1,5 @@
+import { disableDraftMode } from "@tinloof/sanity-next/actions/disable-draft-mode";
+import ExitPreview from "@tinloof/sanity-next/components/exit-preview";
 import { Analytics } from "@vercel/analytics/react";
 import { revalidatePath, updateTag } from "next/cache";
 import { draftMode } from "next/headers";
@@ -5,7 +7,6 @@ import VisualEditing from "next-sanity/visual-editing/client-component";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { PropsWithChildren } from "react";
 import { CountryCodeProvider } from "@/components/context/country-code-context";
-import { ExitPreview } from "@/components/exit-preview";
 
 type LayoutProps = PropsWithChildren<
   Omit<PageProps<"/[countryCode]">, "searchParams">
@@ -47,7 +48,7 @@ export default async function Layout(props: LayoutProps) {
             />
           ) : null}
           {shouldEnableDraftModeToggle ? (
-            <ExitPreview enable={(await draftMode()).isEnabled} />
+            <ExitPreview disableDraftMode={disableDraftMode} />
           ) : null}
           <Analytics />
         </body>

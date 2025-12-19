@@ -1,4 +1,4 @@
-import type { ResolvingMetadata } from "next";
+import type { ResolvedMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import { generateOgEndpoint } from "@/app/api/og/[...info]/utils";
@@ -6,8 +6,7 @@ import SectionsRenderer from "@/components/sections/section-renderer";
 import { getProductByHandle } from "@/data/medusa/products";
 import { getRegion } from "@/data/medusa/regions";
 import { loadProductContent } from "@/data/sanity";
-import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
-
+import { resolveSanityMetadata } from "@/data/sanity/client";
 import { ProductImagesCarousel } from "./_parts/image-carousel";
 import ProductInformation from "./_parts/product-information";
 import StickyAtc from "./_parts/sticky-atc";
@@ -16,8 +15,9 @@ type ProductPageProps = PageProps<"/[countryCode]/products/[handle]">;
 
 export async function generateMetadata(
   props: ProductPageProps,
-  parent: ResolvingMetadata
+  parentPromise: Promise<ResolvedMetadata>
 ) {
+  const parent = await parentPromise;
   const { data: content } = await loadProductContent(
     (await props.params).handle
   );
@@ -32,14 +32,12 @@ export async function generateMetadata(
     type: "products",
   });
 
-  const metadata = await resolveSanityRouteMetadata(
-    {
-      indexable: content?.indexable,
-      pathname: content?.pathname,
-      seo: content?.seo,
-    },
-    parent
-  );
+  const metadata = await resolveSanityMetadata({
+    parent,
+    title: content.seo?.title,
+    seo: content.seo,
+    pathname: content.pathname,
+  });
   return {
     ...metadata,
     openGraph: {
