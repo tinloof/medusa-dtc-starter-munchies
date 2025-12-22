@@ -7,6 +7,7 @@ import VisualEditing from "next-sanity/visual-editing/client-component";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { PropsWithChildren } from "react";
 import { CountryCodeProvider } from "@/components/context/country-code-context";
+import { SanityLive } from "@/data/sanity/client";
 
 type LayoutProps = PropsWithChildren<
   Omit<PageProps<"/[countryCode]">, "searchParams">
@@ -51,6 +52,7 @@ export default async function Layout(props: LayoutProps) {
             <ExitPreview disableDraftMode={disableDraftMode} />
           ) : null}
           <Analytics />
+          <SanityLive refreshOnFocus={false} />
         </body>
       </CountryCodeProvider>
     </NuqsAdapter>
