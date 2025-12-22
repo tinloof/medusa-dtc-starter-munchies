@@ -8,6 +8,8 @@ import { StudioLogo } from "@/components/logo";
 import config from "@/config";
 import schemas from "@/schema";
 
+import "./globals.css";
+
 export default defineConfig({
   title: config.siteName,
   dataset: config.sanity.dataset,

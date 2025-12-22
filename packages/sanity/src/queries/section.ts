@@ -1,11 +1,9 @@
-import { defineQuery } from "next-sanity";
-
-export const TESTIMONIALS_SECTION_QUERY = defineQuery(`{
+export const TESTIMONIALS_SECTION_QUERY = /* groq */ `{
     ...,
-    testimonials[] -> 
-}`);
+    testimonials[] ->
+}`;
 
-export const SECTIONS_BODY_FRAGMENT = defineQuery(`{
+export const SECTIONS_BODY_FRAGMENT = `{
     ...,
     _type == "section.testimonials" => ${TESTIMONIALS_SECTION_QUERY},
-}`);
+}`;
