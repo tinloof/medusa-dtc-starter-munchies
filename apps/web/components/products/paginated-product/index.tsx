@@ -1,11 +1,10 @@
+import type { SearchParams } from "nuqs";
 import Icon from "@/components/shared/icon";
 import Body from "@/components/shared/typography/body";
 import Heading from "@/components/shared/typography/heading";
 import { getProducts } from "@/data/medusa/products";
 import { getRegion } from "@/data/medusa/regions";
 import { loadDictionary } from "@/data/sanity";
-import type { SearchParams } from "@/types";
-
 import { Link } from "../../shared/button";
 import ClearAllButton from "../product-refinement/filters/clear-button";
 import ProductGrid from "./grid";
@@ -15,7 +14,7 @@ export default async function PaginatedProducts({
   searchParams,
 }: {
   countryCode: string;
-  searchParams: SearchParams<"category" | "collection" | "page" | "sort">;
+  searchParams: SearchParams;
 }) {
   const category = parseSearchParam(searchParams.category)?.split(",");
   const collection = parseSearchParam(searchParams.collection)?.split(",");
@@ -24,7 +23,7 @@ export default async function PaginatedProducts({
       ? Number.parseInt(searchParams.page, 10)
       : 1;
 
-  const productsDictionary = await loadDictionary();
+  const { data: productsDictionary } = await loadDictionary();
 
   const region = await getRegion(countryCode);
 

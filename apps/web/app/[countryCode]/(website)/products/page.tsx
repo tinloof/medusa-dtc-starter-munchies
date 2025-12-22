@@ -5,12 +5,8 @@ import PaginatedProducts, {
 } from "@/components/products/paginated-product";
 import Refinement from "@/components/products/product-refinement";
 import Heading from "@/components/shared/typography/heading";
-import type { PageProps } from "@/types";
 
-type CollectionPageProps = PageProps<
-  "countryCode",
-  "category" | "collection" | "page" | "sort"
->;
+type CollectionPageProps = PageProps<"/[countryCode]/products">;
 
 export default async function CollectionPage(props: CollectionPageProps) {
   const searchParams = await props.searchParams;

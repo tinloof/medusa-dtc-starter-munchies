@@ -1,7 +1,17 @@
-import definePage from "@/helpers/define-page";
+import { defineType } from "sanity";
 
-export default definePage({
+export default defineType({
+  extends: "page",
   fields: [
+    {
+      hidden: true,
+      name: "internalTitle",
+      title: "Title",
+      description:
+        "This title is only used internally in Sanity, it won't be displayed on the website.",
+      type: "string",
+      group: "settings",
+    },
     {
       group: "content",
       name: "specs",
@@ -46,13 +56,11 @@ export default definePage({
   name: "product",
   options: {
     disableCreation: true,
-    hideInternalTitle: true,
-    hideSeo: true,
     localized: false,
   },
   preview: {
     select: {
-      title: "title",
+      title: "internalTitle",
     },
   },
   title: "Product Page",

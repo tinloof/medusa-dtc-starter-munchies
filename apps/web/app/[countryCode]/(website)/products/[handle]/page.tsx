@@ -1,4 +1,4 @@
-import type { ResolvingMetadata } from "next";
+import type { ResolvedMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import { generateOgEndpoint } from "@/app/api/og/[...info]/utils";
@@ -6,20 +6,21 @@ import SectionsRenderer from "@/components/sections/section-renderer";
 import { getProductByHandle } from "@/data/medusa/products";
 import { getRegion } from "@/data/medusa/regions";
 import { loadProductContent } from "@/data/sanity";
-import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
-
+import { resolveSanityMetadata } from "@/data/sanity/client";
 import { ProductImagesCarousel } from "./_parts/image-carousel";
 import ProductInformation from "./_parts/product-information";
 import StickyAtc from "./_parts/sticky-atc";
 
-type ProductPageProps = PageProps<"countryCode" | "handle">;
+type ProductPageProps = PageProps<"/[countryCode]/products/[handle]">;
 
 export async function generateMetadata(
   props: ProductPageProps,
-  parent: ResolvingMetadata
+  parentPromise: Promise<ResolvedMetadata>
 ) {
-  const content = await loadProductContent((await props.params).handle);
+  const parent = await parentPromise;
+  const { data: content } = await loadProductContent(
+    (await props.params).handle
+  );
 
   if (!content) {
     return notFound();
@@ -31,14 +32,12 @@ export async function generateMetadata(
     type: "products",
   });
 
-  const metadata = await resolveSanityRouteMetadata(
-    {
-      indexable: content?.indexable,
-      pathname: content?.pathname,
-      seo: content?.seo,
-    },
-    parent
-  );
+  const metadata = await resolveSanityMetadata({
+    parent,
+    title: content.seo?.title,
+    seo: content.seo,
+    pathname: content.pathname,
+  });
   return {
     ...metadata,
     openGraph: {
@@ -63,7 +62,7 @@ export default async function ProductPage(props: ProductPageProps) {
 
   const product = await getProductByHandle(params.handle, region.id);
 
-  const content = await loadProductContent(params.handle);
+  const { data: content } = await loadProductContent(params.handle);
 
   if (!product) {
     console.log("No product found");

@@ -1,7 +1,16 @@
 import { AccessDeniedIcon } from "@sanity/icons";
-import definePage from "@/helpers/define-page";
+import { defineType } from "sanity";
 
-export const notFound = definePage({
+export const notFound = defineType({
+  extends: [
+    "page",
+    {
+      type: "singleton",
+      parameters: {
+        id: "notFound",
+      },
+    },
+  ],
   __experimental_formPreviewTitle: false,
   fields: [
     {
@@ -19,6 +28,7 @@ export const notFound = definePage({
   name: "not.found",
   options: {
     disableCreation: true,
+    structureGroup: "Layout",
   },
   preview: {
     prepare: () => ({

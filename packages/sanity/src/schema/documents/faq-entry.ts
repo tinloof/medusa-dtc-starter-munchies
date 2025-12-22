@@ -19,6 +19,12 @@ export const faqEntry = defineType({
   ],
   icon: HelpCircleIcon,
   name: "faq.entry",
+  options: {
+    structureGroup: "FAQ",
+    structureOptions: {
+      title: "FAQ entries",
+    },
+  },
   preview: {
     prepare({ title }) {
       return {

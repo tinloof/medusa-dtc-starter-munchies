@@ -72,7 +72,8 @@
         "SANITY_API_TOKEN",
         "SANITY_PROJECT_ID",
         "MEDUSA_PUBLISHABLE_KEY",
-        "RESEND_API_KEY"
+        "RESEND_API_KEY",
+        "MEDUSA_BACKEND_URL"
       ]
     }
   }

@@ -1,6 +1,15 @@
-import definePage from "@/helpers/define-page";
+import { defineType } from "sanity";
 
-export const faqIndex = definePage({
+export const faqIndex = defineType({
+  extends: [
+    "page",
+    {
+      type: "singleton",
+      parameters: {
+        id: "faq",
+      },
+    },
+  ],
   fields: [
     {
       group: "content",
@@ -57,6 +66,10 @@ export const faqIndex = definePage({
   name: "faq.index",
   options: {
     disableCreation: true,
+    structureGroup: "FAQ",
+    structureOptions: {
+      title: "FAQ index",
+    },
   },
   preview: {
     select: {

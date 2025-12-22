@@ -1,27 +1,28 @@
 import { notFound } from "next/navigation";
-import type { ResolvingMetadata } from "next/types";
+import type { ResolvedMetadata } from "next/types";
 import { loadFaqs } from "@/data/sanity";
-import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
-
+import { resolveSanityMetadata } from "@/data/sanity/client";
 import Faq from "./_parts/faq-page";
-export async function generateMetadata(_: unknown, parent: ResolvingMetadata) {
-  const initialData = await loadFaqs();
+export async function generateMetadata(
+  _: unknown,
+  parentPromise: Promise<ResolvedMetadata>
+) {
+  const parent = await parentPromise;
+  const { data } = await loadFaqs();
 
-  if (!initialData) {
+  if (!data) {
     return notFound();
   }
 
-  return resolveSanityRouteMetadata(
-    {
-      indexable: initialData.indexable,
-      pathname: initialData.pathname,
-      seo: initialData?.seo,
-    },
-    parent
-  );
+  return resolveSanityMetadata({
+    parent,
+    title: data.title,
+    seo: data.seo,
+    pathname: data.pathname,
+  });
 }
 export default async function FaqPage() {
-  const data = await loadFaqs();
+  const { data } = await loadFaqs();
   if (!data) {
     return notFound();
   }

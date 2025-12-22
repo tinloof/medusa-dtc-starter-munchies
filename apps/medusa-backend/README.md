@@ -35,6 +35,9 @@ REDIS_URL=
 JWT_SECRET=supersecret
 COOKIE_SECRET=supersecret
 
+# Backend URL
+MEDUSA_BACKEND_URL=http://localhost:9000
+
 # CORS
 STORE_CORS=http://localhost:3000
 ADMIN_CORS=http://localhost:9000

@@ -1,7 +1,8 @@
 import { DocumentTextIcon } from "@sanity/icons";
-import definePage from "@/helpers/define-page";
+import { defineType } from "sanity";
 
-export const textPage = definePage({
+export const textPage = defineType({
+  extends: "page",
   fields: [
     {
       group: "content",

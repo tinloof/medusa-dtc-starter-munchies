@@ -6,15 +6,14 @@ import PreventBackNavigationSmoothScroll from "@/components/prevent-back-navigat
 import LocalizedLink from "@/components/shared/localized-link";
 import config from "@/config";
 import { loadGlobalData } from "@/data/sanity";
-import { getOgImages } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
+import { getOgImages } from "@/data/sanity/get-og-images";
 
 type LayoutProps = PropsWithChildren<
-  Omit<PageProps<"countryCode">, "searchParams">
+  Omit<PageProps<"/[countryCode]/checkout">, "searchParams">
 >;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await loadGlobalData();
+  const { data } = await loadGlobalData();
 
   return {
     openGraph: {
@@ -30,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Layout(props: LayoutProps) {
   const { children } = props;
 
-  const data = await loadGlobalData();
+  const { data } = await loadGlobalData();
 
   return (
     <>

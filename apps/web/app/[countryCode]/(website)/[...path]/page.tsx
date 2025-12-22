@@ -1,33 +1,40 @@
 import type { TEXT_PAGE_QUERYResult } from "@packages/sanity/types";
-import type { ResolvingMetadata } from "next";
+import type { ResolvedMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import SectionsRenderer from "@/components/sections/section-renderer";
 import { loadPageByPathname } from "@/data/sanity";
-import { resolveSanityRouteMetadata } from "@/data/sanity/resolve-sanity-route-metadata";
-import type { PageProps } from "@/types";
 
+import { resolveSanityMetadata } from "@/data/sanity/client";
 import TextPage from "./text-page.template";
 
-export type DynamicRouteProps = PageProps<"...path" | "countryCode">;
+export type DynamicRouteProps = PageProps<"/[countryCode]/[...path]">;
 
 export async function generateMetadata(
   props: DynamicRouteProps,
-  parent: ResolvingMetadata
+  parentPromise: Promise<ResolvedMetadata>
 ) {
+  const parent = await parentPromise;
   const params = await props.params;
-  const initialData = await loadPageByPathname({ params });
+  const result = await loadPageByPathname({ params });
 
-  if (!initialData) {
+  const data = result?.data;
+
+  if (!data) {
     return notFound();
   }
 
   if (
-    initialData._type === "modular.page" ||
-    initialData._type === "home" ||
-    initialData._type === "text.page"
+    data._type === "modular.page" ||
+    data._type === "home" ||
+    data._type === "text.page"
   ) {
-    return resolveSanityRouteMetadata(initialData, parent);
+    return resolveSanityMetadata({
+      parent,
+      title: data.title,
+      seo: data.seo,
+      pathname: data.pathname,
+    });
   }
 
   return {};
@@ -35,24 +42,24 @@ export async function generateMetadata(
 
 export default async function DynamicRoute(props: DynamicRouteProps) {
   const params = await props.params;
-  const initialData = await loadPageByPathname({ params });
-  if (!initialData) {
+  const result = await loadPageByPathname({ params });
+  const data = result?.data;
+
+  if (!data) {
     return notFound();
   }
 
-  switch (initialData._type) {
+  switch (data._type) {
     case "modular.page":
     case "home":
       return (
         <SectionsRenderer
           countryCode={params.countryCode}
-          {...{ fieldName: "body", sections: initialData.sections || [] }}
+          {...{ fieldName: "body", sections: data.sections || [] }}
         />
       );
     case "text.page":
-      return (
-        <TextPage data={initialData as NonNullable<TEXT_PAGE_QUERYResult>} />
-      );
+      return <TextPage data={data as NonNullable<TEXT_PAGE_QUERYResult>} />;
     default:
       return <div>Template not found</div>;
   }

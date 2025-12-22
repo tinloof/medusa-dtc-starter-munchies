@@ -14,6 +14,14 @@ const richTextToPlainText = (richText: RichText) => {
 };
 
 export default defineType({
+  extends: [
+    {
+      type: "singleton",
+      parameters: {
+        id: "footer",
+      },
+    },
+  ],
   __experimental_formPreviewTitle: false,
   fields: [
     {
@@ -168,6 +176,7 @@ export default defineType({
   name: "footer",
   options: {
     disableCreation: true,
+    structureGroup: "Layout",
   },
   preview: {
     prepare: () => ({

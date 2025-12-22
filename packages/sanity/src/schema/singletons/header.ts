@@ -2,6 +2,14 @@ import { InfoOutlineIcon, InsertAboveIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
+  extends: [
+    {
+      type: "singleton",
+      parameters: {
+        id: "header",
+      },
+    },
+  ],
   __experimental_formPreviewTitle: false,
   fields: [
     {
@@ -166,6 +174,7 @@ export default defineType({
   name: "header",
   options: {
     disableCreation: true,
+    structureGroup: "Layout",
   },
   preview: {
     prepare: () => ({

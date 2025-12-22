@@ -1,6 +1,7 @@
-import definePage from "@/helpers/define-page";
+import { defineType } from "sanity";
 
-export default definePage({
+export default defineType({
+  extends: "page",
   __experimental_formPreviewTitle: false,
   fields: [
     {

@@ -4,7 +4,7 @@ import Heading from "@/components/shared/typography/heading";
 import { loadNotFound } from "@/data/sanity";
 
 export default async function NotFound() {
-  const data = await loadNotFound();
+  const { data } = await loadNotFound();
   return (
     <main className="flex-1">
       <section className="mx-auto h-[calc(100vh-50px)] max-h-[650px] w-full max-w-max-screen p-m lg:p-xl">

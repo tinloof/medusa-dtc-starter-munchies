@@ -1,0 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Fix alignment of sections in Sanity studio insert menu */
+div[data-testid="document-panel-portal"] div[data-ui="Grid"] {
+  align-items: start;
+}
