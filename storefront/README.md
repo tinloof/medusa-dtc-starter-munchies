@@ -1,1 +1,0 @@
-# Tinloof Sanity Template

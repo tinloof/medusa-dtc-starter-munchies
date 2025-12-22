@@ -1,0 +1,41 @@
+import { visionTool } from "@sanity/vision";
+import { documentOptions } from "@tinloof/sanity-document-options";
+import { withExtends } from "@tinloof/sanity-extends";
+import { pages } from "@tinloof/sanity-studio";
+import { defineConfig, isDev } from "sanity";
+import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
+import { StudioLogo } from "@/components/logo";
+import config from "@/config";
+import schemas from "@/schema";
+
+import "./globals.css";
+
+export default defineConfig({
+  title: config.siteName,
+  dataset: config.sanity.dataset,
+  projectId: config.sanity.projectId,
+  icon: StudioLogo,
+  plugins: [
+    pages({
+      allowOrigins: isDev ? ["http://localhost:3000"] : undefined,
+      previewUrl: {
+        origin: isDev ? "http://localhost:3000" : undefined,
+        previewMode: {
+          enable: "/api/draft",
+        },
+      },
+      creatablePages: ["modular.page", "text.page"],
+    }),
+    documentOptions({
+      structure: {
+        hide: ["modular.page", "home", "testimonial", "text.page"],
+        toolTitle: "Structure",
+      },
+    }),
+    visionTool({ defaultApiVersion: config.sanity.apiVersion }),
+    imageHotspotArrayPlugin(),
+  ],
+  schema: {
+    types: withExtends(schemas),
+  },
+});
