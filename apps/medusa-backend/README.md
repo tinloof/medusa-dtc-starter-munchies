@@ -46,9 +46,6 @@ AUTH_CORS=http://localhost:9000
 # Stripe
 STRIPE_API_KEY=
 
-# Resend (for emails)
-RESEND_API_KEY=
-
 # Medusa Publishable Key (for internal API calls)
 MEDUSA_PUBLISHABLE_KEY=
 

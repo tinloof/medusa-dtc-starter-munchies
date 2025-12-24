@@ -1,7 +1,7 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework";
 import { Modules } from "@medusajs/framework/utils";
 import { pretty, render } from "@react-email/render";
-import Welcome from "../api/store/email/_templates/welcome";
+import getWelcomeTemplate from "../emails/templates/welcome";
 
 export default async function subscribeNewsletterHandler({
   event,
@@ -18,7 +18,7 @@ export default async function subscribeNewsletterHandler({
 
     const products = await productService.listProducts({}, { take: 2 });
 
-    const html = await pretty(await render(<Welcome products={products} />));
+    const html = await pretty(await render(getWelcomeTemplate({ products })));
 
     await notificationModuleService.createNotifications({
       to: customer.email,

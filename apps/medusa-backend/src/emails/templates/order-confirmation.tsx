@@ -1,13 +1,18 @@
 import type { BigNumberValue, OrderDTO } from "@medusajs/framework/types";
 import { Heading, Img, Section } from "@react-email/components";
-import Cart from "./components/cart";
-import EmailBody from "./components/email-body";
-import Layout from "./components/layout";
-import CustomerInformation from "./components/shipping-address";
-import { title } from "./components/style";
-import { convertToLocale } from "./utils";
+import Cart from "../components/cart";
+import EmailBody from "../components/email-body";
+import Layout from "../components/layout";
+import CustomerInformation from "../components/shipping-address";
+import { title } from "../components/style";
+import { mockOrder } from "../mock-data";
+import { convertToLocale } from "../utils";
 
-export default function OrderConfirmation({ order }: { order: OrderDTO }) {
+type OrderConfirmationEmailProps = {
+  order: OrderDTO;
+};
+
+function OrderConfirmation({ order }: OrderConfirmationEmailProps) {
   const convertMoney = (amount: BigNumberValue) => {
     return convertToLocale({
       // @ts-expect-error
@@ -55,4 +60,10 @@ export default function OrderConfirmation({ order }: { order: OrderDTO }) {
       </Section>
     </Layout>
   );
+}
+
+export default function getOrderConfirmationTemplate(
+  props?: OrderConfirmationEmailProps
+) {
+  return <OrderConfirmation order={props?.order ?? mockOrder} />;
 }

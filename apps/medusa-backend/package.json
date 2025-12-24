@@ -17,6 +17,7 @@
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "medusa start",
     "dev": "medusa develop",
+    "preview:emails": "email dev --dir ./src/emails/templates",
     "typecheck": "tsc --noEmit",
     "add-user": "medusa user --email admin@medusa.com --password supersecret",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
@@ -35,14 +36,14 @@
     "@medusajs/medusa": "2.12.2",
     "@medusajs/types": "2.12.2",
     "@medusajs/ui": "^4.0.30",
-    "@react-email/components": "^1.0.1",
+    "@react-email/components": "^1.0.2",
     "@react-email/render": "^2.0.0",
     "@sanity/client": "^6.22.1",
-    "@tanstack/react-query": "5.64.2",
-    "resend": "^4.0.0"
+    "@tanstack/react-query": "5.64.2"
   },
   "devDependencies": {
     "@medusajs/test-utils": "2.12.2",
+    "@react-email/preview-server": "5.1.0",
     "@swc/core": "^1.7.28",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.13",
@@ -53,6 +54,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-email": "5.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2",
     "vite": "^5.4.14"

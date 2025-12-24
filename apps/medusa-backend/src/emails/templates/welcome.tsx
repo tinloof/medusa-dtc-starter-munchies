@@ -1,11 +1,15 @@
 import type { ProductDTO } from "@medusajs/framework/types";
 import { Heading, Img, Section } from "@react-email/components";
-import EmailBody from "./components/email-body";
-import Layout from "./components/layout";
-import ProductsList from "./components/products-list";
-import { title } from "./components/style";
+import EmailBody from "../components/email-body";
+import Layout from "../components/layout";
+import ProductsList from "../components/products-list";
+import { title } from "../components/style";
 
-export default function Welcome({ products }: { products: ProductDTO[] }) {
+type WelcomeEmailProps = {
+  products: ProductDTO[];
+};
+
+function Welcome({ products }: WelcomeEmailProps) {
   return (
     <Layout preview="Welcome to Munchies!">
       <Section align="left" className="my-20 w-full px-5">
@@ -31,4 +35,8 @@ export default function Welcome({ products }: { products: ProductDTO[] }) {
       </Section>
     </Layout>
   );
+}
+
+export default function getWelcomeTemplate(props?: WelcomeEmailProps) {
+  return <Welcome products={props?.products ?? []} />;
 }
