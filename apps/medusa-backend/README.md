@@ -197,3 +197,5 @@ Standard Medusa admin endpoints plus custom routes in `src/api/admin/`.
 - [Medusa Documentation](https://docs.medusajs.com/)
 - [Medusa v2 Migration Guide](https://docs.medusajs.com/upgrade-guides)
 - [Medusa Discord](https://discord.com/invite/medusajs)
+
+trigger redeploy
