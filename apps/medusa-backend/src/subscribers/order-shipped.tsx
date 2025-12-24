@@ -3,15 +3,26 @@ import { Modules } from "@medusajs/framework/utils";
 import { pretty, render } from "@react-email/render";
 import getShippingConfirmationTemplate from "../emails/templates/shipping-confirmation";
 
+type OrderFulfillmentCreatedData = {
+  order_id: string;
+  fulfillment_id: string;
+  no_notification: boolean;
+};
+
 export default async function orderShippedHandler({
   event,
   container,
-}: SubscriberArgs<{ id: string }>) {
+}: SubscriberArgs<OrderFulfillmentCreatedData>) {
+  // Skip sending email if no_notification is true
+  if (event.data.no_notification) {
+    return;
+  }
+
   try {
     const orderModuleService = container.resolve(Modules.ORDER);
     const notificationModuleService = container.resolve(Modules.NOTIFICATION);
 
-    const order = await orderModuleService.retrieveOrder(event.data.id, {
+    const order = await orderModuleService.retrieveOrder(event.data.order_id, {
       relations: ["shipping_address", "shipping_methods"],
       select: ["id", "email", "display_id"],
     });
