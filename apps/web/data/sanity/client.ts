@@ -7,8 +7,4 @@ export const {
   resolveSanityMetadata,
   generateSitemap,
   SanityImage,
-} = initSanity({
-  client: {
-    useCdn: true,
-  },
-});
+} = initSanity();
