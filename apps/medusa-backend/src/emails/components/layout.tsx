@@ -20,21 +20,6 @@ export default function Layout({
 }) {
   return (
     <Section>
-      <Head>
-        <Font
-          fallbackFontFamily="Helvetica"
-          fontFamily="Arial"
-          fontStyle="normal"
-          fontWeight={400}
-        />
-        <Font
-          fallbackFontFamily="serif"
-          fontFamily="Times"
-          fontStyle="normal"
-          fontWeight={400}
-        />
-      </Head>
-      <Preview>{preview}</Preview>
       <Tailwind
         config={{
           presets: [pixelBasedPreset],
@@ -48,6 +33,21 @@ export default function Layout({
           },
         }}
       >
+        <Head>
+          <Font
+            fallbackFontFamily="Helvetica"
+            fontFamily="Arial"
+            fontStyle="normal"
+            fontWeight={400}
+          />
+          <Font
+            fallbackFontFamily="serif"
+            fontFamily="Times"
+            fontStyle="normal"
+            fontWeight={400}
+          />
+        </Head>
+        <Preview>{preview}</Preview>
         <Section className="bg-white" style={arial_font}>
           <Container className="h-full w-full max-w-[640px] bg-background">
             <Section className="text-accent">{children}</Section>
