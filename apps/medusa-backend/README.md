@@ -10,6 +10,8 @@ This is the commerce engine powering the storefront, built with:
 - **Admin Dashboard** – Built-in admin UI for managing products, orders, and customers
 - **Sanity Sync** – Automatic synchronization of products, collections, and categories to Sanity CMS
 - **Stripe Payments** – Secure payment processing
+- **Medusa Emails** – Built-in email sending service for transactional emails (order confirmations, shipping notifications, newsletter)
+- **Cached Queries** – Performance optimization using Medusa's Caching Module for database queries and computed data
 
 ## Getting Started
 
@@ -135,9 +137,7 @@ pnpm dev
 │   └── scripts/
 │       └── seed.ts         # Database seeding script
 │
-├── integration-tests/      # HTTP integration tests
-├── medusa-config.ts        # Medusa configuration
-└── jest.config.js          # Test configuration
+└── medusa-config.ts        # Medusa configuration
 ```
 
 ## Sanity Sync
