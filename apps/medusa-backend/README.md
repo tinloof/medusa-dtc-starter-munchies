@@ -10,6 +10,8 @@ This is the commerce engine powering the storefront, built with:
 - **Admin Dashboard** – Built-in admin UI for managing products, orders, and customers
 - **Sanity Sync** – Automatic synchronization of products, collections, and categories to Sanity CMS
 - **Stripe Payments** – Secure payment processing
+- **Medusa Emails** – Built-in email sending service for transactional emails (order confirmations, shipping notifications, newsletter)
+- **Cached Queries** – Performance optimization using Medusa's Caching Module for database queries and computed data
 
 ## Getting Started
 
@@ -45,9 +47,6 @@ AUTH_CORS=http://localhost:9000
 
 # Stripe
 STRIPE_API_KEY=
-
-# Resend (for emails)
-RESEND_API_KEY=
 
 # Medusa Publishable Key (for internal API calls)
 MEDUSA_PUBLISHABLE_KEY=
@@ -138,9 +137,7 @@ pnpm dev
 │   └── scripts/
 │       └── seed.ts         # Database seeding script
 │
-├── integration-tests/      # HTTP integration tests
-├── medusa-config.ts        # Medusa configuration
-└── jest.config.js          # Test configuration
+└── medusa-config.ts        # Medusa configuration
 ```
 
 ## Sanity Sync
@@ -200,3 +197,5 @@ Standard Medusa admin endpoints plus custom routes in `src/api/admin/`.
 - [Medusa Documentation](https://docs.medusajs.com/)
 - [Medusa v2 Migration Guide](https://docs.medusajs.com/upgrade-guides)
 - [Medusa Discord](https://discord.com/invite/medusajs)
+
+trigger redeploy

@@ -17,9 +17,6 @@ export default defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
-  admin: {
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
-  },
   modules: [
     {
       resolve: "./modules/sanity",

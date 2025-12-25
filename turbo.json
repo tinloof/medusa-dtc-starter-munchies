@@ -18,6 +18,10 @@
       "cache": false,
       "persistent": true
     },
+    "preview:emails": {
+      "cache": false,
+      "persistent": true
+    },
     "typegen": {
       "cache": true,
       "outputs": ["schema.json", "sanity.types.ts"],
@@ -72,7 +76,6 @@
         "SANITY_API_TOKEN",
         "SANITY_PROJECT_ID",
         "MEDUSA_PUBLISHABLE_KEY",
-        "RESEND_API_KEY",
         "MEDUSA_BACKEND_URL"
       ]
     }
