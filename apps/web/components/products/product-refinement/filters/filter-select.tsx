@@ -89,6 +89,9 @@ export default function FilterSelect(
           </div>
         </div>
         <div className="group flex w-full flex-col gap-2 p-xs">
+          {props.options.length === 0 && (
+            <Body className="w-full">No filters to select</Body>
+          )}
           {props.options.map((option) => {
             const selected = filter?.includes(option.value);
             return (
