@@ -19,7 +19,7 @@ export default async function CollectionPage(props: CollectionPageProps) {
         </Heading>
       </div>
       <div className="flex flex-col gap-6">
-        <Refinement />
+        <Refinement searchParams={searchParams} />
         <Suspense fallback={<ProductsSkeleton />}>
           <PaginatedProducts
             countryCode={params.countryCode}

@@ -1,25 +1,51 @@
 import { Suspense } from "react";
-import { getCategories } from "@/data/medusa/categories";
-import { getCollections } from "@/data/medusa/collections";
-
+import { getFacetedFilters } from "@/data/medusa/facets";
 import EmptyDropdown from "../empty-dropdown";
 import ClearAllButton from "./clear-button";
 import FilterSelect from "./filter-select";
 import MobileFilterDropdown from "./mobile";
 import Accordion from "./mobile/accordion";
 
-export default async function Filters() {
-  const { collections } = await getCollections();
-  const { product_categories } = await getCategories();
+type FiltersProps = {
+  searchParams: Record<string, string | string[] | undefined>;
+};
 
-  const collection_options = collections.map(({ id, title }) => ({
-    label: title,
-    value: id,
-  }));
-  const category_options = product_categories.map(({ id, name }) => ({
-    label: name,
-    value: id,
-  }));
+export default async function Filters(props: FiltersProps) {
+  const collectionsParams =
+    typeof props.searchParams.collection === "string"
+      ? props.searchParams.collection?.split(",")
+      : [];
+  const categoriesParams =
+    typeof props.searchParams.category === "string"
+      ? props.searchParams.category.split(",")
+      : [];
+
+  const facetedFilters = await getFacetedFilters({
+    collections: collectionsParams,
+    categories: categoriesParams,
+  });
+
+  const collection_options = facetedFilters
+    .filter(
+      (f) =>
+        f.facet_name === "collection_id" &&
+        (f.count > 0 || collectionsParams.includes(f.facet_value))
+    )
+    .map((f) => ({
+      label: f.title,
+      value: f.facet_value,
+    }));
+
+  const category_options = facetedFilters
+    .filter(
+      (f) =>
+        f.facet_name === "category_id" &&
+        (f.count > 0 || categoriesParams.includes(f.facet_value))
+    )
+    .map((f) => ({
+      label: f.title,
+      value: f.facet_value,
+    }));
 
   return (
     <>
