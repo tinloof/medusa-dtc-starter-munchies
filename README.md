@@ -1,61 +1,282 @@
-# Medusa B2C Starter
+# Munchies – Medusa DTC Starter
 
-This monorepo serves as a starter template/example for building B2C e-commerce applications using [Medusa](https://medusajs.com/) for e-commerce functionality, [Next.js](nextjs.org/) for the frontend, and [Sanity](https://sanity.io/) for content management.
+A production-ready monorepo for building modern DTC (Direct-to-Consumer) e-commerce experiences using [Medusa](https://medusajs.com/) for commerce, [Next.js](https://nextjs.org/) for the storefront, and [Sanity](https://sanity.io/) for content management.
 
-## Project Setup
+Built with [Turborepo](https://turbo.build/repo) for fast, efficient builds across the entire stack.
 
-To get started with this project, follow these steps:
+---
 
-1. Clone the repository:
+## What's Inside
 
+This monorepo contains the following apps and packages:
+
+### Apps
+
+| App                       | Description                                                                    | Port   |
+| ------------------------- | ------------------------------------------------------------------------------ | ------ |
+| **`apps/web`**            | Next.js 16 storefront with App Router, Tailwind CSS v4, and Sanity integration | `3000` |
+| **`apps/medusa-backend`** | Medusa v2 backend with admin dashboard, Sanity sync, and Stripe payments       | `9000` |
+
+### Packages
+
+| Package               | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| **`packages/sanity`** | Sanity Studio configuration, schemas, and shared queries |
+
+---
+
+## Prerequisites
+
+- **Node.js** >= 18 (backend requires >= 20)
+- **pnpm** >= 9.0.0
+- **PostgreSQL** database
+- **Redis** (optional, for caching)
+- **Stripe** account (for payments)
+- **Sanity** project
+
+---
+
+## Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone --depth 1 https://github.com/tinloof/medusa-dtc-starter-munchies.git
+cd medusa-dtc-starter-munchies
 ```
-git clone --depth 1 https://github.com/tinloof/medusa-b2c-starter
-```
 
-2. Install dependencies:
+### 2. Install Dependencies
 
-This project utilizes pnpm for package management and monorepo functionality. To install dependencies using pnpm, execute the following command:
-
-```
+```bash
 pnpm install
 ```
 
-## Sanity Setup
+### 3. Set Up Environment Variables
 
-To set up Sanity for your project:
+Create `.env` files in each app/package directory. Below are the required variables:
 
-1. `cd` into the `frontend` directory:
+#### `apps/medusa-backend/.env`
 
+```env
+# Database
+DATABASE_URL=postgres://user:password@localhost:5432/medusa
+
+# Redis (optional)
+REDIS_URL=
+
+# Security
+JWT_SECRET=supersecret
+COOKIE_SECRET=supersecret
+
+# CORS
+STORE_CORS=http://localhost:3000
+ADMIN_CORS=http://localhost:9000
+AUTH_CORS=http://localhost:9000
+
+# Stripe
+STRIPE_API_KEY=
+
+# Medusa Publishable Key (for internal API calls)
+MEDUSA_PUBLISHABLE_KEY=
+
+# Sanity
+SANITY_API_TOKEN=
+SANITY_PROJECT_ID=
+
+# S3 Storage (optional)
+S3_FILE_URL=
+S3_REGION=
+S3_BUCKET=
+S3_ENDPOINT=
 ```
-cd frontend
+
+#### `apps/web/.env`
+
+```env
+# Medusa
+NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=
+
+# Stripe
+NEXT_PUBLIC_STRIPE_KEY=
+
+# Sanity
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+SANITY_API_TOKEN=
+SANITY_REVALIDATE_SECRET=
 ```
 
-2. Run the `sanity init` command:
+#### `packages/sanity/.env`
 
+```env
+SANITY_STUDIO_PROJECT_ID=your-project-id
+SANITY_STUDIO_DATASET=production
 ```
+
+### 4. Set Up Sanity
+
+If starting fresh, initialize Sanity in the `packages/sanity` directory:
+
+```bash
+cd packages/sanity
 pnpx sanity init --env
 ```
 
-3. Make sure to append `NEXT_PUBLIC_` where it makes sense in your `.env` file, you can refer to the `.env.example` file in the `frontend` directory.
+To get your `SANITY_API_TOKEN`:
 
-4. Set the `NEXT_PUBLIC_SANITY_API_VERSION` in `.env` to today's date in the format `YYYY-MM-DD`.
+1. Go to [Sanity Manage Dashboard](https://www.sanity.io/manage)
+2. Select your project
+3. Navigate to **API** → **Tokens**
+4. Create a token with **Editor** permissions
 
-5. Get the `SANITY_API_TOKEN` by navigating to the [Sanity Manage Dashboard](https://www.sanity.io/manage). Choose your project, access the API section, and generate a token with editor permissions.
+### 5. Set Up Medusa
 
-## Medusa Setup
+Run database migrations and seed data:
 
-To set up Medusa for your project:
-
-Once project is deployed
-
-1. Create a Publishable api key in the dashboard settings and set it to `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`
-
-2. Add the URL of the Medusa project to `NEXT_PUBLIC_MEDUSA_BACKEND_URL`
-
-## Running the Project
-
-After you go through the setup steps, you can run the project using the following command from the root directory:
-
+```bash
+cd apps/medusa-backend
+pnpm medusa db:migrate
+pnpm seed
 ```
+
+Create an admin user:
+
+```bash
+pnpm add-user
+# Creates: admin@medusa.com / supersecret
+```
+
+### 6. Set Up Publishable API Key
+
+1. Start the Medusa backend: `pnpm dev --filter=@apps/medusa-backend`
+2. Open the admin dashboard at `http://localhost:9000/app`
+3. Go to **Settings** → **API Key Management** → **Publishable API Keys**
+4. Create a new key and copy it to `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` in `apps/web/.env`
+
+---
+
+## Development
+
+Run all apps and packages in development mode:
+
+```bash
 pnpm dev
 ```
+
+Or run specific apps:
+
+```bash
+# Run only the storefront
+pnpm dev --filter=@apps/web
+
+# Run only the Medusa backend
+pnpm dev --filter=@apps/medusa-backend
+
+# Run only Sanity Studio
+pnpm dev --filter=@packages/sanity
+```
+
+### Available Scripts
+
+| Command            | Description                        |
+| ------------------ | ---------------------------------- |
+| `pnpm dev`         | Start all apps in development mode |
+| `pnpm build`       | Build all apps and packages        |
+| `pnpm typecheck`   | Run TypeScript type checking       |
+| `pnpm typegen`     | Generate Sanity TypeScript types   |
+
+---
+
+## Build
+
+Build all apps for production:
+
+```bash
+pnpm build
+```
+
+Build specific apps:
+
+```bash
+pnpm build --filter=@apps/web
+pnpm build --filter=@apps/medusa-backend
+```
+
+---
+
+## Project Structure
+
+```
+├── apps/
+│   ├── medusa-backend/     # Medusa v2 e-commerce backend
+│   │   ├── src/
+│   │   │   ├── admin/      # Admin dashboard customizations
+│   │   │   ├── api/        # Custom API routes
+│   │   │   ├── modules/    # Custom modules (Sanity sync)
+│   │   │   ├── subscribers/# Event subscribers
+│   │   │   └── workflows/  # Custom workflows
+│   │   └── medusa-config.ts
+│   │
+│   └── web/                # Next.js 16 storefront
+│       ├── app/            # App Router pages
+│       ├── components/     # React components
+│       ├── data/           # Data fetching (Medusa & Sanity)
+│       ├── actions/        # Server actions
+│       └── config.ts
+│
+├── packages/
+│   └── sanity/             # Sanity Studio & schemas
+│       ├── src/
+│       │   ├── schema/     # Content schemas
+│       │   └── queries/    # GROQ queries
+│       ├── sanity.config.ts
+│       └── sanity.types.ts # Generated types
+│
+├── turbo.json              # Turborepo configuration
+├── pnpm-workspace.yaml     # pnpm workspace config
+└── package.json            # Root package.json
+```
+
+---
+
+## Key Features
+
+- **🛒 Medusa v2** – Modern, modular e-commerce backend
+- **⚡ Next.js 16** – App Router, Server Components, Server Actions
+- **📝 Sanity CMS** – Flexible content management with live preview
+- **🎨 Tailwind CSS v4** – Modern styling with CSS-first configuration
+- **💳 Stripe Payments** – Secure payment processing
+- **🔄 Sanity Sync** – Automatic product/collection sync to CMS
+- **🚀 Turborepo** – Fast, cached builds across the monorepo
+- **📦 pnpm** – Efficient package management
+
+---
+
+## Tech Stack
+
+| Layer               | Technology           |
+| ------------------- | -------------------- |
+| **Commerce**        | Medusa v2.12         |
+| **Storefront**      | Next.js 16, React 19 |
+| **CMS**             | Sanity v4            |
+| **Styling**         | Tailwind CSS v4      |
+| **Payments**        | Stripe               |
+| **Monorepo**        | Turborepo            |
+| **Package Manager** | pnpm                 |
+
+---
+
+## Useful Links
+
+- [Medusa Documentation](https://docs.medusajs.com/)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [Turborepo Documentation](https://turbo.build/repo/docs)
+
+---
+
+## License
+
+MIT

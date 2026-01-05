@@ -1,0 +1,65 @@
+{
+  "name": "@apps/medusa-backend",
+  "version": "0.0.1",
+  "description": "A starter for Medusa projects.",
+  "author": "Medusa (https://medusajs.com)",
+  "license": "MIT",
+  "keywords": [
+    "sqlite",
+    "postgres",
+    "typescript",
+    "ecommerce",
+    "headless",
+    "medusa"
+  ],
+  "scripts": {
+    "build": "medusa build",
+    "seed": "medusa exec ./src/scripts/seed.ts",
+    "start": "medusa start",
+    "dev": "medusa develop",
+    "preview:emails": "email dev --dir ./src/emails/templates",
+    "typecheck": "tsc --noEmit",
+    "add-user": "medusa user --email admin@medusa.com --password supersecret",
+    "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
+    "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
+    "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit"
+  },
+  "dependencies": {
+    "@medusajs/admin-sdk": "2.12.2",
+    "@medusajs/admin-shared": "2.12.2",
+    "@medusajs/cli": "2.12.2",
+    "@medusajs/dashboard": "2.12.2",
+    "@medusajs/draft-order": "2.12.2",
+    "@medusajs/framework": "2.12.2",
+    "@medusajs/icons": "2.12.2",
+    "@medusajs/js-sdk": "2.12.2",
+    "@medusajs/medusa": "2.12.2",
+    "@medusajs/types": "2.12.2",
+    "@medusajs/ui": "^4.0.30",
+    "@react-email/components": "^1.0.2",
+    "@react-email/render": "^2.0.0",
+    "@sanity/client": "^6.22.1",
+    "@tanstack/react-query": "5.64.2"
+  },
+  "devDependencies": {
+    "@medusajs/test-utils": "2.12.2",
+    "@react-email/preview-server": "5.1.0",
+    "@swc/core": "^1.7.28",
+    "@swc/jest": "^0.2.36",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.2.25",
+    "jest": "^29.7.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-email": "5.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.14"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
