@@ -21,8 +21,10 @@ export default function Header(props: { countryCode: string } & HeaderType) {
             <LocalizedLink href="/" prefetch>
               <img
                 alt="Mubchies logo"
-                className="my-[9px] h-[22px] w-fit lg:my-[10px] lg:h-9"
+                className="my-2.25 h-5.5 w-fit lg:my-2.5 lg:h-9"
+                height={36}
                 src="/images/logo.svg"
+                width={375}
               />
             </LocalizedLink>
           </div>
