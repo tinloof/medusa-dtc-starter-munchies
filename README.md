@@ -130,6 +130,7 @@ To get your `SANITY_API_TOKEN`:
 2. Select your project
 3. Navigate to **API** → **Tokens**
 4. Create a token with **Editor** permissions
+5. in sanity site under api tab and under CORS origin add "http://localhost:3000"  
 
 ### 5. Set Up Medusa
 
