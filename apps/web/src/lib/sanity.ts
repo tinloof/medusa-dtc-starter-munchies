@@ -1,14 +1,12 @@
 import { createClient } from "@sanity/client";
+import { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET, SANITY_TOKEN } from 'astro:env/server'
 
-// Import types to activate module augmentation for automatic type inference
-import "@packages/sanity/types";
-
-export function getClient(env: Env) {
+export function getClient() {
   const client = createClient({
-    projectId: env.SANITY_STUDIO_PROJECT_ID,
-    dataset: env.SANITY_STUDIO_DATASET,
+    projectId: PUBLIC_SANITY_STUDIO_PROJECT_ID,
+    dataset: PUBLIC_SANITY_STUDIO_DATASET,
     apiVersion: "2026-01-16",
-    token: env.SANITY_TOKEN,
+    token: SANITY_TOKEN,
     useCdn: true,
   });
 
