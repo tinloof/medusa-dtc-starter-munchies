@@ -27,6 +27,12 @@ export default function HamburgerMenu({ navigation }: HamburgerMenuProps) {
     undefined
   );
 
+  const portalContainer =
+    typeof document !== "undefined"
+      ? document.getElementById("navigation-portal")
+      : null;
+
+
   const isMenuActive = navigation?.some(
     (menu) => menu._key === activeMenuState && menu._type === "dropdown"
   );
@@ -38,13 +44,13 @@ export default function HamburgerMenu({ navigation }: HamburgerMenuProps) {
     <Dialog.Root onOpenChange={setOpen} open={open}>
       <Dialog.Trigger
         aria-label="Menu"
-        className="flex h-10 w-10 shrink-0 items-center justify-center lg:hidden"
+        className="flex size-6 shrink-0 items-center justify-center lg:hidden"
         onClick={() => setActiveMenu(undefined)}
       >
         {open ? <CloseIcon /> : <HamburgerIcon />}
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Content className="fixed inset-0 top-(--header-height) z-50 lg:hidden">
+      <Dialog.Portal container={portalContainer}>
+        <Dialog.Content className="w-screen items-end justify-end overflow-x-hidden bg-background">
           <VisuallyHidden.Root>
             <Dialog.Title>Menu</Dialog.Title>
           </VisuallyHidden.Root>
@@ -52,7 +58,7 @@ export default function HamburgerMenu({ navigation }: HamburgerMenuProps) {
           {/* Main menu */}
           <div
             className={cx(
-              "scrollbar-hide absolute inset-0 flex flex-col overflow-y-auto bg-background transition-transform duration-300",
+              "scrollbar-hide fixed left-0 flex h-[calc(100dvh-var(--header-height))] w-screen flex-1 flex-col items-start justify-between overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
               {
                 "-translate-x-full": isMenuActive,
                 "translate-x-0": !isMenuActive,
@@ -74,7 +80,7 @@ export default function HamburgerMenu({ navigation }: HamburgerMenuProps) {
           {/* Dropdown submenu */}
           <div
             className={cx(
-              "scrollbar-hide absolute inset-0 overflow-y-auto bg-background transition-transform duration-300",
+              "scrollbar-hide fixed left-0 h-[calc(100dvh-var(--header-height))] w-screen transform overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
               {
                 "translate-x-0": isMenuActive,
                 "translate-x-full": !isMenuActive,
@@ -230,7 +236,7 @@ function DropdownList({
 function HamburgerIcon() {
   return (
     <svg
-      className="h-6 w-6"
+      className="size-6"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +255,7 @@ function HamburgerIcon() {
 function CloseIcon() {
   return (
     <svg
-      className="h-6 w-6"
+      className="size-6"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -268,18 +274,12 @@ function CloseIcon() {
 function ArrowLeftIcon() {
   return (
     <svg
-      className="h-8 w-8"
-      viewBox="0 0 24 24"
+      className="size-8"
+      viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M15 18L9 12L15 6"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M20 8L12 16L20 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   );
 }
@@ -287,18 +287,11 @@ function ArrowLeftIcon() {
 function ArrowRightIcon() {
   return (
     <svg
-      className="h-8 w-8"
-      viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 18L15 12L9 6"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      className="size-8"
+      viewBox="0 0 32 32"
+      fill="none">
+      <path d="M12 24L20 16L12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   );
 }

@@ -25,10 +25,8 @@ const simpleLinks = props.navigation?.filter(
   <div class="mx-auto flex w-full max-w-max-screen items-center justify-between gap-2xl px-m py-xs lg:px-xl">
     <div class="flex items-center gap-m">
       <div class="flex items-center justify-start gap-s">
-        {/* Hamburger - simplified for now */}
-        <button class="flex h-10 w-10 items-center justify-center lg:hidden" type="button" aria-label="Menu">
-          <img src="/icons/hamburger.svg" alt="Menu" class="h-6 w-6" />
-        </button>
+        {/* Mobile Hamburger Menu */}
+        <HamburgerMenu client:load navigation={props.navigation} />
 
         <LocalizedLink href="/">
           <img
@@ -61,6 +59,7 @@ const simpleLinks = props.navigation?.filter(
       </div>
     </div>
   </div>
+  <div class="relative z-30 w-screen" id="navigation-portal" />
 
   {/* Bottom border on mobile */}
   <div class="h-[1.5px] w-full bg-accent lg:hidden" />

@@ -29,8 +29,8 @@
     "astro": "^5.16.11",
     "astro-portabletext": "^0.13.0",
     "class-variance-authority": "^0.7.1",
-    "embla-carousel": "9.0.0-rc01",
-    "embla-carousel-react": "9.0.0-rc01",
+    "embla-carousel": "8.6.0",
+    "embla-carousel-react": "8.6.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },

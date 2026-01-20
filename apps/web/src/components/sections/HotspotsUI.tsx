@@ -131,12 +131,11 @@ export default function HotspotsUI({
             </Body>
           </div>
         </div>
-        <a
+        <span
           className="w-full rounded-lg border border-accent px-6 py-3 text-center font-sans font-medium text-accent transition-colors hover:bg-accent hover:text-background"
-          href={`/products/${product?.handle}`}
         >
           Shop now
-        </a>
+        </span>
       </a>
 
       {/* Mobile view - product list */}

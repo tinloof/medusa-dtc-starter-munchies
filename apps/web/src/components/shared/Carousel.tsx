@@ -1,13 +1,9 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cx } from "class-variance-authority";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, { type EmblaRootNodeRefType } from "embla-carousel-react";
+import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 import type { ComponentProps, PropsWithChildren } from "react";
 
-// Use any for Embla API to avoid type issues with embla-carousel 9.x
-type EmblaCarouselType = any;
-type EmblaViewportRefType = ReturnType<typeof useEmblaCarousel>[0];
-type EmblaOptionsType = Parameters<typeof useEmblaCarousel>[0];
-type EmblaPluginType = any;
 import {
   createContext,
   useCallback,
@@ -18,13 +14,12 @@ import {
 
 type CarouselContextType = {
   api?: EmblaCarouselType;
-  ref: EmblaViewportRefType;
+  ref: EmblaRootNodeRefType;
   scrollProgress: number;
 };
 
 type CarouselRootProps = PropsWithChildren<{
   options?: EmblaOptionsType;
-  plugins?: EmblaPluginType[];
   slidesCount: number;
 }>;
 
@@ -48,32 +43,34 @@ export function useCarousel() {
 }
 
 export const useCarouselButtons = (): CarouselButtonsState => {
-  const { api } = useCarousel();
+  const [_, api] = useEmblaCarousel();
 
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(true);
 
   const onPrev = useCallback(() => {
     if (api) {
-      api.scrollPrev();
+      api.goToPrev();
     }
   }, [api]);
 
   const onNext = useCallback(() => {
     if (api) {
-      api.scrollNext();
+      api.goToNext();
     }
   }, [api]);
 
-  const onSelect = useCallback((_api: EmblaCarouselType) => {
-    setPrevDisabled(!_api.canScrollPrev());
-    setNextDisabled(!_api.canScrollNext());
-  }, []);
+  const onSelect = useCallback(() => {
+    if (api) {
+      setPrevDisabled(!api.canGoToPrev());
+      setNextDisabled(!api.canGoToNext());
+    }
+  }, [api]);
 
   useEffect(() => {
     if (api) {
-      onSelect(api);
-      api.on("reInit", onSelect).on("select", onSelect);
+      onSelect();
+      api.on("reinit", onSelect).on("select", onSelect);
     }
   }, [api, onSelect]);
 
@@ -86,9 +83,9 @@ export const useCarouselButtons = (): CarouselButtonsState => {
 };
 
 export function Root(props: CarouselRootProps) {
-  const { children, options, plugins, slidesCount } = props;
+  const { children, options, slidesCount } = props;
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
   const defaultProgress = 1 / slidesCount;
 
@@ -111,7 +108,7 @@ export function Root(props: CarouselRootProps) {
     }
 
     onScroll(emblaApi);
-    (emblaApi as any).on("reInit", onScroll).on("scroll", onScroll);
+    emblaApi.on("reinit", onScroll).on("scroll", onScroll);
   }, [emblaApi, onScroll]);
 
   return (

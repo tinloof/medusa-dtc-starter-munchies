@@ -2,8 +2,6 @@ const dynamicFavicon = `const favicon = document.querySelector('link[rel="icon"]
 
 document.addEventListener("visibilitychange", () => {
     const state = document.hidden ? "-inactive" : "";
-console.info(state);
-
 
     var storedTheme = localStorage.getItem("theme");
     var prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
