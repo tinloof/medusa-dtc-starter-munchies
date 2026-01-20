@@ -1,0 +1,23 @@
+---
+import Layout from "./Layout.astro";
+import Header from "@/components/global/Header.astro";
+import Footer from "@/components/global/Footer.astro";
+import type { Header as HeaderType, Footer as FooterType } from "@packages/sanity/types";
+
+interface Props {
+  title?: string;
+  description?: string;
+  header?: HeaderType | null;
+  footer?: FooterType | null;
+}
+
+const { title, description, header, footer } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  {header && <Header {...header} />}
+  <main class="flex-1">
+    <slot />
+  </main>
+  {footer && <Footer {...footer} />}
+</Layout>

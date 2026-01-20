@@ -1,0 +1,31 @@
+---
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import Body from "@/components/shared/typography/Body.astro";
+
+type CenteredTextSection = Extract<
+  NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number],
+  { _type: "section.centeredText" }
+>;
+
+interface Props extends CenteredTextSection {
+  rootHtmlAttributes?: Record<string, string | undefined>;
+}
+
+const props = Astro.props;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="full mx-auto max-w-max-screen p-m lg:p-xl"
+>
+  <div class="rounded-lg border border-accent px-s py-[90px] lg:py-[108px]">
+    <Body
+      class="mx-auto max-w-[720px] text-balance text-center"
+      desktopSize="6xl"
+      font="serif"
+      mobileSize="4xl"
+    >
+      {props.text}
+    </Body>
+  </div>
+</section>

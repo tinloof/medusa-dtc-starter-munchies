@@ -1,0 +1,53 @@
+---
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import SanityImage from "@/components/shared/SanityImage.astro";
+import Video from "@/components/shared/Video";
+import SimpleHero from "./hero/SimpleHero.astro";
+import LargeHero from "./hero/LargeHero.astro";
+
+type HeroSection = Extract<
+  NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number],
+  { _type: "section.hero" }
+>;
+
+interface Props extends HeroSection {
+  rootHtmlAttributes?: Record<string, string | undefined>;
+}
+
+const props = Astro.props;
+const mediaType = props.mediaType;
+const video = props.video;
+const largeImage = props.largeImage;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="mx-auto w-full max-w-max-screen px-m py-xs lg:px-xl lg:py-xs"
+>
+  {mediaType === "image" && <SimpleHero {...props} />}
+
+  {mediaType === "video" && video && (
+    <LargeHero {...props}>
+      <div class="hero-asset grid w-full items-stretch overflow-hidden rounded-lg object-cover object-center">
+        <Video
+          client:visible
+          aspectRatio="16 / 9"
+          className="h-full w-full rounded-lg object-cover"
+          fetchPriority="high"
+          poster={video.poster}
+          videoUrl={video.url}
+        />
+      </div>
+    </LargeHero>
+  )}
+
+  {mediaType === "largeImage" && largeImage && (
+    <LargeHero {...props}>
+      <SanityImage
+        class="hero-asset w-full rounded-lg object-cover object-center"
+        data={largeImage}
+        fetchPriority="high"
+      />
+    </LargeHero>
+  )}
+</section>

@@ -1,0 +1,23 @@
+---
+import Heading from "@/components/shared/typography/Heading.astro";
+
+interface Props {
+  node?: {
+    _key?: string;
+  };
+}
+
+const { node } = Astro.props;
+const id = node?._key || undefined;
+---
+
+<Heading
+  class="mt-4 scroll-mt-header-height"
+  desktopSize="lg"
+  font="serif"
+  id={id}
+  mobileSize="xs"
+  tag="h3"
+>
+  <slot />
+</Heading>

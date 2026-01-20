@@ -1,0 +1,27 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+  scroll?: boolean;
+  [key: string]: any;
+}
+
+const { href, class: className, scroll = false, ...rest } = Astro.props;
+
+// For Phase 1, we're skipping country code routing
+// Just normalize the path
+const normalizedPath = href.toString();
+const isExternalLink = normalizedPath.startsWith("https://") || normalizedPath.startsWith("http://");
+const isDeepLink = normalizedPath.startsWith("#");
+
+const localizedHref = isExternalLink || isDeepLink ? href : href;
+---
+
+<a
+  href={localizedHref}
+  class={className}
+  {...isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+  {...rest}
+>
+  <slot />
+</a>

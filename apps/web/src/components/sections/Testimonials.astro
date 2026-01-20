@@ -1,0 +1,23 @@
+---
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import TestimonialsCarousel from "./TestimonialsCarousel";
+
+type TestimonialsSection = Extract<
+  NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number],
+  { _type: "section.testimonials" }
+>;
+
+interface Props extends TestimonialsSection {
+  rootHtmlAttributes?: Record<string, string | undefined>;
+}
+
+const props = Astro.props;
+---
+
+<section {...props.rootHtmlAttributes}>
+  <TestimonialsCarousel
+    client:visible
+    title={props.title}
+    testimonials={props.testimonials}
+  />
+</section>

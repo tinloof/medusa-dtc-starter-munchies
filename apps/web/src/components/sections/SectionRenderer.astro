@@ -1,0 +1,76 @@
+---
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import Hero from "./Hero.astro";
+import CenteredText from "./CenteredText.astro";
+import MediaText from "./MediaText.astro";
+import Assurance from "./Assurance.astro";
+import Marquee from "./Marquee.astro";
+import Testimonials from "./Testimonials.astro";
+import CollectionList from "./CollectionList.astro";
+import FeaturedProducts from "./FeaturedProducts.astro";
+import ShopTheLook from "./ShopTheLook.astro";
+
+type Section = NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number];
+
+interface Props {
+  sections: Section[] | null | undefined;
+  fieldName?: string;
+}
+
+const { sections, fieldName = "body" } = Astro.props;
+
+// Map section types to components
+const sectionComponents: Record<string, any> = {
+  "section.hero": Hero,
+  "section.centeredText": CenteredText,
+  "section.mediaText": MediaText,
+  "section.assurance": Assurance,
+  "section.marquee": Marquee,
+  "section.testimonials": Testimonials,
+  "section.collectionList": CollectionList,
+  "section.featuredProducts": FeaturedProducts,
+  "section.shopTheLook": ShopTheLook,
+};
+
+function getDeepLinkId(blockKey: string | undefined) {
+  if (!blockKey) return undefined;
+  return `${fieldName}-${blockKey}`;
+}
+---
+
+{sections?.map((section, index) => {
+  if (!section._type || !section._key) {
+    return null;
+  }
+
+  const Component = sectionComponents[section._type];
+
+  if (!Component) {
+    // Missing section placeholder
+    return (
+      <section class="w-full bg-black text-white">
+        <div class="container py-10 text-center">
+          <div class="rounded-md border-2 border-gray-400 border-dashed px-5 py-10">
+            <div>
+              The section component of type{" "}
+              <strong class="px-2 text-xl">{section._type}</strong>{" "}
+              does not exist yet.
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <Component
+      {...section}
+      _sectionIndex={index}
+      _sections={sections}
+      rootHtmlAttributes={{
+        "data-section": section._type,
+        id: getDeepLinkId(section._key),
+      }}
+    />
+  );
+})}

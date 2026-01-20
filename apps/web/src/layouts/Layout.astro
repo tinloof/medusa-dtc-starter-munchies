@@ -1,26 +1,39 @@
 ---
+import "@fontsource-variable/instrument-sans"
+import "@fontsource/instrument-serif"
+import "@fontsource-variable/climate-crisis"
 import "../styles/global.css"
+import dynamicFavicon from '../components/dynamic-favicon'
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Munchies", description = "Delicious cookies delivered to your door" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="overflow-x-clip overscroll-y-none scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Munchies 2.0</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
+    <script set:html={dynamicFavicon} is:inline />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
 	}
 </style>

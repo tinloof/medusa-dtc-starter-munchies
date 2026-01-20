@@ -1,15 +1,25 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import { getClient } from '@/lib/sanity';
-import { HOME_QUERY } from '@packages/sanity/queries';
-import type { HOME_QUERYResult } from '@packages/sanity/types';
-export const prerender = true
+import WebsiteLayout from "@/layouts/WebsiteLayout.astro";
+import { getClient } from "@/lib/sanity";
+import { HOME_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import SectionRenderer from "@/components/sections/SectionRenderer.astro";
+
+export const prerender = true;
 
 const sanityClient = getClient();
-const homeData = await sanityClient.fetch<HOME_QUERYResult>(HOME_QUERY);
+
+const [homeData, globalData] = await Promise.all([
+  sanityClient.fetch<HOME_QUERYResult>(HOME_QUERY),
+  sanityClient.fetch(GLOBAL_QUERY),
+]);
 ---
 
-<Layout>
-	<h1>Sanity Data:</h1>
-	<pre>{JSON.stringify(homeData, null, 2)}</pre>
-</Layout>
+<WebsiteLayout
+  title={homeData?.title || "Munchies"}
+  description={homeData?.seo?.description || "Delicious cookies delivered to your door"}
+  header={globalData?.header}
+  footer={globalData?.footer}
+>
+  <SectionRenderer sections={homeData?.sections} fieldName="sections" />
+</WebsiteLayout>

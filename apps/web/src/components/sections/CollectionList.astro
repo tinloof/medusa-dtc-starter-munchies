@@ -1,0 +1,22 @@
+---
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import CollectionListCarousel from "./CollectionListCarousel";
+
+type CollectionListSection = Extract<
+  NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number],
+  { _type: "section.collectionList" }
+>;
+
+interface Props extends CollectionListSection {
+  rootHtmlAttributes?: Record<string, string | undefined>;
+}
+
+const props = Astro.props;
+---
+
+<section {...props.rootHtmlAttributes}>
+  <CollectionListCarousel
+    client:visible
+    cards={props.cards}
+  />
+</section>

@@ -1,0 +1,42 @@
+---
+import type { SectionFeaturedProducts } from "@packages/sanity/types";
+import { getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import FeaturedProductsCarousel from "./FeaturedProductsCarousel";
+
+interface Props extends SectionFeaturedProducts {
+  rootHtmlAttributes?: Record<string, string>;
+  countryCode?: string;
+}
+
+const { title, products, cta, rootHtmlAttributes, countryCode = "us" } = Astro.props;
+
+// Get region for pricing
+const region = await getRegion(countryCode);
+
+if (!region) {
+  console.log("No region found");
+  return null;
+}
+
+// Extract product IDs from Sanity references
+const ids = products
+  ?.map((product) => product?._ref)
+  .filter((id): id is string => id !== undefined) || [];
+
+if (!ids || ids.length === 0) {
+  return null;
+}
+
+// Fetch products from Medusa
+const { products: medusaProducts } = await getProductsByIds(ids, region.id);
+---
+
+<section {...rootHtmlAttributes}>
+  <FeaturedProductsCarousel
+    client:visible
+    products={medusaProducts}
+    title={title}
+    cta={cta ? { href: cta.link, text: cta.label } : undefined}
+  />
+</section>

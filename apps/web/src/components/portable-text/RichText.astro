@@ -1,0 +1,22 @@
+---
+import { PortableText } from "astro-portabletext";
+import PortableTextLink from "./PortableTextLink.astro";
+
+interface Props {
+  value: any[] | null | undefined;
+}
+
+const { value = [] } = Astro.props;
+
+const components = {
+  marks: {
+    link: PortableTextLink,
+  },
+} as any;
+---
+
+{value && value.length > 0 && (
+  <div class="flex flex-col gap-4">
+    <PortableText value={value} components={components} />
+  </div>
+)}

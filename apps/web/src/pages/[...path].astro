@@ -1,0 +1,69 @@
+---
+import WebsiteLayout from "@/layouts/WebsiteLayout.astro";
+import { getClient } from "@/lib/sanity";
+import { TEXT_PAGE_QUERY, MODULAR_PAGE_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
+import type { TEXT_PAGE_QUERYResult } from "@packages/sanity/types";
+import TextPage from "@/components/text-page/TextPage.astro";
+import SectionRenderer from "@/components/sections/SectionRenderer.astro";
+
+export const prerender = true;
+
+// Generate static paths for known text pages
+export async function getStaticPaths() {
+  const sanityClient = getClient();
+
+  // Fetch all text pages
+  const textPages = await sanityClient.fetch<{ pathname: { current: string } }[]>(
+    `*[_type == "text.page" && defined(pathname.current)]{ pathname }`
+  );
+
+  // Fetch all modular pages
+  const modularPages = await sanityClient.fetch<{ pathname: { current: string } }[]>(
+    `*[_type == "modular.page" && defined(pathname.current)]{ pathname }`
+  );
+
+  const paths = [
+    ...textPages.map((page) => ({
+      params: { path: page.pathname.current.replace(/^\//, "") },
+    })),
+    ...modularPages.map((page) => ({
+      params: { path: page.pathname.current.replace(/^\//, "") },
+    })),
+  ];
+
+  return paths;
+}
+
+const { path } = Astro.params;
+const pathname = `/${path}`;
+
+const sanityClient = getClient();
+
+// Try to fetch as text page first
+const textPageData = await sanityClient.fetch<TEXT_PAGE_QUERYResult>(TEXT_PAGE_QUERY, { pathname });
+
+// Try to fetch as modular page if not a text page
+const modularPageData = !textPageData
+  ? await sanityClient.fetch(MODULAR_PAGE_QUERY, { pathname })
+  : null;
+
+const globalData = await sanityClient.fetch(GLOBAL_QUERY);
+
+// 404 if neither found
+if (!textPageData && !modularPageData) {
+  return Astro.redirect("/404");
+}
+---
+
+<WebsiteLayout
+  title={textPageData?.title || modularPageData?.title || "Munchies"}
+  description={textPageData?.description || modularPageData?.seo?.description || ""}
+  header={globalData?.header}
+  footer={globalData?.footer}
+>
+  {textPageData ? (
+    <TextPage data={textPageData} />
+  ) : modularPageData ? (
+    <SectionRenderer sections={modularPageData.sections} fieldName="sections" />
+  ) : null}
+</WebsiteLayout>

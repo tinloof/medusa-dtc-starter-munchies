@@ -1,0 +1,60 @@
+---
+import { cx } from "class-variance-authority";
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import SanityImage from "@/components/shared/SanityImage.astro";
+import Body from "@/components/shared/typography/Body.astro";
+import Label from "@/components/shared/typography/Label.astro";
+
+type MediaTextSection = Extract<
+  NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number],
+  { _type: "section.mediaText" }
+>;
+
+interface Props extends MediaTextSection {
+  rootHtmlAttributes?: Record<string, string | undefined>;
+}
+
+const props = Astro.props;
+const position = props.imagePosition;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class={cx(
+    "mx-auto flex w-full max-w-max-screen flex-col items-stretch justify-center gap-2 px-m py-xl lg:px-xl lg:py-2xl",
+    {
+      "lg:flex-row": position === "right",
+      "lg:flex-row-reverse": position === "left",
+    }
+  )}
+>
+  <div class="relative flex min-h-[390px] flex-col items-center justify-start gap-11 rounded-lg border border-accent p-s sm:justify-center lg:w-1/2 lg:py-7xl">
+    <Label
+      class="whitespace-nowrap sm:absolute sm:top-xl sm:left-1/2 sm:-translate-x-1/2"
+      desktopSize="base"
+      font="display"
+      mobileSize="sm"
+    >
+      {props.title}
+    </Label>
+    <Body
+      class="max-w-[580px] text-pretty text-center"
+      desktopSize="6xl"
+      font="serif"
+      mobileSize="4xl"
+    >
+      {props.description}
+    </Body>
+  </div>
+  {props.image ? (
+    <div class="aspect-square rounded-lg lg:w-1/2">
+      <SanityImage
+        alt="Media text image"
+        class="aspect-square"
+        data={props.image}
+      />
+    </div>
+  ) : (
+    <div class="aspect-square rounded-lg bg-accent lg:w-1/2" />
+  )}
+</section>

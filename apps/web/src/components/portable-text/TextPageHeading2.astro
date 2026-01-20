@@ -1,0 +1,25 @@
+---
+import Heading from "@/components/shared/typography/Heading.astro";
+
+interface Props {
+  node?: {
+    _key?: string;
+  };
+}
+
+const { node } = Astro.props;
+
+// Generate ID from _key for anchor links
+const id = node?._key || undefined;
+---
+
+<Heading
+  class="mt-4 scroll-mt-[calc(var(--header-height)+2rem)] first:mt-0 lg:scroll-mt-[calc(var(--header-height)+2rem)]"
+  desktopSize="xl"
+  font="serif"
+  id={id}
+  mobileSize="base"
+  tag="h2"
+>
+  <slot />
+</Heading>

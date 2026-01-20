@@ -1,0 +1,44 @@
+---
+import type { HOME_QUERYResult } from "@packages/sanity/types";
+import Body from "@/components/shared/typography/Body.astro";
+import Heading from "@/components/shared/typography/Heading.astro";
+
+type AssuranceSection = Extract<
+  NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number],
+  { _type: "section.assurance" }
+>;
+
+interface Props extends AssuranceSection {
+  rootHtmlAttributes?: Record<string, string | undefined>;
+}
+
+const props = Astro.props;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="mx-auto flex w-full max-w-max-screen flex-col items-center justify-start gap-4xl px-m py-2xl lg:px-xl"
+>
+  {props.title && (
+    <Heading
+      class="text-center"
+      desktopSize="3xl"
+      mobileSize="xl"
+      tag="h3"
+    >
+      {props.title}
+    </Heading>
+  )}
+  <div class="flex w-full flex-col items-center justify-between gap-m lg:flex-row lg:gap-2xl">
+    {props.cards?.map((card) => (
+      <div class="flex w-full max-w-[400px] flex-col items-center gap-xs text-center">
+        <Heading mobileSize="base" tag="h5">
+          {card.title}
+        </Heading>
+        <Body font="sans" mobileSize="base">
+          {card.description}
+        </Body>
+      </div>
+    ))}
+  </div>
+</section>

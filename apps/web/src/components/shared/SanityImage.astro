@@ -1,0 +1,115 @@
+---
+import imageUrlBuilder from "@sanity/image-url";
+import { getImageDimensions } from "@sanity/asset-utils";
+import { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET } from "astro:env/server";
+
+interface SanityImageData {
+  asset?: {
+    _ref: string;
+    _type?: string;
+  };
+  crop?: {
+    bottom?: number;
+    left?: number;
+    right?: number;
+    top?: number;
+  };
+  hotspot?: {
+    height?: number;
+    width?: number;
+    x?: number;
+    y?: number;
+  };
+  alt?: string;
+}
+
+interface Props {
+  data: SanityImageData | null | undefined;
+  class?: string;
+  alt?: string;
+  aspectRatio?: string;
+  fetchPriority?: "high" | "low" | "auto";
+  loading?: "lazy" | "eager";
+  sizes?: string;
+}
+
+const {
+  data,
+  class: className,
+  alt,
+  aspectRatio,
+  fetchPriority = "auto",
+  loading = "lazy",
+  sizes = "100vw",
+  ...rest
+} = Astro.props;
+
+if (!data?.asset?._ref) {
+  return null;
+}
+
+const imageConfig = {
+  projectId: PUBLIC_SANITY_STUDIO_PROJECT_ID,
+  dataset: PUBLIC_SANITY_STUDIO_DATASET,
+};
+
+const builder = imageUrlBuilder(imageConfig);
+
+const _ref = data.asset._ref;
+const { width, height } = getImageDimensions(_ref);
+
+// Parse aspect ratio if provided
+const aspectRatioValues = aspectRatio?.split("/");
+const aspectRatioWidth = aspectRatioValues ? parseFloat(aspectRatioValues[0]) : undefined;
+const aspectRatioHeight = aspectRatioValues ? parseFloat(aspectRatioValues[1]) : undefined;
+
+// Calculate new height based on aspect ratio if provided
+const computedHeight = aspectRatioWidth && aspectRatioHeight
+  ? Math.round((width / aspectRatioWidth) * aspectRatioHeight)
+  : height;
+
+// Create base image URL builder
+const urlBuilder = builder
+  .image({
+    _ref,
+    crop: data.crop,
+    hotspot: data.hotspot,
+  })
+  .auto("format");
+
+// Generate srcset values
+const srcSetValues = [50, 100, 200, 450, 600, 750, 900, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 4000, 5000];
+
+function generateImageUrl(w: number) {
+  let img = urlBuilder.width(w);
+  if (aspectRatioWidth && aspectRatioHeight) {
+    const h = Math.round((w / aspectRatioWidth) * aspectRatioHeight);
+    img = img.height(h);
+  }
+  return img.url();
+}
+
+const src = generateImageUrl(width);
+
+const srcSet = srcSetValues
+  .filter((value) => value < width)
+  .map((value) => `${generateImageUrl(value)} ${value}w`)
+  .concat(`${src} ${width}w`)
+  .join(", ");
+
+const imageAlt = alt || data.alt || "";
+---
+
+<img
+  src={src}
+  srcset={srcSet}
+  sizes={sizes}
+  width={width}
+  height={computedHeight}
+  alt={imageAlt}
+  class={className}
+  loading={loading}
+  fetchpriority={fetchPriority}
+  style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
+  {...rest}
+/>

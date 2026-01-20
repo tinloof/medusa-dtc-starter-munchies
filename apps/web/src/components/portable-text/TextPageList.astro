@@ -1,0 +1,20 @@
+---
+interface Props {
+  node?: {
+    listItem?: "bullet" | "number";
+  };
+}
+
+const { node } = Astro.props;
+const isBullet = node?.listItem === "bullet";
+---
+
+{isBullet ? (
+  <ul class="list-disc pl-4 marker:text-base">
+    <slot />
+  </ul>
+) : (
+  <ol class="list-decimal pl-4">
+    <slot />
+  </ol>
+)}

@@ -13,21 +13,36 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
-    "@sanity/client": "^7.14.0",
     "@astrojs/react": "^4.4.2",
+    "@fontsource-variable/climate-crisis": "^5.2.11",
+    "@fontsource-variable/instrument-sans": "^5.2.8",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@medusajs/js-sdk": "2.12.2",
+    "@packages/sanity": "workspace:*",
+    "@portabletext/types": "^4.0.1",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-visually-hidden": "^1.2.4",
+    "@sanity/asset-utils": "^2.3.0",
+    "@sanity/client": "^7.14.0",
+    "@sanity/image-url": "^2.0.3",
     "astro": "^5.16.11",
+    "astro-portabletext": "^0.13.0",
+    "class-variance-authority": "^0.7.1",
+    "embla-carousel": "9.0.0-rc01",
+    "embla-carousel-react": "9.0.0-rc01",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "@packages/sanity": "workspace:*"
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "typescript": "5.9.2",
+    "@astrojs/check": "^0.9.6",
+    "@medusajs/types": "2.12.2",
     "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18",
+    "@types/node": "^25.0.9",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
-    "@astrojs/check": "^0.9.6",
-    "@types/node": "^25.0.9",
+    "tailwindcss": "^4.1.18",
+    "typescript": "5.9.2",
     "wrangler": "^4.59.2"
   }
 }

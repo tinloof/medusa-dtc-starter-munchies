@@ -1,0 +1,45 @@
+---
+import { cva, type VariantProps } from "class-variance-authority";
+import LocalizedLink from "./LocalizedLink.astro";
+
+const buttonStyles = cva(
+  "relative flex w-fit items-center justify-center whitespace-nowrap rounded-[999px] font-serif leading-[150%] transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  {
+    defaultVariants: {
+      size: "xl",
+      variant: "primary",
+    },
+    variants: {
+      size: {
+        lg: "h-[72px] px-9 text-body-6xl tracking-[-1px]",
+        md: "h-[62px] px-7 text-body-4xl",
+        sm: "h-10 px-5 text-body-xl",
+        xl: "h-20 px-11 text-body-8xl tracking-[-1px]",
+      },
+      variant: {
+        outline:
+          "border-[1.5px] border-accent bg-transparent text-accent hover:bg-accent hover:text-background",
+        primary:
+          "border-[1.5px] border-accent bg-accent text-background hover:bg-background hover:text-accent",
+      },
+    },
+  }
+);
+
+type ButtonVariants = VariantProps<typeof buttonStyles>;
+
+interface Props extends ButtonVariants {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className, size, variant, ...rest } = Astro.props;
+---
+
+<LocalizedLink
+  href={href}
+  class={buttonStyles({ size, variant, className })}
+  {...rest}
+>
+  <slot />
+</LocalizedLink>

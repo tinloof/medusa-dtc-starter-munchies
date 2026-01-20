@@ -1,0 +1,49 @@
+---
+import type { SectionShopTheLook } from "@packages/sanity/types";
+import { getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import HotspotsUI from "./HotspotsUI";
+import Heading from "../shared/typography/Heading.astro";
+
+interface Props extends SectionShopTheLook {
+  rootHtmlAttributes?: Record<string, string>;
+  countryCode?: string;
+}
+
+const { title, image, productHotSpots, rootHtmlAttributes, countryCode = "us" } = Astro.props;
+
+// Get region for pricing
+const region = await getRegion(countryCode);
+
+if (!region) {
+  console.log("No region found");
+  return null;
+}
+
+// Extract product IDs from hotspots
+const ids = productHotSpots
+  ?.map((hotSpot) => hotSpot.product?._ref)
+  .filter((id): id is string => id !== undefined) || [];
+
+if (!ids || ids.length === 0) {
+  return null;
+}
+
+// Fetch products from Medusa
+const { products } = await getProductsByIds(ids, region.id);
+---
+
+<section
+  {...rootHtmlAttributes}
+  class="mx-auto flex w-full max-w-max-screen flex-col items-start gap-xs px-m py-2xl lg:px-xl"
+>
+  <Heading desktopSize="3xl" font="serif" mobileSize="xl" tag="h3">
+    {title}
+  </Heading>
+  <HotspotsUI
+    client:visible
+    image={image}
+    productHotSpots={productHotSpots}
+    products={products}
+  />
+</section>

@@ -1,0 +1,61 @@
+---
+import { cva, type VariantProps } from "class-variance-authority";
+
+const headingStyles = cva("", {
+  defaultVariants: {
+    font: "serif",
+    mobileSize: "2xl",
+  },
+  variants: {
+    desktopSize: {
+      "2xl": "lg:text-heading-2xl",
+      "3xl": "lg:text-heading-3xl",
+      "5xl": "lg:text-heading-5xl",
+      "6xl": "lg:text-heading-6xl",
+      "7xl": "lg:text-heading-7xl",
+      "8xl": "lg:text-heading-8xl",
+      base: "lg:text-heading-base",
+      lg: "lg:text-heading-lg",
+      sm: "lg:text-heading-sm",
+      xl: "lg:text-heading-xl",
+      xs: "lg:text-heading-xs",
+    },
+    font: {
+      display: "font-display font-normal uppercase leading-[120%]",
+      sans: "font-medium font-sans leading-[120%]",
+      serif: "font-normal font-serif leading-[120%]",
+    },
+    mobileSize: {
+      "2xl": "text-pretty text-heading-2xl tracking-[-1.12px]",
+      "3xl": "text-pretty text-heading-3xl tracking-[-1.28px]",
+      "5xl": "lg:text-heading-5xl lg:tracking-[-1.6px]",
+      "6xl": "text-heading-6xl tracking-[-2px]",
+      "7xl": "text-heading-7xl tracking-[-2px]",
+      "8xl": "text-heading-8xl tracking-[-2px]",
+      base: "text-heading-base tracking-[-0.64px]",
+      lg: "text-heading-lg tracking-[-0.8px]",
+      sm: "text-heading-sm tracking-[-0.52px]",
+      xl: "text-heading-xl tracking-[-0.96px]",
+      xs: "text-heading-xs tracking-[-0.48px]",
+    },
+  },
+});
+
+type HeadingVariants = VariantProps<typeof headingStyles>;
+
+interface Props extends HeadingVariants {
+  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  class?: string;
+  id?: string;
+}
+
+const { tag: Tag, class: className, id, font, mobileSize, desktopSize, ...rest } = Astro.props;
+---
+
+<Tag
+  class={headingStyles({ font, mobileSize, desktopSize, className })}
+  id={id}
+  {...rest}
+>
+  <slot />
+</Tag>

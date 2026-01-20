@@ -1,0 +1,29 @@
+---
+import LocalizedLink from "@/components/shared/LocalizedLink.astro";
+
+interface Props {
+  value?: {
+    href?: string;
+    blank?: boolean;
+  };
+}
+
+const { value } = Astro.props;
+const href = value?.href || "#";
+const isExternal = href.startsWith("http");
+---
+
+{isExternal ? (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="underline hover:opacity-70 transition-opacity"
+  >
+    <slot />
+  </a>
+) : (
+  <LocalizedLink href={href} class="underline hover:opacity-70 transition-opacity">
+    <slot />
+  </LocalizedLink>
+)}

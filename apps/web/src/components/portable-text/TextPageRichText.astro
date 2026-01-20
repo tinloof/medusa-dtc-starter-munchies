@@ -1,0 +1,40 @@
+---
+import { PortableText } from "astro-portabletext";
+import PortableTextLink from "./PortableTextLink.astro";
+import TextPageHeading2 from "./TextPageHeading2.astro";
+import TextPageHeading3 from "./TextPageHeading3.astro";
+import TextPageParagraph from "./TextPageParagraph.astro";
+import TextPageList from "./TextPageList.astro";
+import TextPageListItem from "./TextPageListItem.astro";
+
+interface Props {
+  value: any[] | null | undefined;
+}
+
+const { value = [] } = Astro.props;
+
+const components = {
+  block: {
+    h2: TextPageHeading2,
+    h3: TextPageHeading3,
+    normal: TextPageParagraph,
+  },
+  list: {
+    bullet: TextPageList,
+    number: TextPageList,
+  },
+  listItem: {
+    bullet: TextPageListItem,
+    number: TextPageListItem,
+  },
+  marks: {
+    link: PortableTextLink,
+  },
+} as any;
+---
+
+{value && value.length > 0 && (
+  <div class="flex flex-col gap-4">
+    <PortableText value={value} components={components} />
+  </div>
+)}
