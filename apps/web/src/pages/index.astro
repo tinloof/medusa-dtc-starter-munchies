@@ -2,11 +2,11 @@
 import Layout from '@/layouts/Layout.astro';
 import { getClient } from '@/lib/sanity';
 import { HOME_QUERY } from '@packages/sanity/queries';
-import type { HOME_QUERY_RESULT } from '@packages/sanity/types';
+import type { HOME_QUERYResult } from '@packages/sanity/types';
 export const prerender = true
 
 const sanityClient = getClient();
-const homeData = await sanityClient.fetch<HOME_QUERY_RESULT>(HOME_QUERY);
+const homeData = await sanityClient.fetch<HOME_QUERYResult>(HOME_QUERY);
 ---
 
 <Layout>

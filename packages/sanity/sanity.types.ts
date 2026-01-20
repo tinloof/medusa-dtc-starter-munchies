@@ -13,14 +13,672 @@
  */
 
 // Source: schema.json
+export type SectionsBody = Array<{
+  _key: string;
+} & SectionHero | {
+  _key: string;
+} & SectionCenteredText | {
+  _key: string;
+} & SectionMarquee | {
+  _key: string;
+} & SectionMediaText | {
+  _key: string;
+} & SectionTestimonials | {
+  _key: string;
+} & SectionFeaturedProducts | {
+  _key: string;
+} & SectionAssurance | {
+  _key: string;
+} & SectionShopTheLook | {
+  _key: string;
+} & SectionCollectionList>;
+
+export type SectionCollectionList = {
+  _type: "section.collectionList";
+  title?: string;
+  cards?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    cta?: Cta;
+    _type: "collectionCard";
+    _key: string;
+  }>;
+};
+
+export type SectionShopTheLook = {
+  _type: "section.shopTheLook";
+  title?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  productHotSpots?: Array<{
+    _key: string;
+  } & Spot>;
+};
+
+export type SectionAssurance = {
+  _type: "section.assurance";
+  title?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _type: "card";
+    _key: string;
+  }>;
+};
+
+export type SectionFeaturedProducts = {
+  _type: "section.featuredProducts";
+  title?: string;
+  products?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "product";
+  }>;
+  cta?: Cta;
+};
+
+export type SectionTestimonials = {
+  _type: "section.testimonials";
+  title?: string;
+  testimonials?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "testimonial";
+  }>;
+};
+
+export type SectionMediaText = {
+  _type: "section.mediaText";
+  imagePosition?: "left" | "right";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
+};
+
+export type SectionMarquee = {
+  _type: "section.marquee";
+  text?: Array<string>;
+};
+
+export type SectionCenteredText = {
+  _type: "section.centeredText";
+  text?: string;
+};
+
+export type SectionHero = {
+  _type: "section.hero";
+  mediaType?: "image" | "largeImage" | "video";
+  title?: string;
+  subtitle?: string;
+  cta?: Cta;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  largeImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  video?: Video;
+};
+
+export type LightPtBody = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal";
+  listItem?: never;
+  markDefs?: null;
+  level?: number;
+  _type: "block";
+  _key: string;
+}>;
+
+export type PtBody = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h2" | "h3" | "blockquote";
+  listItem?: "bullet" | "number";
+  markDefs?: Array<{
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+} | {
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  caption?: string;
+  _type: "imageBlock";
+  _key: string;
+}>;
+
+export type Video = {
+  _type: "video";
+  url?: string;
+  poster?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type Spot = {
+  _type: "spot";
+  product?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "product";
+  };
+  x?: number;
+  y?: number;
+};
+
+export type Link = string;
+
+export type Cta = {
+  _type: "cta";
+  label?: string;
+  link?: Link;
+};
+
+export type OgImage = {
+  _type: "ogImage";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+};
+
+export type Seo = {
+  _type: "seo";
+  title?: string;
+  description?: string;
+  image?: OgImage;
+  canonicalUrl?: string;
+};
+
+export type FaqCategory = {
+  _id: string;
+  _type: "faq.category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  questions?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "faq.entry";
+  }>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type FaqEntry = {
+  _id: string;
+  _type: "faq.entry";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  question?: string;
+  answer?: string;
+};
+
+export type FaqIndex = {
+  _id: string;
+  _type: "faq.index";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  description?: string;
+  textTranslations?: {
+    searchPlaceholder?: string;
+    searchNoResults?: string;
+  };
+  category?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "faq.category";
+  }>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type TextPage = {
+  _id: string;
+  _type: "text.page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  description?: string;
+  body?: PtBody;
+};
+
+export type Dictionary = {
+  _id: string;
+  _type: "dictionary";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  noResultsText?: string;
+  noResultsDescription?: string;
+};
+
+export type CookieBanner = {
+  _id: string;
+  _type: "cookie.banner";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  rejectButton?: string;
+  acceptButton?: string;
+};
+
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  internalTitle?: string;
+};
+
+export type Collection = {
+  _id: string;
+  _type: "collection";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  internalTitle?: string;
+};
+
+export type Product = {
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  internalTitle?: string;
+  specs?: Array<{
+    title?: string;
+    content?: string;
+    _type: "spec";
+    _key: string;
+  }>;
+  addons?: {
+    title?: string;
+    products?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+  };
+  sections?: SectionsBody;
+};
+
+export type Testimonial = {
+  _id: string;
+  _type: "testimonial";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  quote?: string;
+  author?: string;
+};
+
+export type Header = {
+  _id: string;
+  _type: "header";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  showAnnouncement?: boolean;
+  announcementText?: LightPtBody;
+  navigation?: Array<{
+    cta?: Cta;
+    _type: "link";
+    _key: string;
+  } | {
+    title?: string;
+    columns?: Array<{
+      title?: string;
+      links?: Array<{
+        _key: string;
+      } & Cta>;
+      _key: string;
+    }>;
+    cards?: Array<{
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      title?: string;
+      cta?: Cta;
+      _key: string;
+    }>;
+    _type: "dropdown";
+    _key: string;
+  }>;
+  cartAddons?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "product";
+  }>;
+};
+
+export type NotFound = {
+  _id: string;
+  _type: "not.found";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  text?: string;
+  cta?: Cta;
+};
+
+export type Footer = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  information?: Array<{
+    text?: PtBody;
+    _key: string;
+  }>;
+  linkList?: Array<{
+    links?: Array<{
+      _key: string;
+    } & Cta>;
+    _key: string;
+  }>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  copy?: PtBody;
+  signup_success?: PtBody;
+  signup_error?: PtBody;
+  placeholder?: string;
+  button?: string;
+  footnote?: PtBody;
+  bottomLinks?: Array<{
+    _key: string;
+  } & Cta>;
+  socialLinks?: Array<{
+    _key: string;
+  } & Cta>;
+};
+
 export type Home = {
   _id: string;
   _type: "home";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
   title?: string;
-  description?: string;
+  sections?: SectionsBody;
+};
+
+export type Settings = {
+  _id: string;
+  _type: "settings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  fallbackOgImage?: OgImage;
+};
+
+export type ModularPage = {
+  _id: string;
+  _type: "modular.page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  sections?: SectionsBody;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -56,25 +714,8 @@ export type SanityImageMetadata = {
   palette?: SanityImagePalette;
   lqip?: string;
   blurHash?: string;
-  thumbHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
 };
 
 export type SanityFileAsset = {
@@ -136,51 +777,1197 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type AllSanitySchemaTypes =
-  | Home
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageMetadata
-  | SanityImageHotspot
-  | SanityImageCrop
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | SanityImageAsset
-  | Geopoint
-  | Slug;
-
+export type AllSanitySchemaTypes = SectionsBody | SectionCollectionList | SectionShopTheLook | SectionAssurance | SectionFeaturedProducts | SectionTestimonials | SectionMediaText | SectionMarquee | SectionCenteredText | SectionHero | LightPtBody | PtBody | Video | Spot | Link | Cta | OgImage | Seo | FaqCategory | Slug | FaqEntry | FaqIndex | SanityImageCrop | SanityImageHotspot | TextPage | Dictionary | CookieBanner | Category | Collection | Product | Testimonial | Header | NotFound | Footer | Home | Settings | ModularPage | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-type ArrayOf<T> = Array<
-  T & {
-    _key: string;
-  }
->;
-
 // Source: src/queries/index.ts
+// Variable: MODULAR_PAGE_QUERY
+// Query: *[pathname.current == $pathname && _type == "modular.page"][0]{  ...,  sections[] {    ...,    _type == "section.testimonials" => {    ...,    testimonials[] ->},},}
+export type MODULAR_PAGE_QUERYResult = {
+  _id: string;
+  _type: "modular.page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  sections: Array<{
+    _key: string;
+    _type: "section.assurance";
+    title?: string;
+    cards?: Array<{
+      title?: string;
+      description?: string;
+      _type: "card";
+      _key: string;
+    }>;
+  } | {
+    _key: string;
+    _type: "section.centeredText";
+    text?: string;
+  } | {
+    _key: string;
+    _type: "section.collectionList";
+    title?: string;
+    cards?: Array<{
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      cta?: Cta;
+      _type: "collectionCard";
+      _key: string;
+    }>;
+  } | {
+    _key: string;
+    _type: "section.featuredProducts";
+    title?: string;
+    products?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+    cta?: Cta;
+  } | {
+    _key: string;
+    _type: "section.hero";
+    mediaType?: "image" | "largeImage" | "video";
+    title?: string;
+    subtitle?: string;
+    cta?: Cta;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    largeImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    video?: Video;
+  } | {
+    _key: string;
+    _type: "section.marquee";
+    text?: Array<string>;
+  } | {
+    _key: string;
+    _type: "section.mediaText";
+    imagePosition?: "left" | "right";
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    title?: string;
+    description?: string;
+  } | {
+    _key: string;
+    _type: "section.shopTheLook";
+    title?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    productHotSpots?: Array<{
+      _key: string;
+    } & Spot>;
+  } | {
+    _key: string;
+    _type: "section.testimonials";
+    title?: string;
+    testimonials: Array<{
+      _id: string;
+      _type: "testimonial";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      quote?: string;
+      author?: string;
+    }> | null;
+  }> | null;
+} | null;
 // Variable: HOME_QUERY
-// Query: *[_type == "home"][0]
-export type HOME_QUERY_RESULT = {
+// Query: *[_type == "home"][0]{  ...,  sections[] {    ...,    _type == "section.testimonials" => {    ...,    testimonials[] ->},},}
+export type HOME_QUERYResult = {
   _id: string;
   _type: "home";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  sections: Array<{
+    _key: string;
+    _type: "section.assurance";
+    title?: string;
+    cards?: Array<{
+      title?: string;
+      description?: string;
+      _type: "card";
+      _key: string;
+    }>;
+  } | {
+    _key: string;
+    _type: "section.centeredText";
+    text?: string;
+  } | {
+    _key: string;
+    _type: "section.collectionList";
+    title?: string;
+    cards?: Array<{
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      cta?: Cta;
+      _type: "collectionCard";
+      _key: string;
+    }>;
+  } | {
+    _key: string;
+    _type: "section.featuredProducts";
+    title?: string;
+    products?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+    cta?: Cta;
+  } | {
+    _key: string;
+    _type: "section.hero";
+    mediaType?: "image" | "largeImage" | "video";
+    title?: string;
+    subtitle?: string;
+    cta?: Cta;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    largeImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    video?: Video;
+  } | {
+    _key: string;
+    _type: "section.marquee";
+    text?: Array<string>;
+  } | {
+    _key: string;
+    _type: "section.mediaText";
+    imagePosition?: "left" | "right";
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    title?: string;
+    description?: string;
+  } | {
+    _key: string;
+    _type: "section.shopTheLook";
+    title?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    productHotSpots?: Array<{
+      _key: string;
+    } & Spot>;
+  } | {
+    _key: string;
+    _type: "section.testimonials";
+    title?: string;
+    testimonials: Array<{
+      _id: string;
+      _type: "testimonial";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      quote?: string;
+      author?: string;
+    }> | null;
+  }> | null;
+} | null;
+// Variable: NOT_FOUND_PAGE_QUERY
+// Query: *[_type == "not.found" && pathname.current == '/not-found'][0]
+export type NOT_FOUND_PAGE_QUERYResult = {
+  _id: string;
+  _type: "not.found";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  text?: string;
+  cta?: Cta;
+} | null;
+// Variable: COOKIE_BANNER_QUERY
+// Query: *[_type == "cookie.banner"][0]
+export type COOKIE_BANNER_QUERYResult = {
+  _id: string;
+  _type: "cookie.banner";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
   title?: string;
   description?: string;
+  rejectButton?: string;
+  acceptButton?: string;
+} | null;
+// Variable: GLOBAL_QUERY
+// Query: {  "fallbackOGImage": *[_type == "settings"][0].fallbackOgImage,  "footer": *[_id == "footer" && _type == "footer"][0],  "header": *[_id == "header" && _type == "header"][0],}
+export type GLOBAL_QUERYResult = {
+  fallbackOGImage: OgImage | null;
+  footer: {
+    _id: "footer";
+    _type: "footer";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    information?: Array<{
+      text?: PtBody;
+      _key: string;
+    }>;
+    linkList?: Array<{
+      links?: Array<{
+        _key: string;
+      } & Cta>;
+      _key: string;
+    }>;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    copy?: PtBody;
+    signup_success?: PtBody;
+    signup_error?: PtBody;
+    placeholder?: string;
+    button?: string;
+    footnote?: PtBody;
+    bottomLinks?: Array<{
+      _key: string;
+    } & Cta>;
+    socialLinks?: Array<{
+      _key: string;
+    } & Cta>;
+  } | null;
+  header: {
+    _id: "header";
+    _type: "header";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    showAnnouncement?: boolean;
+    announcementText?: LightPtBody;
+    navigation?: Array<{
+      title?: string;
+      columns?: Array<{
+        title?: string;
+        links?: Array<{
+          _key: string;
+        } & Cta>;
+        _key: string;
+      }>;
+      cards?: Array<{
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        title?: string;
+        cta?: Cta;
+        _key: string;
+      }>;
+      _type: "dropdown";
+      _key: string;
+    } | {
+      cta?: Cta;
+      _type: "link";
+      _key: string;
+    }>;
+    cartAddons?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+  } | null;
+};
+// Variable: ROUTE_QUERY
+// Query: *[pathname.current == $pathname][0] {    'routeData': {      ...,      'pathname': pathname.current,    },  }
+export type ROUTE_QUERYResult = {
+  routeData: {
+    _id: string;
+    _type: "category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    internalTitle?: string;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "collection";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    internalTitle?: string;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "cookie.banner";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    description?: string;
+    rejectButton?: string;
+    acceptButton?: string;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "dictionary";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    noResultsText?: string;
+    noResultsDescription?: string;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "faq.category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    questions?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "faq.entry";
+    }>;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "faq.entry";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    question?: string;
+    answer?: string;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "faq.index";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    seo?: {
+      indexable?: boolean;
+      title?: string;
+      description?: string;
+      ogImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    };
+    pathname: string | null;
+    title?: string;
+    description?: string;
+    textTranslations?: {
+      searchPlaceholder?: string;
+      searchNoResults?: string;
+    };
+    category?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "faq.category";
+    }>;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "footer";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    information?: Array<{
+      text?: PtBody;
+      _key: string;
+    }>;
+    linkList?: Array<{
+      links?: Array<{
+        _key: string;
+      } & Cta>;
+      _key: string;
+    }>;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    copy?: PtBody;
+    signup_success?: PtBody;
+    signup_error?: PtBody;
+    placeholder?: string;
+    button?: string;
+    footnote?: PtBody;
+    bottomLinks?: Array<{
+      _key: string;
+    } & Cta>;
+    socialLinks?: Array<{
+      _key: string;
+    } & Cta>;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "header";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    showAnnouncement?: boolean;
+    announcementText?: LightPtBody;
+    navigation?: Array<{
+      title?: string;
+      columns?: Array<{
+        title?: string;
+        links?: Array<{
+          _key: string;
+        } & Cta>;
+        _key: string;
+      }>;
+      cards?: Array<{
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        title?: string;
+        cta?: Cta;
+        _key: string;
+      }>;
+      _type: "dropdown";
+      _key: string;
+    } | {
+      cta?: Cta;
+      _type: "link";
+      _key: string;
+    }>;
+    cartAddons?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "home";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    seo?: {
+      indexable?: boolean;
+      title?: string;
+      description?: string;
+      ogImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    };
+    pathname: string | null;
+    title?: string;
+    sections?: SectionsBody;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "modular.page";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    seo?: {
+      indexable?: boolean;
+      title?: string;
+      description?: string;
+      ogImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    };
+    pathname: string | null;
+    title?: string;
+    sections?: SectionsBody;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "not.found";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    seo?: {
+      indexable?: boolean;
+      title?: string;
+      description?: string;
+      ogImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    };
+    pathname: string | null;
+    text?: string;
+    cta?: Cta;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "product";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    seo?: {
+      indexable?: boolean;
+      title?: string;
+      description?: string;
+      ogImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    };
+    pathname: string | null;
+    internalTitle?: string;
+    specs?: Array<{
+      title?: string;
+      content?: string;
+      _type: "spec";
+      _key: string;
+    }>;
+    addons?: {
+      title?: string;
+      products?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "product";
+      }>;
+    };
+    sections?: SectionsBody;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "sanity.fileAsset";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    originalFilename?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    altText?: string;
+    sha1hash?: string;
+    extension?: string;
+    mimeType?: string;
+    size?: number;
+    assetId?: string;
+    uploadId?: string;
+    path?: string;
+    url?: string;
+    source?: SanityAssetSourceData;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "sanity.imageAsset";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    originalFilename?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    altText?: string;
+    sha1hash?: string;
+    extension?: string;
+    mimeType?: string;
+    size?: number;
+    assetId?: string;
+    uploadId?: string;
+    path?: string;
+    url?: string;
+    metadata?: SanityImageMetadata;
+    source?: SanityAssetSourceData;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "settings";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    fallbackOgImage?: OgImage;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "testimonial";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    quote?: string;
+    author?: string;
+    pathname: null;
+  };
+} | {
+  routeData: {
+    _id: string;
+    _type: "text.page";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    seo?: {
+      indexable?: boolean;
+      title?: string;
+      description?: string;
+      ogImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    };
+    pathname: string | null;
+    title?: string;
+    description?: string;
+    body?: PtBody;
+  };
+} | null;
+// Variable: SITEMAP_QUERY
+// Query: *[    (pathname.current != null && indexable)  ] {    pathname,    "lastModified": _updatedAt,  }
+export type SITEMAP_QUERYResult = Array<never>;
+// Variable: TEXT_PAGE_QUERY
+// Query: *[_type == "text.page" && pathname.current == $pathname][0]
+export type TEXT_PAGE_QUERYResult = {
+  _id: string;
+  _type: "text.page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  description?: string;
+  body?: PtBody;
+} | null;
+// Variable: FAQS_PAGE_QUERY
+// Query: *[_type == "faq.index"][0]{  ...,  category[]-> {    ...,      questions[]-> {        ...,      }    }}
+export type FAQS_PAGE_QUERYResult = {
+  _id: string;
+  _type: "faq.index";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  title?: string;
+  description?: string;
+  textTranslations?: {
+    searchPlaceholder?: string;
+    searchNoResults?: string;
+  };
+  category: Array<{
+    _id: string;
+    _type: "faq.category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    questions: Array<{
+      _id: string;
+      _type: "faq.entry";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      question?: string;
+      answer?: string;
+    }> | null;
+  }> | null;
+} | null;
+// Variable: DICTIONARY_QUERY
+// Query: *[_type == "dictionary"][0]
+export type DICTIONARY_QUERYResult = {
+  _id: string;
+  _type: "dictionary";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  noResultsText?: string;
+  noResultsDescription?: string;
+} | null;
+// Variable: PRODUCT_QUERY
+// Query: *[_type == "product" && pathname.current == ("/products/" + $handle)][0]{  ...,  sections[] {    ...,    _type == "section.testimonials" => {    ...,    testimonials[] ->},},}
+export type PRODUCT_QUERYResult = {
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: {
+    indexable?: boolean;
+    title?: string;
+    description?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  pathname?: Slug;
+  internalTitle?: string;
+  specs?: Array<{
+    title?: string;
+    content?: string;
+    _type: "spec";
+    _key: string;
+  }>;
+  addons?: {
+    title?: string;
+    products?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+  };
+  sections: Array<{
+    _key: string;
+    _type: "section.assurance";
+    title?: string;
+    cards?: Array<{
+      title?: string;
+      description?: string;
+      _type: "card";
+      _key: string;
+    }>;
+  } | {
+    _key: string;
+    _type: "section.centeredText";
+    text?: string;
+  } | {
+    _key: string;
+    _type: "section.collectionList";
+    title?: string;
+    cards?: Array<{
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      cta?: Cta;
+      _type: "collectionCard";
+      _key: string;
+    }>;
+  } | {
+    _key: string;
+    _type: "section.featuredProducts";
+    title?: string;
+    products?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "product";
+    }>;
+    cta?: Cta;
+  } | {
+    _key: string;
+    _type: "section.hero";
+    mediaType?: "image" | "largeImage" | "video";
+    title?: string;
+    subtitle?: string;
+    cta?: Cta;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    largeImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    video?: Video;
+  } | {
+    _key: string;
+    _type: "section.marquee";
+    text?: Array<string>;
+  } | {
+    _key: string;
+    _type: "section.mediaText";
+    imagePosition?: "left" | "right";
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    title?: string;
+    description?: string;
+  } | {
+    _key: string;
+    _type: "section.shopTheLook";
+    title?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    productHotSpots?: Array<{
+      _key: string;
+    } & Spot>;
+  } | {
+    _key: string;
+    _type: "section.testimonials";
+    title?: string;
+    testimonials: Array<{
+      _id: string;
+      _type: "testimonial";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      quote?: string;
+      author?: string;
+    }> | null;
+  }> | null;
 } | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "home"][0]': HOME_QUERY_RESULT;
+    "*[pathname.current == $pathname && _type == \"modular.page\"][0]{\n  ...,\n  sections[] {\n    ...,\n    _type == \"section.testimonials\" => {\n    ...,\n    testimonials[] ->\n},\n},\n}": MODULAR_PAGE_QUERYResult;
+    "*[_type == \"home\"][0]{\n  ...,\n  sections[] {\n    ...,\n    _type == \"section.testimonials\" => {\n    ...,\n    testimonials[] ->\n},\n},\n}": HOME_QUERYResult;
+    "*[_type == \"not.found\" && pathname.current == '/not-found'][0]": NOT_FOUND_PAGE_QUERYResult;
+    "*[_type == \"cookie.banner\"][0]": COOKIE_BANNER_QUERYResult;
+    "{\n  \"fallbackOGImage\": *[_type == \"settings\"][0].fallbackOgImage,\n  \"footer\": *[_id == \"footer\" && _type == \"footer\"][0],\n  \"header\": *[_id == \"header\" && _type == \"header\"][0],\n}": GLOBAL_QUERYResult;
+    "\n  *[pathname.current == $pathname][0] {\n    'routeData': {\n      ...,\n      'pathname': pathname.current,\n    },\n  }\n": ROUTE_QUERYResult;
+    "\n  *[\n    (pathname.current != null && indexable)\n  ] {\n    pathname,\n    \"lastModified\": _updatedAt,\n  }\n": SITEMAP_QUERYResult;
+    "*[_type == \"text.page\" && pathname.current == $pathname][0]": TEXT_PAGE_QUERYResult;
+    "*[_type == \"faq.index\"][0]{\n  ...,\n  category[]-> {\n    ...,\n      questions[]-> {\n        ...,\n      }\n    }\n}": FAQS_PAGE_QUERYResult;
+    "*[_type == \"dictionary\"][0]": DICTIONARY_QUERYResult;
+    "*[_type == \"product\" && pathname.current == (\"/products/\" + $handle)][0]{\n  ...,\n  sections[] {\n    ...,\n    _type == \"section.testimonials\" => {\n    ...,\n    testimonials[] ->\n},\n},\n}": PRODUCT_QUERYResult;
   }
 }

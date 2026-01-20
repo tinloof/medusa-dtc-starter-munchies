@@ -1,16 +1,38 @@
 import { visionTool } from "@sanity/vision";
-import { defineConfig } from "sanity";
-import { structureTool } from "sanity/structure";
+import { documentOptions } from '@tinloof/sanity-document-options';
+import { withExtends } from '@tinloof/sanity-extends';
+import { pages } from "@tinloof/sanity-studio";
+import { defineConfig, isDev } from "sanity";
+import { imageHotspotArrayPlugin } from 'sanity-plugin-hotspot-array';
 
-import { schemaTypes } from "./src/schema";
+import config from "@/config";
+import schemas from "./src/schema";
+import "./globals.css"
+
+
 
 export default defineConfig({
-  name: "default",
-  title: "Munchies CF",
-  projectId: process.env["SANITY_STUDIO_PROJECT_ID"] || "",
-  dataset: process.env["SANITY_STUDIO_DATASET"] || "",
-  plugins: [structureTool(), visionTool()],
+  title: config.siteName,
+  dataset: config.sanity.dataset,
+  projectId: config.sanity.projectId,
+  plugins: [
+    pages({
+      allowOrigins: isDev ? ["http://localhost:3000"] : undefined,
+      previewUrl: {
+        origin: isDev ? "http://localhost:3000" : undefined,
+      },
+      creatablePages: ["modular.page", "text.page"],
+    }),
+    documentOptions({
+      structure: {
+        hide: ["modular.page", "home", "testimonial", "text.page"],
+        toolTitle: "Structure",
+      },
+    }),
+    visionTool({ defaultApiVersion: config.sanity.apiVersion }),
+    imageHotspotArrayPlugin(),
+  ],
   schema: {
-    types: schemaTypes,
+    types: withExtends(schemas),
   },
 });
