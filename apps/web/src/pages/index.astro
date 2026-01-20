@@ -5,7 +5,11 @@ import { HOME_QUERY } from '@packages/sanity/queries';
 import type { HOME_QUERY_RESULT } from '@packages/sanity/types';
 export const prerender = true
 
-const sanityClient = getClient();
+const sanityClient = getClient({
+  SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
+  SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET,
+  SANITY_TOKEN: process.env.SANITY_TOKEN,
+} as Env);
 const homeData = await sanityClient.fetch<HOME_QUERY_RESULT>(HOME_QUERY);
 ---
 
