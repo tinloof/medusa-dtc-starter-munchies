@@ -8,6 +8,10 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    defaultStrategy: "viewport",
+    prefetchAll: true
+  },
   env: {
     schema: {
       PUBLIC_SANITY_STUDIO_PROJECT_ID: envField.string({ context: "server", access: "public", optional: false }),
