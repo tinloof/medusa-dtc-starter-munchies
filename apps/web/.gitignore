@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # wrangler
 .wrangler/
+worker-configuration.d.ts
+
+# sanity output
+public/cms
+
+

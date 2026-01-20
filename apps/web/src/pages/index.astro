@@ -1,11 +1,15 @@
 ---
-import { Button } from '../components/button';
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getClient } from '@/lib/sanity';
+import { HOME_QUERY } from '@packages/sanity/queries';
+import type { HOME_QUERY_RESULT } from '@packages/sanity/types';
+export const prerender = true
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const sanityClient = getClient();
+const homeData = await sanityClient.fetch<HOME_QUERY_RESULT>(HOME_QUERY);
 ---
 
 <Layout>
-  <Button />
+	<h1>Sanity Data:</h1>
+	<pre>{JSON.stringify(homeData, null, 2)}</pre>
 </Layout>
