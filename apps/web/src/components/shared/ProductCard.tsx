@@ -3,21 +3,11 @@ import { getProductPrice } from "@/lib/medusa/get-product-price";
 
 import Tag from "./Tag";
 import Body from "./typography/Body";
-
-// Medusa product type
-interface MedusaProduct {
-  id: string;
-  title: string;
-  handle?: string;
-  thumbnail?: string;
-  images?: { url: string }[];
-  type?: { value?: string };
-  variants?: any[];
-}
+import type { HttpTypes } from "@medusajs/types";
 
 interface ProductCardProps {
   index?: number;
-  product: MedusaProduct | undefined;
+  product: HttpTypes.StoreProduct | undefined;
   size?: "PLP" | "default";
 }
 
@@ -38,7 +28,7 @@ export default function ProductCard({
       className={cx(
         "flex flex-1 flex-col items-center justify-center rounded-lg",
         {
-          "w-[88vw] max-w-[450px]": size === "default",
+          "w-[88vw] max-w-112.5": size === "default",
         }
       )}
       href={`/products/${product?.handle}`}

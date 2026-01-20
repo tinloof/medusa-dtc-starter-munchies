@@ -9,13 +9,13 @@
     "astro": "astro",
     "deploy": "astro build && wrangler deploy",
     "cf-typegen": "wrangler types",
-    "type:check": "astro check"
+    "type:check": "tsc --noEmit && astro check"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
-    "@fontsource-variable/climate-crisis": "^5.2.11",
     "@fontsource-variable/instrument-sans": "^5.2.8",
+    "@fontsource/climate-crisis": "^5.2.11",
     "@fontsource/instrument-serif": "^5.2.8",
     "@medusajs/js-sdk": "2.12.2",
     "@packages/sanity": "workspace:*",

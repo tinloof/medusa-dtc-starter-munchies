@@ -1,7 +1,8 @@
 ---
 import "@fontsource-variable/instrument-sans"
 import "@fontsource/instrument-serif"
-import "@fontsource-variable/climate-crisis"
+import "@fontsource/climate-crisis"
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css"
 import dynamicFavicon from '../components/dynamic-favicon'
 
@@ -14,7 +15,7 @@ const { title = "Munchies", description = "Delicious cookies delivered to your d
 ---
 
 <!doctype html>
-<html lang="en" class="overflow-x-clip overscroll-y-none scroll-smooth">
+<html lang="en" class="overflow-x-clip overscroll-y-none scroll-smooth" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
     <link href="/favicon.ico" rel="icon" type="image/x-icon" />
@@ -23,6 +24,7 @@ const { title = "Munchies", description = "Delicious cookies delivered to your d
 		<meta name="description" content={description} />
 		<title>{title}</title>
     <script set:html={dynamicFavicon} is:inline />
+    <ClientRouter />
 	</head>
 	<body>
 		<slot />

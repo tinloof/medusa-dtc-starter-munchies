@@ -120,12 +120,12 @@ importers:
       '@astrojs/react':
         specifier: ^4.4.2
         version: 4.4.2(@types/node@25.0.9)(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tsx@4.21.0)(yaml@2.8.2)
-      '@fontsource-variable/climate-crisis':
-        specifier: ^5.2.11
-        version: 5.2.11
       '@fontsource-variable/instrument-sans':
         specifier: ^5.2.8
         version: 5.2.8
+      '@fontsource/climate-crisis':
+        specifier: ^5.2.11
+        version: 5.2.11
       '@fontsource/instrument-serif':
         specifier: ^5.2.8
         version: 5.2.8
@@ -2235,11 +2235,11 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@fontsource-variable/climate-crisis@5.2.11':
-    resolution: {integrity: sha512-+UMP8UO1XVYo8QaOejdPtB+Eyzl6Mm/JPkvVS2mr1mZL3HX5XCIlNwQR0oF8Yx/MN7FgtAVUt/3xpShiJEG3Ng==}
-
   '@fontsource-variable/instrument-sans@5.2.8':
     resolution: {integrity: sha512-mTCaukbdIjjoipj2E3Q5XoZM3ZxJWdzyHevf/LG/0PHlfF9Q85pxOM7B7A9MerFyxmRzz5kVlumgIvgDSG4CPg==}
+
+  '@fontsource/climate-crisis@5.2.11':
+    resolution: {integrity: sha512-UsHd1wlMKsETnrHMSed/MfCenaqhY8SRKdXm0dJENo2PT1CI8v3DLgAGfgv9AKkIl73KlANSMBZqNc/hxayuOQ==}
 
   '@fontsource/instrument-serif@5.2.8':
     resolution: {integrity: sha512-s+bkz+syj2rO00Rmq9g0P+PwuLig33DR1xDR8pTWmovH1pUjwnncrFk++q9mmOex8fUQ7oW80gPpPDaw7V1MMw==}
@@ -15528,9 +15528,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@fontsource-variable/climate-crisis@5.2.11': {}
-
   '@fontsource-variable/instrument-sans@5.2.8': {}
+
+  '@fontsource/climate-crisis@5.2.11': {}
 
   '@fontsource/instrument-serif@5.2.8': {}
 

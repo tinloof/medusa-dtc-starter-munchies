@@ -1,20 +1,10 @@
+import type { HttpTypes } from "@medusajs/types";
 import CarouselSection from "../shared/CarouselSection";
 import ProductCard from "../shared/ProductCard";
 import Heading from "../shared/typography/Heading";
 
-// Medusa product type
-interface MedusaProduct {
-  id: string;
-  title: string;
-  handle?: string;
-  thumbnail?: string;
-  images?: { url: string }[];
-  type?: { value?: string };
-  variants?: any[];
-}
-
 interface FeaturedProductsCarouselProps {
-  products: MedusaProduct[];
+  products: HttpTypes.StoreProduct[];
   title?: string;
   cta?: {
     href: string | undefined;

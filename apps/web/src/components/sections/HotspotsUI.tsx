@@ -8,20 +8,10 @@ import { SanityImage } from "../shared/SanityImage";
 import Tag from "../shared/Tag";
 import Body from "../shared/typography/Body";
 import { getProductPrice } from "@/lib/medusa/get-product-price";
-
-// Medusa product type
-interface MedusaProduct {
-  id: string;
-  title: string;
-  handle?: string;
-  thumbnail?: string;
-  images?: { url: string }[];
-  type?: { value?: string };
-  variants?: any[];
-}
+import type { HttpTypes } from "@medusajs/types";
 
 interface HotspotsUIProps {
-  products: MedusaProduct[];
+  products: HttpTypes.StoreProduct[];
   image: SectionShopTheLook["image"];
   productHotSpots: SectionShopTheLook["productHotSpots"];
 }
@@ -101,10 +91,10 @@ export default function HotspotsUI({
 
       {/* Desktop view - single product card */}
       <a
-        className="hidden w-full max-w-[450px] flex-col justify-between gap-2xl rounded-lg lg:flex"
+        className="hidden w-full max-w-112.5 flex-col justify-between gap-2xl rounded-lg lg:flex"
         href={`/products/${product?.handle}`}
       >
-        <div className="flex w-full max-w-[450px] flex-1 flex-col items-center justify-center rounded-lg">
+        <div className="flex w-full max-w-112.5 flex-1 flex-col items-center justify-center rounded-lg">
           <div className="relative w-full">
             {thumbnailUrl ? (
               <img
@@ -160,7 +150,7 @@ export default function HotspotsUI({
 
           return (
             <a
-              className={cx("flex w-full gap-[10px] rounded-2xl p-xs", {
+              className={cx("flex w-full gap-2.5 rounded-2xl p-xs", {
                 "bg-secondary": selectedProduct === _product.id,
               })}
               href={`/products/${_product?.handle}`}
@@ -169,7 +159,7 @@ export default function HotspotsUI({
               {_thumbnailUrl ? (
                 <img
                   alt={_product?.title}
-                  className="aspect-square w-full max-w-[100px] rounded-lg border border-accent object-cover"
+                  className="aspect-square w-full max-w-25 rounded-lg border border-accent object-cover"
                   height={100}
                   src={_thumbnailUrl}
                   width={100}

@@ -3,7 +3,7 @@
 @theme inline {
   --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, Cambria, serif;
-  --font-display: "Climate Crisis Variable", cursive;
+  --font-display: "Climate Crisis", cursive;
   --color-background: var(--background);
   --color-accent: var(--accent);
   --color-accent-40: var(--accent-40);

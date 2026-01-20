@@ -1,21 +1,4 @@
-// Product types based on Medusa v2 API response
-interface StoreProductVariant {
-  id: string;
-  calculated_price?: {
-    calculated_amount?: number;
-    original_amount?: number;
-    currency_code?: string;
-    calculated_price?: {
-      price_list_type?: string;
-    };
-  };
-  sku?: string;
-}
-
-interface StoreProduct {
-  id: string;
-  variants?: StoreProductVariant[];
-}
+import type { HttpTypes } from "@medusajs/types";
 
 function convertToLocale({
   amount,
@@ -36,7 +19,7 @@ function getPercentageDiff(original: number, calculated: number) {
   return decrease.toFixed();
 }
 
-export function getPricesForVariant(variant: StoreProductVariant) {
+export function getPricesForVariant(variant: HttpTypes.StoreProductVariant) {
   if (!variant?.calculated_price?.calculated_amount) {
     return null;
   }
@@ -65,7 +48,7 @@ export function getProductPrice({
   product,
   variantId,
 }: {
-  product: StoreProduct;
+  product: HttpTypes.StoreProduct;
   variantId?: string;
 }) {
   if (!product?.id) {
