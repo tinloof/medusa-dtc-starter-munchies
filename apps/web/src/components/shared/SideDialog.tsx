@@ -1,0 +1,42 @@
+"use client";
+
+import type {
+  DialogCloseProps,
+  DialogContentProps,
+  DialogProps,
+  DialogTriggerProps,
+} from "@radix-ui/react-dialog";
+
+import {
+  Close,
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Trigger,
+} from "@radix-ui/react-dialog";
+
+export function Dialog(props: DialogProps) {
+  return <Root {...props} />;
+}
+
+export function OpenDialog(props: DialogTriggerProps) {
+  return <Trigger {...props} />;
+}
+
+export function CloseDialog(props: DialogCloseProps) {
+  return <Close {...props} />;
+}
+
+export function SideDialog({ style, ...passThrough }: DialogContentProps) {
+  return (
+    <Portal>
+      <Overlay className="fixed inset-0 bg-transparent" />
+      <Content
+        className="fixed top-0 right-0 z-9999 h-screen w-full max-w-[430px] transition-transform ease-in-out data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight"
+        style={{ ...style }}
+        {...passThrough}
+      />
+    </Portal>
+  );
+}

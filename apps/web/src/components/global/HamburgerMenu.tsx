@@ -11,6 +11,8 @@ import Body from "@/components/shared/typography/Body";
 import Label from "@/components/shared/typography/Label";
 import Heading from "@/components/shared/typography/Heading";
 import { SanityImage } from "@/components/shared/SanityImage";
+import LocalizedLink from "@/components/shared/LocalizedLink";
+import CountrySelectorDialog, { type Country } from "./CountrySelectorDialog";
 
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
@@ -19,9 +21,13 @@ type DropdownType = Extract<
 
 interface HamburgerMenuProps {
   navigation: Header["navigation"];
+  countries?: Country[];
 }
 
-export default function HamburgerMenu({ navigation }: HamburgerMenuProps) {
+export default function HamburgerMenu({
+  navigation,
+  countries = [],
+}: HamburgerMenuProps) {
   const [open, setOpen] = useState(false);
   const [activeMenuState, setActiveMenu] = useState<string | undefined>(
     undefined
@@ -75,6 +81,12 @@ export default function HamburgerMenu({ navigation }: HamburgerMenuProps) {
                 />
               ))}
             </div>
+            {/* Country Selector - Mobile */}
+            {countries.length > 0 && (
+              <div className="p-m">
+                <CountrySelectorDialog countries={countries} />
+              </div>
+            )}
           </div>
 
           {/* Dropdown submenu */}
@@ -122,7 +134,7 @@ function NavMenuItem({
     return (
       <>
         {item.cta?.link ? (
-          <a
+          <LocalizedLink
             className="p-m"
             href={item.cta.link}
             onClick={() => setOpen(false)}
@@ -130,7 +142,7 @@ function NavMenuItem({
             <Body font="sans" mobileSize="2xl">
               {item.cta.label}
             </Body>
-          </a>
+          </LocalizedLink>
         ) : null}
       </>
     );
@@ -175,7 +187,7 @@ function DropdownList({
               return null;
             }
             return (
-              <a
+              <LocalizedLink
                 className="flex w-full items-start justify-start gap-2 py-1"
                 href={link.link}
                 key={link._key}
@@ -184,7 +196,7 @@ function DropdownList({
                 <Label className="font-medium" font="sans" mobileSize="2xl">
                   {link.label}
                 </Label>
-              </a>
+              </LocalizedLink>
             );
           })}
         </div>
@@ -216,13 +228,13 @@ function DropdownList({
                 {card.title}
               </Heading>
               {card.cta?.link ? (
-                <a
+                <LocalizedLink
                   className="mt-xs rounded-lg border border-accent px-4 py-2 text-center font-sans text-sm font-medium transition-colors hover:bg-accent hover:text-background"
                   href={card.cta.link}
                   onClick={() => setOpen(false)}
                 >
                   {card.cta.label}
-                </a>
+                </LocalizedLink>
               ) : null}
             </div>
           ))}
@@ -279,7 +291,7 @@ function ArrowLeftIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M20 8L12 16L20 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M20 8L12 16L20 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -291,7 +303,7 @@ function ArrowRightIcon() {
       className="size-8"
       viewBox="0 0 32 32"
       fill="none">
-      <path d="M12 24L20 16L12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M12 24L20 16L12 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

@@ -1,64 +1,25 @@
 ---
 import type { Header as HeaderType } from "@packages/sanity/types";
-import LocalizedLink from "@/components/shared/LocalizedLink.astro";
-import AnnouncementBar from "./AnnouncementBar";
-import HamburgerMenu from "./HamburgerMenu";
+import HeaderClient from "./HeaderClient";
+import type { Country } from "./CountrySelectorDialog";
+import config from "@/config";
 
-type Props = HeaderType;
+interface Props extends HeaderType {
+  countries?: Country[];
+  currentCountryCode?: string;
+}
 
-const props = Astro.props;
-
-// Extract simple links from navigation (only link type items with cta)
-const simpleLinks = props.navigation?.filter(
-  (item): item is typeof item & { _type: "link" } => item._type === "link"
-) || [];
+const { countries = [], currentCountryCode = config.defaultCountryCode, ...headerProps } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 flex w-full flex-col items-center bg-background">
-  {/* Announcement Bar */}
-  <AnnouncementBar
+  <HeaderClient
     client:load
-    showAnnouncement={props.showAnnouncement}
-    announcementText={props.announcementText}
+    header={headerProps}
+    countries={countries}
+    countryCode={currentCountryCode}
+    defaultCountryCode={config.defaultCountryCode}
   />
-
-  <div class="mx-auto flex w-full max-w-max-screen items-center justify-between gap-2xl px-m py-xs lg:px-xl">
-    <div class="flex items-center gap-m">
-      <div class="flex items-center justify-start gap-s">
-        {/* Mobile Hamburger Menu */}
-        <HamburgerMenu client:load navigation={props.navigation} />
-
-        <LocalizedLink href="/">
-          <img
-            alt="Munchies logo"
-            class="my-2.25 h-5.5 w-fit lg:my-2.5 lg:h-9"
-            height="36"
-            src="/images/logo.svg"
-            width="375"
-          />
-        </LocalizedLink>
-      </div>
-
-      {/* Desktop Navigation */}
-      <nav class="hidden items-center gap-xl lg:flex">
-        {simpleLinks.map((item) => (
-          <LocalizedLink
-            href={item.cta?.link || "/"}
-            class="font-sans text-body-base font-medium hover:opacity-70 transition-opacity"
-          >
-            {item.cta?.label}
-          </LocalizedLink>
-        ))}
-      </nav>
-    </div>
-
-    <div class="flex items-center gap-s">
-      {/* Cart icon placeholder - no functionality for Phase 1 */}
-      <div class="relative h-10 w-10 p-2">
-        <img src="/icons/cart.svg" alt="Shopping Cart" class="h-6 w-6" />
-      </div>
-    </div>
-  </div>
   <div class="relative z-30 w-screen" id="navigation-portal" />
 
   {/* Bottom border on mobile */}

@@ -1,10 +1,10 @@
 ---
 import type { Footer as FooterType } from "@packages/sanity/types";
-import LocalizedLink from "@/components/shared/LocalizedLink.astro";
 import SanityImage from "@/components/shared/SanityImage.astro";
 import RichText from "@/components/portable-text/RichText.astro";
 import Body from "@/components/shared/typography/Body.astro";
 import Label from "@/components/shared/typography/Label.astro";
+import LocalizedLinkAstro from "../shared/LocalizedLinkAstro.astro";
 
 type Props = FooterType;
 
@@ -36,11 +36,11 @@ const currentYear = new Date().getFullYear();
                 return null;
               }
               return (
-                <LocalizedLink href={link.link}>
+                <LocalizedLinkAstro href={link.link}>
                   <Body desktopSize="base" font="sans" mobileSize="sm">
                     {link.label}
                   </Body>
-                </LocalizedLink>
+                </LocalizedLinkAstro>
               );
             })}
           </div>
@@ -65,11 +65,11 @@ const currentYear = new Date().getFullYear();
               return null;
             }
             return (
-              <LocalizedLink class="whitespace-nowrap" href={link.link}>
+              <LocalizedLinkAstro class="whitespace-nowrap" href={link.link}>
                 <Label desktopSize="xs" font="display" mobileSize="2xs">
                   {link.label}
                 </Label>
-              </LocalizedLink>
+              </LocalizedLinkAstro>
             );
           })}
         </div>
@@ -80,11 +80,11 @@ const currentYear = new Date().getFullYear();
             return null;
           }
           return (
-            <LocalizedLink href={link.link}>
+            <LocalizedLinkAstro href={link.link}>
               <Label desktopSize="xs" font="display" mobileSize="2xs">
                 {link.label}
               </Label>
-            </LocalizedLink>
+            </LocalizedLinkAstro>
           );
         })}
       </div>

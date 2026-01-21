@@ -1,69 +1,95 @@
 ---
 import WebsiteLayout from "@/layouts/WebsiteLayout.astro";
 import { getClient } from "@/lib/sanity";
-import { TEXT_PAGE_QUERY, MODULAR_PAGE_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
-import type { TEXT_PAGE_QUERYResult } from "@packages/sanity/types";
+import { TEXT_PAGE_QUERY, MODULAR_PAGE_QUERY, HOME_QUERY, FAQS_PAGE_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
+import type { TEXT_PAGE_QUERYResult, HOME_QUERYResult, FAQS_PAGE_QUERYResult } from "@packages/sanity/types";
 import TextPage from "@/components/text-page/TextPage.astro";
 import SectionRenderer from "@/components/sections/SectionRenderer.astro";
+import FaqPage from "@/components/faqs/FaqPage";
+import config from "@/config";
 
-export const prerender = true;
+// Disable prerendering - this route is fully SSR
+export const prerender = false;
 
-// Generate static paths for known text pages
-export async function getStaticPaths() {
-  const sanityClient = getClient();
-
-  // Fetch all text pages
-  const textPages = await sanityClient.fetch<{ pathname: { current: string } }[]>(
-    `*[_type == "text.page" && defined(pathname.current)]{ pathname }`
-  );
-
-  // Fetch all modular pages
-  const modularPages = await sanityClient.fetch<{ pathname: { current: string } }[]>(
-    `*[_type == "modular.page" && defined(pathname.current)]{ pathname }`
-  );
-
-  const paths = [
-    ...textPages.map((page) => ({
-      params: { path: page.pathname.current.replace(/^\//, "") },
-    })),
-    ...modularPages.map((page) => ({
-      params: { path: page.pathname.current.replace(/^\//, "") },
-    })),
-  ];
-
-  return paths;
-}
-
+// Get the path segments
 const { path } = Astro.params;
-const pathname = `/${path}`;
+const pathSegments = path ? path.split("/") : [];
+
+// Check if first segment is a country code
+const firstSegment = pathSegments[0]?.toLowerCase();
+const isCountryCode = firstSegment && config.supportedCountryCodes.includes(firstSegment);
+
+// Extract the actual path (without country code)
+const actualPath = isCountryCode ? pathSegments.slice(1).join("/") : path;
+const pathname = actualPath ? `/${actualPath}` : "/";
+
+// Determine the route type
+const isHome = pathname === "/" || pathname === "";
+const isFaqs = pathname === "/faqs";
 
 const sanityClient = getClient();
 
-// Try to fetch as text page first
-const textPageData = await sanityClient.fetch<TEXT_PAGE_QUERYResult>(TEXT_PAGE_QUERY, { pathname });
+// Fetch data based on route type
+let homeData: HOME_QUERYResult | null = null;
+let faqsData: FAQS_PAGE_QUERYResult | null = null;
+let textPageData: TEXT_PAGE_QUERYResult | null = null;
+let modularPageData: any = null;
 
-// Try to fetch as modular page if not a text page
-const modularPageData = !textPageData
-  ? await sanityClient.fetch(MODULAR_PAGE_QUERY, { pathname })
-  : null;
+if (isHome) {
+  homeData = await sanityClient.fetch<HOME_QUERYResult>(HOME_QUERY);
+} else if (isFaqs) {
+  faqsData = await sanityClient.fetch<FAQS_PAGE_QUERYResult>(FAQS_PAGE_QUERY);
+  if (!faqsData) {
+    return Astro.redirect("/404");
+  }
+} else {
+  // Try to fetch as text page first
+  textPageData = await sanityClient.fetch<TEXT_PAGE_QUERYResult>(TEXT_PAGE_QUERY, { pathname });
 
+  // Try to fetch as modular page if not a text page
+  if (!textPageData) {
+    modularPageData = await sanityClient.fetch(MODULAR_PAGE_QUERY, { pathname });
+  }
+
+  // 404 if neither found
+  if (!textPageData && !modularPageData) {
+    return Astro.redirect("/404");
+  }
+}
+
+// Fetch global data
 const globalData = await sanityClient.fetch(GLOBAL_QUERY);
 
-// 404 if neither found
-if (!textPageData && !modularPageData) {
-  return Astro.redirect("/404");
-}
+// Determine title and description
+const title = isHome
+  ? homeData?.title || "Munchies"
+  : isFaqs
+    ? faqsData?.title || "FAQs"
+    : textPageData?.title || modularPageData?.title || "Munchies";
+
+const description = isHome
+  ? homeData?.seo?.description || "Delicious cookies delivered to your door"
+  : isFaqs
+    ? faqsData?.description || "Frequently asked questions"
+    : textPageData?.description || modularPageData?.seo?.description || "";
+
+// Get country code from middleware
+const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
 ---
 
 <WebsiteLayout
-  title={textPageData?.title || modularPageData?.title || "Munchies"}
-  description={textPageData?.description || modularPageData?.seo?.description || ""}
+  title={title}
+  description={description}
   header={globalData?.header}
   footer={globalData?.footer}
 >
-  {textPageData ? (
+  {isHome && homeData ? (
+  <SectionRenderer sections={homeData.sections} fieldName="sections" countryCode={countryCode} />
+  ) : isFaqs && faqsData ? (
+    <FaqPage client:load data={faqsData} />
+  ) : textPageData ? (
     <TextPage data={textPageData} />
   ) : modularPageData ? (
-    <SectionRenderer sections={modularPageData.sections} fieldName="sections" />
+  <SectionRenderer sections={modularPageData.sections} fieldName="sections" countryCode={countryCode} />
   ) : null}
 </WebsiteLayout>

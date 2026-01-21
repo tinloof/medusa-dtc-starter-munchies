@@ -1,4 +1,6 @@
 ---
+import config from "@/config";
+
 interface Props {
   href: string;
   class?: string;
@@ -8,13 +10,19 @@ interface Props {
 
 const { href, class: className, scroll = false, ...rest } = Astro.props;
 
-// For Phase 1, we're skipping country code routing
-// Just normalize the path
+// Get country code from middleware
+const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
+const isDefaultCountry = countryCode === config.defaultCountryCode;
+
 const normalizedPath = href.toString();
 const isExternalLink = normalizedPath.startsWith("https://") || normalizedPath.startsWith("http://");
 const isDeepLink = normalizedPath.startsWith("#");
 
-const localizedHref = isExternalLink || isDeepLink ? href : href;
+// Add country code prefix for non-default countries
+const localizedHref =
+  isExternalLink || isDeepLink || isDefaultCountry
+    ? href
+    : `/${countryCode}${normalizedPath.startsWith("/") ? "" : "/"}${href}`;
 ---
 
 <a

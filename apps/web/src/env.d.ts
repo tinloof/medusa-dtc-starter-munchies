@@ -4,6 +4,10 @@
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>;
 
 declare namespace App {
-  interface Locals extends Runtime { }
+  interface Locals extends Runtime {
+    countryCode: string;
+    restPath: string;
+    isDefaultCountry: boolean;
+  }
 }
 

@@ -4,10 +4,12 @@ import { getClient } from "@/lib/sanity";
 import { HOME_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
 import type { HOME_QUERYResult } from "@packages/sanity/types";
 import SectionRenderer from "@/components/sections/SectionRenderer.astro";
-
-export const prerender = true;
+import config from "@/config";
 
 const sanityClient = getClient();
+
+// Get country code from middleware
+const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
 
 const [homeData, globalData] = await Promise.all([
   sanityClient.fetch<HOME_QUERYResult>(HOME_QUERY),
@@ -21,5 +23,5 @@ const [homeData, globalData] = await Promise.all([
   header={globalData?.header}
   footer={globalData?.footer}
 >
-  <SectionRenderer sections={homeData?.sections} fieldName="sections" />
+  <SectionRenderer sections={homeData?.sections} fieldName="sections" countryCode={countryCode} />
 </WebsiteLayout>

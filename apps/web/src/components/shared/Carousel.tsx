@@ -1,7 +1,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cx } from "class-variance-authority";
-import useEmblaCarousel, { type EmblaRootNodeRefType } from "embla-carousel-react";
-import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
+import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaOptionsType } from 'embla-carousel'
 import type { ComponentProps, PropsWithChildren } from "react";
 
 import {
@@ -13,8 +13,8 @@ import {
 } from "react";
 
 type CarouselContextType = {
-  api?: EmblaCarouselType;
-  ref: EmblaRootNodeRefType;
+  api?: any;
+  ref: any;
   scrollProgress: number;
 };
 
@@ -50,27 +50,27 @@ export const useCarouselButtons = (): CarouselButtonsState => {
 
   const onPrev = useCallback(() => {
     if (api) {
-      api.goToPrev();
+      (api as any).scrollPrev();
     }
   }, [api]);
 
   const onNext = useCallback(() => {
     if (api) {
-      api.goToNext();
+      (api as any).scrollNext();
     }
   }, [api]);
 
   const onSelect = useCallback(() => {
     if (api) {
-      setPrevDisabled(!api.canGoToPrev());
-      setNextDisabled(!api.canGoToNext());
+      setPrevDisabled(!(api as any).canScrollPrev());
+      setNextDisabled(!(api as any).canScrollNext());
     }
   }, [api]);
 
   useEffect(() => {
     if (api) {
       onSelect();
-      api.on("reinit", onSelect).on("select", onSelect);
+      (api as any).on("reInit", onSelect).on("select", onSelect);
     }
   }, [api, onSelect]);
 
@@ -92,7 +92,7 @@ export function Root(props: CarouselRootProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const onScroll = useCallback(
-    (_emblaApi: EmblaCarouselType) => {
+    (_emblaApi: any) => {
       const progress = Math.max(
         defaultProgress,
         Math.min(1, _emblaApi.scrollProgress())
@@ -108,7 +108,7 @@ export function Root(props: CarouselRootProps) {
     }
 
     onScroll(emblaApi);
-    emblaApi.on("reinit", onScroll).on("scroll", onScroll);
+    (emblaApi as any).on("reInit", onScroll).on("scroll", onScroll);
   }, [emblaApi, onScroll]);
 
   return (

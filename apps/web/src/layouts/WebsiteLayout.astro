@@ -3,6 +3,8 @@ import Layout from "./Layout.astro";
 import Header from "@/components/global/Header.astro";
 import Footer from "@/components/global/Footer.astro";
 import type { Header as HeaderType, Footer as FooterType } from "@packages/sanity/types";
+import { listCountries } from "@/lib/medusa/regions";
+import config from "@/config";
 
 interface Props {
   title?: string;
@@ -12,10 +14,28 @@ interface Props {
 }
 
 const { title, description, header, footer } = Astro.props;
+
+// Get country code from middleware
+const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
+
+// Fetch countries for country selector
+let countries: Array<{ code: string; name: string; currency: { code: string; symbol: string } }> = [];
+try {
+  const fetchedCountries = await listCountries();
+  countries = fetchedCountries.filter(Boolean) as typeof countries;
+} catch (e) {
+  // Countries will be empty if fetch fails
+}
 ---
 
 <Layout title={title} description={description}>
-  {header && <Header {...header} />}
+  {header && (
+    <Header
+      {...header}
+      countries={countries}
+      currentCountryCode={countryCode}
+    />
+  )}
   <main class="flex-1">
     <slot />
   </main>

@@ -15,9 +15,10 @@ type Section = NonNullable<NonNullable<HOME_QUERYResult>["sections"]>[number];
 interface Props {
   sections: Section[] | null | undefined;
   fieldName?: string;
+  countryCode?: string;
 }
 
-const { sections, fieldName = "body" } = Astro.props;
+const { sections, fieldName = "body", countryCode } = Astro.props;
 
 // Map section types to components
 const sectionComponents: Record<string, any> = {
@@ -67,6 +68,7 @@ function getDeepLinkId(blockKey: string | undefined) {
       {...section}
       _sectionIndex={index}
       _sections={sections}
+      countryCode={countryCode}
       rootHtmlAttributes={{
         "data-section": section._type,
         id: getDeepLinkId(section._key),
