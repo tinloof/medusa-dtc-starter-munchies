@@ -11,7 +11,8 @@
         ".env*"
       ],
       "outputs": [
-        "dist/**"
+        "dist/**",
+        ".medusa/**"
       ],
       "env": [
         "SANITY_STUDIO_PROJECT_ID",
