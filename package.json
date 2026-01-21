@@ -6,7 +6,7 @@
     "dev": "turbo run dev",
     "check": "ultracite check",
     "fix": "ultracite fix",
-    "check-types": "turbo run check-types",
+    "typegen": "turbo run typegen",
     "prepare": "husky"
   },
   "devDependencies": {

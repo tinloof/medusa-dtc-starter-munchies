@@ -4,5 +4,12 @@
     "ultracite/biome/core",
     "ultracite/biome/astro",
     "ultracite/biome/react"
-  ]
+  ],
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
+    }
+  }
 }

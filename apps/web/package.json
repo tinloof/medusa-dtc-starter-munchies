@@ -1,14 +1,22 @@
 {
-  "name": "web",
+  "name": "@apps/web",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port 3000",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.11"
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/react": "^4.4.2",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.11",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwindcss": "^4.1.18"
   }
 }
