@@ -40,7 +40,7 @@ if (isHome) {
 } else if (isFaqs) {
   faqsData = await sanityClient.fetch<FAQS_PAGE_QUERYResult>(FAQS_PAGE_QUERY);
   if (!faqsData) {
-    return Astro.rewrite('/404');
+    return Astro.redirect('/404', 404);
   }
 } else {
   // First, discover the document type using ROUTE_QUERY
@@ -57,7 +57,7 @@ if (isHome) {
 
   // 404 if no valid document found
   if (!textPageData && !modularPageData && !homeData) {
-    return Astro.rewrite('/404');
+    return Astro.redirect('/404', 404);
   }
 }
 

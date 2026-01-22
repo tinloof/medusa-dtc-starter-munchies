@@ -17,12 +17,12 @@ export const prerender = false;
 const { countryCode, handle } = Astro.params;
 
 if (!handle || !countryCode) {
-  return Astro.rewrite('/404');
+  return Astro.redirect('/404', 404);
 }
 
 // Validate country code
 if (!config.supportedCountryCodes.includes(countryCode.toLowerCase())) {
-  return Astro.rewrite('/404');
+  return Astro.redirect('/404', 404);
 }
 
 // Redirect if trying to access with default country code (should be at /products/[handle])
@@ -36,14 +36,14 @@ const normalizedCountryCode = countryCode.toLowerCase();
 const region = await getRegion(normalizedCountryCode);
 if (!region) {
   console.error("No region found for country:", normalizedCountryCode);
-  return Astro.rewrite('/404');
+  return Astro.redirect('/404', 404);
 }
 
 // Fetch product from Medusa
 const product = await getProductByHandle(handle, region.id);
 if (!product) {
   console.error("No product found for handle:", handle);
-  return Astro.rewrite('/404');
+  return Astro.redirect('/404', 404);
 }
 
 // Fetch product content from Sanity
