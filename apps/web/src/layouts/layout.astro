@@ -1,26 +1,49 @@
 ---
+import "@fontsource-variable/instrument-sans";
+import "@fontsource/instrument-serif";
+import "@fontsource/climate-crisis";
+import { ClientRouter } from "astro:transitions";
+
 import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Munchies",
+  description = "Delicious cookies delivered to your door",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <link href="/favicon.ico" rel="icon" type="image/x-icon">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="generator" content={Astro.generator}>
-    <title>Astro Basics</title>
+    <meta name="description" content={description}>
+    <title>{title}</title>
+    <ClientRouter />
+    <script>
+      const favicon = document.querySelector('link[rel="icon"]');
+
+      document.addEventListener("visibilitychange", () => {
+        const state = document.hidden ? "-inactive" : "";
+
+        if (favicon !== null) {
+          if (state) {
+            favicon.setAttribute("href", `/favicon${state}.ico`);
+          } else {
+            favicon.setAttribute("href", "/favicon.ico");
+          }
+        }
+      });
+    </script>
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

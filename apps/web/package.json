@@ -11,6 +11,9 @@
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
+    "@fontsource-variable/instrument-sans": "^5.2.8",
+    "@fontsource/climate-crisis": "^5.2.11",
+    "@fontsource/instrument-serif": "^5.2.8",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
