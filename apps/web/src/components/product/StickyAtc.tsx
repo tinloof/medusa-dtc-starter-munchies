@@ -10,9 +10,10 @@ import AddToCart from "./AddToCart";
 import OptionsSelect from "./Options";
 
 export default function StickyAtc({
+  initialSelectedOptions,
   region_id,
   ...product
-}: { region_id: string } & StoreProduct) {
+}: { initialSelectedOptions?: Record<string, string | undefined>; region_id: string } & StoreProduct) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function StickyAtc({
   }, []);
 
   return (
-    <ProductVariantsProvider product={product}>
+    <ProductVariantsProvider initialSelectedOptions={initialSelectedOptions} product={product}>
       <div
         className={cx(
           "fixed right-0 bottom-0 left-0 z-80 w-screen min-w-[320px] border-accent border-t bg-background p-m transition-transform duration-300 lg:hidden",

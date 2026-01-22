@@ -50,6 +50,18 @@ const addonProducts = addonIds.length > 0
   ? (await getProductsByIds(addonIds, region.id)).products
   : [];
 
+// Read URL params to get initial selected options (prevents price flash on hydration)
+const initialSelectedOptions: Record<string, string | undefined> = {};
+product.options?.forEach((option) => {
+  const key = option.title.toLowerCase();
+  const urlValue = Astro.url.searchParams.get(key);
+  if (urlValue) {
+    initialSelectedOptions[key] = urlValue;
+  } else {
+    initialSelectedOptions[key] = option.values?.[0]?.value.toLowerCase() ?? "";
+  }
+});
+
 const title = content?.seo?.title || product.title || "Product";
 const description = content?.seo?.description || product.description || "";
 ---
@@ -66,6 +78,7 @@ const description = content?.seo?.description || product.description || "";
       client:load
       addonProducts={addonProducts}
       content={content}
+      initialSelectedOptions={initialSelectedOptions}
       region_id={region.id}
       countryCode={countryCode}
       {...product}
@@ -80,5 +93,5 @@ const description = content?.seo?.description || product.description || "";
     />
   ) : null}
 
-  <StickyAtc client:load {...product} region_id={region.id} />
+  <StickyAtc client:load initialSelectedOptions={initialSelectedOptions} {...product} region_id={region.id} />
 </WebsiteLayout>

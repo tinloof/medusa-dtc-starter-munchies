@@ -19,14 +19,15 @@ import ProductSpecs from "./Specs";
 type Props = {
   addonProducts?: StoreProduct[];
   content: PRODUCT_QUERYResult;
+  initialSelectedOptions?: Record<string, string | undefined>;
   region_id: string;
   countryCode: string;
 } & StoreProduct;
 
-export default function ProductInformation({ addonProducts, countryCode, ...props }: Props) {
+export default function ProductInformation({ addonProducts, countryCode, initialSelectedOptions, ...props }: Props) {
   return (
     <CountryCodeProvider countryCode={countryCode} defaultCountryCode={config.defaultCountryCode}>
-      <ProductVariantsProvider product={props}>
+      <ProductVariantsProvider initialSelectedOptions={initialSelectedOptions} product={props}>
         <div className="lg:y-s flex w-full flex-col gap-lg px-m pt-s pb-2xl lg:max-w-145">
           <BreadCrumbs collection={props.collection} title={props.title} />
           <Heading
