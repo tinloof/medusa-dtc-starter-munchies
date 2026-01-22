@@ -17,7 +17,7 @@ export const prerender = false;
 const { handle } = Astro.params;
 
 if (!handle) {
-  return new Response(null, { status: 404, statusText: "Not Found" });
+  return Astro.rewrite('/404');
 }
 
 // Get country code from middleware locals (set by middleware)
@@ -27,14 +27,14 @@ const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
 const region = await getRegion(countryCode);
 if (!region) {
   console.error("No region found for country:", countryCode);
-  return new Response(null, { status: 404, statusText: "Not Found" });
+  return Astro.rewrite('/404');
 }
 
 // Fetch product from Medusa
 const product = await getProductByHandle(handle, region.id);
 if (!product) {
   console.error("No product found for handle:", handle);
-  return new Response(null, { status: 404, statusText: "Not Found" });
+  return Astro.rewrite('/404');
 }
 
 // Fetch product content from Sanity

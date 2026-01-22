@@ -1,0 +1,26 @@
+---
+import WebsiteLayout from "@/layouts/WebsiteLayout.astro";
+import { getClient } from "@/lib/sanity";
+import { GLOBAL_QUERY } from "@packages/sanity/queries";
+
+const sanityClient = getClient();
+const globalData = await sanityClient.fetch(GLOBAL_QUERY);
+---
+
+<WebsiteLayout
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist."
+  header={globalData?.header}
+  footer={globalData?.footer}
+>
+  <section class="mx-auto flex min-h-[50vh] max-w-max-screen flex-col items-center justify-center gap-m px-m py-2xl text-center">
+    <h1 class="font-serif text-heading-5xl italic">404</h1>
+    <p class="font-sans text-body-xl">The page you're looking for doesn't exist.</p>
+    <a
+      href="/"
+      class="mt-m rounded-full border-[1.5px] border-accent bg-transparent px-8 py-4 font-serif text-accent transition-colors hover:bg-accent hover:text-background"
+    >
+      Go back home
+    </a>
+  </section>
+</WebsiteLayout>
