@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@/layouts/layout.astro";
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: {
+        countryCode: "us",
+        path: "test",
+      },
+    },
+    {
+      params: {
+        countryCode: "fr",
+      },
+    },
+  ];
+}) satisfies GetStaticPaths;
+---
+
+<Layout>
+  <p>helo world</p>
+</Layout>

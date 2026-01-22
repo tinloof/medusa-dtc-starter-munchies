@@ -1,0 +1,12 @@
+---
+import { PortableText } from "astro-portabletext";
+import type { PortableTextProps } from "astro-portabletext/types";
+
+type Props = PortableTextProps;
+
+const { value = [] } = Astro.props;
+---
+
+<div class="flex flex-col gap-4">
+  <PortableText value={value} />
+</div>

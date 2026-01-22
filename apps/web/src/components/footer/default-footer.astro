@@ -1,0 +1,31 @@
+---
+import type { Footer as FooterType } from "@packages/sanity/types";
+import RichText from "../rich-text.astro";
+import SanityImage from "../sanity-image";
+import BottomLinks from "./bottom-links.astro";
+import { NewsLetter } from "./newsletter";
+import TopLinks from "./top-links.astro";
+
+type Props = FooterType;
+
+const footer = Astro.props;
+---
+
+<NewsLetter {...footer}>
+  {footer.signup_success ? <RichText value={footer.signup_success} slot="successNode" /> : null}
+  {footer.copy ? <RichText value={footer.copy} slot="copyNode" /> : null}
+  {footer.footnote ? <RichText value={footer.footnote} slot="footnoteNode" /> : null}
+  {footer.signup_error ? <RichText value={footer.signup_error}slot="errorNode" /> : null}
+</NewsLetter>
+
+<footer class="w-full bg-accent" id="footer">
+  <div
+    class="mx-auto flex w-full max-w-max-screen flex-col gap-2xl px-m pt-6xl pb-m text-background lg:px-xl lg:pb-xl"
+  >
+    <TopLinks {...footer} />
+    {footer.image ? (
+      <SanityImage className="lg:mt-2xl" data={footer.image} />
+    ) : null}
+    <BottomLinks {...footer} />
+  </div>
+</footer>

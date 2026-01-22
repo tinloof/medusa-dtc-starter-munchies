@@ -1,0 +1,12 @@
+---
+import Layout from "@/layouts/layout.astro";
+
+export const prerender = false;
+const params = Astro.params;
+
+console.info(params);
+---
+
+<Layout>
+  <p>product page</p>
+</Layout>

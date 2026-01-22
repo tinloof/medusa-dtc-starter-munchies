@@ -1,0 +1,52 @@
+---
+import type { Footer as FooterType } from "@packages/sanity/types";
+import LocalizedLink from "../localized-link.astro";
+import Label from "../typography/label";
+
+type Props = FooterType;
+
+const { bottomLinks, socialLinks } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+---
+
+<div
+  class="climate-label-xs flex flex-col justify-between gap-lg lg:flex-row lg:items-center"
+>
+  <div class="flex flex-col gap-2xl lg:flex-row">
+    <Label desktopSize="xs" font="display" mobileSize="2xs">
+      © {currentYear}
+    </Label>
+    <div class="flex flex-wrap gap-2xl">
+      {bottomLinks?.map((link) => {
+        if (!link.link) {
+          return null;
+        }
+        return (
+          <LocalizedLink
+            class="whitespace-nowrap"
+            href={link.link}
+          >
+            <Label desktopSize="xs" font="display" mobileSize="2xs">
+              {link.label}
+            </Label>
+          </LocalizedLink>
+        );
+      })}
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-2xl">
+    {socialLinks?.map((link) => {
+      if (!link.link) {
+        return null;
+      }
+      return (
+        <LocalizedLink href={link.link} >
+          <Label desktopSize="xs" font="display" mobileSize="2xs">
+            {link.label}
+          </Label>
+        </LocalizedLink>
+      );
+    })}
+  </div>
+</div>

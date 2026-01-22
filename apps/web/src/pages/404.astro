@@ -1,0 +1,44 @@
+---
+import { NOT_FOUND_PAGE_QUERY } from "@packages/sanity/queries";
+import type { NOT_FOUND_PAGE_QUERY_RESULT } from "@packages/sanity/types";
+import AppLink from "@/components/app-link.astro";
+import { Body } from "@/components/typography/body";
+import { Heading } from "@/components/typography/heading";
+import Layout from "@/layouts/layout.astro";
+import { getClient } from "@/lib/sanity";
+
+const sanityClient = getClient();
+
+const data =
+  await sanityClient.fetch<NOT_FOUND_PAGE_QUERY_RESULT>(NOT_FOUND_PAGE_QUERY);
+---
+
+<Layout title="Not found">
+  <section
+    class="mx-auto h-[calc(100vh-50px)] max-h-162.5 w-full max-w-max-screen p-m lg:p-xl"
+  >
+    <div
+      class="flex h-full w-full flex-col items-center justify-center gap-4 rounded-lg border border-accent"
+    >
+      <Heading desktopSize="5xl" font="display" mobileSize="3xl" tag="h1">
+        404
+      </Heading>
+      <Body
+        className="font-semibold"
+        desktopSize="xl"
+        font="sans"
+        mobileSize="lg"
+      >
+        {data?.text}
+      </Body>
+      <AppLink
+        class="mt-2xl"
+        href={data?.cta?.link}
+        size="lg"
+        variant="outline"
+      >
+        {data?.cta?.label}
+      </AppLink>
+    </div>
+  </section>
+</Layout>

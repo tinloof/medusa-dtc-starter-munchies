@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev --port 3000",
     "build": "astro build",
-    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy",
+    "preview": "astro build && wrangler dev --port 3000",
     "astro": "astro"
   },
   "dependencies": {
@@ -14,12 +15,23 @@
     "@fontsource-variable/instrument-sans": "^5.2.8",
     "@fontsource/climate-crisis": "^5.2.11",
     "@fontsource/instrument-serif": "^5.2.8",
+    "@packages/sanity": "workspace:*",
+    "@sanity/asset-utils": "^2.3.0",
+    "@sanity/client": "^7.14.0",
+    "@sanity/image-url": "^2.0.3",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.11",
+    "astro-portabletext": "^0.13.0",
+    "astro-seo": "^1.1.0",
+    "class-variance-authority": "^0.7.1",
+    "jotai": "^2.16.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "wrangler": "^4.60.0"
   }
 }

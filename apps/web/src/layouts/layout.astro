@@ -3,6 +3,13 @@ import "@fontsource-variable/instrument-sans";
 import "@fontsource/instrument-serif";
 import "@fontsource/climate-crisis";
 import { ClientRouter } from "astro:transitions";
+import { GLOBAL_QUERY } from "@packages/sanity/queries";
+import type { GLOBAL_QUERY_RESULT } from "@packages/sanity/types";
+import { SEO } from "astro-seo";
+import Footer from "@/components/footer/index.astro";
+import config from "@/config";
+import { getClient } from "@/lib/sanity";
+import { getOgImages } from "@/lib/sanity/get-og-images";
 
 import "@/styles/global.css";
 
@@ -11,21 +18,52 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = "Munchies",
-  description = "Delicious cookies delivered to your door",
-} = Astro.props;
+const sanityClient = getClient();
+
+const globalData = await sanityClient.fetch<GLOBAL_QUERY_RESULT>(GLOBAL_QUERY);
+
+if (!globalData) {
+  return Astro.redirect("/404", 404);
+}
+
+const { title = config.title, description = config.description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+  lang="en"
+  transition:animate="none"
+  class="overflow-x-clip overscroll-y-none scroll-smooth"
+>
   <head>
     <meta charset="UTF-8">
-    <link href="/favicon.ico" rel="icon" type="image/x-icon">
-    <meta name="viewport" content="width=device-width">
+    <SEO
+      title={title}
+      description={description}
+      titleTemplate={`%s - ${config.title}`}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): ""
+        },
+        optional: {
+          siteName: title,
+          description: description,
+        }
+      }}
+      twitter={{
+        title,
+        description,
+        image: globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): "",
+        creator: "@Tinloof"
+      }}
+      extend={{
+        link: [{rel: "icon", href: "/favicon.ico", type:"image/x-icon"}],
+        meta: [{name: "viewport", content: "width=device-width"}]
+      }}
+    />
     <meta name="generator" content={Astro.generator}>
-    <meta name="description" content={description}>
-    <title>{title}</title>
     <ClientRouter />
     <script>
       const favicon = document.querySelector('link[rel="icon"]');
@@ -43,7 +81,12 @@ const {
       });
     </script>
   </head>
-  <body>
-    <slot />
+  <body
+    class="scrollbar-hide relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip"
+  >
+    <main class="flex-1">
+      <slot />
+    </main>
+    {globalData.footer && <Footer {...globalData.footer} />}
   </body>
 </html>

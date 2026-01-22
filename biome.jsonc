@@ -9,6 +9,9 @@
     "rules": {
       "suspicious": {
         "noExplicitAny": "off"
+      },
+      "nursery": {
+        "useSortedClasses": "error"
       }
     }
   }

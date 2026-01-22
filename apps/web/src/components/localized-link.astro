@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import config from "@/config";
+
+interface Props extends HTMLAttributes<"a"> {}
+
+const { href, ...rest } = Astro.props;
+
+// Get country code from middleware
+const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
+const isDefaultCountry = countryCode === config.defaultCountryCode;
+
+const normalizedPath = href?.toString();
+const isExternalLink =
+  normalizedPath?.startsWith("https://") ||
+  normalizedPath?.startsWith("http://");
+const isDeepLink = normalizedPath?.startsWith("#");
+
+// Add country code prefix for non-default countries
+const localizedHref =
+  isExternalLink || isDeepLink || isDefaultCountry
+    ? href
+    : `/${countryCode}${normalizedPath?.startsWith("/") ? "" : "/"}${href}`;
+---
+
+<a
+  href={localizedHref}
+  {...isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+  {...rest}
+>
+  <slot />
+</a>
