@@ -64,7 +64,7 @@ export default function HamburgerMenu({
           {/* Main menu */}
           <div
             className={cx(
-              "scrollbar-hide fixed left-0 flex h-[calc(100dvh-var(--header-height))] w-screen flex-1 flex-col items-start justify-between overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
+              "scrollbar-hide fixed left-0 flex h-[calc(100dvh-var(--header-height))] w-screen flex-1 flex-col items-start overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300",
               {
                 "-translate-x-full": isMenuActive,
                 "translate-x-0": !isMenuActive,

@@ -6,10 +6,26 @@ import type { HOME_QUERYResult } from "@packages/sanity/types";
 import SectionRenderer from "@/components/sections/SectionRenderer.astro";
 import config from "@/config";
 
-// US home page is prerendered at build time
+export function getStaticPaths() {
+  // Exclude default country code - it's handled by root index.astro
+  return config.supportedCountryCodes
+    .filter((code) => code !== config.defaultCountryCode)
+    .map((code) => ({
+      params: { countryCode: code },
+    }));
+}
+
+// Home pages are prerendered at build time
 export const prerender = true;
 
-const countryCode = config.defaultCountryCode;
+const { countryCode } = Astro.params;
+
+// Validate country code
+if (!countryCode || !config.supportedCountryCodes.includes(countryCode.toLowerCase())) {
+  return Astro.redirect(`/${config.defaultCountryCode}`);
+}
+
+const normalizedCountryCode = countryCode.toLowerCase();
 const sanityClient = getClient();
 
 const [homeData, globalData] = await Promise.all([
@@ -24,5 +40,5 @@ const [homeData, globalData] = await Promise.all([
   header={globalData?.header}
   footer={globalData?.footer}
 >
-  <SectionRenderer sections={homeData?.sections} fieldName="sections" countryCode={countryCode} />
+  <SectionRenderer sections={homeData?.sections} fieldName="sections" countryCode={normalizedCountryCode} />
 </WebsiteLayout>

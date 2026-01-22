@@ -1,7 +1,7 @@
 ---
 import WebsiteLayout from "@/layouts/WebsiteLayout.astro";
 import { getClient } from "@/lib/sanity";
-import { TEXT_PAGE_QUERY, MODULAR_PAGE_QUERY, HOME_QUERY, FAQS_PAGE_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
+import { TEXT_PAGE_QUERY, MODULAR_PAGE_QUERY, HOME_QUERY, FAQS_PAGE_QUERY, GLOBAL_QUERY, ROUTE_QUERY } from "@packages/sanity/queries";
 import type { TEXT_PAGE_QUERYResult, HOME_QUERYResult, FAQS_PAGE_QUERYResult } from "@packages/sanity/types";
 import TextPage from "@/components/text-page/TextPage.astro";
 import SectionRenderer from "@/components/sections/SectionRenderer.astro";
@@ -40,41 +40,45 @@ if (isHome) {
 } else if (isFaqs) {
   faqsData = await sanityClient.fetch<FAQS_PAGE_QUERYResult>(FAQS_PAGE_QUERY);
   if (!faqsData) {
-    return Astro.redirect("/404");
+    return new Response(null, { status: 404, statusText: "Not Found" });
   }
 } else {
-  // Try to fetch as text page first
-  textPageData = await sanityClient.fetch<TEXT_PAGE_QUERYResult>(TEXT_PAGE_QUERY, { pathname });
+  // First, discover the document type using ROUTE_QUERY
+  const routeData = await sanityClient.fetch(ROUTE_QUERY, { pathname });
+  const documentType = routeData?.routeData?._type;
 
-  // Try to fetch as modular page if not a text page
-  if (!textPageData) {
+  if (documentType === "text.page") {
+    textPageData = await sanityClient.fetch<TEXT_PAGE_QUERYResult>(TEXT_PAGE_QUERY, { pathname });
+  } else if (documentType === "modular.page") {
     modularPageData = await sanityClient.fetch(MODULAR_PAGE_QUERY, { pathname });
+  } else if (documentType === "home") {
+    homeData = await sanityClient.fetch<HOME_QUERYResult>(HOME_QUERY);
   }
 
-  // 404 if neither found
-  if (!textPageData && !modularPageData) {
-    return Astro.redirect("/404");
+  // 404 if no valid document found
+  if (!textPageData && !modularPageData && !homeData) {
+    return new Response(null, { status: 404, statusText: "Not Found" });
   }
 }
 
 // Fetch global data
 const globalData = await sanityClient.fetch(GLOBAL_QUERY);
 
-// Determine title and description
-const title = isHome
-  ? homeData?.title || "Munchies"
-  : isFaqs
-    ? faqsData?.title || "FAQs"
-    : textPageData?.title || modularPageData?.title || "Munchies";
-
-const description = isHome
-  ? homeData?.seo?.description || "Delicious cookies delivered to your door"
-  : isFaqs
-    ? faqsData?.description || "Frequently asked questions"
-    : textPageData?.description || modularPageData?.seo?.description || "";
-
 // Get country code from middleware
 const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
+
+// Determine title and description based on what data we have
+const title = homeData?.title
+  || faqsData?.title
+  || textPageData?.title
+  || modularPageData?.title
+  || "Munchies";
+
+const description = homeData?.seo?.description
+  || faqsData?.description
+  || textPageData?.description
+  || modularPageData?.seo?.description
+  || "";
 ---
 
 <WebsiteLayout
@@ -83,13 +87,13 @@ const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
   header={globalData?.header}
   footer={globalData?.footer}
 >
-  {isHome && homeData ? (
-  <SectionRenderer sections={homeData.sections} fieldName="sections" countryCode={countryCode} />
-  ) : isFaqs && faqsData ? (
+  {homeData ? (
+    <SectionRenderer sections={homeData.sections} fieldName="sections" countryCode={countryCode} />
+  ) : faqsData ? (
     <FaqPage client:load data={faqsData} />
   ) : textPageData ? (
     <TextPage data={textPageData} />
   ) : modularPageData ? (
-  <SectionRenderer sections={modularPageData.sections} fieldName="sections" countryCode={countryCode} />
+    <SectionRenderer sections={modularPageData.sections} fieldName="sections" countryCode={countryCode} />
   ) : null}
 </WebsiteLayout>

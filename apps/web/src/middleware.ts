@@ -1,7 +1,7 @@
 import { defineMiddleware } from "astro:middleware";
 import config from "./config";
 
-// Paths that should not have country code prefix
+// Paths that should be excluded from country code handling
 const excludedPaths = [
   "/api",
   "/images",
@@ -18,28 +18,6 @@ function isExcludedPath(pathname: string): boolean {
   );
 }
 
-function extractCountryCode(pathname: string): {
-  countryCode: string;
-  restPath: string;
-} {
-  // Skip excluded paths
-  if (isExcludedPath(pathname)) {
-    return { countryCode: config.defaultCountryCode, restPath: pathname };
-  }
-
-  const parts = pathname.split("/").filter(Boolean);
-  const firstPart = parts[0]?.toLowerCase();
-
-  // Check if first part is a valid country code
-  if (firstPart && config.supportedCountryCodes.includes(firstPart)) {
-    const restPath = "/" + parts.slice(1).join("/");
-    return { countryCode: firstPart, restPath: restPath || "/" };
-  }
-
-  // No country code in URL, use default
-  return { countryCode: config.defaultCountryCode, restPath: pathname };
-}
-
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
@@ -48,24 +26,24 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  const { countryCode, restPath } = extractCountryCode(pathname);
+  // Extract first path segment
+  const parts = pathname.split("/").filter(Boolean);
+  const firstPart = parts[0]?.toLowerCase();
 
-  // Store country code in locals for components to access
-  context.locals.countryCode = countryCode;
-  context.locals.restPath = restPath;
-
-  // If URL has no country code and we're using default, rewrite internally
-  // This allows `/products` to work as `/us/products` internally
-  const firstPart = pathname.split("/").filter(Boolean)[0]?.toLowerCase();
-  const hasCountryCode = config.supportedCountryCodes.includes(firstPart || "");
-
-  if (!hasCountryCode && countryCode === config.defaultCountryCode) {
-    // For default country, we don't redirect - just serve the content
-    // The route will handle it via [...path] catch-all
-    context.locals.isDefaultCountry = true;
-  } else {
-    context.locals.isDefaultCountry = countryCode === config.defaultCountryCode;
+  // Redirect /us/... to /... (default country shouldn't appear in URL)
+  if (firstPart === config.defaultCountryCode) {
+    const restPath = "/" + parts.slice(1).join("/");
+    return context.redirect(restPath || "/", 308);
   }
+
+  // Check if path has a valid non-default country code
+  const hasCountryCode = firstPart && config.supportedCountryCodes.includes(firstPart);
+
+  // Store country code in locals for components
+  const countryCode = hasCountryCode ? firstPart : config.defaultCountryCode;
+  context.locals.countryCode = countryCode;
+  context.locals.restPath = hasCountryCode ? "/" + parts.slice(1).join("/") : pathname;
+  context.locals.isDefaultCountry = countryCode === config.defaultCountryCode;
 
   return next();
 });
