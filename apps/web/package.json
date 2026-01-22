@@ -26,7 +26,6 @@
     "astro-portabletext": "^0.13.0",
     "astro-seo": "^1.1.0",
     "class-variance-authority": "^0.7.1",
-    "jotai": "^2.16.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18"
