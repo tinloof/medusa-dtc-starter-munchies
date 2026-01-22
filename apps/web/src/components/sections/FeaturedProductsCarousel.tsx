@@ -4,6 +4,7 @@ import ProductCard from "../shared/ProductCard";
 import Heading from "../shared/typography/Heading";
 
 interface FeaturedProductsCarouselProps {
+  countryCode?: string;
   products: HttpTypes.StoreProduct[];
   title?: string;
   cta?: {
@@ -13,12 +14,13 @@ interface FeaturedProductsCarouselProps {
 }
 
 export default function FeaturedProductsCarousel({
+  countryCode,
   products,
   title,
   cta,
 }: FeaturedProductsCarouselProps) {
   const slides = products.map((product, index) => (
-    <ProductCard index={index} key={product.id} product={product} />
+    <ProductCard countryCode={countryCode} index={index} key={product.id} product={product} />
   ));
 
   return (

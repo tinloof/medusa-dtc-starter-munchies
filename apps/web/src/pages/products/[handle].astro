@@ -1,0 +1,84 @@
+---
+import WebsiteLayout from "@/layouts/WebsiteLayout.astro";
+import { getClient } from "@/lib/sanity";
+import { PRODUCT_QUERY, GLOBAL_QUERY } from "@packages/sanity/queries";
+import type { PRODUCT_QUERYResult } from "@packages/sanity/types";
+import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import SectionRenderer from "@/components/sections/SectionRenderer.astro";
+import { ProductImagesCarousel } from "@/components/product/ImageCarousel";
+import ProductInformation from "@/components/product/ProductInformation";
+import StickyAtc from "@/components/product/StickyAtc";
+import config from "@/config";
+
+// SSR for product pages (handles US/default country)
+export const prerender = false;
+
+const { handle } = Astro.params;
+
+if (!handle) {
+  return new Response(null, { status: 404, statusText: "Not Found" });
+}
+
+// Get country code from middleware locals (set by middleware)
+const countryCode = Astro.locals.countryCode || config.defaultCountryCode;
+
+// Get region for pricing
+const region = await getRegion(countryCode);
+if (!region) {
+  console.error("No region found for country:", countryCode);
+  return new Response(null, { status: 404, statusText: "Not Found" });
+}
+
+// Fetch product from Medusa
+const product = await getProductByHandle(handle, region.id);
+if (!product) {
+  console.error("No product found for handle:", handle);
+  return new Response(null, { status: 404, statusText: "Not Found" });
+}
+
+// Fetch product content from Sanity
+const sanityClient = getClient();
+const [content, globalData] = await Promise.all([
+  sanityClient.fetch<PRODUCT_QUERYResult>(PRODUCT_QUERY, { handle }),
+  sanityClient.fetch(GLOBAL_QUERY),
+]);
+
+// Fetch addon products if any
+const addonIds = content?.addons?.products?.map((p) => p._ref) || [];
+const addonProducts = addonIds.length > 0
+  ? (await getProductsByIds(addonIds, region.id)).products
+  : [];
+
+const title = content?.seo?.title || product.title || "Product";
+const description = content?.seo?.description || product.description || "";
+---
+
+<WebsiteLayout
+  title={title}
+  description={description}
+  header={globalData?.header}
+  footer={globalData?.footer}
+>
+  <section class="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m">
+    <ProductImagesCarousel client:load product={product} />
+    <ProductInformation
+      client:load
+      addonProducts={addonProducts}
+      content={content}
+      region_id={region.id}
+      countryCode={countryCode}
+      {...product}
+    />
+  </section>
+
+  {content?.sections ? (
+    <SectionRenderer
+      countryCode={countryCode}
+      fieldName="body"
+      sections={content.sections}
+    />
+  ) : null}
+
+  <StickyAtc client:load {...product} region_id={region.id} />
+</WebsiteLayout>

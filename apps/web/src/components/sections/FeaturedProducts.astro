@@ -35,6 +35,7 @@ const { products: medusaProducts } = await getProductsByIds(ids, region.id);
 <section {...rootHtmlAttributes}>
   <FeaturedProductsCarousel
     client:visible
+    countryCode={countryCode}
     products={medusaProducts}
     title={title}
     cta={cta ? { href: cta.link, text: cta.label } : undefined}

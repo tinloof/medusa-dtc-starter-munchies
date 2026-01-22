@@ -42,6 +42,7 @@ const { products } = await getProductsByIds(ids, region.id);
   </Heading>
   <HotspotsUI
     client:visible
+    countryCode={countryCode}
     image={image}
     productHotSpots={productHotSpots}
     products={products}

@@ -8,15 +8,18 @@ import { SanityImage } from "../shared/SanityImage";
 import Tag from "../shared/Tag";
 import Body from "../shared/typography/Body";
 import { getProductPrice } from "@/lib/medusa/get-product-price";
+import config from "@/config";
 import type { HttpTypes } from "@medusajs/types";
 
 interface HotspotsUIProps {
+  countryCode?: string;
   products: HttpTypes.StoreProduct[];
   image: SectionShopTheLook["image"];
   productHotSpots: SectionShopTheLook["productHotSpots"];
 }
 
 export default function HotspotsUI({
+  countryCode = config.defaultCountryCode,
   image,
   productHotSpots,
   products,
@@ -24,6 +27,10 @@ export default function HotspotsUI({
   const [selectedProduct, setSelectedProduct] = useState<string | undefined>(
     productHotSpots?.[0]?.product?._ref
   );
+
+  const isDefaultCountry = countryCode === config.defaultCountryCode;
+  const getProductHref = (handle: string | undefined) =>
+    isDefaultCountry ? `/products/${handle}` : `/${countryCode}/products/${handle}`;
 
   const referencedProducts = products.filter((_product) =>
     productHotSpots?.some((hotspot) => hotspot.product?._ref === _product.id)
@@ -92,7 +99,7 @@ export default function HotspotsUI({
       {/* Desktop view - single product card */}
       <a
         className="hidden w-full max-w-112.5 flex-col justify-between gap-2xl rounded-lg lg:flex"
-        href={`/products/${product?.handle}`}
+        href={getProductHref(product?.handle)}
       >
         <div className="flex w-full max-w-112.5 flex-1 flex-col items-center justify-center rounded-lg">
           <div className="relative w-full">
@@ -152,7 +159,7 @@ export default function HotspotsUI({
               className={cx("flex w-full gap-2.5 rounded-2xl p-xs", {
                 "bg-secondary": selectedProduct === _product.id,
               })}
-              href={`/products/${_product?.handle}`}
+              href={getProductHref(_product?.handle)}
               key={_product.id}
             >
               {_thumbnailUrl ? (
@@ -177,7 +184,7 @@ export default function HotspotsUI({
         })}
         <a
           className="w-full rounded-lg border border-accent px-6 py-3 text-center font-sans font-medium text-accent transition-colors hover:bg-accent hover:text-background"
-          href="/products"
+          href={isDefaultCountry ? "/products" : `/${countryCode}/products`}
         >
           Shop now
         </a>

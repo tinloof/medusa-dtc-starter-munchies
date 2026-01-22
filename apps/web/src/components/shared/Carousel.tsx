@@ -1,8 +1,9 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cx } from "class-variance-authority";
+import type { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
+import type { EmblaViewportRefType } from "embla-carousel-react";
 import useEmblaCarousel from "embla-carousel-react";
-import type { EmblaOptionsType } from 'embla-carousel'
-import type { ComponentProps, PropsWithChildren } from "react";
+import type { ComponentProps, JSX, PropsWithChildren } from "react";
 
 import {
   createContext,
@@ -13,8 +14,8 @@ import {
 } from "react";
 
 type CarouselContextType = {
-  api?: any;
-  ref: any;
+  api?: EmblaCarouselType;
+  ref: EmblaViewportRefType;
   scrollProgress: number;
 };
 
@@ -32,6 +33,12 @@ type CarouselButtonsState = {
 
 type SlidesWrapperProps = Omit<ComponentProps<"div">, "ref">;
 
+type SlidesProps = {
+  content: JSX.Element[];
+  itemProps: Omit<ComponentProps<"div">, "key">;
+  wrapperDiv: ComponentProps<"div">;
+};
+
 const CarouselContext = createContext<CarouselContextType | null>(null);
 
 export function useCarousel() {
@@ -43,34 +50,32 @@ export function useCarousel() {
 }
 
 export const useCarouselButtons = (): CarouselButtonsState => {
-  const [_, api] = useEmblaCarousel();
+  const { api } = useCarousel();
 
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(true);
 
   const onPrev = useCallback(() => {
     if (api) {
-      (api as any).scrollPrev();
+      api.scrollPrev();
     }
   }, [api]);
 
   const onNext = useCallback(() => {
     if (api) {
-      (api as any).scrollNext();
+      api.scrollNext();
     }
   }, [api]);
 
-  const onSelect = useCallback(() => {
-    if (api) {
-      setPrevDisabled(!(api as any).canScrollPrev());
-      setNextDisabled(!(api as any).canScrollNext());
-    }
-  }, [api]);
+  const onSelect = useCallback((_api: EmblaCarouselType) => {
+    setPrevDisabled(!_api.canScrollPrev());
+    setNextDisabled(!_api.canScrollNext());
+  }, []);
 
   useEffect(() => {
     if (api) {
-      onSelect();
-      (api as any).on("reInit", onSelect).on("select", onSelect);
+      onSelect(api);
+      api.on("reInit", onSelect).on("select", onSelect);
     }
   }, [api, onSelect]);
 
@@ -92,7 +97,7 @@ export function Root(props: CarouselRootProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const onScroll = useCallback(
-    (_emblaApi: any) => {
+    (_emblaApi: EmblaCarouselType) => {
       const progress = Math.max(
         defaultProgress,
         Math.min(1, _emblaApi.scrollProgress())
@@ -108,7 +113,10 @@ export function Root(props: CarouselRootProps) {
     }
 
     onScroll(emblaApi);
-    (emblaApi as any).on("reInit", onScroll).on("scroll", onScroll);
+    emblaApi
+      .on("reInit", onScroll)
+      .on("scroll", onScroll)
+      .on("slideFocus", onScroll);
   }, [emblaApi, onScroll]);
 
   return (
@@ -130,6 +138,25 @@ export function SlidesWrapper(props: SlidesWrapperProps) {
       {...passThrough}
     >
       {children}
+    </div>
+  );
+}
+
+export function Slides({ content, itemProps, wrapperDiv }: SlidesProps) {
+  const { className: wrapperClassName, ...passThroughWrapper } = wrapperDiv;
+  const { className: itemClassName, ...passThroughItemProps } = itemProps;
+
+  return (
+    <div className={cx("flex", wrapperClassName)} {...passThroughWrapper}>
+      {content.map((item) => (
+        <div
+          className={cx("flex-1", itemClassName)}
+          key={item.key}
+          {...passThroughItemProps}
+        >
+          {item}
+        </div>
+      ))}
     </div>
   );
 }

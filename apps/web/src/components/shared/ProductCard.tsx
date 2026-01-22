@@ -1,17 +1,20 @@
 import { cx } from "class-variance-authority";
 import { getProductPrice } from "@/lib/medusa/get-product-price";
+import config from "@/config";
 
 import Tag from "./Tag";
 import Body from "./typography/Body";
 import type { HttpTypes } from "@medusajs/types";
 
 interface ProductCardProps {
+  countryCode?: string;
   index?: number;
   product: HttpTypes.StoreProduct | undefined;
   size?: "PLP" | "default";
 }
 
 export default function ProductCard({
+  countryCode = config.defaultCountryCode,
   index,
   product,
   size = "default",
@@ -23,6 +26,11 @@ export default function ProductCard({
   const { cheapestPrice } = getProductPrice({ product });
   const thumbnail = product.thumbnail || product.images?.[0]?.url;
 
+  const isDefaultCountry = countryCode === config.defaultCountryCode;
+  const href = isDefaultCountry
+    ? `/products/${product?.handle}`
+    : `/${countryCode}/products/${product?.handle}`;
+
   return (
     <a
       className={cx(
@@ -31,7 +39,7 @@ export default function ProductCard({
           "w-[88vw] max-w-112.5": size === "default",
         }
       )}
-      href={`/products/${product?.handle}`}
+      href={href}
     >
       <div className="relative w-full">
         {thumbnail ? (
