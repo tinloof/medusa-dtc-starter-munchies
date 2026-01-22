@@ -25,7 +25,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     ssr: {
-      noExternal: ["@medusajs/js-sdk"],
+      noExternal: ["@medusajs/js-sdk", "@sanity/client"],
     },
   },
   adapter: cloudflare(),
