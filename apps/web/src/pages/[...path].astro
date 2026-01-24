@@ -1,4 +1,5 @@
 ---
+import SectionRenderer from "@/components/sections/section-renderer.astro";
 import TextPage from "@/components/text-page/index.astro";
 import Layout from "@/layouts/layout.astro";
 import { loadPageByPathname } from "@/lib/sanity";
@@ -23,8 +24,8 @@ if (!result) {
 
 const templates: Record<string, any> = {
   "text.page": TextPage,
-  home: null,
-  "modular.page": null,
+  home: SectionRenderer,
+  "modular.page": SectionRenderer,
 };
 
 const Template = templates[result._type];

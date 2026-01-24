@@ -1,0 +1,79 @@
+---
+import Assurance from "./assurance.astro";
+import CenteredText from "./centered-text.astro";
+import CollectionList from "./collection-list/index.astro";
+import Hero from "./hero/index.astro";
+import Marquee from "./marquee.astro";
+import MediaText from "./media-text.astro";
+import Testimonials from "./testimonials/index.astro";
+import type { DeepLinkData, SectionList, SectionProps } from "./types";
+
+interface Props {
+  fieldName: string;
+  sections?: SectionProps[];
+}
+
+function getDeepLinkId(deepLink: DeepLinkData) {
+  if (!(deepLink?.blockKey && deepLink?.fieldName)) {
+    return;
+  }
+
+  return `${deepLink.fieldName}__${deepLink.blockKey}`;
+}
+
+const { sections, fieldName = "body" } = Astro.props;
+
+if (!sections?.length) {
+  return null;
+}
+
+const sectionsList: SectionList = {
+  "section.hero": Hero,
+  "section.marquee": Marquee,
+  "section.centeredText": CenteredText,
+  "section.mediaText": MediaText,
+  "section.testimonials": Testimonials,
+  "section.assurance": Assurance,
+  "section.collectionList": CollectionList,
+};
+---
+
+{sections.map((section, index) => {
+    if (!(section._type && section._type in sectionsList && section._key)) {
+      return null;
+    }
+    const sectionType = section._type as keyof typeof sectionsList;
+
+    const Component = sectionsList[sectionType];
+
+    if(!Component) {
+      return (
+        <section class="w-full bg-black text-white">
+          <div class="container py-10 text-center">
+            <div class="rounded-md border-2 border-gray-400 border-dashed px-5 py-10">
+              <div>
+                The section component of type{" "}
+                {sectionType ? (
+                  <strong class="px-2 text-xl">{sectionType}</strong>
+                ) : null}{" "}
+                does not exist yet.
+              </div>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    return (
+    <Component 
+      {...section}
+      _sections={sections}
+      _sectionIndex={index}
+      _type={sectionType}
+      rootHtmlAttributes={{
+        "data-section": sectionType,
+        id: getDeepLinkId({ blockKey: section._key, fieldName }) ?? undefined,
+      }}
+    />
+    )
+})}
