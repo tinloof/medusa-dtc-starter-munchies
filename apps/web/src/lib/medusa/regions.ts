@@ -11,11 +11,13 @@ export interface Country {
   name: string;
 }
 
-export const listRegions = () => {
-  return client.store.region
-    .list({}, { next: { tags: ["regions"] } })
-    .then(({ regions }) => regions)
-    .catch(medusaError);
+export const listRegions = async () => {
+  try {
+    const { regions } = await client.store.region.list({});
+    return regions;
+  } catch (error) {
+    return medusaError(error);
+  }
 };
 
 export const listCountries = async () => {

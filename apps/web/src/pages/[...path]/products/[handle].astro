@@ -1,0 +1,49 @@
+---
+import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
+import ProductInformation from "@/components/pdp/product-information";
+import SectionRenderer from "@/components/sections/section-renderer.astro";
+import Layout from "@/layouts/layout.astro";
+import { getProductByHandle } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import { loadProductContent } from "@/lib/sanity";
+
+const { handle } = Astro.params;
+
+if (!handle) {
+  return Astro.redirect("/404", 404);
+}
+
+const region = await getRegion(Astro.locals.countryCode);
+
+if (!region) {
+  console.warn("No region found for country: ", Astro.locals.countryCode);
+  return Astro.redirect("/404", 404);
+}
+
+// Fetch product from medusa
+const product = await getProductByHandle(handle, region.id);
+
+if (!product) {
+  console.warn("No product found for handle: ", handle);
+  return Astro.redirect("/404", 404);
+}
+
+// Fetch product content from sanity
+const productContent = await loadProductContent(handle);
+---
+
+<Layout title={product.title} description={product.description ?? ""}>
+  <section
+    class="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m"
+  >
+    <ProductImagesCarousel client:load product={product} />
+    <ProductInformation
+      client:load
+      content={productContent}
+      region_id={region.id}
+      {...product}
+    />
+  </section>
+
+  {productContent?.sections && <SectionRenderer sections={productContent.sections} fieldName="body" />}
+</Layout>

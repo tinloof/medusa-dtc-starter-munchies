@@ -20,6 +20,7 @@
     "@packages/sanity": "workspace:*",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-visually-hidden": "^1.2.4",
     "@sanity/asset-utils": "^2.3.0",
@@ -36,6 +37,7 @@
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "nanostores": "^1.1.0",
+    "nuqs": "^2.8.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18"
