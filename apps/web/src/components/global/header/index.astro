@@ -8,7 +8,6 @@ import { BottomBorder } from "./parts/bottom-border";
 type Props = HeaderType;
 
 const header = Astro.props;
-const pathname = Astro.url.pathname;
 
 const countries = await listCountries();
 ---
@@ -21,10 +20,7 @@ const countries = await listCountries();
     client:load
     transition:persist
     header={header}
-    countryCode={Astro.locals.countryCode}
-    defaultCountryCode={Astro.locals.defaultCountryCode}
     countries={countries}
-    pathname={pathname}
   />
 
   <div class="relative z-30 w-screen" id="navigation-portal" />

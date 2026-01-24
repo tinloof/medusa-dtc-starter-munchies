@@ -1,7 +1,6 @@
 import { Dialog, Title } from "@radix-ui/react-dialog";
 import { cx } from "class-variance-authority";
 import { Suspense, useState } from "react";
-import { useCountryCodeContext } from "@/components/context/country-code-context";
 import { Icon } from "@/components/shared/icon";
 import {
   CloseDialog,
@@ -11,6 +10,7 @@ import {
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import type { Country } from "@/lib/medusa/regions";
+import { useCountryCodeContext } from "@/stores/country";
 
 interface DialogRootProps {
   className?: string;

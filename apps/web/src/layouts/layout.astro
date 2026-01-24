@@ -6,6 +6,7 @@ import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
 import Footer from "@/components/global/footer/index.astro";
 import Header from "@/components/global/header/index.astro";
+import { CountryInit } from "@/components/shared/country-init";
 import config from "@/config";
 import { getOgImages } from "@/lib/sanity/get-og-images";
 
@@ -66,6 +67,12 @@ const { title = config.title, description = config.description } = Astro.props;
   <body
     class="scrollbar-hide relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip"
   >
+    <CountryInit
+      client:load
+      countryCode={Astro.locals.countryCode}
+      defaultCountryCode={Astro.locals.defaultCountryCode}
+      pathname={Astro.url.pathname}
+    />
     {globalData.header && <Header {...globalData.header} />}
     <main class="flex-1">
       <slot />

@@ -1,4 +1,3 @@
-import { CountryCodeProvider } from "@/components/context/country-code-context";
 import CarouselSection from "@/components/shared/carousel-section";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import SanityImage from "@/components/shared/sanity-image";
@@ -18,28 +17,22 @@ export default function CollectionList(props: CollectionListProps) {
     <CollectionCard key={collection._key} {...collection} />
   ));
   return (
-    <CountryCodeProvider
-      countryCode={props.countryCode}
-      defaultCountryCode={props.defaultCountryCode}
-      pathname={props.pathname}
-    >
-      <CarouselSection
-        disableDesktopDrag
-        showButtons={false}
-        showProgress={true}
-        slides={slides}
-        title={
-          <Heading
-            className="text-center"
-            desktopSize="3xl"
-            mobileSize="lg"
-            tag="h3"
-          >
-            Shop our cookies
-          </Heading>
-        }
-      />
-    </CountryCodeProvider>
+    <CarouselSection
+      disableDesktopDrag
+      showButtons={false}
+      showProgress={true}
+      slides={slides}
+      title={
+        <Heading
+          className="text-center"
+          desktopSize="3xl"
+          mobileSize="lg"
+          tag="h3"
+        >
+          Shop our cookies
+        </Heading>
+      }
+    />
   );
 }
 
