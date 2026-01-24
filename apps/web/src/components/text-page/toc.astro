@@ -2,9 +2,9 @@
 import { getPtComponentId } from "@tinloof/sanity-web";
 import { toPlainText } from "astro-portabletext";
 import type { PortableTextProps } from "astro-portabletext/types";
+import LocalizedLink from "@/components/shared/localized-link.astro";
+import { Body } from "@/components/shared/typography/body";
 import { getBlocksToc } from "@/lib/utils/portable-text";
-import LocalizedLink from "../localized-link.astro";
-import { Body } from "../typography/body";
 
 type Props = PortableTextProps;
 

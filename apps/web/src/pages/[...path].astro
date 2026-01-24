@@ -1,5 +1,5 @@
 ---
-import TextPage from "@/components/shared/text-page/index.astro";
+import TextPage from "@/components/text-page/index.astro";
 import Layout from "@/layouts/layout.astro";
 import { loadPageByPathname } from "@/lib/sanity";
 
@@ -21,18 +21,18 @@ if (!result) {
   return Astro.redirect("/404", 404);
 }
 
-const templates = {
+const templates: Record<string, any> = {
   "text.page": TextPage,
   home: null,
   "modular.page": null,
 };
 
-const Template = templates[result._type] as any;
+const Template = templates[result._type];
 
 // if countryCode === defaultCountryCode then we use the path directly
 // otherwise we remove the countryCode from the path
 ---
 
 <Layout title={result.title} description={result.seo?.description}>
-  {Template && <Template {...result} />}
+  {Template ? <Template {...result} /> : <div>Template not found: {result._type}</div>}
 </Layout>
