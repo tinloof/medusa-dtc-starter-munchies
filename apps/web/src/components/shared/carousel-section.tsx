@@ -26,7 +26,7 @@ interface Props {
   variant?: "cart" | "default";
 }
 
-export default function CarouselSection(props: Props) {
+export function CarouselSection(props: Props) {
   const {
     cta,
     disableDesktopDrag,

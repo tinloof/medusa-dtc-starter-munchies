@@ -1,4 +1,4 @@
-import CarouselSection from "@/components/shared/carousel-section";
+import { CarouselSection } from "@/components/shared/carousel-section";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import type { ModularPageSection } from "../types";

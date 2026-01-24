@@ -1,4 +1,4 @@
-import CarouselSection from "@/components/shared/carousel-section";
+import { CarouselSection } from "@/components/shared/carousel-section";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import SanityImage from "@/components/shared/sanity-image";
 import { Body } from "@/components/shared/typography/body";
