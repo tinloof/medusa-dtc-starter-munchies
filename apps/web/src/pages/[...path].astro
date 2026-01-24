@@ -1,7 +1,38 @@
 ---
+import TextPage from "@/components/shared/text-page/index.astro";
 import Layout from "@/layouts/layout.astro";
+import { loadPageByPathname } from "@/lib/sanity";
+
+const { path } = Astro.params;
+const { countryCode, defaultCountryCode } = Astro.locals;
+
+const pathSegments = path ? path.split("/") : [];
+
+// Check if we are on a country code route
+const isCountryCode = countryCode !== defaultCountryCode;
+
+// Extract the actual path without country code
+const actualPath = isCountryCode ? pathSegments.slice(1).join("/") : path;
+const pathname = actualPath ? `/${actualPath}` : "/";
+
+const result = await loadPageByPathname(pathname);
+
+if (!result) {
+  return Astro.redirect("/404", 404);
+}
+
+const templates = {
+  "text.page": TextPage,
+  home: null,
+  "modular.page": null,
+};
+
+const Template = templates[result._type] as any;
+
+// if countryCode === defaultCountryCode then we use the path directly
+// otherwise we remove the countryCode from the path
 ---
 
-<Layout>
-  <p>helo world</p>
+<Layout title={result.title} description={result.seo?.description}>
+  {Template && <Template {...result} />}
 </Layout>

@@ -1,0 +1,18 @@
+---
+import type { ListProps } from "astro-portabletext/types";
+
+type Props = ListProps;
+
+const { node } = Astro.props;
+const isBullet = node?.listItem === "bullet";
+---
+
+{isBullet ? (
+  <ul class="list-disc pl-4 marker:text-base">
+    <slot />
+  </ul>
+) : (
+  <ol class="list-decimal pl-4">
+    <slot />
+  </ol>
+)}

@@ -1,0 +1,31 @@
+---
+import type {
+  PortableTextComponents,
+  PortableTextProps,
+} from "astro-portabletext/types";
+import PortableRichText from "../rich-text.astro";
+import Block from "./blocks/block.astro";
+import List from "./blocks/list.astro";
+import ListItem from "./blocks/list-item.astro";
+
+type Props = PortableTextProps;
+
+const { value = [] } = Astro.props;
+
+const components: Partial<PortableTextComponents> = {
+  block: {
+    h2: Block,
+    h3: Block,
+    normal: Block,
+  },
+  list: {
+    bullet: List,
+    number: List,
+  },
+  listItem: {
+    number: ListItem,
+  },
+};
+---
+
+<PortableRichText value={value} components={components} />

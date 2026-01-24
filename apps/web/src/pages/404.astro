@@ -1,16 +1,11 @@
 ---
-import { NOT_FOUND_PAGE_QUERY } from "@packages/sanity/queries";
-import type { NOT_FOUND_PAGE_QUERY_RESULT } from "@packages/sanity/types";
 import ButtonLink from "@/components/shared/button-link.astro";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
-import { getClient } from "@/lib/sanity";
+import { loadNotFound } from "@/lib/sanity";
 
-const sanityClient = getClient();
-
-const data =
-  await sanityClient.fetch<NOT_FOUND_PAGE_QUERY_RESULT>(NOT_FOUND_PAGE_QUERY);
+const data = await loadNotFound();
 ---
 
 <Layout title="Not found">

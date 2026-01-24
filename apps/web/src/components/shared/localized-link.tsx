@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import { useCountryCodeContext } from "@/components/context/country-code-context";
-import { getLocalizedHref } from "@/lib/get-localized-href";
+import { getLocalizedHref } from "@/lib/utils/get-localized-href";
 
 export function LocalizedLink({
   href = "",

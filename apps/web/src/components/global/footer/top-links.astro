@@ -24,18 +24,13 @@ const { information, linkList } = Astro.props;
   </div>
   <div class="flex w-full justify-between lg:justify-end lg:gap-6xl">
     {linkList?.map((list) => (
-      <div
-        class="flex min-w-42.5 flex-col gap-xs lg:min-w-49"
-                transition:persist
-
-      >
+      <div class="flex min-w-42.5 flex-col gap-xs lg:min-w-49">
         {list.links?.map((link) => {
           if (!link.link) {
             return null;
           }
           return (
-          <LocalizedLink href={link.link}
-      >
+          <LocalizedLink href={link.link}>
               <Body desktopSize="base" font="sans" mobileSize="sm">
                 {link.label}
               </Body>

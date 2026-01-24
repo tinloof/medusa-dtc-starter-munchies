@@ -3,25 +3,21 @@ import "@fontsource-variable/instrument-sans";
 import "@fontsource/instrument-serif";
 import "@fontsource/climate-crisis";
 import { ClientRouter } from "astro:transitions";
-import { GLOBAL_QUERY } from "@packages/sanity/queries";
-import type { GLOBAL_QUERY_RESULT } from "@packages/sanity/types";
 import { SEO } from "astro-seo";
 import Footer from "@/components/global/footer/index.astro";
 import Header from "@/components/global/header/index.astro";
 import config from "@/config";
-import { getClient } from "@/lib/sanity";
 import { getOgImages } from "@/lib/sanity/get-og-images";
 
 import "@/styles/global.css";
+import { loadGlobalData } from "@/lib/sanity";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const sanityClient = getClient();
-
-const globalData = await sanityClient.fetch<GLOBAL_QUERY_RESULT>(GLOBAL_QUERY);
+const globalData = await loadGlobalData();
 
 if (!globalData) {
   return Astro.redirect("/404", 404);
