@@ -4,6 +4,8 @@ import { NuqsAdapter } from "nuqs/adapters/react";
 import { ProductVariantsProvider } from "@/components/context/product-context";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
+import { Cta } from "../shared/button";
+import Addons from "./addon";
 // import AddToCart from "./add-to-cart";
 // import Addons from "./addons";
 import { BreadCrumbs } from "./breadcrumbs";
@@ -14,6 +16,7 @@ import { Specs } from "./specs";
 type Props = {
   content: PRODUCT_QUERY_RESULT;
   region_id: string;
+  addons: StoreProduct[];
 } & StoreProduct;
 
 export default function ProductInformation(props: Props) {
@@ -41,13 +44,14 @@ export default function ProductInformation(props: Props) {
           </Body>
           <div className="mt-s flex flex-col gap-s">
             {props.options ? <OptionsSelect options={props.options} /> : null}
-            {/*   <AddToCart region_id={props.region_id} variant="PDP" /> */}
+            <Cta className="w-full" size="xl" variant="outline">
+              Add to cart
+            </Cta>
           </div>
-          {/* <Addons */}
-          {/*   products={props.content?.addons?.products} */}
-          {/*   region_id={props.region_id} */}
-          {/*   title={props.content?.addons?.title} */}
-          {/* /> */}
+          <Addons
+            products={props.addons}
+            title={props.content?.addons?.title}
+          />
           <Specs specs={props.content?.specs} />
         </div>
       </ProductVariantsProvider>

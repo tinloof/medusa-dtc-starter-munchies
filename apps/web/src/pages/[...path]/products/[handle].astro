@@ -3,7 +3,7 @@ import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
 import ProductInformation from "@/components/pdp/product-information";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
 import Layout from "@/layouts/layout.astro";
-import { getProductByHandle } from "@/lib/medusa/products";
+import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
 import { getRegion } from "@/lib/medusa/regions";
 import { loadProductContent } from "@/lib/sanity";
 
@@ -30,6 +30,10 @@ if (!product) {
 
 // Fetch product content from sanity
 const productContent = await loadProductContent(handle);
+
+const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
+
+const { products: addons } = await getProductsByIds(ids, region.id);
 ---
 
 <Layout title={product.title} description={product.description ?? ""}>
@@ -41,6 +45,7 @@ const productContent = await loadProductContent(handle);
       client:load
       content={productContent}
       region_id={region.id}
+      addons={addons}
       {...product}
     />
   </section>

@@ -29,7 +29,7 @@ export function HeaderClient({ header, countries }: HeaderClientProps) {
         </div>
         <Navigation data={header} />
       </div>
-      <div className="flex items-center gap-s">
+      <div className="flex items-stretch gap-s">
         <span className="hidden lg:block">
           <CountrySelectorDialog countries={countries} />
         </span>
