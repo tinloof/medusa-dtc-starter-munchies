@@ -1,0 +1,44 @@
+---
+import { Heading } from "@/components/shared/typography/heading";
+import { getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import type { ModularPageSection } from "../types";
+import { Hotspots } from "./hotspots";
+
+type Props = ModularPageSection<"section.shopTheLook">;
+
+const props = Astro.props;
+
+const region = await getRegion(Astro.locals.countryCode);
+
+if (!region) {
+  console.warn("No region found");
+  return null;
+}
+
+const ids =
+  props.productHotSpots
+    ?.map((hotspot) => hotspot.product?._ref)
+    .filter((id) => id !== undefined) || [];
+
+if (!ids || ids.length === 0) {
+  return null;
+}
+
+const { products } = await getProductsByIds(ids, region.id);
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="mx-auto flex w-full max-w-max-screen flex-col items-start gap-xs px-m py-2xl lg:px-xl"
+>
+  <Heading desktopSize="3xl" font="serif" mobileSize="xl" tag="h3">
+    {props.title}
+  </Heading>
+  <Hotspots
+    client:load
+    products={products}
+    image={props.image}
+    productHotSpots={props.productHotSpots}
+  />
+</section>

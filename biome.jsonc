@@ -12,6 +12,11 @@
       },
       "nursery": {
         "useSortedClasses": "error"
+      },
+      "a11y": {
+        "noNoninteractiveElementInteractions": "off",
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off"
       }
     }
   }

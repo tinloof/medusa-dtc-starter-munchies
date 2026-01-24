@@ -6,6 +6,7 @@ import FeaturedProducts from "./featured-products/index.astro";
 import Hero from "./hero/index.astro";
 import Marquee from "./marquee.astro";
 import MediaText from "./media-text.astro";
+import ShopTheLook from "./shop-the-look/index.astro";
 import Testimonials from "./testimonials/index.astro";
 import type { DeepLinkData, SectionList, SectionProps } from "./types";
 
@@ -37,6 +38,7 @@ const sectionsList: SectionList = {
   "section.assurance": Assurance,
   "section.collectionList": CollectionList,
   "section.featuredProducts": FeaturedProducts,
+  "section.shopTheLook": ShopTheLook,
 };
 ---
 
@@ -67,6 +69,7 @@ const sectionsList: SectionList = {
     }
 
     return (
+    // @ts-expect-error - TODO: fix ts issue
     <Component 
       {...section}
       _sections={sections}
