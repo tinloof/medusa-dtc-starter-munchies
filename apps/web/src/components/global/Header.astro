@@ -1,27 +1,34 @@
 ---
-import type { Header as HeaderType } from "@packages/sanity/types";
-import HeaderClient from "./HeaderClient";
-import type { Country } from "./CountrySelectorDialog";
 import config from "@/config";
+import type { Header as HeaderType } from "@packages/sanity/types";
+import type { Country } from "./CountrySelectorDialog";
+import HeaderClient from "./HeaderClient";
 
 interface Props extends HeaderType {
   countries?: Country[];
   currentCountryCode?: string;
 }
 
-const { countries = [], currentCountryCode = config.defaultCountryCode, ...headerProps } = Astro.props;
+const {
+  countries = [],
+  currentCountryCode = config.defaultCountryCode,
+  ...headerProps
+} = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 flex w-full flex-col items-center bg-background">
+<header
+  class="sticky top-0 z-50 flex w-full flex-col items-center bg-background"
+>
   <HeaderClient
     client:load
     header={headerProps}
     countries={countries}
     countryCode={currentCountryCode}
     defaultCountryCode={config.defaultCountryCode}
+    transition:persist
   />
-  <div class="relative z-30 w-screen" id="navigation-portal" />
+  <div class="relative z-30 w-screen" id="navigation-portal"></div>
 
   {/* Bottom border on mobile */}
-  <div class="h-[1.5px] w-full bg-accent lg:hidden" />
+  <div class="h-[1.5px] w-full bg-accent lg:hidden"></div>
 </header>

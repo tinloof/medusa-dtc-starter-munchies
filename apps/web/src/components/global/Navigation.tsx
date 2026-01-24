@@ -1,16 +1,14 @@
-"use client";
-
 import type { Header } from "@packages/sanity/types";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { cx } from "class-variance-authority";
 import { useEffect, useState } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 
+import LocalizedLink from "@/components/shared/LocalizedLink";
+import { SanityImage } from "@/components/shared/SanityImage";
 import Body from "@/components/shared/typography/Body";
 import Heading from "@/components/shared/typography/Heading";
 import Label from "@/components/shared/typography/Label";
-import { SanityImage } from "@/components/shared/SanityImage";
-import LocalizedLink from "@/components/shared/LocalizedLink";
 import BottomBorder from "./BottomBorder";
 
 type DropdownType = Extract<
@@ -20,6 +18,8 @@ type DropdownType = Extract<
 
 export default function Navigation({ data }: { data: Header }) {
   const [openDropdown, setOpenDropdown] = useState<string>("");
+  const [isGroupHovered, setIsGroupHovered] = useState(false);
+  const [hoveredItemKey, setHoveredItemKey] = useState<string | null>(null);
 
   const handleValueChange = (value: string) => {
     setOpenDropdown(value);
@@ -40,7 +40,11 @@ export default function Navigation({ data }: { data: Header }) {
       onValueChange={handleValueChange}
       value={openDropdown}
     >
-      <NavigationMenu.List className="group flex items-center justify-start">
+      <NavigationMenu.List
+        className="flex items-center justify-start"
+        onMouseEnter={() => setIsGroupHovered(true)}
+        onMouseLeave={() => setIsGroupHovered(false)}
+      >
         {data.navigation?.map((item) => {
           if (item._type === "link") {
             if (!item.cta?.link) {
@@ -48,14 +52,19 @@ export default function Navigation({ data }: { data: Header }) {
             }
             return (
               <LocalizedLink
+                id={`nav-localized-link-${item._key}`}
                 className={cx(
-                  "h-full whitespace-nowrap px-5 py-[14.5px] transition-opacity duration-300 hover:opacity-100! group-hover:opacity-50",
+                  "h-full whitespace-nowrap px-5 py-[14.5px] transition-opacity duration-300",
                   {
-                    "opacity-50": !!openDropdown,
-                  }
+                    "opacity-50":
+                      (isGroupHovered || !!openDropdown) &&
+                      hoveredItemKey !== item._key,
+                  },
                 )}
                 href={item.cta?.link}
                 key={item._key}
+                onMouseEnter={() => setHoveredItemKey(item._key)}
+                onMouseLeave={() => setHoveredItemKey(null)}
               >
                 <NavigationMenu.Item>
                   <NavigationMenu.Link asChild>
@@ -69,13 +78,19 @@ export default function Navigation({ data }: { data: Header }) {
           }
           if (item._type === "dropdown") {
             return (
-              <NavigationMenu.Item key={item._key}>
+              <NavigationMenu.Item
+                key={item._key}
+                onMouseEnter={() => setHoveredItemKey(item._key)}
+                onMouseLeave={() => setHoveredItemKey(null)}
+              >
                 <NavigationMenu.Trigger
                   className={cx(
-                    "whitespace-nowrap px-5 py-[14.5px] transition-all duration-300 hover:opacity-100! group-hover:opacity-50 data-[state=open]:opacity-100",
+                    "whitespace-nowrap px-5 py-[14.5px] transition-all duration-300 data-[state=open]:opacity-100",
                     {
-                      "opacity-50": !!openDropdown,
-                    }
+                      "opacity-50":
+                        (isGroupHovered || !!openDropdown) &&
+                        hoveredItemKey !== item._key,
+                    },
                   )}
                 >
                   <Body font="sans" mobileSize="lg">
@@ -101,7 +116,7 @@ export default function Navigation({ data }: { data: Header }) {
             {
               "h-[1.5px] animate-enterFromTop": openDropdown,
               "h-0 animate-exitToTop": !openDropdown,
-            }
+            },
           )}
         />
       </div>
@@ -135,10 +150,10 @@ function Content({
                 return (
                   <LocalizedLink
                     className={cx(
-                      "py-xs opacity-100 transition-opacity duration-300 last:pb-0 group-hover:opacity-50",
+                      "py-xs opacity-100 transition-opacity duration-300 last:pb-0 group-data-[hover]:opacity-50 group-hover:opacity-50",
                       {
                         "opacity-100!": hoveredKey === _link._key,
-                      }
+                      },
                     )}
                     href={_link.link}
                     key={_link._key}
