@@ -44,6 +44,7 @@ export const onRequest = defineMiddleware((context, next) => {
   // Store country code in locals for components
   const countryCode = hasCountryCode ? firstPart : config.defaultCountryCode;
   context.locals.countryCode = countryCode;
+  context.locals.defaultCountryCode = config.defaultCountryCode;
 
   return next();
 });

@@ -6,6 +6,8 @@ import { defineConfig, envField } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
+  output: "server",
   env: {
     schema: {
       PUBLIC_SANITY_STUDIO_PROJECT_ID: envField.string({
@@ -23,11 +25,24 @@ export default defineConfig({
         access: "secret",
         optional: false,
       }),
+      PUBLIC_MEDUSA_BACKEND_URL: envField.string({
+        context: "server",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_MEDUSA_PUBLISHABLE_KEY: envField.string({
+        context: "server",
+        access: "public",
+        optional: false,
+      }),
     },
   },
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ["@medusajs/js-sdk"],
+    },
   },
   adapter: cloudflare(),
 });

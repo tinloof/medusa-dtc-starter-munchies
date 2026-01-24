@@ -1,16 +1,5 @@
 ---
-import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/layout.astro";
-
-export const getStaticPaths = (() => {
-  return [
-    {
-      params: {
-        path: "test",
-      },
-    },
-  ];
-}) satisfies GetStaticPaths;
 ---
 
 <Layout>

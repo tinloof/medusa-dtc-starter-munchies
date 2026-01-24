@@ -54,7 +54,7 @@ export type IconProps = {
   "alt" | "fetchPriority" | "sizes" | "src" | "srcSet"
 >;
 
-export default function Icon({
+export function Icon({
   className,
   fetchPriority = "default",
   name,

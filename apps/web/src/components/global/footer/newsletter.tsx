@@ -3,10 +3,9 @@ import { withState } from "@astrojs/react/actions";
 import type { Footer as FooterType } from "@packages/sanity/types";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-
-import { Cta } from "../button";
-import { Body } from "../typography/body";
-import { Heading } from "../typography/heading";
+import { Cta } from "@/components/shared/button";
+import { Body } from "@/components/shared/typography/body";
+import { Heading } from "@/components/shared/typography/heading";
 
 interface NewsLetterProps extends FooterType {
   copyNode?: React.ReactNode;

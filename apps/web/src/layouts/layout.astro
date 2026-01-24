@@ -6,7 +6,8 @@ import { ClientRouter } from "astro:transitions";
 import { GLOBAL_QUERY } from "@packages/sanity/queries";
 import type { GLOBAL_QUERY_RESULT } from "@packages/sanity/types";
 import { SEO } from "astro-seo";
-import Footer from "@/components/footer/index.astro";
+import Footer from "@/components/global/footer/index.astro";
+import Header from "@/components/global/header/index.astro";
 import config from "@/config";
 import { getClient } from "@/lib/sanity";
 import { getOgImages } from "@/lib/sanity/get-og-images";
@@ -65,28 +66,30 @@ const { title = config.title, description = config.description } = Astro.props;
     />
     <meta name="generator" content={Astro.generator}>
     <ClientRouter />
-    <script>
-      const favicon = document.querySelector('link[rel="icon"]');
-
-      document.addEventListener("visibilitychange", () => {
-        const state = document.hidden ? "-inactive" : "";
-
-        if (favicon !== null) {
-          if (state) {
-            favicon.setAttribute("href", `/favicon${state}.ico`);
-          } else {
-            favicon.setAttribute("href", "/favicon.ico");
-          }
-        }
-      });
-    </script>
   </head>
   <body
     class="scrollbar-hide relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip"
   >
+    {globalData.header && <Header {...globalData.header} />}
     <main class="flex-1">
       <slot />
     </main>
     {globalData.footer && <Footer {...globalData.footer} />}
   </body>
 </html>
+
+<script is:inline>
+  const favicon = document.querySelector('link[rel="icon"]');
+
+  document.addEventListener("visibilitychange", () => {
+    const state = document.hidden ? "-inactive" : "";
+
+    if (favicon !== null) {
+      if (state) {
+        favicon.setAttribute("href", `/favicon${state}.ico`);
+      } else {
+        favicon.setAttribute("href", "/favicon.ico");
+      }
+    }
+  });
+</script>

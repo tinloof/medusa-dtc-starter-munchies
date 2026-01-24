@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { getLocalizedHref } from "@/lib/get-localized-href";
+
+type Props = HTMLAttributes<"a">;
+
+const { href, ...rest } = Astro.props;
+
+const localizedHref = getLocalizedHref({
+  countryCode: Astro.locals.countryCode,
+  defaultCountryCode: Astro.locals.defaultCountryCode,
+  href: href?.toString() ?? "",
+});
+
+const isExternalLink =
+  href?.toString()?.startsWith("https://") ||
+  href?.toString()?.startsWith("http://");
+---
+
+<a
+  href={localizedHref}
+  {...isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+  {...rest}
+>
+  <slot />
+</a>

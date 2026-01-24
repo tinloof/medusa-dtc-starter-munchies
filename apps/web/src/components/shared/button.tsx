@@ -1,8 +1,8 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva, cx } from "class-variance-authority";
 import type { ComponentProps } from "react";
-
-import Icon from "./icon";
+import { Icon } from "@/components/shared/icon";
+import { LocalizedLink } from "./localized-link";
 
 export const styles = cva(
   cx(
@@ -70,5 +70,48 @@ export function Cta({
         </div>
       ) : null}
     </button>
+  );
+}
+type StyleProps = VariantProps<typeof styles>;
+
+export function ButtonLink({
+  children,
+  className,
+  href,
+  ref,
+  renderAsChild,
+  size,
+  variant = "primary",
+  ...rest
+}: {
+  renderAsChild?: boolean;
+} & ComponentProps<"a"> &
+  StyleProps) {
+  if (renderAsChild) {
+    return (
+      <div
+        className={styles({
+          className,
+          size,
+          variant,
+        })}
+      >
+        {children}
+      </div>
+    );
+  }
+  return (
+    <LocalizedLink
+      className={styles({
+        className,
+        size,
+        variant,
+      })}
+      href={href ?? "/"}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </LocalizedLink>
   );
 }

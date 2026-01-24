@@ -1,7 +1,7 @@
 ---
 import type { Footer as FooterType } from "@packages/sanity/types";
-import RichText from "../rich-text.astro";
-import SanityImage from "../sanity-image";
+import RichText from "@/components/shared/rich-text.astro";
+import SanityImage from "@/components/shared/sanity-image";
 import BottomLinks from "./bottom-links.astro";
 import { NewsLetter } from "./newsletter";
 import TopLinks from "./top-links.astro";
@@ -11,7 +11,7 @@ type Props = FooterType;
 const footer = Astro.props;
 ---
 
-<NewsLetter {...footer}>
+<NewsLetter {...footer} client:load>
   {footer.signup_success ? <RichText value={footer.signup_success} slot="successNode" /> : null}
   {footer.copy ? <RichText value={footer.copy} slot="copyNode" /> : null}
   {footer.footnote ? <RichText value={footer.footnote} slot="footnoteNode" /> : null}

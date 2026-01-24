@@ -38,7 +38,7 @@ type LabelProps = {
 } & React.HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof labelStyles>;
 
-export default function Label({
+export function Label({
   children,
   className,
   desktopSize,

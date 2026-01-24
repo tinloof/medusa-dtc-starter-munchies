@@ -1,9 +1,9 @@
 ---
 import { NOT_FOUND_PAGE_QUERY } from "@packages/sanity/queries";
 import type { NOT_FOUND_PAGE_QUERY_RESULT } from "@packages/sanity/types";
-import AppLink from "@/components/app-link.astro";
-import { Body } from "@/components/typography/body";
-import { Heading } from "@/components/typography/heading";
+import ButtonLink from "@/components/shared/button-link.astro";
+import { Body } from "@/components/shared/typography/body";
+import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { getClient } from "@/lib/sanity";
 
@@ -31,14 +31,14 @@ const data =
       >
         {data?.text}
       </Body>
-      <AppLink
+      <ButtonLink
         class="mt-2xl"
         href={data?.cta?.link}
         size="lg"
         variant="outline"
       >
         {data?.cta?.label}
-      </AppLink>
+      </ButtonLink>
     </div>
   </section>
 </Layout>

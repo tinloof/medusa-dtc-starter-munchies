@@ -1,8 +1,8 @@
 ---
 import type { Footer as FooterType } from "@packages/sanity/types";
-import LocalizedLink from "../localized-link.astro";
-import RichText from "../rich-text.astro";
-import { Body } from "../typography/body";
+import LocalizedLink from "@/components/shared/localized-link.astro";
+import RichText from "@/components/shared/rich-text.astro";
+import { Body } from "@/components/shared/typography/body";
 
 type Props = FooterType;
 
@@ -26,13 +26,16 @@ const { information, linkList } = Astro.props;
     {linkList?.map((list) => (
       <div
         class="flex min-w-42.5 flex-col gap-xs lg:min-w-49"
+                transition:persist
+
       >
         {list.links?.map((link) => {
           if (!link.link) {
             return null;
           }
           return (
-            <LocalizedLink href={link.link}>
+          <LocalizedLink href={link.link}
+      >
               <Body desktopSize="base" font="sans" mobileSize="sm">
                 {link.label}
               </Body>
