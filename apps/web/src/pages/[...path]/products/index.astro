@@ -18,17 +18,21 @@ const globalData = await loadGlobalData();
   </section>
 </Layout>
 
-<script>
-  let scrollPositions = new Map();
+<script is:inline>
+  let scrollPosition = 0;
+  let fromPathname = "";
 
   document.addEventListener("astro:before-preparation", (e) => {
-    scrollPositions.set(e.from.pathname, window.scrollY);
+    fromPathname = e.from.pathname;
+    scrollPosition = window.scrollY;
   });
 
   document.addEventListener("astro:after-swap", () => {
-    const saved = scrollPositions.get(window.location.pathname);
-    if (saved !== undefined) {
-      window.scrollTo(0, saved);
+    // only restore scroll when staying on same page (filter changes)
+    if (fromPathname === window.location.pathname && scrollPosition > 0) {
+      window.scrollTo(0, scrollPosition);
     }
+    fromPathname = null;
+    scrollPosition = 0;
   });
 </script>

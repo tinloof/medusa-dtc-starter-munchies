@@ -22,6 +22,7 @@ export function HeaderClient({ header, countries }: HeaderClientProps) {
               alt="Mubchies logo"
               className="my-2.25 h-5.5 w-fit lg:my-2.5 lg:h-9"
               height={36}
+              loading="eager"
               src="/images/logo.svg"
               width={375}
             />
@@ -34,7 +35,7 @@ export function HeaderClient({ header, countries }: HeaderClientProps) {
           <CountrySelectorDialog countries={countries} />
         </span>
         <div className="relative size-10 p-2">
-          <Icon loading="eager" name="Cart" />
+          <Icon fetchPriority="high" name="Cart" />
         </div>
       </div>
     </div>
