@@ -1,0 +1,27 @@
+---
+import { all } from "better-all";
+import { FAQs } from "@/components/faqs";
+import Layout from "@/layouts/layout.astro";
+import { loadFaqs, loadGlobalData } from "@/lib/sanity";
+
+const { globalData, faqsData } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  faqsData() {
+    return loadFaqs();
+  },
+});
+
+if (!faqsData) {
+  return Astro.redirect("/404", 404);
+}
+---
+
+<Layout
+  globalData={globalData}
+  title={faqsData.title}
+  description={faqsData.seo?.description}
+>
+  <FAQs data={faqsData} client:load />
+</Layout>
