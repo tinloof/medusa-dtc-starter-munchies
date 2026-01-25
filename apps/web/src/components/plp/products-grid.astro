@@ -1,0 +1,56 @@
+---
+import type { HttpTypes } from "@medusajs/types";
+import type { DICTIONARY_QUERY_RESULT } from "@packages/sanity/types";
+import { getLocalizedHref } from "@/lib/utils/get-localized-href";
+import ButtonLink from "../shared/button-link.astro";
+import { ProductCard } from "../shared/product-card";
+import { Body } from "../shared/typography/body";
+import { Heading } from "../shared/typography/heading";
+
+interface Props {
+  products: HttpTypes.StoreProduct[];
+  productsDictionary: DICTIONARY_QUERY_RESULT;
+}
+
+const searchParams = Astro.url.searchParams;
+
+const collection = searchParams.get("collection");
+const category = searchParams.get("category");
+
+const hasFilters = collection || category;
+
+function getClearUrl(): string {
+  const newParams = new URLSearchParams(searchParams);
+  newParams.delete("collection");
+  newParams.delete("category");
+  const queryString = newParams.toString();
+  return queryString
+    ? `?${queryString}`
+    : getLocalizedHref({
+        href: "/products",
+        countryCode: Astro.locals.countryCode,
+        defaultCountryCode: Astro.locals.defaultCountryCode,
+      });
+}
+
+const { products, productsDictionary } = Astro.props;
+---
+
+{products.length === 0 && (
+  <div class="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
+    <Heading font="sans" mobileSize="xs" tag="h2">
+      {productsDictionary?.noResultsText}
+    </Heading>
+    <Body font="sans" mobileSize="lg">
+      {productsDictionary?.noResultsDescription}
+    </Body>
+    {hasFilters && (
+      <ButtonLink size="sm" variant="outline" class="mt-3" href={getClearUrl()}>Clear filters</ButtonLink>
+    )}
+  </div>
+)}
+<div class="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
+  {products.map(product => (
+    <ProductCard product={product} size="PLP" />
+  ))}
+</div>

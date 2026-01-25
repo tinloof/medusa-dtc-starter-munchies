@@ -1,0 +1,48 @@
+---
+import ProductsGrid from "@/components/plp/products-grid.astro";
+import { Heading } from "@/components/shared/typography/heading";
+import Layout from "@/layouts/layout.astro";
+import { getRegion } from "@/lib/medusa/regions";
+import { loadDictionary } from "@/lib/sanity";
+import { searchProducts } from "@/lib/search/client";
+
+const region = await getRegion(Astro.locals.countryCode);
+
+if (!region) {
+  console.warn("No region found");
+  return Astro.redirect("/404", 404);
+}
+
+const productsDictionary = await loadDictionary();
+
+const url = Astro.url.toString();
+
+const searchParams = new URL(url).searchParams;
+
+const collection = searchParams.get("collection") || "";
+const category = searchParams.get("category") || "";
+
+const results = await searchProducts(Astro.locals.runtime.env.SEARCH, {
+  limit: 20,
+  region_id: region.id,
+  collection_id: collection,
+  category_id: category,
+});
+---
+
+<Layout title="Shop all">
+  <section
+    class="mx-auto flex max-w-max-screen flex-col gap-10 px-m pt-26 pb-10 lg:px-xl"
+  >
+    <Heading desktopSize="7xl" font="serif" mobileSize="2xl" tag="h1">
+      Shop all products
+    </Heading>
+    <div class="flex flex-col gap-6">
+      <!-- @ts-expect-error  -->
+      <ProductsGrid
+        products={results.hits}
+        productsDictionary={productsDictionary}
+      />
+    </div>
+  </section>
+</Layout>

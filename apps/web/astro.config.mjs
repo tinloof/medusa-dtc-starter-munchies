@@ -44,5 +44,9 @@ export default defineConfig({
       noExternal: ["@medusajs/js-sdk"],
     },
   },
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
 });

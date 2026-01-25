@@ -9,5 +9,6 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "services": [{ "binding": "SEARCH", "service": "munchies-search" }]
 }

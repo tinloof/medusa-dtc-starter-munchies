@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # sanity build output
 public/cms
+
+.wrangler
