@@ -1,11 +1,12 @@
 ---
+import { all } from "better-all";
 import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
 import ProductInformation from "@/components/pdp/product-information";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
 import Layout from "@/layouts/layout.astro";
 import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
 import { getRegion } from "@/lib/medusa/regions";
-import { loadProductContent } from "@/lib/sanity";
+import { loadGlobalData, loadProductContent } from "@/lib/sanity";
 
 const { handle } = Astro.params;
 
@@ -13,30 +14,53 @@ if (!handle) {
   return Astro.redirect("/404", 404);
 }
 
-const region = await getRegion(Astro.locals.countryCode);
+const countryCode = Astro.locals.countryCode;
 
-if (!region) {
-  console.warn("No region found for country: ", Astro.locals.countryCode);
+const { globalData, region, product, productContent, addons } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  region() {
+    return getRegion(countryCode);
+  },
+  productContent() {
+    return loadProductContent(handle);
+  },
+  async product() {
+    const region = await this.$.region;
+    if (!region) {
+      return null;
+    }
+    return getProductByHandle(handle, region.id);
+  },
+  async addons() {
+    const [region, productContent] = await Promise.all([
+      this.$.region,
+      this.$.productContent,
+    ]);
+    if (!region) {
+      return { products: [] };
+    }
+    const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
+    return getProductsByIds(ids, region.id);
+  },
+});
+
+if (!(region && product)) {
   return Astro.redirect("/404", 404);
 }
 
-// Fetch product from medusa
-const product = await getProductByHandle(handle, region.id);
-
-if (!product) {
-  console.warn("No product found for handle: ", handle);
-  return Astro.redirect("/404", 404);
-}
-
-// Fetch product content from sanity
-const productContent = await loadProductContent(handle);
-
-const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
-
-const { products: addons } = await getProductsByIds(ids, region.id);
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, s-maxage=300, stale-while-revalidate=3600"
+);
 ---
 
-<Layout title={product.title} description={product.description ?? ""}>
+<Layout
+  title={product.title}
+  description={product.description ?? ""}
+  globalData={globalData}
+>
   <section
     class="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m"
   >
@@ -45,7 +69,7 @@ const { products: addons } = await getProductsByIds(ids, region.id);
       client:load
       content={productContent}
       region_id={region.id}
-      addons={addons}
+      addons={addons.products}
       {...product}
     />
   </section>

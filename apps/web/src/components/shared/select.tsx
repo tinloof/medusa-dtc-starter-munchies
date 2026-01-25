@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { Icon } from "./icon";
 import { Body } from "./typography/body";
 
-interface Option {
+export interface Option {
   label: string;
   value: string;
 }

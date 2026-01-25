@@ -1,8 +1,9 @@
 ---
+import { all } from "better-all";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
 import TextPage from "@/components/text-page/index.astro";
 import Layout from "@/layouts/layout.astro";
-import { loadPageByPathname } from "@/lib/sanity";
+import { loadGlobalData, loadPageByPathname } from "@/lib/sanity";
 
 const { path } = Astro.params;
 const { countryCode, defaultCountryCode } = Astro.locals;
@@ -16,9 +17,16 @@ const isCountryCode = countryCode !== defaultCountryCode;
 const actualPath = isCountryCode ? pathSegments.slice(1).join("/") : path;
 const pathname = actualPath ? `/${actualPath}` : "/";
 
-const result = await loadPageByPathname(pathname);
+const { globalData, page } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  page() {
+    return loadPageByPathname(pathname);
+  },
+});
 
-if (!result) {
+if (!page) {
   return Astro.redirect("/404", 404);
 }
 
@@ -28,12 +36,20 @@ const templates: Record<string, any> = {
   "modular.page": SectionRenderer,
 };
 
-const Template = templates[result._type];
+const Template = templates[page._type];
 
 // if countryCode === defaultCountryCode then we use the path directly
 // otherwise we remove the countryCode from the path
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, s-maxage=300, stale-while-revalidate=3600"
+);
 ---
 
-<Layout title={result.title} description={result.seo?.description}>
-  {Template ? <Template {...result} /> : <div>Template not found: {result._type}</div>}
+<Layout
+  title={page.title}
+  description={page.seo?.description}
+  globalData={globalData}
+>
+  {Template ? <Template {...page} /> : <div>Template not found: {page._type}</div>}
 </Layout>

@@ -1,14 +1,22 @@
 ---
+import { all } from "better-all";
 import ButtonLink from "@/components/shared/button-link.astro";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
-import { loadNotFound } from "@/lib/sanity";
+import { loadGlobalData, loadNotFound } from "@/lib/sanity";
 
-const data = await loadNotFound();
+const { globalData, notFound } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  notFound() {
+    return loadNotFound();
+  },
+});
 ---
 
-<Layout title="Not found">
+<Layout title="Not found" globalData={globalData}>
   <section
     class="mx-auto h-[calc(100vh-50px)] max-h-162.5 w-full max-w-max-screen p-m lg:p-xl"
   >
@@ -24,15 +32,15 @@ const data = await loadNotFound();
         font="sans"
         mobileSize="lg"
       >
-        {data?.text}
+        {notFound?.text}
       </Body>
       <ButtonLink
         class="mt-2xl"
-        href={data?.cta?.link}
+        href={notFound?.cta?.link}
         size="lg"
         variant="outline"
       >
-        {data?.cta?.label}
+        {notFound?.cta?.label}
       </ButtonLink>
     </div>
   </section>

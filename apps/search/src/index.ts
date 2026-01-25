@@ -114,6 +114,51 @@ export default {
       },
     });
 
+    // For OR-based filtering, facets should show counts as if their own
+    // filter was not applied (but other filters still apply)
+    let categoryFacets = results.facets?.category_ids as OramaFacet | undefined;
+    let collectionFacets = results.facets?.collection_id as
+      | OramaFacet
+      | undefined;
+
+    // Category facets: exclude category filter
+    if (categoryIds?.length) {
+      const whereWithoutCategory: Record<string, unknown> = {};
+      if (collectionIds?.length) {
+        whereWithoutCategory.collection_id = collectionIds;
+      }
+      const categoryFacetResults = search(orama, {
+        term: query,
+        limit: 0,
+        ...(Object.keys(whereWithoutCategory).length > 0 && {
+          where: whereWithoutCategory,
+        }),
+        facets: { category_ids: {} },
+      });
+      categoryFacets = categoryFacetResults.facets?.category_ids as
+        | OramaFacet
+        | undefined;
+    }
+
+    // Collection facets: exclude collection filter
+    if (collectionIds?.length) {
+      const whereWithoutCollection: Record<string, unknown> = {};
+      if (categoryIds?.length) {
+        whereWithoutCollection.category_ids = categoryIds;
+      }
+      const collectionFacetResults = search(orama, {
+        term: query,
+        limit: 0,
+        ...(Object.keys(whereWithoutCollection).length > 0 && {
+          where: whereWithoutCollection,
+        }),
+        facets: { collection_id: {} },
+      });
+      collectionFacets = collectionFacetResults.facets?.collection_id as
+        | OramaFacet
+        | undefined;
+    }
+
     // Transform variants to include calculated_price for requested region
     const hits = results.hits.map((hit: { document: StoredProduct }) => {
       const product = hit.document;
@@ -136,14 +181,8 @@ export default {
       offset,
       hits,
       facets: {
-        collections: buildFacets(
-          results.facets?.collection_id as OramaFacet,
-          metadata.collections
-        ),
-        categories: buildFacets(
-          results.facets?.category_ids as OramaFacet,
-          metadata.categories
-        ),
+        collections: buildFacets(collectionFacets, metadata.collections),
+        categories: buildFacets(categoryFacets, metadata.categories),
       },
     });
   },

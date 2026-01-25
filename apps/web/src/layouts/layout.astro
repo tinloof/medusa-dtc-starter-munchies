@@ -11,20 +11,19 @@ import config from "@/config";
 import { getOgImages } from "@/lib/sanity/get-og-images";
 
 import "@/styles/global.css";
-import { loadGlobalData } from "@/lib/sanity";
+import type { GLOBAL_QUERY_RESULT } from "@packages/sanity/types";
 
 interface Props {
+  globalData: GLOBAL_QUERY_RESULT;
   title?: string;
   description?: string;
 }
 
-const globalData = await loadGlobalData();
-
-if (!globalData) {
-  return Astro.redirect("/404", 404);
-}
-
-const { title = config.title, description = config.description } = Astro.props;
+const {
+  title = config.title,
+  description = config.description,
+  globalData,
+} = Astro.props;
 ---
 
 <!doctype html>

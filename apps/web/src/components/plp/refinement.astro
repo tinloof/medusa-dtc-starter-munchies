@@ -1,0 +1,51 @@
+---
+import type { SearchResult } from "@/lib/search/client";
+import ClearAll from "./clear-all.astro";
+import { FilterSelect } from "./filter-select";
+
+interface Props {
+  facets: SearchResult["facets"];
+}
+
+const { facets } = Astro.props;
+
+const searchParams = Astro.url.searchParams;
+const pathname = Astro.url.pathname;
+
+const collectionParam = searchParams.get("collection");
+const categoryParam = searchParams.get("category");
+
+const collections = collectionParam ? collectionParam.split(",") : [];
+const categories = categoryParam ? categoryParam.split(",") : [];
+
+const collectionOptions = facets.collections
+  .filter((f) => f.count > 0 || collections.includes(f.id))
+  .map((f) => ({ label: f.label, value: f.id }));
+const categoryOptions = facets.categories
+  .filter((c) => c.count > 0 || categories.includes(c.id))
+  .map((c) => ({ label: c.label, value: c.id }));
+---
+
+<div class="flex items-center justify-between">
+  <div class="hidden lg:flex lg:items-center lg:gap-s">
+    <FilterSelect
+      client:load
+      name="collection"
+      options={collectionOptions}
+      pathname={pathname}
+      placeholder="Collections"
+      searchParams={searchParams.toString()}
+      transition:persist
+    />
+    <FilterSelect
+      client:load
+      name="category"
+      options={categoryOptions}
+      pathname={pathname}
+      placeholder="Categories"
+      searchParams={searchParams.toString()}
+      transition:persist
+    />
+    <ClearAll variant="underline" />
+  </div>
+</div>

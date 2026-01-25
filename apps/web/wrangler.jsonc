@@ -3,6 +3,9 @@
   "name": "munchies-cf",
   "compatibility_date": "2026-01-21",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "routes": [
+    { "pattern": "munchies.million-tinloof.com", "custom_domain": true }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist"
@@ -10,5 +13,10 @@
   "observability": {
     "enabled": true
   },
-  "services": [{ "binding": "SEARCH", "service": "munchies-search" }]
+  "services": [
+    {
+      "binding": "SEARCH",
+      "service": "munchies-search"
+    }
+  ]
 }
