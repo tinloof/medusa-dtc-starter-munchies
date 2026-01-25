@@ -1,8 +1,10 @@
 ---
 import type { Header as HeaderType } from "@packages/sanity/types";
+import RichText from "@/components/shared/rich-text.astro";
+import { Body } from "@/components/shared/typography/body";
 import { listCountries } from "@/lib/medusa/regions";
 import { HeaderClient } from "./header-client";
-import AnnouncementBar from "./parts/announcement-bar.astro";
+import { AnnouncementBar } from "./parts/announcement-bar";
 import { BottomBorder } from "./parts/bottom-border";
 
 type Props = HeaderType;
@@ -15,10 +17,16 @@ const countries = await listCountries();
 <header
   class="sticky top-0 z-50 flex w-full flex-col items-center bg-background"
 >
-  <AnnouncementBar {...header} />
+  <AnnouncementBar client:load transition:persist="announcement-bar">
+    {header.showAnnouncement && header.announcementText && (
+      <Body desktopSize="sm" font="sans" mobileSize="xs">
+        <RichText value={header.announcementText} />
+      </Body>
+    )}
+  </AnnouncementBar>
   <HeaderClient
     client:load
-    transition:persist
+    transition:persist="navigation"
     header={header}
     countries={countries}
   />
