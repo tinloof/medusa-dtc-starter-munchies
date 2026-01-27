@@ -12,12 +12,14 @@ import "@/styles/global.css";
 import type { GLOBAL_QUERY_RESULT } from "@packages/sanity/types";
 
 interface Props {
+  variant?: "simple" | "default";
   globalData: GLOBAL_QUERY_RESULT;
   title?: string;
   description?: string;
 }
 
 const {
+  variant = "default",
   title = config.title,
   description = config.description,
   globalData,
@@ -73,11 +75,11 @@ const {
       defaultCountryCode={Astro.locals.defaultCountryCode}
       pathname={Astro.url.pathname}
     />
-    {globalData.header && <Header {...globalData.header} />}
+    {globalData.header && <Header header={globalData.header} variant={variant} />}
     <main class="flex-1">
       <slot />
     </main>
-    {globalData.footer && <Footer {...globalData.footer} />}
+    {globalData.footer && <Footer footer={globalData.footer} variant={variant} />}
   </body>
 </html>
 

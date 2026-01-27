@@ -8,7 +8,7 @@ interface IntersectionOptions {
   threshold?: number;
 }
 
-const useInView = (
+export const useInView = (
   options: IntersectionOptions = {}
 ): { inView: boolean; ref: Ref<HTMLDivElement> } => {
   const [inView, setInView] = useState(false);
@@ -34,5 +34,3 @@ const useInView = (
 
   return { inView, ref };
 };
-
-export default useInView;

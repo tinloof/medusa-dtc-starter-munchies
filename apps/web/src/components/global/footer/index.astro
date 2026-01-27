@@ -3,11 +3,12 @@ import type { Footer as FooterType } from "@packages/sanity/types";
 import DefaultFooter from "./default-footer.astro";
 import SimpleFooter from "./simple-footer.astro";
 
-interface Props extends FooterType {
+interface Props {
+  footer: FooterType;
   variant?: "default" | "simple";
 }
 
-const { variant = "default", ...footer } = Astro.props;
+const { variant = "default", footer } = Astro.props;
 ---
 
 {variant === "default" ? <DefaultFooter {...footer} /> : <SimpleFooter {...footer} />}

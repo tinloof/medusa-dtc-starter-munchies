@@ -45,7 +45,7 @@ async function getOrSetCart(cookies: AstroCookies, countryCode: string) {
   return cart;
 }
 
-export const addToCart = defineAction({
+const addToCart = defineAction({
   accept: "json",
   input: z.object({
     quantity: z.number(),
@@ -78,7 +78,7 @@ export const addToCart = defineAction({
   },
 });
 
-export const updateCartQuantity = defineAction({
+const updateCartQuantity = defineAction({
   accept: "json",
   input: z.object({
     countryCode: z.string().default(config.defaultCountryCode),

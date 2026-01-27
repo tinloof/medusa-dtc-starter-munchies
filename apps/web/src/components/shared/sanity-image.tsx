@@ -218,5 +218,3 @@ function generateImageUrl(args: {
 
   return imageUrl.url();
 }
-
-export default SanityImage;

@@ -1,6 +1,6 @@
 import { CarouselSection } from "@/components/shared/carousel-section";
 import { LocalizedLink } from "@/components/shared/localized-link";
-import SanityImage from "@/components/shared/sanity-image";
+import { SanityImage } from "@/components/shared/sanity-image";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import type { ModularPageSection } from "../types";

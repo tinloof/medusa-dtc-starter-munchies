@@ -1,53 +1,14 @@
 ---
 import type { Header as HeaderType } from "@packages/sanity/types";
-import Cart from "@/components/cart/index.astro";
-import { Icon } from "@/components/shared/icon";
-import RichText from "@/components/shared/rich-text.astro";
-import { Body } from "@/components/shared/typography/body";
-import CountrySelector from "./country-selector/index.astro";
-import { HeaderClient } from "./header-client";
-import { AnnouncementBar } from "./parts/announcement-bar";
-import { BottomBorder } from "./parts/bottom-border";
+import DefaultHeader from "./default-header.astro";
+import SimpleHeader from "./simple-header.astro";
 
-type Props = HeaderType;
+interface Props {
+  header: HeaderType;
+  variant?: "simple" | "default";
+}
 
-const header = Astro.props;
+const { header, variant = -"default" } = Astro.props;
 ---
 
-<header
-  class="sticky top-0 z-50 flex w-full flex-col items-center bg-background"
->
-  <AnnouncementBar client:load transition:persist="announcement-bar">
-    {header.showAnnouncement && header.announcementText && (
-      <Body desktopSize="sm" font="sans" mobileSize="xs">
-        <RichText value={header.announcementText} />
-      </Body>
-    )}
-  </AnnouncementBar>
-  <HeaderClient client:load transition:persist="navigation" header={header}>
-    <CountrySelector server:defer slot="countrySelectorNode">
-      <div slot="fallback" class="w-17.25 h-10.75" />
-    </CountrySelector>
-    <Cart
-      addons={header.cartAddons}
-      server:defer
-      slot="cartNode"
-      countryCode={Astro.locals.countryCode}
-    >
-      <div class="relative h-10 w-10 p-2" slot="fallback">
-        <Icon name="Cart" />
-        <Body
-          className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-background"
-          font="sans"
-          mobileSize="sm"
-        >
-          0
-        </Body>
-      </div>
-    </Cart>
-  </HeaderClient>
-
-  <div class="relative z-30 w-screen" id="navigation-portal" />
-
-  <BottomBorder client:load className="lg:hidden" />
-</header>
+{variant === "default" ? <DefaultHeader {...header} /> : <SimpleHeader />}

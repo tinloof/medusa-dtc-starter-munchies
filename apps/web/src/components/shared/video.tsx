@@ -6,7 +6,7 @@ import {
   resolveImageData,
   SanityImage,
 } from "@/components/shared/sanity-image";
-import useInView from "@/lib/hooks/use-in-view";
+import { useInView } from "@/lib/hooks/use-in-view";
 
 export type VideoProps = {
   aspectRatio?: string;
