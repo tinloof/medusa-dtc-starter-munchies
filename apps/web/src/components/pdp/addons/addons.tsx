@@ -2,12 +2,14 @@ import type { HttpTypes } from "@medusajs/types";
 import { AddonsItem } from "@/components/shared/addons-item";
 import { Heading } from "@/components/shared/typography/heading";
 
-export default function Addons({
+export function Addons({
   products,
+  regionId,
   title,
 }: {
   products: HttpTypes.StoreProduct[];
   title?: string;
+  regionId: string;
 }) {
   if (products.length === 0) {
     return null;
@@ -18,7 +20,7 @@ export default function Addons({
         {title}
       </Heading>
       {products.map((product) => (
-        <AddonsItem key={product.id} {...product} />
+        <AddonsItem key={product.id} regionId={regionId} {...product} />
       ))}
     </div>
   );

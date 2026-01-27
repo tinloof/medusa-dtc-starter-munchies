@@ -1,0 +1,24 @@
+---
+import type { HttpTypes } from "@medusajs/types";
+import type { PRODUCT_QUERY_RESULT } from "@packages/sanity/types";
+import { getProductsByIds } from "@/lib/medusa/products";
+import { Addons } from "./addons";
+
+interface Props {
+  region: HttpTypes.StoreRegion;
+  productContent: PRODUCT_QUERY_RESULT;
+}
+
+const { region, productContent } = Astro.props;
+
+const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
+
+const { products } = await getProductsByIds(ids, region.id);
+---
+
+<Addons
+  client:load
+  products={products}
+  regionId={region.id}
+  title={productContent?.addons?.title}
+/>

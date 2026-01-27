@@ -2,20 +2,24 @@ import type { StoreProduct } from "@medusajs/types";
 import { cx } from "class-variance-authority";
 import { useMemo } from "react";
 import { getProductPrice } from "@/lib/utils/medusa/get-product-price";
-import { Cta } from "./button";
+import { AddToCartButton } from "../cart/add-to-cart";
 import { LocalizedLink } from "./localized-link";
 import { Body } from "./typography/body";
 
 type Props = {
+  regionId: string;
   variant?: "PDP" | "cart";
 } & StoreProduct;
 
-export function AddonsItem({ variant = "PDP", ...product }: Props) {
+export function AddonsItem({ regionId, variant = "PDP", ...product }: Props) {
   const { cheapestPrice } = getProductPrice({
     product,
   });
 
   const default_variant = product.variants?.[0];
+  const variantWithProduct = default_variant
+    ? { ...default_variant, product }
+    : default_variant;
 
   const size = useMemo(() => {
     if (variant === "PDP") {
@@ -55,15 +59,16 @@ export function AddonsItem({ variant = "PDP", ...product }: Props) {
             {default_variant?.title} / {cheapestPrice?.calculated_price}
           </Body>
         </div>
-        <Cta
+        <AddToCartButton
           className={cx("self-end", {
             "mr-4": variant === "cart",
           })}
+          label="Add +"
+          productVariant={variantWithProduct}
+          regionId={regionId}
           size={size}
           variant="outline"
-        >
-          Add +
-        </Cta>
+        />
       </div>
     </LocalizedLink>
   );

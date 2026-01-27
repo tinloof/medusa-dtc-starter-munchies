@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, Cambria, serif;
-  --font-display: "Climate Crisis", cursive;
+  --font-sans: var(--font-instrumentSans);
+  --font-serif: var(--font-instrumentSerif);
+  --font-display: var(--font-climateCrisis);
   --color-background: var(--background);
   --color-accent: var(--accent);
   --color-accent-40: var(--accent-40);

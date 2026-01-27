@@ -1,0 +1,25 @@
+---
+import type { Header } from "@packages/sanity/types";
+import { getEnrichedCart } from "@/lib/medusa/cart";
+import { Cart } from "./cart";
+import CartAddons from "./cart-addons/index.astro";
+
+interface Props {
+  countryCode: string;
+  addons: Header["cartAddons"];
+}
+
+const { addons, countryCode } = Astro.props;
+
+const cart = await getEnrichedCart(Astro.cookies);
+---
+
+<Cart client:load cart={cart} countryCode={countryCode} />
+<div id="cart-addons" class="hidden">
+  <CartAddons
+    server:defer
+    cart={cart}
+    countryCode={countryCode}
+    addons={addons}
+  />
+</div>

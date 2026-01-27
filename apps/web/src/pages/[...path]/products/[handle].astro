@@ -1,14 +1,16 @@
 ---
 import { all } from "better-all";
+import ProductAddons from "@/components/pdp/addons/index.astro";
 import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
-import ProductInformation from "@/components/pdp/product-information";
+import { ProductInformation } from "@/components/pdp/product-information";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
 import Layout from "@/layouts/layout.astro";
-import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
+import { getProductByHandle } from "@/lib/medusa/products";
 import { getRegion } from "@/lib/medusa/regions";
 import { loadGlobalData, loadProductContent } from "@/lib/sanity";
 
 const { handle } = Astro.params;
+const searchParams = Astro.url.searchParams;
 
 if (!handle) {
   return Astro.redirect("/404", 404);
@@ -16,7 +18,7 @@ if (!handle) {
 
 const countryCode = Astro.locals.countryCode;
 
-const { globalData, region, product, productContent, addons } = await all({
+const { globalData, region, product, productContent } = await all({
   globalData() {
     return loadGlobalData();
   },
@@ -32,17 +34,6 @@ const { globalData, region, product, productContent, addons } = await all({
       return null;
     }
     return getProductByHandle(handle, region.id);
-  },
-  async addons() {
-    const [region, productContent] = await Promise.all([
-      this.$.region,
-      this.$.productContent,
-    ]);
-    if (!region) {
-      return { products: [] };
-    }
-    const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
-    return getProductsByIds(ids, region.id);
   },
 });
 
@@ -67,11 +58,23 @@ Astro.response.headers.set(
     <ProductImagesCarousel client:load product={product} />
     <ProductInformation
       client:load
+      searchParams={searchParams.toString()}
       content={productContent}
-      region_id={region.id}
-      addons={addons.products}
+      regionId={region.id}
       {...product}
-    />
+    >
+      <ProductAddons
+        server:defer
+        slot="addonsNode"
+        region={region}
+        productContent={productContent}
+      >
+        <div
+          slot="fallback"
+          class="w-full bg-secondary h-79 lg:h-84.5 rounded-lg "
+        />
+      </ProductAddons>
+    </ProductInformation>
   </section>
 
   {productContent?.sections && <SectionRenderer sections={productContent.sections} fieldName="body" />}

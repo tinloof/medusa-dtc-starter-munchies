@@ -1,7 +1,5 @@
 ---
-import "@fontsource-variable/instrument-sans";
-import "@fontsource/instrument-serif";
-import "@fontsource/climate-crisis";
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
 import Footer from "@/components/global/footer/index.astro";
@@ -33,6 +31,9 @@ const {
   class="overflow-x-clip overscroll-y-none"
 >
   <head>
+    <Font preload cssVariable="--font-instrumentSans" />
+    <Font preload cssVariable="--font-instrumentSerif" />
+    <Font preload cssVariable="--font-climateCrisis" />
     <meta charset="UTF-8">
     <SEO
       title={title}

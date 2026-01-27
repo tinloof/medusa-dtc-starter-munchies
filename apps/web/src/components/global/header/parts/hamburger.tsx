@@ -1,4 +1,3 @@
-"use client";
 import type { Header } from "@packages/sanity/types";
 // biome-ignore lint/performance/noNamespaceImport: biome ignore
 import * as Dialog from "@radix-ui/react-dialog";
@@ -6,7 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { cx } from "class-variance-authority";
 import type { Dispatch, SetStateAction } from "react";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { ButtonLink } from "@/components/shared/button";
 import { Icon } from "@/components/shared/icon";
 import { LocalizedLink } from "@/components/shared/localized-link";
@@ -14,21 +13,14 @@ import { SanityImage } from "@/components/shared/sanity-image";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import { Label } from "@/components/shared/typography/label";
-import type { Country } from "@/lib/medusa/regions";
-import { CountrySelectorDialog } from "../country-selector/country-selector-dialog";
 
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
   { _type: "dropdown" }
 >;
 
-export default function Hamburger({
-  countries,
-  data,
-}: {
-  countries: Country[];
-  data: Header;
-}) {
+export function Hamburger({ data }: { data: Header }) {
+  const originalParentRef = useRef<HTMLElement | null>(null);
   const [open, setOpen] = useState(false);
   const [activeMenuState, setActiveMenu] = useState<string | undefined>(
     undefined
@@ -44,6 +36,30 @@ export default function Hamburger({
   );
   const activeMenu: any = data.navigation?.find(
     (menu) => menu._key === activeMenuState && menu._type === "dropdown"
+  );
+
+  const handleCountrySelectorMount = useCallback(
+    (node: HTMLDivElement | null) => {
+      const el = document.getElementById("country-selector");
+      if (!el) {
+        return;
+      }
+
+      if (node) {
+        const el = document.getElementById("country-selector");
+        if (el) {
+          originalParentRef.current = el.parentElement;
+          el.classList.remove("hidden", "lg:block");
+          el.classList.add("block");
+          node.appendChild(el);
+        }
+      } else if (originalParentRef.current) {
+        originalParentRef.current.appendChild(el);
+        el.classList.remove("block");
+        el.classList.add("hidden", "lg:block");
+      }
+    },
+    []
   );
 
   return (
@@ -85,9 +101,8 @@ export default function Hamburger({
                 />
               ))}
             </div>
-            <div className="p-m">
-              <CountrySelectorDialog countries={countries} />
-            </div>
+            {/* Country Selector */}
+            <div className="p-m" ref={handleCountrySelectorMount} />
           </div>
           <div
             className={`scrollbar-hide absolute top-0 left-0 w-screen transform overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300 ${

@@ -19,15 +19,20 @@ const ProductVariantsContext = createContext<
 export function ProductVariantsProvider({
   children,
   product,
+  searchParams,
 }: PropsWithChildren<{
   product: StoreProduct;
+  searchParams: string;
 }>) {
+  const urlSearchParams = new URLSearchParams(searchParams);
   const [selectedOptions, setSelectedOptions] = useQueryStates(
     Object.fromEntries(
       product.options?.map((option) => [
         option.title.toLowerCase(),
         parseAsString.withDefault(
-          option.values?.[0]?.value.toLowerCase() ?? ""
+          urlSearchParams.get(option.title.toLowerCase()) ??
+            option.values?.[0]?.value.toLowerCase() ??
+            ""
         ),
       ]) ?? []
     ),

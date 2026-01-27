@@ -1,0 +1,8 @@
+---
+import { listCountries } from "@/lib/medusa/regions";
+import { CountrySelectorDialog } from "./country-selector-dialog";
+
+const countries = await listCountries();
+---
+
+<CountrySelectorDialog client:visible countries={countries} />

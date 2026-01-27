@@ -2,7 +2,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,4 +49,29 @@ export default defineConfig({
       enabled: true,
     },
   }),
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Instrument Sans",
+        cssVariable: "--font-instrumentSans",
+        subsets: ["latin"],
+        weights: ["400", "500", "600"],
+      },
+      {
+        provider: fontProviders.google(),
+        name: "Instrument Serif",
+        cssVariable: "--font-instrumentSerif",
+        subsets: ["latin"],
+        weights: ["400"],
+      },
+      {
+        provider: fontProviders.google(),
+        name: "Climate Crisis",
+        cssVariable: "--font-climateCrisis",
+        subsets: ["latin"],
+        weights: ["400"],
+      },
+    ],
+  },
 });

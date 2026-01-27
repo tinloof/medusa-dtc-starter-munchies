@@ -12,9 +12,6 @@
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
-    "@fontsource-variable/instrument-sans": "^5.2.8",
-    "@fontsource/climate-crisis": "^5.2.11",
-    "@fontsource/instrument-serif": "^5.2.8",
     "@medusajs/js-sdk": "^2.13.0",
     "@nanostores/react": "^1.0.0",
     "@packages/sanity": "workspace:*",
@@ -37,6 +34,7 @@
     "class-variance-authority": "^0.7.1",
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "lodash": "^4.17.23",
     "nanostores": "^1.1.0",
     "nuqs": "^2.8.6",
     "react": "^19.2.3",
@@ -45,6 +43,7 @@
   },
   "devDependencies": {
     "@medusajs/types": "^2.13.0",
+    "@types/lodash": "^4.17.23",
     "wrangler": "^4.60.0"
   }
 }

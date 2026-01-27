@@ -11,7 +11,7 @@ export function OptionsSelect({ options }: Props) {
 
   return options?.map((option) => {
     const values = option.values?.map(({ value }) => ({
-      label: value,
+      label: value.toLowerCase(),
       value: value.toLowerCase(),
     }));
 

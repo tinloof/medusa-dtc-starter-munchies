@@ -72,6 +72,7 @@ export function Select({
                 "rotate-180": open,
               }
             )}
+            fetchPriority="high"
             name="AccordionTop"
           />
         </RadixSelect.Icon>
