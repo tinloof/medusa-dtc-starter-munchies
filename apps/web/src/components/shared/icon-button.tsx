@@ -42,7 +42,7 @@ export type IconButtonProps = {
 } & ComponentProps<"button"> &
   VariantProps<typeof iconButtonVariants>;
 
-export default function IconButton({
+export function IconButton({
   className,
   disabled = false,
   icon,

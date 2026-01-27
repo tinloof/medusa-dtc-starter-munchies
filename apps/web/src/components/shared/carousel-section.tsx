@@ -10,7 +10,7 @@ import {
   SlidesWrapper,
   useCarousel,
 } from "./carousel";
-import IconButton from "./icon-button";
+import { IconButton } from "./icon-button";
 
 interface Props {
   cta?: {

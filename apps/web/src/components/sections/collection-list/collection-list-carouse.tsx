@@ -12,7 +12,7 @@ interface CollectionListProps {
   pathname: string;
 }
 
-export default function CollectionList(props: CollectionListProps) {
+export function CollectionList(props: CollectionListProps) {
   const slides = props.data.cards?.map((collection) => (
     <CollectionCard key={collection._key} {...collection} />
   ));
