@@ -10,6 +10,11 @@ export default defineConfig({
   output: "server",
   env: {
     schema: {
+      PUBLIC_STRIPE_KEY: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
       PUBLIC_SANITY_STUDIO_PROJECT_ID: envField.string({
         context: "server",
         access: "public",

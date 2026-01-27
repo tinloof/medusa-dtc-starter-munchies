@@ -1,0 +1,17 @@
+---
+import LocalizedLink from "@/components/shared/localized-link.astro";
+import { BottomBorder } from "./parts/bottom-border";
+---
+
+<header class="sticky top-0 z-20 w-screen bg-background">
+  <div class="mx-auto my-s w-full max-w-max-screen bg-background px-m lg:px-xl">
+    <LocalizedLink href="/">
+      <img
+        alt="Mubchies logo"
+        class="h-5.5 w-fit lg:h-8"
+        src="/images/logo.svg"
+      >
+    </LocalizedLink>
+  </div>
+  <BottomBorder client:load />
+</header>

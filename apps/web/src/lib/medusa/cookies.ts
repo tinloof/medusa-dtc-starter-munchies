@@ -15,3 +15,7 @@ export const setCartId = (cookies: AstroCookies, cartId: string) => {
     secure: process.env.NODE_ENV === "production",
   });
 };
+
+export const removeCartId = (cookies: AstroCookies) => {
+  cookies.delete(MEDUSA_CART_COOKIE, { path: "/" });
+};
