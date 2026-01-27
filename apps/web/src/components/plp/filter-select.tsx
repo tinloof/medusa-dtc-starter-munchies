@@ -11,12 +11,15 @@ import type { Select } from "@/components/shared/select";
 import { Body } from "@/components/shared/typography/body";
 import { DropDown } from "./dropdown";
 
-function getFilterValues(params: URLSearchParams, name: string): string[] {
+export function getFilterValues(
+  params: URLSearchParams,
+  name: string
+): string[] {
   const value = params.get(name);
   return value ? value.split(",").filter(Boolean) : [];
 }
 
-function buildFilterUrl(
+export function buildFilterUrl(
   pathname: string,
   currentParams: URLSearchParams,
   name: string,

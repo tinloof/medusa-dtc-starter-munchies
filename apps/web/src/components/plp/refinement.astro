@@ -2,6 +2,7 @@
 import type { SearchResult } from "@/lib/search/client";
 import ClearAll from "./clear-all.astro";
 import { FilterSelect } from "./filter-select";
+import { MobileFilterDropdown } from "./mobile-filter-dropdown";
 
 interface Props {
   facets: SearchResult["facets"];
@@ -47,5 +48,18 @@ const categoryOptions = facets.categories
       transition:persist
     />
     <ClearAll variant="underline" />
+  </div>
+  <div class="flex lg:hidden">
+    <MobileFilterDropdown
+      client:load
+      transition:persist
+      countryCode={Astro.locals.countryCode}
+      defaultCountryCode={Astro.locals.defaultCountryCode}
+      searchParams={searchParams.toString()}
+      pathname={pathname}
+      searchParams={searchParams.toString()}
+      collectionOptions={collectionOptions}
+      categoryOptions={categoryOptions}
+    />
   </div>
 </div>
