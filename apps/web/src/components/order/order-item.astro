@@ -1,0 +1,54 @@
+---
+import type { HttpTypes } from "@medusajs/types";
+import { convertToLocale } from "@/lib/utils/medusa/money";
+import { Body } from "../shared/typography/body";
+
+interface Props {
+  currencyCode: string;
+  orderLineItem: HttpTypes.StoreOrderLineItem;
+}
+
+const { currencyCode, orderLineItem } = Astro.props;
+
+const price = convertToLocale({
+  amount: orderLineItem.unit_price * orderLineItem.quantity,
+  currency_code: currencyCode,
+});
+
+const unit_price_to_locale = convertToLocale({
+  amount: orderLineItem.unit_price,
+  currency_code: currencyCode,
+});
+
+const image = orderLineItem.product?.images?.[0]?.url;
+---
+
+<div class="flex w-full gap-xs">
+  {image ? (
+    <img
+      alt={`${orderLineItem.product?.title} ${orderLineItem.variant?.title}`}
+      class="aspect-square size-25 rounded-lg border-[1.5px] border-accent"
+      height={100}
+      src={image}
+      width={100}
+    />
+  ) : null}
+  <div class="flex w-full flex-col justify-between">
+    <div class="flex justify-between gap-xl">
+      <div class="flex flex-col items-start justify-start gap-1">
+        <Body className="font-semibold" font="sans" mobileSize="lg">
+          {orderLineItem.product?.title}
+        </Body>
+        <Body className="font-medium" font="sans" mobileSize="sm">
+          {orderLineItem.variant?.title}
+        </Body>
+      </div>
+      <div class="flex flex-col items-end justify-end gap-1">
+        <Body className="opacity-80" font="sans" mobileSize="base">
+          {orderLineItem.quantity} x {unit_price_to_locale}
+        </Body>
+        <Body font="sans" mobileSize="base">{price}</Body>
+      </div>
+    </div>
+  </div>
+</div>
