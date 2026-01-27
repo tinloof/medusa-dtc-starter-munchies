@@ -15,11 +15,24 @@ const cart = await getEnrichedCart(Astro.cookies);
 ---
 
 <Cart client:load cart={cart} countryCode={countryCode} />
-<div id="cart-addons" class="hidden">
-  <CartAddons
-    server:defer
-    cart={cart}
-    countryCode={countryCode}
-    addons={addons}
-  />
+<div id="cart-addons-parent" class="absolute">
+  <div id="cart-addons" class="hidden">
+    <CartAddons
+      server:defer
+      cart={cart}
+      countryCode={countryCode}
+      addons={addons}
+    />
+  </div>
 </div>
+
+<script is:inline>
+  document.addEventListener("astro:before-swap", () => {
+    const parent = document.getElementById("cart-addons-parent");
+    const addonsEl = document.getElementById("cart-addons");
+    if (parent && parent.children.length === 0 && addonsEl) {
+      addonsEl.classList.add("hidden");
+      parent.appendChild(addonsEl);
+    }
+  });
+</script>

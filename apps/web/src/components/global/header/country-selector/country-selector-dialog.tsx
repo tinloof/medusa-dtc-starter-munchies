@@ -1,6 +1,6 @@
 import { Dialog, Title } from "@radix-ui/react-dialog";
 import { cx } from "class-variance-authority";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { Icon } from "@/components/shared/icon";
 import {
   CloseDialog,
@@ -84,15 +84,14 @@ export function CountrySelectorDialog({
             </CloseDialog>
             <div className="flex flex-1 flex-col items-stretch overflow-y-auto">
               {countries.map((country) => (
-                <Suspense key={country?.code}>
-                  <a
-                    className="whitespace-nowrap rounded px-s py-xs hover:bg-secondary"
-                    href={getNewPath(country?.code)}
-                    onClick={() => setOpen(false)}
-                  >
-                    {country.name} [{country.currency.symbol}]
-                  </a>
-                </Suspense>
+                <a
+                  className="whitespace-nowrap rounded px-s py-xs hover:bg-secondary"
+                  href={getNewPath(country?.code)}
+                  key={country.code}
+                  onClick={() => setOpen(false)}
+                >
+                  {country.name} [{country.currency.symbol}]
+                </a>
               ))}
             </div>
           </div>
