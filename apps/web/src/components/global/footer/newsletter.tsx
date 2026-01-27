@@ -15,10 +15,13 @@ interface NewsLetterProps extends FooterType {
 }
 
 export function NewsLetter(props: NewsLetterProps) {
-  const [state, action] = useActionState(withState(actions.getGreeting), {
-    data: "",
-    error: undefined,
-  });
+  const [state, action] = useActionState(
+    withState(actions.subscribeToNewsletter),
+    {
+      data: "",
+      error: undefined,
+    }
+  );
 
   return (
     <section className="mx-auto flex w-full max-w-max-screen flex-col gap-s px-m py-2xl lg:px-xl">
@@ -51,8 +54,8 @@ export function NewsLetter(props: NewsLetterProps) {
           </Body>
         </>
       )}
-      {state.data === "error" && (
-        <div className="rounded-lg bg-error bg-opacity-20 p-s">
+      {state.error && (
+        <div className="rounded-lg bg-error/20 p-s">
           <Body
             className="text-error"
             desktopSize="2xl"
