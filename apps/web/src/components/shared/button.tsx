@@ -1,7 +1,8 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva, cx } from "class-variance-authority";
 import type { ComponentProps } from "react";
-import { Icon } from "@/components/shared/icon";
+import { Icon } from "@/generated/Icon";
+import { LOADING_ACCENT, LOADING_PRIMARY } from "@/generated/icons";
 import { LocalizedLink } from "./localized-link";
 
 export const styles = cva(
@@ -49,7 +50,7 @@ export function Cta({
   ...rest
 }: ButtonProps) {
   const loadingIconName =
-    variant === "primary" ? "LoadingPrimary" : "LoadingAccent";
+    variant === "primary" ? LOADING_PRIMARY : LOADING_ACCENT;
   return (
     <button
       className={styles({ className, loading, size, variant })}
@@ -65,7 +66,7 @@ export function Cta({
               "size-8": size === "md",
               "size-10": size === "lg" || size === "xl",
             })}
-            name={loadingIconName}
+            href={loadingIconName}
           />
         </div>
       ) : null}

@@ -6,9 +6,10 @@ import {
   useRef,
   useState,
 } from "react";
-import { Icon } from "@/components/shared/icon";
 import type { Select } from "@/components/shared/select";
 import { Body } from "@/components/shared/typography/body";
+import { Icon } from "@/generated/Icon";
+import { ACCORDION_BOTTOM, ACCORDION_TOP, CHECK } from "@/generated/icons";
 import { DropDown } from "./dropdown";
 
 export function getFilterValues(
@@ -100,7 +101,7 @@ export function FilterSelect(
             )}
             onClick={() => scrollBy(-250)}
           >
-            <Icon className="size-6" name="AccordionBottom" />
+            <Icon className="size-6" href={ACCORDION_BOTTOM} />
           </div>
         </div>
         <div className="group flex w-full flex-col gap-2 p-xs">
@@ -128,7 +129,7 @@ export function FilterSelect(
                       { "opacity-100": selected }
                     )}
                     height={24}
-                    name="Check"
+                    href={CHECK}
                     width={24}
                   />
                 </div>
@@ -153,7 +154,7 @@ export function FilterSelect(
             )}
             onClick={() => scrollBy(250)}
           >
-            <Icon className="size-6" name="AccordionTop" />
+            <Icon className="size-6" href={ACCORDION_TOP} />
           </div>
         </div>
       </div>

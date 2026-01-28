@@ -1,5 +1,6 @@
 import { type PropsWithChildren, useState } from "react";
-import { Icon } from "@/components/shared/icon";
+import { Icon } from "@/generated/Icon";
+import { CLOSE } from "@/generated/icons";
 
 export function AnnouncementBar({ children }: PropsWithChildren) {
   const [isVisible, setIsVisible] = useState(true);
@@ -17,7 +18,7 @@ export function AnnouncementBar({ children }: PropsWithChildren) {
           onClick={() => setIsVisible(false)}
           type="button"
         >
-          <Icon className="size-3.5" fetchPriority="high" name="Close" />
+          <Icon className="size-3.5" href={CLOSE} />
         </button>
       </div>
     </div>

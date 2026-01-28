@@ -1,7 +1,6 @@
 import { Dialog, Title } from "@radix-ui/react-dialog";
 import { cx } from "class-variance-authority";
 import { useState } from "react";
-import { Icon } from "@/components/shared/icon";
 import {
   CloseDialog,
   OpenDialog,
@@ -9,6 +8,8 @@ import {
 } from "@/components/shared/side-dialog";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
+import { Icon } from "@/generated/Icon";
+import { CLOSE } from "@/generated/icons";
 import type { Country } from "@/lib/medusa/regions";
 import { useCountryCodeContext } from "@/stores/country";
 
@@ -80,7 +81,7 @@ export function CountrySelectorDialog({
               aria-label="Close"
               className="absolute top-2.5 right-2.5"
             >
-              <Icon className="h-9 w-9" name="Close" />
+              <Icon className="size-9" href={CLOSE} />
             </CloseDialog>
             <div className="flex flex-1 flex-col items-stretch overflow-y-auto">
               {countries.map((country) => (

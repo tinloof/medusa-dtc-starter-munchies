@@ -1,6 +1,7 @@
 ---
 import type { HttpTypes } from "@medusajs/types";
 import { convertToLocale } from "@/lib/utils/medusa/money";
+import { Image } from "../shared/cloudflare-image";
 import { Body } from "../shared/typography/body";
 
 interface Props {
@@ -25,10 +26,11 @@ const image = orderLineItem.product?.images?.[0]?.url;
 
 <div class="flex w-full gap-xs">
   {image ? (
-    <img
+    <Image
       alt={`${orderLineItem.product?.title} ${orderLineItem.variant?.title}`}
-      class="aspect-square size-25 rounded-lg border-[1.5px] border-accent"
+      className="aspect-square size-25 rounded-lg border-[1.5px] border-accent"
       height={100}
+      sizes="100px"
       src={image}
       width={100}
     />

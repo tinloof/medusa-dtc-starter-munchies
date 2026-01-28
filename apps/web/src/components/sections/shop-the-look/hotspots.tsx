@@ -2,6 +2,7 @@ import type { StoreProduct } from "@medusajs/types";
 import { cx } from "class-variance-authority";
 import { useState } from "react";
 import { ButtonLink } from "@/components/shared/button";
+import { Image } from "@/components/shared/cloudflare-image";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import { SanityImage } from "@/components/shared/sanity-image";
 import { Tag } from "@/components/shared/tag";
@@ -92,10 +93,11 @@ export function Hotspots({
         <div className="flex w-full max-w-112.5 flex-1 flex-col items-center justify-center rounded-lg">
           <div className="relative w-full">
             {thumbnailUrl ? (
-              <img
+              <Image
                 alt={product.title}
                 className="aspect-square w-full rounded-lg"
                 height={450}
+                sizes="450px"
                 src={thumbnailUrl}
                 width={450}
               />
@@ -152,10 +154,11 @@ export function Hotspots({
               key={_product.id}
             >
               {_thumbnailUrl ? (
-                <img
+                <Image
                   alt={product?.title}
                   className="aspect-square w-full max-w-25 rounded-lg border border-accent"
                   height={100}
+                  sizes="100px"
                   src={_thumbnailUrl}
                   width={100}
                 />

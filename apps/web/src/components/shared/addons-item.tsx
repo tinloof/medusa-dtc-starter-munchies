@@ -3,6 +3,7 @@ import { cx } from "class-variance-authority";
 import { useMemo } from "react";
 import { getProductPrice } from "@/lib/utils/medusa/get-product-price";
 import { AddToCartButton } from "../cart/add-to-cart";
+import { Image } from "./cloudflare-image";
 import { LocalizedLink } from "./localized-link";
 import { Body } from "./typography/body";
 
@@ -37,10 +38,11 @@ export function AddonsItem({ regionId, variant = "PDP", ...product }: Props) {
       href={`/products/${product.handle}`}
     >
       {product.images?.[0].url ? (
-        <img
+        <Image
           alt={product.title}
           className="aspect-square size-25 rounded-lg border-[1.5px] border-accent"
           height={100}
+          sizes="100px"
           src={product.images?.[0].url}
           width={100}
         />

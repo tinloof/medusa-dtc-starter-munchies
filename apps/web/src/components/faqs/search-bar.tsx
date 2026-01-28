@@ -1,6 +1,7 @@
 import { cx } from "class-variance-authority";
 import { type KeyboardEvent, useEffect, useRef } from "react";
-import { Icon } from "@/components/shared/icon";
+import { Icon } from "@/generated/Icon";
+import { SEARCH } from "@/generated/icons";
 
 interface SearchbarProps {
   className?: string;
@@ -51,8 +52,8 @@ export function SearchBar({
       )}
     >
       <Icon
-        className="absolute top-1/2 left-3.5 h-6 w-6 -translate-y-1/2"
-        name="Search"
+        className="absolute top-1/2 left-3.5 size-6 -translate-y-1/2"
+        href={SEARCH}
       />
       <input
         aria-label="Search"

@@ -2,15 +2,22 @@ import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import { useState } from "react";
+import { Icon } from "@/generated/Icon";
+import {
+  ARROW_LEFT_ACCENT,
+  ARROW_LEFT_PRIMARY,
+  ARROW_RIGHT_ACCENT,
+  ARROW_RIGHT_PRIMARY,
+} from "@/generated/icons";
 
 export const icons = {
   ArrowLeft: {
-    accent: "/icons/arrow-left-accent.svg",
-    primary: "/icons/arrow-left-primary.svg",
+    accent: ARROW_LEFT_ACCENT,
+    primary: ARROW_LEFT_PRIMARY,
   },
   ArrowRight: {
-    accent: "/icons/arrow-right-accent.svg",
-    primary: "/icons/arrow-right-primary.svg",
+    accent: ARROW_RIGHT_ACCENT,
+    primary: ARROW_RIGHT_PRIMARY,
   },
 };
 
@@ -51,7 +58,7 @@ export function IconButton({
 }: IconButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const iconSrc =
+  const iconHref =
     isHovered && !disabled ? icons[icon].primary : icons[icon].accent;
 
   return (
@@ -62,11 +69,9 @@ export function IconButton({
       onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
-      {/** biome-ignore lint/correctness/useImageSize: - */}
-      <img
-        alt={`${icon} icon`}
+      <Icon
         className="h-full w-full shrink-0 transition-all duration-300"
-        src={iconSrc}
+        href={iconHref}
       />
     </button>
   );

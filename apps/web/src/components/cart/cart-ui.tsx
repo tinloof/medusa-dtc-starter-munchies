@@ -1,11 +1,12 @@
 import { useCallback, useRef } from "react";
-import { Icon } from "@/components/shared/icon";
 import {
   CloseDialog,
   Dialog,
   SideDialog,
 } from "@/components/shared/side-dialog";
 import { Body } from "@/components/shared/typography/body";
+import { Icon } from "@/generated/Icon";
+import { CLOSE } from "@/generated/icons";
 import { useCart } from "../context/cart";
 import { CartFooter } from "./cart-footer";
 import { CartHeading } from "./cart-heading";
@@ -44,7 +45,7 @@ export function CartUI() {
             aria-label="Close"
             className="absolute top-2.5 right-2.5"
           >
-            <Icon className="h-9 w-9" name="Close" />
+            <Icon className="size-9" href={CLOSE} />
           </CloseDialog>
           <div className="flex flex-1 flex-col justify-between overflow-y-auto">
             <div className="flex flex-col gap-4 p-4">

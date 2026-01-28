@@ -30,6 +30,7 @@ export function Image({
   src,
   width,
   height,
+  sizes,
   loading = "lazy",
   aspectRatio,
   fit = "cover",
@@ -79,12 +80,14 @@ export function Image({
   const finalSrc = buildUrl(width);
 
   return (
+    // biome-ignore assist/source/useSortedAttributes: https://github.com/vercel/next.js/blob/11e295089c5759891b82168c2cf7153731704519/packages/next/src/client/image-component.tsx#L272
     <img
       alt={alt}
       height={computedHeight}
       loading={loading}
-      src={finalSrc}
+      sizes={sizes}
       srcSet={srcSet}
+      src={finalSrc}
       style={{ ...style, ...(aspectRatio ? { aspectRatio } : undefined) }}
       width={width}
       {...rest}

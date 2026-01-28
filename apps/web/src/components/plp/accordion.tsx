@@ -1,6 +1,7 @@
 import { cx } from "class-variance-authority";
 import { useEffect, useRef, useState } from "react";
-import { Icon } from "@/components/shared/icon";
+import { Icon } from "@/generated/Icon";
+import { ACCORDION_TOP, CHECK } from "@/generated/icons";
 import { buildFilterUrl, getFilterValues } from "./filter-select";
 
 export function Accordion(props: {
@@ -40,7 +41,7 @@ export function Accordion(props: {
                 "rotate-180": isOpen,
               }
             )}
-            name="AccordionTop"
+            href={ACCORDION_TOP}
           />
         </button>
         <div
@@ -74,7 +75,7 @@ export function Accordion(props: {
                       "size-3! shrink-0 transform opacity-0 transition-transform duration-300",
                       { "opacity-100": selected }
                     )}
-                    name="Check"
+                    href={CHECK}
                   />
                 </div>
                 {option.label}

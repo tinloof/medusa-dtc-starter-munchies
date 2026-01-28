@@ -1,6 +1,7 @@
 import type { StoreProduct } from "@medusajs/types";
 import { cx } from "class-variance-authority";
 import { getProductPrice } from "@/lib/utils/medusa/get-product-price";
+import { Image } from "./cloudflare-image";
 import { LocalizedLink } from "./localized-link";
 import { Tag } from "./tag";
 import { Body } from "./typography/body";
@@ -32,10 +33,11 @@ export function ProductCard({
     >
       <div className="relative w-full">
         {thumbnail ? (
-          <img
+          <Image
             alt={product.title}
             className="aspect-square w-full rounded-lg"
             height={450}
+            sizes="(max-width: 32rem) 250px, (max-width: 64rem) 500px, 450px"
             src={thumbnail}
             width={450}
           />

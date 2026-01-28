@@ -58,7 +58,7 @@ export function DropDown({
         </button>
         <div
           className={cx(
-            "absolute left-0 z-50 my-1 origin-top cursor-pointer overflow-y-scroll rounded-lg rounded-b-lg border-[1.5px] border-accent bg-background",
+            "absolute left-0 z-50 my-1 origin-top cursor-pointer overflow-y-auto rounded-lg rounded-b-lg border-[1.5px] border-accent bg-background",
             {
               hidden: !isOpen,
             }

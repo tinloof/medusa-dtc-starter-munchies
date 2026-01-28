@@ -2,8 +2,8 @@
 import * as RadixSelect from "@radix-ui/react-select";
 import { cx } from "class-variance-authority";
 import { useMemo, useState } from "react";
-
-import { Icon } from "./icon";
+import { Icon } from "@/generated/Icon";
+import { ACCORDION_TOP } from "@/generated/icons";
 import { Body } from "./typography/body";
 
 export interface Option {
@@ -72,8 +72,7 @@ export function Select({
                 "rotate-180": open,
               }
             )}
-            fetchPriority="high"
-            name="AccordionTop"
+            href={ACCORDION_TOP}
           />
         </RadixSelect.Icon>
       </RadixSelect.Trigger>

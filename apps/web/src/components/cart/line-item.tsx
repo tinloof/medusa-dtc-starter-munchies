@@ -1,9 +1,11 @@
 import type { StoreCartLineItem } from "@medusajs/types";
-import { Icon } from "@/components/shared/icon";
 import { Body } from "@/components/shared/typography/body";
+import { Icon } from "@/generated/Icon";
+import { TRASH } from "@/generated/icons";
 import { convertToLocale } from "@/lib/utils/medusa/money";
 import { useCart } from "../context/cart";
 import { isOptimisticItemId } from "../context/cart/utils";
+import { Image } from "../shared/cloudflare-image";
 
 export function LineItem(props: StoreCartLineItem) {
   const { cart, handleDeleteItem, handleUpdateCartQuantity } = useCart();
@@ -24,10 +26,11 @@ export function LineItem(props: StoreCartLineItem) {
 
   return (
     <div className="flex items-start justify-between gap-2 space-x-4">
-      <img
+      <Image
         alt={props.title}
         className="size-25 rounded-lg border-[1.5px] border-accent object-cover"
         height={100}
+        sizes="100px"
         src={props.product?.thumbnail || ""}
         width={100}
       />
@@ -78,7 +81,7 @@ export function LineItem(props: StoreCartLineItem) {
             onClick={() => handleDeleteItem(props.id)}
             type="button"
           >
-            <Icon className="size-6" name="Trash" />
+            <Icon className="size-6" href={TRASH} />
           </button>
         </div>
       </div>

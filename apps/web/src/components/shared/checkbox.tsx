@@ -1,8 +1,7 @@
 import type { CheckboxProps } from "@radix-ui/react-checkbox";
-
 import { Indicator, Root } from "@radix-ui/react-checkbox";
-
-import { Icon } from "./icon";
+import { Icon } from "@/generated/Icon";
+import { CHECKBOX } from "@/generated/icons";
 
 export function Checkbox({
   checked,
@@ -17,7 +16,7 @@ export function Checkbox({
         onCheckedChange={onCheckedChange}
       >
         <Indicator>
-          <Icon name="Checkbox" />
+          <Icon className="size-4" href={CHECKBOX} />
         </Indicator>
       </Root>
       <label

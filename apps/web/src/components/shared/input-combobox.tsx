@@ -1,7 +1,7 @@
 import { cx } from "class-variance-authority";
 import { type RefObject, useEffect, useState } from "react";
-
-import { Icon } from "./icon";
+import { Icon } from "@/generated/Icon";
+import { SEARCH } from "@/generated/icons";
 
 export function InputCombobox({
   className,
@@ -81,7 +81,7 @@ export function InputCombobox({
         {!isDisabled && (
           <Icon
             className="absolute left-3 text-accent opacity-60"
-            name="Search"
+            href={SEARCH}
           />
         )}
         <input

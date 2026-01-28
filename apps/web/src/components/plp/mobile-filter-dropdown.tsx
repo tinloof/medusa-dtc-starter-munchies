@@ -1,7 +1,8 @@
 import { cx } from "class-variance-authority";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Cta } from "@/components/shared/button";
-import { Icon } from "@/components/shared/icon";
+import { Icon } from "@/generated/Icon";
+import { ACCORDION_BOTTOM, ACCORDION_TOP } from "@/generated/icons";
 import { getLocalizedHref } from "@/lib/utils/get-localized-href";
 import type { Option } from "../shared/select";
 import { Body } from "../shared/typography/body";
@@ -87,7 +88,7 @@ export function MobileFilterDropdown({
             )}
             onClick={() => scrollBy(-250)}
           >
-            <Icon className="my-1 size-6" name="AccordionBottom" />
+            <Icon className="my-1 size-6" href={ACCORDION_BOTTOM} />
           </div>
         </div>
         <div className="flex flex-col gap-xs p-xs">
@@ -116,7 +117,7 @@ export function MobileFilterDropdown({
             )}
             onClick={() => scrollBy(250)}
           >
-            <Icon className="my-1 size-6" name="AccordionTop" />
+            <Icon className="my-1 size-6" href={ACCORDION_TOP} />
           </div>
         </div>
       </div>
