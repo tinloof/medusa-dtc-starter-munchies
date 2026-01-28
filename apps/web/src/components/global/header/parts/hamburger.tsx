@@ -7,12 +7,18 @@ import { cx } from "class-variance-authority";
 import type { Dispatch, SetStateAction } from "react";
 import { useCallback, useRef, useState } from "react";
 import { ButtonLink } from "@/components/shared/button";
-import { Icon } from "@/components/shared/icon";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import { SanityImage } from "@/components/shared/sanity-image";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import { Label } from "@/components/shared/typography/label";
+import { Icon } from "@/generated/Icon";
+import {
+  ACCORDION_LEFT,
+  ACCORDION_RIGHT,
+  CLOSE,
+  HAMBURGER,
+} from "@/generated/icons";
 
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
@@ -70,9 +76,9 @@ export function Hamburger({ data }: { data: Header }) {
         onClick={() => setActiveMenu(undefined)}
       >
         {open ? (
-          <Icon className="size-lg" name="Close" />
+          <Icon className="size-lg" href={CLOSE} />
         ) : (
-          <Icon className="size-lg" name="Hamburger" />
+          <Icon className="size-lg" href={HAMBURGER} />
         )}
       </Dialog.Trigger>
       <Dialog.Portal container={portalContainer}>
@@ -115,7 +121,7 @@ export function Hamburger({ data }: { data: Header }) {
                 onClick={() => setActiveMenu(undefined)}
                 type="button"
               >
-                <Icon className="size-8" name="AccordionLeft" />
+                <Icon className="size-8" href={ACCORDION_LEFT} />
                 <Body font="sans" mobileSize="2xl">
                   {activeMenu?.title}
                 </Body>
@@ -167,7 +173,7 @@ function NavMenuItem({
         <Body font="sans" mobileSize="2xl">
           {item.title}
         </Body>
-        <Icon className="size-8" name="AccordionRight" />
+        <Icon className="size-8" href={ACCORDION_RIGHT} />
       </button>
     );
   }

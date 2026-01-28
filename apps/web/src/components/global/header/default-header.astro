@@ -1,9 +1,10 @@
 ---
 import type { Header } from "@packages/sanity/types";
 import Cart from "@/components/cart/index.astro";
-import { Icon } from "@/components/shared/icon";
 import RichText from "@/components/shared/rich-text.astro";
 import { Body } from "@/components/shared/typography/body";
+import { Icon } from "@/generated/Icon";
+import { CART } from "@/generated/icons";
 import CountrySelector from "./country-selector/index.astro";
 import { HeaderClient } from "./header-client";
 import { AnnouncementBar } from "./parts/announcement-bar";
@@ -35,14 +36,7 @@ const header = Astro.props;
       countryCode={Astro.locals.countryCode}
     >
       <div class="relative h-10 w-10 p-2" slot="fallback">
-        <Icon name="Cart" />
-        <Body
-          className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-background"
-          font="sans"
-          mobileSize="sm"
-        >
-          0
-        </Body>
+        <Icon href={CART} />
       </div>
     </Cart>
   </HeaderClient>

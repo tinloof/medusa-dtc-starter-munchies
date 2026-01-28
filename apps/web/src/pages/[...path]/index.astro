@@ -38,8 +38,6 @@ const templates: Record<string, any> = {
 
 const Template = templates[page._type];
 
-// if countryCode === defaultCountryCode then we use the path directly
-// otherwise we remove the countryCode from the path
 Astro.response.headers.set(
   "Cache-Control",
   "public, s-maxage=300, stale-while-revalidate=3600"

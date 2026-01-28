@@ -2,6 +2,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
+import { svgSprite } from "@tinloof/typed-svg-sprite-astro";
 import { defineConfig, envField, fontProviders } from "astro/config";
 
 // https://astro.build/config
@@ -42,7 +43,7 @@ export default defineConfig({
       }),
     },
   },
-  integrations: [react()],
+  integrations: [react(), svgSprite()],
   vite: {
     plugins: [tailwindcss()],
     ssr: {
