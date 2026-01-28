@@ -1,5 +1,7 @@
 import type { ImgHTMLAttributes } from "react";
 
+const isDev = process.env.NODE_ENV === "development";
+
 interface CloudflareImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   /** Original image URL (can be absolute or relative) */
   src: string;
@@ -70,7 +72,7 @@ export function Image({
       `format=${format}`,
     ].join(",");
 
-    return `https://munchies.million-tinloof.com/cdn-cgi/image/${options}/${src}`;
+    return `/cdn-cgi/image/${options}/${src}`;
   }
 
   const srcSet = DEFAULT_SRCSET_WIDTHS.map((w) => `${buildUrl(w)} ${w}w`).join(
@@ -86,8 +88,8 @@ export function Image({
       height={computedHeight}
       loading={loading}
       sizes={sizes}
-      srcSet={srcSet}
-      src={finalSrc}
+      srcSet={isDev ? "" : srcSet}
+      src={isDev ? src : finalSrc}
       style={{ ...style, ...(aspectRatio ? { aspectRatio } : undefined) }}
       width={width}
       {...rest}
