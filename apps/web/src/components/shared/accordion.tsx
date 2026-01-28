@@ -85,7 +85,7 @@ function AccordionItem({
             {title}
           </Body>
         ) : (
-          <Heading desktopSize="lg" font="serif" mobileSize="base" tag="h4">
+          <Heading desktopSize="lg" font="serif" mobileSize="base" tag="h2">
             {title}
           </Heading>
         )}
