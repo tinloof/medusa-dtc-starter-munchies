@@ -23,7 +23,7 @@ export function FeaturedProductsCarousel(props: FeaturedProductsCarouselProps) {
           className="text-center"
           desktopSize="3xl"
           mobileSize="lg"
-          tag="h3"
+          tag="h2"
         >
           {props.title}
         </Heading>

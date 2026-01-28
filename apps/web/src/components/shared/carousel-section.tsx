@@ -102,6 +102,7 @@ function Buttons({ variant }: { variant: "cart" | "default" }) {
     <div className="hidden gap-2 lg:flex">
       <PrevButton asChild>
         <IconButton
+          aria-label="Previous"
           icon="ArrowLeft"
           size={variant === "default" ? "sm" : "xs"}
           type="button"
@@ -109,6 +110,7 @@ function Buttons({ variant }: { variant: "cart" | "default" }) {
       </PrevButton>
       <NextButton asChild>
         <IconButton
+          aria-label="Next"
           icon="ArrowRight"
           size={variant === "default" ? "sm" : "xs"}
           type="button"

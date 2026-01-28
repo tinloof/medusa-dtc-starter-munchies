@@ -45,7 +45,7 @@ export const Navigation = function Navigation({ data }: { data: Header }) {
               return null;
             }
             return (
-              <LocalizedLink
+              <NavigationMenu.Item
                 className={cx(
                   "h-full whitespace-nowrap px-5 py-[14.5px] transition-opacity duration-300",
                   {
@@ -55,19 +55,18 @@ export const Navigation = function Navigation({ data }: { data: Header }) {
                     "opacity-100": hovered === item._key,
                   }
                 )}
-                href={item.cta?.link}
                 key={item._key}
                 onMouseEnter={() => setHovered(item._key)}
                 onMouseLeave={() => setHovered("")}
               >
-                <NavigationMenu.Item>
-                  <NavigationMenu.Link asChild>
+                <NavigationMenu.Link asChild>
+                  <LocalizedLink href={item.cta?.link}>
                     <Body font="sans" mobileSize="lg">
                       {item.cta?.label}
                     </Body>
-                  </NavigationMenu.Link>
-                </NavigationMenu.Item>
-              </LocalizedLink>
+                  </LocalizedLink>
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
             );
           }
           if (item._type === "dropdown") {

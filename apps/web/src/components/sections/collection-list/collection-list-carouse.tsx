@@ -27,7 +27,7 @@ export function CollectionList(props: CollectionListProps) {
           className="text-center"
           desktopSize="3xl"
           mobileSize="lg"
-          tag="h3"
+          tag="h2"
         >
           Shop our cookies
         </Heading>

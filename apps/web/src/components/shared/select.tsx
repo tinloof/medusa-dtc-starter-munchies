@@ -50,6 +50,7 @@ export function Select({
       value={value ?? undefined}
     >
       <RadixSelect.Trigger
+        aria-label="open select"
         className={cx(
           className,
           "flex items-center justify-between gap-lg truncate bg-background px-s py-1.5 outline-none",

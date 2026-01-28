@@ -21,7 +21,7 @@ export function TestimonialsCarousel(
           className="text-center"
           desktopSize="3xl"
           mobileSize="lg"
-          tag="h3"
+          tag="h2"
         >
           {props.title}
         </Heading>
