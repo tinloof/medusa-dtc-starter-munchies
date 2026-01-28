@@ -16,7 +16,7 @@ export function Addons({
   }
   return (
     <div className="flex flex-col gap-xs rounded-lg bg-secondary p-s">
-      <Heading desktopSize="lg" mobileSize="base" tag={"h4"}>
+      <Heading desktopSize="lg" mobileSize="base" tag="h2">
         {title}
       </Heading>
       {products.map((product) => (

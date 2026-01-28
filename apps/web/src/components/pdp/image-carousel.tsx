@@ -33,9 +33,10 @@ export function ProductImagesCarousel({
       <Image
         alt={product.title}
         className="aspect-square aspect-thin w-full rounded-2xl object-cover object-bottom"
+        fetchPriority={index === 0 ? "high" : "low"}
         height={591}
         loading={index !== 0 ? "lazy" : "eager"}
-        sizes="(max-width: 1024px) 100vw, 600px"
+        sizes="(max-width: 1024px) 100vw, 500px"
         src={image.url}
         style={{ background: "transparent" }}
         width={591}
