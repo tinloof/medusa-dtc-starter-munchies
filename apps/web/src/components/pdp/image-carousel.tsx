@@ -8,6 +8,7 @@ import {
   useCarousel,
 } from "@/components/shared/carousel";
 import { Tag } from "@/components/shared/tag";
+import { Image } from "../shared/cloudflare-image";
 
 interface CommonProductImagesCarouselProps {
   product: StoreProduct;
@@ -24,15 +25,16 @@ export function ProductImagesCarousel({
     return null;
   }
 
-  const slides = images?.map((image) => (
+  const slides = images?.map((image, index) => (
     <Fragment key={image.id}>
       {product.type?.value ? (
         <Tag className="absolute top-4 right-4" text={product.type?.value} />
       ) : null}
-      <img
+      <Image
         alt={product.title}
         className="aspect-square aspect-thin w-full rounded-2xl object-cover object-bottom"
         height={591}
+        loading={index !== 0 ? "lazy" : "eager"}
         sizes="(min-width: 1360px) 600px, (min-width: 1040px) calc(92vw - 633px), 100vw"
         src={image.url}
         style={{ background: "transparent" }}
@@ -106,7 +108,7 @@ function ItemCarousel({
       }}
       type="button"
     >
-      <img
+      <Image
         alt={`carousel-item-${index}`}
         className="aspect-square size-21.25 object-cover object-center"
         height={85}
