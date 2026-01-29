@@ -4,13 +4,19 @@ import { CartUI } from "./cart-ui";
 
 interface CartProps {
   cart: HttpTypes.StoreCart | null;
-  addonsNode?: React.ReactNode;
+  region?: HttpTypes.StoreRegion | null;
+  cartAddons: HttpTypes.StoreProduct[] | null;
   countryCode: string;
 }
 
 export function Cart(props: CartProps) {
   return (
-    <CartProvider cart={props.cart} countryCode={props.countryCode}>
+    <CartProvider
+      addons={props.cartAddons}
+      cart={props.cart}
+      countryCode={props.countryCode}
+      region={props.region}
+    >
       <CartUI />
     </CartProvider>
   );

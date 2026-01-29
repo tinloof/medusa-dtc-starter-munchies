@@ -1,15 +1,12 @@
 import { actions } from "astro:actions";
-import type {
-  StoreCart,
-  StoreCartLineItem,
-  StoreCartPromotion,
-} from "@medusajs/types";
+import type { HttpTypes } from "@medusajs/types";
 import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 import {
   createContext,
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useOptimistic,
   useState,
   useTransition,
@@ -23,13 +20,15 @@ import {
 } from "./utils";
 
 type Cart = {
-  promotions?: StoreCartPromotion[];
-} & StoreCart;
+  promotions?: HttpTypes.StoreCartPromotion[];
+} & HttpTypes.StoreCart;
 
 const CartContext = createContext<
   | {
       cart: Cart | null;
       cartOpen: boolean;
+      cartAddons: HttpTypes.StoreProduct[] | null;
+      region?: HttpTypes.StoreRegion | null;
       handleDeleteItem: (lineItem: string) => void;
       handleUpdateCartQuantity: (lineItem: string, newQuantity: number) => void;
       isUpdating: boolean;
@@ -40,16 +39,35 @@ const CartContext = createContext<
 
 export function CartProvider({
   cart: initialCart,
+  addons: initialAddons,
+  region,
   children,
   countryCode,
 }: PropsWithChildren<{
   cart: Cart | null;
+  region?: HttpTypes.StoreRegion | null;
+  addons: HttpTypes.StoreProduct[] | null;
   countryCode: string;
 }>) {
   // Local state as source of truth (updated after server actions)
-  const [cart, setCart] = useState<Cart | null>(initialCart);
+  const [cart, setCart] = useState(initialCart);
   const [optimisticCart, setOptimisticCart] = useOptimistic<Cart | null>(cart);
   const [cartOpen, setCartOpen] = useState(false);
+
+  const addons = useMemo(() => {
+    if (initialAddons && initialAddons.length > 0) {
+      const filteredAddons = initialAddons?.filter(
+        (p) =>
+          !optimisticCart?.items
+            ?.map(({ product_id }) => product_id)
+            .includes(p.id)
+      );
+
+      return filteredAddons;
+    }
+
+    return [];
+  }, [optimisticCart, initialAddons]);
 
   const [, startTransition] = useTransition();
 
@@ -78,8 +96,8 @@ export function CartProvider({
           const priceAmount =
             payload.productVariant.calculated_price?.calculated_amount || 0;
 
-          const newItem: StoreCartLineItem = {
-            cart: prev || ({} as StoreCart),
+          const newItem: HttpTypes.StoreCartLineItem = {
+            cart: prev || ({} as HttpTypes.StoreCart),
             cart_id: prev?.id || "",
             discount_tax_total: 0,
             discount_total: 0,
@@ -93,6 +111,7 @@ export function CartProvider({
             original_tax_total: 0,
             original_total: priceAmount,
             product: payload.productVariant.product || undefined,
+            product_id: payload.productVariant.product_id,
             quantity: 1,
             requires_shipping: true,
             subtotal: priceAmount,
@@ -184,6 +203,8 @@ export function CartProvider({
     <CartContext.Provider
       value={{
         cart: optimisticCart,
+        cartAddons: addons,
+        region,
         cartOpen,
         handleDeleteItem,
         handleUpdateCartQuantity,

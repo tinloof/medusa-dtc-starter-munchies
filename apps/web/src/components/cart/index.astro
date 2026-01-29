@@ -1,8 +1,10 @@
 ---
 import type { Header } from "@packages/sanity/types";
+import { all } from "better-all";
 import { getEnrichedCart } from "@/lib/medusa/cart";
+import { getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
 import { Cart } from "./cart";
-import CartAddons from "./cart-addons/index.astro";
 
 interface Props {
   countryCode: string;
@@ -11,28 +13,31 @@ interface Props {
 
 const { addons, countryCode } = Astro.props;
 
-const cart = await getEnrichedCart(Astro.cookies);
+const { cart, region, products } = await all({
+  cart() {
+    return getEnrichedCart(Astro.cookies);
+  },
+  region() {
+    return getRegion(countryCode);
+  },
+  async products() {
+    const reg = await this.$.region;
+
+    if (!reg) {
+      return null;
+    }
+
+    const addonIds = addons?.map(({ _ref }) => _ref) ?? [];
+
+    return (await getProductsByIds(addonIds, reg.id)).products;
+  },
+});
 ---
 
-<Cart client:load cart={cart} countryCode={countryCode} />
-<div id="cart-addons-parent" class="absolute">
-  <div id="cart-addons" class="hidden">
-    <CartAddons
-      server:defer
-      cart={cart}
-      countryCode={countryCode}
-      addons={addons}
-    />
-  </div>
-</div>
-
-<script is:inline>
-  document.addEventListener("astro:before-swap", () => {
-    const parent = document.getElementById("cart-addons-parent");
-    const addonsEl = document.getElementById("cart-addons");
-    if (parent && parent.children.length === 0 && addonsEl) {
-      addonsEl.classList.add("hidden");
-      parent.appendChild(addonsEl);
-    }
-  });
-</script>
+<Cart
+  client:load
+  cart={cart}
+  region={region}
+  countryCode={countryCode}
+  cartAddons={products}
+/>

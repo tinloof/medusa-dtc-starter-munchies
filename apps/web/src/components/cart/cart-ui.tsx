@@ -1,4 +1,3 @@
-import { useCallback, useRef } from "react";
 import {
   CloseDialog,
   Dialog,
@@ -8,31 +7,15 @@ import { Body } from "@/components/shared/typography/body";
 import { Icon } from "@/generated/Icon";
 import { CLOSE } from "@/generated/icons";
 import { useCart } from "../context/cart";
+import { CartAddonsCarousel } from "./cart-addons-carousel";
 import { CartFooter } from "./cart-footer";
 import { CartHeading } from "./cart-heading";
 import { LineItem } from "./line-item";
 import { OpenCart } from "./open-cart";
 
 export function CartUI() {
-  const { cart } = useCart();
-  const originalParentRef = useRef<HTMLElement>(null);
+  const { cart, cartAddons, region } = useCart();
   const isEmptyCart = !cart?.items || cart.items.length === 0;
-
-  const handleAddonsMount = useCallback((node: HTMLDivElement | null) => {
-    const el = document.getElementById("cart-addons");
-    if (!el) {
-      return;
-    }
-
-    if (node) {
-      originalParentRef.current = el.parentElement;
-      el.classList.remove("hidden");
-      node.appendChild(el);
-    } else if (originalParentRef.current) {
-      originalParentRef.current.appendChild(el);
-      el.classList.add("hidden");
-    }
-  }, []);
 
   return (
     <Dialog>
@@ -67,7 +50,13 @@ export function CartUI() {
                   .map((item) => <LineItem key={item.id} {...item} />)
               )}
             </div>
-            <div ref={handleAddonsMount} />
+            {cartAddons && cartAddons?.length > 0 && region && (
+              <CartAddonsCarousel
+                isEmptyCart={isEmptyCart}
+                products={cartAddons}
+                regionId={region.id}
+              />
+            )}
           </div>
           {!isEmptyCart && <CartFooter />}
         </div>
