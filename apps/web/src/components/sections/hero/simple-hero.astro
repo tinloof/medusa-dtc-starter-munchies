@@ -51,6 +51,8 @@ const props = Astro.props;
         className="aspect-square object-cover object-center"
         data={props.image}
         loading='eager'
+        fetchPriority="high"
+        sizes="(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) calc(50vw - 36px), 750px"
       />
     </div>
   ) : (

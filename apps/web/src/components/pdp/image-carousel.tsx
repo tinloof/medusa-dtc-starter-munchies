@@ -36,7 +36,7 @@ export function ProductImagesCarousel({
         fetchPriority={index === 0 ? "high" : "low"}
         height={591}
         loading={index !== 0 ? "lazy" : "eager"}
-        sizes="(max-width: 1024px) 100vw, 500px"
+        sizes="(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) 450px, 600px"
         src={image.url}
         style={{ background: "transparent" }}
         width={591}

@@ -42,7 +42,11 @@ export function Hotspots({
     <div className="flex w-full flex-col items-stretch justify-start gap-xs lg:flex-row lg:gap-s">
       {image ? (
         <div className="relative w-full min-w-[63%] rounded-lg">
-          <SanityImage className="w-full rounded-lg" data={image} />
+          <SanityImage
+            className="w-full rounded-lg"
+            data={image}
+            sizes="(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) calc(63vw - 40px), 900px"
+          />
           {productHotSpots?.map((hotSpot) => (
             <div
               className={cx(

@@ -29,6 +29,7 @@ interface SanityImageProps {
   alt?: string;
   aspectRatio?: string;
   loading?: "lazy" | "eager";
+  fetchPriority?: "high" | "low" | "auto";
   sizes?: string;
 }
 
@@ -47,6 +48,7 @@ export function SanityImage({
   alt,
   aspectRatio,
   loading = "lazy",
+  fetchPriority = "auto",
   sizes = "100vw",
 }: SanityImageProps) {
   if (!data?.asset?._ref) {
@@ -105,13 +107,15 @@ export function SanityImage({
   const imageAlt = alt || data.alt || "";
 
   return (
+    // biome-ignore assist/source/useSortedAttributes: https://github.com/vercel/next.js/blob/11e295089c5759891b82168c2cf7153731704519/packages/next/src/client/image-component.tsx#L272
     <img
       alt={imageAlt}
       className={className}
+      fetchPriority={fetchPriority}
       height={computedHeight}
       loading={loading}
-      sizes={sizes}
       src={src}
+      sizes={sizes}
       srcSet={srcSet}
       style={aspectRatio ? { aspectRatio } : undefined}
       width={width}

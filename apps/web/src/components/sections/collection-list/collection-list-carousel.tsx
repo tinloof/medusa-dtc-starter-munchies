@@ -52,6 +52,7 @@ function CollectionCard({
         <SanityImage
           className="aspect-3/4 h-auto w-[88vw] min-w-80 max-w-113.25 rounded-lg object-cover object-center"
           data={image}
+          sizes="450px"
         />
       ) : (
         <div className="h-full w-full bg-secondary" />

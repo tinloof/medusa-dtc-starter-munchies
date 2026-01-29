@@ -41,14 +41,15 @@ const position = props.imagePosition;
     </Body>
   </div>
   {props.image ? (
-      <div class="aspect-square rounded-lg lg:w-1/2">
-        <SanityImage
-          alt="arrow-right"
-          className="aspect-square"
-          data={props.image}
-        />
-      </div>
-    ) : (
-      <div class="aspect-square rounded-lg bg-accent lg:w-1/2" />
-    )}
+    <div class="aspect-square rounded-lg lg:w-1/2">
+      <SanityImage
+        alt="arrow-right"
+        className="aspect-square"
+        data={props.image}
+        sizes="(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) calc(50vw - 36px), 700px"
+      />
+    </div>
+  ) : (
+    <div class="aspect-square rounded-lg bg-accent lg:w-1/2" />
+  )}
 </section>

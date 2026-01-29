@@ -25,6 +25,11 @@ const props = Astro.props;
           poster={props.video.poster}
           videoUrl={props.video.url}
           fetchPriority="high"
+          imgProps={{
+            sizes:"(max-width: 1440px) calc(100vw - 64px), 1500px",
+            loading: "eager",
+            fetchPriority: "high"
+          }}
         />
       </div>
     </LargeHero>

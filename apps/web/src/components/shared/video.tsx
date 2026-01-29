@@ -1,7 +1,7 @@
 import type { Video as VideoType } from "@packages/sanity/types";
 import { cx } from "class-variance-authority";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { type ImgHTMLAttributes, useEffect, useState } from "react";
 import {
   resolveImageData,
   SanityImage,
@@ -14,6 +14,7 @@ export type VideoProps = {
   fetchPriority?: "default" | "high";
   poster?: VideoType["poster"];
   videoUrl?: null | string;
+  imgProps?: ImgHTMLAttributes<HTMLImageElement>;
 } & Omit<React.VideoHTMLAttributes<HTMLVideoElement>, "poster" | "src">;
 
 export function Video({
@@ -23,6 +24,7 @@ export function Video({
   fetchPriority = "default",
   poster,
   videoUrl,
+  imgProps,
   ...props
 }: VideoProps) {
   const { inView, ref } = useInView();
@@ -47,6 +49,7 @@ export function Video({
         aspectRatio={aspectRatio}
         className="absolute inset-0 z-0"
         data={poster}
+        {...imgProps}
       />
       {appeared ? (
         <video
