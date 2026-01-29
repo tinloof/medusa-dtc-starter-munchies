@@ -28,6 +28,85 @@ const DEFAULT_SRCSET_WIDTHS = [
   50, 100, 200, 450, 600, 750, 900, 1000, 1250, 1500, 1750, 2000,
 ];
 
+interface BuildCloudflareUrlOptions {
+  src: string;
+  width: number;
+  height: number;
+  fit?: "scale-down" | "contain" | "cover" | "crop" | "pad";
+  quality?: number;
+  format?: "auto" | "avif" | "webp" | "jpeg" | "png";
+}
+
+export function buildCloudflareUrl({
+  src,
+  width,
+  height,
+  fit = "cover",
+  quality = 75,
+  format = "avif",
+}: BuildCloudflareUrlOptions): string {
+  const options = [
+    `width=${width}`,
+    `height=${height}`,
+    `fit=${fit}`,
+    `quality=${quality}`,
+    `format=${format}`,
+  ].join(",");
+
+  return `/cdn-cgi/image/${options}/${src}`;
+}
+
+interface GenerateSrcSetOptions {
+  src: string;
+  width: number;
+  height: number;
+  aspectRatio?: string;
+  fit?: "scale-down" | "contain" | "cover" | "crop" | "pad";
+  quality?: number;
+  format?: "auto" | "avif" | "webp" | "jpeg" | "png";
+  widths?: number[];
+}
+
+export function generateSrcSet({
+  src,
+  width,
+  height,
+  aspectRatio,
+  fit = "cover",
+  quality = 75,
+  format = "avif",
+  widths = DEFAULT_SRCSET_WIDTHS,
+}: GenerateSrcSetOptions): string {
+  const aspectRatioValues = aspectRatio?.split("/");
+  const aspectRatioWidth =
+    aspectRatioValues?.[0] != null
+      ? Number.parseFloat(aspectRatioValues[0])
+      : undefined;
+  const aspectRatioHeight =
+    aspectRatioValues?.[1] != null
+      ? Number.parseFloat(aspectRatioValues[1])
+      : undefined;
+
+  return widths
+    .map((w) => {
+      const h =
+        aspectRatioWidth && aspectRatioHeight
+          ? Math.round((w / aspectRatioWidth) * aspectRatioHeight)
+          : Math.round((w / width) * height);
+
+      const url = buildCloudflareUrl({
+        src,
+        width: w,
+        height: h,
+        fit,
+        quality,
+        format,
+      });
+      return `${url} ${w}w`;
+    })
+    .join(", ");
+}
+
 export function Image({
   src,
   width,
@@ -42,7 +121,6 @@ export function Image({
   alt,
   ...rest
 }: CloudflareImageProps) {
-  // Parse aspect ratio if provided
   const aspectRatioValues = aspectRatio?.split("/");
   const aspectRatioWidth =
     aspectRatioValues?.[0] != null
@@ -58,28 +136,23 @@ export function Image({
       ? Math.round((width / aspectRatioWidth) * aspectRatioHeight)
       : height;
 
-  function buildUrl(w: number) {
-    const h =
-      aspectRatioWidth && aspectRatioHeight
-        ? Math.round((w / aspectRatioWidth) * aspectRatioHeight)
-        : Math.round((w / width) * height);
-
-    const options = [
-      `width=${w}`,
-      `height=${h}`,
-      `fit=${fit}`,
-      `quality=${quality}`,
-      `format=${format}`,
-    ].join(",");
-
-    return `/cdn-cgi/image/${options}/${src}`;
-  }
-
-  const srcSet = DEFAULT_SRCSET_WIDTHS.map((w) => `${buildUrl(w)} ${w}w`).join(
-    ", "
-  );
-
-  const finalSrc = buildUrl(width);
+  const srcSet = generateSrcSet({
+    src,
+    width,
+    height,
+    aspectRatio,
+    fit,
+    quality,
+    format,
+  });
+  const finalSrc = buildCloudflareUrl({
+    src,
+    width,
+    height: computedHeight,
+    fit,
+    quality,
+    format,
+  });
 
   return (
     // biome-ignore assist/source/useSortedAttributes: https://github.com/vercel/next.js/blob/11e295089c5759891b82168c2cf7153731704519/packages/next/src/client/image-component.tsx#L272
