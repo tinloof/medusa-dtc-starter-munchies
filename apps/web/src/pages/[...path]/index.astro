@@ -37,11 +37,6 @@ const templates: Record<string, any> = {
 };
 
 const Template = templates[page._type];
-
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, s-maxage=300, stale-while-revalidate=3600"
-);
 ---
 
 <Layout
