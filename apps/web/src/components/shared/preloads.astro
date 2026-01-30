@@ -61,13 +61,13 @@ const productPreloads = productImages?.slice(0, 2).map((img) => ({
   />
 )}
 
-{productPreloads?.map((preload) => (
+{productPreloads?.map((preload, i) => (
   <link
     rel="preload"
     as="image"
     imagesrcset={preload.srcSet}
     imagesizes={preload.sizes}
-    fetchpriority="high"
+    fetchpriority={i === 0 ? "high" : "low"}
     slot="preloadedImages"
   />
 ))}
