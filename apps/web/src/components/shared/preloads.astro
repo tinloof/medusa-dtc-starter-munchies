@@ -1,0 +1,73 @@
+---
+import type { ModularPageSection } from "../sections/types";
+import { generateSrcSet } from "./cloudflare-image";
+import { generateSanitySrcSet } from "./sanity-image";
+
+interface Props {
+  hero?: Omit<ModularPageSection<"section.hero">, "rootHtmlAttributes">;
+  productImages?: Array<{ url: string; width?: number; height?: number }>;
+}
+
+const { hero, productImages } = Astro.props;
+
+// Sizes must match actual <img> sizes attributes
+const SIZES = {
+  image:
+    "(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) calc(50vw - 36px), 750px",
+  largeImage: "100vw",
+  video: "(max-width: 1440px) calc(100vw - 64px), 1500px",
+  product:
+    "(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) 450px, 600px",
+};
+
+// Determine hero image and sizes based on mediaType
+let heroSrcSet: string | null = null;
+let heroSizes: string | null = null;
+
+if (hero) {
+  const mediaType = hero.mediaType || "image";
+
+  if (mediaType === "largeImage" && hero.largeImage) {
+    heroSrcSet = generateSanitySrcSet(hero.largeImage);
+    heroSizes = SIZES.largeImage;
+  } else if (mediaType === "video" && hero.video?.poster) {
+    heroSrcSet = generateSanitySrcSet(hero.video.poster, "16/9");
+    heroSizes = SIZES.video;
+  } else if (hero.image) {
+    heroSrcSet = generateSanitySrcSet(hero.image);
+    heroSizes = SIZES.image;
+  }
+}
+
+// Product images preload (first two)
+const productPreloads = productImages?.slice(0, 2).map((img) => ({
+  srcSet: generateSrcSet({
+    src: img.url,
+    width: img.width || 591,
+    height: img.height || 591,
+  }),
+  sizes: SIZES.product,
+}));
+---
+
+{heroSrcSet && heroSizes && (
+  <link
+    rel="preload"
+    as="image"
+    imagesrcset={heroSrcSet}
+    imagesizes={heroSizes}
+    fetchpriority="high"
+    slot="preloadedImages"
+  />
+)}
+
+{productPreloads?.map((preload) => (
+  <link
+    rel="preload"
+    as="image"
+    imagesrcset={preload.srcSet}
+    imagesizes={preload.sizes}
+    fetchpriority="high"
+    slot="preloadedImages"
+  />
+))}

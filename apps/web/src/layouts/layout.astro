@@ -34,6 +34,8 @@ const {
 >
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <slot name="preloadedImages" />
     <Font preload cssVariable="--font-instrumentSans" />
     <Font preload cssVariable="--font-instrumentSerif" />
     <Font preload cssVariable="--font-climateCrisis" />
@@ -59,8 +61,7 @@ const {
         creator: "@Tinloof"
       }}
       extend={{
-        link: [{rel: "icon", href: "/favicon.ico", type:"image/x-icon"}],
-        meta: [{name: "viewport", content: "width=device-width"}]
+        link: [{rel: "icon", href: "/favicon.ico", type:"image/x-icon"}]
       }}
     />
     <meta name="generator" content={Astro.generator}>

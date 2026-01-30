@@ -1,6 +1,7 @@
 ---
 import { all } from "better-all";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
+import Preloads from "@/components/shared/preloads.astro";
 import TextPage from "@/components/text-page/index.astro";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData, loadPageByPathname } from "@/lib/sanity";
@@ -37,6 +38,12 @@ const templates: Record<string, any> = {
 };
 
 const Template = templates[page._type];
+
+// Extract first hero section for preloading
+const firstHero =
+  page._type !== "text.page"
+    ? page.sections?.find((s: { _type: string }) => s._type === "section.hero")
+    : undefined;
 ---
 
 <Layout
@@ -44,5 +51,6 @@ const Template = templates[page._type];
   description={page.seo?.description}
   globalData={globalData}
 >
+  {firstHero && <Preloads hero={firstHero} slot="preloadedImages" />}
   {Template ? <Template {...page} /> : <div>Template not found: {page._type}</div>}
 </Layout>

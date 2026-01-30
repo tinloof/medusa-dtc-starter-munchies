@@ -1,5 +1,5 @@
 import { getImageDimensions } from "@sanity/asset-utils";
-import { createImageUrlBuilder, type ImageUrlBuilder } from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -42,6 +42,53 @@ const imageConfig = {
 
 const builder = createImageUrlBuilder(imageConfig);
 
+const DEFAULT_SRCSET_WIDTHS = [
+  50, 100, 200, 450, 600, 750, 900, 1000, 1250, 1500, 1750, 2000,
+];
+
+function parseAspectRatio(aspectRatio?: string) {
+  const values = aspectRatio?.split("/");
+  return {
+    width: values ? Number.parseFloat(values[0]) : undefined,
+    height: values ? Number.parseFloat(values[1]) : undefined,
+  };
+}
+
+/**
+ * Generate srcSet string for Sanity images
+ */
+export function generateSanitySrcSet(
+  data: SanityImageData | null | undefined,
+  aspectRatio?: string
+): string | null {
+  if (!data?.asset?._ref) {
+    return null;
+  }
+
+  const _ref = data.asset._ref;
+  const { width: intrinsicWidth } = getImageDimensions(_ref);
+  const { width: arWidth, height: arHeight } = parseAspectRatio(aspectRatio);
+
+  const urlBuilder = builder
+    .image({ _ref, crop: data.crop, hotspot: data.hotspot })
+    .auto("format");
+
+  function buildUrl(w: number) {
+    let img = urlBuilder.width(w);
+    if (arWidth && arHeight) {
+      img = img.height(Math.round((w / arWidth) * arHeight));
+    }
+    return img.url();
+  }
+
+  const src = buildUrl(intrinsicWidth);
+
+  return DEFAULT_SRCSET_WIDTHS.filter((w) => w < intrinsicWidth)
+    .map((w) => `${buildUrl(w)} ${w}w`)
+    .concat(`${src} ${intrinsicWidth}w`)
+    .join(", ");
+}
+
 export function SanityImage({
   data,
   className,
@@ -57,53 +104,22 @@ export function SanityImage({
 
   const _ref = data.asset._ref;
   const { width, height } = getImageDimensions(_ref);
+  const { width: arWidth, height: arHeight } = parseAspectRatio(aspectRatio);
 
-  // Parse aspect ratio if provided
-  const aspectRatioValues = aspectRatio?.split("/");
-  const aspectRatioWidth = aspectRatioValues
-    ? Number.parseFloat(aspectRatioValues[0])
-    : undefined;
-  const aspectRatioHeight = aspectRatioValues
-    ? Number.parseFloat(aspectRatioValues[1])
-    : undefined;
-
-  // Calculate new height based on aspect ratio if provided
   const computedHeight =
-    aspectRatioWidth && aspectRatioHeight
-      ? Math.round((width / aspectRatioWidth) * aspectRatioHeight)
-      : height;
+    arWidth && arHeight ? Math.round((width / arWidth) * arHeight) : height;
 
-  // Create base image URL builder
   const urlBuilder = builder
-    .image({
-      _ref,
-      crop: data.crop,
-      hotspot: data.hotspot,
-    })
+    .image({ _ref, crop: data.crop, hotspot: data.hotspot })
     .auto("format");
 
-  // Generate srcset values
-  const srcSetValues = [
-    50, 100, 200, 450, 600, 750, 900, 1000, 1250, 1500, 1750, 2000,
-  ];
-
-  function generateImageUrl(w: number) {
-    let img = urlBuilder.width(w);
-    if (aspectRatioWidth && aspectRatioHeight) {
-      const h = Math.round((w / aspectRatioWidth) * aspectRatioHeight);
-      img = img.height(h);
-    }
-    return img.url();
+  let srcImg = urlBuilder.width(width);
+  if (arWidth && arHeight) {
+    srcImg = srcImg.height(computedHeight);
   }
+  const src = srcImg.url();
 
-  const src = generateImageUrl(width);
-
-  const srcSet = srcSetValues
-    .filter((value) => value < width)
-    .map((value) => `${generateImageUrl(value)} ${value}w`)
-    .concat(`${src} ${width}w`)
-    .join(", ");
-
+  const srcSet = generateSanitySrcSet(data, aspectRatio);
   const imageAlt = alt || data.alt || "";
 
   return (
@@ -116,7 +132,7 @@ export function SanityImage({
       loading={loading}
       src={src}
       sizes={sizes}
-      srcSet={srcSet}
+      srcSet={srcSet ?? undefined}
       style={aspectRatio ? { aspectRatio } : undefined}
       width={width}
     />
@@ -124,101 +140,33 @@ export function SanityImage({
 }
 
 export function resolveImageData({ aspectRatio, data }: SanityImageProps) {
-  if (!data?.asset) {
+  if (!data?.asset?._ref) {
     return null;
   }
 
   const _ref = data.asset._ref;
   const { height, width } = getImageDimensions(_ref);
-  const aspectRatioValues = aspectRatio?.split("/");
+  const { width: arWidth, height: arHeight } = parseAspectRatio(aspectRatio);
 
-  if (aspectRatio && aspectRatioValues?.length !== 2 && isDev) {
+  if (aspectRatio && !(arWidth && arHeight) && isDev) {
     console.warn(
       `Invalid aspect ratio: ${aspectRatio}. Using the original aspect ratio. The aspect ratio should be in the format "width/height".`
     );
   }
 
-  const aspectRatioWidth = aspectRatioValues
-    ? Number.parseFloat(aspectRatioValues[0])
-    : undefined;
-  const aspectRatioHeight = aspectRatioValues
-    ? Number.parseFloat(aspectRatioValues[1])
-    : undefined;
-
-  const urlBuilder = createImageUrlBuilder(imageConfig)
-    .image({
-      _ref,
-      crop: data.crop,
-      hotspot: data.hotspot,
-    })
+  const urlBuilder = builder
+    .image({ _ref, crop: data.crop, hotspot: data.hotspot })
     .auto("format");
 
-  // Values used for srcset attribute of image tag (in pixels)
-  const srcSetValues = [
-    50, 100, 200, 450, 600, 750, 900, 1000, 1250, 1500, 1750, 2000, 2500, 3000,
-    3500, 4000, 5000,
-  ];
-
-  const src = generateImageUrl({
-    aspectRatioHeight,
-    aspectRatioWidth,
-    urlBuilder,
-    width,
-  });
-
-  // Create srcset attribute
-  const srcSet = srcSetValues
-    .filter((value) => value < width)
-    .map((value) => {
-      const imageUrl = generateImageUrl({
-        aspectRatioHeight,
-        aspectRatioWidth,
-        urlBuilder,
-        width: value,
-      });
-      if (width >= value) {
-        return `${imageUrl} ${value}w`;
-      }
-      return "";
-    })
-    .join(", ")
-    .concat(`, ${src} ${width}w`);
+  let srcImg = urlBuilder.width(width);
+  if (arWidth && arHeight) {
+    srcImg = srcImg.height(Math.round((width / arWidth) * arHeight));
+  }
 
   return {
     height,
-    src,
-    srcSet,
+    src: srcImg.url(),
+    srcSet: generateSanitySrcSet(data, aspectRatio),
     width,
   };
-}
-
-function generateImageUrl(args: {
-  aspectRatioHeight?: number;
-  aspectRatioWidth?: number;
-  blur?: number;
-  urlBuilder: ImageUrlBuilder;
-  width: number;
-}) {
-  const {
-    aspectRatioHeight,
-    aspectRatioWidth,
-    blur = 0,
-    urlBuilder,
-    width,
-  } = args;
-  let imageUrl = urlBuilder.width(width);
-  const imageHeight =
-    aspectRatioHeight && aspectRatioWidth
-      ? Math.round((width / aspectRatioWidth) * aspectRatioHeight)
-      : undefined;
-
-  if (imageHeight) {
-    imageUrl = imageUrl.height(imageHeight);
-  }
-
-  if (blur && blur > 0) {
-    imageUrl = imageUrl.blur(blur);
-  }
-
-  return imageUrl.url();
 }

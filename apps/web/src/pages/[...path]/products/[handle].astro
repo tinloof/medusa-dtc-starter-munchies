@@ -4,6 +4,7 @@ import ProductAddons from "@/components/pdp/addons/index.astro";
 import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
 import { ProductInformation } from "@/components/pdp/product-information";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
+import Preloads from "@/components/shared/preloads.astro";
 import Layout from "@/layouts/layout.astro";
 import { getProductByHandle } from "@/lib/medusa/products";
 import { getRegion } from "@/lib/medusa/regions";
@@ -47,6 +48,14 @@ if (!(region && product)) {
   description={product.description ?? ""}
   globalData={globalData}
 >
+  <Preloads
+    productImages={product.images?.slice(0, 2).map((img) => ({
+      url: img.url,
+      width: 591,
+      height: 591,
+    }))}
+    slot="preloadedImages"
+  />
   <section
     class="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m"
   >
