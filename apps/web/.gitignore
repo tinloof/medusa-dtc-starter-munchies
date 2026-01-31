@@ -27,3 +27,7 @@ pnpm-debug.log*
 public/cms
 
 .wrangler
+
+# Sanity type files
+sanity.types.ts
+schema.json

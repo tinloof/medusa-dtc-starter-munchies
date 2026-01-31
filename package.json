@@ -22,6 +22,11 @@
   "engines": {
     "node": ">=18"
   },
+  "pnpm": {
+    "overrides": {
+      "vite": "^6.4.1"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
       "pnpm dlx ultracite fix"

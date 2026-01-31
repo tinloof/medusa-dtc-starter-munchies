@@ -25,23 +25,16 @@
       "outputs": ["schema.json", "sanity.types.ts"],
       "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_PROJECT_ID"]
     },
-    "@packages/sanity#typegen:watch": {
+    "@apps/web#typegen:watch": {
       "outputs": ["schema.json", "sanity.types.ts"],
       "cache": false,
       "persistent": true
     },
-    "@packages/sanity#build": {
-      "dependsOn": ["@packages/sanity#typegen"],
-      "outputs": ["../../apps/web/public/cms/**", "./sanity/**"],
-      "cache": true,
-      "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_PROJECT_ID"]
-    },
-    "@packages/sanity#dev": {
-      "with": ["@packages/sanity#typegen:watch"],
+    "@apps/web#dev": {
+      "with": ["@apps/web#typegen:watch"],
       "persistent": true
     },
     "@apps/web#build": {
-      "dependsOn": ["@packages/sanity#build"],
       "outputs": ["dist/**"],
       "cache": true,
       "env": [

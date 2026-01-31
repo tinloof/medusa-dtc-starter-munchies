@@ -1,8 +1,8 @@
 import { actions } from "astro:actions";
 import { withState } from "@astrojs/react/actions";
-import type { Footer as FooterType } from "@packages/sanity/types";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import type { Footer as FooterType } from "sanity.types";
 import { Cta } from "@/components/shared/button";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";

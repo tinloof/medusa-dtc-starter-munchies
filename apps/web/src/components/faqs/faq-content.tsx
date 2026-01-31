@@ -1,4 +1,4 @@
-import type { FAQS_PAGE_QUERY_RESULT } from "@packages/sanity/types";
+import type { FAQS_PAGE_QUERY_RESULT } from "sanity.types";
 import { Accordion } from "@/components/shared/accordion";
 import { Select } from "@/components/shared/select";
 import { Body } from "@/components/shared/typography/body";

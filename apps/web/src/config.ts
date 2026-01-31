@@ -1,8 +1,8 @@
 import {
   PUBLIC_SANITY_STUDIO_DATASET,
   PUBLIC_SANITY_STUDIO_PROJECT_ID,
-  SANITY_TOKEN,
-} from "astro:env/server";
+} from "astro:env/client";
+import { SANITY_TOKEN } from "astro:env/server";
 
 const config = {
   defaultCountryCode: "us",

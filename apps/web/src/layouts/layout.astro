@@ -2,20 +2,24 @@
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
+import type { GLOBAL_QUERY_RESULT } from "sanity.types";
 import Footer from "@/components/global/footer/index.astro";
 import Header from "@/components/global/header/index.astro";
 import { CountryInit } from "@/components/shared/country-init";
 import config from "@/config";
 import { getOgImages } from "@/lib/sanity/get-og-images";
+import SanityLive from "@/sanity/components/sanity-live.astro";
+import { DraftModeToast } from "@/sanity/components/visual-editing/draft-mode-toast";
+import VisualEditing from "@/sanity/components/visual-editing/index.astro";
 
 import "@/styles/global.css";
-import type { GLOBAL_QUERY_RESULT } from "@packages/sanity/types";
 
 interface Props {
   variant?: "simple" | "default";
   globalData: GLOBAL_QUERY_RESULT;
   title?: string;
   description?: string;
+  syncTags?: string[];
 }
 
 const {
@@ -23,7 +27,12 @@ const {
   title = config.title,
   description = config.description,
   globalData,
+  syncTags,
 } = Astro.props;
+
+// Enable visual editing when in draft mode (set by /api/draft-mode/enable)
+const visualEditingEnabled =
+  Astro.cookies.get("sanity-draft-mode")?.value === "true";
 ---
 
 <!doctype html>
@@ -82,6 +91,9 @@ const {
       <slot />
     </main>
     {globalData.footer && <Footer footer={globalData.footer} variant={variant} />}
+    <SanityLive syncTags={syncTags} />
+    <VisualEditing enabled={visualEditingEnabled} />
+    {visualEditingEnabled && <DraftModeToast client:only="react" />}
   </body>
 </html>
 

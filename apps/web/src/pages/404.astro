@@ -6,20 +6,24 @@ import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData, loadNotFound } from "@/lib/sanity";
 
+const cookies = Astro.cookies;
+
 const { globalData, notFound } = await all({
   globalData() {
-    return loadGlobalData();
+    return loadGlobalData(cookies);
   },
   notFound() {
-    return loadNotFound();
+    return loadNotFound(cookies);
   },
 });
 
 const globalDataResult = globalData.result;
 const notFoundResult = notFound.result;
+
+const syncTags = [...(globalData.syncTags || []), ...(notFound.syncTags || [])];
 ---
 
-<Layout title="Not found" globalData={globalDataResult}>
+<Layout title="Not found" globalData={globalDataResult} syncTags={syncTags}>
   <section
     class="mx-auto h-[calc(100vh-50px)] max-h-162.5 w-full max-w-max-screen p-m lg:p-xl"
   >

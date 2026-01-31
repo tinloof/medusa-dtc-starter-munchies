@@ -1,7 +1,7 @@
-import type { Video as VideoType } from "@packages/sanity/types";
 import { cx } from "class-variance-authority";
 import type React from "react";
 import { type ImgHTMLAttributes, useEffect, useState } from "react";
+import type { Video as VideoType } from "sanity.types";
 import {
   resolveImageData,
   SanityImage,

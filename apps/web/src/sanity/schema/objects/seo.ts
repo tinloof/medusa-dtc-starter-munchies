@@ -1,5 +1,5 @@
 import { defineField } from "sanity";
-import { InputWithCharacterCount } from "@/components/input-with-characters-count";
+import { InputWithCharacterCount } from "@/sanity/components/input-with-characters-count";
 
 export const seo = defineField({
   fields: [

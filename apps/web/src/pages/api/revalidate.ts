@@ -1,8 +1,4 @@
-import {
-  CF_API_TOKEN,
-  CF_ZONE_ID,
-  REVALIDATION_SECRET,
-} from "astro:env/server";
+import { CF_TOKEN, CF_ZONE_ID, REVALIDATION_SECRET } from "astro:env/server";
 import type { APIRoute } from "astro";
 
 interface CloudflareResponse {
@@ -39,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    if (!(CF_ZONE_ID && CF_API_TOKEN)) {
+    if (!(CF_ZONE_ID && CF_TOKEN)) {
       return Response.json(
         { message: "Cloudflare credentials not configured" },
         {
@@ -53,7 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${CF_API_TOKEN}`,
+          Authorization: `Bearer ${CF_TOKEN}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ tags }),

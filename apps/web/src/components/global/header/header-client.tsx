@@ -1,4 +1,4 @@
-import type { Header as HeaderType } from "@packages/sanity/types";
+import type { Header as HeaderType } from "sanity.types";
 import { LocalizedLink } from "@/components/shared//localized-link";
 import { Hamburger } from "./parts/hamburger";
 import { Navigation } from "./parts/navigation";

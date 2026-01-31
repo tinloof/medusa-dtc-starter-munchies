@@ -1,5 +1,5 @@
-import type { MODULAR_PAGE_QUERY_RESULT } from "@packages/sanity/types";
 import type { ComponentType } from "react";
+import type { MODULAR_PAGE_QUERY_RESULT } from "sanity.types";
 
 export type SectionType = NonNullable<
   NonNullable<MODULAR_PAGE_QUERY_RESULT>["sections"]

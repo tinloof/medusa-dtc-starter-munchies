@@ -17,12 +17,12 @@ export default defineConfig({
         optional: false,
       }),
       PUBLIC_SANITY_STUDIO_PROJECT_ID: envField.string({
-        context: "server",
+        context: "client",
         access: "public",
         optional: false,
       }),
       PUBLIC_SANITY_STUDIO_DATASET: envField.string({
-        context: "server",
+        context: "client",
         access: "public",
         optional: false,
       }),
@@ -31,14 +31,14 @@ export default defineConfig({
         access: "secret",
         optional: false,
       }),
-      PUBLIC_MEDUSA_BACKEND_URL: envField.string({
+      MEDUSA_BACKEND_URL: envField.string({
         context: "server",
         access: "public",
         optional: false,
       }),
-      PUBLIC_MEDUSA_PUBLISHABLE_KEY: envField.string({
+      MEDUSA_PUBLISHABLE_KEY: envField.string({
         context: "server",
-        access: "public",
+        access: "secret",
         optional: false,
       }),
       REVALIDATION_SECRET: envField.string({
@@ -51,7 +51,7 @@ export default defineConfig({
         access: "public",
         optional: false,
       }),
-      CF_API_TOKEN: envField.string({
+      CF_TOKEN: envField.string({
         context: "server",
         access: "secret",
         optional: false,
@@ -62,7 +62,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     ssr: {
-      noExternal: ["@medusajs/js-sdk"],
+      noExternal: ["@medusajs/js-sdk", "sanity"],
     },
   },
   adapter: cloudflare(),

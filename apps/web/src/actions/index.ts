@@ -1,8 +1,5 @@
 import { ActionError, defineAction } from "astro:actions";
-import {
-  PUBLIC_MEDUSA_BACKEND_URL,
-  PUBLIC_MEDUSA_PUBLISHABLE_KEY,
-} from "astro:env/server";
+import { MEDUSA_BACKEND_URL, MEDUSA_PUBLISHABLE_KEY } from "astro:env/server";
 import { z } from "astro/zod";
 import { cart } from "./medusa/cart";
 import { order } from "./medusa/order";
@@ -18,12 +15,12 @@ export const server = {
     async handler(input) {
       try {
         const res = await fetch(
-          `${PUBLIC_MEDUSA_BACKEND_URL}/store/subscribe-to-newsletter`,
+          `${MEDUSA_BACKEND_URL}/store/subscribe-to-newsletter`,
           {
             body: JSON.stringify({ email: input.email }),
             headers: {
               "Content-Type": "application/json",
-              "X-Publishable-Api-Key": PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+              "X-Publishable-Api-Key": MEDUSA_PUBLISHABLE_KEY,
             },
             method: "post",
           }

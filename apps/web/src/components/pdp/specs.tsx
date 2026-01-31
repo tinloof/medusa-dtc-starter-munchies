@@ -1,4 +1,4 @@
-import type { Product } from "@packages/sanity/types";
+import type { Product } from "sanity.types";
 import { Accordion } from "@/components/shared/accordion";
 
 type Props = Pick<Product, "specs">;

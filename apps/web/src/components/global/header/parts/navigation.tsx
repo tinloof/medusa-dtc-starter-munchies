@@ -1,8 +1,8 @@
-import type { Header } from "@packages/sanity/types";
 // biome-ignore lint/performance/noNamespaceImport: -
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { cx } from "class-variance-authority";
 import { useEffect, useState } from "react";
+import type { Header } from "sanity.types";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import { SanityImage } from "@/components/shared/sanity-image";
 import { Body } from "@/components/shared/typography/body";

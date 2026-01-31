@@ -1,6 +1,6 @@
 import type { StoreProduct } from "@medusajs/types";
-import type { PRODUCT_QUERY_RESULT } from "@packages/sanity/types";
 import { NuqsAdapter } from "nuqs/adapters/react";
+import type { PRODUCT_QUERY_RESULT } from "sanity.types";
 import { ProductVariantsProvider } from "@/components/context/product-context";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";

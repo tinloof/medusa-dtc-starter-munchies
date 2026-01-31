@@ -1,7 +1,6 @@
 import { resolve } from "node:path";
 import { defineCliConfig } from "sanity/cli";
-
-import config from "./sanity.config";
+import config from "sanity.config";
 
 export default defineCliConfig({
   api: {
@@ -12,7 +11,7 @@ export default defineCliConfig({
     basePath: config.basePath,
   },
   typegen: {
-    path: "**/*.{ts,tsx,js,jsx}",
+    path: "./src/sanity/**/*.{ts,tsx,js,jsx}",
     schema: "./schema.json",
     generates: "./sanity.types.ts",
   },

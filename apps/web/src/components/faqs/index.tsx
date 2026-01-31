@@ -1,5 +1,5 @@
-import type { FAQS_PAGE_QUERY_RESULT, FaqEntry } from "@packages/sanity/types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { FAQS_PAGE_QUERY_RESULT, FaqEntry } from "sanity.types";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import { FaqContent } from "./faq-content";

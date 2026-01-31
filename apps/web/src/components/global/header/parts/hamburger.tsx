@@ -1,4 +1,3 @@
-import type { Header } from "@packages/sanity/types";
 // biome-ignore lint/performance/noNamespaceImport: biome ignore
 import * as Dialog from "@radix-ui/react-dialog";
 // biome-ignore lint/performance/noNamespaceImport: biome ignore
@@ -6,6 +5,7 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { cx } from "class-variance-authority";
 import type { Dispatch, SetStateAction } from "react";
 import { useCallback, useRef, useState } from "react";
+import type { Header } from "sanity.types";
 import { ButtonLink } from "@/components/shared/button";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import { SanityImage } from "@/components/shared/sanity-image";

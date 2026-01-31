@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+#navigator-list {
+  flex-direction: column;
+  height: auto !important;
+}
+
+#navigator-list > li {
+  border: 0;
+  position: relative !important;
+  transform: translateY(0px) !important;
+}

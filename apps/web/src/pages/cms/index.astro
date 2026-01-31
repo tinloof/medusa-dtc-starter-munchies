@@ -1,0 +1,20 @@
+---
+import { StudioComponent as Studio } from "@/sanity/components/studio";
+import "./studio.css";
+import SanityLive from "@/sanity/components/sanity-live.astro";
+
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Studio</title>
+  </head>
+  <body class="h-full m-0 p-0">
+    <Studio client:only="react" />
+    <SanityLive />
+  </body>
+</html>

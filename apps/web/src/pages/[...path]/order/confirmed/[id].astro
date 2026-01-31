@@ -18,7 +18,7 @@ if (!id) {
 
 const { globalData, order } = await all({
   globalData() {
-    return loadGlobalData();
+    return loadGlobalData(Astro.cookies);
   },
   order() {
     return getEnrichedOrder(id);
@@ -39,11 +39,14 @@ function convertMoney(amount: number) {
 const shippingMethod = order.shipping_methods?.[0];
 
 const globalDataResult = globalData.result;
+
+const syncTags = globalData.syncTags || [];
 ---
 
 <Layout
   title={`Order #${order.display_id} confirmed`}
   globalData={globalDataResult}
+  syncTags={syncTags}
 >
   <div class="mx-auto flex max-w-300 flex-col gap-2xl px-s py-2xl md:py-8xl">
     <div class="flex flex-col gap-xs">

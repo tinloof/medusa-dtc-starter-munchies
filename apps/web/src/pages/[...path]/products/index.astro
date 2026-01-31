@@ -4,12 +4,15 @@ import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData } from "@/lib/sanity";
 
-const globalDataResult = (await loadGlobalData()).result;
+const globalData = await loadGlobalData(Astro.cookies);
+const globalDataResult = globalData.result;
 
 Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const syncTags = globalData.syncTags || [];
 ---
 
-<Layout title="Shop all" globalData={globalDataResult}>
+<Layout title="Shop all" globalData={globalDataResult} syncTags={syncTags}>
   <section
     class="mx-auto flex max-w-max-screen flex-col gap-10 px-m pt-26 pb-10 lg:px-xl"
   >

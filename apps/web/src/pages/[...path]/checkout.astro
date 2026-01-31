@@ -12,7 +12,7 @@ import { loadGlobalData } from "@/lib/sanity";
 
 const { globalData, cart, shippingMethods, paymentMethods } = await all({
   globalData() {
-    return loadGlobalData();
+    return loadGlobalData(Astro.cookies);
   },
   cart() {
     return getEnrichedCart(Astro.cookies);
@@ -38,9 +38,16 @@ if (!cart || (cart.items?.length || 0) === 0) {
 const globalDataResult = globalData.result;
 
 Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const syncTags = globalData.syncTags || [];
 ---
 
-<Layout title="Checkout" globalData={globalDataResult} variant="simple">
+<Layout
+  title="Checkout"
+  globalData={globalDataResult}
+  variant="simple"
+  syncTags={syncTags}
+>
   <section
     class="mx-auto flex w-full max-w-max-screen flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pt-5 lg:pb-20"
   >
