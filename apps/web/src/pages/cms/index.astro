@@ -3,7 +3,7 @@ import { StudioComponent as Studio } from "@/sanity/components/studio";
 import "./studio.css";
 import SanityLive from "@/sanity/components/sanity-live.astro";
 
-export const prerender = true;
+export const prerender = false;
 ---
 
 <!doctype html>
@@ -15,6 +15,6 @@ export const prerender = true;
   </head>
   <body class="h-full m-0 p-0">
     <Studio client:only="react" />
-    <SanityLive />
+    <!-- <SanityLive /> -->
   </body>
 </html>
