@@ -5,10 +5,12 @@ const excludedPaths = [
   "/api",
   "/images",
   "/icons",
+  "/cdn-cgi",
   "/favicon.ico",
   "/favicon-inactive.ico",
   "/_astro",
   "/_image",
+  "_server-islands",
   "/cms",
 ];
 
@@ -49,6 +51,17 @@ const countryCodeMiddleware = defineMiddleware((context, next) => {
 });
 
 const cachingMiddleware = defineMiddleware(async (context, next) => {
+  const { request, url } = context;
+  const { pathname } = url;
+
+  // Skip caching for non-GET, API routes, CMS, static assets, and draft mode
+  const isDraftMode = request.headers
+    .get("cookie")
+    ?.includes("sanity-draft-mode=true");
+  if (isExcludedPath(pathname) || isDraftMode) {
+    return next();
+  }
+
   // Cache API not available (e.g., dev mode or workers.dev domain)
   if (typeof caches === "undefined") {
     return next();
