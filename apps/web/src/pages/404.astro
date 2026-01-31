@@ -6,14 +6,12 @@ import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData, loadNotFound } from "@/lib/sanity";
 
-const cookies = Astro.cookies;
-
 const { globalData, notFound } = await all({
   globalData() {
-    return loadGlobalData(cookies);
+    return loadGlobalData();
   },
   notFound() {
-    return loadNotFound(cookies);
+    return loadNotFound();
   },
 });
 

@@ -12,7 +12,7 @@ import { loadGlobalData } from "@/lib/sanity";
 
 const { globalData, cart, shippingMethods, paymentMethods } = await all({
   globalData() {
-    return loadGlobalData(Astro.cookies);
+    return loadGlobalData();
   },
   cart() {
     return getEnrichedCart(Astro.cookies);

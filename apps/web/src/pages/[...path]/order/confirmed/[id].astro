@@ -18,7 +18,7 @@ if (!id) {
 
 const { globalData, order } = await all({
   globalData() {
-    return loadGlobalData(Astro.cookies);
+    return loadGlobalData();
   },
   order() {
     return getEnrichedOrder(id);

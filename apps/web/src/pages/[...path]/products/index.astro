@@ -4,7 +4,7 @@ import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData } from "@/lib/sanity";
 
-const globalData = await loadGlobalData(Astro.cookies);
+const globalData = await loadGlobalData();
 const globalDataResult = globalData.result;
 
 Astro.response.headers.set("Cache-Control", "private, no-store");

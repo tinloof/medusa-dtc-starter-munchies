@@ -1,5 +1,12 @@
 import { defineMiddleware, sequence } from "astro:middleware";
 import config from "./config";
+import { requestContext } from "./lib/context";
+
+const contextMiddleware = defineMiddleware((context, next) => {
+  const ctx = context.locals.runtime?.ctx;
+  const { cookies } = context;
+  return requestContext.run({ ctx, cookies }, next);
+});
 
 const excludedPaths = [
   "/api",
@@ -130,4 +137,8 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   });
 });
 
-export const onRequest = sequence(countryCodeMiddleware, cachingMiddleware);
+export const onRequest = sequence(
+  contextMiddleware,
+  countryCodeMiddleware,
+  cachingMiddleware
+);

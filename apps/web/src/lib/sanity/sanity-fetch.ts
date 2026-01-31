@@ -1,20 +1,19 @@
-import type { AstroCookies } from "astro";
 import type { QueryParams } from "sanity";
+import { getCookies } from "../context";
 import { client } from "./client";
 
 interface SanityFetchParams {
   query: string;
   params?: QueryParams;
-  cookies?: AstroCookies;
   perspective?: "published" | "drafts";
 }
 
 export function sanityFetch<T>({
   query,
   params = {},
-  cookies,
   perspective: _perspective,
 }: SanityFetchParams) {
+  const cookies = getCookies();
   const isDraftMode = cookies?.get("sanity-draft-mode")?.value === "true";
   const perspective = _perspective ?? (isDraftMode ? "drafts" : "published");
   // useCdn: false bypasses Sanity CDN propagation delay

@@ -4,14 +4,12 @@ import { FAQs } from "@/components/faqs";
 import Layout from "@/layouts/layout.astro";
 import { loadFaqs, loadGlobalData } from "@/lib/sanity";
 
-const cookies = Astro.cookies;
-
 const { globalData, faqs } = await all({
   globalData() {
-    return loadGlobalData(cookies);
+    return loadGlobalData();
   },
   faqs() {
-    return loadFaqs(cookies);
+    return loadFaqs();
   },
 });
 

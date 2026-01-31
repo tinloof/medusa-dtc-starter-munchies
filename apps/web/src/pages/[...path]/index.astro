@@ -18,14 +18,12 @@ const isCountryCode = countryCode !== defaultCountryCode;
 const actualPath = isCountryCode ? pathSegments.slice(1).join("/") : path;
 const pathname = actualPath ? `/${actualPath}` : "/";
 
-const cookies = Astro.cookies;
-
 const { globalData, page } = await all({
   globalData() {
-    return loadGlobalData(cookies);
+    return loadGlobalData();
   },
   page() {
-    return loadPageByPathname(pathname, cookies);
+    return loadPageByPathname(pathname);
   },
 });
 

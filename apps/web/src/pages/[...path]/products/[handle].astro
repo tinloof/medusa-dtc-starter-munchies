@@ -19,17 +19,15 @@ if (!handle) {
 
 const countryCode = Astro.locals.countryCode;
 
-const cookies = Astro.cookies;
-
 const { globalData, region, product, productContent } = await all({
   globalData() {
-    return loadGlobalData(cookies);
+    return loadGlobalData();
   },
   region() {
     return getRegion(countryCode);
   },
   productContent() {
-    return loadProductContent(handle, cookies);
+    return loadProductContent(handle);
   },
   async product() {
     const region = await this.$.region;

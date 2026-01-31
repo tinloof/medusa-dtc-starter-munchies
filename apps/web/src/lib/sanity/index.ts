@@ -1,4 +1,3 @@
-import type { AstroCookies } from "astro";
 import type {
   DICTIONARY_QUERY_RESULT,
   FAQS_PAGE_QUERY_RESULT,
@@ -24,85 +23,75 @@ import {
 import { sanityFetch } from "./sanity-fetch";
 
 // Loader for routes
-export function loadRoute(pathname: string, cookies?: AstroCookies) {
+export function loadRoute(pathname: string) {
   return sanityFetch<ROUTE_QUERY_RESULT>({
     query: ROUTE_QUERY,
     params: { pathname },
-    cookies,
   });
 }
 
-export function loadModularPage(pathname: string, cookies?: AstroCookies) {
+export function loadModularPage(pathname: string) {
   return sanityFetch<MODULAR_PAGE_QUERY_RESULT>({
     query: MODULAR_PAGE_QUERY,
     params: {
       pathname,
     },
-    cookies,
   });
 }
 
-export function loadHome(cookies?: AstroCookies) {
-  return sanityFetch<HOME_QUERY_RESULT>({ query: HOME_QUERY, cookies });
+export function loadHome() {
+  return sanityFetch<HOME_QUERY_RESULT>({ query: HOME_QUERY });
 }
 
-export function loadGlobalData(cookies?: AstroCookies) {
-  return sanityFetch<GLOBAL_QUERY_RESULT>({ query: GLOBAL_QUERY, cookies });
+export function loadGlobalData() {
+  return sanityFetch<GLOBAL_QUERY_RESULT>({ query: GLOBAL_QUERY });
 }
 
-export async function loadPageByPathname(
-  pathname: string,
-  cookies?: AstroCookies
-) {
-  const { result } = await loadRoute(pathname, cookies);
+export async function loadPageByPathname(pathname: string) {
+  const { result } = await loadRoute(pathname);
   const documentType = result?.routeData._type;
 
   switch (documentType) {
     case "home":
-      return loadHome(cookies);
+      return loadHome();
     case "modular.page":
-      return loadModularPage(pathname, cookies);
+      return loadModularPage(pathname);
     case "text.page":
-      return loadTextPage(pathname, cookies);
+      return loadTextPage(pathname);
     default:
       console.warn("Invalid document type:", documentType);
       return null;
   }
 }
 
-export function loadNotFound(cookies?: AstroCookies) {
+export function loadNotFound() {
   return sanityFetch<NOT_FOUND_PAGE_QUERY_RESULT>({
     query: NOT_FOUND_PAGE_QUERY,
-    cookies,
   });
 }
 
-export function loadTextPage(pathname: string, cookies?: AstroCookies) {
+export function loadTextPage(pathname: string) {
   return sanityFetch<TEXT_PAGE_QUERY_RESULT>({
     query: TEXT_PAGE_QUERY,
     params: { pathname },
-    cookies,
   });
 }
 
-export function loadFaqs(cookies?: AstroCookies) {
+export function loadFaqs() {
   return sanityFetch<FAQS_PAGE_QUERY_RESULT>({
     query: FAQS_PAGE_QUERY,
-    cookies,
   });
 }
 
-export function loadDictionary(cookies?: AstroCookies) {
+export function loadDictionary() {
   return sanityFetch<DICTIONARY_QUERY_RESULT>({
     query: DICTIONARY_QUERY,
-    cookies,
   });
 }
 
-export function loadProductContent(handle: string, cookies?: AstroCookies) {
+export function loadProductContent(handle: string) {
   return sanityFetch<PRODUCT_QUERY_RESULT>({
     query: PRODUCT_QUERY,
     params: { handle },
-    cookies,
   });
 }
