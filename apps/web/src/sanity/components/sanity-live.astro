@@ -45,7 +45,7 @@ const { syncTags = [] } = Astro.props;
                   shouldNavigate &&
                   event.tags.some((tag: string) => syncTagSet.has(tag))
                 ) {
-                  // return navigate(window.location.href, { history: "replace" });
+                  return navigate(window.location.href, { history: "replace" });
                 }
               })
               .catch((err: Error) =>

@@ -17,9 +17,11 @@ export function sanityFetch<T>({
 }: SanityFetchParams) {
   const isDraftMode = cookies?.get("sanity-draft-mode")?.value === "true";
   const perspective = _perspective ?? (isDraftMode ? "drafts" : "published");
+  // useCdn: false bypasses Sanity CDN propagation delay
+  // CF edge cache handles caching, so we don't need Sanity's CDN
   return client
     .withConfig({
-      useCdn: perspective !== "drafts",
+      useCdn: false,
       perspective,
     })
     .fetch<T>(query, params, {
