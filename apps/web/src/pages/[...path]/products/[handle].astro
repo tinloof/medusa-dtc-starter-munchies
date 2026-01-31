@@ -53,6 +53,8 @@ const syncTags = [
   ...(productContent.syncTags || []),
   ...(tags || []),
 ];
+
+Astro.response.headers.set("Cache-Tag", syncTags.join(","));
 ---
 
 <Layout
