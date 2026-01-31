@@ -1,4 +1,4 @@
-import { CF_TOKEN, CF_ZONE_ID, REVALIDATION_SECRET } from "astro:env/server";
+import { CF_TOKEN, CF_ZONE_ID } from "astro:env/server";
 import type { APIRoute } from "astro";
 
 interface CloudflareResponse {
@@ -7,20 +7,6 @@ interface CloudflareResponse {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const authHeader = request.headers.get("Authorization");
-  const token = authHeader?.replace("Bearer ", "");
-
-  if (token !== REVALIDATION_SECRET) {
-    return Response.json(
-      {
-        message: "Forbidden",
-      },
-      {
-        status: 403,
-      }
-    );
-  }
-
   try {
     const body = (await request.json()) as { tags?: string[] };
 

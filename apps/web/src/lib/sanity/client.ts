@@ -6,5 +6,4 @@ export const client = createClient({
   dataset: config.sanity.dataset,
   apiVersion: config.sanity.apiVersion,
   token: config.sanity.token,
-  useCdn: true,
 });

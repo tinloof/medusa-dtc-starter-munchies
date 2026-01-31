@@ -41,11 +41,6 @@ export default defineConfig({
         access: "secret",
         optional: false,
       }),
-      REVALIDATION_SECRET: envField.string({
-        context: "server",
-        access: "secret",
-        optional: false,
-      }),
       CF_ZONE_ID: envField.string({
         context: "server",
         access: "public",

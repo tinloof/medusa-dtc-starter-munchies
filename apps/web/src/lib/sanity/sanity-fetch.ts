@@ -19,6 +19,7 @@ export function sanityFetch<T>({
   const perspective = _perspective ?? (isDraftMode ? "drafts" : "published");
   return client
     .withConfig({
+      useCdn: perspective !== "drafts",
       perspective,
     })
     .fetch<T>(query, params, {
