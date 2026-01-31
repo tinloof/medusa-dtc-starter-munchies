@@ -27,7 +27,10 @@ const { globalData, page } = await all({
   },
 });
 
-if (!page) {
+const pageResult = page?.result;
+const globalDataResult = globalData.result;
+
+if (!pageResult) {
   return Astro.redirect("/404", 404);
 }
 
@@ -37,20 +40,28 @@ const templates: Record<string, any> = {
   "modular.page": SectionRenderer,
 };
 
-const Template = templates[page._type];
+const Template = templates[pageResult._type];
 
 // Extract first hero section for preloading
 const firstHero =
-  page._type !== "text.page"
-    ? page.sections?.find((s: { _type: string }) => s._type === "section.hero")
+  pageResult._type !== "text.page"
+    ? pageResult.sections?.find(
+        (s: { _type: string }) => s._type === "section.hero"
+      )
     : undefined;
+
+const syncTags = [...(page?.syncTags || []), ...(globalData.syncTags || [])];
+
+Astro.response.headers.set("Cache-Tag", syncTags.join(","));
+
+console.info(syncTags);
 ---
 
 <Layout
-  title={page.title}
-  description={page.seo?.description}
-  globalData={globalData}
+  title={pageResult.title}
+  description={pageResult.seo?.description}
+  globalData={globalDataResult}
 >
   {firstHero && <Preloads hero={firstHero} slot="preloadedImages" />}
-  {Template ? <Template {...page} /> : <div>Template not found: {page._type}</div>}
+  {Template ? <Template {...pageResult} /> : <div>Template not found: {pageResult._type}</div>}
 </Layout>

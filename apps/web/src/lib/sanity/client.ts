@@ -1,14 +1,21 @@
-import { createClient } from "@sanity/client";
+import { createClient, type QueryParams } from "@sanity/client";
 import config from "@/config";
 
-export function getClient() {
-  const client = createClient({
-    projectId: config.sanity.projectId,
-    dataset: config.sanity.dataset,
-    apiVersion: config.sanity.apiVersion,
-    token: config.sanity.token,
-    useCdn: true,
-  });
+const client = createClient({
+  projectId: config.sanity.projectId,
+  dataset: config.sanity.dataset,
+  apiVersion: config.sanity.apiVersion,
+  token: config.sanity.token,
+  useCdn: true,
+});
 
-  return client;
+interface SanityFetchParams {
+  query: string;
+  params?: QueryParams;
+}
+
+export function sanityFetch<T>({ query, params = {} }: SanityFetchParams) {
+  return client.fetch<T>(query, params, {
+    filterResponse: false,
+  });
 }

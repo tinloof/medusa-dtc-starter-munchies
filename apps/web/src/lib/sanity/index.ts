@@ -20,32 +20,36 @@ import type {
   ROUTE_QUERY_RESULT,
   TEXT_PAGE_QUERY_RESULT,
 } from "@packages/sanity/types";
-import { getClient } from "./client";
-
-const client = getClient();
+import { sanityFetch } from "./client";
 
 // Loader for routes
 export function loadRoute(pathname: string) {
-  return client.fetch<ROUTE_QUERY_RESULT>(ROUTE_QUERY, { pathname });
+  return sanityFetch<ROUTE_QUERY_RESULT>({
+    query: ROUTE_QUERY,
+    params: { pathname },
+  });
 }
 
 export function loadModularPage(pathname: string) {
-  return client.fetch<MODULAR_PAGE_QUERY_RESULT>(MODULAR_PAGE_QUERY, {
-    pathname,
+  return sanityFetch<MODULAR_PAGE_QUERY_RESULT>({
+    query: MODULAR_PAGE_QUERY,
+    params: {
+      pathname,
+    },
   });
 }
 
 export function loadHome() {
-  return client.fetch<HOME_QUERY_RESULT>(HOME_QUERY);
+  return sanityFetch<HOME_QUERY_RESULT>({ query: HOME_QUERY });
 }
 
 export function loadGlobalData() {
-  return client.fetch<GLOBAL_QUERY_RESULT>(GLOBAL_QUERY);
+  return sanityFetch<GLOBAL_QUERY_RESULT>({ query: GLOBAL_QUERY });
 }
 
 export async function loadPageByPathname(pathname: string) {
-  const data = await loadRoute(pathname);
-  const documentType = data?.routeData._type;
+  const { result } = await loadRoute(pathname);
+  const documentType = result?.routeData._type;
 
   switch (documentType) {
     case "home":
@@ -61,21 +65,29 @@ export async function loadPageByPathname(pathname: string) {
 }
 
 export function loadNotFound() {
-  return client.fetch<NOT_FOUND_PAGE_QUERY_RESULT>(NOT_FOUND_PAGE_QUERY);
+  return sanityFetch<NOT_FOUND_PAGE_QUERY_RESULT>({
+    query: NOT_FOUND_PAGE_QUERY,
+  });
 }
 
 export function loadTextPage(pathname: string) {
-  return client.fetch<TEXT_PAGE_QUERY_RESULT>(TEXT_PAGE_QUERY, { pathname });
+  return sanityFetch<TEXT_PAGE_QUERY_RESULT>({
+    query: TEXT_PAGE_QUERY,
+    params: { pathname },
+  });
 }
 
 export function loadFaqs() {
-  return client.fetch<FAQS_PAGE_QUERY_RESULT>(FAQS_PAGE_QUERY);
+  return sanityFetch<FAQS_PAGE_QUERY_RESULT>({ query: FAQS_PAGE_QUERY });
 }
 
 export function loadDictionary() {
-  return client.fetch<DICTIONARY_QUERY_RESULT>(DICTIONARY_QUERY);
+  return sanityFetch<DICTIONARY_QUERY_RESULT>({ query: DICTIONARY_QUERY });
 }
 
 export function loadProductContent(handle: string) {
-  return client.fetch<PRODUCT_QUERY_RESULT>(PRODUCT_QUERY, { handle });
+  return sanityFetch<PRODUCT_QUERY_RESULT>({
+    query: PRODUCT_QUERY,
+    params: { handle },
+  });
 }

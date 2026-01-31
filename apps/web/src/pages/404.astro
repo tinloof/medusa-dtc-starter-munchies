@@ -14,9 +14,12 @@ const { globalData, notFound } = await all({
     return loadNotFound();
   },
 });
+
+const globalDataResult = globalData.result;
+const notFoundResult = notFound.result;
 ---
 
-<Layout title="Not found" globalData={globalData}>
+<Layout title="Not found" globalData={globalDataResult}>
   <section
     class="mx-auto h-[calc(100vh-50px)] max-h-162.5 w-full max-w-max-screen p-m lg:p-xl"
   >
@@ -32,15 +35,15 @@ const { globalData, notFound } = await all({
         font="sans"
         mobileSize="lg"
       >
-        {notFound?.text}
+        {notFoundResult?.text}
       </Body>
       <ButtonLink
         class="mt-2xl"
-        href={notFound?.cta?.link}
+        href={notFoundResult?.cta?.link}
         size="lg"
         variant="outline"
       >
-        {notFound?.cta?.label}
+        {notFoundResult?.cta?.label}
       </ButtonLink>
     </div>
   </section>

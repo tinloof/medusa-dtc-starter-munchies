@@ -41,6 +41,21 @@ export default defineConfig({
         access: "public",
         optional: false,
       }),
+      REVALIDATION_SECRET: envField.string({
+        context: "server",
+        access: "secret",
+        optional: false,
+      }),
+      CF_ZONE_ID: envField.string({
+        context: "server",
+        access: "public",
+        optional: false,
+      }),
+      CF_API_TOKEN: envField.string({
+        context: "server",
+        access: "secret",
+        optional: false,
+      }),
     },
   },
   integrations: [react(), svgSprite()],
@@ -50,11 +65,7 @@ export default defineConfig({
       noExternal: ["@medusajs/js-sdk"],
     },
   },
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
+  adapter: cloudflare(),
   experimental: {
     fonts: [
       {

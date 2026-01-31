@@ -41,12 +41,15 @@ const { globalData, region, product, productContent } = await all({
 if (!(region && product)) {
   return Astro.redirect("/404", 404);
 }
+
+const globalDataResult = globalData.result;
+const productContentResult = productContent.result;
 ---
 
 <Layout
   title={product.title}
   description={product.description ?? ""}
-  globalData={globalData}
+  globalData={globalDataResult}
 >
   <Preloads
     productImages={product.images?.slice(0, 2).map((img) => ({
@@ -63,7 +66,7 @@ if (!(region && product)) {
     <ProductInformation
       client:load
       searchParams={searchParams.toString()}
-      content={productContent}
+      content={productContentResult}
       regionId={region.id}
       {...product}
     >
@@ -71,7 +74,7 @@ if (!(region && product)) {
         server:defer
         slot="addonsNode"
         region={region}
-        productContent={productContent}
+        productContent={productContentResult}
       >
         <div
           slot="fallback"
@@ -81,5 +84,5 @@ if (!(region && product)) {
     </ProductInformation>
   </section>
 
-  {productContent?.sections && <SectionRenderer sections={productContent.sections} fieldName="body" />}
+  {productContentResult?.sections && <SectionRenderer sections={productContentResult.sections} fieldName="body" />}
 </Layout>

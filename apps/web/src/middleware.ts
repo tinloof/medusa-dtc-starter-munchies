@@ -1,7 +1,6 @@
-import { defineMiddleware } from "astro:middleware";
+import { defineMiddleware, sequence } from "astro:middleware";
 import config from "./config";
 
-// Paths that should be excluded from country code handling
 const excludedPaths = [
   "/api",
   "/images",
@@ -19,7 +18,7 @@ function isExcludedPath(pathname: string): boolean {
   );
 }
 
-export const onRequest = defineMiddleware((context, next) => {
+const countryCodeMiddleware = defineMiddleware((context, next) => {
   const { pathname } = context.url;
 
   // Skip static assets and excluded paths
@@ -48,3 +47,74 @@ export const onRequest = defineMiddleware((context, next) => {
 
   return next();
 });
+
+const cachingMiddleware = defineMiddleware(async (context, next) => {
+  // Cache API not available (e.g., dev mode or workers.dev domain)
+  if (typeof caches === "undefined") {
+    return next();
+  }
+
+  const cache = caches.default;
+  const cachedResponse = await cache.match(context.request);
+
+  // HIT
+  if (cachedResponse) {
+    // Return cached response with HIT header
+    const headers = new Headers(cachedResponse.headers);
+    headers.set("X-Cache", "HIT");
+    return new Response(cachedResponse.body, {
+      status: cachedResponse.status,
+      statusText: cachedResponse.statusText,
+      headers,
+    });
+  }
+
+  // Cache miss - render the page
+  const originalResponse = await next();
+
+  const cacheControl = originalResponse.headers.get("Cache-Control");
+  if (cacheControl?.includes("private") || cacheControl?.includes("no-store")) {
+    return originalResponse;
+  }
+
+  // Only cache successful responses
+  if (originalResponse.status < 200 || originalResponse.status >= 300) {
+    return originalResponse;
+  }
+
+  // Build headers for cached response
+  const headers = new Headers(originalResponse.headers);
+
+  if (!headers.has("Cache-Control")) {
+    headers.set("Cache-Control", "public, max-age=0, s-maxage=300");
+  }
+
+  // Read body once, use for both cache and response
+  const body = await originalResponse.arrayBuffer();
+
+  // Create response to cache (without X-Cache header)
+  const responseToCache = new Response(body, {
+    status: originalResponse.status,
+    statusText: originalResponse.statusText,
+    headers,
+  });
+
+  // Store in cache (non-blocking via waitUntil)
+  const ctx = context.locals.runtime?.ctx;
+
+  if (ctx?.waitUntil) {
+    ctx.waitUntil(cache.put(context.request, responseToCache.clone()));
+  } else {
+    await cache.put(context.request, responseToCache.clone());
+  }
+
+  // Return response with MISS header
+  headers.set("X-Cache", "MISS");
+  return new Response(body, {
+    status: originalResponse.status,
+    statusText: originalResponse.statusText,
+    headers,
+  });
+});
+
+export const onRequest = sequence(countryCodeMiddleware, cachingMiddleware);

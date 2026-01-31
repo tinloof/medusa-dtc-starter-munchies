@@ -4,24 +4,27 @@ import { FAQs } from "@/components/faqs";
 import Layout from "@/layouts/layout.astro";
 import { loadFaqs, loadGlobalData } from "@/lib/sanity";
 
-const { globalData, faqsData } = await all({
+const { globalData, faqs } = await all({
   globalData() {
     return loadGlobalData();
   },
-  faqsData() {
+  faqs() {
     return loadFaqs();
   },
 });
 
-if (!faqsData) {
+const globalDataResult = globalData.result;
+const faqsResult = faqs.result;
+
+if (!faqsResult) {
   return Astro.redirect("/404", 404);
 }
 ---
 
 <Layout
-  globalData={globalData}
-  title={faqsData.title}
-  description={faqsData.seo?.description}
+  globalData={globalDataResult}
+  title={faqsResult.title}
+  description={faqsResult.seo?.description}
 >
-  <FAQs data={faqsData} client:load />
+  <FAQs data={faqsResult} client:load />
 </Layout>

@@ -43,6 +43,8 @@ if (!region) {
   return Astro.redirect("/404", 404);
 }
 
+const dictionaryResult = productsDictionary.result;
+
 const hasFilters = collection || category;
 ---
 
@@ -52,10 +54,10 @@ const hasFilters = collection || category;
   {products.length === 0 && (
     <div class="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
       <Heading font="sans" mobileSize="xs" tag="h2">
-        {productsDictionary?.noResultsText}
+        {dictionaryResult?.noResultsText}
       </Heading>
       <Body font="sans" mobileSize="lg">
-        {productsDictionary?.noResultsDescription}
+        {dictionaryResult?.noResultsDescription}
       </Body>
       {hasFilters && (
         <ClearAll variant="button" />

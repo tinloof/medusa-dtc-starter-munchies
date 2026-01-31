@@ -4,10 +4,12 @@ import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData } from "@/lib/sanity";
 
-const globalData = await loadGlobalData();
+const globalDataResult = (await loadGlobalData()).result;
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
 ---
 
-<Layout title="Shop all" globalData={globalData}>
+<Layout title="Shop all" globalData={globalDataResult}>
   <section
     class="mx-auto flex max-w-max-screen flex-col gap-10 px-m pt-26 pb-10 lg:px-xl"
   >
