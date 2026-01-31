@@ -18,13 +18,15 @@ const header = Astro.props;
 <header
   class="sticky top-0 z-50 flex w-full flex-col items-center bg-background"
 >
-  <AnnouncementBar client:load transition:persist="announcement-bar">
-    {header.showAnnouncement && header.announcementText && (
-      <Body desktopSize="sm" font="sans" mobileSize="xs">
-        <RichText value={header.announcementText} />
-      </Body>
-    )}
-  </AnnouncementBar>
+  {header.showAnnouncement && (
+    <AnnouncementBar client:load transition:persist="announcement-bar">
+      {header.announcementText && (
+        <Body desktopSize="sm" font="sans" mobileSize="xs">
+          <RichText value={header.announcementText} />
+        </Body>
+      )}
+    </AnnouncementBar>
+  )}
   <HeaderClient client:load transition:persist="navigation" header={header}>
     <CountrySelector server:defer slot="countrySelectorNode">
       <div slot="fallback" class="w-17.25 h-10.75" />
