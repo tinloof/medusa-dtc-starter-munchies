@@ -48,7 +48,7 @@ export function VisualEditingComponent({ zIndex }: VisualEditingOptions) {
         url.pathname !== window.location.pathname ||
         url.search !== window.location.search
       ) {
-        // window.location.href = url.pathname + url.search;
+        window.location.href = url.pathname + url.search;
       }
     },
   };
@@ -58,6 +58,7 @@ export function VisualEditingComponent({ zIndex }: VisualEditingOptions) {
       history={history}
       portal
       refresh={() => {
+        window.location.reload();
         return Promise.resolve();
       }}
       zIndex={zIndex}
