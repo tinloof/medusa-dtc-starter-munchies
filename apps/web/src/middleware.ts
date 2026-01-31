@@ -99,7 +99,7 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   const headers = new Headers(originalResponse.headers);
 
   if (!headers.has("Cache-Control")) {
-    headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+    headers.set("Cache-Control", "public, max-age=0");
   }
 
   // Read body once, use for both cache and response
