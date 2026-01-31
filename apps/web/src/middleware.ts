@@ -17,7 +17,6 @@ const excludedPaths = [
   "/favicon-inactive.ico",
   "/_astro",
   "/_image",
-  "/_server-islands",
   "/cms",
 ];
 
@@ -65,7 +64,8 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   const isDraftMode = request.headers
     .get("cookie")
     ?.includes("sanity-draft-mode=true");
-  if (isExcludedPath(pathname) || isDraftMode) {
+
+  if (isExcludedPath(pathname) || isDraftMode || request.method !== "GET") {
     return next();
   }
 
