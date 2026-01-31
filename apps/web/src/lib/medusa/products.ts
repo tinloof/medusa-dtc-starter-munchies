@@ -11,7 +11,7 @@ export const getProductByHandle = withCache(
     return products[0];
   },
   {
-    tags: (handle) => ["product", `product:${handle}`],
+    tags: (handle) => [`product:${handle}`],
   }
 );
 
