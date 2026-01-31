@@ -53,8 +53,6 @@ const firstHero =
 const syncTags = [...(page?.syncTags || []), ...(globalData.syncTags || [])];
 
 Astro.response.headers.set("Cache-Tag", syncTags.join(","));
-
-console.info(syncTags);
 ---
 
 <Layout
