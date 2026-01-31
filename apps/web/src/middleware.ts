@@ -17,7 +17,6 @@ const excludedPaths = [
   "/favicon-inactive.ico",
   "/_astro",
   "/_image",
-  "/_server-islands",
   "/cms",
 ];
 
