@@ -112,6 +112,9 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
     headers.set("Cache-Control", "public, max-age=0, s-maxage=31536000");
   }
 
+  // Read body once, use for both cache and response
+  const body = await originalResponse.arrayBuffer();
+
   // Merge Cache-Tag from response header + collected tags
   const contextTags = getTags();
   const responseTags = headers.get("Cache-Tag");
@@ -126,9 +129,6 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   if (allTags.size) {
     headers.set("Cache-Tag", [...allTags].join(","));
   }
-
-  // Read body once, use for both cache and response
-  const body = await originalResponse.arrayBuffer();
 
   // Create response to cache (without X-Cache header)
   const responseToCache = new Response(body, {
