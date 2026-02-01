@@ -6,7 +6,7 @@ import { ProductInformation } from "@/components/pdp/product-information";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
 import Preloads from "@/components/shared/preloads.astro";
 import Layout from "@/layouts/layout.astro";
-import { getProductByHandle } from "@/lib/medusa/products";
+import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
 import { getRegion } from "@/lib/medusa/regions";
 import { loadGlobalData, loadProductContent } from "@/lib/sanity";
 
@@ -19,7 +19,7 @@ if (!handle) {
 
 const countryCode = Astro.locals.countryCode;
 
-const { globalData, region, product, productContent } = await all({
+const { globalData, region, product, productContent, addons } = await all({
   globalData() {
     return loadGlobalData();
   },
@@ -35,6 +35,18 @@ const { globalData, region, product, productContent } = await all({
       return null;
     }
     return getProductByHandle(handle, region.id);
+  },
+  async addons() {
+    const region = await this.$.region;
+    if (!region) {
+      return null;
+    }
+
+    const { result: productContent } = await this.$.productContent;
+
+    const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
+
+    return getProductsByIds(ids, region.id);
   },
 });
 
@@ -73,23 +85,12 @@ Astro.response.headers.set("Cache-Tag", syncTags.join(","));
     <ProductImagesCarousel client:load product={product} />
     <ProductInformation
       client:load
+      product={product}
       searchParams={searchParams.toString()}
       content={productContentResult}
       regionId={region.id}
-      {...product}
-    >
-      <ProductAddons
-        server:defer
-        slot="addonsNode"
-        region={region}
-        productContent={productContentResult}
-      >
-        <div
-          slot="fallback"
-          class="w-full bg-secondary h-79 lg:h-84.5 rounded-lg "
-        />
-      </ProductAddons>
-    </ProductInformation>
+      addons={addons ? addons.products : []}
+    />
   </section>
 
   {productContentResult?.sections && <SectionRenderer sections={productContentResult.sections} fieldName="body" />}

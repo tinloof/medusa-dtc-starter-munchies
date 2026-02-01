@@ -5,49 +5,62 @@ import { ProductVariantsProvider } from "@/components/context/product-context";
 import { Body } from "@/components/shared/typography/body";
 import { Heading } from "@/components/shared/typography/heading";
 import { AddToCart } from "../cart/add-to-cart";
+import { Addons } from "./addons";
 import { BreadCrumbs } from "./breadcrumbs";
 import { OptionsSelect } from "./options-select";
 import { Price } from "./price";
 import { Specs } from "./specs";
 
-type Props = {
+interface Props {
   content: PRODUCT_QUERY_RESULT;
+  addons: StoreProduct[];
   regionId: string;
   searchParams: string;
-  addonsNode?: React.ReactNode;
-} & StoreProduct;
+  product: StoreProduct;
+}
 
 export function ProductInformation(props: Props) {
   return (
     <NuqsAdapter>
       <ProductVariantsProvider
-        product={props}
+        product={props.product}
         searchParams={props.searchParams}
       >
         <div className="lg:y-s flex w-full flex-col gap-lg px-m pt-s pb-2xl lg:max-w-145">
-          <BreadCrumbs collection={props.collection} title={props.title} />
+          <BreadCrumbs
+            collection={props.product.collection}
+            title={props.product.title}
+          />
           <Heading
             className="leading-[100%]"
             desktopSize="5xl"
             mobileSize="2xl"
             tag="h1"
           >
-            {props.title}
+            {props.product.title}
           </Heading>
-          <Price product={{ id: props.id, variants: props.variants }} />
+          <Price
+            product={{ id: props.product.id, variants: props.product.variants }}
+          />
           <Body
             className="font-normal"
             desktopSize="lg"
             font="sans"
             mobileSize="base"
           >
-            {props.description}
+            {props.product.description}
           </Body>
           <div className="mt-s flex flex-col gap-s">
-            {props.options ? <OptionsSelect options={props.options} /> : null}
+            {props.product.options ? (
+              <OptionsSelect options={props.product.options} />
+            ) : null}
             <AddToCart regionId={props.regionId} variant="PDP" />
           </div>
-          {props.addonsNode}
+          <Addons
+            products={props.addons}
+            regionId={props.regionId}
+            title={props.content?.addons?.title}
+          />
           <Specs specs={props.content?.specs} />
         </div>
       </ProductVariantsProvider>

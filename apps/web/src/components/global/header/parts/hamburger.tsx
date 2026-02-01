@@ -4,8 +4,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { cx } from "class-variance-authority";
 import type { Dispatch, SetStateAction } from "react";
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 import type { Header } from "sanity.types";
+import { CountrySelectorDialog } from "@/components/global/header/country-selector-dialog";
 import { ButtonLink } from "@/components/shared/button";
 import { LocalizedLink } from "@/components/shared/localized-link";
 import { SanityImage } from "@/components/shared/sanity-image";
@@ -19,14 +20,20 @@ import {
   CLOSE,
   HAMBURGER,
 } from "@/generated/icons";
+import type { Country } from "@/lib/medusa/regions";
 
 type DropdownType = Extract<
   NonNullable<Header["navigation"]>[number],
   { _type: "dropdown" }
 >;
 
-export function Hamburger({ data }: { data: Header }) {
-  const originalParentRef = useRef<HTMLElement | null>(null);
+export function Hamburger({
+  data,
+  countries,
+}: {
+  data: Header;
+  countries: Country[];
+}) {
   const [open, setOpen] = useState(false);
   const [activeMenuState, setActiveMenu] = useState<string | undefined>(
     undefined
@@ -42,30 +49,6 @@ export function Hamburger({ data }: { data: Header }) {
   );
   const activeMenu: any = data.navigation?.find(
     (menu) => menu._key === activeMenuState && menu._type === "dropdown"
-  );
-
-  const handleCountrySelectorMount = useCallback(
-    (node: HTMLDivElement | null) => {
-      const el = document.getElementById("country-selector");
-      if (!el) {
-        return;
-      }
-
-      if (node) {
-        const el = document.getElementById("country-selector");
-        if (el) {
-          originalParentRef.current = el.parentElement;
-          el.classList.remove("hidden", "lg:block");
-          el.classList.add("block");
-          node.appendChild(el);
-        }
-      } else if (originalParentRef.current) {
-        originalParentRef.current.appendChild(el);
-        el.classList.remove("block");
-        el.classList.add("hidden", "lg:block");
-      }
-    },
-    []
   );
 
   return (
@@ -108,7 +91,9 @@ export function Hamburger({ data }: { data: Header }) {
               ))}
             </div>
             {/* Country Selector */}
-            <div className="p-m" ref={handleCountrySelectorMount} />
+            <div className="p-m">
+              <CountrySelectorDialog countries={countries} />
+            </div>
           </div>
           <div
             className={`scrollbar-hide absolute top-0 left-0 w-screen transform overflow-x-hidden overflow-y-scroll bg-background transition-all duration-300 ${

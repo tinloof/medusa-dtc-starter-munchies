@@ -5,7 +5,7 @@ import RichText from "@/components/shared/rich-text.astro";
 import { Body } from "@/components/shared/typography/body";
 import { Icon } from "@/generated/Icon";
 import { CART } from "@/generated/icons";
-import CountrySelector from "./country-selector/index.astro";
+import { listCountries } from "@/lib/medusa/regions";
 import { HeaderClient } from "./header-client";
 import { AnnouncementBar } from "./parts/announcement-bar";
 import { BottomBorder } from "./parts/bottom-border";
@@ -13,6 +13,8 @@ import { BottomBorder } from "./parts/bottom-border";
 type Props = Header;
 
 const header = Astro.props;
+
+const countries = await listCountries();
 ---
 
 <header
@@ -27,10 +29,12 @@ const header = Astro.props;
       )}
     </AnnouncementBar>
   )}
-  <HeaderClient client:load transition:persist="navigation" header={header}>
-    <CountrySelector server:defer slot="countrySelectorNode">
-      <div slot="fallback" class="w-17.25 h-10.75" />
-    </CountrySelector>
+  <HeaderClient
+    client:load
+    transition:persist="navigation"
+    header={header}
+    countries={countries}
+  >
     <Cart
       addons={header.cartAddons}
       server:defer
