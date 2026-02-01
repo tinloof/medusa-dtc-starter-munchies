@@ -1,11 +1,12 @@
 import { defineMiddleware, sequence } from "astro:middleware";
 import config from "./config";
-import { requestContext } from "./lib/context";
+import { getTags, requestContext } from "./lib/context";
 
 const contextMiddleware = defineMiddleware((context, next) => {
   const ctx = context.locals.runtime?.ctx;
   const { cookies } = context;
-  return requestContext.run({ ctx, cookies }, next);
+  const tags = new Set<string>();
+  return requestContext.run({ ctx, cookies, tags }, next);
 });
 
 const excludedPaths = [
@@ -73,7 +74,7 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
 
   // Cache API not available (e.g., dev mode or workers.dev domain)
   if (typeof caches === "undefined") {
-    return next();
+    return await next();
   }
 
   const cache = caches.default;
@@ -109,6 +110,21 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
 
   if (!headers.has("Cache-Control")) {
     headers.set("Cache-Control", "public, max-age=0, s-maxage=31536000");
+  }
+
+  // Merge Cache-Tag from response header + collected tags
+  const contextTags = getTags();
+  const responseTags = headers.get("Cache-Tag");
+  const allTags = new Set<string>(contextTags ?? []);
+
+  if (responseTags) {
+    for (const tag of responseTags.split(",")) {
+      allTags.add(tag.trim());
+    }
+  }
+
+  if (allTags.size) {
+    headers.set("Cache-Tag", [...allTags].join(","));
   }
 
   // Read body once, use for both cache and response

@@ -1,13 +1,4 @@
-import { getCtx } from "./context";
-
-interface CacheResult<T> {
-  data: T;
-  tags: string[];
-}
-
-interface CacheOptions<Args extends unknown[]> {
-  tags: string[] | ((...args: Args) => string[]);
-}
+import { addTags, getCtx } from "./context";
 
 interface CachedData<T> {
   data: T;
@@ -16,23 +7,23 @@ interface CachedData<T> {
 
 export function withCache<T, Args extends unknown[]>(
   fn: (...args: Args) => Promise<T>,
-  options: CacheOptions<Args>
-): (...args: Args) => Promise<CacheResult<T>> {
-  const { tags: tagsOption } = options;
+  tagsOption: string[] | ((...args: Args) => string[])
+): (...args: Args) => Promise<T> {
   const fnKey = fn.toString();
 
-  return async (...args: Args): Promise<CacheResult<T>> => {
+  return async (...args: Args): Promise<T> => {
     const tags =
       typeof tagsOption === "function" ? tagsOption(...args) : tagsOption;
     const ctx = getCtx();
     const cache = typeof caches !== "undefined" ? caches.default : undefined;
     const key = `${fnKey}-${tags.join(",")}-${JSON.stringify(args)}`;
 
+    addTags(tags);
+
     // Skip cache in dev mode
     if (!cache) {
       console.log("[cache] SKIP", { tags, args });
-      const data = await fn(...args);
-      return { data, tags };
+      return await fn(...args);
     }
 
     const cacheKey = new Request(`https://cache/${key}`);
@@ -42,16 +33,15 @@ export function withCache<T, Args extends unknown[]>(
     if (cached) {
       console.log("[cache] HIT", { tags, args });
       const result = (await cached.json()) as CachedData<T>;
-      return { data: result.data, tags: result.tags };
+      return result.data;
     }
 
     // Execute function
     console.log("[cache] MISS", { tags, args });
     const data = await fn(...args);
-    const result: CachedData<T> = { data, tags };
 
     // Store in cache
-    const response = new Response(JSON.stringify(result), {
+    const response = new Response(JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json",
         "Cache-Control": "public, s-maxage=31536000",
@@ -66,6 +56,6 @@ export function withCache<T, Args extends unknown[]>(
       await cache.put(cacheKey, response);
     }
 
-    return { data, tags };
+    return data;
   };
 }

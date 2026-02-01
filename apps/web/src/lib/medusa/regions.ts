@@ -1,6 +1,9 @@
 import type { HttpTypes } from "@medusajs/types";
+import { withCache } from "@/lib/with-cache";
 import client from "./client";
 import medusaError from "./error";
+
+const BASE_TAG = "regions";
 
 export interface Country {
   code: string;
@@ -11,14 +14,14 @@ export interface Country {
   name: string;
 }
 
-export const listRegions = async () => {
+export const listRegions = withCache(async () => {
   try {
     const { regions } = await client.store.region.list({});
     return regions;
   } catch (error) {
     return medusaError(error);
   }
-};
+}, [BASE_TAG]);
 
 export const listCountries = async () => {
   const regions = await listRegions();
@@ -58,30 +61,33 @@ export const listCountries = async () => {
 
 const regionMap = new Map<string, HttpTypes.StoreRegion>();
 
-export const getRegion = async (countryCode: string) => {
-  try {
-    if (regionMap.has(countryCode)) {
-      return regionMap.get(countryCode);
-    }
+export const getRegion = withCache(
+  async (countryCode: string) => {
+    try {
+      if (regionMap.has(countryCode)) {
+        return regionMap.get(countryCode);
+      }
 
-    const regions = await listRegions();
+      const regions = await listRegions();
 
-    if (!regions) {
+      if (!regions) {
+        return null;
+      }
+
+      for (const region of regions) {
+        for (const country of region.countries ?? []) {
+          regionMap.set(country?.iso_2 ?? "", region);
+        }
+      }
+
+      const region = countryCode
+        ? regionMap.get(countryCode)
+        : regionMap.get("us");
+
+      return region;
+    } catch {
       return null;
     }
-
-    for (const region of regions) {
-      for (const country of region.countries ?? []) {
-        regionMap.set(country?.iso_2 ?? "", region);
-      }
-    }
-
-    const region = countryCode
-      ? regionMap.get(countryCode)
-      : regionMap.get("us");
-
-    return region;
-  } catch {
-    return null;
-  }
-};
+  },
+  (countryCode) => [BASE_TAG, `${BASE_TAG}:${countryCode}`]
+);
