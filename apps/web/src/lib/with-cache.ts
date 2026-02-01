@@ -1,10 +1,5 @@
 import { addTags, getCtx } from "./context";
 
-interface CachedData<T> {
-  data: T;
-  tags: string[];
-}
-
 export function withCache<T, Args extends unknown[]>(
   fn: (...args: Args) => Promise<T>,
   tagsOption: string[] | ((...args: Args) => string[])
@@ -32,8 +27,8 @@ export function withCache<T, Args extends unknown[]>(
     const cached = await cache.match(cacheKey);
     if (cached) {
       console.log("[cache] HIT", { tags, args });
-      const result = (await cached.json()) as CachedData<T>;
-      return result.data;
+      const data = (await cached.json()) as T;
+      return data;
     }
 
     // Execute function
