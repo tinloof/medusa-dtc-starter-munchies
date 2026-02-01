@@ -21,7 +21,6 @@ const excludedPaths = [
   "/cms",
 ];
 
-// Test 1: Using find() instead of some() - no logging
 function isExcludedPath(pathname: string): boolean {
   const match = excludedPaths.find(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
