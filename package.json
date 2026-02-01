@@ -7,7 +7,7 @@
     "check": "ultracite check",
     "fix": "ultracite fix",
     "typegen": "turbo run typegen",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
