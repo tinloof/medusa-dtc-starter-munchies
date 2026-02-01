@@ -20,10 +20,10 @@ export function sanityFetch<T>({
   // CF edge cache handles caching, so we don't need Sanity's CDN
   return client
     .withConfig({
-      useCdn: false,
       perspective,
     })
     .fetch<T>(query, params, {
       filterResponse: false,
+      cacheMode: "noStale",
     });
 }

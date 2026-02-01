@@ -1,4 +1,4 @@
-import { withCache } from "../cache";
+import { withCache } from "../with-cache";
 import medusa from "./client";
 
 export const getProductByHandle = withCache(
