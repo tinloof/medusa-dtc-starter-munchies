@@ -50,9 +50,6 @@ importers:
       '@medusajs/draft-order':
         specifier: 2.13.0
         version: 2.13.0(@medusajs/admin-sdk@2.13.0)(@medusajs/cli@2.13.0(@types/node@20.19.30))(@medusajs/framework@2.13.0(@medusajs/cli@2.13.0(@types/node@20.19.30))(@types/node@20.19.30)(ioredis@5.9.2)(vite@6.4.1(@types/node@20.19.30)(jiti@1.21.7)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(zod@4.3.5))(@medusajs/icons@2.13.0(react@18.3.1))(@medusajs/test-utils@2.13.0(@medusajs/core-flows@2.13.0(@medusajs/framework@2.13.0(@medusajs/cli@2.13.0(@types/node@20.19.30))(@types/node@20.19.30)(ioredis@5.9.2)(vite@6.4.1(@types/node@20.19.30)(jiti@1.21.7)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(zod@4.3.5)))(@medusajs/framework@2.13.0(@medusajs/cli@2.13.0(@types/node@20.19.30))(@types/node@20.19.30)(ioredis@5.9.2)(vite@6.4.1(@types/node@20.19.30)(jiti@1.21.7)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(zod@4.3.5))(@medusajs/medusa@2.13.0))(@medusajs/ui@4.1.1(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@medusajs/file':
-        specifier: 2.13.0
-        version: 2.13.0(@medusajs/framework@2.13.0(@medusajs/cli@2.13.0(@types/node@20.19.30))(@types/node@20.19.30)(ioredis@5.9.2)(vite@6.4.1(@types/node@20.19.30)(jiti@1.21.7)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(zod@4.3.5))
       '@medusajs/framework':
         specifier: 2.13.0
         version: 2.13.0(@medusajs/cli@2.13.0(@types/node@20.19.30))(@types/node@20.19.30)(ioredis@5.9.2)(vite@6.4.1(@types/node@20.19.30)(jiti@1.21.7)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(zod@4.3.5)
@@ -83,6 +80,12 @@ importers:
       '@tanstack/react-query':
         specifier: 5.64.2
         version: 5.64.2(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
     devDependencies:
       '@medusajs/test-utils':
         specifier: 2.13.0
@@ -114,12 +117,6 @@ importers:
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
       react-email:
         specifier: 5.1.0
         version: 5.1.0
