@@ -80,6 +80,9 @@ const visualEditingEnabled =
   <body
     class="scrollbar-hide relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip m-0!"
   >
+    <script is:inline>
+      history.scrollRestoration = "auto";
+    </script>
     <CountryInit
       client:load
       countryCode={Astro.locals.countryCode}
