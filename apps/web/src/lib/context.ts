@@ -4,7 +4,7 @@ import type { AstroCookies } from "astro";
 
 type Ctx = Runtime["runtime"]["ctx"];
 
-interface RequestContext {
+export interface RequestContext {
   ctx: Ctx;
   cookies: AstroCookies;
   tags: Set<string>;

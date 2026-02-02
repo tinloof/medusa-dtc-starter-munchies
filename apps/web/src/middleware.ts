@@ -1,4 +1,5 @@
 import { defineMiddleware, sequence } from "astro:middleware";
+import type { RequestContext } from "@/lib/context";
 import config from "./config";
 import { getTags, requestContext } from "./lib/context";
 
@@ -75,7 +76,7 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
 
   // Cache API not available (e.g., dev mode or workers.dev domain)
   if (typeof caches === "undefined") {
-    return await next();
+    return next();
   }
 
   const cache = caches.default;
@@ -84,7 +85,6 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   // HIT - return immediately
   if (cachedResponse) {
     const headers = new Headers(cachedResponse.headers);
-    headers.set("X-Cache", "HIT");
     return new Response(cachedResponse.body, {
       status: cachedResponse.status,
       statusText: cachedResponse.statusText,
@@ -92,77 +92,91 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
     });
   }
 
-  // MISS - render and return immediately, cache in background
+  // MISS - return streaming response immediately, cache in background
   const originalResponse = await next();
 
-  // Clone before returning so we can cache it
-  const responseToCache = originalResponse.clone();
+  const cacheControl = originalResponse.headers.get("Cache-Control");
+  const shouldCache =
+    !(
+      cacheControl?.includes("private") || cacheControl?.includes("no-store")
+    ) &&
+    originalResponse.status >= 200 &&
+    originalResponse.status < 300;
 
-  // Capture tags NOW while still in AsyncLocalStorage context
-  const contextTags = getTags();
-
-  // Add X-Cache header to original response
-  const responseHeaders = new Headers(originalResponse.headers);
-  responseHeaders.set("X-Cache", "MISS");
-
-  const response = new Response(originalResponse.body, {
-    status: originalResponse.status,
-    statusText: originalResponse.statusText,
-    headers: responseHeaders,
-  });
-
-  // Defer all caching logic to waitUntil
-  const cacheWork = async () => {
-    const cacheControl = responseToCache.headers.get("Cache-Control");
-    if (
-      cacheControl?.includes("private") ||
-      cacheControl?.includes("no-store")
-    ) {
-      return;
-    }
-
-    // Only cache successful responses
-    if (responseToCache.status < 200 || responseToCache.status >= 300) {
-      return;
-    }
-
-    const headers = new Headers(responseToCache.headers);
-
-    if (!headers.has("Cache-Control")) {
-      headers.set("Cache-Control", "public, max-age=0, s-maxage=31536000");
-    }
-
-    // Merge Cache-Tag from response header + collected tags (captured earlier)
-    const responseTags = headers.get("Cache-Tag");
-    const allTags = new Set<string>(contextTags ?? []);
-
-    if (responseTags) {
-      for (const tag of responseTags.split(",")) {
-        allTags.add(tag.trim());
-      }
-    }
-
-    if (allTags.size) {
-      headers.set("Cache-Tag", [...allTags].join(","));
-    }
-
-    const body = await responseToCache.arrayBuffer();
-    const finalResponse = new Response(body, {
-      status: responseToCache.status,
-      statusText: responseToCache.statusText,
+  if (!shouldCache) {
+    const headers = new Headers(originalResponse.headers);
+    headers.set("X-Cache", "SKIP");
+    return new Response(originalResponse.body, {
+      status: originalResponse.status,
+      statusText: originalResponse.statusText,
       headers,
     });
-
-    await cache.put(context.request, finalResponse);
-  };
-
-  if (ctx?.waitUntil) {
-    ctx.waitUntil(cacheWork());
-  } else {
-    await cacheWork();
   }
 
-  return response;
+  // Clone for caching, return original immediately
+  const responseToCache = originalResponse.clone();
+
+  // Add X-Cache header and return immediately
+  const headers = new Headers(originalResponse.headers);
+  headers.set("X-Cache", "MISS");
+
+  // Defer all caching work to waitUntil, re-entering ALS context
+  const cacheWork = (store: RequestContext) =>
+    requestContext.run(store, async () => {
+      // Consume body - streaming completes, components render, tags collected
+      const body = await responseToCache.arrayBuffer();
+
+      // Now tags are complete
+      const contextTags = getTags();
+
+      const cacheHeaders = new Headers(responseToCache.headers);
+
+      if (!cacheHeaders.has("Cache-Control")) {
+        cacheHeaders.set(
+          "Cache-Control",
+          "public, max-age=0, s-maxage=31536000"
+        );
+      }
+
+      // Merge Cache-Tag from response header + collected tags
+      const responseTags = cacheHeaders.get("Cache-Tag");
+      const allTags = new Set<string>(contextTags ?? []);
+
+      if (responseTags) {
+        for (const tag of responseTags.split(",")) {
+          allTags.add(tag.trim());
+        }
+      }
+
+      if (allTags.size) {
+        cacheHeaders.set("Cache-Tag", [...allTags].join(","));
+      }
+
+      const finalResponse = new Response(body, {
+        status: responseToCache.status,
+        statusText: responseToCache.statusText,
+        headers: cacheHeaders,
+      });
+
+      await cache.put(context.request, finalResponse);
+    });
+
+  // Capture ALS store to re-enter context in waitUntil
+  const contextStore = requestContext.getStore();
+
+  if (contextStore) {
+    if (ctx?.waitUntil) {
+      ctx.waitUntil(cacheWork(contextStore));
+    } else {
+      await cacheWork(contextStore);
+    }
+  }
+
+  return new Response(originalResponse.body, {
+    status: originalResponse.status,
+    statusText: originalResponse.statusText,
+    headers,
+  });
 });
 
 export const onRequest = sequence(

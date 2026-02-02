@@ -17,7 +17,6 @@ export function withCache<T, Args extends unknown[]>(
 
     // Skip cache in dev mode
     if (!cache) {
-      console.log("[cache] SKIP", { tags, args });
       return await fn(...args);
     }
 
@@ -26,13 +25,11 @@ export function withCache<T, Args extends unknown[]>(
     // Try cache first
     const cached = await cache.match(cacheKey);
     if (cached) {
-      console.log("[cache] HIT", { tags, args });
       const data = (await cached.json()) as T;
       return data;
     }
 
     // Execute function
-    console.log("[cache] MISS", { tags, args });
     const data = await fn(...args);
 
     // Store in cache
