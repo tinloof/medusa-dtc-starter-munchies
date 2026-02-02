@@ -25,6 +25,9 @@
   "pnpm": {
     "overrides": {
       "vite": "^6.4.1"
+    },
+    "patchedDependencies": {
+      "astro@5.16.11": "patches/astro@5.16.11.patch"
     }
   },
   "lint-staged": {

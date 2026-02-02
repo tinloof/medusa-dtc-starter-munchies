@@ -7,6 +7,11 @@ settings:
 overrides:
   vite: ^6.4.1
 
+patchedDependencies:
+  astro@5.16.11:
+    hash: p645v6guvu7nzt2fvnizyuol6e
+    path: patches/astro@5.16.11.patch
+
 importers:
 
   .:
@@ -156,7 +161,7 @@ importers:
     dependencies:
       '@astrojs/cloudflare':
         specifier: ^12.6.12
-        version: 12.6.12(@types/node@20.19.30)(astro@5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
+        version: 12.6.12(@types/node@20.19.30)(astro@5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
       '@astrojs/react':
         specifier: ^4.4.2
         version: 4.4.2(@types/node@20.19.30)(@types/react-dom@19.2.3(@types/react@19.2.9))(@types/react@19.2.9)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tsx@4.21.0)(yaml@2.8.2)
@@ -234,10 +239,10 @@ importers:
         version: link:../../packages/typed-svg-sprite-astro
       astro:
         specifier: ^5.16.11
-        version: 5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
+        version: 5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
       astro-portabletext:
         specifier: ^0.13.0
-        version: 0.13.0(astro@5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2))
+        version: 0.13.0(astro@5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2))
       astro-seo:
         specifier: ^1.1.0
         version: 1.1.0(prettier@3.8.0)(typescript@5.9.2)
@@ -323,7 +328,7 @@ importers:
         version: 20.19.30
       astro:
         specifier: ^5.0.0
-        version: 5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
+        version: 5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
       rimraf:
         specifier: ^5.0.5
         version: 5.0.10
@@ -13897,12 +13902,12 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  '@astrojs/cloudflare@12.6.12(@types/node@20.19.30)(astro@5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)':
+  '@astrojs/cloudflare@12.6.12(@types/node@20.19.30)(astro@5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)':
     dependencies:
       '@astrojs/internal-helpers': 0.7.5
       '@astrojs/underscore-redirects': 1.0.0
       '@cloudflare/workers-types': 4.20260120.0
-      astro: 5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
+      astro: 5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
       tinyglobby: 0.2.15
       vite: 6.4.1(@types/node@20.19.30)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
       wrangler: 4.50.0(@cloudflare/workers-types@4.20260120.0)
@@ -23132,11 +23137,11 @@ snapshots:
 
   assertion-error@2.0.1: {}
 
-  astro-portabletext@0.13.0(astro@5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)):
+  astro-portabletext@0.13.0(astro@5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)):
     dependencies:
       '@portabletext/toolkit': 5.0.1
       '@portabletext/types': 4.0.1
-      astro: 5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
+      astro: 5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2)
 
   astro-seo@1.1.0(prettier@3.8.0)(typescript@5.9.2):
     dependencies:
@@ -23146,7 +23151,7 @@ snapshots:
       - prettier-plugin-astro
       - typescript
 
-  astro@5.16.11(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2):
+  astro@5.16.11(patch_hash=p645v6guvu7nzt2fvnizyuol6e)(@types/node@20.19.30)(ioredis@5.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.2):
     dependencies:
       '@astrojs/compiler': 2.13.0
       '@astrojs/internal-helpers': 0.7.5

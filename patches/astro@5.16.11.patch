@@ -1,0 +1,39 @@
+diff --git a/dist/transitions/router.js b/dist/transitions/router.js
+index c8e68d7e65b5a8bf7a44c9e27a9793b170fdaebe..0831f7bc925077fcfd2ed0823489caca23fdace9 100644
+--- a/dist/transitions/router.js
++++ b/dist/transitions/router.js
+@@ -4,7 +4,6 @@ import { detectScriptExecuted } from "./swap-functions.js";
+ const inBrowser = import.meta.env.SSR === false;
+ const updateScrollPosition = (positions) => {
+   if (history.state) {
+-    history.scrollRestoration = "manual";
+     history.replaceState({ ...history.state, ...positions }, "");
+   }
+ };
+@@ -42,10 +41,8 @@ let currentHistoryIndex = 0;
+ if (inBrowser) {
+   if (history.state) {
+     currentHistoryIndex = history.state.index;
+-    scrollTo({ left: history.state.scrollX, top: history.state.scrollY });
+   } else if (transitionEnabledOnThisPage()) {
+     history.replaceState({ index: currentHistoryIndex, scrollX, scrollY }, "");
+-    history.scrollRestoration = "manual";
+   }
+ }
+ async function fetchHTML(href, init) {
+@@ -143,7 +140,6 @@ const moveToLocation = (to, from, options, pageTitleForBrowserHistory, historySt
+     scrollTo(historyState.scrollX, historyState.scrollY);
+   } else {
+     if (to.hash) {
+-      history.scrollRestoration = "auto";
+       const savedState = history.state;
+       location.href = to.href;
+       if (!history.state) {
+@@ -157,7 +153,6 @@ const moveToLocation = (to, from, options, pageTitleForBrowserHistory, historySt
+         scrollTo({ left: 0, top: 0, behavior: "instant" });
+       }
+     }
+-    history.scrollRestoration = "manual";
+   }
+ };
+ function preloadStyleLinks(newDocument) {
