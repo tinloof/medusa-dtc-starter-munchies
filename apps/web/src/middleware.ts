@@ -62,6 +62,7 @@ const countryCodeMiddleware = defineMiddleware((context, next) => {
 const cachingMiddleware = defineMiddleware(async (context, next) => {
   const { request, url } = context;
   const { pathname } = url;
+  const ctx = context.locals.runtime?.ctx;
 
   // Skip caching for non-GET, API routes, CMS, static assets, and draft mode
   const isDraftMode = request.headers
@@ -80,9 +81,8 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   const cache = caches.default;
   const cachedResponse = await cache.match(context.request);
 
-  // HIT
+  // HIT - return immediately
   if (cachedResponse) {
-    // Return cached response with HIT header
     const headers = new Headers(cachedResponse.headers);
     headers.set("X-Cache", "HIT");
     return new Response(cachedResponse.body, {
@@ -92,67 +92,77 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
     });
   }
 
-  // Cache miss - render the page
+  // MISS - render and return immediately, cache in background
   const originalResponse = await next();
 
-  const cacheControl = originalResponse.headers.get("Cache-Control");
-  if (cacheControl?.includes("private") || cacheControl?.includes("no-store")) {
-    return originalResponse;
-  }
+  // Clone before returning so we can cache it
+  const responseToCache = originalResponse.clone();
 
-  // Only cache successful responses
-  if (originalResponse.status < 200 || originalResponse.status >= 300) {
-    return originalResponse;
-  }
-
-  // Build headers for cached response
-  const headers = new Headers(originalResponse.headers);
-
-  if (!headers.has("Cache-Control")) {
-    headers.set("Cache-Control", "public, max-age=0, s-maxage=31536000");
-  }
-
-  // Read body once, use for both cache and response
-  const body = await originalResponse.arrayBuffer();
-
-  // Merge Cache-Tag from response header + collected tags
+  // Capture tags NOW while still in AsyncLocalStorage context
   const contextTags = getTags();
-  const responseTags = headers.get("Cache-Tag");
-  const allTags = new Set<string>(contextTags ?? []);
 
-  if (responseTags) {
-    for (const tag of responseTags.split(",")) {
-      allTags.add(tag.trim());
-    }
-  }
+  // Add X-Cache header to original response
+  const responseHeaders = new Headers(originalResponse.headers);
+  responseHeaders.set("X-Cache", "MISS");
 
-  if (allTags.size) {
-    headers.set("Cache-Tag", [...allTags].join(","));
-  }
-
-  // Create response to cache (without X-Cache header)
-  const responseToCache = new Response(body, {
+  const response = new Response(originalResponse.body, {
     status: originalResponse.status,
     statusText: originalResponse.statusText,
-    headers,
+    headers: responseHeaders,
   });
 
-  // Store in cache (non-blocking via waitUntil)
-  const ctx = context.locals.runtime?.ctx;
+  // Defer all caching logic to waitUntil
+  const cacheWork = async () => {
+    const cacheControl = responseToCache.headers.get("Cache-Control");
+    if (
+      cacheControl?.includes("private") ||
+      cacheControl?.includes("no-store")
+    ) {
+      return;
+    }
+
+    // Only cache successful responses
+    if (responseToCache.status < 200 || responseToCache.status >= 300) {
+      return;
+    }
+
+    const headers = new Headers(responseToCache.headers);
+
+    if (!headers.has("Cache-Control")) {
+      headers.set("Cache-Control", "public, max-age=0, s-maxage=31536000");
+    }
+
+    // Merge Cache-Tag from response header + collected tags (captured earlier)
+    const responseTags = headers.get("Cache-Tag");
+    const allTags = new Set<string>(contextTags ?? []);
+
+    if (responseTags) {
+      for (const tag of responseTags.split(",")) {
+        allTags.add(tag.trim());
+      }
+    }
+
+    if (allTags.size) {
+      headers.set("Cache-Tag", [...allTags].join(","));
+    }
+
+    const body = await responseToCache.arrayBuffer();
+    const finalResponse = new Response(body, {
+      status: responseToCache.status,
+      statusText: responseToCache.statusText,
+      headers,
+    });
+
+    await cache.put(context.request, finalResponse);
+  };
 
   if (ctx?.waitUntil) {
-    ctx.waitUntil(cache.put(context.request, responseToCache.clone()));
+    ctx.waitUntil(cacheWork());
   } else {
-    await cache.put(context.request, responseToCache.clone());
+    await cacheWork();
   }
 
-  // Return response with MISS header
-  headers.set("X-Cache", "MISS");
-  return new Response(body, {
-    status: originalResponse.status,
-    statusText: originalResponse.statusText,
-    headers,
-  });
+  return response;
 });
 
 export const onRequest = sequence(
