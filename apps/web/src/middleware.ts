@@ -4,7 +4,6 @@ import config from "./config";
 import { getTags, requestContext } from "./lib/context";
 
 const BUILD_VERSION = import.meta.env.BUILD_VERSION;
-console.log(`[BUILD_VERSION] ${BUILD_VERSION}`);
 
 const contextMiddleware = defineMiddleware((context, next) => {
   const ctx = context.locals.runtime?.ctx;
