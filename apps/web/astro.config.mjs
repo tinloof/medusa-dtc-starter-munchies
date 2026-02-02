@@ -1,9 +1,19 @@
 // @ts-check
+import { execSync } from "node:child_process";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { svgSprite } from "@tinloof/typed-svg-sprite-astro";
 import { defineConfig, envField, fontProviders } from "astro/config";
+
+const BUILD_VERSION = (() => {
+  try {
+    const sha = execSync("git rev-parse --short HEAD").toString().trim();
+    return `${sha}-${Date.now()}`;
+  } catch {
+    return Date.now().toString();
+  }
+})();
 
 // https://astro.build/config
 export default defineConfig({
@@ -56,6 +66,9 @@ export default defineConfig({
   integrations: [react(), svgSprite()],
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      "import.meta.env.BUILD_VERSION": JSON.stringify(BUILD_VERSION),
+    },
     ssr: {
       noExternal: ["@medusajs/js-sdk", "sanity"],
     },

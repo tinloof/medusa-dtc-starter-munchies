@@ -3,6 +3,9 @@ import type { RequestContext } from "@/lib/context";
 import config from "./config";
 import { getTags, requestContext } from "./lib/context";
 
+const BUILD_VERSION = import.meta.env.BUILD_VERSION;
+console.log(`[BUILD_VERSION] ${BUILD_VERSION}`);
+
 const contextMiddleware = defineMiddleware((context, next) => {
   const ctx = context.locals.runtime?.ctx;
   const { cookies } = context;
@@ -80,7 +83,10 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   }
 
   const cache = caches.default;
-  const cachedResponse = await cache.match(context.request);
+  const cacheKey = new Request(
+    new URL(`/_v/${BUILD_VERSION}${pathname}`, url.origin)
+  );
+  const cachedResponse = await cache.match(cacheKey);
 
   // HIT - return immediately
   if (cachedResponse) {
@@ -158,7 +164,7 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
         headers: cacheHeaders,
       });
 
-      await cache.put(context.request, finalResponse);
+      await cache.put(cacheKey, finalResponse);
     });
 
   // Capture ALS store to re-enter context in waitUntil

@@ -1,5 +1,7 @@
 import { addTags, getCtx } from "./context";
 
+const BUILD_VERSION = import.meta.env.BUILD_VERSION;
+
 export function withCache<T, Args extends unknown[]>(
   fn: (...args: Args) => Promise<T>,
   tagsOption: string[] | ((...args: Args) => string[])
@@ -11,7 +13,7 @@ export function withCache<T, Args extends unknown[]>(
       typeof tagsOption === "function" ? tagsOption(...args) : tagsOption;
     const ctx = getCtx();
     const cache = typeof caches !== "undefined" ? caches.default : undefined;
-    const key = `${fnKey}-${tags.join(",")}-${JSON.stringify(args)}`;
+    const key = `v${BUILD_VERSION}-${fnKey}-${tags.join(",")}-${JSON.stringify(args)}`;
 
     addTags(tags);
 
