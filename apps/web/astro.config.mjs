@@ -17,7 +17,9 @@ const BUILD_VERSION = (() => {
 
 // https://astro.build/config
 export default defineConfig({
-  prefetch: true,
+  prefetch: {
+    defaultStrategy: "viewport",
+  },
   output: "server",
   env: {
     schema: {

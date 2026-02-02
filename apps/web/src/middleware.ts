@@ -83,7 +83,7 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
 
   const cache = caches.default;
   const cacheKey = new Request(
-    new URL(`/_v/${BUILD_VERSION}${pathname}`, url.origin)
+    new URL(`/_v/${BUILD_VERSION}${pathname}${url.search}`, url.origin)
   );
   const cachedResponse = await cache.match(cacheKey);
 
