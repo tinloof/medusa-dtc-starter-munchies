@@ -1,7 +1,5 @@
 import type { ImgHTMLAttributes } from "react";
 
-const isDev = process.env.NODE_ENV === "development";
-
 interface CloudflareImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   /** Original image URL (can be absolute or relative) */
   src: string;
@@ -161,8 +159,8 @@ export function Image({
       height={computedHeight}
       loading={loading}
       sizes={sizes}
-      srcSet={isDev ? "" : srcSet}
-      src={isDev ? src : finalSrc}
+      srcSet={srcSet}
+      src={finalSrc}
       style={{ ...style, ...(aspectRatio ? { aspectRatio } : undefined) }}
       width={width}
       {...rest}
