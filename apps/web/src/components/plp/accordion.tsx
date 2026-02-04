@@ -18,7 +18,7 @@ export function Accordion(props: {
   const [height, setHeight] = useState<null | number>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: TODO
+  // biome-ignore lint/correctness/useExhaustiveDependencies: -
   useEffect(() => {
     if (contentRef.current) {
       setHeight(contentRef.current.scrollHeight);

@@ -71,7 +71,7 @@ export function CartProvider({
 
   const [, startTransition] = useTransition();
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: TODO
+  // biome-ignore lint/correctness/useExhaustiveDependencies: -
   const handleOptimisticAddToCart = useCallback(
     (payload: AddToCartEventPayload) => {
       setCartOpen(true);

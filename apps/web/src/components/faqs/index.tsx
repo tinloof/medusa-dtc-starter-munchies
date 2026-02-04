@@ -78,7 +78,7 @@ export function FAQs({ data }: { data: NonNullable<FAQS_PAGE_QUERY_RESULT> }) {
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: TODO
+  // biome-ignore lint/correctness/useExhaustiveDependencies: -
   useEffect(() => {
     if (questionToScrollTo.current) {
       scrollToQuestion(questionToScrollTo.current);
