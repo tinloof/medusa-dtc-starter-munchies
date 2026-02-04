@@ -40,7 +40,6 @@
     "@tinloof/sanity-studio": "^1.16.2",
     "@tinloof/sanity-web": "^1.1.1",
     "@tinloof/typed-svg-sprite": "0.1.0",
-    "@vercel/og": "^0.8.6",
     "astro": "^5.16.11",
     "astro-portabletext": "^0.13.0",
     "astro-seo": "^1.1.0",
