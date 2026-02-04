@@ -1,5 +1,4 @@
 import { actions } from "astro:actions";
-import { navigate } from "astro:transitions/client";
 import { withState } from "@astrojs/react/actions";
 import type { StoreCart, StoreCartAddress } from "@medusajs/types";
 import type { BaseRegionCountry } from "@medusajs/types/dist/http/region/common";
@@ -17,11 +16,13 @@ export function AddressForm({
   active,
   cart,
   setStep,
+  setCart,
   nextStep,
 }: {
   active: boolean;
   cart: StoreCart;
   nextStep: "addresses" | "delivery" | "payment" | "review";
+  setCart: Dispatch<SetStateAction<StoreCart>>;
   setStep: Dispatch<
     SetStateAction<"addresses" | "delivery" | "payment" | "review">
   >;
@@ -34,17 +35,20 @@ export function AddressForm({
       error: undefined,
       data: {
         status: "idle",
+        cart,
       },
     }
   );
 
   useEffect(() => {
     if (data?.status === "success") {
-      navigate(window.location.pathname);
+      if (data.cart) {
+        setCart(data.cart);
+      }
       setStep(nextStep);
       startTransition(() => reset());
     }
-  }, [data?.status, setStep, nextStep, reset]);
+  }, [data?.status, data?.cart, setStep, nextStep, reset, setCart]);
 
   const isFilled = !active && !!cart.shipping_address?.address_1;
 

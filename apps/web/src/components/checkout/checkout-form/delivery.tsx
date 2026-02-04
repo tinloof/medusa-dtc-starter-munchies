@@ -1,5 +1,4 @@
 import { actions } from "astro:actions";
-import { navigate } from "astro:transitions/client";
 import { withState } from "@astrojs/react/actions";
 import type { StoreCart, StoreCartShippingOption } from "@medusajs/types";
 import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
@@ -20,12 +19,14 @@ export default function Delivery({
   cart,
   currency_code,
   methods,
+  setCart,
   setStep,
 }: {
   active: boolean;
   cart: StoreCart;
   currency_code: string;
   methods: StoreCartShippingOption[];
+  setCart: Dispatch<SetStateAction<StoreCart>>;
   setStep: Dispatch<
     SetStateAction<"addresses" | "delivery" | "payment" | "review">
   >;
@@ -36,6 +37,7 @@ export default function Delivery({
       error: undefined,
       data: {
         status: "idle",
+        cart: null,
       },
     }
   );
@@ -55,11 +57,13 @@ export default function Delivery({
 
   useEffect(() => {
     if (state.data?.status === "success") {
-      navigate(window.location.pathname);
+      if (state.data.cart) {
+        setCart(state.data.cart);
+      }
       setStep("payment");
       startTransition(() => reset());
     }
-  }, [state.data?.status, setStep, reset]);
+  }, [state.data?.status, state.data?.cart, setStep, reset, setCart]);
 
   return (
     <div className="flex w-full flex-col gap-8 border-accent border-t py-8">

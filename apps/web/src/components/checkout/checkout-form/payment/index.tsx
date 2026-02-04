@@ -1,5 +1,4 @@
 import { actions } from "astro:actions";
-import { navigate } from "astro:transitions/client";
 import type { StoreCart, StorePaymentProvider } from "@medusajs/types";
 import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
 import { CardElement } from "@stripe/react-stripe-js";
@@ -22,11 +21,13 @@ export function Payment({
   active,
   cart,
   methods,
+  setCart,
   setStep,
 }: {
   active: boolean;
   cart: StoreCart;
   methods: StorePaymentProvider[];
+  setCart: Dispatch<SetStateAction<StoreCart>>;
   setStep: Dispatch<
     SetStateAction<"addresses" | "delivery" | "payment" | "review">
   >;
@@ -49,14 +50,14 @@ export function Payment({
 
   function initiatePayment() {
     startTransition(async () => {
-      const { error } = await actions.order.initiatePaymentSession({
+      const { error, data } = await actions.order.initiatePaymentSession({
         cart,
         data: {
           provider_id: selectedPaymentMethod,
         },
       });
-      if (!error) {
-        navigate(window.location.pathname);
+      if (!error && data.cart && data.status === "success") {
+        setCart(data.cart);
         if (selectedPaymentMethod === "pp_system_default") {
           setStep("review");
         }

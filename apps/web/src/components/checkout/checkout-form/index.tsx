@@ -12,7 +12,7 @@ import { Wrapper as StripeWrapper } from "./payment/wrapper";
 import { Review } from "./review";
 
 export function CheckoutForm({
-  cart,
+  cart: initialCart,
   paymentMethods,
   shippingMethods,
 }: {
@@ -20,6 +20,7 @@ export function CheckoutForm({
   paymentMethods: StorePaymentProvider[];
   shippingMethods: StoreCartShippingOption[];
 }) {
+  const [cart, setCart] = useState(initialCart);
   const [step, setStep] = useState<
     "addresses" | "delivery" | "payment" | "review"
   >("addresses");
@@ -34,6 +35,7 @@ export function CheckoutForm({
           active={step === "addresses"}
           cart={cart}
           nextStep={shippingMethods.length > 0 ? "delivery" : "payment"}
+          setCart={setCart}
           setStep={setStep}
         />
         {shippingMethods.length > 0 && (
@@ -42,6 +44,7 @@ export function CheckoutForm({
             cart={cart}
             currency_code={cart.currency_code}
             methods={shippingMethods}
+            setCart={setCart}
             setStep={setStep}
           />
         )}
@@ -49,6 +52,7 @@ export function CheckoutForm({
           active={step === "payment"}
           cart={cart}
           methods={paymentMethods}
+          setCart={setCart}
           setStep={setStep}
         />
         <Review active={step === "review"} cart={cart} />

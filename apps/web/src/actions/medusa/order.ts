@@ -118,11 +118,13 @@ const setCheckoutAddresses = defineAction({
     if (!cart) {
       return {
         status: "error",
+        cart: null,
       };
     }
 
     return {
       status: "success",
+      cart,
     };
   },
 });
@@ -139,10 +141,20 @@ const setShippingMethod = defineAction({
       throw new ActionError({ code: "NOT_FOUND", message: "No cart id" });
     }
 
-    return await medusa.store.cart
-      .addShippingMethod(cart.id, { option_id: input.shippingMethodId })
-      .then(() => ({ status: "success" }))
-      .catch(() => ({ status: "error" }));
+    try {
+      const updatedCart = await medusa.store.cart.addShippingMethod(cart.id, {
+        option_id: input.shippingMethodId,
+      });
+      return {
+        status: "success",
+        cart: updatedCart.cart,
+      };
+    } catch {
+      return {
+        status: "error",
+        cart: null,
+      };
+    }
   },
 });
 
@@ -161,13 +173,16 @@ const initiatePaymentSession = defineAction({
     );
 
     if (res.payment_collection) {
+      const updatedCart = await medusa.store.cart.retrieve(input.cart.id);
       return {
         status: "success",
+        cart: updatedCart.cart,
       };
     }
 
     return {
       status: "error",
+      cart: null,
     };
   },
 });
