@@ -25,7 +25,17 @@ const excludedPaths = [
   "/cms",
 ];
 
+const cacheablePaths = ["/api/og"];
+
 function isExcludedPath(pathname: string): boolean {
+  // Check if path is explicitly cacheable (overrides exclusion)
+  const isCacheable = cacheablePaths.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`)
+  );
+  if (isCacheable) {
+    return false;
+  }
+
   const match = excludedPaths.find(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
   );

@@ -20,6 +20,7 @@ interface Props {
   title?: string;
   description?: string;
   syncTags?: string[];
+  ogImage?: string;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   description = config.description,
   globalData,
   syncTags,
+  ogImage,
 } = Astro.props;
 
 // Enable visual editing when in draft mode (set by /api/draft-mode/enable)
@@ -56,7 +58,7 @@ const visualEditingEnabled =
         basic: {
           title,
           type: "website",
-          image: globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): ""
+          image: ogImage ? ogImage : globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): ""
         },
         optional: {
           siteName: title,
@@ -66,7 +68,7 @@ const visualEditingEnabled =
       twitter={{
         title,
         description,
-        image: globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): "",
+        image: ogImage ? ogImage : globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): "",
         creator: "@Tinloof"
       }}
       extend={{

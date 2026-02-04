@@ -4,7 +4,12 @@ import {
 } from "astro:env/client";
 import { SANITY_TOKEN } from "astro:env/server";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const config = {
+  baseUrl: isDev
+    ? "http://localhost:3000"
+    : "https://munchies.million-tinloof.com",
   defaultCountryCode: "us",
   // Supported country codes - paths not matching these will use default
   supportedCountryCodes: [

@@ -8,6 +8,7 @@ import Layout from "@/layouts/layout.astro";
 import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
 import { getRegion } from "@/lib/medusa/regions";
 import { loadGlobalData, loadProductContent } from "@/lib/sanity";
+import { generateOgEndpoint } from "@/lib/utils/generate-og-url";
 
 const { handle } = Astro.params;
 const searchParams = Astro.url.searchParams;
@@ -17,6 +18,8 @@ if (!handle) {
 }
 
 const countryCode = Astro.locals.countryCode;
+
+const ogUrl = generateOgEndpoint({ countryCode, handle, type: "products" });
 
 const { globalData, region, product, productContent, addons } = await all({
   globalData() {
@@ -69,6 +72,7 @@ Astro.response.headers.set("Cache-Tag", syncTags.join(","));
   description={product.description ?? ""}
   globalData={globalDataResult}
   syncTags={syncTags}
+  ogImage={ogUrl}
 >
   <Preloads
     productImages={product.images?.slice(0, 2).map((img) => ({
