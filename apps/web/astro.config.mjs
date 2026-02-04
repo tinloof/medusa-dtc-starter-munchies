@@ -3,7 +3,7 @@ import { execSync } from "node:child_process";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import { svgSprite } from "@tinloof/typed-svg-sprite-astro";
+import { svgSprite } from "@tinloof/typed-svg-sprite/astro";
 import { defineConfig, envField, fontProviders } from "astro/config";
 
 const BUILD_VERSION = (() => {
@@ -65,7 +65,14 @@ export default defineConfig({
       }),
     },
   },
-  integrations: [react(), svgSprite()],
+  integrations: [
+    react(),
+    svgSprite({
+      generateIconComponent: {
+        react: true,
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
     define: {
