@@ -1,4 +1,4 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
 import type { APIRoute } from "astro";
 import type { ReactElement } from "react";
 
