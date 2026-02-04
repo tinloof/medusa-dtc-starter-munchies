@@ -1,11 +1,11 @@
 import { ActionError, defineAction } from "astro:actions";
+import type { FetchError } from "@medusajs/js-sdk";
 import type { AstroCookies } from "astro";
 import { z } from "astro/zod";
 import config from "@/config";
 import { getCart, getEnrichedCart } from "@/lib/medusa/cart";
 import medusa from "@/lib/medusa/client";
 import { getCartId, setCartId } from "@/lib/medusa/cookies";
-import medusaError from "@/lib/medusa/error";
 import { getRegion } from "@/lib/medusa/regions";
 
 async function createCart(cookies: AstroCookies, regionId: string) {
@@ -53,27 +53,31 @@ const addToCart = defineAction({
     variantId: z.string(),
   }),
   async handler(input, ctx) {
-    let cartId = getCartId(ctx.cookies);
+    const lineItemData = {
+      quantity: input.quantity,
+      variant_id: input.variantId,
+    };
 
+    let cartId = getCartId(ctx.cookies);
     if (!cartId) {
       cartId = (await createCart(ctx.cookies, input.regionId)).id;
     }
 
-    if (!cartId) {
-      throw new ActionError({
-        code: "BAD_REQUEST",
-        message: "Error retrieving or creating cart",
-      });
+    try {
+      await medusa.store.cart.createLineItem(cartId, lineItemData);
+    } catch (error) {
+      const fetchError = error as FetchError;
+      if (fetchError.status === 404) {
+        cartId = (await createCart(ctx.cookies, input.regionId)).id;
+        await medusa.store.cart.createLineItem(cartId, lineItemData);
+      } else {
+        throw new ActionError({
+          message: fetchError.message,
+          code: "BAD_REQUEST",
+        });
+      }
     }
 
-    await medusa.store.cart
-      .createLineItem(cartId, {
-        quantity: input.quantity,
-        variant_id: input.variantId,
-      })
-      .catch(medusaError);
-
-    // Return updated cart so client can sync state
     return await getEnrichedCart(ctx.cookies);
   },
 });
