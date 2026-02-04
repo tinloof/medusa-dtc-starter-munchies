@@ -2,6 +2,7 @@
 import { all } from "better-all";
 import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
 import { ProductInformation } from "@/components/pdp/product-information";
+import { StickyAtc } from "@/components/pdp/sticky-atc";
 import SectionRenderer from "@/components/sections/section-renderer.astro";
 import Preloads from "@/components/shared/preloads.astro";
 import Layout from "@/layouts/layout.astro";
@@ -97,4 +98,10 @@ Astro.response.headers.set("Cache-Tag", syncTags.join(","));
   </section>
 
   {productContentResult?.sections && <SectionRenderer sections={productContentResult.sections} fieldName="body" />}
+  <StickyAtc
+    client:load
+    searchParams={searchParams.toString()}
+    product={product}
+    regionId={region.id}
+  />
 </Layout>
