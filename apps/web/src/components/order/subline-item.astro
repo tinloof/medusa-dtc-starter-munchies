@@ -1,0 +1,19 @@
+---
+import { Body } from "../shared/typography/body";
+
+interface Props {
+  title: string;
+  value: string;
+}
+
+const { title, value } = Astro.props;
+---
+
+<div class="flex items-center justify-between gap-xl">
+  <Body className="mb-1.5 font-semibold" desktopSize="base" font="sans">
+    {title}
+  </Body>
+  <Body className="mb-1.5 font-semibold" desktopSize="base" font="sans">
+    {value}
+  </Body>
+</div>

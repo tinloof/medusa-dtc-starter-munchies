@@ -1,0 +1,24 @@
+---
+import { Body } from "../shared/typography/body";
+import type { ModularPageSection } from "./types";
+
+type Props = ModularPageSection<"section.centeredText">;
+
+const props = Astro.props;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="full mx-auto max-w-max-screen p-m lg:p-xl"
+>
+  <div class="rounded-lg border border-accent px-s py-22.5 lg:py-27">
+    <Body
+      className="mx-auto max-w-180 text-balance text-center"
+      desktopSize="6xl"
+      font="serif"
+      mobileSize="4xl"
+    >
+      {props.text}
+    </Body>
+  </div>
+</section>

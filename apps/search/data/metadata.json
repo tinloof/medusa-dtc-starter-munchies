@@ -1,0 +1,70 @@
+{
+  "collections": {
+    "pcol_01J99YFNC5JZNB9CWHVGSQDRAE": "Gift-Worthy Goodies",
+    "pcol_01J99YED5NRDXX3X6ACQJRDDR1": "Unique Indulgences",
+    "pcol_01J99YDGWNSBHKRYR1JWAANMCB": "Seasonal Sensations",
+    "pcol_01J99YCZGC045CEQ9CYC03RK1K": "Nutty & Nice",
+    "pcol_01J99YCF6JWSQ4PSK7SV3QJB3B": "Better with Milk",
+    "pcol_01J99YBSZS0TYAZ1BN7TJ62Q3F": "Classic Comforts",
+    "pcol_01J99YB7T4FQ0NF2Q3TRE10NE7": "Chocolate Lovers' Paradise"
+  },
+  "categories": {
+    "pcat_01J99ZJRW4XSS17EQWD843A8CT": "Flavor Profiles",
+    "pcat_01J99ZKN6F9DS919ZWQSD6S45B": "Chocolate-based",
+    "pcat_01J99ZMBMBMNFK7M6JT2SSXBAE": "Nutty",
+    "pcat_01J99ZN815T2TBR6ZS6KYQFMJD": "Fruit and Spice",
+    "pcat_01J99ZNSG85DN960CXAR0E46M2": "Unique Flavors",
+    "pcat_01J99ZPBBSWHE9EJZZ4B9H5NMF": "Texture",
+    "pcat_01J99ZQ44DDAPBZ3RWHNGN7CV7": "Crunchy",
+    "pcat_01J99ZQV1FW3DCM2ZM4FSM24MP": "Chewy",
+    "pcat_01J99ZRN3JTA1WCD0XMG3WVJAN": "Gooey",
+    "pcat_01J99ZS9GAS8WF9JQZN83AHZ2R": "Occasion",
+    "pcat_01J99ZTKZ9XWPVHGBZE5323MS0": "Everyday Treats",
+    "pcat_01J99ZWPQBZJTVTAT9V8S81JE1": "Seasonal Favorites",
+    "pcat_01J99ZXDMNWXW451192MZ5X1VJ": "Gift-Worthy",
+    "pcat_01J99ZZB6J7KRCRT3RHM4NQDWZ": "Dietary Considerations",
+    "pcat_01J99ZZW1X9SZMBJXXN6RGF5PA": "Indulgent",
+    "pcat_01J9A01D2V4GQFV22NY0TD5W2W": "Health-Conscious",
+    "pcat_01J9A02TTCVMVKW61ZKZ160449": "Assortments",
+    "pcat_01J9A03BQRK5NA841H510H5VBD": "Variety Packs",
+    "pcat_01J9A041ZEER14NJY0QHWC60BE": "Themed Bundles"
+  },
+  "regions": {
+    "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+      "name": "Default",
+      "currency_code": "usd"
+    },
+    "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+      "name": "Denmark",
+      "currency_code": "dkk"
+    },
+    "reg_01JACZYX07574WZGK2XQTTGY9H": {
+      "name": "France",
+      "currency_code": "eur"
+    },
+    "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+      "name": "Germany",
+      "currency_code": "eur"
+    },
+    "reg_01JAD00DV82D38RFKWECVGKRP3": {
+      "name": "Spain",
+      "currency_code": "eur"
+    },
+    "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+      "name": "Japan",
+      "currency_code": "jpy"
+    },
+    "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+      "name": "United Kingdom",
+      "currency_code": "gbp"
+    },
+    "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+      "name": "Canada",
+      "currency_code": "cad"
+    },
+    "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+      "name": "Rest of the world",
+      "currency_code": "usd"
+    }
+  }
+}

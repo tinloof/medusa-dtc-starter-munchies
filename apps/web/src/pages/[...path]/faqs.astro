@@ -1,0 +1,33 @@
+---
+import { all } from "better-all";
+import { FAQs } from "@/components/faqs";
+import Layout from "@/layouts/layout.astro";
+import { loadFaqs, loadGlobalData } from "@/lib/sanity";
+
+const { globalData, faqs } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  faqs() {
+    return loadFaqs();
+  },
+});
+
+const globalDataResult = globalData.result;
+const faqsResult = faqs.result;
+
+if (!faqsResult) {
+  return Astro.redirect("/404", 404);
+}
+
+const syncTags = [...(globalData.syncTags || []), ...(faqs.syncTags || [])];
+---
+
+<Layout
+  globalData={globalDataResult}
+  title={faqsResult.title}
+  description={faqsResult.seo?.description}
+  syncTags={syncTags}
+>
+  <FAQs data={faqsResult} client:load />
+</Layout>

@@ -1,0 +1,46 @@
+---
+import { SanityImage } from "@/components/shared/sanity-image";
+import { Video } from "@/components/shared/video";
+import type { ModularPageSection } from "../types";
+import LargeHero from "./large-hero.astro";
+import SimpleHero from "./simple-hero.astro";
+
+type Props = ModularPageSection<"section.hero">;
+
+const props = Astro.props;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="mx-auto w-full max-w-max-screen px-m py-xs lg:px-xl lg:py-xs"
+>
+  {props.mediaType === "image" && <SimpleHero {...props} />}
+
+  {props.mediaType === "video" && props.video && (
+    <LargeHero {...props}>
+      <div class="hero-asset grid w-full items-stretch overflow-hidden rounded-lg object-cover object-center">
+        <Video
+          aspectRatio="16 / 9"
+          className="h-full w-full rounded-lg object-cover"
+          poster={props.video.poster}
+          videoUrl={props.video.url}
+          fetchPriority="high"
+          imgProps={{
+            sizes:"(max-width: 1440px) calc(100vw - 64px), 1500px",
+            loading: "eager",
+            fetchPriority: "high"
+          }}
+        />
+      </div>
+    </LargeHero>
+  )}
+  {props.mediaType === "largeImage" && props.largeImage && (
+    <LargeHero {...props}>
+      <SanityImage
+        className="hero-asset w-full rounded-lg object-cover object-center"
+        data={props.largeImage}
+        loading="eager"
+      />
+    </LargeHero>
+  )}
+</section>

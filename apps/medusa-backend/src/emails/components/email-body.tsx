@@ -1,11 +1,11 @@
 import { Text } from "@react-email/components";
 import { body } from "./style";
 
-type EmailBodyProps = {
+interface EmailBodyProps {
   firstName?: string;
   paragraphs: string[];
   signature?: boolean;
-};
+}
 
 export default function EmailBody({
   firstName,

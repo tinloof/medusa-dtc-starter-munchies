@@ -3,11 +3,11 @@ import { Modules } from "@medusajs/framework/utils";
 import { pretty, render } from "@react-email/render";
 import getShippingConfirmationTemplate from "../emails/templates/shipping-confirmation";
 
-type OrderFulfillmentCreatedData = {
+interface OrderFulfillmentCreatedData {
   order_id: string;
   fulfillment_id: string;
   no_notification: boolean;
-};
+}
 
 export default async function orderShippedHandler({
   event,

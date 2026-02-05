@@ -1,126 +1,53 @@
 # @apps/web
 
-Next.js 16 storefront for the Munchies e-commerce platform.
+Astro 5 SSR storefront on Cloudflare.
 
-## Overview
+## Tech Stack
 
-This is the customer-facing storefront built with:
+- Astro 5.16 + @astrojs/cloudflare
+- React 19 + Tailwind CSS 4
+- Sanity v5 (visual editing, embedded studio at /cms)
+- Medusa JS SDK
+- Stripe payments
+- Dynamic OG images (Satori)
 
-- **Next.js 16** – App Router, Server Components, Server Actions
-- **React 19** – Latest React features
-- **Tailwind CSS v4** – CSS-first configuration
-- **Sanity** – Content management and live preview
-- **Medusa JS SDK** – E-commerce functionality
+## Env Vars
 
-## Getting Started
+```bash
+# Sanity
+PUBLIC_SANITY_STUDIO_DATASET=
+PUBLIC_SANITY_STUDIO_PROJECT_ID=
+SANITY_TOKEN=
 
-### Prerequisites
-
-- Node.js >= 18
-- Running Medusa backend (on port 9000)
-- Sanity project configured
-
-### Environment Variables
-
-Create a `.env` file in this directory (see `.env.template` for reference):
-
-```env
 # Medusa
-NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
-NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=
+MEDUSA_BACKEND_URL=
+MEDUSA_PUBLISHABLE_KEY=
 
 # Stripe
-NEXT_PUBLIC_STRIPE_KEY=
+PUBLIC_STRIPE_KEY=
 
-# Sanity
-NEXT_PUBLIC_SANITY_PROJECT_ID=
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-SANITY_API_TOKEN=
-SANITY_REVALIDATE_SECRET=
-```
-
-### Development
-
-From the monorepo root:
-
-```bash
-pnpm dev --filter=@apps/web
-```
-
-Or from this directory:
-
-```bash
-pnpm dev
-```
-
-The storefront will be available at [http://localhost:3000](http://localhost:3000).
-
-### Build
-
-```bash
-pnpm build
+# Cloudflare
+CF_ZONE_ID=
+CF_TOKEN=
 ```
 
 ## Project Structure
 
 ```
-├── app/
-│   ├── [countryCode]/
-│   │   ├── (checkout)/     # Checkout flow pages
-│   │   ├── (website)/      # Main website pages
-│   │   └── layout.tsx
-│   ├── api/                # API routes
-│   └── globals.css         # Global styles
-│
-├── actions/                # Server actions
-│   ├── medusa/             # Cart, order actions
-│   └── newsletter/         # Newsletter subscription
-│
-├── components/
-│   ├── global/             # Header, footer, cookie banner
-│   ├── products/           # Product listing, refinement
-│   ├── sections/           # Page sections (hero, testimonials, etc.)
-│   └── shared/             # Reusable UI components
-│
-├── data/
-│   ├── medusa/             # Medusa API client and data fetching
-│   └── sanity/             # Sanity client and queries
-│
-├── hooks/                  # Custom React hooks
-├── types/                  # TypeScript types
-├── utils/                  # Utility functions
-└── config.ts               # App configuration
+src/
+├── actions/medusa/  # Server actions
+├── components/      # React + Astro
+├── lib/             # Utilities
+├── pages/           # Routes
+├── sanity/          # CMS config + schema
+└── stores/          # State (nanostores)
 ```
-
-## Features
-
-### Internationalization
-
-The storefront supports multiple countries/regions with URL-based routing (`/us/`, `/gb/`, `/de/`, etc.). The country code determines:
-
-- Currency and pricing
-- Available shipping options
-- Regional content
-
-### Sanity CMS Integration
-
-- **Live Preview** – See content changes in real-time with draft mode
-- **Visual Editing** – Click-to-edit integration via Sanity Studio
-- **Sections** – Modular page builder with reusable sections
-
-### E-commerce
-
-- Product catalog with filtering and search
-- Shopping cart with server-side state
-- Checkout flow with Stripe integration
-- Order tracking and history
 
 ## Scripts
 
-| Script           | Description                  |
-| ---------------- | ---------------------------- |
-| `pnpm dev`       | Start development server     |
-| `pnpm build`     | Build for production         |
-| `pnpm start`     | Start production server      |
-| `pnpm typecheck` | Run TypeScript type checking |
+| Command        | Description           |
+| -------------- | --------------------- |
+| `pnpm dev`     | Dev server on :3000   |
+| `pnpm build`   | Build for production  |
+| `pnpm deploy`  | Build + deploy to CF  |
+| `pnpm typegen` | Generate Sanity types |

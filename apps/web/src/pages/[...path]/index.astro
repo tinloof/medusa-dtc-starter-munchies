@@ -1,0 +1,66 @@
+---
+import { all } from "better-all";
+import SectionRenderer from "@/components/sections/section-renderer.astro";
+import Preloads from "@/components/shared/preloads.astro";
+import TextPage from "@/components/text-page/index.astro";
+import Layout from "@/layouts/layout.astro";
+import { loadGlobalData, loadPageByPathname } from "@/lib/sanity";
+
+const { path } = Astro.params;
+const { countryCode, defaultCountryCode } = Astro.locals;
+
+const pathSegments = path ? path.split("/") : [];
+
+// Check if we are on a country code route
+const isCountryCode = countryCode !== defaultCountryCode;
+
+// Extract the actual path without country code
+const actualPath = isCountryCode ? pathSegments.slice(1).join("/") : path;
+const pathname = actualPath ? `/${actualPath}` : "/";
+
+const { globalData, page } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  page() {
+    return loadPageByPathname(pathname);
+  },
+});
+
+const pageResult = page?.result;
+const globalDataResult = globalData.result;
+
+if (!pageResult) {
+  return Astro.redirect("/404", 404);
+}
+
+const templates: Record<string, any> = {
+  "text.page": TextPage,
+  home: SectionRenderer,
+  "modular.page": SectionRenderer,
+};
+
+const Template = templates[pageResult._type];
+
+// Extract first hero section for preloading
+const firstHero =
+  pageResult._type !== "text.page"
+    ? pageResult.sections?.find(
+        (s: { _type: string }) => s._type === "section.hero"
+      )
+    : undefined;
+
+const syncTags = [...(page?.syncTags || []), ...(globalData.syncTags || [])];
+
+Astro.response.headers.set("Cache-Tag", syncTags.join(","));
+---
+
+<Layout
+  title={pageResult.title}
+  description={pageResult.seo?.description}
+  globalData={globalDataResult}
+  syncTags={syncTags}
+>
+  {firstHero && <Preloads hero={firstHero} slot="preloadedImages" />}
+  {Template ? <Template {...pageResult} /> : <div>Template not found: {pageResult._type}</div>}
+</Layout>

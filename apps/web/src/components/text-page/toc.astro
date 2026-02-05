@@ -1,0 +1,34 @@
+---
+import { getPtComponentId } from "@tinloof/sanity-web";
+import { toPlainText } from "astro-portabletext";
+import type { PortableTextProps } from "astro-portabletext/types";
+import LocalizedLink from "@/components/shared/localized-link.astro";
+import { Body } from "@/components/shared/typography/body";
+import { getBlocksToc } from "@/lib/utils/portable-text";
+
+type Props = PortableTextProps;
+
+const { value } = Astro.props;
+
+// @ts-expect-error
+const outlines = getBlocksToc(value);
+---
+
+<div
+  class="sticky top-[calc(var(--header-height)+2.5rem)] hidden w-full flex-col lg:flex"
+>
+  {outlines?.map(
+    (item) =>
+      !item.isSub && (
+        <LocalizedLink href={`#${getPtComponentId(item.block as any)}`}>
+          <Body
+            className="border-accent-40 border-l-[1.5px] py-2.5 pl-2.25 transition-all duration-300 first:pt-2 last:pb-2 hover:border-accent"
+            font="sans"
+            mobileSize="sm"
+          >
+            {toPlainText(item.block)}
+          </Body>
+        </LocalizedLink>
+      )
+  )}
+</div>

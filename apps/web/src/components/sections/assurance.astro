@@ -1,0 +1,39 @@
+---
+import { Body } from "../shared/typography/body";
+import { Heading } from "../shared/typography/heading";
+import type { ModularPageSection } from "./types";
+
+type Props = ModularPageSection<"section.assurance">;
+
+const props = Astro.props;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class="mx-auto flex w-full max-w-max-screen flex-col items-center justify-start gap-4xl px-m py-2xl lg:px-xl"
+>
+  {props.title ? (
+    <Heading
+      className="text-center"
+      desktopSize="3xl"
+      mobileSize="xl"
+      tag="h2"
+    >
+      {props.title}
+    </Heading>
+  ) : null}
+  <div
+    class="flex w-full flex-col items-center justify-between gap-m lg:flex-row lg:gap-2xl"
+  >
+    {props.cards?.map((card) => (
+      <div class="flex w-full max-w-100 flex-col items-center gap-xs text-center">
+        <Heading mobileSize="base" tag="h5">
+          {card.title}
+        </Heading>
+        <Body font="sans" mobileSize="base">
+          {card.description}
+        </Body>
+      </div>
+    ))}
+  </div>
+</section>

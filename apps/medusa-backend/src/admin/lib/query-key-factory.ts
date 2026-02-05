@@ -1,4 +1,4 @@
-export type TQueryKey<TKey, TListQuery = any, TDetailQuery = string> = {
+export interface TQueryKey<TKey, TListQuery = any, TDetailQuery = string> {
   all: readonly [TKey];
   lists: () => readonly [...TQueryKey<TKey>["all"], "list"];
   list: (
@@ -16,7 +16,7 @@ export type TQueryKey<TKey, TListQuery = any, TDetailQuery = string> = {
     TDetailQuery,
     { query: TListQuery | undefined },
   ];
-};
+}
 
 export const queryKeysFactory = <
   T,

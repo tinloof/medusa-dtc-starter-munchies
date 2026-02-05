@@ -1,0 +1,58 @@
+---
+import { getPtComponentId } from "@tinloof/sanity-web";
+import type { BlockProps } from "astro-portabletext/types";
+import { Body } from "@/components/shared/typography/body";
+import { Heading } from "@/components/shared/typography/heading";
+
+type Props = BlockProps;
+
+const { node } = Astro.props;
+const style = node.style ?? "normal";
+
+// Normalize @text children back to span for toPlainText compatibility
+const normalizedNode = {
+  ...node,
+  children: node.children?.map((child: { _type: string; text?: string }) =>
+    child._type === "@text"
+      ? { _type: "span", _key: "", marks: [], text: child.text ?? "" }
+      : child
+  ),
+};
+
+const id = getPtComponentId(normalizedNode);
+
+const headingStyles = {
+  h2: {
+    tag: "h2" as const,
+    desktopSize: "xl" as const,
+    mobileSize: "base" as const,
+    class:
+      "mt-4 scroll-mt-[calc(var(--header-height)+2rem)] first:mt-0 lg:scroll-mt-[calc(var(--header-height)+2rem)]",
+  },
+  h3: {
+    tag: "h3" as const,
+    desktopSize: "lg" as const,
+    mobileSize: "xs" as const,
+    class: "mt-4 scroll-mt-header-height",
+  },
+};
+
+const heading = headingStyles[style as keyof typeof headingStyles];
+---
+
+{heading ? (
+  <Heading
+    className={heading.class}
+    desktopSize={heading.desktopSize}
+    font="serif"
+    id={id}
+    mobileSize={heading.mobileSize}
+    tag={heading.tag}
+  >
+    <slot />
+  </Heading>
+) : (
+  <Body className="font-medium" desktopSize="base" font="sans" mobileSize="sm">
+    <slot />
+  </Body>
+)}

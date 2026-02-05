@@ -1,0 +1,119 @@
+---
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+import { SEO } from "astro-seo";
+import type { GLOBAL_QUERY_RESULT } from "sanity.types";
+import Footer from "@/components/global/footer/index.astro";
+import Header from "@/components/global/header/index.astro";
+import { CountryInit } from "@/components/shared/country-init";
+import config from "@/config";
+import { getOgImages } from "@/lib/sanity/get-og-images";
+import SanityLive from "@/sanity/components/sanity-live.astro";
+import { DraftModeToast } from "@/sanity/components/visual-editing/draft-mode-toast";
+import VisualEditing from "@/sanity/components/visual-editing/index.astro";
+
+import "@/styles/global.css";
+
+interface Props {
+  variant?: "simple" | "default";
+  globalData: GLOBAL_QUERY_RESULT;
+  title?: string;
+  description?: string;
+  syncTags?: string[];
+  ogImage?: string;
+}
+
+const {
+  variant = "default",
+  title = config.title,
+  description = config.description,
+  globalData,
+  syncTags,
+  ogImage,
+} = Astro.props;
+
+// Enable visual editing when in draft mode (set by /api/draft-mode/enable)
+const visualEditingEnabled =
+  Astro.cookies.get("sanity-draft-mode")?.value === "true";
+---
+
+<!doctype html>
+<html
+  lang="en"
+  transition:animate="none"
+  class="overflow-x-clip overscroll-y-none"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <slot name="preloadedImages" />
+    <Font preload cssVariable="--font-instrumentSans" />
+    <Font preload cssVariable="--font-instrumentSerif" />
+    <Font preload cssVariable="--font-climateCrisis" />
+    <SEO
+      title={title}
+      description={description}
+      titleTemplate={`%s - ${config.title}`}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: ogImage ? ogImage : globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): ""
+        },
+        optional: {
+          siteName: title,
+          description: description,
+        }
+      }}
+      twitter={{
+        title,
+        description,
+        image: ogImage ? ogImage : globalData.fallbackOGImage ?  getOgImages(globalData.fallbackOGImage): "",
+        creator: "@Tinloof"
+      }}
+      extend={{
+        link: [{rel: "icon", href: "/favicon.ico", type:"image/x-icon"}]
+      }}
+    />
+    <meta name="generator" content={Astro.generator}>
+    <link rel="preload" as="image" href="/images/logo.svg" fetchpriority="high">
+    <script is:inline>
+      window.history.scrollRestoration = "auto";
+    </script>
+    <ClientRouter />
+  </head>
+  <body
+    class="scrollbar-hide relative flex min-h-screen min-w-min-screen flex-col overflow-x-clip m-0!"
+  >
+    <CountryInit
+      client:load
+      countryCode={Astro.locals.countryCode}
+      defaultCountryCode={Astro.locals.defaultCountryCode}
+      pathname={Astro.url.pathname}
+    />
+    {globalData.header && <Header header={globalData.header} variant={variant} />}
+    <main class="flex-1">
+      <slot />
+    </main>
+    {globalData.footer && <Footer footer={globalData.footer} variant={variant} />}
+    <SanityLive syncTags={syncTags} />
+    <VisualEditing enabled={visualEditingEnabled} />
+    {visualEditingEnabled && <DraftModeToast client:only="react" />}
+  </body>
+</html>
+
+<script is:inline>
+  const favicon = document.querySelector('link[rel="icon"]');
+
+  document.addEventListener("visibilitychange", () => {
+    const state = document.hidden ? "-inactive" : "";
+
+    if (favicon !== null) {
+      if (state) {
+        favicon.setAttribute("href", `/favicon${state}.ico`);
+      } else {
+        favicon.setAttribute("href", "/favicon.ico");
+      }
+    }
+  });
+</script>

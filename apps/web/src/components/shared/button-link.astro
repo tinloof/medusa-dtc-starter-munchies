@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { styles } from "./button";
+import LocalizedLink from "./localized-link.astro";
+
+type StyleProps = VariantProps<typeof styles>;
+
+interface Props extends HTMLAttributes<"a">, StyleProps {
+  renderAsChild?: boolean;
+}
+
+const {
+  renderAsChild,
+  class: className,
+  size,
+  variant,
+  href,
+  ...rest
+} = Astro.props;
+---
+
+{renderAsChild ? (
+  <div
+    class={styles({
+      className,
+      size,
+      variant,
+    })}
+  >
+    <slot />
+  </div>
+) : (
+  <LocalizedLink
+    class={styles({
+      className,
+      size,
+      variant,
+    })}
+    href={href ?? "/"}
+    {...rest}
+  >
+    <slot />
+  </LocalizedLink>
+)}

@@ -1,0 +1,2171 @@
+[
+  {
+    "id": "prod_01J9A0B9MDFVWE0XVHHKF3HWM5",
+    "title": "Two Chip Chocolate Chip",
+    "handle": "two-chip-chocolate-chip",
+    "description": "Savor the blend of milk and dark chocolate chips in a buttery, golden cookie. Each bite offers a smooth, rich chocolate experience for true indulgence.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-1-01J9C57NFHDY901C5RXF85JQQE.png",
+    "collection_id": "pcol_01J99YBSZS0TYAZ1BN7TJ62Q3F",
+    "collection": "Classic Comforts",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZQV1FW3DCM2ZM4FSM24MP",
+      "pcat_01J99ZTKZ9XWPVHGBZE5323MS0"
+    ],
+    "categories": ["Chocolate-based", "Chewy", "Everyday Treats"],
+    "type": {
+      "id": "ptyp_01J9A0D5QP3E8JBY894NNS7BF1",
+      "value": "Classic Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:16:10.999Z",
+      "updated_at": "2024-10-03T20:16:10.999Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9EVAM0YQR123QPGCESA3A4F",
+        "title": "4-Pack",
+        "sku": "SKU-1",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9R438FE2MFZEVN6G76MXST3",
+        "title": "6-Pack",
+        "sku": "SKU-2",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RY1GTGQT0VTGMTQ7DWSXJE",
+        "title": "8-Pack",
+        "sku": "SKU-3",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 5.99,
+            "original_amount": 5.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A2QYCBTAQT3XN27XDTH8EX",
+    "title": "Dark Chocolate Peanut Butter Chip",
+    "handle": "dark-chocolate-peanut-butter-chip",
+    "description": "Experience the bold flavors of dark chocolate paired with creamy peanut butter chips. This rich, indulgent cookie offers a perfect balance of deep cocoa and sweet nutty notes.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-2-01J9C5C33HW0A7Z3FBP9VPD8SN.png",
+    "collection_id": "pcol_01J99YCZGC045CEQ9CYC03RK1K",
+    "collection": "Nutty & Nice",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZMBMBMNFK7M6JT2SSXBAE",
+      "pcat_01J99ZZW1X9SZMBJXXN6RGF5PA"
+    ],
+    "categories": ["Chocolate-based", "Nutty", "Indulgent"],
+    "type": {
+      "id": "ptyp_01J9A0DF4XGEGTYP0CZQH0PXB0",
+      "value": "Gourmet Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:16:20.637Z",
+      "updated_at": "2024-10-03T20:16:20.637Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A2QYJ8A8SZF1J3SPK99BAQ",
+        "title": "4-Pack",
+        "sku": "SKU-4",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RY3PWJWMHX2F6VXAWVEABE",
+        "title": "6-Pack",
+        "sku": "SKU-5",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RY4RD0SCXHKMF0HE85WREF",
+        "title": "8-Pack",
+        "sku": "SKU-9",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A33WKHDCKHEJ5K7FSFX62H",
+    "title": "Chocolate Chip Walnuts",
+    "handle": "chocolate-chip-walnuts",
+    "description": "Enjoy the rich chocolate and crunchy walnuts in our perfectly chewy cookies. This gourmet twist on the classic chocolate chip cookie offers a satisfying blend of textures and flavors.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-3-01J9C5GZ4YA0Y4C335T2FC6QQ4.png",
+    "collection_id": "pcol_01J99YCZGC045CEQ9CYC03RK1K",
+    "collection": "Nutty & Nice",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZMBMBMNFK7M6JT2SSXBAE",
+      "pcat_01J99ZQ44DDAPBZ3RWHNGN7CV7"
+    ],
+    "categories": ["Chocolate-based", "Nutty", "Crunchy"],
+    "type": {
+      "id": "ptyp_01J9A1BMGPX2WVY0S6ARN1WTAR",
+      "value": "Nutty Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:32:49.175Z",
+      "updated_at": "2024-10-03T20:32:49.175Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9RYGS7NC5JR66X28KT44SST",
+        "title": "8-Pack",
+        "sku": "SKU-87",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9A33WQH9S2YB2QK7RT9EHQX",
+        "title": "4-Pack",
+        "sku": "SKU-78",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYFQ7736HPRFKWNE0SCY1W",
+        "title": "6-Pack",
+        "sku": "SKU-88",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A3JHQYTG9DPJP3PJY56MBW",
+    "title": "Caramel Chocolate Chip",
+    "handle": "caramel-chocolate-chip",
+    "description": "Get ready for a burst of flavor with our caramel chocolate chip cookies. Soft and chewy, they blend rich chocolate with gooey caramel for a truly decadent treat.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-4-01J9C5HQV3FS7PTP8XQT40EQ38.png",
+    "collection_id": "pcol_01J99YED5NRDXX3X6ACQJRDDR1",
+    "collection": "Unique Indulgences",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZRN3JTA1WCD0XMG3WVJAN",
+      "pcat_01J99ZZW1X9SZMBJXXN6RGF5PA"
+    ],
+    "categories": ["Chocolate-based", "Gooey", "Indulgent"],
+    "type": {
+      "id": "ptyp_01J9A1BYBXEFSWQXRM7F6TQ5C9",
+      "value": "Indulgent Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:32:59.261Z",
+      "updated_at": "2024-10-03T20:32:59.261Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A3JHVYPCMSJH1QXKES7GJV",
+        "title": "4-Pack",
+        "sku": null,
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYDF4ZPWVS4RCAPCXA0HHF",
+        "title": "6-Pack",
+        "sku": "SKU-98",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYEF39HMN0W9MD122N58KA",
+        "title": "8-Pack",
+        "sku": "SKU-97",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A3VCJ6E1RJFCK9TQ1A5W5E",
+    "title": "Dark Chocolate Chocolate Chip",
+    "handle": "dark-chocolate-chocolate-chip",
+    "description": "\nFor a truly rich chocolate experience, try our dark chocolate chocolate chip cookies. With a deep chocolate base and extra dark chocolate chips, they offer a bold, indulgent flavor.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-5-01J9C5JBRJ0Y7YEHS7N6BC738A.png",
+    "collection_id": "pcol_01J99YB7T4FQ0NF2Q3TRE10NE7",
+    "collection": "Chocolate Lovers' Paradise",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZZW1X9SZMBJXXN6RGF5PA"
+    ],
+    "categories": ["Chocolate-based", "Indulgent"],
+    "type": {
+      "id": "ptyp_01J9A1D1SJNG5XWP2909MH48VD",
+      "value": "Double Chocolate Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:33:35.538Z",
+      "updated_at": "2024-10-03T20:33:35.538Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A3VD5QV7WAPGR4EN9JSWHQ",
+        "title": "4-Pack",
+        "sku": "SKU-10",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RY7DM159699PW4NPMS5VNH",
+        "title": "6-Pack",
+        "sku": "SKU-7",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYBWBVXG23Q74Q7AMCAA6M",
+        "title": "8-Pack",
+        "sku": "SKU-100",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A415PQ43TZTXNMF9S378CS",
+    "title": "Special Fall Cinnamon",
+    "handle": "special-fall-cinnamon",
+    "description": "Enjoy the warm, cozy flavors of fall with our cinnamon cookies. Infused with cinnamon and nutmeg, these aromatic treats capture the essence of the season in every bite.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-6-01J9C5K9VQAFVSD2F86HNZ3MJZ.png",
+    "collection_id": "pcol_01J99YDGWNSBHKRYR1JWAANMCB",
+    "collection": "Seasonal Sensations",
+    "category_ids": [
+      "pcat_01J99ZN815T2TBR6ZS6KYQFMJD",
+      "pcat_01J99ZWPQBZJTVTAT9V8S81JE1"
+    ],
+    "categories": ["Fruit and Spice", "Seasonal Favorites"],
+    "type": {
+      "id": "ptyp_01J9A1DAJN7110X4N24RFK3BJC",
+      "value": "Seasonal Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:33:44.533Z",
+      "updated_at": "2024-10-03T20:33:44.533Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A415RJ7YSGXZR5S69W8W4Z",
+        "title": "4-Pacl",
+        "sku": "SKU-77",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYNB2KNRNH23M231SZG5RT",
+        "title": "6-Pack",
+        "sku": "SKU-76",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYQNAAJSETBXRH4PZA67FB",
+        "title": "8-Pack",
+        "sku": "SKU-75",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A45A7YRXXJAHB7V3DFRBPT",
+    "title": "Oatmeal Raisin",
+    "handle": "oatmeal-raisin",
+    "description": "\nOur oatmeal raisin cookies combine chewy oats with bursts of sweet, juicy raisins. This classic treat offers a perfect balance of wholesome texture and comforting flavors.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-7-01J9C5M2DE547AABM3MTR7HPMQ.png",
+    "collection_id": "pcol_01J99YBSZS0TYAZ1BN7TJ62Q3F",
+    "collection": "Classic Comforts",
+    "category_ids": [
+      "pcat_01J99ZN815T2TBR6ZS6KYQFMJD",
+      "pcat_01J99ZQV1FW3DCM2ZM4FSM24MP",
+      "pcat_01J9A01D2V4GQFV22NY0TD5W2W"
+    ],
+    "categories": ["Fruit and Spice", "Chewy", "Health-Conscious"],
+    "type": {
+      "id": "ptyp_01J9A1DS30KQFSVECPD2QH8S39",
+      "value": "Wholesome Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:33:59.393Z",
+      "updated_at": "2024-10-03T20:33:59.393Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A45AE6PHARHRRWXJ5J7M83",
+        "title": "4-Pack",
+        "sku": "SKU-95",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RYZDEXNHC6SR0KHB308D8F",
+        "title": "6-Pack",
+        "sku": "SKU-46",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZ2EN8QSR1JEFCQWB228TY",
+        "title": "8-Pack",
+        "sku": "SKU-93",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A4CW0Y1J8X2TMZC1E05YVT",
+    "title": "Peanut Butter Chocolate Chip",
+    "handle": "peanut-butter-chocolate-chip",
+    "description": "Enjoy the perfect blend of peanut butter and milk chocolate in our peanut butter chocolate chip cookies. Each bite offers a sweet and salty combination that's irresistibly delicious.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-8-01J9C5MXXBCKF63N5Y3872QDKW.png",
+    "collection_id": "pcol_01J99YCZGC045CEQ9CYC03RK1K",
+    "collection": "Nutty & Nice",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZMBMBMNFK7M6JT2SSXBAE",
+      "pcat_01J99ZTKZ9XWPVHGBZE5323MS0"
+    ],
+    "categories": ["Chocolate-based", "Nutty", "Everyday Treats"],
+    "type": {
+      "id": "ptyp_01J9A1BMGPX2WVY0S6ARN1WTAR",
+      "value": "Nutty Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:32:49.175Z",
+      "updated_at": "2024-10-03T20:32:49.175Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A4CW4KWAXWC8F2XWZVGVRQ",
+        "title": "4-Pack",
+        "sku": "SKU-66",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZ4PP5NZT1Y7AD6TDD569J",
+        "title": "6-Pack",
+        "sku": "SKU-73",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZ7MFATNR38JY8FNBC01EZ",
+        "title": "8-Pack",
+        "sku": "SKU-45",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A4VCCBFNKY69D60CFZA5HQ",
+    "title": "Dark Chocolate Walnuts",
+    "handle": "dark-chocolate-walnuts",
+    "description": "Elevate your treat with our dark chocolate walnut cookies. Rich dark chocolate pairs with crunchy walnuts for a sophisticated, indulgent flavor experience.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-9-01J9C5NT6RGR464ZN4HVV75M2G.png",
+    "collection_id": "pcol_01J99YCZGC045CEQ9CYC03RK1K",
+    "collection": "Nutty & Nice",
+    "category_ids": [
+      "pcat_01J99ZKN6F9DS919ZWQSD6S45B",
+      "pcat_01J99ZMBMBMNFK7M6JT2SSXBAE",
+      "pcat_01J99ZQ44DDAPBZ3RWHNGN7CV7",
+      "pcat_01J99ZZW1X9SZMBJXXN6RGF5PA"
+    ],
+    "categories": ["Chocolate-based", "Nutty", "Crunchy", "Indulgent"],
+    "type": {
+      "id": "ptyp_01J9A0DF4XGEGTYP0CZQH0PXB0",
+      "value": "Gourmet Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:16:20.637Z",
+      "updated_at": "2024-10-03T20:16:20.637Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A4VCYVTJY15TDCFRH367TN",
+        "title": "4-Pack",
+        "sku": "SKU-33",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZA75J8NB0QQS36AA1XPX2",
+        "title": "6-Pack",
+        "sku": "SKU-61",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZAZ7R43DVMQ192BXHSX75",
+        "title": "8-Pack",
+        "sku": "SKU-32",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A51JXCGGCWQZYYACDZ2V0H",
+    "title": "Matcha Dream",
+    "handle": "matcha-dream",
+    "description": "Delight in our Matcha Dream cookies, where the earthy taste of matcha meets sweet white chocolate chips. These visually striking cookies offer a refined, Japanese-inspired flavor.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/product-10-01J9C5R48A408H9T28NT5S5NX7.png",
+    "collection_id": "",
+    "collection": "",
+    "category_ids": [
+      "pcat_01J99ZNSG85DN960CXAR0E46M2",
+      "pcat_01J99ZXDMNWXW451192MZ5X1VJ"
+    ],
+    "categories": ["Unique Flavors", "Gift-Worthy"],
+    "type": {
+      "id": "ptyp_01J9A1EGFE18TW27N42PTZMPVA",
+      "value": "Specialty Cookie",
+      "metadata": null,
+      "created_at": "2024-10-03T20:34:23.343Z",
+      "updated_at": "2024-10-03T20:34:23.343Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9RZETCBAZT6RCYD7D0EEPCC",
+        "title": "8-Pack",
+        "sku": "SKU-22",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9A51K1P7YD9HS40YSXW40MW",
+        "title": "4-Pack",
+        "sku": "SKU-44",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZE1KNPE2DR86RTNJEQQXX",
+        "title": "6-Pack",
+        "sku": "SKU-27",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A561A256YTG5MAWT0QSH1T",
+    "title": "Ultimate Chocolate Chip Pack",
+    "handle": "ultimate-chocolate-chip-pack",
+    "description": "For chocolate chip lovers, our Ultimate Chocolate Chip Pack features a variety of our best cookie creations. Enjoy classic, dark, milk, and white chocolate chip cookies for a delightful flavor journey.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/picture-2-01JATN9GBDGTS9KF7X6Z74QC4X.png",
+    "collection_id": "pcol_01J99YB7T4FQ0NF2Q3TRE10NE7",
+    "collection": "Chocolate Lovers' Paradise",
+    "category_ids": [
+      "pcat_01J99ZXDMNWXW451192MZ5X1VJ",
+      "pcat_01J9A03BQRK5NA841H510H5VBD"
+    ],
+    "categories": ["Gift-Worthy", "Variety Packs"],
+    "type": {
+      "id": "ptyp_01J9A1ET2H4NJPMP31BZM158JA",
+      "value": "Variety Pack",
+      "metadata": null,
+      "created_at": "2024-10-03T20:34:33.169Z",
+      "updated_at": "2024-10-03T20:34:33.169Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A561FHDXPPW8JGTZCREFJH",
+        "title": "4-Pack",
+        "sku": "SKU-55",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZGPSS8J6VN2QVCW3V3ZJF",
+        "title": "6-Pack",
+        "sku": "SKU-48",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZJ3Y0K0T4Z2BEFNWKGS24",
+        "title": "8-Pack",
+        "sku": "SKU-06",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 4.61,
+            "original_amount": 4.61,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prod_01J9A5BKWTNNTZQ1G1ZPPD5S2S",
+    "title": "Choco Lover's Bundle",
+    "handle": "choco-lovers-bundle",
+    "description": "\nChocoholics rejoice! Our Choco Lover's Bundle features our most indulgent chocolate creations, from triple chocolate chunk to dark chocolate fudge, perfect for satisfying your cravings.",
+    "thumbnail": "https://s3.eu-central-1.amazonaws.com/medusajs.cloud-data-prod-euc1-20241127132538579500000002/e13816f2b6122e01d87/image-choco-2-01JATPC9776G5EBX68AKPFTZRE.png",
+    "collection_id": "pcol_01J99YB7T4FQ0NF2Q3TRE10NE7",
+    "collection": "Chocolate Lovers' Paradise",
+    "category_ids": [
+      "pcat_01J99ZXDMNWXW451192MZ5X1VJ",
+      "pcat_01J99ZZW1X9SZMBJXXN6RGF5PA",
+      "pcat_01J9A041ZEER14NJY0QHWC60BE"
+    ],
+    "categories": ["Gift-Worthy", "Indulgent", "Themed Bundles"],
+    "type": {
+      "id": "ptyp_01J9A1F3PAANMQDWERWV7KEYHX",
+      "value": "Gift Set",
+      "metadata": null,
+      "created_at": "2024-10-03T20:34:43.018Z",
+      "updated_at": "2024-10-03T20:34:43.018Z",
+      "deleted_at": null
+    },
+    "variants": [
+      {
+        "id": "variant_01J9A5BM0F26H0Y7187AN2B0ER",
+        "title": "4-Pack",
+        "sku": "SKU-49",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 27,
+            "original_amount": 27,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 599,
+            "original_amount": 599,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3,
+            "original_amount": 3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 3.99,
+            "original_amount": 3.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZTQEM2YN8HGM2KES3P1BR",
+        "title": "6-Pack",
+        "sku": "SKU-09",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 20,
+            "original_amount": 20,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 2.76,
+            "original_amount": 2.76,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 499,
+            "original_amount": 499,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 2.3,
+            "original_amount": 2.3,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 2.99,
+            "original_amount": 2.99,
+            "currency_code": "usd"
+          }
+        }
+      },
+      {
+        "id": "variant_01J9RZVRYBBGX0AJQW7VT0JX1Y",
+        "title": "8-Pack",
+        "sku": "SKU-04",
+        "prices": {
+          "reg_01J9BARYJPG4N23XB9MDFASMNT": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          },
+          "reg_01JACZXT09S0PZ0WAWP3XNZ2GZ": {
+            "calculated_amount": 43,
+            "original_amount": 43,
+            "currency_code": "dkk"
+          },
+          "reg_01JACZYX07574WZGK2XQTTGY9H": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JACZZMCA3BRNWNWVFRFPAK5R": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD00DV82D38RFKWECVGKRP3": {
+            "calculated_amount": 3.69,
+            "original_amount": 3.69,
+            "currency_code": "eur"
+          },
+          "reg_01JAD0PV4QVJRW8P5R7KA8AY2K": {
+            "calculated_amount": 749,
+            "original_amount": 749,
+            "currency_code": "jpy"
+          },
+          "reg_01JAD0SPD38FP55VPF9SMSEBMB": {
+            "calculated_amount": 3.8,
+            "original_amount": 3.8,
+            "currency_code": "gbp"
+          },
+          "reg_01JAD0X5PN28PSV9SZR9X97FEQ": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "cad"
+          },
+          "reg_01JAD0YFWYBGH9QQE6BM8K405N": {
+            "calculated_amount": 4.99,
+            "original_amount": 4.99,
+            "currency_code": "usd"
+          }
+        }
+      }
+    ]
+  }
+]

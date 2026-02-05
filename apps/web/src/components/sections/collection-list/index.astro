@@ -1,0 +1,18 @@
+---
+import type { ModularPageSection } from "../types";
+import { CollectionList } from "./collection-list-carousel";
+
+type Props = ModularPageSection<"section.collectionList">;
+
+const props = Astro.props;
+---
+
+<section {...props.rootHtmlAttributes}>
+  <CollectionList
+    data={props}
+    countryCode={Astro.locals.countryCode}
+    defaultCountryCode={Astro.locals.defaultCountryCode}
+    pathname={Astro.url.pathname}
+    client:load
+  />
+</section>

@@ -1,0 +1,63 @@
+---
+import { all } from "better-all";
+import CartDetails from "@/components/checkout/cart-details.astro";
+import { CheckoutForm } from "@/components/checkout/checkout-form";
+import Layout from "@/layouts/layout.astro";
+import { getEnrichedCart } from "@/lib/medusa/cart";
+import {
+  listCartPaymentMethods,
+  listCartShippingMethods,
+} from "@/lib/medusa/fullfilment";
+import { loadGlobalData } from "@/lib/sanity";
+
+const { globalData, cart, shippingMethods, paymentMethods } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  cart() {
+    return getEnrichedCart(Astro.cookies);
+  },
+  async shippingMethods() {
+    const cart = await this.$.cart;
+    if (cart?.items?.length) {
+      return listCartShippingMethods(cart.id);
+    }
+  },
+  async paymentMethods() {
+    const cart = await this.$.cart;
+    if (cart?.items?.length && cart.region_id) {
+      return listCartPaymentMethods(cart.region_id);
+    }
+  },
+});
+
+if (!cart || (cart.items?.length || 0) === 0) {
+  return Astro.redirect(`/${Astro.locals.countryCode}`);
+}
+
+const globalDataResult = globalData.result;
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const syncTags = globalData.syncTags || [];
+---
+
+<Layout
+  title="Checkout"
+  globalData={globalDataResult}
+  variant="simple"
+  syncTags={syncTags}
+>
+  <section
+    class="mx-auto flex w-full max-w-max-screen flex-col-reverse gap-8 px-4 py-8 md:flex-row md:gap-20 md:px-8 lg:justify-between lg:pt-5 lg:pb-20"
+  >
+    <CheckoutForm
+      client:load
+      transition:persist="checkout-form"
+      cart={cart}
+      shippingMethods={shippingMethods || []}
+      paymentMethods={paymentMethods || []}
+    />
+    <CartDetails cart={cart} />
+  </section>
+</Layout>

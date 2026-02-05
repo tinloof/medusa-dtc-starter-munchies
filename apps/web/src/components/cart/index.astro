@@ -1,0 +1,43 @@
+---
+import { all } from "better-all";
+import type { Header } from "sanity.types";
+import { getEnrichedCart } from "@/lib/medusa/cart";
+import { getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import { Cart } from "./cart";
+
+interface Props {
+  countryCode: string;
+  addons: Header["cartAddons"];
+}
+
+const { addons, countryCode } = Astro.props;
+
+const { cart, region, products } = await all({
+  cart() {
+    return getEnrichedCart(Astro.cookies);
+  },
+  region() {
+    return getRegion(countryCode);
+  },
+  async products() {
+    const reg = await this.$.region;
+
+    if (!reg) {
+      return null;
+    }
+
+    const addonIds = addons?.map(({ _ref }) => _ref) ?? [];
+
+    return (await getProductsByIds(addonIds, reg.id)).products;
+  },
+});
+---
+
+<Cart
+  client:load
+  cart={cart}
+  region={region}
+  countryCode={countryCode}
+  cartAddons={products}
+/>

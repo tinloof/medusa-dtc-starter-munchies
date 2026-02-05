@@ -1,0 +1,61 @@
+---
+import ButtonLink from "@/components/shared/button-link.astro";
+import { SanityImage } from "@/components/shared/sanity-image";
+import { Body } from "@/components/shared/typography/body";
+import { Heading } from "@/components/shared/typography/heading";
+import type { ModularPageSection } from "../types";
+
+type Props = ModularPageSection<"section.hero">;
+
+const props = Astro.props;
+---
+
+<div
+  class="flex flex-col items-stretch justify-center gap-xs lg:flex-row-reverse"
+>
+  <div
+    class="flex min-h-117.5 w-full flex-col items-center justify-center gap-s rounded-lg bg-secondary px-m py-4xl text-center lg:w-1/2 lg:py-m"
+  >
+    <Heading
+      className="leading-[100%]!"
+      desktopSize="5xl"
+      font="serif"
+      mobileSize="3xl"
+      tag="h1"
+    >
+      {props.title}
+    </Heading>
+    <Body
+      className="max-w-145 text-balance text-center"
+      desktopSize="xl"
+      font="sans"
+      mobileSize="lg"
+    >
+      {props.subtitle}
+    </Body>
+    {props.cta?.link ? (
+      <ButtonLink
+        class="mt-lg"
+        href={props.cta.link}
+        size="md"
+        variant="primary"
+      >
+        {props.cta.label}
+      </ButtonLink>
+    ) : null}
+  </div>
+  {props.image ? (
+    <div class="aspect-square rounded-lg lg:w-1/2">
+      <SanityImage
+        alt="arrow-right"
+        className="aspect-square object-cover object-center"
+        data={props.image}
+        loading='eager'
+        fetchPriority="high"
+        sizes="(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) calc(50vw - 36px), 750px"
+      />
+    </div>
+  ) : (
+    <div class="aspect-square rounded-lg bg-accent lg:w-1/2" />
+  )}
+</div>

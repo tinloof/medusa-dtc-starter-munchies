@@ -1,31 +1,38 @@
 {
-  "name": "medusa-dtc-starter-munchies",
+  "name": "munchies-astro-cf",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "preview:emails": "turbo run preview:emails",
     "check": "ultracite check",
     "fix": "ultracite fix",
-    "typecheck": "turbo run typecheck",
-    "typegen": "turbo run typegen"
+    "typegen": "turbo run typegen",
+    "prepare": "husky || true"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.10",
-    "turbo": "^2.6.3",
+    "@biomejs/biome": "2.3.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "turbo": "^2.7.5",
     "typescript": "5.9.2",
-    "ultracite": "6.4.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3",
-      "@types/react": "19.2.3",
-      "@types/react-dom": "19.2.3"
-    }
+    "ultracite": "7.0.12"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "^6.4.1"
+    },
+    "patchedDependencies": {
+      "astro@5.16.11": "patches/astro@5.16.11.patch"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+      "pnpm dlx ultracite fix"
+    ]
   }
 }

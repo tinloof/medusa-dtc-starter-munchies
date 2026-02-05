@@ -1,0 +1,55 @@
+---
+import { SanityImage } from "../shared/sanity-image";
+import { Body } from "../shared/typography/body";
+import { Label } from "../shared/typography/label";
+import type { ModularPageSection } from "./types";
+
+type Props = ModularPageSection<"section.mediaText">;
+
+const props = Astro.props;
+const position = props.imagePosition;
+---
+
+<section
+  {...props.rootHtmlAttributes}
+  class:list={[
+    "mx-auto flex w-full max-w-max-screen flex-col items-stretch justify-center gap-2 px-m py-xl lg:px-xl lg:py-2xl",
+    {
+      "lg:flex-row": position === "right",
+      "lg:flex-row-reverse": position === "left",
+    },
+  ]}
+>
+  <div
+    class="relative flex min-h-97.5 flex-col items-center justify-start gap-11 rounded-lg border border-accent p-s sm:justify-center lg:w-1/2 lg:py-7xl"
+  >
+    <Label
+      className="whitespace-nowrap sm:absolute sm:left-1/2 sm:top-xl sm:-translate-x-1/2"
+      desktopSize="base"
+      font="display"
+      mobileSize="sm"
+    >
+      {props.title}
+    </Label>
+    <Body
+      className="max-w-145 text-pretty text-center"
+      desktopSize="6xl"
+      font="serif"
+      mobileSize="4xl"
+    >
+      {props.description}
+    </Body>
+  </div>
+  {props.image ? (
+    <div class="aspect-square rounded-lg lg:w-1/2">
+      <SanityImage
+        alt="arrow-right"
+        className="aspect-square"
+        data={props.image}
+        sizes="(max-width: 1024px) calc(100vw - 40px), (max-width: 1440px) calc(50vw - 36px), 700px"
+      />
+    </div>
+  ) : (
+    <div class="aspect-square rounded-lg bg-accent lg:w-1/2" />
+  )}
+</section>

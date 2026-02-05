@@ -7,13 +7,13 @@ export const isEmpty = (input: any) =>
   (isArray(input) && (input as any[]).length === 0) ||
   (typeof input === "string" && input.trim().length === 0);
 
-type ConvertToLocaleParams = {
+interface ConvertToLocaleParams {
   amount: number;
   currency_code: string;
   locale?: string;
   maximumFractionDigits?: number;
   minimumFractionDigits?: number;
-};
+}
 
 export const convertToLocale = ({
   amount,

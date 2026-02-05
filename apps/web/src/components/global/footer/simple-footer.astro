@@ -1,0 +1,22 @@
+---
+import type { Footer as FooterType } from "sanity.types";
+import RichText from "@/components/shared/rich-text.astro";
+import { SanityImage } from "@/components/shared/sanity-image";
+
+type Props = FooterType;
+
+const footer = Astro.props;
+---
+
+<footer class="w-full bg-accent" id="footer">
+  <div
+    class="mx-auto flex w-full max-w-max-screen flex-col gap-xl px-m py-xl text-background lg:px-xl"
+  >
+    {footer.image ? <SanityImage data={footer.image} className="lg:mt-2xl" /> : null}
+    <div class="flex w-full justify-between lg:justify-start lg:gap-6xl">
+      {footer.information?.map(column => column.text ? (
+        <div class="flex flex-col gap-xl w-42.5"><RichText value={column.text} /></div>
+      ) : null)}
+    </div>
+  </div>
+</footer>

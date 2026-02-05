@@ -27,22 +27,22 @@ type SyncDocumentInputs<T> = T extends "product"
       ? ProductCollectionDTO
       : never;
 
-type SanityOptions = {
+interface SanityOptions {
   api_token: string;
   project_id: string;
   api_version: string;
   dataset: "production" | "development";
   type_map?: Record<SyncDocumentTypes, string>;
   studio_url?: string;
-};
+}
 
 type TransformationMap<T> = Record<
   SyncDocumentTypes,
   (data: SyncDocumentInputs<T>) => any
 >;
 
-// biome-ignore lint/complexity/noBannedTypes: biome ignore
-type InjectedDependencies = {};
+// biome-ignore lint/suspicious/noEmptyInterface: -
+interface InjectedDependencies {}
 
 export default class SanityModuleService {
   private client: SanityClient;

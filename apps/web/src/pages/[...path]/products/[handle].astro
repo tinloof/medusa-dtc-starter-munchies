@@ -1,0 +1,107 @@
+---
+import { all } from "better-all";
+import { ProductImagesCarousel } from "@/components/pdp/image-carousel";
+import { ProductInformation } from "@/components/pdp/product-information";
+import { StickyAtc } from "@/components/pdp/sticky-atc";
+import SectionRenderer from "@/components/sections/section-renderer.astro";
+import Preloads from "@/components/shared/preloads.astro";
+import Layout from "@/layouts/layout.astro";
+import { getProductByHandle, getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import { loadGlobalData, loadProductContent } from "@/lib/sanity";
+import { generateOgEndpoint } from "@/lib/utils/generate-og-url";
+
+const { handle } = Astro.params;
+const searchParams = Astro.url.searchParams;
+
+if (!handle) {
+  return Astro.redirect("/404", 404);
+}
+
+const countryCode = Astro.locals.countryCode;
+
+const ogUrl = generateOgEndpoint({ countryCode, handle, type: "products" });
+
+const { globalData, region, product, productContent, addons } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  region() {
+    return getRegion(countryCode);
+  },
+  productContent() {
+    return loadProductContent(handle);
+  },
+  async product() {
+    const region = await this.$.region;
+    if (!region) {
+      return null;
+    }
+    return getProductByHandle(handle, region.id);
+  },
+  async addons() {
+    const region = await this.$.region;
+    if (!region) {
+      return null;
+    }
+
+    const { result: productContent } = await this.$.productContent;
+
+    const ids = productContent?.addons?.products?.map(({ _ref }) => _ref) ?? [];
+
+    return getProductsByIds(ids, region.id);
+  },
+});
+
+if (!(region && product)) {
+  return Astro.redirect("/404", 404);
+}
+
+const globalDataResult = globalData.result;
+const productContentResult = productContent.result;
+
+const syncTags = [
+  ...(globalData.syncTags || []),
+  ...(productContent.syncTags || []),
+];
+
+Astro.response.headers.set("Cache-Tag", syncTags.join(","));
+---
+
+<Layout
+  title={product.title}
+  description={product.description ?? ""}
+  globalData={globalDataResult}
+  syncTags={syncTags}
+  ogImage={ogUrl}
+>
+  <Preloads
+    productImages={product.images?.slice(0, 2).map((img) => ({
+      url: img.url,
+      width: 591,
+      height: 591,
+    }))}
+    slot="preloadedImages"
+  />
+  <section
+    class="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m"
+  >
+    <ProductImagesCarousel client:load product={product} />
+    <ProductInformation
+      client:load
+      product={product}
+      searchParams={searchParams.toString()}
+      content={productContentResult}
+      regionId={region.id}
+      addons={addons ? addons.products : []}
+    />
+  </section>
+
+  {productContentResult?.sections && <SectionRenderer sections={productContentResult.sections} fieldName="body" />}
+  <StickyAtc
+    client:load
+    searchParams={searchParams.toString()}
+    product={product}
+    regionId={region.id}
+  />
+</Layout>

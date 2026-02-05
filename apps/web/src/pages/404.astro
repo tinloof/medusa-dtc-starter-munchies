@@ -1,0 +1,52 @@
+---
+import { all } from "better-all";
+import ButtonLink from "@/components/shared/button-link.astro";
+import { Body } from "@/components/shared/typography/body";
+import { Heading } from "@/components/shared/typography/heading";
+import Layout from "@/layouts/layout.astro";
+import { loadGlobalData, loadNotFound } from "@/lib/sanity";
+
+const { globalData, notFound } = await all({
+  globalData() {
+    return loadGlobalData();
+  },
+  notFound() {
+    return loadNotFound();
+  },
+});
+
+const globalDataResult = globalData.result;
+const notFoundResult = notFound.result;
+
+const syncTags = [...(globalData.syncTags || []), ...(notFound.syncTags || [])];
+---
+
+<Layout title="Not found" globalData={globalDataResult} syncTags={syncTags}>
+  <section
+    class="mx-auto h-[calc(100vh-50px)] max-h-162.5 w-full max-w-max-screen p-m lg:p-xl"
+  >
+    <div
+      class="flex h-full w-full flex-col items-center justify-center gap-4 rounded-lg border border-accent"
+    >
+      <Heading desktopSize="5xl" font="display" mobileSize="3xl" tag="h1">
+        404
+      </Heading>
+      <Body
+        className="font-semibold"
+        desktopSize="xl"
+        font="sans"
+        mobileSize="lg"
+      >
+        {notFoundResult?.text}
+      </Body>
+      <ButtonLink
+        class="mt-2xl"
+        href={notFoundResult?.cta?.link}
+        size="lg"
+        variant="outline"
+      >
+        {notFoundResult?.cta?.label}
+      </ButtonLink>
+    </div>
+  </section>
+</Layout>

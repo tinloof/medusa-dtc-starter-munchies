@@ -1,0 +1,43 @@
+---
+import ProductsGrid from "@/components/plp/products-grid.astro";
+import { Heading } from "@/components/shared/typography/heading";
+import Layout from "@/layouts/layout.astro";
+import { loadGlobalData } from "@/lib/sanity";
+
+const globalData = await loadGlobalData();
+const globalDataResult = globalData.result;
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const syncTags = globalData.syncTags || [];
+---
+
+<Layout title="Shop all" globalData={globalDataResult} syncTags={syncTags}>
+  <section
+    class="mx-auto flex max-w-max-screen flex-col gap-10 px-m pt-26 pb-10 lg:px-xl"
+  >
+    <Heading desktopSize="7xl" font="serif" mobileSize="2xl" tag="h1">
+      Shop all products
+    </Heading>
+    <ProductsGrid />
+  </section>
+</Layout>
+
+<script is:inline>
+  let scrollPosition = 0;
+  let fromPathname = "";
+
+  document.addEventListener("astro:before-preparation", (e) => {
+    fromPathname = e.from.pathname;
+    scrollPosition = window.scrollY;
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    // only restore scroll when staying on same page (filter changes)
+    if (fromPathname === window.location.pathname && scrollPosition > 0) {
+      window.scrollTo(0, scrollPosition);
+    }
+    fromPathname = null;
+    scrollPosition = 0;
+  });
+</script>

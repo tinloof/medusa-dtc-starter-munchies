@@ -25,10 +25,10 @@ const subscribeCustomerToNewsletter = createStep(
 
     const metadata: MetadataType = { newsletter: true };
 
-    type NewsletterStepResponse = {
+    interface NewsletterStepResponse {
       id: string;
       compensate: "updated" | "created" | "nothing";
-    };
+    }
 
     let response: NewsletterStepResponse;
 

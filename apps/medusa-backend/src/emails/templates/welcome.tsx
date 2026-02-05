@@ -5,9 +5,9 @@ import Layout from "../components/layout";
 import ProductsList from "../components/products-list";
 import { title } from "../components/style";
 
-type WelcomeEmailProps = {
+interface WelcomeEmailProps {
   products: ProductDTO[];
-};
+}
 
 function Welcome({ products }: WelcomeEmailProps) {
   return (

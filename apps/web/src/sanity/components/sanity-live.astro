@@ -1,0 +1,63 @@
+---
+interface Props {
+  syncTags?: string[];
+}
+
+const { syncTags = [] } = Astro.props;
+---
+
+<sanity-live data-sync-tags={JSON.stringify(syncTags)}></sanity-live>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+  import type { LiveEvent } from "@sanity/client";
+  import { liveSanityClient } from "@/lib/sanity/live";
+
+  class SanityLive extends HTMLElement {
+    private subscription: { unsubscribe: () => void } | null = null;
+
+    connectedCallback() {
+      const syncTags: string[] = JSON.parse(this.dataset.syncTags || "[]");
+      this.subscribe(syncTags);
+    }
+
+    disconnectedCallback() {
+      this.subscription?.unsubscribe();
+      this.subscription = null;
+    }
+
+    private subscribe(syncTags: string[]) {
+      this.subscription?.unsubscribe();
+
+      const syncTagSet = new Set(syncTags);
+      const shouldNavigate = syncTagSet.size > 0;
+
+      this.subscription = liveSanityClient.live.events().subscribe({
+        next: (event: LiveEvent) => {
+          if (event.type === "message" && event.tags?.length) {
+            fetch("/api/revalidate", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ tags: event.tags }),
+            })
+              .then(() => {
+                if (
+                  shouldNavigate &&
+                  event.tags.some((tag: string) => syncTagSet.has(tag))
+                ) {
+                  return navigate(window.location.href, { history: "replace" });
+                }
+              })
+              .catch((err: Error) =>
+                console.debug("[SanityLive] revalidation failed:", err.message)
+              );
+          }
+        },
+        error: (err: Error) =>
+          console.debug("[SanityLive] subscription error:", err.message),
+      });
+    }
+  }
+
+  customElements.define("sanity-live", SanityLive);
+</script>

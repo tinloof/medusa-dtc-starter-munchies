@@ -1,0 +1,46 @@
+---
+import type { HttpTypes } from "@medusajs/types";
+import { convertToLocale } from "@/lib/utils/medusa";
+import { Body } from "../shared/typography/body";
+import { Heading } from "../shared/typography/heading";
+
+interface Props {
+  cart: HttpTypes.StoreCart;
+}
+
+const { cart } = Astro.props;
+
+const summaryItems = [
+  { amount: cart.subtotal, label: "Subtotal" },
+  { amount: cart.tax_total, label: "Taxes" },
+  { amount: cart.shipping_total, label: "Shipping" },
+];
+
+const totalDisplay = convertToLocale({
+  amount: cart.total,
+  currency_code: cart.currency_code,
+});
+---
+
+{summaryItems.map(item => {
+  const display = convertToLocale({amount: item.amount, currency_code: cart.currency_code})
+  return (
+    <div class="flex items-center justify-between">
+      <Body font="sans" mobileSize="lg">
+        {item.label}
+      </Body>
+      <Body font="sans" mobileSize="lg">
+        {display}
+      </Body>
+    </div>
+  )
+})}
+<div class="h-px w-full bg-accent" />
+<div class="flex items-center justify-between">
+  <Heading desktopSize="base" font="sans" mobileSize="base" tag="h3">
+    Total
+  </Heading>
+  <Heading desktopSize="base" font="sans" mobileSize="base" tag="h3">
+    {totalDisplay}
+  </Heading>
+</div>

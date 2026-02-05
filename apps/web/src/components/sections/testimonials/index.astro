@@ -1,0 +1,12 @@
+---
+import type { ModularPageSection } from "../types";
+import { TestimonialsCarousel } from "./testimonials-carousel";
+
+type Props = ModularPageSection<"section.testimonials">;
+
+const props = Astro.props;
+---
+
+<section {...props.rootHtmlAttributes}>
+  <TestimonialsCarousel client:load {...props} />
+</section>

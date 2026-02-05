@@ -5,9 +5,9 @@ import Layout from "../components/layout";
 import { title } from "../components/style";
 import { mockOrder } from "../mock-data";
 
-type ShippingConfirmationEmailProps = {
+interface ShippingConfirmationEmailProps {
   order: OrderDTO;
-};
+}
 
 function ShippingConfirmation({ order }: ShippingConfirmationEmailProps) {
   return (

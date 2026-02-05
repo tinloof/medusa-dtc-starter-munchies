@@ -1,0 +1,30 @@
+import type { CheckboxProps } from "@radix-ui/react-checkbox";
+import { Indicator, Root } from "@radix-ui/react-checkbox";
+import { Icon } from "@/generated/Icon";
+import { CHECKBOX } from "@/generated/icons";
+
+export function Checkbox({
+  checked,
+  onCheckedChange,
+}: Pick<CheckboxProps, "checked" | "onCheckedChange">) {
+  return (
+    <div className="flex items-center">
+      <Root
+        checked={checked}
+        className="flex size-4 appearance-none items-center justify-center rounded border border-accent outline-none data-[state=checked]:bg-accent"
+        id="billingAddressSameAsShippingAddress"
+        onCheckedChange={onCheckedChange}
+      >
+        <Indicator>
+          <Icon className="size-4" href={CHECKBOX} />
+        </Indicator>
+      </Root>
+      <label
+        className="pl-3.75 text-[15px] leading-none"
+        htmlFor="billingAddressSameAsShippingAddress"
+      >
+        Billing address same as shipping address
+      </label>
+    </div>
+  );
+}

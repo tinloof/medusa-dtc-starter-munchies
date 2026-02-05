@@ -1,0 +1,14 @@
+---
+import type { Header as HeaderType } from "sanity.types";
+import DefaultHeader from "./default-header.astro";
+import SimpleHeader from "./simple-header.astro";
+
+interface Props {
+  header: HeaderType;
+  variant?: "simple" | "default";
+}
+
+const { header, variant = -"default" } = Astro.props;
+---
+
+{variant === "default" ? <DefaultHeader {...header} /> : <SimpleHeader />}

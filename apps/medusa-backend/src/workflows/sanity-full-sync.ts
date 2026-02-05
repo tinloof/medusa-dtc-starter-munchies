@@ -7,11 +7,11 @@ import { sanityCategorySyncWorkflow } from "./sanity-sync-categories";
 import { sanityCollectionSyncWorkflow } from "./sanity-sync-collections";
 import { sanityProductSyncWorkflow } from "./sanity-sync-products";
 
-type Input = {
+interface Input {
   category_ids?: string[];
   product_ids?: string[];
   collection_ids?: string[];
-};
+}
 
 const id = "sanity-full-sync";
 

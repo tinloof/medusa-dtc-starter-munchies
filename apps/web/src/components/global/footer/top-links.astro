@@ -1,0 +1,43 @@
+---
+import type { Footer as FooterType } from "sanity.types";
+import LocalizedLink from "@/components/shared/localized-link.astro";
+import RichText from "@/components/shared/rich-text.astro";
+import { Body } from "@/components/shared/typography/body";
+
+type Props = FooterType;
+
+const { information, linkList } = Astro.props;
+---
+
+<div class="flex flex-col items-start justify-between gap-2xl lg:flex-row">
+  <div class="flex w-full justify-between lg:justify-start lg:gap-6xl">
+    {information?.map((column) => {
+      if (!column.text) {
+        return null;
+      }
+      return (
+        <div class="flex w-42.5 flex-col gap-xl">
+          <RichText value={column.text} />
+        </div>
+      );
+    })}
+  </div>
+  <div class="flex w-full justify-between lg:justify-end lg:gap-6xl">
+    {linkList?.map((list) => (
+      <div class="flex min-w-42.5 flex-col gap-xs lg:min-w-49">
+        {list.links?.map((link) => {
+          if (!link.link) {
+            return null;
+          }
+          return (
+          <LocalizedLink href={link.link}>
+              <Body desktopSize="base" font="sans" mobileSize="sm">
+                {link.label}
+              </Body>
+            </LocalizedLink>
+          );
+        })}
+      </div>
+    ))}
+  </div>
+</div>

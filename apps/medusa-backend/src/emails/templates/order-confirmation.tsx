@@ -8,9 +8,9 @@ import { title } from "../components/style";
 import { mockOrder } from "../mock-data";
 import { convertToLocale } from "../utils";
 
-type OrderConfirmationEmailProps = {
+interface OrderConfirmationEmailProps {
   order: OrderDTO;
-};
+}
 
 function OrderConfirmation({ order }: OrderConfirmationEmailProps) {
   const convertMoney = (amount: BigNumberValue) => {

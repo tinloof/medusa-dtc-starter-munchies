@@ -1,0 +1,20 @@
+import type { Block } from "astro-portabletext/types";
+
+export function getBlocksToc(blocks: Block[]) {
+  if (!blocks) {
+    return [];
+  }
+
+  return blocks
+    .map((block) => {
+      if (block.style?.length === 2 && block.style?.[0] === "h") {
+        return {
+          block,
+          isSub: block.style?.[1] !== "2",
+        } as any;
+      }
+
+      return null;
+    })
+    .filter(Boolean) as { block: Block; isSub: boolean }[];
+}

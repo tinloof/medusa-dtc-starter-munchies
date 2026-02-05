@@ -1,0 +1,53 @@
+---
+import type { Header } from "sanity.types";
+import Cart from "@/components/cart/index.astro";
+import RichText from "@/components/shared/rich-text.astro";
+import { Body } from "@/components/shared/typography/body";
+import { Icon } from "@/generated/Icon";
+import { CART } from "@/generated/icons";
+import { listCountries } from "@/lib/medusa/regions";
+import { HeaderClient } from "./header-client";
+import { AnnouncementBar } from "./parts/announcement-bar";
+import { BottomBorder } from "./parts/bottom-border";
+
+type Props = Header;
+
+const header = Astro.props;
+
+const countries = await listCountries();
+---
+
+<header
+  class="sticky top-0 z-50 flex w-full flex-col items-center bg-background"
+>
+  {header.showAnnouncement && (
+    <AnnouncementBar client:load transition:persist="announcement-bar">
+      {header.announcementText && (
+        <Body desktopSize="sm" font="sans" mobileSize="xs">
+          <RichText value={header.announcementText} />
+        </Body>
+      )}
+    </AnnouncementBar>
+  )}
+  <HeaderClient
+    client:load
+    transition:persist="navigation"
+    header={header}
+    countries={countries}
+  >
+    <Cart
+      addons={header.cartAddons}
+      server:defer
+      slot="cartNode"
+      countryCode={Astro.locals.countryCode}
+    >
+      <div class="relative h-10 w-10 p-2" slot="fallback">
+        <Icon href={CART} />
+      </div>
+    </Cart>
+  </HeaderClient>
+
+  <div class="relative z-30 w-screen" id="navigation-portal" />
+
+  <BottomBorder client:load className="lg:hidden" />
+</header>

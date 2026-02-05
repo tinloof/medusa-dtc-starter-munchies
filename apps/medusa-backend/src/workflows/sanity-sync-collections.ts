@@ -11,9 +11,9 @@ import type SanityModuleService from "../modules/sanity/service";
 const step = createStep;
 const wf = createWorkflow;
 
-type Input = {
+interface Input {
   collection_ids?: string[];
-};
+}
 
 const syncStep = step(
   { name: "syncStep", async: true },

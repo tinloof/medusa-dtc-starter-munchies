@@ -1,0 +1,37 @@
+---
+import { getProductsByIds } from "@/lib/medusa/products";
+import { getRegion } from "@/lib/medusa/regions";
+import type { ModularPageSection } from "../types";
+import { FeaturedProductsCarousel } from "./featured-products-carousel";
+
+type Props = ModularPageSection<"section.featuredProducts">;
+
+const props = Astro.props;
+
+const region = await getRegion(Astro.locals.countryCode);
+
+if (!region) {
+  console.warn("No region found");
+  return null;
+}
+
+const ids =
+  props.products
+    ?.map((product) => product?._ref)
+    .filter((id) => id !== undefined) || [];
+
+if (!ids || ids.length === 0) {
+  return null;
+}
+
+const { products } = await getProductsByIds(ids, region.id);
+---
+
+<section {...props.rootHtmlAttributes}>
+  <FeaturedProductsCarousel
+    client:load
+    cta={props.cta}
+    title={props.title}
+    products={products}
+  />
+</section>

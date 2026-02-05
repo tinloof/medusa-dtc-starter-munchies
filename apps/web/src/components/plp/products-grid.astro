@@ -1,0 +1,72 @@
+---
+import type { HttpTypes } from "@medusajs/types";
+import { all } from "better-all";
+import { getRegion } from "@/lib/medusa/regions";
+import { loadDictionary } from "@/lib/sanity";
+import { searchProducts } from "@/lib/search/client";
+import { ProductCard } from "../shared/product-card";
+import { Body } from "../shared/typography/body";
+import { Heading } from "../shared/typography/heading";
+import ClearAll from "./clear-all.astro";
+import Refinement from "./refinement.astro";
+
+const url = Astro.url.toString();
+
+const searchParams = new URL(url).searchParams;
+
+const collection = searchParams.get("collection") || "";
+const category = searchParams.get("category") || "";
+
+const {
+  region,
+  productsDictionary,
+  results: { hits: products, facets },
+} = await all({
+  region() {
+    return getRegion(Astro.locals.countryCode);
+  },
+  productsDictionary() {
+    return loadDictionary();
+  },
+  async results() {
+    return searchProducts(Astro.locals.runtime.env.SEARCH, {
+      limit: 20,
+      region_id: (await this.$.region)?.id,
+      collection_id: collection,
+      category_id: category,
+    });
+  },
+});
+
+if (!region) {
+  console.warn("No region found");
+  return Astro.redirect("/404", 404);
+}
+
+const dictionaryResult = productsDictionary.result;
+
+const hasFilters = collection || category;
+---
+
+<div class="flex flex-col gap-6">
+  <!-- Refinement -->
+  <Refinement facets={facets} />
+  {products.length === 0 && (
+    <div class="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
+      <Heading font="sans" mobileSize="xs" tag="h2">
+        {dictionaryResult?.noResultsText}
+      </Heading>
+      <Body font="sans" mobileSize="lg">
+        {dictionaryResult?.noResultsDescription}
+      </Body>
+      {hasFilters && (
+        <ClearAll variant="button" />
+      )}
+    </div>
+   )}
+  <div class="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
+    {products.map(product => (
+      <ProductCard product={product as unknown as HttpTypes.StoreProduct} size="PLP" />
+    ))}
+  </div>
+</div>
