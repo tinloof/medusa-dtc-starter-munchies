@@ -22,14 +22,14 @@ const props = Astro.props;
         <Video
           aspectRatio="16 / 9"
           className="h-full w-full rounded-lg object-cover"
-          poster={props.video.poster}
-          videoUrl={props.video.url}
           fetchPriority="high"
           imgProps={{
             sizes:"(max-width: 1440px) calc(100vw - 64px), 1500px",
             loading: "eager",
             fetchPriority: "high"
           }}
+          poster={props.video.poster}
+          videoUrl={props.video.url}
         />
       </div>
     </LargeHero>

@@ -27,7 +27,7 @@ const { variant } = Astro.props;
 ---
 
 {variant === "button" ? (
-  <ButtonLink href={getClearUrl()} size="sm" variant="outline" class="mt-3">
+  <ButtonLink class="mt-3" href={getClearUrl()} size="sm" variant="outline">
     Clear filters
   </ButtonLink>
 ) : (

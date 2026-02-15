@@ -52,22 +52,22 @@ const productPreloads = productImages?.slice(0, 2).map((img) => ({
 
 {heroSrcSet && heroSizes && (
   <link
-    rel="preload"
     as="image"
-    imagesrcset={heroSrcSet}
-    imagesizes={heroSizes}
     fetchpriority="high"
+    imagesizes={heroSizes}
+    imagesrcset={heroSrcSet}
+    rel="preload"
     slot="preloadedImages"
   />
 )}
 
 {productPreloads?.map((preload, i) => (
   <link
-    rel="preload"
     as="image"
-    imagesrcset={preload.srcSet}
-    imagesizes={preload.sizes}
     fetchpriority={i === 0 ? "high" : "low"}
+    imagesizes={preload.sizes}
+    imagesrcset={preload.srcSet}
+    rel="preload"
     slot="preloadedImages"
   />
 ))}

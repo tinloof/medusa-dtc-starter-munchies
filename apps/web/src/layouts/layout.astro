@@ -92,9 +92,7 @@ const visualEditingEnabled =
       pathname={Astro.url.pathname}
     />
     {globalData.header && <Header header={globalData.header} variant={variant} />}
-    <main class="flex-1">
-      <slot />
-    </main>
+    <main class="flex-1"><slot /></main>
     {globalData.footer && <Footer footer={globalData.footer} variant={variant} />}
     <SanityLive syncTags={syncTags} />
     <VisualEditing enabled={visualEditingEnabled} />

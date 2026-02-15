@@ -86,7 +86,7 @@ Astro.response.headers.set("Cache-Tag", syncTags.join(","));
   <section
     class="mx-auto flex max-w-max-screen flex-col items-start justify-start gap-s lg:flex-row lg:gap-xs lg:px-xl lg:py-m"
   >
-    <ProductImagesCarousel client:load product={product} />
+    <ProductImagesCarousel client :load product={product} />
     <ProductInformation
       client:load
       product={product}
@@ -97,7 +97,7 @@ Astro.response.headers.set("Cache-Tag", syncTags.join(","));
     />
   </section>
 
-  {productContentResult?.sections && <SectionRenderer sections={productContentResult.sections} fieldName="body" />}
+  {productContentResult?.sections && <SectionRenderer fieldName="body" sections={productContentResult.sections} />}
   <StickyAtc
     client:load
     searchParams={searchParams.toString()}

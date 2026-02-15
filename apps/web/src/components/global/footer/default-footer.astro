@@ -12,10 +12,10 @@ const footer = Astro.props;
 ---
 
 <NewsLetter {...footer} client:load>
-  {footer.signup_success ? <RichText value={footer.signup_success} slot="successNode" /> : null}
-  {footer.copy ? <RichText value={footer.copy} slot="copyNode" /> : null}
-  {footer.footnote ? <RichText value={footer.footnote} slot="footnoteNode" /> : null}
-  {footer.signup_error ? <RichText value={footer.signup_error}slot="errorNode" /> : null}
+  {footer.signup_success ? <RichText slot="successNode" value={footer.signup_success} /> : null}
+  {footer.copy ? <RichText slot="copyNode" value={footer.copy} /> : null}
+  {footer.footnote ? <RichText slot="footnoteNode" value={footer.footnote} /> : null}
+  {footer.signup_error ? <RichText slot="errorNode" value={footer.signup_error} /> : null}
 </NewsLetter>
 
 <footer class="w-full bg-accent" id="footer">

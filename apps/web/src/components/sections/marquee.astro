@@ -11,7 +11,7 @@ const props = Astro.props;
   class="mx-auto flex max-w-max-screen items-center gap-20 overflow-hidden px-xl py-2xl"
   {...props.rootHtmlAttributes}
 >
-  {Array(2).fill(null).map(() => (
+  {new Array(2).fill(null).map(() => (
     <div class="flex shrink-0 animate-marquee items-center justify-start gap-20 [--duration:15s] [--gap:5rem]">
       {props.text?.map((_item) => (
         <Label

@@ -19,5 +19,33 @@
         "useKeyWithClickEvents": "off"
       }
     }
-  }
+  },
+  "formatter": {
+    "includes": ["!**/*.astro"]
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            // Biome doesn't understand Astro frontmatter scoping — variables
+            // defined between --- fences appear "undeclared" in the template.
+            "noUndeclaredVariables": "off",
+            // Astro doesn't use a virtual DOM; keys on iterable elements are unnecessary.
+            "useJsxKeyInIterable": "off"
+          },
+          "suspicious": {
+            // False positive: React components used in Astro templates accept
+            // className as a prop — this is correct for the React integration.
+            "noReactSpecificProps": "off"
+          },
+          "a11y": {
+            // Biome can't detect <slot /> as valid anchor content in Astro.
+            "useAnchorContent": "off"
+          }
+        }
+      }
+    }
+  ]
 }
