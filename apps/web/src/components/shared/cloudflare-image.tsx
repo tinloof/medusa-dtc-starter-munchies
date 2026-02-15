@@ -51,7 +51,7 @@ export function buildCloudflareUrl({
     `format=${format}`,
   ].join(",");
 
-  return `https://munchies.million-tinloof.com/cdn-cgi/image/${options}/${src}`;
+  return `https://munchies.tinloof.com/cdn-cgi/image/${options}/${src}`;
 }
 
 interface GenerateSrcSetOptions {
