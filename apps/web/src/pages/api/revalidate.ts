@@ -21,9 +21,6 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    console.info("CF_ZONE_ID", CF_ZONE_ID)
-    console.info("CF_TOKEN", CF_TOKEN)
-
     if (!(CF_ZONE_ID && CF_TOKEN)) {
       return Response.json(
         { message: "Cloudflare credentials not configured" },
