@@ -13,7 +13,7 @@ export default async function productRevalidationHandler({
     });
 
     if (product) {
-      await fetch("https://munchies.million-tinloof.com/api/revalidate", {
+      await fetch("https://munchies.tinloof.com/api/revalidate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
