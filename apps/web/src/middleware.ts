@@ -107,7 +107,12 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
     });
   }
 
-  // MISS - return streaming response immediately, cache in background
+  // MISS - stream response immediately, cache in background.
+  // Note: Cache-Tag header on MISS responses may be incomplete because tags
+  // are collected via addTags() as components render during streaming. The full
+  // set of tags is only available after the body is fully consumed in cacheWork.
+  // The cached entry will have the complete Cache-Tag. Buffering the body before
+  // returning would fix this but would sacrifice streaming on cache misses.
   const originalResponse = await next();
 
   const cacheControl = originalResponse.headers.get("Cache-Control");

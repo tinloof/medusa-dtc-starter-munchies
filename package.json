@@ -31,7 +31,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx,astro}": [
       "pnpm dlx ultracite fix"
     ]
   }
