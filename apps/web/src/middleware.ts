@@ -1,5 +1,5 @@
-import { defineMiddleware, sequence } from "astro:middleware";
 import type { RequestContext } from "@/lib/context";
+import { defineMiddleware, sequence } from "astro:middleware";
 import config from "./config";
 import { getTags, requestContext } from "./lib/context";
 
@@ -113,7 +113,10 @@ const cachingMiddleware = defineMiddleware(async (context, next) => {
   // set of tags is only available after the body is fully consumed in cacheWork.
   // The cached entry will have the complete Cache-Tag. Buffering the body before
   // returning would fix this but would sacrifice streaming on cache misses.
+  const now = performance.now();
   const originalResponse = await next();
+  const end = performance.now();
+  console.log(`[cacheMiddleware] response generated in ${end - now}ms for ${pathname}`);
 
   const cacheControl = originalResponse.headers.get("Cache-Control");
   const shouldCache =

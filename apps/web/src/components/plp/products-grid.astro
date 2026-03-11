@@ -17,6 +17,8 @@ const searchParams = new URL(url).searchParams;
 const collection = searchParams.get("collection") || "";
 const category = searchParams.get("category") || "";
 
+const now = performance.now();
+
 const {
   region,
   productsDictionary,
@@ -38,6 +40,9 @@ const {
   },
 });
 
+const end = performance.now();
+console.log(`[products] products-grid fetch took ${end - now}ms`);
+
 if (!region) {
   console.warn("No region found");
   return Astro.redirect("/404", 404);
@@ -51,22 +56,27 @@ const hasFilters = collection || category;
 <div class="flex flex-col gap-6">
   <!-- Refinement -->
   <Refinement facets={facets} />
-  {products.length === 0 && (
-    <div class="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
-      <Heading font="sans" mobileSize="xs" tag="h2">
-        {dictionaryResult?.noResultsText}
-      </Heading>
-      <Body font="sans" mobileSize="lg">
-        {dictionaryResult?.noResultsDescription}
-      </Body>
-      {hasFilters && (
-        <ClearAll variant="button" />
-      )}
-    </div>
-   )}
+  {
+    products.length === 0 && (
+      <div class="flex w-full flex-1 flex-col items-start gap-xs py-2xl">
+        <Heading font="sans" mobileSize="xs" tag="h2">
+          {dictionaryResult?.noResultsText}
+        </Heading>
+        <Body font="sans" mobileSize="lg">
+          {dictionaryResult?.noResultsDescription}
+        </Body>
+        {hasFilters && <ClearAll variant="button" />}
+      </div>
+    )
+  }
   <div class="grid grid-cols-2 gap-x-2 gap-y-4 lg:grid-cols-3">
-    {products.map(product => (
-      <ProductCard product={product as unknown as HttpTypes.StoreProduct} size="PLP" />
-    ))}
+    {
+      products.map((product) => (
+        <ProductCard
+          product={product as unknown as HttpTypes.StoreProduct}
+          size="PLP"
+        />
+      ))
+    }
   </div>
 </div>

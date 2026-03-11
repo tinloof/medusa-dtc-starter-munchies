@@ -4,7 +4,10 @@ import { Heading } from "@/components/shared/typography/heading";
 import Layout from "@/layouts/layout.astro";
 import { loadGlobalData } from "@/lib/sanity";
 
+const now = performance.now();
 const globalData = await loadGlobalData();
+const end = performance.now();
+console.log(`[products] loadGlobalData took ${end - now}ms`);
 const globalDataResult = globalData.result;
 
 Astro.response.headers.set("Cache-Control", "private, no-store");
