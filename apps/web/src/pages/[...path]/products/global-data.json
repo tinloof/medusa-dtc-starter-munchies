@@ -1,0 +1,458 @@
+{
+  "query": "{\n  \"fallbackOGImage\": *[_type == \"settings\"][0].fallbackOgImage,\n  \"footer\": *[_id == \"footer\" && _type == \"footer\"][0],\n  \"header\": *[_id == \"header\" && _type == \"header\"][0],\n}",
+  "result": {
+    "fallbackOGImage": {
+      "_type": "ogImage",
+      "asset": {
+        "_ref": "image-0ebbdf446bb2d4e4287c722fb82fe385d13d6dea-2400x1260-png",
+        "_type": "reference"
+      }
+    },
+    "footer": {
+      "_createdAt": "2024-10-04T00:53:22Z",
+      "_id": "footer",
+      "_rev": "oy45VppC0QW965jKylFvil",
+      "_system": {
+        "base": {
+          "id": "footer",
+          "rev": "Rt9uHO4Zk4FI9Hr8AZN3nV"
+        }
+      },
+      "_type": "footer",
+      "_updatedAt": "2026-01-31T21:18:31Z",
+      "bottomLinks": [
+        {
+          "_key": "2c84c3378c5a",
+          "_type": "cta",
+          "label": "SHIPPING & DELIVERY",
+          "link": "/shipping-delivery"
+        },
+        {
+          "_key": "5f7fea7da812",
+          "_type": "cta",
+          "label": "PRIVACY POLICY",
+          "link": "/privacy-policy"
+        }
+      ],
+      "button": "Subscribe",
+      "copy": [
+        {
+          "_key": "593ca9a346cf",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f9740df044ee0",
+              "_type": "span",
+              "marks": [],
+              "text": "Subscribe to get 10% off."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "footnote": [
+        {
+          "_key": "f35e1f9ca85f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f5580f20ff240",
+              "_type": "span",
+              "marks": [],
+              "text": "By signing up to receive emails from Munchies, you agree to our "
+            },
+            {
+              "_key": "48c077292963",
+              "_type": "span",
+              "marks": [
+                "4bc7b2e36913"
+              ],
+              "text": "privacy policy"
+            },
+            {
+              "_key": "88023807681a",
+              "_type": "span",
+              "marks": [],
+              "text": ". We treat your info responsibly."
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "4bc7b2e36913",
+              "_type": "link",
+              "href": "/privacy-policy"
+            }
+          ],
+          "style": "normal"
+        }
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8c8dbb9e6e67e0c14688be522f0eabe164673216-5504x529-png",
+          "_type": "reference"
+        }
+      },
+      "information": [
+        {
+          "_key": "ab87624d96c0",
+          "text": [
+            {
+              "_key": "ef58afa99909",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "bb1f10ca2a310",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "123 Maple Street,\nSpringfield, IL 62704\n\n(555) 123-4567"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        {
+          "_key": "07b2c44f3e87",
+          "text": [
+            {
+              "_key": "910747f4c7b3",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "0340e48f047e0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Monday - Friday:\n12:00 PM - 10:00 PM\n\nSaturday - Sunday:\n10:00 AM - 6:00 PM"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        }
+      ],
+      "linkList": [
+        {
+          "_key": "f383abd4730f",
+          "links": [
+            {
+              "_key": "800d6eacff87",
+              "_type": "cta",
+              "label": "Shop all",
+              "link": "/products"
+            },
+            {
+              "_key": "a126e139abd4",
+              "_type": "cta",
+              "label": "FAQs",
+              "link": "/faqs"
+            }
+          ]
+        },
+        {
+          "_key": "3b2f54e4651b",
+          "links": [
+            {
+              "_key": "233734c1390d",
+              "_type": "cta",
+              "label": "Cookies club ",
+              "link": "/cookies-club "
+            },
+            {
+              "_key": "485c8b391a9d",
+              "_type": "cta",
+              "label": "Chocolate based",
+              "link": "/products?category=pcat_01J99ZKN6F9DS919ZWQSD6S45B"
+            },
+            {
+              "_key": "58e916fe5a7b",
+              "_type": "cta",
+              "label": "Fruit & Spice",
+              "link": "/products?category=pcat_01J99ZN815T2TBR6ZS6KYQFMJD"
+            },
+            {
+              "_key": "17f1d2f1aeeb",
+              "_type": "cta",
+              "label": "Crunchy",
+              "link": "/products?category=pcat_01J99ZQ44DDAPBZ3RWHNGN7CV7"
+            }
+          ]
+        }
+      ],
+      "placeholder": "Email address",
+      "signup_error": [
+        {
+          "_key": "bb7a02927458",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "477482a101c30",
+              "_type": "span",
+              "marks": [],
+              "text": "There has been a system error. Please, send your form again."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "signup_success": [
+        {
+          "_key": "4dbb0279099d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d81905c61d570",
+              "_type": "span",
+              "marks": [],
+              "text": "You’re on the list!\nCheck your email to receive the discount code."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "socialLinks": [
+        {
+          "_key": "f30cbacbd406",
+          "_type": "cta",
+          "label": "Twitter ( X ) ",
+          "link": "https://x.com/medusajs"
+        },
+        {
+          "_key": "b95d596243da",
+          "_type": "cta",
+          "label": "github",
+          "link": "https://github.com/medusajs/medusa"
+        },
+        {
+          "_key": "86deb0794487",
+          "_type": "cta",
+          "label": "LINKEDIN",
+          "link": "https://www.linkedin.com/company/medusajs/"
+        }
+      ]
+    },
+    "header": {
+      "_createdAt": "2024-10-07T09:21:33Z",
+      "_id": "header",
+      "_rev": "Rt9uHO4Zk4FI9Hr8AYQz44",
+      "_system": {
+        "base": {
+          "id": "header",
+          "rev": "oy45VppC0QW965jKyjzHgu"
+        }
+      },
+      "_type": "header",
+      "_updatedAt": "2026-01-31T16:45:58Z",
+      "announcementText": [
+        {
+          "_key": "d39c431d783d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c33a1d89fbf10",
+              "_type": "span",
+              "marks": [],
+              "text": "Free shipping on all orders within Denmark"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "cartAddons": [
+        {
+          "_key": "49c14117df21",
+          "_ref": "prod_01J9A561A256YTG5MAWT0QSH1T",
+          "_type": "reference"
+        },
+        {
+          "_key": "ef819878e9cf",
+          "_ref": "prod_01J9A51JXCGGCWQZYYACDZ2V0H",
+          "_type": "reference"
+        },
+        {
+          "_key": "4111cfdc22bc",
+          "_ref": "prod_01J9A561A256YTG5MAWT0QSH1T",
+          "_type": "reference"
+        }
+      ],
+      "navigation": [
+        {
+          "_key": "243fb10367ff",
+          "_type": "dropdown",
+          "cards": [
+            {
+              "_key": "2634408a58e3",
+              "cta": {
+                "_type": "cta",
+                "label": "Shop now",
+                "link": "/products/two-chip-chocolate-chip"
+              },
+              "image": {
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-4fb89f1fe761e848013df97c97c49d6b65a49ec8-880x880-png",
+                  "_type": "reference"
+                }
+              },
+              "title": "Two Chip Chocolate Chip"
+            },
+            {
+              "_key": "0a8ea7046bcb",
+              "cta": {
+                "_type": "cta",
+                "label": "Shop now",
+                "link": "/products/caramel-chocolate-chip"
+              },
+              "image": {
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-ed633c10af8ba7cae31f0881b21fcdd5cea0504f-880x880-png",
+                  "_type": "reference"
+                }
+              },
+              "title": "Caramel chocolate chip"
+            },
+            {
+              "_key": "d7f50d2a900c",
+              "cta": {
+                "_type": "cta",
+                "label": "Shop now",
+                "link": "/products/dark-chocolate-chocolate-chip"
+              },
+              "image": {
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-dc0bca41b2bc908999d9481c07a3b89b96b2d258-880x880-png",
+                  "_type": "reference"
+                }
+              },
+              "title": "Dark Chocolate Chocolate Chip"
+            }
+          ],
+          "columns": [
+            {
+              "_key": "589a9da3a0eb",
+              "links": [
+                {
+                  "_key": "7eb3d920f36a",
+                  "_type": "link",
+                  "label": "Variety packs",
+                  "link": "/products?category=pcat_01J9A03BQRK5NA841H510H5VBD"
+                },
+                {
+                  "_key": "908c7c715981",
+                  "_type": "link",
+                  "label": "Signature cookie assortment",
+                  "link": "/products?category=pcat_01J99ZNSG85DN960CXAR0E46M2"
+                },
+                {
+                  "_key": "e938b593feb0",
+                  "_type": "link",
+                  "label": "Chocolate lovers",
+                  "link": "/products?collection=pcol_01J99YB7T4FQ0NF2Q3TRE10NE7"
+                },
+                {
+                  "_key": "17bc674610a5",
+                  "_type": "link",
+                  "label": "Seasonal sensations",
+                  "link": "/products?collection=pcol_01J99YDGWNSBHKRYR1JWAANMCB"
+                }
+              ],
+              "title": "Featured"
+            },
+            {
+              "_key": "a63bb1a16f0f",
+              "links": [
+                {
+                  "_key": "4fcf7a705ef0",
+                  "_type": "link",
+                  "label": "Matcha Dream",
+                  "link": "/products/matcha-dream"
+                },
+                {
+                  "_key": "ff2f485321e2",
+                  "_type": "link",
+                  "label": "Dark Chocolate Peanut Butter",
+                  "link": "/products/dark-chocolate-peanut-butter-chip"
+                },
+                {
+                  "_key": "84f105db80db",
+                  "_type": "link",
+                  "label": "Dark Chocolate Chocolate Chip",
+                  "link": "/products/dark-chocolate-chocolate-chip"
+                },
+                {
+                  "_key": "7f4dc6c12ba4",
+                  "_type": "link",
+                  "label": "Special Fall Cinnamon",
+                  "link": "/products/special-fall-cinnamon"
+                },
+                {
+                  "_key": "9b5bd7cabe60",
+                  "_type": "link",
+                  "label": "Two Chip Chocolate Chip",
+                  "link": "/products/two-chip-chocolate-chip"
+                },
+                {
+                  "_key": "fab23b7e9536",
+                  "_type": "link",
+                  "label": "Dark Chocolate Walnuts",
+                  "link": "/products/dark-chocolate-walnuts"
+                },
+                {
+                  "_key": "3cd26c86afb9",
+                  "_type": "link",
+                  "label": "Shop all",
+                  "link": "/products"
+                }
+              ],
+              "title": "Cookies"
+            }
+          ],
+          "title": "Shop all"
+        },
+        {
+          "_key": "d4d5509e3e9c",
+          "_type": "link",
+          "cta": {
+            "_type": "cta",
+            "label": "Munchies bundle",
+            "link": "/products?category=pcat_01J9A041ZEER14NJY0QHWC60BE"
+          }
+        },
+        {
+          "_key": "52ff93dae108",
+          "_type": "link",
+          "cta": {
+            "_type": "cta",
+            "label": "Nutty",
+            "link": "/products?category=pcat_01J99ZMBMBMNFK7M6JT2SSXBAE"
+          }
+        },
+        {
+          "_key": "8e58bcbb5ea3",
+          "_type": "link",
+          "cta": {
+            "_type": "cta",
+            "label": "Cookies Club",
+            "link": "/cookies-club"
+          }
+        }
+      ],
+      "showAnnouncement": true,
+      "title": "Header"
+    }
+  },
+  "syncTags": [
+    "s1:JGhg3g",
+    "s1:DWNPjg",
+    "s1:p4IoMg"
+  ],
+  "ms": 18
+}

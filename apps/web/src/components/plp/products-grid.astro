@@ -1,13 +1,10 @@
 ---
 import type { HttpTypes } from "@medusajs/types";
-import { all } from "better-all";
-import { getRegion } from "@/lib/medusa/regions";
-import { loadDictionary } from "@/lib/sanity";
-import { searchProducts } from "@/lib/search/client";
 import { ProductCard } from "../shared/product-card";
 import { Body } from "../shared/typography/body";
 import { Heading } from "../shared/typography/heading";
 import ClearAll from "./clear-all.astro";
+import productsGridData from "./products-grid-data.json";
 import Refinement from "./refinement.astro";
 
 const url = Astro.url.toString();
@@ -19,26 +16,7 @@ const category = searchParams.get("category") || "";
 
 const now = performance.now();
 
-const {
-  region,
-  productsDictionary,
-  results: { hits: products, facets },
-} = await all({
-  region() {
-    return getRegion(Astro.locals.countryCode);
-  },
-  productsDictionary() {
-    return loadDictionary();
-  },
-  async results() {
-    return searchProducts(Astro.locals.runtime.env.SEARCH, {
-      limit: 20,
-      region_id: (await this.$.region)?.id,
-      collection_id: collection,
-      category_id: category,
-    });
-  },
-});
+const { region, productsDictionary, products, facets } = productsGridData;
 
 const end = performance.now();
 console.log(`[products] products-grid fetch took ${end - now}ms`);
