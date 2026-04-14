@@ -51,3 +51,5 @@ src/
 | `pnpm build`   | Build for production  |
 | `pnpm deploy`  | Build + deploy to CF  |
 | `pnpm typegen` | Generate Sanity types |
+
+trigger deploy
