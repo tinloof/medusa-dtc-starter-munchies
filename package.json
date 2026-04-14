@@ -28,7 +28,8 @@
     },
     "patchedDependencies": {
       "astro@5.16.11": "patches/astro@5.16.11.patch"
-    }
+    },
+    "neverBuiltDependencies": ["msgpackr-extract"]
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx,astro}": [
