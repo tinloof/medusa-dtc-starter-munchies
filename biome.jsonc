@@ -20,6 +20,11 @@
       }
     }
   },
+  // Workaround for Biome bug: html.experimentalFullSupportEnabled (from ultracite/biome/astro)
+  // causes --write to insert a blank line after --- in .astro frontmatter on every run.
+  "html": {
+    "experimentalFullSupportEnabled": false
+  },
   "formatter": {
     "includes": ["!**/*.astro"]
   },
