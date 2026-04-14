@@ -1,5 +1,5 @@
-import type { RequestContext } from "@/lib/context";
 import { defineMiddleware, sequence } from "astro:middleware";
+import type { RequestContext } from "@/lib/context";
 import config from "./config";
 import { getTags, requestContext } from "./lib/context";
 
