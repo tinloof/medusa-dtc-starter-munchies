@@ -54,6 +54,8 @@ MEDUSA_PUBLISHABLE_KEY=
 # Sanity
 SANITY_API_TOKEN=
 SANITY_PROJECT_ID=
+SANITY_DATASET=production # must match PUBLIC_SANITY_STUDIO_DATASET in apps/web
+SANITY_STUDIO_URL=http://localhost:3000/cms
 
 # S3 Storage (optional)
 S3_FILE_URL=

@@ -25,8 +25,8 @@ export default defineConfig({
         api_token: process.env.SANITY_API_TOKEN ?? "",
         project_id: process.env.SANITY_PROJECT_ID ?? "",
         api_version: new Date().toISOString().split("T")[0],
-        dataset: "migration",
-        studio_url: "https://munchies.tinloof.com/cms",
+        dataset: process.env.SANITY_DATASET || "production",
+        studio_url: process.env.SANITY_STUDIO_URL,
         transformer: (entityType: string, data: Record<string, unknown>) => {
           switch (entityType) {
             case "product":
